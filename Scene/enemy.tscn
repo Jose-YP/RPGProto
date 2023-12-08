@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg6popaxjbvc4"]
+
+[ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_bvt52"]
+
+[node name="Enemy" instance=ExtResource("1_bvt52")]
+
+[node name="Icon" parent="." index="1"]
+modulate = Color(1, 0.0392157, 0, 1)

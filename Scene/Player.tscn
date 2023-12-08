@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dspj6gkwkq7ko"]
+
+[ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_ij2m7"]
+
+[sub_resource type="Gradient" id="Gradient_0srg1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e2wj2"]
+gradient = SubResource("Gradient_0srg1")
+width = 256
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_re6mp"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.443137, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6rmr"]
+gradient = SubResource("Gradient_re6mp")
+width = 256
+
+[node name="Node2D" instance=ExtResource("1_ij2m7")]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="TextureProgressBar" index="0"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 73.0
+offset_right = 258.0
+offset_bottom = 139.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_e2wj2")
+texture_progress = SubResource("GradientTexture2D_l6rmr")

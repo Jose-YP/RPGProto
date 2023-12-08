@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://twouvei3cmnp"]
+
+[ext_resource type="Script" path="res://Code/Entity.gd" id="1_nf8im"]
+[ext_resource type="Resource" uid="uid://xwh3l1nea5r2" path="res://Resources/TestEntity.tres" id="2_1iuln"]
+[ext_resource type="Texture2D" uid="uid://biefx5glt3ufy" path="res://Resources/green.tres" id="2_uq25v"]
+[ext_resource type="Texture2D" uid="uid://b7jc4yykvnhq" path="res://Assets/icon.svg" id="2_xtla5"]
+[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="3_lyg4j"]
+
+[sub_resource type="Gradient" id="Gradient_q4qby"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0uydm"]
+gradient = SubResource("Gradient_q4qby")
+width = 256
+fill_from = Vector2(1, 0)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nf8im")
+data_file = "res://Resources/TestEntity.tres"
+data = ExtResource("2_1iuln")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -125.0
+offset_top = 72.0
+offset_right = 131.0
+offset_bottom = 138.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_0uydm")
+texture_progress = ExtResource("2_uq25v")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_xtla5")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(88, -67)
+rotation = -2.0944
+scale = Vector2(1, 0.25)
+texture = ExtResource("3_lyg4j")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 71.0
+offset_top = -93.0
+offset_right = 249.0
+offset_bottom = 60.0
+placeholder_text = "[species] name
+Element:
+str: 			tgh: 
+bal:			res:
+spd:			luk:"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Entity" load_steps=2 format=3 uid="uid://xwh3l1nea5r2"]
+
+[ext_resource type="Script" path="res://Code/Globals/EntityMaker.gd" id="1_3vpti"]
+
+[resource]
+script = ExtResource("1_3vpti")
+name = "Debugger"
+species = "Test"
+MaxHP = 100
+MaxTP = 100
+strength = 10
+toughness = 12
+ballistics = 8
+resistance = 5
+speed = 9
+luck = 2
+element = "Fire"
+phyElement = "Crush"
