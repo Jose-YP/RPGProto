@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://sjm6hcqloohb"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_6gkel"]
+
+[resource]
+script = ExtResource("1_6gkel")
+name = "Bahr"
+description = "Ballistic Water Attack that hits an opposing enity group of the same element"
+TPCost = 60
+which = 0
+target = "Group"
+element = "Water"
+phyElement = "Neutral"
+property = 1
+CostType = "LP"
+cost = 5.0
+Power = 30
+HitNum = 1
+BaseCrit = -10
+BaseAilment = -200
+Ailment = "Negative"
+AilmentAmmount = -1
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

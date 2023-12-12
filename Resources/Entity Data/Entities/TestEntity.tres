@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=7 format=3 uid="uid://b6jbgarv46a4q"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_ef3av"]
+[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_4oecg"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_punov"]
+[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Heal.tres" id="3_uv8oh"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Hariq.tres" id="4_5cn73"]
+[ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/new_resource.tres" id="5_d238i"]
+
+[resource]
+script = ExtResource("2_punov")
+level = 5
+name = "Debugger"
+species = "Test"
+specificData = ExtResource("5_d238i")
+MaxHP = 100
+MaxTP = 40
+strength = 2
+toughness = 9
+ballistics = 12
+resistance = 4
+speed = 6
+luck = 3
+element = "Fire"
+Weakness = 16
+Resist = 8
+phyElement = "Slash"
+attackData = ExtResource("1_ef3av")
+skillData = [ExtResource("3_uv8oh"), ExtResource("4_5cn73")]
+itemData = {
+ExtResource("2_4oecg"): 1
+}
+XSoft = null
+TempElement = null
+Condition = null
+Ailment = "Healthy"
+AilmentNum = 0
+XSoftNum = 0
+attackBoost = 0.0
+defsenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

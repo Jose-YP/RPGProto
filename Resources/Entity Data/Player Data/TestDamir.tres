@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Player" load_steps=3 format=3 uid="uid://c50jb0vd5pl13"]
+
+[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Entities/WaterEntity.tres" id="1_kk682"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="2_t2rrv"]
+
+[resource]
+script = ExtResource("2_t2rrv")
+entityData = ExtResource("1_kk682")
+playerName = "Damir"
+level = 5
+MaxLP = 15
+MaxCPU = 28
+skills = 2
+rechargeRate = 1.288
+statGrowth = {}
+moves = {}
+Boost = 1

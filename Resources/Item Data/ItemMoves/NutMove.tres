@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ctd3u2es6ugap"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_8plfy"]
+
+[resource]
+script = ExtResource("1_8plfy")
+name = "Nut"
+description = "+70 HP, Salty Copper Taste"
+TPCost = 40
+which = 1
+target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 16
+CostType = "Free"
+cost = 0.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = ""
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

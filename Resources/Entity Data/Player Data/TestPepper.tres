@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Player" load_steps=2 format=3 uid="uid://del6wldfbl02t"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="1_65r8u"]
+
+[resource]
+script = ExtResource("1_65r8u")
+MaxLP = 50
+MaxCPU = 25
+skills = 2
+rechargeRate = 0.593
+statGrowth = {}
+moves = {}
+Boost = "Attack"

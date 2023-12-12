@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg6popaxjbvc4"]
+[gd_scene load_steps=3 format=3 uid="uid://cg6popaxjbvc4"]
 
 [ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_bvt52"]
+[ext_resource type="Script" path="res://Code/enemy.gd" id="2_o8ehr"]
 
-[node name="Enemy" instance=ExtResource("1_bvt52")]
+[node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
+script = ExtResource("2_o8ehr")
 
-[node name="Icon" parent="." index="1"]
+[node name="HPBar" parent="." index="1"]
+offset_bottom = 105.0
+
+[node name="Icon" parent="." index="2"]
 modulate = Color(1, 0.0392157, 0, 1)

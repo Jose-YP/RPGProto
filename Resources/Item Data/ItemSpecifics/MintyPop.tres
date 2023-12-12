@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://8u4bq1rvuxfq"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_08i3f"]
+[ext_resource type="Resource" uid="uid://d2300embeoiyi" path="res://Resources/Item Data/ItemMoves/MintyPopMove.tres" id="1_o6jti"]
+
+[resource]
+script = ExtResource("1_08i3f")
+name = "Minty Pop"
+maxItems = 20
+centCost = 20
+attackData = ExtResource("1_o6jti")

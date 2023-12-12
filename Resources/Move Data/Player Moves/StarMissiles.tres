@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c440gmqox5ngk"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_4rxcd"]
+
+[resource]
+script = ExtResource("1_4rxcd")
+name = "Star Missiles"
+description = "5 Ballistic Neutral attacks on a single enemy"
+TPCost = 60
+which = 0
+target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 1
+CostType = "LP"
+cost = 10.0
+Power = 5
+HitNum = 5
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

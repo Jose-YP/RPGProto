@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://crlpknckxynoj"]
+
+[ext_resource type="Resource" uid="uid://bjrkugjoysreo" path="res://Resources/Item Data/ItemMoves/SpikeBombMove.tres" id="1_78ev6"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_n2moo"]
+
+[resource]
+script = ExtResource("1_n2moo")
+name = "Spike Bomb"
+maxItems = 8
+centCost = 150
+attackData = ExtResource("1_78ev6")

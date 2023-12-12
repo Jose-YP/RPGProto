@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ludnisaxi0lt"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_585l8"]
+
+[resource]
+script = ExtResource("1_585l8")
+name = "Attack"
+description = "Basic Attack"
+TPCost = 40
+Which = "Enemy"
+Target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 1
+CostType = "Free"
+cost = 0.0
+Power = 40
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

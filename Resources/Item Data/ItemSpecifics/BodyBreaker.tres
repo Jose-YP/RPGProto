@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d3kx4skcjkrso"]
+
+[ext_resource type="Resource" uid="uid://b0okel7gs3k8a" path="res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres" id="1_8y5q2"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="2_iuf16"]
+
+[resource]
+script = ExtResource("2_iuf16")
+name = "BodyBreaker"
+maxItems = 1
+centCost = 2000
+attackData = ExtResource("1_8y5q2")

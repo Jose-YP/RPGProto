@@ -1,31 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://twouvei3cmnp"]
+[gd_scene load_steps=12 format=3 uid="uid://twouvei3cmnp"]
 
 [ext_resource type="Script" path="res://Code/Entity.gd" id="1_nf8im"]
-[ext_resource type="Resource" uid="uid://xwh3l1nea5r2" path="res://Resources/TestEntity.tres" id="2_1iuln"]
 [ext_resource type="Texture2D" uid="uid://biefx5glt3ufy" path="res://Resources/green.tres" id="2_uq25v"]
+[ext_resource type="Resource" uid="uid://seilwthpp2l1" path="res://Resources/Entity Data/placeholder.tres" id="2_w83ur"]
 [ext_resource type="Texture2D" uid="uid://b7jc4yykvnhq" path="res://Assets/icon.svg" id="2_xtla5"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="3_lyg4j"]
+[ext_resource type="Texture2D" uid="uid://d2e38wrpun3ls" path="res://Assets/Icons/Strength.png" id="5_hntm1"]
+[ext_resource type="Texture2D" uid="uid://um5ahdqwyaub" path="res://Assets/Icons/Luck.png" id="6_xc10a"]
+[ext_resource type="Texture2D" uid="uid://c51stapggxm0i" path="res://Assets/Icons/Speed.png" id="7_ov6dp"]
+[ext_resource type="Texture2D" uid="uid://dym3sjt3b7bda" path="res://Assets/Icons/Toughness.png" id="8_13rnq"]
 
 [sub_resource type="Gradient" id="Gradient_q4qby"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0uydm"]
 gradient = SubResource("Gradient_q4qby")
 width = 256
+height = 32
 fill_from = Vector2(1, 0)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["Entities"]]
 script = ExtResource("1_nf8im")
-data_file = "res://Resources/TestEntity.tres"
-data = ExtResource("2_1iuln")
+data = ExtResource("2_w83ur")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
 offset_left = -125.0
-offset_top = 72.0
+offset_top = 102.0
 offset_right = 131.0
-offset_bottom = 138.0
-value = 50.0
+offset_bottom = 134.0
+value = 100.0
 texture_under = SubResource("GradientTexture2D_0uydm")
 texture_progress = ExtResource("2_uq25v")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HPBar"]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 30.0
+text = "HP: "
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_xtla5")
@@ -39,11 +53,88 @@ texture = ExtResource("3_lyg4j")
 
 [node name="TextEdit" type="TextEdit" parent="."]
 offset_left = 71.0
-offset_top = -93.0
-offset_right = 249.0
+offset_top = -105.0
+offset_right = 260.0
 offset_bottom = 60.0
-placeholder_text = "[species] name
+placeholder_text = "[species] lv.  name
 Element:
-str: 			tgh: 
-bal:			res:
-spd:			luk:"
+str: 			tgh: 		bal:
+res:			spd:			luk:
+Moves:"
+
+[node name="CurrentInfo" type="TextEdit" parent="."]
+visible = false
+offset_left = -140.0
+offset_top = 61.0
+offset_right = 138.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Taken x Damage! [Crit][Resist] [Resist]"
+wrap_mode = 1
+
+[node name="Buffs" type="Node2D" parent="."]
+
+[node name="Attack" type="Sprite2D" parent="Buffs"]
+visible = false
+modulate = Color(1, 0.278431, 0.356863, 0.670588)
+position = Vector2(-73, -75)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_hntm1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Attack"]
+offset_left = 166.667
+offset_top = -93.3334
+offset_right = 426.667
+offset_bottom = 82.6666
+theme_override_font_sizes/normal_font_size = 100
+text = "+%"
+
+[node name="Defense" type="Sprite2D" parent="Buffs"]
+visible = false
+modulate = Color(1, 0.278431, 0.356863, 0.670588)
+position = Vector2(-76, -33)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("8_13rnq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Defense"]
+offset_left = 215.385
+offset_top = -169.231
+offset_right = 505.385
+offset_bottom = 17.7693
+theme_override_font_sizes/normal_font_size = 110
+text = "+%"
+
+[node name="Speed" type="Sprite2D" parent="Buffs"]
+visible = false
+modulate = Color(1, 0.278431, 0.356863, 0.670588)
+position = Vector2(-72, 4)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_ov6dp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Speed"]
+offset_left = 240.0
+offset_top = -140.0
+offset_right = 556.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 140
+text = "+%"
+
+[node name="Luck" type="Sprite2D" parent="Buffs"]
+visible = false
+modulate = Color(1, 0.278431, 0.356863, 0.670588)
+position = Vector2(-72, 43)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_xc10a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Luck"]
+offset_left = 96.0
+offset_top = -44.0
+offset_right = 220.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 55
+text = "+%"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Buffs/Defense/RichTextLabel")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

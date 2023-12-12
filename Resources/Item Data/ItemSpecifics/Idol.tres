@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cm7guxbx8nbyw"]
+
+[ext_resource type="Resource" uid="uid://bsstfp6df7luh" path="res://Resources/Item Data/ItemMoves/IdolMove.tres" id="1_qrj6m"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_xqxpc"]
+
+[resource]
+script = ExtResource("1_xqxpc")
+name = "Idol"
+maxItems = 3
+centCost = 500
+attackData = ExtResource("1_qrj6m")

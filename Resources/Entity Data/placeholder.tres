@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=3 format=3 uid="uid://seilwthpp2l1"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_l4s34"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_rrmmm"]
+
+[resource]
+script = ExtResource("2_rrmmm")
+level = 0
+name = ""
+species = ""
+MaxHP = 100
+MaxTP = 80
+strength = 0
+toughness = 0
+ballistics = 0
+resistance = 0
+speed = 0
+luck = 0
+element = "Fire"
+Weakness = null
+Resist = null
+phyElement = "Neutral"
+attackData = ExtResource("1_l4s34")
+skillData = [ExtResource("1_l4s34"), ExtResource("1_l4s34")]
+itemData = {}
+XSoft = null
+TempElement = null
+Condition = null
+Ailment = "Healthy"
+AilmentNum = 0
+XSoftNum = 0
+attackBoost = 0.0
+defsenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

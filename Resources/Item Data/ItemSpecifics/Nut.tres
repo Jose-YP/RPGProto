@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6ban0ahb1a3a"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_pbchp"]
+[ext_resource type="Resource" uid="uid://ctd3u2es6ugap" path="res://Resources/Item Data/ItemMoves/NutMove.tres" id="1_wa0rl"]
+
+[resource]
+script = ExtResource("1_pbchp")
+name = "Nut"
+maxItems = 20
+centCost = 25
+attackData = ExtResource("1_wa0rl")

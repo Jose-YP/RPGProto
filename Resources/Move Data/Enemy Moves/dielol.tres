@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://d2hopjlup3igp"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_nn401"]
+
+[resource]
+script = ExtResource("1_nn401")
+name = "God hand or smth"
+description = "Basic Attack"
+TPCost = 150
+which = 0
+target = "Single"
+element = "Neutral"
+phyElement = "Crush"
+property = 9
+CostType = "Free"
+cost = 0.0
+Power = 100
+HitNum = 1
+BaseCrit = -20
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = 9
+BoostAmmount = -1
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

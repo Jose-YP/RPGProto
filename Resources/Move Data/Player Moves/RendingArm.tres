@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cms6yhioy6q35"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_j8b0p"]
+
+[resource]
+script = ExtResource("1_j8b0p")
+name = "RendingArm"
+description = "High Damage Physical Attack, lowers enemy attack by 30%"
+TPCost = 60
+which = 0
+target = "Single"
+element = "Neutral"
+phyElement = "Slash"
+property = 1
+CostType = "HP"
+cost = 0.2
+Power = 100
+HitNum = 1
+BaseCrit = 5
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = 5
+BoostAmmount = -1
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

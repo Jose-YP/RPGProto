@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cp2d0ronoqfi3"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_3g8yr"]
+
+[resource]
+script = ExtResource("1_3g8yr")
+name = "RedShift"
+description = "Basic Attack"
+TPCost = 60
+which = 1
+target = "Group"
+element = "Neutral"
+phyElement = "Neutral"
+property = 8
+CostType = "Free"
+cost = 0.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = 1
+BoostAmmount = 1
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

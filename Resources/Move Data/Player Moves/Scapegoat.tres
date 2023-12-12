@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://rgdfbbmp5gfg"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_3yh8u"]
+
+[resource]
+script = ExtResource("1_3yh8u")
+name = "Scapegoat"
+description = "Basic Attack"
+TPCost = 20
+Which = "Both"
+Target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 8
+CostType = "LP"
+cost = 2.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = 4
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""

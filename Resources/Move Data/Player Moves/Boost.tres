@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dnwglp1s48nar"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_w5ayu"]
+
+[resource]
+script = ExtResource("1_w5ayu")
+name = "Boost"
+description = "Buff an ally's stat by 30%. Boosted stat depends on user."
+TPCost = 10
+which = 1
+target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 1
+CostType = "Free"
+cost = 0.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 1
+Condition = ""
+Aura = ""
+ElementChange = null
+Summon = []
+Misc = ""

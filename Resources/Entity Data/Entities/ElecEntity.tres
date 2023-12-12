@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=7 format=3 uid="uid://ce2oymswsnn6j"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_tasbs"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_eib2i"]
+[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="2_ttvud"]
+[ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemyThrid.tres" id="3_gmcsw"]
+[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/BlueShift.tres" id="3_tx3ms"]
+[ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_s6ak4"]
+
+[resource]
+script = ExtResource("2_eib2i")
+level = 0
+name = "fkddvs"
+species = "Something"
+specificData = ExtResource("3_gmcsw")
+MaxHP = 110
+MaxTP = 80
+strength = 1
+toughness = 2
+ballistics = 3
+resistance = 4
+speed = 5
+luck = 6
+element = "Elec"
+Weakness = 8
+Resist = 40
+phyElement = "Crush"
+attackData = ExtResource("1_tasbs")
+skillData = [ExtResource("3_tx3ms"), ExtResource("5_s6ak4")]
+itemData = {
+ExtResource("2_ttvud"): 1
+}
+XSoft = null
+TempElement = null
+Condition = null
+Ailment = "Healthy"
+AilmentNum = 0
+XSoftNum = 0
+attackBoost = 0.0
+defsenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

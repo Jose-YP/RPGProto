@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://27w6xpavu67e"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_5fnqg"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_lrusg"]
+[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/Player Data/TestPepper.tres" id="2_8iwnb"]
+[ext_resource type="Resource" uid="uid://bjrkugjoysreo" path="res://Resources/Item Data/ItemMoves/SpikeBombMove.tres" id="2_qtytb"]
+[ext_resource type="Resource" uid="uid://cm7guxbx8nbyw" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="3_5otow"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Hariq.tres" id="3_u7vtt"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Poison.tres" id="4_4kg4v"]
+[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="4_s74kn"]
+[ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
+
+[resource]
+script = ExtResource("1_lrusg")
+level = 5
+name = "Pepper"
+species = "Andromeda"
+specificData = ExtResource("2_8iwnb")
+MaxHP = 110
+MaxTP = 80
+strength = 2
+toughness = 7
+ballistics = 14
+resistance = 8
+speed = 10
+luck = 11
+element = "Fire"
+Weakness = null
+Resist = 32
+phyElement = "Pierce"
+attackData = ExtResource("1_5fnqg")
+skillData = [ExtResource("3_u7vtt"), ExtResource("4_4kg4v"), ExtResource("5_sd4c7")]
+itemData = {
+ExtResource("2_qtytb"): 3,
+ExtResource("3_5otow"): 2,
+ExtResource("4_s74kn"): 1
+}
+XSoft = null
+TempElement = null
+Condition = null
+Ailment = "Healthy"
+AilmentNum = 0
+XSoftNum = 0
+attackBoost = 0.0
+defsenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

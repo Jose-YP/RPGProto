@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dovb15oajym1j"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_u57n4"]
+
+[resource]
+script = ExtResource("1_u57n4")
+name = "Overdrive"
+description = "Grant an ally overdrive, bossting their attack and giving them the attack burst. Allow them to move again."
+TPCost = 60
+which = 1
+target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 8
+CostType = "Free"
+cost = 0.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = 200
+Ailment = "Overdrive"
+AilmentAmmount = 1
+percentage = false
+revive = false
+reset = false
+Healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = "ActAgain"

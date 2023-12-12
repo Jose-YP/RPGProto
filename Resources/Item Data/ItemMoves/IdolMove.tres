@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bsstfp6df7luh"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_qjk74"]
+
+[resource]
+script = ExtResource("1_qjk74")
+name = "Idol"
+description = "Basic Attack"
+TPCost = 60
+which = 1
+target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 16
+CostType = "Free"
+cost = 0.0
+Power = 60
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = true
+revive = true
+reset = false
+Healing = 50
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostType = null
+BoostAmmount = 0
+Condition = null
+Aura = null
+ElementChange = null
+Summon = []
+Misc = ""
