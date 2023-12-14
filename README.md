@@ -4,6 +4,33 @@ Here's how things are supposed to functions
 I'm going to keep updating this until the GameJam starts so maybe it'll look better tommorow
 
 ______
+ISSUES
+______
+Fix selection arrows showing up after turns
+Speed of tweens after every action. They're managable for attacks and heal but not much else
+Updating XSofts
+Fixing Diplay for non Damaging/Healing moves
+Fix how Random/All/Self Target display
+
+______
+TODO
+______
+Implementing Reosurce management (HP,LP and TP costs)
+Implementing XSoft functionality
+Allow characters to run out of items
+Implement the moves Burst and Scan
+
+______
+LOFTY TODOS
+______
+Implement Ailments
+Implement Conditions
+StatBoost decay
+Implement end of battle
+Change Battles
+Maybe Animations
+
+______
 STATS
 _____
 HP:    Health Points, when 0 you die
@@ -12,9 +39,8 @@ strength:  Physical Attack
 toughness:  Physical Defense
 ballistics:  Ballistic Attack (aka magic)
 resistance:  Ballistic Defense
-speed:  Lowers TP cost of moves (likely not implemented yet)
+speed:  Lowers TP cost of moves
 luck:  Raises chance of getting crit/ailment hits and lowers opponents chances of doing the same to you
-
 _______
 PROPERTIES
 _______
@@ -44,19 +70,7 @@ ______
 Ailments, aka Status Consitions
 Most can be stacked 3 times for worsening effects with the only exception being Overdrive
 You can only have one Ailment stacked
-They probably won't be implemented by the time the GameJam starts but here's a few examples
-Poison
-1-
-2-
-3-
-Reckless
-1-
-2-
-3-
-Protected
-1-
-2-
-3-
+They probably won't be implemented by the time the GameJam starts but if they are I will list their functions
 
 XSofts are a seperate kind of Status Effect
 The first Soft of a certain element will make the entity take 15% more damage to that element
@@ -69,10 +83,12 @@ ______
 CONDITIONS
 ______
 Status Ailments that can't be stacked on their own
+charge - x2.5 damage for a physical attack
+targetted - Entity on said side is the only one that can be attacked, random target will also exclusively target them
+lucky - Autowin chances
 
-ex. You can only charge once but you can have charge with another condition
-______
-______
+ex. You can only charge once but you can have charge with lucky and/or targetted
+
 _______
 MOVES
 _______
@@ -99,4 +115,8 @@ ______
 TP MANAGEMENT
 ______
 Unlikely to be implemented once the game jam starts but
+It determines what moves you can use in a turn to turn basis, think of it like mana in a card game
+Every character's TP is collected into one per team
+Both sides start with full TP and every proceeding turn they gain half of their max back
+
 
