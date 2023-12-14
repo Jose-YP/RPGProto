@@ -17,7 +17,7 @@ name = "Damir"
 species = "Derivative"
 specificData = ExtResource("9_ksugu")
 MaxHP = 150
-MaxTP = 80
+MaxTP = 90
 strength = 13
 toughness = 8
 ballistics = 4
@@ -36,8 +36,8 @@ ExtResource("3_yqn7x"): 2,
 ExtResource("4_bqcmc"): 1
 }
 XSoft = null
-TempElement = null
 Condition = null
+TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
 XSoftNum = 0

@@ -9,5 +9,5 @@ script = ExtResource("2_o8ehr")
 [node name="HPBar" parent="." index="2"]
 offset_bottom = 105.0
 
-[node name="Icon" parent="." index="8"]
+[node name="Icon" parent="." index="7"]
 modulate = Color(1, 0.0392157, 0, 1)

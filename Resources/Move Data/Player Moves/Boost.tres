@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_w5ayu")
 name = "Boost"
-description = "Buff an ally's stat by 30%. Boosted stat depends on user."
+description = "Buff an ally's stat by 30%. Boosted Stat: "
 TPCost = 10
 Which = "Ally"
 Target = "Single"
@@ -26,10 +26,9 @@ reset = false
 healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
-BoostType = null
 BoostAmmount = 1
-Condition = null
+BoostType = 0
+Condition = 0
 Aura = ""
-ElementChange = ""
+ElementChange = "None"
 Summon = []
-Misc = ""

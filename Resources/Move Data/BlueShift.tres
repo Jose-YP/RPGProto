@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_bkg24")
 name = "Blue Shift"
-description = "Buff ally group's defense by 30%"
-TPCost = 60
+description = "Buff defense of a group of allies of the same element by 30%"
+TPCost = 65
 Which = "Ally"
 Target = "Group"
 element = "Neutral"
@@ -26,10 +26,9 @@ reset = false
 healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
-BoostType = 2
 BoostAmmount = 1
-Condition = null
+BoostType = 2
+Condition = 0
 Aura = ""
-ElementChange = ""
+ElementChange = "None"
 Summon = []
-Misc = ""

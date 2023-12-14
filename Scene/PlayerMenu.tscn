@@ -244,7 +244,7 @@ text = "Back"
 [connection signal="pressed" from="Regularmenu/MarginContainer/GridContainer/Tactics" to="." method="_on_first_pressed" binds= [3]]
 [connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Attack" to="." method="_on_attack_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Crash" to="." method="_on_attack_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Burst" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Burst" to="." method="_on_attack_pressed" binds= [2]]
 [connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill" to="." method="_on_skill_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill2" to="." method="_on_skill_pressed" binds= [1]]

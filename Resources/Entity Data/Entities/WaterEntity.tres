@@ -30,7 +30,7 @@ skillData = [ExtResource("3_8on4i"), ExtResource("4_yaufn")]
 itemData = {
 ExtResource("2_yu17n"): 1
 }
-XSoft = Array[String](["Water", ""])
+XSoft = Array[String](["Crush", ""])
 Condition = null
 TempElement = null
 Ailment = "Healthy"

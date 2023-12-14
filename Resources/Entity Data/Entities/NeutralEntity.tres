@@ -17,7 +17,7 @@ name = "Dreamer"
 species = "Derivative"
 specificData = ExtResource("3_0pc3x")
 MaxHP = 130
-MaxTP = 80
+MaxTP = 90
 strength = 4
 toughness = 7
 ballistics = 4
@@ -36,8 +36,8 @@ ExtResource("3_pv4re"): 4,
 ExtResource("4_52qji"): 4
 }
 XSoft = null
-TempElement = null
 Condition = null
+TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
 XSoftNum = 0

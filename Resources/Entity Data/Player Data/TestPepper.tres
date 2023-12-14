@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Player" load_steps=5 format=3 uid="uid://del6wldfbl02t"]
+[gd_resource type="Resource" script_class="Player" load_steps=7 format=3 uid="uid://del6wldfbl02t"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="1_65r8u"]
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/Boost.tres" id="1_c42pr"]
+[ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/Scan.tres" id="1_hv0fe"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Wait.tres" id="2_5cwc7"]
 [ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/Crash.tres" id="3_lnt4e"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Player Moves/Burst.tres" id="4_8osvo"]
 
@@ -15,3 +17,5 @@ slot2 = ExtResource("3_lnt4e")
 slot3 = ExtResource("4_8osvo")
 boostStat = 1
 boostMove = ExtResource("1_c42pr")
+Wait = ExtResource("2_5cwc7")
+Scan = ExtResource("1_hv0fe")

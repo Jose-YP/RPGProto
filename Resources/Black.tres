@@ -7,3 +7,4 @@ gradient = SubResource("Gradient_0srg1")
 width = 256
 height = 32
 fill_from = Vector2(1, 0)
+metadata/_snap_enabled = true
