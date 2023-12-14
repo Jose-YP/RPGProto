@@ -6,8 +6,8 @@
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_o8ehr")
 
-[node name="HPBar" parent="." index="1"]
+[node name="HPBar" parent="." index="2"]
 offset_bottom = 105.0
 
-[node name="Icon" parent="." index="2"]
+[node name="Icon" parent="." index="8"]
 modulate = Color(1, 0.0392157, 0, 1)

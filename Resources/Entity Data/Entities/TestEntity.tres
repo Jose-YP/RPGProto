@@ -37,6 +37,6 @@ Ailment = "Healthy"
 AilmentNum = 0
 XSoftNum = 0
 attackBoost = 0.0
-defsenseBoost = 0.0
+defenseBoost = 0.0
 speedBoost = 0.0
 luckBoost = 0.0

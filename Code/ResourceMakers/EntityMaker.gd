@@ -31,14 +31,14 @@ class_name entityData
 @export var itemData: Dictionary
 
 @export_group("Temp Property")
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce") var XSoft
+@export var XSoft: Array[String] = ["","",""]
+@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition
 @export_enum("Fire","Water","Elec","Neutral") var TempElement = element
-@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid") var Condition
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
-"Protected","Dumbfounded","Miserable","Healthy","Worn Out", "Explosive") var Ailment: String = "Healthy"
+"Protected","Dumbfounded","Miserable","Worn Out", "Explosive","Healthy") var Ailment: String = "Healthy"
 @export_range(0,3) var AilmentNum: int
 @export_range(0,3) var XSoftNum: int
 @export_range(-.6,.6,.05) var attackBoost: float = 0
-@export_range(-.6,.6,.05) var defsenseBoost: float = 0
+@export_range(-.6,.6,.05) var defenseBoost: float = 0
 @export_range(-.6,.6,.05) var speedBoost: float = 0
 @export_range(-.6,.6,.05) var luckBoost: float = 0

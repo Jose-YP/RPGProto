@@ -7,7 +7,7 @@ class_name Move
 @export var TPCost: int = 60
 @export_enum("Enemy","Ally","Both") var Which = "Enemy"
 @export_enum("Single","Group","Self","All","Random","None") var Target = "Single"
-@export_enum("Fire","Water","Elec","Light","Aurora","Comet","Neutral","Aether") var element = "Neutral"
+@export_enum("Fire","Water","Elec","Light","Aurora","Comet","Neutral","Aether") var element: String = "Neutral"
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement = "Neutral"
 @export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property = 1
 
@@ -21,8 +21,8 @@ class_name Move
 @export var BaseCrit: int = 0
 @export var BaseAilment: int = -200
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None",
-"Protected","Dumbfounded","Miserable","Worn Out", "Explosive") var Ailment: String = "None"
-@export_range(-3,3) var AilmentAmmount: int
+"Protected","Dumbfounded","Miserable","Worn Out", "Explosive","PhySoft","EleSoft") var Ailment: String = "None"
+@export_range(0,3) var AilmentAmmount: int
 
 @export_group("Healing")
 @export var percentage: bool
@@ -30,16 +30,16 @@ class_name Move
 @export var reset: bool
 @export var healing: int
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None",
-"Protected","Dumbfounded","Miserable","Worn Out", "Explosive", "Negative","Physical",
-"Mental","Positive","All") var HealedAilment = "None"
+"Protected","Dumbfounded","Miserable","Worn Out", "Explosive", "Negative","Nonmental",
+"Mental","Positive","XSoft","All") var HealedAilment: String = "None"
 @export_range(0,3) var HealAilAmmount: int
 
 @export_group("Other")
 @export_flags("Attack","Defense","Speed","Luck") var BoostType
 @export var BoostAmmount: int = 0
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid") var Condition
-@export_enum("BodyBroken","WillWrecked","LowTicks","FireAug","WaterAug","ElecAug","SlashAug","CrushAug",
-"PierceAug","FireDamp","WaterDamp","ElecDamp","SlashDamp","CrushDamp","PierceDamp",) var Aura
-@export_enum("Fire","Water","Elec","Neutral","TWin","TLose","UWin","ULose") var ElementChange
+@export_enum("BodyBroken","WillWrecked","LowTicks","CritDouble","FireAug","WaterAug","ElecAug","SlashAug","CrushAug",
+"PierceAug","FireDamp","WaterDamp","ElecDamp","SlashDamp","CrushDamp","PierceDamp") var Aura: String
+@export_enum("Fire","Water","Elec","Neutral","TWin","TLose","UWin","ULose") var ElementChange: String
 @export var Summon: Array
 @export var Misc: String

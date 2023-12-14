@@ -7,9 +7,10 @@ class_name Player
 @export_range(1,8) var skills: int = 1
 @export_range(.5,2,.05) var rechargeRate: float = 1
 
-@export_category("Sheets")
-@export var statGrowth: Dictionary = {}
+@export_category("Basic Moves")
+@export var slot2: Move
+@export var slot3: Move 
 
-@export_category("Properties")
-@export_enum("Attack","Defense","Luck") var Boost = "Attack"
-
+@export_category("Boost")
+@export_flags("Attack","Defense","Speed","Luck") var boostStat
+@export var boostMove: Move

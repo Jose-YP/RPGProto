@@ -9,11 +9,14 @@
 [node name="Player" groups=["Players"] instance=ExtResource("1_ij2m7")]
 script = ExtResource("2_eir3h")
 
-[node name="LPBar" type="TextureProgressBar" parent="." index="0"]
+[node name="HPBar" parent="." index="2"]
+offset_bottom = 106.0
+
+[node name="LPBar" type="TextureProgressBar" parent="." index="3"]
 offset_left = -125.0
-offset_top = 139.0
+offset_top = 176.0
 offset_right = 132.0
-offset_bottom = 173.0
+offset_bottom = 210.0
 value = 100.0
 texture_under = ExtResource("3_bc0w8")
 texture_progress = ExtResource("4_n4dko")
@@ -24,26 +27,34 @@ offset_right = 169.0
 offset_bottom = 30.0
 text = "LP: "
 
-[node name="HPBar" parent="." index="2"]
-offset_bottom = 106.0
-
 [node name="CanvasLayer" parent="." index="4" instance=ExtResource("3_1kcwe")]
 visible = false
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 112.0
+offset_top = 28.0
 offset_right = 112.0
+offset_bottom = 28.0
 
-[node name="TextEdit" parent="." index="6"]
+[node name="Fire" parent="XSoftDisplay/HBoxContainer/XSoft2" index="1"]
+visible = true
+
+[node name="Elec" parent="XSoftDisplay/HBoxContainer/XSoft2" index="3"]
 visible = false
-offset_left = -162.0
-offset_top = -162.0
-offset_right = 61.0
-offset_bottom = -65.0
-placeholder_text = "Makes an aura that halves physical damage every entity takes"
-wrap_mode = 1
 
-[node name="CurrentInfo" parent="." index="7"]
+[node name="Fire" parent="XSoftDisplay/HBoxContainer/XSoft3" index="1"]
+visible = true
+
+[node name="Pierce" parent="XSoftDisplay/HBoxContainer/XSoft3" index="6"]
+visible = false
+
+[node name="CurrentInfo" parent="." index="8"]
 offset_right = 224.0
 
+[connection signal="overdriveReady" from="." to="CanvasLayer" method="_on_player_overdrive_ready"]
 [connection signal="Attack" from="CanvasLayer" to="." method="_on_canvas_layer_attack"]
 [connection signal="Item" from="CanvasLayer" to="." method="_on_canvas_layer_item"]
 [connection signal="Skill" from="CanvasLayer" to="." method="_on_canvas_layer_skill"]

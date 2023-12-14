@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bp3hni787i2io"]
+
+[ext_resource type="Resource" uid="uid://bfpochp3cyb2r" path="res://Resources/Item Data/ItemMoves/SoftyMove.tres" id="1_0afju"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_8x4gp"]
+
+[resource]
+script = ExtResource("1_8x4gp")
+name = "Softy!"
+maxItems = 5
+centCost = 350
+attackData = ExtResource("1_0afju")

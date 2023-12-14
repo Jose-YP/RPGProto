@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bj1l11wng7bfb"]
+
+[ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Player.tscn" id="1_28r4w"]
+[ext_resource type="Script" path="res://Code/Main.gd" id="1_vrows"]
+[ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/enemy.tscn" id="2_jglk6"]
+[ext_resource type="Resource" uid="uid://f83w7ts343k8" path="res://Resources/Entity Data/Entities/SecondFire.tres" id="3_5yjrk"]
+[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Entities/WaterEntity.tres" id="4_kpyhu"]
+[ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Entities/ElecEntity.tres" id="5_xpchx"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/Entities/NeutralEntity.tres" id="7_gpmlw"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/Entities/SecondWater.tres" id="8_f36rs"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/Entities/FireEntity.tres" id="9_nfj74"]
+[ext_resource type="Texture2D" uid="uid://b6a7qm7qjb0uc" path="res://Assets/cursor_PNG100722.png" id="11_1gkfx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vrows")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource("2_jglk6")]
+position = Vector2(263, 142)
+data = ExtResource("3_5yjrk")
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_jglk6")]
+position = Vector2(630, 125)
+data = ExtResource("4_kpyhu")
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_jglk6")]
+position = Vector2(992, 128)
+data = ExtResource("5_xpchx")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player3" parent="Players" instance=ExtResource("1_28r4w")]
+position = Vector2(965, 520)
+data = ExtResource("9_nfj74")
+
+[node name="Player2" parent="Players" instance=ExtResource("1_28r4w")]
+position = Vector2(590, 522)
+data = ExtResource("8_f36rs")
+
+[node name="Player1" parent="Players" instance=ExtResource("1_28r4w")]
+position = Vector2(215, 536)
+data = ExtResource("7_gpmlw")
+
+[node name="XSoft1" parent="Players/Player1/XSoftDisplay/HBoxContainer" index="0"]
+visible = true
+
+[node name="XSoft2" parent="Players/Player1/XSoftDisplay/HBoxContainer" index="1"]
+visible = true
+
+[node name="Fire" parent="Players/Player1/XSoftDisplay/HBoxContainer/XSoft2" index="1"]
+visible = true
+
+[node name="Elec" parent="Players/Player1/XSoftDisplay/HBoxContainer/XSoft2" index="3"]
+visible = false
+
+[node name="XSoft3" parent="Players/Player1/XSoftDisplay/HBoxContainer" index="2"]
+visible = true
+
+[node name="Fire" parent="Players/Player1/XSoftDisplay/HBoxContainer/XSoft3" index="1"]
+visible = true
+
+[node name="Pierce" parent="Players/Player1/XSoftDisplay/HBoxContainer/XSoft3" index="6"]
+visible = false
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(514, 419)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_1gkfx")
+
+[connection signal="hidden" from="Players/Player1/XSoftDisplay/HBoxContainer/XSoft2" to="Players/Player1" method="_on_x_soft_2_hidden" flags=18]
+
+[editable path="Players/Player1"]
+[editable path="Players/Player1/CanvasLayer"]

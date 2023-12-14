@@ -9,19 +9,19 @@
 
 [resource]
 script = ExtResource("2_4mudn")
-level = 0
+level = 5
 name = "Man"
 species = "Derivative"
 specificData = ExtResource("3_nkvhu")
 MaxHP = 190
 MaxTP = 40
-strength = 5
+strength = 6
 toughness = 8
 ballistics = 12
 resistance = 8
-speed = 2
-luck = 19
-element = "Water"
+speed = 19
+luck = 2
+element = "Elec"
 Weakness = 32
 Resist = 16
 phyElement = "Pierce"
@@ -30,13 +30,13 @@ skillData = [ExtResource("3_8on4i"), ExtResource("4_yaufn")]
 itemData = {
 ExtResource("2_yu17n"): 1
 }
-XSoft = null
-TempElement = null
+XSoft = Array[String](["Water", ""])
 Condition = null
+TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
 XSoftNum = 0
 attackBoost = 0.0
-defsenseBoost = 0.0
+defenseBoost = 0.0
 speedBoost = 0.0
 luckBoost = 0.0

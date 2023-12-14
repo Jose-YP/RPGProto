@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://twouvei3cmnp"]
+[gd_scene load_steps=32 format=3 uid="uid://twouvei3cmnp"]
 
 [ext_resource type="Script" path="res://Code/Entity.gd" id="1_nf8im"]
 [ext_resource type="Texture2D" uid="uid://biefx5glt3ufy" path="res://Resources/green.tres" id="2_uq25v"]
@@ -6,9 +6,29 @@
 [ext_resource type="Texture2D" uid="uid://b7jc4yykvnhq" path="res://Assets/icon.svg" id="2_xtla5"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="3_lyg4j"]
 [ext_resource type="Texture2D" uid="uid://d2e38wrpun3ls" path="res://Assets/Icons/Strength.png" id="5_hntm1"]
+[ext_resource type="StyleBox" uid="uid://ciyya85ww81pf" path="res://Themes/HasSingle/SubtleCircle.tres" id="5_wvjmv"]
+[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Assets/Icons/Fire.png" id="6_ma871"]
 [ext_resource type="Texture2D" uid="uid://um5ahdqwyaub" path="res://Assets/Icons/Luck.png" id="6_xc10a"]
+[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Assets/Icons/Water.png" id="7_0xu7h"]
 [ext_resource type="Texture2D" uid="uid://c51stapggxm0i" path="res://Assets/Icons/Speed.png" id="7_ov6dp"]
 [ext_resource type="Texture2D" uid="uid://dym3sjt3b7bda" path="res://Assets/Icons/Toughness.png" id="8_13rnq"]
+[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Assets/Icons/Elec.png" id="8_oa14c"]
+[ext_resource type="Texture2D" uid="uid://1v00vl2wogxp" path="res://Assets/Icons/AilmentIcons/Overdrive.png" id="9_ch8bq"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Assets/Icons/white-circle-icon-7-1397688648.png" id="9_fkwou"]
+[ext_resource type="Texture2D" uid="uid://bcstakg861inr" path="res://Assets/Icons/AilmentIcons/Poison.png" id="10_wy4xi"]
+[ext_resource type="Texture2D" uid="uid://cqltubwlee2c2" path="res://Assets/Icons/AilmentIcons/Reckless.png" id="11_45jx3"]
+[ext_resource type="Texture2D" uid="uid://dng51xikpovi2" path="res://Assets/Icons/AilmentIcons/Exhausted.png" id="12_hmn3s"]
+[ext_resource type="Texture2D" uid="uid://cyme6d0fmctt3" path="res://Assets/Icons/AilmentIcons/Rust.png" id="13_pohis"]
+[ext_resource type="Texture2D" uid="uid://dsdfkx6hoc1a1" path="res://Assets/Icons/AilmentIcons/Stunned.png" id="14_nonxy"]
+[ext_resource type="Texture2D" uid="uid://5toa35wsopwp" path="res://Assets/Icons/AilmentIcons/Cursed.png" id="15_wwat1"]
+[ext_resource type="Texture2D" uid="uid://b50111s2g4v8e" path="res://Assets/Icons/AilmentIcons/Protected.png" id="16_b7cj5"]
+[ext_resource type="Texture2D" uid="uid://dwtj5n12ksju0" path="res://Assets/Icons/AilmentIcons/Dumbfounded.png" id="17_2m5ng"]
+[ext_resource type="Texture2D" uid="uid://6tssut687iln" path="res://Assets/Icons/AilmentIcons/Miserable.png" id="18_vorwh"]
+[ext_resource type="Texture2D" uid="uid://cf7iqb4hvjtis" path="res://Assets/Icons/AilmentIcons/Worn Out.png" id="19_8lvl0"]
+[ext_resource type="Texture2D" uid="uid://cn3k0waq127p6" path="res://Assets/Icons/AilmentIcons/Bomb.png" id="20_7xdql"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="21_ey481"]
+[ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Assets/Icons/keyboard-icons-_0000s_0023__Group_.png" id="22_igrrv"]
+[ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Assets/Icons/Crush.png" id="23_ofrac"]
 
 [sub_resource type="Gradient" id="Gradient_q4qby"]
 
@@ -23,14 +43,16 @@ script = ExtResource("1_nf8im")
 data = ExtResource("2_w83ur")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Buffs/Defense/RichTextLabel")
 
 [node name="HPBar" type="TextureProgressBar" parent="."]
 offset_left = -125.0
-offset_top = 102.0
+offset_top = 134.0
 offset_right = 131.0
-offset_bottom = 134.0
+offset_bottom = 166.0
 value = 100.0
 texture_under = SubResource("GradientTexture2D_0uydm")
 texture_progress = ExtResource("2_uq25v")
@@ -41,33 +63,353 @@ offset_right = 68.0
 offset_bottom = 30.0
 text = "HP: "
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_xtla5")
+[node name="CurrentElement" type="TabContainer" parent="."]
+offset_left = -140.0
+offset_top = -96.0
+offset_right = -100.0
+offset_bottom = -56.0
+theme_override_styles/panel = ExtResource("5_wvjmv")
+tabs_visible = false
+all_tabs_in_front = true
+metadata/_edit_lock_ = true
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="Fire" type="TextureRect" parent="CurrentElement"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("6_ma871")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="CurrentElement"]
 visible = false
-position = Vector2(88, -67)
-rotation = -2.0944
-scale = Vector2(1, 0.25)
-texture = ExtResource("3_lyg4j")
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("7_0xu7h")
+expand_mode = 4
+metadata/_edit_lock_ = true
 
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 71.0
-offset_top = -105.0
-offset_right = 260.0
-offset_bottom = 60.0
-placeholder_text = "[species] lv.  name
-Element:
-str: 			tgh: 		bal:
-res:			spd:			luk:
-Moves:"
+[node name="Elec" type="TextureRect" parent="CurrentElement"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("8_oa14c")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="CurrentElement"]
+visible = false
+layout_mode = 2
+texture = ExtResource("9_fkwou")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="AilmentDisplay" type="GridContainer" parent="."]
+visible = false
+offset_left = -136.0
+offset_top = -48.0
+offset_right = -96.0
+offset_bottom = -24.0
+columns = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AilmentType" type="TabContainer" parent="AilmentDisplay"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wvjmv")
+tabs_visible = false
+all_tabs_in_front = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Overdrive" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+layout_mode = 2
+texture = ExtResource("9_ch8bq")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Poison" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.572549, 0, 0.572549, 1)
+layout_mode = 2
+texture = ExtResource("10_wy4xi")
+expand_mode = 2
+
+[node name="Reckless" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.937255, 0.435294, 0, 0.780392)
+layout_mode = 2
+texture = ExtResource("11_45jx3")
+expand_mode = 2
+
+[node name="Exhausted" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.517647, 0.776471, 0.235294, 0.827451)
+layout_mode = 2
+texture = ExtResource("12_hmn3s")
+expand_mode = 2
+
+[node name="Rust" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.431373, 0.243137, 0, 1)
+layout_mode = 2
+texture = ExtResource("13_pohis")
+expand_mode = 2
+
+[node name="Stun" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.556863, 0.556863, 0, 0.858824)
+layout_mode = 2
+texture = ExtResource("14_nonxy")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Curse" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.545098, 0.0901961, 0.521569, 0.8)
+layout_mode = 2
+texture = ExtResource("15_wwat1")
+expand_mode = 3
+
+[node name="Protected" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+layout_mode = 2
+texture = ExtResource("16_b7cj5")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(1, 0.486275, 1, 1)
+layout_mode = 2
+texture = ExtResource("17_2m5ng")
+expand_mode = 3
+
+[node name="Miserable" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.105882, 0.14902, 0.631373, 0.768627)
+layout_mode = 2
+texture = ExtResource("18_vorwh")
+expand_mode = 3
+
+[node name="Worn Out" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.552941, 0.552941, 0.552941, 1)
+layout_mode = 2
+texture = ExtResource("19_8lvl0")
+expand_mode = 3
+
+[node name="Explosive" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+visible = false
+modulate = Color(0.0470588, 0.0470588, 0.0470588, 0.858824)
+layout_mode = 2
+texture = ExtResource("20_7xdql")
+expand_mode = 3
+
+[node name="AilmentNum" type="Label" parent="AilmentDisplay"]
+layout_mode = 2
+theme = ExtResource("21_ey481")
+text = "1"
+
+[node name="XSoftDisplay" type="VBoxContainer" parent="."]
+visible = false
+offset_left = -140.0
+offset_top = -16.0
+offset_right = -70.0
+offset_bottom = 63.0
+
+[node name="Label2" type="Label" parent="XSoftDisplay"]
+layout_mode = 2
+theme = ExtResource("21_ey481")
+theme_override_font_sizes/font_size = 14
+text = "Current Softs
+"
+autowrap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="XSoftDisplay"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="XSoft1" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+visible = false
+layout_mode = 2
+tabs_visible = false
+all_tabs_in_front = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("6_ma871")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("7_0xu7h")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("8_oa14c")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+visible = false
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("22_igrrv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("23_ofrac")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_lyg4j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="XSoft2" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+visible = false
+layout_mode = 2
+clip_tabs = false
+tabs_visible = false
+all_tabs_in_front = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+visible = false
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("6_ma871")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("7_0xu7h")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("8_oa14c")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+visible = false
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("22_igrrv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("23_ofrac")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_lyg4j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="XSoft3" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+visible = false
+layout_mode = 2
+clip_tabs = false
+tabs_visible = false
+all_tabs_in_front = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+visible = false
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("6_ma871")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("7_0xu7h")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("8_oa14c")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+visible = false
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("22_igrrv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("23_ofrac")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_lyg4j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HoldTogether" type="Label" parent="XSoftDisplay/HBoxContainer"]
+layout_mode = 2
+autowrap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="CurrentInfo" type="TextEdit" parent="."]
 visible = false
 offset_left = -140.0
-offset_top = 61.0
+offset_top = 64.0
 offset_right = 138.0
-offset_bottom = 101.0
+offset_bottom = 133.0
 theme_override_font_sizes/font_size = 12
 placeholder_text = "Taken x Damage! [Crit][Resist] [Resist]"
 wrap_mode = 1
@@ -134,7 +476,16 @@ offset_bottom = 56.0
 theme_override_font_sizes/normal_font_size = 55
 text = "+%"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Buffs/Defense/RichTextLabel")
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_xtla5")
+metadata/_edit_lock_ = true
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -80)
+rotation = 3.14159
+scale = Vector2(1, 0.25)
+texture = ExtResource("3_lyg4j")
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

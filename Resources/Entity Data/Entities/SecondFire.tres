@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://f83w7ts343k8"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_hvnm7"]
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_lnoty"]
+[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_ttlex"]
+[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Heal.tres" id="4_i3igc"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Poison.tres" id="5_br015"]
+[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Enemy Moves/Seiqa.tres" id="6_d5clq"]
+[ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/new_resource.tres" id="7_j3118"]
+
+[resource]
+script = ExtResource("1_hvnm7")
+level = 4
+name = "Electric"
+species = "Test"
+specificData = ExtResource("7_j3118")
+MaxHP = 130
+MaxTP = 80
+strength = 2
+toughness = 5
+ballistics = 5
+resistance = 1
+speed = 13
+luck = 14
+element = "Fire"
+Weakness = 16
+Resist = 8
+phyElement = "Slash"
+attackData = ExtResource("1_lnoty")
+skillData = [ExtResource("4_i3igc"), ExtResource("5_br015"), ExtResource("6_d5clq")]
+itemData = {
+ExtResource("2_ttlex"): 1
+}
+XSoft = Array[String]([])
+Condition = null
+TempElement = null
+Ailment = "Poison"
+AilmentNum = 2
+XSoftNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

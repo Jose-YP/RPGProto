@@ -6,7 +6,15 @@
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchor_left = 0.029
+anchor_top = 0.017
+anchor_right = 0.158
+anchor_bottom = 0.249
+offset_left = 42.286
+offset_top = 149.944
+offset_right = -121.028
+offset_bottom = -28.232
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_f0nbp")
 
 [node name="Regularmenu" type="PanelContainer" parent="."]
@@ -64,6 +72,7 @@ theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = ExtResource("2_y267t")
 placeholder_text = "GO! [SPECIES] CHARACTER
 "
+selecting_enabled = false
 
 [node name="TabContainer" type="TabContainer" parent="."]
 visible = false
@@ -74,44 +83,45 @@ offset_right = 90.0
 offset_bottom = 24.0
 theme = ExtResource("6_8ho7p")
 tabs_visible = false
+metadata/_edit_lock_ = true
 
-[node name="AttackMenu" type="PanelContainer" parent="TabContainer"]
+[node name="Basic" type="PanelContainer" parent="TabContainer" groups=["SecondaryMenu"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/AttackMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Basic"]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="GridContainer" type="GridContainer" parent="TabContainer/AttackMenu/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Basic/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("6_8ho7p")
 
-[node name="Attack" type="Button" parent="TabContainer/AttackMenu/MarginContainer/GridContainer" groups=["Attack"]]
+[node name="Attack" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Attack"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Attack"
 
-[node name="Attack2" type="Button" parent="TabContainer/AttackMenu/MarginContainer/GridContainer" groups=["Attack"]]
+[node name="Crash" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Attack"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
-text = "Attack2"
+text = "Crash"
 
-[node name="Attack3" type="Button" parent="TabContainer/AttackMenu/MarginContainer/GridContainer" groups=["Attack"]]
+[node name="Burst" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Attack"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
-text = "Attack3"
+disabled = true
+text = "Burst"
 
-[node name="Back" type="Button" parent="TabContainer/AttackMenu/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Back" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Back"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
 
-[node name="SkillMenu" type="PanelContainer" parent="TabContainer"]
+[node name="Skills" type="PanelContainer" parent="TabContainer" groups=["SecondaryMenu"]]
 visible = false
 custom_minimum_size = Vector2(60, 108)
 layout_mode = 2
@@ -119,76 +129,38 @@ theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SkillMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Skills"]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="GridContainer" type="GridContainer" parent="TabContainer/SkillMenu/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Skills/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 
-[node name="Skill" type="Button" parent="TabContainer/SkillMenu/MarginContainer/GridContainer" groups=["Skills"]]
+[node name="Skill" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Skills"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_8ho7p")
 text = "Skill"
 
-[node name="Skill2" type="Button" parent="TabContainer/SkillMenu/MarginContainer/GridContainer" groups=["Skills"]]
+[node name="Skill2" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Skills"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Skill2"
 
-[node name="Skill3" type="Button" parent="TabContainer/SkillMenu/MarginContainer/GridContainer" groups=["Skills"]]
+[node name="Skill3" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Skills"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Skill3"
 
-[node name="Back" type="Button" parent="TabContainer/SkillMenu/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Back" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Back"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
 
-[node name="ItemMenu" type="PanelContainer" parent="TabContainer"]
-custom_minimum_size = Vector2(60, 108)
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/ItemMenu"]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="GridContainer" type="GridContainer" parent="TabContainer/ItemMenu/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-
-[node name="Item" type="Button" parent="TabContainer/ItemMenu/MarginContainer/GridContainer" groups=["Items"]]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_8ho7p")
-text = "Item"
-
-[node name="Item2" type="Button" parent="TabContainer/ItemMenu/MarginContainer/GridContainer" groups=["Items"]]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-text = "Item2"
-
-[node name="Item3" type="Button" parent="TabContainer/ItemMenu/MarginContainer/GridContainer" groups=["Items"]]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-text = "Item3"
-
-[node name="Back" type="Button" parent="TabContainer/ItemMenu/MarginContainer/GridContainer" groups=["Back"]]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
-text = "Back"
-
-[node name="TacticsMenu" type="PanelContainer" parent="TabContainer"]
+[node name="Items" type="PanelContainer" parent="TabContainer" groups=["SecondaryMenu"]]
 visible = false
 custom_minimum_size = Vector2(60, 108)
 layout_mode = 2
@@ -196,33 +168,72 @@ theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/TacticsMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Items"]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="GridContainer" type="GridContainer" parent="TabContainer/TacticsMenu/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Items/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 
-[node name="Wait" type="Button" parent="TabContainer/TacticsMenu/MarginContainer/GridContainer" groups=["Tactics"]]
+[node name="Item" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Items"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_8ho7p")
+text = "Item"
+
+[node name="Item2" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Items"]]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+text = "Item2"
+
+[node name="Item3" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Items"]]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+text = "Item3"
+
+[node name="Back" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Back"]]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+text = "Back"
+
+[node name="Tactics" type="PanelContainer" parent="TabContainer" groups=["SecondaryMenu"]]
+visible = false
+custom_minimum_size = Vector2(60, 108)
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Tactics"]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Tactics/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+
+[node name="Wait" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_8ho7p")
 text = "Wait"
 
-[node name="Boost" type="Button" parent="TabContainer/TacticsMenu/MarginContainer/GridContainer" groups=["Tactics"]]
+[node name="Boost" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Boost"
 
-[node name="Tactic" type="Button" parent="TabContainer/TacticsMenu/MarginContainer/GridContainer" groups=["Tactics"]]
+[node name="Tactic" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Tactic3"
 
-[node name="Back" type="Button" parent="TabContainer/TacticsMenu/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Back" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Back"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
@@ -231,19 +242,19 @@ text = "Back"
 [connection signal="pressed" from="Regularmenu/MarginContainer/GridContainer/Skills" to="." method="_on_first_pressed" binds= [1]]
 [connection signal="pressed" from="Regularmenu/MarginContainer/GridContainer/Items" to="." method="_on_first_pressed" binds= [2]]
 [connection signal="pressed" from="Regularmenu/MarginContainer/GridContainer/Tactics" to="." method="_on_first_pressed" binds= [3]]
-[connection signal="pressed" from="TabContainer/AttackMenu/MarginContainer/GridContainer/Attack" to="." method="_on_attack_pressed" binds= [0]]
-[connection signal="pressed" from="TabContainer/AttackMenu/MarginContainer/GridContainer/Attack2" to="." method="_on_attack_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/AttackMenu/MarginContainer/GridContainer/Attack3" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="TabContainer/AttackMenu/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="TabContainer/SkillMenu/MarginContainer/GridContainer/Skill" to="." method="_on_skill_pressed" binds= [0]]
-[connection signal="pressed" from="TabContainer/SkillMenu/MarginContainer/GridContainer/Skill2" to="." method="_on_skill_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/SkillMenu/MarginContainer/GridContainer/Skill3" to="." method="_on_skill_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/SkillMenu/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="TabContainer/ItemMenu/MarginContainer/GridContainer/Item" to="." method="_on_item_pressed" binds= [0]]
-[connection signal="pressed" from="TabContainer/ItemMenu/MarginContainer/GridContainer/Item2" to="." method="_on_skill_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/ItemMenu/MarginContainer/GridContainer/Item3" to="." method="_on_skill_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/ItemMenu/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="TabContainer/TacticsMenu/MarginContainer/GridContainer/Wait" to="." method="_on_tactic_pressed" binds= [0]]
-[connection signal="pressed" from="TabContainer/TacticsMenu/MarginContainer/GridContainer/Boost" to="." method="_on_tactic_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/TacticsMenu/MarginContainer/GridContainer/Tactic" to="." method="_on_tactic_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/TacticsMenu/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Attack" to="." method="_on_attack_pressed" binds= [0]]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Crash" to="." method="_on_attack_pressed" binds= [1]]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Burst" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill" to="." method="_on_skill_pressed" binds= [0]]
+[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill2" to="." method="_on_skill_pressed" binds= [1]]
+[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill3" to="." method="_on_skill_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item" to="." method="_on_item_pressed" binds= [0]]
+[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item2" to="." method="_on_item_pressed" binds= [1]]
+[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item3" to="." method="_on_item_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Wait" to="." method="_on_tactic_pressed" binds= [0]]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Boost" to="." method="_on_tactic_pressed" binds= [1]]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Tactic" to="." method="_on_tactic_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
