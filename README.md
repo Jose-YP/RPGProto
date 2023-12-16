@@ -6,41 +6,40 @@ I'm going to keep updating this until the GameJam starts so maybe it'll look bet
 ______
 ISSUES
 ______
-Fix selection arrows showing up after turns
-Speed of tweens after every action. They're managable for attacks and heal but not much else
-Updating XSofts
-Fixing Diplay for non Damaging/Healing moves
-Fix how Random/All/Self Target display
-
+*Fixing Diplay for non Damaging/Healing moves (Check if these are still an issue)
+*Fix how Random Target display (Check if still an issue)
+*Controls being weird while waiting and right after enemy Turn
 ______
 TODO
 ______
-Implementing Reosurce management (HP,LP and TP costs)
-Implementing XSoft functionality
-Allow characters to run out of items
-Implement the moves Burst and Scan
+*Implement the moves Crash and Scan
+*Implement Overdrive's condition
+*StatBoost decay
+*Implement the other Auras (Will Wrecked, Lower TP)
 
 ______
 LOFTY TODOS
 ______
-Implement Ailments
-Implement Conditions
-StatBoost decay
-Implement end of battle
-Change Battles
-Maybe Animations
+*Implement other EnemyAI types(So far only random)|
+*Change player stats based on level|
+*Implement Ailments(Poison and Reckless)|
+*Implement Conditions (Targetted and Charge)|
+*Implement end of battle|
+*Change Battles|
+*Maybe Animations????|
+*Implement Summon moves|
 
 ______
 STATS
 _____
-HP:    Health Points, when 0 you die
-LP:    Mana, they're only called LP because I played Okage: Shadow King lol
-strength:  Physical Attack
-toughness:  Physical Defense
-ballistics:  Ballistic Attack (aka magic)
-resistance:  Ballistic Defense
-speed:  Lowers TP cost of moves
-luck:  Raises chance of getting crit/ailment hits and lowers opponents chances of doing the same to you
+*HP:    Health Points, when 0 you die
+*LP:    Mana, they're only called LP because I played Okage: Shadow King lol
+*strength:  Physical Attack
+*toughness:  Physical Defense
+*ballistics:  Ballistic Attack (aka magic)
+*resistance:  Ballistic Defense
+*speed:  Lowers TP cost of moves
+*luck:  Raises chance of getting crit/ailment hits and lowers opponents chances of doing the same to you
 _______
 PROPERTIES
 _______
@@ -82,41 +81,39 @@ You can only have a total of 3 softs of any type
 ______
 CONDITIONS
 ______
-Status Ailments that can't be stacked on their own
-charge - x2.5 damage for a physical attack
-targetted - Entity on said side is the only one that can be attacked, random target will also exclusively target them
-lucky - Autowin chances
+*Status Ailments that can't be stacked on their own
+*charge - x2.5 damage for a physical attack
+*targetted - Entity on said side is the only one that can be attacked, random target will also exclusively target them
+*lucky - Autowin chances
 
-ex. You can only charge once but you can have charge with lucky and/or targetted
+*ex. You can only charge once but you can have charge with lucky and/or targetted
 
 _______
 MOVES
 _______
 
 Move Properties)
-Physical: Deal Physical Damage tend to cost HP for players
-Ballistic: Deal Ballistic Damage tend to cost LP for players
-Bomb: Deal Damage without the user's attack or enemy's defense stat tend to be items
-Buff: Chance a property of the target[Stat Buff, Condition or Element] tend to cost LP for players
-Heal: Heal HP and/or remove Ailments tend to cost LP for players
-Aura: Add a feild condition tend to be items
-Summon: Add an entity to the field (likely won't be implemented) Enemy Exclusive
-Ailment: Inflict a certain Ailment/XSoft, if chance is 200% it's guaranteed tends to be paired with another property
-Misc: If needed use a custom function
+*Physical: Deal Physical Damage tend to cost HP for players
+*Ballistic: Deal Ballistic Damage tend to cost LP for players
+*Bomb: Deal Damage without the user's attack or enemy's defense stat tend to be items
+*Buff: Chance a property of the target[Stat Buff, Condition or Element] tend to cost LP for players
+*Heal: Heal HP and/or remove Ailments tend to cost LP for players
+*Aura: Add a feild condition tend to be items
+*Summon: Add an entity to the field (likely won't be implemented) Enemy Exclusive
+*Ailment: Inflict a certain Ailment/XSoft, if chance is 200% it's guaranteed tends to be paired with another property
+*Misc: If needed use a custom function
 
 Move Targets)
-Single: Attack a single entity X times
-Group: Attack a group of entities of the same element X times. If there is only one entity, attack them 2X times
-Random: For X times, attack a random enemy
-Self: You
-All: Attack every entity X times
+*Single: Attack a single entity X times
+*Group: Attack a group of entities of the same element X times. If there is only one entity, attack them 2X times
+*Random: For X times, attack a random enemy
+*Self: You
+*All: Attack every entity X times
 
 ______
 TP MANAGEMENT
 ______
-Unlikely to be implemented once the game jam starts but
 It determines what moves you can use in a turn to turn basis, think of it like mana in a card game
 Every character's TP is collected into one per team
 Both sides start with full TP and every proceeding turn they gain half of their max back
-
-
+For now you can't use a move if it goes over the team's currentTP
