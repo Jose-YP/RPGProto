@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
-[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="2_1u2u3"]
 [ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/Player Data/TestPlayer.tres" id="3_0pc3x"]
-[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="3_chrlf"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="3_pv4re"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
+[ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="4_iqbw6"]
 [ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="5_nkxyx"]
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Overdrive.tres" id="7_75417"]
+[ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
 [ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
 
 [resource]
@@ -31,19 +31,18 @@ Weakness = 0
 Resist = 16
 phyElement = "Crush"
 attackData = ExtResource("1_rr6oq")
-skillData = [ExtResource("3_chrlf"), ExtResource("4_5dvqg"), ExtResource("7_75417"), ExtResource("10_b0nti")]
+skillData = [ExtResource("7_kj7iu"), ExtResource("4_5dvqg"), ExtResource("7_75417"), ExtResource("10_b0nti")]
 itemData = {
-ExtResource("2_1u2u3"): 5,
-ExtResource("3_pv4re"): 4,
-ExtResource("4_52qji"): 4,
-ExtResource("5_nkxyx"): 1
+ExtResource("3_pv4re"): 2,
+ExtResource("4_52qji"): 3,
+ExtResource("4_iqbw6"): 2,
+ExtResource("5_nkxyx"): 2
 }
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
-XSoftNum = 0
 attackBoost = 0.0
 defenseBoost = 0.0
 speedBoost = 0.0

@@ -30,12 +30,11 @@ skillData = [ExtResource("3_8on4i"), ExtResource("4_yaufn")]
 itemData = {
 ExtResource("2_yu17n"): 1
 }
-XSoft = Array[String](["Crush", "Slash"])
+XSoft = Array[String](["Crush", "Slash", "Elec"])
 Condition = 0
 TempElement = null
-Ailment = "Healthy"
-AilmentNum = 0
-XSoftNum = 0
+Ailment = "Reckless"
+AilmentNum = 2
 attackBoost = 0.0
 defenseBoost = 0.0
 speedBoost = 0.0

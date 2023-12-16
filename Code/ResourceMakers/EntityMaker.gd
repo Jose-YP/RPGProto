@@ -37,7 +37,6 @@ class_name entityData
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive","Healthy") var Ailment: String = "Healthy"
 @export_range(0,3) var AilmentNum: int
-@export_range(0,3) var XSoftNum: int
 @export_range(-.6,.6,.05) var attackBoost: float = 0
 @export_range(-.6,.6,.05) var defenseBoost: float = 0
 @export_range(-.6,.6,.05) var speedBoost: float = 0

@@ -62,3 +62,8 @@ res://Code/SceneCode/Main.gd
 res://Resources/Move Data/Entity Moves/Poison.tres
 res://Code/SceneCode/Entity.gd
 res://Resources/Move Data/Entity Moves/Bahr.tres
+res://Resources/Move Data/Entity Moves/Heal.tres
+res://Resources/Move Data/Player Moves/Refresh.tres
+res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
+res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres
+res://Code/ResourceMakers/EntityMaker.gd

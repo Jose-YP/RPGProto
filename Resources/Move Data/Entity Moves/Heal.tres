@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_oixb8")
 name = "Heal"
-description = "Heals an ally for 50% of their max HP and removes a single Ailment"
+description = "Heals an ally for 60 HP"
 TPCost = 70
 Which = "Ally"
 Target = "Single"
@@ -20,12 +20,12 @@ BaseCrit = -10
 BaseAilment = -200
 Ailment = "Negative"
 AilmentAmmount = -1
-percentage = true
+percentage = false
 revive = false
 reset = false
-healing = 50
-HealedAilment = "Negative"
-HealAilAmmount = 1
+healing = 60
+HealedAilment = "None"
+HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 16
 Condition = 0

@@ -105,16 +105,26 @@ texture = ExtResource("8_t4c4q")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="AilmentDisplay" type="GridContainer" parent="."]
+[node name="AilmentDisplay" type="VBoxContainer" parent="."]
 visible = false
-offset_left = -136.0
-offset_top = -48.0
-offset_right = -96.0
-offset_bottom = -24.0
-columns = 2
+offset_left = -156.0
+offset_top = -50.0
+offset_right = -91.0
+offset_bottom = 4.0
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AilmentType" type="TabContainer" parent="AilmentDisplay"]
+[node name="Label" type="RichTextLabel" parent="AilmentDisplay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[u]Ailment[/u]"
+fit_content = true
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AilmentDisplay"]
+layout_mode = 2
+
+[node name="AilmentType" type="TabContainer" parent="AilmentDisplay/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_wvjmv")
 tabs_visible = false
@@ -122,41 +132,41 @@ all_tabs_in_front = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Overdrive" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Overdrive" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 layout_mode = 2
 texture = ExtResource("9_bw670")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Poison" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Poison" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.572549, 0, 0.572549, 1)
 layout_mode = 2
 texture = ExtResource("10_xldur")
 expand_mode = 2
 
-[node name="Reckless" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Reckless" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.937255, 0.435294, 0, 0.780392)
 layout_mode = 2
 texture = ExtResource("11_gc2xj")
 expand_mode = 2
 
-[node name="Exhausted" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Exhausted" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.517647, 0.776471, 0.235294, 0.827451)
 layout_mode = 2
 texture = ExtResource("12_sel68")
 expand_mode = 2
 
-[node name="Rust" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Rust" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.431373, 0.243137, 0, 1)
 layout_mode = 2
 texture = ExtResource("13_my62f")
 expand_mode = 2
 
-[node name="Stun" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Stun" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.556863, 0.556863, 0, 0.858824)
 layout_mode = 2
@@ -164,67 +174,68 @@ texture = ExtResource("14_0tik4")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Curse" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Curse" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.545098, 0.0901961, 0.521569, 0.8)
 layout_mode = 2
 texture = ExtResource("15_28iob")
 expand_mode = 2
 
-[node name="Protected" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Protected" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 layout_mode = 2
 texture = ExtResource("16_pmafn")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(1, 0.486275, 1, 1)
 layout_mode = 2
 texture = ExtResource("17_tkjcl")
 expand_mode = 3
 
-[node name="Miserable" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Miserable" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.105882, 0.14902, 0.631373, 0.768627)
 layout_mode = 2
 texture = ExtResource("18_4w2ar")
 expand_mode = 3
 
-[node name="Worn Out" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Worn Out" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.552941, 0.552941, 0.552941, 1)
 layout_mode = 2
 texture = ExtResource("19_mtend")
 expand_mode = 3
 
-[node name="Explosive" type="TextureRect" parent="AilmentDisplay/AilmentType"]
+[node name="Explosive" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.0470588, 0.0470588, 0.0470588, 0.858824)
 layout_mode = 2
 texture = ExtResource("20_kp66m")
 expand_mode = 2
 
-[node name="AilmentNum" type="Label" parent="AilmentDisplay"]
+[node name="AilmentNum" type="Label" parent="AilmentDisplay/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("21_ey481")
 text = "1"
 
 [node name="XSoftDisplay" type="VBoxContainer" parent="."]
 visible = false
-offset_left = -140.0
-offset_top = -16.0
-offset_right = -70.0
-offset_bottom = 63.0
+offset_left = -157.0
+offset_top = 7.0
+offset_right = -63.0
+offset_bottom = 86.0
 metadata/_edit_group_ = true
 
-[node name="Label2" type="Label" parent="XSoftDisplay"]
+[node name="Label2" type="RichTextLabel" parent="XSoftDisplay"]
 layout_mode = 2
 theme = ExtResource("21_ey481")
-theme_override_font_sizes/font_size = 14
-text = "Current Softs
+bbcode_enabled = true
+text = "[u]Current Softs[/u]
 "
+fit_content = true
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
@@ -438,7 +449,7 @@ metadata/_edit_lock_ = true
 [node name="Attack" type="Sprite2D" parent="Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-73, -75)
+position = Vector2(-55.035, -74.675)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("27_6hheg")
 
@@ -453,7 +464,7 @@ text = "+%"
 [node name="Defense" type="Sprite2D" parent="Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-76, -33)
+position = Vector2(-58.035, -32.675)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("28_j8yva")
 
@@ -468,7 +479,7 @@ text = "+%"
 [node name="Speed" type="Sprite2D" parent="Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-72, 4)
+position = Vector2(-54.035, 4.325)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("29_cylqo")
 
@@ -483,7 +494,7 @@ text = "+%"
 [node name="Luck" type="Sprite2D" parent="Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-72, 43)
+position = Vector2(-54.035, 43.325)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("30_xueah")
 
@@ -496,10 +507,9 @@ theme_override_font_sizes/normal_font_size = 55
 text = "+%"
 
 [node name="ConditionDisplay" type="RichTextLabel" parent="."]
-offset_left = -65.0
+offset_left = -6.0
 offset_top = -62.0
 offset_right = 62.0
 offset_bottom = 61.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="hidden" from="Buffs/Defense" to="." method="_on_defense_hidden"]

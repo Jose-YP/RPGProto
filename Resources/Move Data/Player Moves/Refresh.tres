@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cqh3v7dbr71j8"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_8vm7k"]
+
+[resource]
+script = ExtResource("1_8vm7k")
+name = "Refresh"
+description = "Heals an ally for 50% of their max HP and removes a single Ailment"
+TPCost = 70
+Which = "Ally"
+Target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 16
+CostType = "LP"
+cost = 4.0
+Power = 30
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = true
+revive = false
+reset = false
+healing = 50
+HealedAilment = "Negative"
+HealAilAmmount = 1
+BoostAmmount = 0
+BoostType = 0
+Condition = 0
+Aura = ""
+ElementChange = "None"
+Summon = []

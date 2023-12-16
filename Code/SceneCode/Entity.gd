@@ -8,7 +8,7 @@ extends Node2D
 @onready var HPBar: TextureProgressBar = $HPBar
 @onready var HPtext: RichTextLabel = $HPBar/RichTextLabel
 @onready var currentCondition: RichTextLabel = $ConditionDisplay
-@onready var AilmentImages = $AilmentDisplay/AilmentType.get_children()
+@onready var AilmentImages = $AilmentDisplay/HBoxContainer/AilmentType.get_children()
 @onready var XSoftTabs = $XSoftDisplay/HBoxContainer.get_children()
 @onready var XSoftSlots: Array = []
 @onready var statBoostSprites: Array = [$Buffs/Attack,$Buffs/Defense,$Buffs/Speed,$Buffs/Luck]
@@ -74,12 +74,14 @@ func processer():
 	for i in range(AilmentImages.size()): #If the entity has any Ailments show them
 		if data.Ailment == AilmentImages[i].name:
 			$AilmentDisplay.show()
-			$AilmentDisplay/AilmentType.current_tab = i
-			$AilmentDisplay/AilmentNum.text = str(data.AilmentNum)
+			$AilmentDisplay/HBoxContainer/AilmentType.current_tab = i
+			$AilmentDisplay/HBoxContainer/AilmentNum.text = str(data.AilmentNum)
 		
 	if data.AilmentNum <= 0: #Otherwise hide the display
 		data.Ailment = "Healthy"
 		$AilmentDisplay.hide()
+	if data.AilmentNum > 3:
+		data.AilmentNum = 3
 	if data.Ailment == "Overdrive": #Overdrive can only have an Ailment Num of 1
 		data.AilmentNum = 1
 	
@@ -88,7 +90,7 @@ func processer():
 #-----------------------------------------
 #MOVE PROPERTYS
 #-----------------------------------------
-func attack(move, receiver, user, property, aura):
+func attack(move, receiver, user, property, currentAura):
 	var attackStat: int
 	var defenseStat: int
 	var softMod: float = 0.0
@@ -135,8 +137,8 @@ func attack(move, receiver, user, property, aura):
 		"Physical":
 			attackStat = user.data.strength
 			defenseStat = receiver.data.toughness
-			if aura == "BodyBroken":
-				feedback = str("{",aura,"}",feedback)
+			if currentAura == "BodyBroken":
+				feedback = str("{",currentAura,"}",feedback)
 				auraMod = .5
 			if checkCondition("Charge",user):
 				chargeMod = 2.5
@@ -144,14 +146,14 @@ func attack(move, receiver, user, property, aura):
 		"Ballistic":
 			attackStat = user.data.ballistics
 			defenseStat = receiver.data.resistance
-			if aura == "WillWrecked":
-				feedback = str("{",aura,"}",feedback)
+			if currentAura == "WillWrecked":
+				feedback = str("{",currentAura,"}",feedback)
 				auraMod = .5
 			if checkCondition("Amp",user):
 				chargeMod = 2.5
 				removeCondition("Amp",user)
 	
-	if crit_chance(move,user,receiver,aura):
+	if crit_chance(move,user,receiver,currentAura):
 		critMod = .25
 		feedback = str("{Crit}", feedback)
 	
@@ -236,7 +238,7 @@ func applyNegativeAilment(move,receiver,user,preWin = false):
 	#If the ailment calc returns true then apply ailment to receiver
 	if ailment_calc(move,receiver,user) or preWin:
 		#Raise number first so Ailment doesn't instantly become Healthy from process
-		if receiver.data.AilmentNum <= 3:
+		if receiver.data.AilmentNum < 3:
 			receiver.data.AilmentNum += move.AilmentAmmount
 		
 		if move.Ailment != receiver.data.Ailment:
@@ -426,10 +428,10 @@ func phy_weakness(user,receiver,PreMod = 0):
 	
 	return PhyMod
 
-func crit_chance(move,user,receiver,aura):
+func crit_chance(move,user,receiver,currentAura):
 	var crit = false
 	var auraMod = 1
-	if aura == "CritDouble":
+	if currentAura == "CritDouble":
 		auraMod = 2
 	
 	var chance = move.BaseCrit + (1 + user.data.luckBoost) * user.data.luck * sqrt(user.data.luck)
@@ -445,10 +447,8 @@ func crit_chance(move,user,receiver,aura):
 	if randi() % 100 <= chance:
 		crit = true
 		if move.Ailment != "None":
-			print("Crit Ailment")
 			applyNegativeAilment(move,receiver,user,true)
 		else:
-			print("Crit Soft")
 			applyXSoft(move,user,receiver,true,determineXSoft(move,user))
 	
 	return crit
@@ -564,10 +564,41 @@ func statBoostHandling():
 		if statBoostSlots[boost] == 0:
 			statBoostSprites[boost].hide()
 
+func midTurnAilments(Ailment, currentAura):
+	var stillAttack = true
+	match Ailment:
+		"Reckless":
+			var chance = 25
+			var damage = 0
+			print("Reckless")
+			if data.AilmentNum >= 2:
+				chance *= 2
+			
+			if randi() % 100 <= chance:
+				damage = attack(data.attackData, self, self, "Physical", currentAura)
+				tweenDamage(self, .6, str("Couldn't attack, took ",damage," Self-inflicted Damage"))
+				stillAttack = false
+			elif data.AilmentNum == 3:
+				damage = attack(data.attackData, self, self, "Physical", currentAura)
+				tweenDamage(self, .6, str("Took ",damage," Self-inflicted Damage"))
+				
+			feedback = ""
+		"Stun":
+			stillAttack = false
+			data.AilmentNum -= 1
+			displayQuick("Stunned")
+	
+	return stillAttack
+
+func reactionaryAilments(Ailment):
+	match Ailment:
+		"Rust":
+			pass
+
 func endPhaseAilments(Ailment):
 	match Ailment:
 		"Poison":
-			var damage = int(data.MaxHP * data.AilmentNum * .05)
+			var damage = int(data.MaxHP * data.AilmentNum * .066)
 			currentHP -= damage
 			
 			tweenDamage(self, .4, str("Took ",damage," Poison Damage"))

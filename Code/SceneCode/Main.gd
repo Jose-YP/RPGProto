@@ -256,7 +256,6 @@ func findTarget(useMove):
 
 func findWhich(useMove):
 	var returnWhich
-	print(useMove)
 	match useMove.Which:
 		"Enemy":
 			returnWhich = whichTypes.ENEMY
@@ -296,7 +295,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 				if Globals.attacking:
 					PSingleSelect(targetArray)
 			else:
-				print("Single")
 				waiting = true
 				index = team[i].SingleSelect(targetArray,enemyAction)
 				EfinishSelecting(enemyAction)
@@ -310,7 +308,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 						k.show()
 					PGroupSelect(targetArrayGroup)
 			else:
-				print("Group")
 				waiting = true
 				targetArrayGroup = []
 				establishGroups(targetArray)
@@ -518,7 +515,10 @@ func useAction(useMove, targetting, user, hits):
 		
 		if useMove.property & 1 and useMove.property & 2:
 			times += 1
-		checkProperties(useMove,targetting,user)
+		
+		if user.midTurnAilments(user.data.Ailment, currentAura):
+			checkProperties(useMove,targetting,user)
+		
 		times += 1
 		await get_tree().create_timer(.5).timeout
 

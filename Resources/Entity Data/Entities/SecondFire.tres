@@ -31,11 +31,11 @@ skillData = [ExtResource("4_i3igc"), ExtResource("5_br015"), ExtResource("6_d5cl
 itemData = {
 ExtResource("2_ttlex"): 1
 }
-XSoft = Array[String](["Pierce"])
+XSoft = Array[String]([])
 Condition = 0
 TempElement = null
-Ailment = "Poison"
-AilmentNum = 2
+Ailment = "Healthy"
+AilmentNum = 0
 XSoftNum = 0
 attackBoost = 0.0
 defenseBoost = 0.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c5xmg2solg142"]
+
+[ext_resource type="Resource" uid="uid://dsa318xu84qep" path="res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres" id="1_62i8p"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_bcq0t"]
+
+[resource]
+script = ExtResource("1_bcq0t")
+name = "Water Balloon"
+maxItems = 20
+centCost = 20
+attackData = ExtResource("1_62i8p")
