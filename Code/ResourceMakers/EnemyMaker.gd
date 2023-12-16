@@ -8,4 +8,4 @@ class_name Enemy
 @export_category("Properties")
 @export var Boss: bool
 @export var Revivable: bool
-@export_enum("Random","Single Strike", "Pick off","Support", "Debuff") var AI
+@export_enum("Random","Single Strike", "Pick off","Support", "Debuff") var AIType: String = "Random"

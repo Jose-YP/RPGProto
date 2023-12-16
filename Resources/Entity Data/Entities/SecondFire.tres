@@ -14,7 +14,7 @@ level = 4
 name = "Electric"
 species = "Test"
 specificData = ExtResource("7_j3118")
-MaxHP = 130
+MaxHP = 499
 MaxTP = 80
 strength = 2
 toughness = 5
@@ -31,8 +31,8 @@ skillData = [ExtResource("4_i3igc"), ExtResource("5_br015"), ExtResource("6_d5cl
 itemData = {
 ExtResource("2_ttlex"): 1
 }
-XSoft = Array[String]([])
-Condition = null
+XSoft = Array[String](["Pierce"])
+Condition = 0
 TempElement = null
 Ailment = "Poison"
 AilmentNum = 2

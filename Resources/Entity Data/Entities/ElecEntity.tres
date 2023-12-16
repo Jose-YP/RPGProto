@@ -13,7 +13,7 @@ level = 0
 name = "fkddvs"
 species = "Something"
 specificData = ExtResource("3_gmcsw")
-MaxHP = 110
+MaxHP = 550
 MaxTP = 80
 strength = 1
 toughness = 2
@@ -30,8 +30,8 @@ skillData = [ExtResource("3_tx3ms"), ExtResource("5_s6ak4")]
 itemData = {
 ExtResource("2_ttvud"): 1
 }
-XSoft = Array[String](["Fire", "Elec", "Pierce"])
-Condition = null
+XSoft = Array[String](["Fire", "Elec", "Fire"])
+Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0

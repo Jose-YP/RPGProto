@@ -4,12 +4,20 @@ extends Node2D
 @export var playerTurn: bool = true #Starting Bool
 @export var tweenTiming: float = .2 #Make the timing with the hits editable
 @onready var cursor: Sprite2D = $Cursor
+@onready var PlayerTPDisplay = $PlayerTP
+@onready var PlayerTPText = $PlayerTP/Label
+@onready var EnemyTPDisplay = $EnemyTP
+@onready var EnemyTPText = $EnemyTP/Label
+@onready var AuraFog = $Aura
+@onready var AuraLabel = $Label
 @onready var enemyOrder: Array = []
 @onready var playerOrder: Array = []
 
 #Make every player's menu
 var currentMenu
 var groups = ["Attack","Skills","Items","Tactics"]
+#Hold current enemy's action
+var enemyAction
 #Holds current team and temmate's turn
 var i: int = 0
 var j: int = 0
@@ -23,10 +31,10 @@ var waiting: bool = false
 var finished: bool = false
 var targetDied: bool = false
 #Battle Stats
-var playerTP
-var playerMaxTP
-var enemyTP
-var enemyMaxTP
+var playerTP: int = 0
+var playerMaxTP: int = 0
+var enemyTP: int = 0
+var enemyMaxTP: int = 0
 var currentAura = ""
 #Determines which targetting system to use
 var target
@@ -44,16 +52,7 @@ enum whichTypes {
 	ALLY,
 	BOTH
 }
-#Important for battle
-enum auraTypes{
-	NONE,
-	BODYBREAK,
-	WILLWRECK,
-	LOWTICKS,
-	CRITDOUBLE,
-	FIREAUG,WATERAUG,ELECAUG,SLASHAUG,CRUSGAUG,PIERCEAUG,
-	FIREDAMP,WATERDAMP,ELECDAMP,SLASHDAMP,CRUSHDAMP,PIERCEDAMP
-}
+
 #-----------------------------------------
 #INTIALIZATION & PROCESS
 #-----------------------------------------
@@ -61,17 +60,17 @@ func _ready(): #Assign current team according to starting bool
 #	get_node("Node2D").process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	for player in get_tree().get_nodes_in_group("Players"):
 		player.currentHP = player.data.MaxHP
+		playerMaxTP += player.data.MaxTP
 		playerOrder.append(player)
 		movesetDisplay(player)
 		
-		player.connect("wait", _on_wait_selected)
-		player.connect("boost", _on_boost_selected)
-		player.connect("scan", _on_scan_selected)
 		player.connect("startSelect", _on_start_select)
 		player.connect("moveSelected", _on_move_selected)
+		player.connect("cancel", _on_cancel_selected)
 	
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		enemy.currentHP = enemy.data.MaxHP
+		enemyMaxTP += enemy.data.MaxTP
 		enemyOrder.append(enemy)
 	
 	if playerTurn:
@@ -81,38 +80,143 @@ func _ready(): #Assign current team according to starting bool
 	else:
 		team = enemyOrder
 		opposing = playerOrder
+		print(team[i].chooseMove())
+		enemyAction = team[i].chooseMove()
+	
+	playerTP = playerMaxTP
+	enemyTP = enemyMaxTP
 
 func movesetDisplay(player): #Format every player's menu to include the name of their moveset
 	#get the player's complete moveset
-	var moveset = [player.attacks,player.skills,player.items]
+	player.moveset = [player.attacks,player.skills,player.items,player.tactics]
 	#Get the tab
 	var tabs = player.get_node("CanvasLayer/TabContainer").get_children()
-	#Tactics is hard coded so it won't be included
-	for tab in range(tabs.size() - 1):
+	
+	for tab in range(tabs.size()):
 		#Get the buttons in the specific tab
+		var tabDescriptions = []
+		var tabTPs = []
 		currentMenu = tabs[tab].get_node("MarginContainer/GridContainer").get_children()
 		#Only fill in as much as the moveset has
-		for n in range(moveset[tab].size()):
-			currentMenu[n].text = moveset[tab][n].name
+		for n in range(player.moveset[tab].size()):
+			currentMenu[n].text = player.moveset[tab][n].name
+			tabDescriptions.append(movesetDescription(player.moveset[tab][n],player,tab))
+			tabTPs.append(SaveTPCosts(player.moveset[tab][n],tab))
+		player.descriptions.append(tabDescriptions)
+		player.TPArray.append(tabTPs)
+
+func movesetDescription(moveset,player,n):
+	var fullDesc
+	var move = moveset
+	var desc: String = ""
+	var Elements: String = ""
+	var Power: String = ""
+	if n == 2:
+		move = moveset.attackData
+	
+	#Determine if element should be displayed
+	if move.element != "Neutral":
+		Elements = str("[",move.element,"]")
+		match move.element:
+			"Fire":
+				Elements = str("[color=red]",Elements,"[/color]")
+			"Water":
+				Elements = str("[color=aqua]",Elements,"[/color]")
+			"Elec":
+				Elements = str("[color=gold]",Elements,"[/color]")
+		
+	if move.phyElement != "Neutral":
+		Elements = str("[",move.phyElement,"]",Elements)
+		match move.phyElement:
+			"Slash":
+				Elements = str("[color=forest_green]",Elements,"[/color]")
+			"Crush":
+				Elements = str("[color=olive]",Elements,"[/color]")
+			"Pierce":
+				Elements = str("[color=orange]",Elements,"[/color]")
+	
+	if move.property & 1 or move.property & 2 or move.property & 4:
+			Power = str("Pow: ",move.Power," ")
+	
+	match n:
+		0:
+			if move.name == "Attack" or move.name == "Crash" or move.name == "Burst":
+				Elements = str("[",player.data.phyElement,"]")
+				match player.data.phyElement:
+					"Slash":
+						Elements = str("[color=forest_green]",Elements,"[/color]")
+					"Crush":
+						Elements = str("[color=olive]",Elements,"[/color]")
+					"Pierce":
+						Elements = str("[color=orange]",Elements,"[/color]")
+			fullDesc = str(move.description, Elements, Power)
+		1: #Skills should show the specific cost and their ammount
+			desc = str(move.description)
+			var costText
+			if move.CostType == "HP" or move.CostType == "MaxHP":
+				costText = str("[color=red]"+ "HP: ",int(move.cost * player.data.MaxHP), "[/color]")
+			if move.CostType == "LP":
+				costText = str("[color=aqua]"+"LP: ",int(move.cost), "[/color]")
+			
+			fullDesc = str(costText, desc, Elements, Power,)
+			
+		2: #Item Descriptions need to show #ofItems/MaxItems
+			var itemMax = moveset.maxItems #Moveset has Item Specifics, move has thier attack data
+			desc = str("/",itemMax,"]"+"[/i]",move.description)
+			
+			fullDesc = str(desc, Elements, Power)
+		_:
+			fullDesc = str(move.description)
+			if move.name == "Boost":
+				fullDesc = str(fullDesc, HelperFunctions.Flag_to_String(player.playerData.boostStat, "Boost"))
+	
+	return fullDesc
+
+func SaveTPCosts(moveset,n):
+	var move = moveset
+	if n == 2:
+		move = moveset.attackData
+	var TPCost = move.TPCost
+	return TPCost
 
 func _process(_delta):#If player turn ever changes change current team to match the bool
 	if playerTurn:
 		team = playerOrder
 		opposing = enemyOrder
-		team[i].menu.show()
 		if Globals.attacking:
 			nextTarget()
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		which = whichTypes.ENEMY
-		target = targetTypes.SINGLE
+		which = findWhich(enemyAction)
+		target = findTarget(enemyAction)
 		if not waiting:
 			nextTarget()
 	
 	#Keep cursor on current active turn
 	cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
+	#TP Displays
+	if playerMaxTP < playerTP:
+		playerTP = playerMaxTP
+	if enemyMaxTP < enemyTP:
+		enemyTP = enemyMaxTP
+	
+	PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
+	EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
 
+func initializeTP(players=false): #Make and remake max TPs when an entiy is gone or enters
+	if players:
+		playerMaxTP = 0
+		for player in playerOrder:
+			playerMaxTP += player.data.MaxTP
+		if playerTP > playerMaxTP:
+			playerTP = playerMaxTP
+	else:
+		enemyMaxTP = 0
+		for enemy in enemyOrder:
+			enemyMaxTP += enemy.data.MaxTP
+		if enemyTP > enemyMaxTP:
+			enemyTP = enemyMaxTP
 #-----------------------------------------
 #TARGETTING MANAGERS
 #-----------------------------------------
@@ -132,7 +236,6 @@ func findTarget(useMove):
 		"None":
 			returnTarget = targetTypes.NONE
 	
-	print(str(useMove.name))
 	return returnTarget
 
 func findWhich(useMove):
@@ -161,38 +264,42 @@ func nextTarget():
 			if playerTurn:
 				PSingleSelect(targetArray)
 			else:
-				ESingleSelect(targetArray,team[i].data.attackData)
+				index = team[i].SingleSelect(targetArray,enemyAction)
+				EfinishSelectiong(enemyAction)
 		
 		targetTypes.GROUP:
-			if not finished:
-				targetArrayGroup = []
-				establishGroups(targetArray)
+			targetArrayGroup = []
+			establishGroups(targetArray)
 			if playerTurn:
 				for k in targetArrayGroup[groupIndex]:
 					k.show()
 				PGroupSelect(targetArrayGroup)
 			else:
-				pass
+				targetArrayGroup = []
+				establishGroups(targetArray)
+				groupIndex = team[i].GroupSelect(targetArrayGroup,enemyAction)
+				
+				EfinishSelectiong(enemyAction)
 		
 		targetTypes.SELF:
 			targetArray = team
 			index = i
 			if playerTurn:
-				targetArray[index].selected.show()
-				PConfirmSelect()
-				targetArray[index].selected.hide()
+				PConfirmSelect(targetArray[index])
 			else:
-				pass
+				EfinishSelectiong(enemyAction)
 		
-		_:
+		targetTypes.ALL:
 			if playerTurn:
-				for k in targetArray:
-					k.selected.show()
-				PConfirmSelect()
-				for k in targetArray:
-					k.selected.hide() 
+				PAllSelect(targetArray)
 			else:
-				pass
+				EfinishSelectiong(enemyAction)
+		
+		targetTypes.RANDOM:
+			if playerTurn:
+				PAllSelect(targetArray)
+			else:
+				EfinishSelectiong(enemyAction)
 
 func establishGroups(targetting):
 	for element in Globals.elementGroups:
@@ -202,14 +309,12 @@ func establishGroups(targetting):
 				tempChecking.append(targetting[k])
 		if tempChecking.size() != 0:
 			targetArrayGroup.append(tempChecking)
-	print(targetArrayGroup)
 	finished = true
 
 #-----------------------------------------
-#UI CONTROLS
+#PLAYERSELECTING // UI CONTROLS
 #-----------------------------------------
 func PSingleSelect(targetting):
-	PConfirmSelect()
 	if Input.is_action_just_pressed("Left"):
 		targetArray[index].selected.hide()
 		index -= 1
@@ -220,10 +325,9 @@ func PSingleSelect(targetting):
 		index += 1
 		if index > (targetting.size() - 1):
 			index = 0
-	targetArray[index].selected.show()
+	PConfirmSelect(targetArray[index])
 
 func PGroupSelect(targetting):
-	PConfirmSelect()
 	if Input.is_action_just_pressed("Left"):
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
@@ -240,79 +344,49 @@ func PGroupSelect(targetting):
 			groupIndex = 0
 	
 	for k in targetArrayGroup[groupIndex]:
-			k.selected.show()
+		PConfirmSelect(k)
 
-func PConfirmSelect():
-	if Input.is_action_just_pressed("Accept"):
-		pass
-	if Input.is_action_just_pressed("Cancel"):
-		pass
+func PConfirmSelect(targetting):
+	targetting.selected.show()
+
+func PAllSelect(targetting):
+	for k in targetting:
+		k.selected.show()
+
+func _on_cancel_selected():
+	Globals.attacking = false
+	var everyone = team + opposing
+	for k in range(everyone.size()):
+		everyone[k].selected.hide()
 
 #-----------------------------------------
-#ENEMY AI
+#ENEMY SELCTING
 #-----------------------------------------
-func ESingleSelect(targetting,useMove):
-	index = team[i].ERandomSingle(targetting)
-	for times in useMove.HitNum:
-		checkProperties(useMove,targetArray[index],team[i])
+func EfinishSelectiong(useMove):
+	enemyTP -= team[i].payCost(useMove)
+	TPChange(false)
 	waiting = true
+	
+	await action(useMove)
 	next_entity()
-
-func EGroupSelect(_useMove):
-	pass
-
-func ESelfSelect(useMove):
-	for times in useMove.HitNum:
-		if useMove.property & 1 and useMove.property & 2:
-			times += 1
-		checkProperties(useMove,targetArray,index)
-
-func EAllSelect(targetting,useMove):
-	for k in range(targetting.size()):
-		for times in useMove.HitNum:
-			if useMove.property & 1 and useMove.property & 2:
-				times += 1
-			checkProperties(useMove,targetArray,k)
-
-func ERandomSelect(targetting,useMove):
-	for times in useMove.HitNum:
-		index = team[i].ERandomSingle(targetting)
-		checkProperties(useMove,targetArray,index)
-		waiting = true
-		$WaitTimer.start()
 
 #-----------------------------------------
 #UI BUTTONS
 #-----------------------------------------
 func _on_start_select(useMove):
-	print(useMove.name)
 	Globals.attacking = true
 	target = findTarget(useMove)
 	which = findWhich(useMove)
 
 func _on_move_selected(useMove):
-	await action(useMove)
+	playerTP -= team[i].payCost(useMove) #The function handles the player's other costs on it's own
+	TPChange()
 	
+	team[i].menu.hide() #Don't let the player mash buttons until attack is over
+	await action(useMove)
 	Globals.attacking = false
-	team[i].secondaryTabs.hide()
 	next_entity()
 
-func _on_wait_selected():
-	next_entity()
-
-func _on_boost_selected():
-	if Globals.attacking:
-		targetArray[index].selected.hide()
-		team[i].buffStat(targetArray[index],team[i].playerData.boostStat)
-		Globals.attacking = false
-		next_entity()
-	else:
-		Globals.attacking = true
-		target = findTarget(team[i].playerData.boostMove)
-		which = findWhich(team[i].playerData.boostMove)
-
-func _on_scan_selected():
-	pass
 #-----------------------------------------
 #USING MOVES
 #-----------------------------------------
@@ -327,19 +401,25 @@ func action(useMove):
 			
 			for k in range(groupSize):
 				if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
+					targetArrayGroup = [] #Resestablish Groups
+					establishGroups(targetArray)
 					groupSize -= 1
 					k -= 1
 					targetDied = false
+				print(targetArrayGroup)
+				print("Group Index: ",groupIndex,"Group Size: ", groupSize)
+				print(targetArrayGroup[groupIndex][k].name)
 				await useAction(useMove,targetArrayGroup[groupIndex][k],team[i],hits)
+			groupIndex = 0
 		
 		targetTypes.ALL:
 			var groupSize = targetArray.size()
+			var offset = 0
 			for k in range(groupSize):
-				if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
-					groupSize -= 1
-					k -= 1
+				if targetDied: #Array goes 1by1 so raise the offset by 1
+					offset += 1
 					targetDied = false
-				await useAction(useMove,targetArray[k],team[i],hits)
+				await useAction(useMove,targetArray[k - offset],team[i],hits)
 		
 		targetTypes.RANDOM:
 			for k in range(hits):
@@ -373,95 +453,146 @@ func useActionRandom(useMove, targetting, user, hits):
 func checkProperties(move,targetting,user):
 	if move.property & 1:
 		offense(move,targetting,user)
+		await tweenDamage(targetting,user)
 	if move.property & 2:
 		offense(move,targetting,user)
+		await tweenDamage(targetting,user)
 	if move.property & 4:
 		offense(move,targetting,user)
+		await tweenDamage(targetting,user)
 	if move.property & 8:
 		buffing(move,targetting,user)
 	if move.property & 16:
 		healing(move,targetting,user)
+		tweenDamage(targetting,user)
 	if move.property & 32:
 		aura(move)
 	if move.property & 64:
 		summon(move,user)
 	if move.property & 128:
-		user.applyNegativeAilment(move,targetting,user)
+		ailment(move,targetting,user)
 	if move.property & 256:
 		pass
 	
-	var tween = targetting.HPBar.create_tween()
-	tween.connect("finished", _on_tween_completed)
-	
-	targetting.displayQuick(user.feedback)
-	targetting.HPtext.text = str("HP: ",targetting.currentHP)
-	tween.tween_property(targetting.HPBar, "value",
-	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(Tween.TRANS_BOUNCE)
-	
-	print(user.feedback)
-	user.feedback = ""
 	checkHP()
 
+func TPChange(player = true):
+	var TPtween
+	if player:
+		TPtween = $PlayerTP.create_tween()#TP management must be handled here
+		var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
+		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+	else:
+		TPtween = $EnemyTP.create_tween()#TP management must be handled here
+		var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
+		TPtween.tween_property(EnemyTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+
+#-----------------------------------------
+#CHECKPROPERTY FUNCTIONS
+#-----------------------------------------
 func offense(move,targetting,user):
 	targetting.selected.hide()
+	var halfMoonCheck = 0
 	if move.property & 1:
-		targetting.currentHP -= user.attack(move, targetting, user,"Physical")
+		targetting.currentHP -= user.attack(move, targetting, user,"Physical",currentAura)
+		halfMoonCheck += 1
 	if move.property & 2:
-		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic")
+		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic",currentAura)
+		halfMoonCheck += 1
 	elif move.property & 4:
 		targetting.currentHP -= user.BOMB(move, targetting)
+	
+	print(halfMoonCheck)
 	
 	if targetting.currentHP <= 0:
 		targetting.currentHP = 0
 
 func healing(move,targetting,user):
 	targetting.selected.hide()
-	print(user.healHP(move, targetting))
-	if move.Healing != 0:
+	if move.healing != 0:
 		targetting.currentHP += user.healHP(move, targetting)
 		if targetting.currentHP >= targetting.data.MaxHP:
 			targetting.currentHP = targetting.data.MaxHP
 		targetting.HPtext.text = str("HP: ",targetting.currentHP)
-		targetting.HPBar.value = int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP))
 	
 	if move.HealedAilment != "None":
 		user.healAilment(move, targetting)
 
 func buffing(move,targetting,user):
-	if move.BoostType == 0:
-		user.buffStat(targetting,move.boostType)
+	if move.BoostType != 0 and move.BoostType != null:
+		user.buffStat(targetting,move.BoostType,move.BoostAmmount)
+	elif user.has_node("CanvasLayer"):
+		if user.playerData.boostStat != null:
+			user.buffStat(targetting,user.playerData.boostStat,move.BoostAmmount)
 	
-	if move.Condition == 0:
+	if move.Condition != 0 and move.Condition != null:
 		user.buffCondition(move,targetting)
 	
-	if move.ElementChange != null:
+	if move.ElementChange != "None" and move.ElementChange != null and move.ElementChange != "":
 		user.buffElementChange(move,targetting,user)
 	
 	Globals.attacking = false
 	targetting.selected.hide()
 
 func aura(move):
-	currentAura = move.Aura
+	if move.Aura != "None":
+		AuraFog.show()
+		AuraLabel.show()
+	
+	match move.Aura:
+		"None":
+			AuraFog.hide()
+			AuraLabel.hide()
+		"BodyBroken":
+			AuraFog.modulate = Color("#ffa5ff21")
+			AuraLabel.text = "BodyBreak!"
+		"WillWrecked":
+			AuraFog.modulate = Color("#2ee8f221")
+			AuraLabel.text = "WillWreck!"
+		"LowTicks":
+			AuraFog.modulate = Color("#2ee8f221")
+			AuraLabel.text = "LowTick!"
+		"CritDouble":
+			AuraFog.modulate = Color("#2ee8f221")
+			AuraLabel.text = "CritsDoubled!"
 
 func summon(_move,_user):
 	pass
 
-#-----------------------------------------
-#MISC
-#-----------------------------------------
+func ailment(move,targetting,user):
+	if move.Ailment == "Overdrive" or move.Ailment == "Protected":
+		user.applyPositiveAilment(move,targetting)
+	elif move.Ailment != "PhySoft" and move.Ailment != "EleSoft":
+		user.applyNegativeAilment(move,targetting,user)
+	else:
+		user.applyXSoft(move,targetting,user)
 
 #-----------------------------------------
 #TURN END FUNCTIONS
 #-----------------------------------------
+func tweenDamage(targetting,user):
+	var tween = targetting.HPBar.create_tween()
+	tween.connect("finished", _on_tween_completed)
+	
+	targetting.displayQuick(user.feedback)
+	targetting.HPtext.text = str("HP: ",targetting.currentHP)
+	await tween.tween_property(targetting.HPBar, "value",
+	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(Tween.TRANS_CIRC)
+	
+	print(user.feedback,"to",targetting.data.name)
+	user.feedback = ""
+
 func _on_tween_completed(): #For Enemy Turns and multihits, makes individual hits more visible
-	print("stop")
 	waiting = false
 
 func next_entity():
+	var everyone = team + opposing
+	for k in range(everyone.size()):
+		everyone[k].selected.hide()
+	
 	#If it's the player, their menu should be hidden
 	if team[i].has_node("CanvasLayer"):
 		team[i].menu.hide()
-		team[i].firstButton.grab_focus()
 	
 	#Get to the next entity
 	#If the current team's index is higher than the size, reset both indexes and switch teams
@@ -470,13 +601,90 @@ func next_entity():
 		i = 0
 		j = 0
 		index = 0
+		print("End of turn?")
 		playerTurn = !playerTurn
+		print(playerTurn)
+		
+		if playerTurn:
+			playerTP += int(float(playerMaxTP) *.5)
+			checkCosts(playerOrder[0])
+			playerOrder[0].menu.show()
+			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
+			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
+			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+		else:
+			enemyTP += int(float(enemyMaxTP) *.5)
+			Globals.attacking = false
 		
 	else:
 		if team[i].has_node("CanvasLayer"):
+			checkCosts(team[i])
 			team[i].menu.show()
+		else:
+			enemyAction = team[i].chooseMove()
+			pass
 	
 	targetDied = false
+
+func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
+	for category in player.moveset:
+		var menuIndex = player.moveset.find(category)
+		for move in category:
+			match menuIndex:
+				0:
+					if not checkCostsMini(player, playerTP, "TP", move, menuIndex):
+						continue
+					if move.CostType == "Overdrive":
+						checkCostsMini(player, player.data.AilmentNum, "Overdrive", move, menuIndex)
+				1:
+					if not checkCostsMini(player, playerTP, "TP", move, menuIndex):
+						continue
+					if move.CostType == "LP":
+						checkCostsMini(player, player.currentLP, "LP", move, menuIndex)
+					elif move.CostType == "HP":
+						checkCostsMini(player, player.currentHP, "HP", move, menuIndex)
+				2:
+					if not checkCostsMini(player, playerTP, "TP", move, menuIndex, true):
+						continue
+					var ammount
+					for item in player.data.itemData:
+						if item.name == move.name:
+							ammount = player.data.itemData[item]
+					checkCostsMini(player, ammount, "Item", move, menuIndex, true)
+				3:
+					checkCostsMini(player, playerTP, "TP", move, menuIndex)
+
+func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
+	var buttonIndex = player.moveset[menuIndex].find(move)
+	var use
+	var cantpay = false
+	match cost:
+		"TP":
+			if searchingItem:
+				use = int(move.attackData.TPCost - (player.data.speed*(1 + player.data.speedBoost)))
+			else:
+				use = int(move.TPCost - (player.data.speed*(1 + player.data.speedBoost)))
+		"Overdrive":
+			use = 1
+		"HP":
+			use = int(player.data.MaxHP * move.cost)
+		"LP":
+			use = int(move.cost)
+		"Item":
+			use = int(move.attackData.cost)
+		
+	if pay < use:
+		cantpay = true
+#	else:
+#		print(cost,"|", pay,"vs",use,"Can pay for", move.name)
+	if cantpay:
+		print(cost,"|", pay,"vs",use,"Can't pay for", move.name)
+		player.emit_signal("canPayFor",menuIndex,buttonIndex,false)
+		cantpay = false
+	else:
+		player.emit_signal("canPayFor",menuIndex,buttonIndex,true)
+	
+	return cantpay
 
 func checkHP(): #Delete enemies, disable players and resize arrays as necessary also handles win and lose condition
 	var defeatedPlayers = []
@@ -488,13 +696,14 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	
 	#Check which players and enemies are dead
 	for player in playerOrder:
+		player.selected.hide()
 		if player.currentHP <= 0:
 			targetDied = true
 			defeatedPlayers.append(player)
 			lowerP += 1
 	for enemy in enemyOrder:
+		enemy.selected.hide()
 		if enemy.currentHP <= 0:
-			print("Die")
 			targetDied = true
 			defeatedEnemies.append(enemy)
 			lowerE += 1
@@ -505,7 +714,10 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		defeatedPlayer.modulate = Color(454545)
 	for defeatedEnemy in defeatedEnemies:
 		enemyOrder.erase(defeatedEnemy)
-		defeatedEnemy.queue_free()
+		if defeatedEnemy.enemyData.Boss:
+			defeatedEnemy.modulate = Color(454545)
+		else:
+			defeatedEnemy.queue_free()
 	#Win condition
 	if enemyOrder.size() == 0:
 		team[i].menu.hide()
@@ -520,9 +732,15 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	enemyOrder.resize(InitialESize - lowerE)
 	#Reset values
 	index = 0
-	groupIndex = 0
 	target = null
 	finished = false
+	if playerTurn:
+		team = playerOrder
+		opposing = enemyOrder
+	else:
+		team = enemyOrder
+		opposing = playerOrder
+	
 	#Only Reset values if somone died
 	#This lets the player mash a to attack the same guy a bunch until they die
 	if InitialPsize != playerOrder.size() or InitialESize != enemyOrder.size():

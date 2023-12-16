@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_7c28b")
-name = "SpeedScrew"
+name = "Speed Screw"
 maxItems = 5
 centCost = 120
 attackData = ExtResource("1_s3sxc")

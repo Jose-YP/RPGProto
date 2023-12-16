@@ -9,11 +9,13 @@ signal Attack(i)
 signal Skill(i)
 signal Item(i)
 signal Tactic(i)
-signal Hovering(type,i)
+signal Focusing(focus,menuI,buttonI)
 signal cancel
 
 #Determines if up/down inputs should be taken 
 var selectingMenu: bool = true
+var confirmed: bool = true
+var changed: bool = false
 var menuIndex: int = 0
 var buttonIndex: int = 0
 var menuDictionary: Dictionary = {}
@@ -31,27 +33,13 @@ func _ready():
 		menuDictionary[Menu.name] = i
 
 func _process(_delta):
-	if menuIndex == 0 or selectingMenu:
-		menuMove()
-	
-	if Input.is_action_just_pressed("Accept"):
-		if menuIndex == 0:
-			Tab.visible = true
-			menuIndex = menuDictionary.get(fullMenu[menuIndex][buttonIndex].name)
-			Tab.current_tab = menuIndex - 1
-			fullMenu[menuIndex][buttonIndex].grab_focus()
-		else:
-			if selectingMenu:
-				print(fullMenu[menuIndex][buttonIndex])
-				fullMenu[menuIndex][buttonIndex].button_pressed == true
-			else:
-				fullMenu[menuIndex][buttonIndex].button_pressed == true
-				Tab.visible = false
-				menuIndex = 0
-				fullMenu[menuIndex][buttonIndex].grab_focus()
-			selectingMenu = not selectingMenu
-	
-	fullMenu[menuIndex][buttonIndex].grab_focus()
+	if $".".visible:
+		if menuIndex == 0 or selectingMenu:
+			menuMove()
+		
+		menuConfirm()
+		Focusing.emit(fullMenu[menuIndex][buttonIndex],menuIndex,buttonIndex,changed)
+		changed = false
 
 func menuMove():
 	if Input.is_action_just_pressed("Left"):
@@ -70,13 +58,41 @@ func menuMove():
 				buttonIndex = 0
 			else:
 				buttonIndex += 1
-			print(menuIndex,buttonIndex)
+			changed = true
 			
 		if Input.is_action_just_pressed("Up"):
 			if buttonIndex <= 0:
 				buttonIndex = 3
 			else:
 				buttonIndex -= 1
+			changed = true
+
+func menuConfirm():
+	if Input.is_action_just_pressed("Accept"):
+		if menuIndex == 0: #get to the next item in the menu
+			Tab.visible = true
+			menuIndex = menuDictionary.get(fullMenu[menuIndex][buttonIndex].name)
+			Tab.current_tab = menuIndex - 1
+			fullMenu[menuIndex][buttonIndex].grab_focus()
+		elif fullMenu[menuIndex][buttonIndex].disabled == false: #Either select the move to be used or confirm it
+			print(fullMenu[menuIndex][buttonIndex].disabled)
+			if selectingMenu:
+				fullMenu[menuIndex][buttonIndex].emit_signal("pressed")
+				selectingMenu = false
+			else:
+				fullMenu[menuIndex][buttonIndex].emit_signal("pressed")
+				Tab.visible = false
+				menuIndex = 0
+				fullMenu[menuIndex][buttonIndex].grab_focus()
+		
+	if Input.is_action_just_pressed("Cancel"):
+		if menuIndex != 0: #Cancel any current move, 
+			buttonIndex = menuIndex - 1
+			menuIndex = 0
+			Tab.visible = false
+			selectingMenu = true
+			confirmed = false
+			cancel.emit()
 
 #Regular menu's buttons all have arguments to the index they should send to
 func _on_first_pressed(index):
@@ -95,14 +111,17 @@ func _on_item_pressed(index):
 func _on_tactic_pressed(index):
 	Tactic.emit(index)
 
-#Every back node is connected to this
-func _on_back_pressed():
-	Tab.visible = false
-	selectingMenu = true
-
 #If the player gains over drive it will be true meaning it's enabled otherwise it's disabled
 func _on_player_overdrive_ready(overdrive):
 	if overdrive:
-		$TabContainer/AttackMenu/MarginContainer/GridContainer/Attack3.disabled = false
+		$TabContainer/Basic/MarginContainer/GridContainer/Burst.disabled = false
 	else:
-		$TabContainer/AttackMenu/MarginContainer/GridContainer/Attack3.disabled = true
+		$TabContainer/Basic/MarginContainer/GridContainer/Burst.disabled = true
+
+func _on_player_can_pay_for(menuI, buttonI, yes):
+	if yes:
+		print("Enabled: ",fullMenu[menuI+1][buttonI].name)
+		fullMenu[menuI+1][buttonI].disabled = false
+	else:
+		print("Disabled: ",fullMenu[menuI+1][buttonI].name)
+		fullMenu[menuI+1][buttonI].disabled = true

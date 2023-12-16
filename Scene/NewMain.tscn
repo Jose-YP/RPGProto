@@ -16,6 +16,8 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_vrows")
+playerTurn = false
+tweenTiming = 0.5
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -61,17 +63,16 @@ offset_bottom = 783.0
 metadata/_edit_lock_ = true
 
 [node name="EnemyTP" type="TextureProgressBar" parent="."]
-offset_left = 1168.0
-offset_top = 258.0
-offset_right = 1258.0
-offset_bottom = 345.0
-value = 60.0
+offset_left = 1156.0
+offset_top = 206.0
+offset_right = 1246.0
+offset_bottom = 293.0
+value = 100.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_under = ExtResource("11_atlpm")
 texture_over = ExtResource("12_ejskb")
 texture_progress = ExtResource("13_w8prj")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EnemyTP"]
 layout_mode = 0
@@ -79,27 +80,23 @@ offset_left = 7.0
 offset_top = -30.0
 offset_right = 96.0
 offset_bottom = -4.0
-text = "TP: 360/360"
 
 [node name="PlayerTP" type="TextureProgressBar" parent="."]
 offset_top = 350.0
 offset_right = 90.0
 offset_bottom = 437.0
-value = 60.0
+value = 100.0
 fill_mode = 5
 nine_patch_stretch = true
 texture_under = ExtResource("11_atlpm")
 texture_over = ExtResource("12_ejskb")
 texture_progress = ExtResource("13_w8prj")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="PlayerTP"]
 layout_mode = 0
 offset_top = 87.0
 offset_right = 89.0
 offset_bottom = 113.0
-text = "TP: 360/360
-"
 
 [node name="Label" type="Label" parent="."]
 visible = false

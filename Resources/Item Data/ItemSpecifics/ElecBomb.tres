@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b87gkmkaqxfdl"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_o5xgy"]
+[ext_resource type="Resource" uid="uid://dp8uvgxs0katg" path="res://Resources/Item Data/ItemMoves/ElecBombMove.tres" id="1_poffh"]
+
+[resource]
+script = ExtResource("1_o5xgy")
+name = "Elec Bomb"
+maxItems = 20
+centCost = 200
+attackData = ExtResource("1_poffh")

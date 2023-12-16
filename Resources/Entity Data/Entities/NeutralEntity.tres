@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://dayy6sakl1jwx"]
+[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://dayy6sakl1jwx"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="3_pv4re"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
+[ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="5_nkxyx"]
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Overdrive.tres" id="7_75417"]
+[ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
 
 [resource]
 script = ExtResource("1_axch6")
@@ -24,19 +26,20 @@ ballistics = 4
 resistance = 4
 speed = 5
 luck = 6
-element = "Neutral"
+element = "Fire"
 Weakness = 0
 Resist = 16
 phyElement = "Crush"
 attackData = ExtResource("1_rr6oq")
-skillData = [ExtResource("3_chrlf"), ExtResource("4_5dvqg"), ExtResource("7_75417")]
+skillData = [ExtResource("3_chrlf"), ExtResource("4_5dvqg"), ExtResource("7_75417"), ExtResource("10_b0nti")]
 itemData = {
 ExtResource("2_1u2u3"): 5,
 ExtResource("3_pv4re"): 4,
-ExtResource("4_52qji"): 4
+ExtResource("4_52qji"): 4,
+ExtResource("5_nkxyx"): 1
 }
-XSoft = null
-Condition = null
+XSoft = Array[String](["", "", ""])
+Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0

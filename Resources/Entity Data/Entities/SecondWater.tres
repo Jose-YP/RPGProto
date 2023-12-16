@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://2imequ6g5pi0"]
+[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://2imequ6g5pi0"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_4dami"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_ecoj4"]
@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="3_yqn7x"]
 [ext_resource type="Resource" uid="uid://cms6yhioy6q35" path="res://Resources/Move Data/Player Moves/RendingArm.tres" id="4_7jfry"]
 [ext_resource type="Resource" uid="uid://d3kx4skcjkrso" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="4_bqcmc"]
+[ext_resource type="Resource" uid="uid://b87gkmkaqxfdl" path="res://Resources/Item Data/ItemSpecifics/ElecBomb.tres" id="5_31aqc"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/BlueShift.tres" id="5_hyspu"]
 [ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/Player Data/TestDamir.tres" id="9_ksugu"]
+[ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Charge.tres" id="10_2q5cs"]
 
 [resource]
 script = ExtResource("1_ecoj4")
@@ -29,11 +31,12 @@ Weakness = null
 Resist = 8
 phyElement = "Slash"
 attackData = ExtResource("1_4dami")
-skillData = [ExtResource("3_h2cbp"), ExtResource("4_7jfry"), ExtResource("5_hyspu")]
+skillData = [ExtResource("3_h2cbp"), ExtResource("4_7jfry"), ExtResource("5_hyspu"), ExtResource("10_2q5cs")]
 itemData = {
 ExtResource("2_l51hs"): 3,
 ExtResource("3_yqn7x"): 2,
-ExtResource("4_bqcmc"): 1
+ExtResource("4_bqcmc"): 1,
+ExtResource("5_31aqc"): 2
 }
 XSoft = null
 Condition = null

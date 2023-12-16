@@ -65,7 +65,17 @@ var conditionStrings ={
 	"Devoid":256,
 	"AnotherTurn":512}
 
-
+var boostFlags = {
+	1: "Attack",
+	2: "Defense",
+	4: "Speed",
+	8: "Luck" }
+var boostStrings = {
+	"Attack": 1,
+	"Defense": 2,
+	"Speed": 4,
+	"Luck": 8
+}
 
 func inCaseNone(property):
 	if property == null:
@@ -80,6 +90,8 @@ func String_to_Flag(property,type):
 			string_translate = propertyStrings
 		"Condition":
 			string_translate = conditionStrings
+		"Boost":
+			string_translate = boostStrings
 	
 	if string_translate.has(property):
 		return string_translate[property]
@@ -94,7 +106,33 @@ func Flag_to_String(flag,type):
 			flag_translate = propertyFlags
 		"Condition":
 			flag_translate = conditionFlags
+		"Boost":
+			flag_translate = boostFlags
 	
 	if flag_translate.has(flag):
+		print(flag_translate[flag])
 		return flag_translate[flag]
-	return false
+	
+	print(flag)
+	return ""
+
+func NullorAppend(list,value,XSoft=true,maxSize=3):
+	for i in range(list.size()):
+		if list[i] == null or list[i] == "":
+			list[i] = value
+			return list
+	
+	if XSoft:
+		if list.size() < maxSize:
+			list.append(value)
+			return list
+	
+	return list
+
+func emptyXSoftSlots(list):
+	var nulls: int = 0
+	for i in range(list.size()):
+		if list[i] == null or list[i] == "":
+			nulls += 1
+	
+	return nulls

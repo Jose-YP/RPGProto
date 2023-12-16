@@ -1,21 +1,23 @@
-[gd_resource type="Resource" script_class="Player" load_steps=7 format=3 uid="uid://bskxjufoosdga"]
+[gd_resource type="Resource" script_class="Player" load_steps=9 format=3 uid="uid://bskxjufoosdga"]
 
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/Boost.tres" id="1_62yw1"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/Scan.tres" id="1_wf6hr"]
+[ext_resource type="Resource" uid="uid://dn0uugdcutkno" path="res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres" id="2_mwmna"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Wait.tres" id="2_nr3u6"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="2_svhxs"]
 [ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/Crash.tres" id="3_5uymh"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Player Moves/Burst.tres" id="4_60p6o"]
+[ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/SummonPlaceholder.tres" id="7_d05xj"]
 
 [resource]
 script = ExtResource("2_svhxs")
 MaxLP = 30
 MaxCPU = 38
-skills = 2
-rechargeRate = 1.0
-slot2 = ExtResource("3_5uymh")
-slot3 = ExtResource("4_60p6o")
+Skills = 1
+RechargeRate = 1.0
+Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("3_5uymh"), ExtResource("2_mwmna"), ExtResource("4_60p6o")])
 boostStat = 8
-boostMove = ExtResource("1_62yw1")
-Wait = ExtResource("2_nr3u6")
-Scan = ExtResource("1_wf6hr")
+Tactics1 = ExtResource("2_nr3u6")
+Tactics2 = ExtResource("1_62yw1")
+Tactics3 = ExtResource("1_wf6hr")
+Tactics4 = ExtResource("7_d05xj")

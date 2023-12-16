@@ -110,15 +110,15 @@ layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Crash"
 
+[node name="Misc" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Attack"]]
+layout_mode = 2
+theme = ExtResource("6_8ho7p")
+text = "Burst"
+
 [node name="Burst" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Attack"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 disabled = true
-text = "Burst"
-
-[node name="Back" type="Button" parent="TabContainer/Basic/MarginContainer/GridContainer" groups=["Back"]]
-layout_mode = 2
-theme = ExtResource("6_8ho7p")
 text = "Back"
 
 [node name="Skills" type="PanelContainer" parent="TabContainer" groups=["SecondaryMenu"]]
@@ -155,7 +155,7 @@ layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Skill3"
 
-[node name="Back" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Skill4" type="Button" parent="TabContainer/Skills/MarginContainer/GridContainer" groups=["Skills"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
@@ -194,7 +194,7 @@ layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Item3"
 
-[node name="Back" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Item4" type="Button" parent="TabContainer/Items/MarginContainer/GridContainer" groups=["Items"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
@@ -228,12 +228,12 @@ layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Boost"
 
-[node name="Tactic" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
+[node name="Scan" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Tactic3"
 
-[node name="Back" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Back"]]
+[node name="Misc" type="Button" parent="TabContainer/Tactics/MarginContainer/GridContainer" groups=["Tactics"]]
 layout_mode = 2
 theme = ExtResource("6_8ho7p")
 text = "Back"
@@ -244,17 +244,17 @@ text = "Back"
 [connection signal="pressed" from="Regularmenu/MarginContainer/GridContainer/Tactics" to="." method="_on_first_pressed" binds= [3]]
 [connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Attack" to="." method="_on_attack_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Crash" to="." method="_on_attack_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Burst" to="." method="_on_attack_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Misc" to="." method="_on_attack_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/Basic/MarginContainer/GridContainer/Burst" to="." method="_on_attack_pressed" binds= [3]]
 [connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill" to="." method="_on_skill_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill2" to="." method="_on_skill_pressed" binds= [1]]
 [connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill3" to="." method="_on_skill_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Skills/MarginContainer/GridContainer/Skill4" to="." method="_on_skill_pressed" binds= [3]]
 [connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item" to="." method="_on_item_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item2" to="." method="_on_item_pressed" binds= [1]]
 [connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item3" to="." method="_on_item_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Items/MarginContainer/GridContainer/Item4" to="." method="_on_item_pressed" binds= [3]]
 [connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Wait" to="." method="_on_tactic_pressed" binds= [0]]
 [connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Boost" to="." method="_on_tactic_pressed" binds= [1]]
-[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Tactic" to="." method="_on_tactic_pressed" binds= [2]]
-[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Scan" to="." method="_on_tactic_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/Tactics/MarginContainer/GridContainer/Misc" to="." method="_on_tactic_pressed" binds= [3]]

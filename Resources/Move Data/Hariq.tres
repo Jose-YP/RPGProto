@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3444w")
 name = "Hariq"
-description = "Ballistic Fire Attack that hits 5 random opponents"
+description = "Ballistic Fire Attack that hits 4 random opponents"
 TPCost = 70
 Which = "Enemy"
 Target = "Random"
@@ -15,7 +15,7 @@ property = 2
 CostType = "LP"
 cost = 6.0
 Power = 15
-HitNum = 3
+HitNum = 4
 BaseCrit = -10
 BaseAilment = -200
 Ailment = "None"
@@ -28,7 +28,7 @@ HealedAilment = "None"
 HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 16
-Condition = null
+Condition = 0
 Aura = ""
 ElementChange = ""
 Summon = []

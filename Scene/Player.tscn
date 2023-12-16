@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_ij2m7"]
 [ext_resource type="Script" path="res://Code/Player.gd" id="2_eir3h"]
 [ext_resource type="PackedScene" uid="uid://cpmeoneud23qm" path="res://Scene/PlayerMenu.tscn" id="3_1kcwe"]
-[ext_resource type="Texture2D" uid="uid://bkxsl0ggqtckk" path="res://Resources/Black.tres" id="3_bc0w8"]
-[ext_resource type="Texture2D" uid="uid://b2jmmrkt8ei3e" path="res://Resources/Blue.tres" id="4_n4dko"]
+[ext_resource type="Texture2D" uid="uid://bkxsl0ggqtckk" path="res://Themes/Black.tres" id="3_geygg"]
+[ext_resource type="Texture2D" uid="uid://b2jmmrkt8ei3e" path="res://Themes/Blue.tres" id="4_avs2c"]
 
 [node name="Player" groups=["Players"] instance=ExtResource("1_ij2m7")]
 script = ExtResource("2_eir3h")
@@ -18,8 +18,8 @@ offset_top = 176.0
 offset_right = 132.0
 offset_bottom = 210.0
 value = 100.0
-texture_under = ExtResource("3_bc0w8")
-texture_progress = ExtResource("4_n4dko")
+texture_under = ExtResource("3_geygg")
+texture_progress = ExtResource("4_avs2c")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LPBar" index="0"]
 layout_mode = 0
@@ -42,7 +42,7 @@ offset_bottom = 28.0
 [node name="CurrentInfo" parent="." index="8"]
 offset_right = 224.0
 
-[connection signal="overdriveReady" from="." to="CanvasLayer" method="_on_player_overdrive_ready"]
+[connection signal="canPayFor" from="." to="CanvasLayer" method="_on_player_can_pay_for"]
 [connection signal="Attack" from="CanvasLayer" to="." method="_on_canvas_layer_attack"]
 [connection signal="Focusing" from="CanvasLayer" to="." method="_on_canvas_layer_focusing"]
 [connection signal="Item" from="CanvasLayer" to="." method="_on_canvas_layer_item"]

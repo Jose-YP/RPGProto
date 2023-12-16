@@ -32,7 +32,7 @@ class_name entityData
 
 @export_group("Temp Property")
 @export var XSoft: Array[String] = ["","",""]
-@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition
+@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition: int = 0
 @export_enum("Fire","Water","Elec","Neutral") var TempElement = element
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive","Healthy") var Ailment: String = "Healthy"

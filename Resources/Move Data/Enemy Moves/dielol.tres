@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_nn401")
-name = "God hand or smth"
+name = "DieLOL"
 description = "Basic Attack"
 TPCost = 150
 Which = "Enemy"
@@ -14,7 +14,7 @@ phyElement = "Crush"
 property = 9
 CostType = "Free"
 cost = 0.0
-Power = 100
+Power = 80
 HitNum = 1
 BaseCrit = -20
 BaseAilment = -200
@@ -26,10 +26,9 @@ reset = false
 healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
-BoostType = 9
 BoostAmmount = -1
-Condition = null
-Aura = null
-ElementChange = null
+BoostType = 9
+Condition = 0
+Aura = ""
+ElementChange = "None"
 Summon = []
-Misc = ""

@@ -8,3 +8,4 @@ xp = 100
 cents = 40
 Boss = false
 Revivable = false
+AIType = 0

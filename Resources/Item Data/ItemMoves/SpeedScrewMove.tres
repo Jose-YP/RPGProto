@@ -6,14 +6,14 @@
 script = ExtResource("1_x27pu")
 name = "Speed Screw"
 description = "Raise Everyone's Speed by 1 stage"
-TPCost = 40
+TPCost = 70
 Which = "Ally"
 Target = "All"
 element = "Neutral"
 phyElement = "Neutral"
 property = 8
-CostType = "Free"
-cost = 0.0
+CostType = "Item"
+cost = 1.0
 Power = 60
 HitNum = 1
 BaseCrit = 0
