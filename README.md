@@ -20,14 +20,14 @@ ______
 ______
 LOFTY TODOS
 ______
-*Implement other EnemyAI types(So far only random)|
-*Change player stats based on level|
-*Implement Ailments(Poison and Reckless)|
-*Implement Conditions (Targetted and Charge)|
-*Implement end of battle|
-*Change Battles|
-*Maybe Animations????|
-*Implement Summon moves|
+*Implement other EnemyAI types(So far only random) ||
+*Change player stats based on level ||
+*Implement Ailments(Poison and Reckless) ||
+*Implement Conditions (Targetted and Charge) ||
+*Implement end of battle ||
+*Change Battles ||
+*Maybe Animations???? ||
+*Implement Summon moves ||
 
 ______
 STATS
