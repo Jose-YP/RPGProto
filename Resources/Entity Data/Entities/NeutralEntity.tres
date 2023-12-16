@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
 [ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="2_1u2u3"]
 [ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/Player Data/TestPlayer.tres" id="3_0pc3x"]
-[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Heal.tres" id="3_chrlf"]
+[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="3_chrlf"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="3_pv4re"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]

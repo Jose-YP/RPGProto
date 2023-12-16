@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://twouvei3cmnp"]
 
-[ext_resource type="Script" path="res://Code/Entity.gd" id="1_nf8im"]
+[ext_resource type="Script" path="res://Code/SceneCode/Entity.gd" id="1_d4tmd"]
 [ext_resource type="Resource" uid="uid://seilwthpp2l1" path="res://Resources/Entity Data/placeholder.tres" id="2_w83ur"]
 [ext_resource type="Texture2D" uid="uid://b7jc4yykvnhq" path="res://Assets/icon.svg" id="2_xtla5"]
 [ext_resource type="Texture2D" uid="uid://bfrgfh0hu465y" path="res://Themes/Red2D.tres" id="3_8a2qv"]
@@ -40,7 +40,7 @@ height = 32
 fill_from = Vector2(1, 0)
 
 [node name="Node2D" type="Node2D" groups=["Entities"]]
-script = ExtResource("1_nf8im")
+script = ExtResource("1_d4tmd")
 data = ExtResource("2_w83ur")
 
 [node name="Timer" type="Timer" parent="."]
@@ -502,3 +502,4 @@ offset_right = 62.0
 offset_bottom = 61.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="hidden" from="Buffs/Defense" to="." method="_on_defense_hidden"]

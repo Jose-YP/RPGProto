@@ -17,11 +17,11 @@ res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
 res://Resources/Move Data/Bahr.tres
 res://Resources/Entity Data/Enemy Data/TestBoss.tres
-res://Resources/Move Data/Enemy Moves/dielol.tres
 res://Resources/Entity Data/Entities/WaterEntity.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
 res://Resources/Move Data/BlueShift.tres
 res://Resources/Entity Data/Entities/ElecEntity.tres
+res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
 res://Resources/Move Data/Player Moves/Crash.tres
 res://Resources/Move Data/Player Moves/Burst.tres
 res://Resources/Entity Data/Player Data/TestPlayer.tres
@@ -30,6 +30,7 @@ res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
+res://Resources/Move Data/Player Moves/Overdrive.tres
 res://Resources/Entity Data/Entities/NeutralEntity.tres
 res://Resources/Move Data/Player Moves/RendingArm.tres
 res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
@@ -46,19 +47,15 @@ res://Resources/Move Data/Hariq.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Move Data/Player Moves/Scapegoat.tres
+res://Resources/Move Data/Player Moves/Veritate.tres
 res://Resources/Entity Data/Entities/FireEntity.tres
+res://Code/enemy.gd
+res://Code/Entity.gd
+res://Code/Main.gd
 res://Scene/enemy.tscn
 res://Scene/Entity.tscn
 res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Code/Main.gd
-res://Code/enemy.gd
-res://Code/EnemyAI/EnemyRandom.gd
-res://Code/Entity.gd
-res://Code/Globals/HelperFunctions.gd
-res://Code/Player.gd
-res://Code/PlayerMenu.gd
-res://Resources/Move Data/Enemy Moves/RedShift.tres
-res://Resources/Move Data/Player Moves/Overdrive.tres
-res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
-res://Resources/Move Data/Player Moves/Veritate.tres
+res://Code/SceneCode/Player.gd
+res://Code/SceneCode/enemy.gd
+res://Code/SceneCode/Main.gd

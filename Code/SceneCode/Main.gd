@@ -50,6 +50,7 @@ enum targetTypes {
 	SELF,
 	ALL,
 	RANDOM,
+	TARGETTED,
 	NONE
 }
 enum whichTypes {
@@ -214,6 +215,7 @@ func _process(_delta):#If player turn ever changes change current team to match 
 	if enemyMaxTP < enemyTP:
 		enemyTP = enemyMaxTP
 	
+	everyone = playerOrder + enemyOrder
 	PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
 	EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
 
@@ -264,6 +266,19 @@ func findWhich(useMove):
 	
 	return returnWhich
 
+func checkForTargetted(targetting):
+	var trueTargetArray = []
+	
+	for entity in targetting:
+		if entity.checkCondition("Targetted", entity):
+			trueTargetArray.append(entity)
+			target = targetTypes.TARGETTED
+	
+	if trueTargetArray.size() == 0:
+		return targetArray
+	else:
+		return trueTargetArray
+
 func nextTarget(TeamSide = team,OpposingSide = opposing):
 	match which:
 		whichTypes.ENEMY:
@@ -272,6 +287,8 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 			targetArray = TeamSide
 		whichTypes.BOTH:
 			targetArray = TeamSide + OpposingSide
+			
+	targetArray = checkForTargetted(targetArray)
 	match target:
 		targetTypes.SINGLE:
 			if playerTurn:
@@ -281,7 +298,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 				print("Single")
 				waiting = true
 				index = team[i].SingleSelect(targetArray,enemyAction)
-				EfinishSelectiong(enemyAction)
+				EfinishSelecting(enemyAction)
 		
 		targetTypes.GROUP:
 			targetArrayGroup = []
@@ -298,7 +315,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 				establishGroups(targetArray)
 				groupIndex = team[i].GroupSelect(targetArrayGroup,enemyAction)
 				
-				EfinishSelectiong(enemyAction)
+				EfinishSelecting(enemyAction)
 		
 		targetTypes.SELF:
 			targetArray = team
@@ -308,7 +325,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 					PConfirmSelect(targetArray[index])
 			else:
 				waiting = true
-				EfinishSelectiong(enemyAction)
+				EfinishSelecting(enemyAction)
 		
 		targetTypes.ALL:
 			if playerTurn:
@@ -316,7 +333,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 					PAllSelect(targetArray)
 			else:
 				waiting = true
-				EfinishSelectiong(enemyAction)
+				EfinishSelecting(enemyAction)
 		
 		targetTypes.RANDOM:
 			if playerTurn:
@@ -324,7 +341,15 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 					PAllSelect(targetArray)
 			else:
 				waiting = true
-				EfinishSelectiong(enemyAction)
+				EfinishSelecting(enemyAction)
+		
+		targetTypes.TARGETTED:
+			if playerTurn:
+				if Globals.attacking:
+					PAllSelect(targetArray)
+			else:
+				waiting = true
+				EfinishSelecting(enemyAction)
 
 func establishGroups(targetting):
 	for element in Globals.elementGroups:
@@ -340,16 +365,45 @@ func establishGroups(targetting):
 #PLAYERSELECTING // UI CONTROLS
 #-----------------------------------------
 func PSingleSelect(targetting):
-	if Input.is_action_just_pressed("Left"):
-		targetArray[index].selected.hide()
-		index -= 1
-		if index < 0:
-			index = targetting.size() - 1
-	if Input.is_action_just_pressed("Right"):
-		targetArray[index].selected.hide()
-		index += 1
-		if index > (targetting.size() - 1):
-			index = 0
+	if not whichTypes.BOTH:#Simple line movement
+		if Input.is_action_just_pressed("Left"):
+			targetArray[index].selected.hide()
+			index -= 1
+			if index < 0:
+				index = targetting.size() - 1
+		if Input.is_action_just_pressed("Right"):
+			targetArray[index].selected.hide()
+			index += 1
+			if index > (targetting.size() - 1):
+				index = 0
+	
+	if whichTypes.BOTH: #Moves like a Grid
+		if Input.is_action_just_pressed("Left"):
+			targetArray[index].selected.hide()
+			index -= 1
+			if index < 0:
+				index = 2
+			elif index == 2:
+				index = targetting.size() - 1
+		if Input.is_action_just_pressed("Right"):
+			targetArray[index].selected.hide()
+			index += 1
+			if index > (targetting.size() - 1):
+				index = 3
+			elif  index == 3:
+				index = 0
+			
+		if Input.is_action_just_pressed("Up"):
+			targetArray[index].selected.hide()
+			index += 3
+			if index > (targetting.size() - 1):
+				index -= 6
+		if Input.is_action_just_pressed("Down"):
+			targetArray[index].selected.hide()
+			index -= 3
+			if index < 0:
+				index += 6
+	
 	PConfirmSelect(targetArray[index])
 
 func PGroupSelect(targetting):
@@ -386,11 +440,12 @@ func _on_cancel_selected():
 #-----------------------------------------
 #ENEMY SELCTING
 #-----------------------------------------
-func EfinishSelectiong(useMove):
+func EfinishSelecting(useMove):
 	enemyTP -= team[i].payCost(useMove)
 	TPChange(false)
 	waiting = true
 	
+	team[i].displayMove(useMove)
 	await action(useMove)
 	$Timer.start()
 
@@ -638,6 +693,7 @@ func next_entity():
 			if team[i].has_node("CanvasLayer"):
 				checkCosts(team[i])
 				team[i].menu.show()
+				team[i].firstButton.grab_focus()
 			else:
 				enemyAction = team[i].chooseMove(enemyTP)
 				target = findTarget(enemyAction)
@@ -646,8 +702,32 @@ func next_entity():
 		switchPhase()
 		targetDied = false
 
+func overdriveTurnManager():
+	for k in range(everyone.size()):
+		if everyone[k].checkCondition("AnotherTurn",everyone[k]):
+			overdriveTurn = true
+			everyone[k].removeCondition("AnotherTurn",everyone[k])
+			
+			#Hold the regular team order in here
+			if overdriveHold.size() == 0:
+				overdriveHold = team
+				overdriveI = i
+			
+			i = 0
+			team = []
+			team.append(everyone[k])
+			
+			if team[i].has_node("CanvasLayer"):
+				checkCosts(team[i])
+				team[i].menu.show()
+			else:
+				enemyAction = team[i].chooseMove(enemyTP)
+				target = findTarget(enemyAction)
+				which = findWhich(enemyAction)
+
 func switchPhase():
 	if actionNum <= 0:
+		endPhaseCheck()
 		playerTurn = not playerTurn
 		
 		if playerTurn:
@@ -704,7 +784,7 @@ func checkCosts(player): #Check if the player can afford certain moves, if they 
 func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	var buttonIndex = player.moveset[menuIndex].find(move)
 	var use
-	var cantpay = false
+	var canpay = true
 	match cost:
 		"TP":
 			if searchingItem:
@@ -721,15 +801,36 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 			use = int(move.attackData.cost)
 		
 	if pay < use:
-		cantpay = true
-	if cantpay:
+		canpay = false
+	if not canpay:
 		print(cost,"|", pay,"vs",use,"Can't pay for", move.name)
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,false)
-		cantpay = false
 	else:
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,true)
 	
-	return cantpay
+	return canpay
+
+func endPhaseCheck():
+	for k in range(everyone.size()):
+		everyone[k].statBoostHandling()
+		if everyone[k].data.Ailment != "Healthy":
+			pass
+		
+	if playerTurn:
+		for player in playerOrder:
+			if player.checkCondition("Targetted", player):
+				if player.targetCount != 0:
+					target -= 1
+				else:
+					player.removeCondition("Targetted",player)
+		
+	else:
+		for enemy in enemyOrder:
+			if enemy.checkCondition("Targetted", enemy):
+				if enemy.targetCount != 0:
+					target -= 1
+				else:
+					enemy.removeCondition("Targetted",enemy)
 
 func checkHP(): #Delete enemies, disable players and resize arrays as necessary also handles win and lose condition
 	var defeatedPlayers = []
@@ -792,29 +893,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		j = 0
 		index = 0
 
-func overdriveTurnManager():
-	for k in range(everyone.size()):
-		if everyone[k].checkCondition("AnotherTurn",everyone[k]):
-			overdriveTurn = true
-			everyone[k].removeCondition("AnotherTurn",everyone[k])
-			
-			#Hold the regular team order in here
-			if overdriveHold.size() == 0:
-				overdriveHold = team
-				overdriveI = i
-			
-			i = 0
-			team = []
-			team.append(everyone[k])
-			
-			if team[i].has_node("CanvasLayer"):
-				checkCosts(team[i])
-				team[i].menu.show()
-			else:
-				enemyAction = team[i].chooseMove(enemyTP)
-				target = findTarget(enemyAction)
-				which = findWhich(enemyAction)
-
 func _on_timer_timeout():
 	waiting = false
+	team[i].hideDesc()
 	next_entity()

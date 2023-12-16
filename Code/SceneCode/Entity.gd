@@ -17,6 +17,7 @@ extends Node2D
 @onready var items: Array = []
 
 var currentHP: int
+var targetCount: int
 var feedback: String
 var TPArray: Array = []
 
@@ -82,9 +83,7 @@ func processer():
 	if data.Ailment == "Overdrive": #Overdrive can only have an Ailment Num of 1
 		data.AilmentNum = 1
 	
-	for boost in range(statBoostSlots.size()):
-		if statBoostSlots[boost] == 0:
-			statBoostSprites[boost].hide()
+	statBoostSlots = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
 
 #-----------------------------------------
 #MOVE PROPERTYS
@@ -292,6 +291,8 @@ func buffStat(defender,boostType,boostAmmount = 1):#For actively buffing and deb
 func buffCondition(move,defender):
 	defender.data.Condition |= move.Condition
 	defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
+	if checkCondition("Targetted", defender):#Targetted will last until 
+		targetCount = 2
 
 func buffElementChange(move,defender,user):
 	var prev = defender.data.TempElement
@@ -545,6 +546,21 @@ func removeCondition(seeking,defender):
 			defender.data.Condition = defender.data.Condition & ~seekingFlag
 			defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
 
+func statBoostHandling():
+	print(statBoostSprites)
+	print(statBoostSlots)
+	for boost in range(statBoostSlots.size()):
+		if statBoostSlots[boost] > 0:
+			statBoostSlots[boost] -= .05
+			buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
+		
+		elif statBoostSlots[boost] < 0:
+			statBoostSlots[boost] += .05
+			buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
+		
+		if statBoostSlots[boost] == 0:
+			print(statBoostSlots[boost])
+			statBoostSprites[boost].hide()
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
@@ -559,14 +575,16 @@ func displayQuick(quick):
 
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
-	label.text = str(100 * ammount,"%")
+	var textStore = str(100 * ammount,"%")
+	if ammount != 0:
+		label.text = textStore
+		type.show()
 	
 	if ammount > 0:
 		type.modulate = Color(1, 0.278, 0.357, 0.671)
+		
 	elif ammount < 0:
 		type.modulate = Color(0.58, 0.592, 0.541, 0.671)
-	
-	type.show()
 
 func _on_timer_timeout():
 	hideDesc()

@@ -1,4 +1,4 @@
-extends "res://Code/Entity.gd"
+extends "res://Code/SceneCode/Entity.gd"
 
 @onready var EnemyLabel = $NameContainer/RichTextLabel
 @onready var enemyData = data.specificData
@@ -7,7 +7,9 @@ var enemyAI
 var aiInstance
 var moveset: Array = []
 
-#Setup moveset
+#-----------------------------------------
+#INITALIZATION
+#-----------------------------------------
 func _ready():
 	moreReady()
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
@@ -36,21 +38,8 @@ func _process(_delta):
 		if data.itemData[thing] <= 0:
 			moveset.erase(thing)
 
-#TEMPLATE
-#match enemyData.AIType:
-#		"Random":
-#			pass
-#		"Pick Off":
-#			pass
-#		"Support":
-#			pass
-#		"Debuff":
-#			pass
-#		_:
-#			pass
-
 #-----------------------------------------
-#EnemyAI
+#ENEMYAI
 #-----------------------------------------
 func chooseMove(TP):
 	var move
@@ -104,6 +93,13 @@ func GroupSelect(targetting,move):
 			pass
 		"Debuff":
 			pass
+#-----------------------------------------
+#UI CHANGES
+#-----------------------------------------
+func displayMove(move):
+	InfoBox.show()
+	Info.text = str(data.name, " used ", move.name)
+
 #-----------------------------------------
 #PAYING ITEM&TP
 #-----------------------------------------
