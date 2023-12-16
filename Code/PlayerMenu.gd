@@ -110,15 +110,14 @@ func _on_item_pressed(index):
 func _on_tactic_pressed(index):
 	Tactic.emit(index)
 
-#If the player gains over drive it will be true meaning it's enabled otherwise it's disabled
-func _on_player_overdrive_ready(overdrive):
-	if overdrive:
-		$TabContainer/Basic/MarginContainer/GridContainer/Burst.disabled = false
-	else:
-		$TabContainer/Basic/MarginContainer/GridContainer/Burst.disabled = true
-
-func _on_player_can_pay_for(menuI, buttonI, yes):
-	if yes:
+func _on_player_can_pay_for(menuI, buttonI, allowed):
+	if fullMenu[menuI+1][buttonI].name == "Burst":
+		print("Allowed: ", allowed)
+	
+	if allowed:
+		if fullMenu[menuI+1][buttonI].name == "Burst":
+			print("WHO")
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:
+		print(fullMenu[menuI+1][buttonI].name)
 		fullMenu[menuI+1][buttonI].disabled = true

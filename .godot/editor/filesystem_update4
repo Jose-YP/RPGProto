@@ -58,3 +58,5 @@ res://Code/Entity.gd
 res://Code/Globals/HelperFunctions.gd
 res://Code/Player.gd
 res://Code/PlayerMenu.gd
+res://Resources/Move Data/Enemy Moves/RedShift.tres
+res://Resources/Move Data/Player Moves/Overdrive.tres
