@@ -7,23 +7,21 @@ ______
 ISSUES
 ______
 *Fixing Diplay for non Damaging/Healing moves (Check if these are still an issue)
-*Fix how Random Target display (Check if still an issue)
-*Controls being weird while waiting and right after enemy Turn
+*Controls being stuck and weird after turns sometimes
+*Enemy Turn still needs to be more stable
 ______
 TODO
 ______
-*Implement the moves Crash and Scan
-*Implement Overdrive's condition
-*StatBoost decay
-*Implement the other Auras (Will Wrecked, Lower TP)
-
+*Implement the moves Crash and Scan||
+*StatBoost decay||
+*Implement Lower TP Aura||
+*Implement Ailments(Poison and Reckless) ||
+*Implement Targetted Condition ||
 ______
 LOFTY TODOS
 ______
 *Implement other EnemyAI types(So far only random) ||
 *Change player stats based on level ||
-*Implement Ailments(Poison and Reckless) ||
-*Implement Conditions (Targetted and Charge) ||
 *Implement end of battle ||
 *Change Battles ||
 *Maybe Animations???? ||
@@ -117,3 +115,22 @@ It determines what moves you can use in a turn to turn basis, think of it like m
 Every character's TP is collected into one per team
 Both sides start with full TP and every proceeding turn they gain half of their max back
 For now you can't use a move if it goes over the team's currentTP
+______
+OVERDRIVE
+______
+It's a strange move I tried to implement in my prototype
+It comes from Okage: Shadow King
+It gives an all three things:
+1: A damage boost while the condition is up
+2: Access to Burst, a high damage all targetting move that consumes Overdrive upon use
+3: Immediete access to another turn
+
+Differences:
+Since this isn't ATB it instead gives the target a free turn
+They still have to pay TP costs so it's effectively very pricey
+
+Despite the decently high HP Cost it's a super strong move 
+but being on the main character who not only game overs upon death but is the only healer for half the game
+it's super fun and risky to use and I love it
+So here it is in the prototype
+
