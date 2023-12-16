@@ -42,9 +42,6 @@ func _ready():
 	
 	tactics = [playerData.Tactics1,playerData.Tactics2,playerData.Tactics3,playerData.Tactics4]
 	
-	#debug code
-	if data == null and playerData == null:
-		print("playerData file not set")
 	
 	LPtext.text = str("LP: ",currentLP)
 	HPtext.text = str("HP: ", currentHP)
@@ -82,11 +79,9 @@ func payCost(move):
 			overdriveReady.emit(overdrive)
 		
 		"Item":
-			print("Using Item")
 			for item in data.itemData:
 				if item.name == move.name:
 					data.itemData[item] -= move.cost
-					print("Used",move.name)
 	
 	return move.TPCost - (data.speed * (1 + data.speedBoost))
 
@@ -121,8 +116,6 @@ func _on_canvas_layer_skill(i):
 		startSelect.emit(skills[i])
 
 func _on_canvas_layer_item(i):
-	print(items)
-	print(items[i].attackData.name)
 	if Globals.attacking:
 		moveSelected.emit(items[i].attackData)
 	else:

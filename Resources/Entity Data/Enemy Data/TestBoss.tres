@@ -8,4 +8,4 @@ xp = 500
 cents = 600
 Boss = true
 Revivable = false
-AIType = 0
+AIType = "Random"

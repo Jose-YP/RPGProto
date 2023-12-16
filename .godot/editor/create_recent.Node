@@ -1,3 +1,4 @@
+Timer
 RichTextLabel
 PanelContainer
 Label
@@ -10,7 +11,6 @@ VBoxContainer
 HBoxContainer
 TabContainer
 TextureRect
-Timer
 Node
 AnimationPlayer
 Node2D

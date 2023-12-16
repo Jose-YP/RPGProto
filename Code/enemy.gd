@@ -13,17 +13,19 @@ func _ready():
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
-	print(enemyData.AIType)
 	
 	match enemyData.AIType:#Determine which AI to use
 		"Random":
 			enemyAI = preload("res://Code/EnemyAI/EnemyRandom.gd")
 		"Pick Off":
-			enemyAI = preload("res://Code/EnemyAI/Test.gd")
+			pass
+			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
 		"Support":
-			enemyAI = preload("res://Code/EnemyAI/Test.gd")
+			pass
+			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
 		"Debuff":
-			enemyAI = preload("res://Code/EnemyAI/Test.gd")
+			pass
+			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
 	
 	aiInstance = enemyAI.new()
 
@@ -33,7 +35,6 @@ func _process(_delta):
 	for thing in data.itemData:
 		if data.itemData[thing] <= 0:
 			moveset.erase(thing)
-			print(data.name, "'s ", thing, "gone")
 
 #TEMPLATE
 #match enemyData.AIType:

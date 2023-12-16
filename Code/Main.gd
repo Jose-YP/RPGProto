@@ -17,6 +17,7 @@ extends Node2D
 var currentMenu
 var groups = ["Attack","Skills","Items","Tactics"]
 #Hold current enemy's action
+var actionNum = 0
 var enemyAction
 #Holds current team and temmate's turn
 var i: int = 0
@@ -83,6 +84,10 @@ func _ready(): #Assign current team according to starting bool
 		print(team[i].chooseMove())
 		enemyAction = team[i].chooseMove()
 	
+	
+	$".".add_child($Timer)
+	$Timer.set_paused(false)
+	actionNum = 3
 	playerTP = playerMaxTP
 	enemyTP = enemyMaxTP
 
@@ -191,7 +196,11 @@ func _process(_delta):#If player turn ever changes change current team to match 
 		which = findWhich(enemyAction)
 		target = findTarget(enemyAction)
 		if not waiting:
+			print(waiting,"WAITING")
 			nextTarget()
+	if $Timer.is_stopped():
+		print("a")
+	
 	
 	#Keep cursor on current active turn
 	cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
@@ -264,6 +273,8 @@ func nextTarget():
 			if playerTurn:
 				PSingleSelect(targetArray)
 			else:
+				print("Single")
+				waiting = true
 				index = team[i].SingleSelect(targetArray,enemyAction)
 				EfinishSelectiong(enemyAction)
 		
@@ -275,6 +286,8 @@ func nextTarget():
 					k.show()
 				PGroupSelect(targetArrayGroup)
 			else:
+				print("Group")
+				waiting = true
 				targetArrayGroup = []
 				establishGroups(targetArray)
 				groupIndex = team[i].GroupSelect(targetArrayGroup,enemyAction)
@@ -287,18 +300,21 @@ func nextTarget():
 			if playerTurn:
 				PConfirmSelect(targetArray[index])
 			else:
+				waiting = true
 				EfinishSelectiong(enemyAction)
 		
 		targetTypes.ALL:
 			if playerTurn:
 				PAllSelect(targetArray)
 			else:
+				waiting = true
 				EfinishSelectiong(enemyAction)
 		
 		targetTypes.RANDOM:
 			if playerTurn:
 				PAllSelect(targetArray)
 			else:
+				waiting = true
 				EfinishSelectiong(enemyAction)
 
 func establishGroups(targetting):
@@ -368,7 +384,7 @@ func EfinishSelectiong(useMove):
 	waiting = true
 	
 	await action(useMove)
-	next_entity()
+	$Timer.start()
 
 #-----------------------------------------
 #UI BUTTONS
@@ -396,6 +412,7 @@ func action(useMove):
 	match target:
 		targetTypes.GROUP:
 			var groupSize = targetArrayGroup[groupIndex].size()
+			var offset = 0
 			if groupSize == 1:
 				hits *= 2
 			
@@ -403,13 +420,12 @@ func action(useMove):
 				if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
 					targetArrayGroup = [] #Resestablish Groups
 					establishGroups(targetArray)
-					groupSize -= 1
-					k -= 1
+					offset += 1
 					targetDied = false
 				print(targetArrayGroup)
-				print("Group Index: ",groupIndex,"Group Size: ", groupSize)
-				print(targetArrayGroup[groupIndex][k].name)
-				await useAction(useMove,targetArrayGroup[groupIndex][k],team[i],hits)
+				print("Group Index: ",groupIndex,"Group Size: ", groupSize, "k:", k, "Offset: ", offset)
+				print(targetArrayGroup[groupIndex][k - offset].name)
+				await useAction(useMove,targetArrayGroup[groupIndex][k - offset],team[i],hits)
 			groupIndex = 0
 		
 		targetTypes.ALL:
@@ -554,7 +570,7 @@ func aura(move):
 			AuraLabel.text = "LowTick!"
 		"CritDouble":
 			AuraFog.modulate = Color("#2ee8f221")
-			AuraLabel.text = "CritsDoubled!"
+			AuraLabel.text = "CritsChanceDoubled!"
 
 func summon(_move,_user):
 	pass
@@ -583,7 +599,7 @@ func tweenDamage(targetting,user):
 	user.feedback = ""
 
 func _on_tween_completed(): #For Enemy Turns and multihits, makes individual hits more visible
-	waiting = false
+	print("A")
 
 func next_entity():
 	var everyone = team + opposing
@@ -601,21 +617,8 @@ func next_entity():
 		i = 0
 		j = 0
 		index = 0
-		print("End of turn?")
-		playerTurn = !playerTurn
-		print(playerTurn)
-		
-		if playerTurn:
-			playerTP += int(float(playerMaxTP) *.5)
-			checkCosts(playerOrder[0])
-			playerOrder[0].menu.show()
-			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
-			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
-			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
-		else:
-			enemyTP += int(float(enemyMaxTP) *.5)
-			Globals.attacking = false
-		
+	
+	
 	else:
 		if team[i].has_node("CanvasLayer"):
 			checkCosts(team[i])
@@ -623,7 +626,9 @@ func next_entity():
 		else:
 			enemyAction = team[i].chooseMove()
 			pass
-	
+	actionNum -= 1
+	switchPhase()
+	print("I: ",i,"J:",j,"Action Num: ", actionNum, "PLayerTurn:",playerTurn)
 	targetDied = false
 
 func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
@@ -675,8 +680,6 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 		
 	if pay < use:
 		cantpay = true
-#	else:
-#		print(cost,"|", pay,"vs",use,"Can pay for", move.name)
 	if cantpay:
 		print(cost,"|", pay,"vs",use,"Can't pay for", move.name)
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,false)
@@ -747,5 +750,33 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		j = 0
 		index = 0
 
+func switchPhase():
+	if actionNum <= 0:
+		playerTurn = not playerTurn
+		
+		if playerTurn:
+			team = playerOrder
+			opposing = enemyOrder
+			
+			playerTP += int(float(playerMaxTP) *.5)
+			checkCosts(playerOrder[0])
+			playerOrder[0].menu.show()
+			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
+			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
+			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+		else:
+			team = enemyOrder
+			opposing = playerOrder
+			
+			enemyTP += int(float(enemyMaxTP) *.5)
+			var TPtween = $EnemyTP.create_tween()#TP management must be handled here
+			var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
+			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+			Globals.attacking = false
+		actionNum = 3
+		print("Switch")
+
 func _on_timer_timeout():
-	print("print")
+	print("efeoufononisonivoni")
+	waiting = false
+	next_entity()

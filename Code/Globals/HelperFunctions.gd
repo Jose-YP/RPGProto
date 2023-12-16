@@ -110,10 +110,8 @@ func Flag_to_String(flag,type):
 			flag_translate = boostFlags
 	
 	if flag_translate.has(flag):
-		print(flag_translate[flag])
 		return flag_translate[flag]
 	
-	print(flag)
 	return ""
 
 func NullorAppend(list,value,XSoft=true,maxSize=3):

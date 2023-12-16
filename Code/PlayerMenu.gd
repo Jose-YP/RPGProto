@@ -75,7 +75,6 @@ func menuConfirm():
 			Tab.current_tab = menuIndex - 1
 			fullMenu[menuIndex][buttonIndex].grab_focus()
 		elif fullMenu[menuIndex][buttonIndex].disabled == false: #Either select the move to be used or confirm it
-			print(fullMenu[menuIndex][buttonIndex].disabled)
 			if selectingMenu:
 				fullMenu[menuIndex][buttonIndex].emit_signal("pressed")
 				selectingMenu = false
@@ -120,8 +119,6 @@ func _on_player_overdrive_ready(overdrive):
 
 func _on_player_can_pay_for(menuI, buttonI, yes):
 	if yes:
-		print("Enabled: ",fullMenu[menuI+1][buttonI].name)
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:
-		print("Disabled: ",fullMenu[menuI+1][buttonI].name)
 		fullMenu[menuI+1][buttonI].disabled = true

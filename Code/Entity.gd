@@ -44,10 +44,6 @@ func moreReady():#Make a function so it'll work on parent and child nodes
 	
 	for tab in $XSoftDisplay/HBoxContainer.get_children():
 		XSoftSlots.append(tab.get_children())
-	
-	#debug code
-	if data == null:
-		print("entityData file not set")
 
 func _process(_delta):
 	processer()
@@ -111,13 +107,11 @@ func attack(move, defender, user, property, aura):
 	if move.name == "Attack" or move.name == "Crash" or move.name == "Burst":
 		offensePhyEle = user.data.phyElement
 	
-	print(offensePhyEle != "Neutral")
-	if offensePhyEle != "Neutral":
-		phyMod = phy_weakness(offensePhyEle, defender.data)
-		if phyMod > .25:
-			feedback = str("{",offensePhyEle," Weak}", feedback)
-		elif phyMod < 0:
-			feedback = str("{",offensePhyEle," Resist}", feedback)
+	phyMod = phy_weakness(offensePhyEle, defender.data)
+	if phyMod > .25:
+		feedback = str("{",offensePhyEle," Weak}", feedback)
+	elif phyMod < 0:
+		feedback = str("{",offensePhyEle," Resist}", feedback)
 	
 	if elementMod >= 1.25:
 		feedback = str("{",offenseElement," Weak}", feedback)
@@ -147,7 +141,7 @@ func attack(move, defender, user, property, aura):
 				feedback = str("{",aura,"}",feedback)
 				auraMod = .5
 	
-	if crit_chance(move,user,defender):
+	if crit_chance(move,user,defender,aura):
 		critMod = .25
 		feedback = str("{Crit}", feedback)
 	
@@ -175,7 +169,6 @@ func BOMB(move,defender):
 	if phyMod > .25:
 		feedback = str("{",move.phyElement," Weak}", feedback)
 	elif phyMod < 0:
-		print(phyMod, phyMod < 0)
 		feedback = str("{",move.phyElement," Resist}", feedback)
 	
 	if elementMod >= 1.25:
@@ -420,10 +413,15 @@ func phy_weakness(user,defender,PreMod = 0):
 	
 	return PhyMod
 
-func crit_chance(move,user,defender):
+func crit_chance(move,user,defender,aura):
 	var crit = false
+	var auraMod = 1
+	if aura == "CritDouble":
+		auraMod = 2
+	
 	var chance = move.BaseCrit + (1 + user.data.luckBoost) * user.data.luck * sqrt(user.data.luck)
 	chance = chance - (defender.data.luck * sqrt(defender.data.luck) * (1 + defender.data.luckBoost))
+	chance *= auraMod
 	
 	#evil tracia rng lol
 	if chance > 100:
@@ -487,7 +485,6 @@ func determineXSoft(move,user):
 			elif move.element != "Neutral":
 				return move.element
 			else:
-				print("UserPhy")
 				return user.data.phyElement
 
 func checkCondition(seeking,defender):
@@ -514,13 +511,11 @@ func checkXSoft(seeking,defender):
 		k += 1
 		if seeking == element:
 			softAmmount += .15
-			print("Soft ",softAmmount)
 			break
 	
 	while k != (defender.data.XSoft.size()):
 		if seeking == defender.data.XSoft[k]:
 			softAmmount += .1
-			print("Soft ",softAmmount)
 		k += 1
 	
 	return softAmmount
