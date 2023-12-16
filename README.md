@@ -8,6 +8,7 @@ ISSUES
 ______
 *Fixing Diplay for non Damaging/Healing moves (Check if these are still an issue)
 *Controls being stuck and weird after turns sometimes
+*Enemy Turn still needs to be more stable
 ______
 TODO
 ______
