@@ -95,6 +95,7 @@ func _ready(): #Assign current team according to starting bool
 	
 	everyone = playerOrder + enemyOrder
 	$Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
+	$PostPhaseTimer.set_paused(false)
 
 func movesetDisplay(player): #Format every player's menu to include the name of their moveset
 	#get the player's complete moveset
@@ -202,9 +203,9 @@ func _process(_delta):#If player turn ever changes change current team to match 
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		which = findWhich(enemyAction)
-		target = findTarget(enemyAction)
 		if not waiting:
+			which = findWhich(enemyAction)
+			target = findTarget(enemyAction)
 			nextTarget()
 	
 	#Keep cursor on current active turn
@@ -255,7 +256,7 @@ func findTarget(useMove):
 
 func findWhich(useMove):
 	var returnWhich
-	
+	print(useMove)
 	match useMove.Which:
 		"Enemy":
 			returnWhich = whichTypes.ENEMY
@@ -533,21 +534,21 @@ func useActionRandom(useMove, targetting, user, hits):
 func checkProperties(move,targetting,user):
 	if move.property & 1:
 		offense(move,targetting,user)
-		tweenDamage(targetting,user)
+		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
 		await get_tree().create_timer(.4).timeout #Damage deserves a little more time to be seen
 	if move.property & 2:
 		offense(move,targetting,user)
-		tweenDamage(targetting,user)
+		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
 		await get_tree().create_timer(.4).timeout
 	if move.property & 4:
 		offense(move,targetting,user)
-		tweenDamage(targetting,user)
+		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
 		await get_tree().create_timer(.4).timeout
 	if move.property & 8:
 		buffing(move,targetting,user)
 	if move.property & 16:
 		healing(move,targetting,user)
-		tweenDamage(targetting,user)
+		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
 	if move.property & 32:
 		aura(move)
 	if move.property & 64:
@@ -648,16 +649,6 @@ func ailment(move,targetting,user):
 #-----------------------------------------
 #TURN END FUNCTIONS
 #-----------------------------------------
-func tweenDamage(targetting,user):
-	var tween = targetting.HPBar.create_tween()
-	
-	targetting.displayQuick(user.feedback)
-	targetting.HPtext.text = str("HP: ",targetting.currentHP)
-	await tween.tween_property(targetting.HPBar, "value",
-	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(4).set_ease(1)
-	
-	print(user.feedback,"to",targetting.data.name)
-	user.feedback = ""
 
 func next_entity():
 	if overdriveTurn: #Return things to normal
@@ -699,7 +690,7 @@ func next_entity():
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 		
-		switchPhase()
+		startSwitchPhase()
 		targetDied = false
 
 func overdriveTurnManager():
@@ -720,37 +711,43 @@ func overdriveTurnManager():
 			if team[i].has_node("CanvasLayer"):
 				checkCosts(team[i])
 				team[i].menu.show()
+				playerOrder[0].firstButton.grab_focus()
 			else:
 				enemyAction = team[i].chooseMove(enemyTP)
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 
-func switchPhase():
+func startSwitchPhase():
 	if actionNum <= 0:
-		endPhaseCheck()
+		waiting = true
+		$PostPhaseTimer.start()
 		playerTurn = not playerTurn
+		endPhaseCheck()
+
+func switchPhase():
+	if playerTurn:
+		team = playerOrder
+		opposing = enemyOrder
 		
-		if playerTurn:
-			team = playerOrder
-			opposing = enemyOrder
-			
-			playerTP += int(float(playerMaxTP) *.5)
-			checkCosts(playerOrder[0])
-			playerOrder[0].menu.show()
-			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
-			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
-			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
-		else:
-			team = enemyOrder
-			opposing = playerOrder
-			enemyAction = enemyOrder[0].chooseMove(enemyTP)
-			
-			enemyTP += int(float(enemyMaxTP) *.5)
-			var TPtween = $EnemyTP.create_tween()#TP management must be handled here
-			var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
-			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
-			Globals.attacking = false
-		actionNum = 3
+		playerTP += int(float(playerMaxTP) *.5)
+		checkCosts(playerOrder[0])
+		playerOrder[0].menu.show()
+		playerOrder[0].firstButton.grab_focus()
+		
+		var TPtween = $PlayerTP.create_tween()#TP management must be handled here
+		var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
+		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+	else:
+		team = enemyOrder
+		opposing = playerOrder
+		enemyAction = enemyOrder[0].chooseMove(enemyTP)
+		
+		enemyTP += int(float(enemyMaxTP) *.5)
+		var TPtween = $EnemyTP.create_tween()#TP management must be handled here
+		var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
+		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+		Globals.attacking = false
+	actionNum = 3
 
 func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
 	for category in player.moveset:
@@ -811,10 +808,11 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	return canpay
 
 func endPhaseCheck():
-	for k in range(everyone.size()):
-		everyone[k].statBoostHandling()
-		if everyone[k].data.Ailment != "Healthy":
-			pass
+	for k in range(opposing.size()):
+		opposing[k].statBoostHandling()
+		var holdAilment = opposing[k].ailmentCategory(opposing[k])
+		if holdAilment != "Mental" or holdAilment != "Nonmental":
+			opposing[k].endPhaseAilments(opposing[k].data.Ailment)
 		
 	if playerTurn:
 		for player in playerOrder:
@@ -897,3 +895,7 @@ func _on_timer_timeout():
 	waiting = false
 	team[i].hideDesc()
 	next_entity()
+
+func _on_post_phase_timer_timeout():
+	waiting = false
+	switchPhase()

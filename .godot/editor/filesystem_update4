@@ -59,3 +59,6 @@ res://Scene/Player.tscn
 res://Code/SceneCode/Player.gd
 res://Code/SceneCode/enemy.gd
 res://Code/SceneCode/Main.gd
+res://Resources/Move Data/Entity Moves/Poison.tres
+res://Code/SceneCode/Entity.gd
+res://Resources/Move Data/Entity Moves/Bahr.tres

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://sjm6hcqloohb"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_6gkel"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_bim5b"]
 
 [resource]
-script = ExtResource("1_6gkel")
+script = ExtResource("1_bim5b")
 name = "Bahr"
 description = "Ballistic Water Attack that hits an opposing enity group of the same element"
 TPCost = 50

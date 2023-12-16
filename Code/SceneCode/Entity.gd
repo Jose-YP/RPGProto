@@ -88,7 +88,7 @@ func processer():
 #-----------------------------------------
 #MOVE PROPERTYS
 #-----------------------------------------
-func attack(move, defender, user, property, aura):
+func attack(move, receiver, user, property, aura):
 	var attackStat: int
 	var defenseStat: int
 	var softMod: float = 0.0
@@ -104,14 +104,14 @@ func attack(move, defender, user, property, aura):
 	#If a move has Neutral Element it will copy the user's element instead
 	if move.element == "Neutral":
 		offenseElement = user.data.element
-	var elementMod = elementModCalc(offenseElement, defender.data.element)
+	var elementMod = elementModCalc(offenseElement, receiver.data.element)
 	
 	#Basic Attacks will use the user's PhyElement instead of the move's
 	#Every other attack uses the move's PhyElement
 	if move.name == "Attack" or move.name == "Crash" or move.name == "Burst":
 		offensePhyEle = user.data.phyElement
 	
-	phyMod = phy_weakness(offensePhyEle, defender.data)
+	phyMod = phy_weakness(offensePhyEle, receiver.data)
 	if phyMod > .25:
 		feedback = str("{",offensePhyEle," Weak}", feedback)
 	elif phyMod < 0:
@@ -123,18 +123,18 @@ func attack(move, defender, user, property, aura):
 		feedback = str("{",offenseElement," Resist}", feedback)
 	
 	var prev = softMod
-	softMod += checkXSoft(offenseElement, defender)
+	softMod += checkXSoft(offenseElement, receiver)
 	if prev < softMod:
 		feedback = str("{",offenseElement," Soft}", feedback)
 	prev = softMod
-	softMod += checkXSoft(offensePhyEle, defender)
+	softMod += checkXSoft(offensePhyEle, receiver)
 	if prev < softMod:
 		feedback = str("{",offensePhyEle," Soft}", feedback)
 	
 	match property:
 		"Physical":
 			attackStat = user.data.strength
-			defenseStat = defender.data.toughness
+			defenseStat = receiver.data.toughness
 			if aura == "BodyBroken":
 				feedback = str("{",aura,"}",feedback)
 				auraMod = .5
@@ -143,7 +143,7 @@ func attack(move, defender, user, property, aura):
 				removeCondition("Charge",user)
 		"Ballistic":
 			attackStat = user.data.ballistics
-			defenseStat = defender.data.resistance
+			defenseStat = receiver.data.resistance
 			if aura == "WillWrecked":
 				feedback = str("{",aura,"}",feedback)
 				auraMod = .5
@@ -151,7 +151,7 @@ func attack(move, defender, user, property, aura):
 				chargeMod = 2.5
 				removeCondition("Amp",user)
 	
-	if crit_chance(move,user,defender,aura):
+	if crit_chance(move,user,receiver,aura):
 		critMod = .25
 		feedback = str("{Crit}", feedback)
 	
@@ -162,7 +162,7 @@ func attack(move, defender, user, property, aura):
 	var totalSecondMod = chargeMod*auraMod*elementMod
 	#Get total attack power, subtract it by total defense then multiply by element mod*AuraMod
 	var damage = ((randi_range(0,user.data.level) + move.Power + attackStat) * totalFirstMod)
-	damage =  damage - ((1.25 * defenseStat) * (1 + defender.data.defenseBoost))
+	damage =  damage - ((1.25 * defenseStat) * (1 + receiver.data.defenseBoost))
 	damage = int(totalSecondMod*(damage))
 	
 	if damage <= 0:
@@ -171,14 +171,14 @@ func attack(move, defender, user, property, aura):
 	feedback = str(damage, " Damage!", feedback)
 	return damage
 
-func BOMB(move,defender):
+func BOMB(move,receiver):
 	feedback = ""
 	var softMod: float = 0
 	var prev = softMod
 	var phyMod: float = 0
-	var elementMod = elementModCalc(move.element, defender.data.element)
+	var elementMod = elementModCalc(move.element, receiver.data.element)
 	
-	phyMod = phy_weakness(move.phyElement, defender.data)
+	phyMod = phy_weakness(move.phyElement, receiver.data)
 	if phyMod > .25:
 		feedback = str("{",move.phyElement," Weak}", feedback)
 	elif phyMod < 0:
@@ -189,11 +189,11 @@ func BOMB(move,defender):
 	elif elementMod <= .75:
 		feedback = str("{",move.element," Resist}", feedback)
 	
-	softMod += checkXSoft(move.element, defender)
+	softMod += checkXSoft(move.element, receiver)
 	if prev < softMod:
 		feedback = str("{",move.element," Soft}", feedback)
 	prev = softMod
-	softMod += checkXSoft(move.phyElement, defender)
+	softMod += checkXSoft(move.phyElement, receiver)
 	if prev < softMod:
 		feedback = str("{",move.phyElement," Soft}", feedback)
 	
@@ -203,55 +203,55 @@ func BOMB(move,defender):
 	feedback = str(damage, " BOMB Damage!", feedback)
 	return damage
 
-func healHP(move,defender):
+func healHP(move,receiver):
 	var healAmmount = move.healing
 	if move.percentage:
-		healAmmount = int((float(move.healing)/100) * float(defender.data.MaxHP))
+		healAmmount = int((float(move.healing)/100) * float(receiver.data.MaxHP))
 	
 	feedback = str(healAmmount," HP Healed!")
 	
 	return healAmmount
 
-func healAilment(move, defender):
+func healAilment(move, receiver):
 	var canHeal = true
 	if move.HealedAilment == "All":
-		defender.data.AilmentNum -= move.HealAilAmmount
-		defender.data.XSoft.pop_front()
+		receiver.data.AilmentNum -= move.HealAilAmmount
+		receiver.data.XSoft.pop_front()
 	
-	var category = ailmentCategory(defender)
+	var category = ailmentCategory(receiver)
 	
 	if category != "Mental" or category != "Nonmental":
 		canHeal = false
 	
-	if (category == move.HealedAilment or defender.data.Ailment == move.HealedAilment 
+	if (category == move.HealedAilment or receiver.data.Ailment == move.HealedAilment 
 	or move.HealedAilment == "Negative") and canHeal:
-		defender.data.AilmentNum -= move.HealAilAmmount
-		if defender.data.AilmentNum <= 0:
-			defender.data.AilmentNum  = 0
+		receiver.data.AilmentNum -= move.HealAilAmmount
+		if receiver.data.AilmentNum <= 0:
+			receiver.data.AilmentNum  = 0
 
-func applyNegativeAilment(move,defender,user,preWin = false):
+func applyNegativeAilment(move,receiver,user,preWin = false):
 	if move.BaseAilment > 200:
 		preWin = true
 	
-	#If the ailment calc returns true then apply ailment to defender
-	if ailment_calc(move,defender,user) or preWin:
+	#If the ailment calc returns true then apply ailment to receiver
+	if ailment_calc(move,receiver,user) or preWin:
 		#Raise number first so Ailment doesn't instantly become Healthy from process
-		if defender.data.AilmentNum <= 3:
-			defender.data.AilmentNum += move.AilmentAmmount
+		if receiver.data.AilmentNum <= 3:
+			receiver.data.AilmentNum += move.AilmentAmmount
 		
-		if move.Ailment != defender.data.Ailment:
-			defender.data.Ailment = move.Ailment
+		if move.Ailment != receiver.data.Ailment:
+			receiver.data.Ailment = move.Ailment
 
-func applyPositiveAilment(move,defender):
-	if ailmentCategory(defender) != "Mental" or  ailmentCategory(defender) != "Nonmental":
+func applyPositiveAilment(move,receiver):
+	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Nonmental":
 		if move.Ailment == "Protected":
-			defender.data.AilmentNum += 1
-			defender.data.Ailment = "Protected"
+			receiver.data.AilmentNum += 1
+			receiver.data.Ailment = "Protected"
 		else:
-			defender.data.AilmentNum += 1
-			defender.data.Ailment = "Overdrive"
+			receiver.data.AilmentNum += 1
+			receiver.data.Ailment = "Overdrive"
 
-func applyXSoft(move,defender,user,preWin = false,PreSoft = ""):
+func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 	var win = preWin
 	var times = move.AilmentAmmount
 	var ele
@@ -260,9 +260,9 @@ func applyXSoft(move,defender,user,preWin = false,PreSoft = ""):
 		win = true
 	
 	if not win:
-		win = ailment_calc(move,defender,user)
+		win = ailment_calc(move,receiver,user)
 	
-	if HelperFunctions.emptyXSoftSlots(defender.data.XSoft) != 0 or defender.data.XSoft.size() < 3:
+	if HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0 or receiver.data.XSoft.size() < 3:
 		if win:
 			if PreSoft != "":
 				ele = PreSoft
@@ -272,55 +272,55 @@ func applyXSoft(move,defender,user,preWin = false,PreSoft = ""):
 				ele = determineXSoft(move,user)
 	
 	for i in times:
-		defender.data.XSoft = HelperFunctions.NullorAppend(defender.data.XSoft,ele)
+		receiver.data.XSoft = HelperFunctions.NullorAppend(receiver.data.XSoft,ele)
 
-func buffStat(defender,boostType,boostAmmount = 1):#For actively buffing and debuffing moves
+func buffStat(receiver,boostType,boostAmmount = 1):#For actively buffing and debuffing moves
 	if boostType & 1:
-		defender.data.attackBoost += (boostAmmount * .3)
-		buffStatManager(defender.get_node("Buffs/Attack"),defender.data.attackBoost)
+		receiver.data.attackBoost += (boostAmmount * .3)
+		buffStatManager(receiver.get_node("Buffs/Attack"),receiver.data.attackBoost)
 	if boostType & 2:
-		defender.data.defenseBoost += (boostAmmount * .3)
-		buffStatManager(defender.get_node("Buffs/Defense"),defender.data.defenseBoost)
+		receiver.data.defenseBoost += (boostAmmount * .3)
+		buffStatManager(receiver.get_node("Buffs/Defense"),receiver.data.defenseBoost)
 	if boostType & 4:
-		defender.data.speedBoost += (boostAmmount * .3)
-		buffStatManager(defender.get_node("Buffs/Speed"),defender.data.speedBoost)
+		receiver.data.speedBoost += (boostAmmount * .3)
+		buffStatManager(receiver.get_node("Buffs/Speed"),receiver.data.speedBoost)
 	if boostType & 8:
-		defender.data.luckBoost += (boostAmmount * .3)
-		buffStatManager(defender.get_node("Buffs/Luck"),defender.data.luckBoost)
+		receiver.data.luckBoost += (boostAmmount * .3)
+		buffStatManager(receiver.get_node("Buffs/Luck"),receiver.data.luckBoost)
 
-func buffCondition(move,defender):
-	defender.data.Condition |= move.Condition
-	defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
-	if checkCondition("Targetted", defender):#Targetted will last until 
+func buffCondition(move,receiver):
+	receiver.data.Condition |= move.Condition
+	receiver.currentCondition.text = HelperFunctions.Flag_to_String(receiver.data.Condition, "Condition")
+	if checkCondition("Targetted", receiver):#Targetted will last until 
 		targetCount = 2
 
-func buffElementChange(move,defender,user):
-	var prev = defender.data.TempElement
+func buffElementChange(move,receiver,user):
+	var prev = receiver.data.TempElement
 	match move.ElementChange:
 		"TWin":
-			defender.data.TempElement = elementMatchup(true,defender.data.TempElement)
+			receiver.data.TempElement = elementMatchup(true,receiver.data.TempElement)
 		"TLose":
-			defender.data.TempElement = elementMatchup(false,defender.data.TempElement)
+			receiver.data.TempElement = elementMatchup(false,receiver.data.TempElement)
 		"UWin":
-			defender.data.TempElement = elementMatchup(true,user.data.TempElement)
+			receiver.data.TempElement = elementMatchup(true,user.data.TempElement)
 		"ULose":
-			defender.data.TempElement = elementMatchup(false,user.data.TempElement)
+			receiver.data.TempElement = elementMatchup(false,user.data.TempElement)
 		_:
-			defender.data.TempElement = move.ElementChange
+			receiver.data.TempElement = move.ElementChange
 	
-	if prev == str(defender.data.TempElement):
+	if prev == str(receiver.data.TempElement):
 		feedback = str("Element unchanged")
 	else:
-		feedback = str(prev," changed to ",defender.data.TempElement)
+		feedback = str(prev," changed to ",receiver.data.TempElement)
 #-----------------------------------------
 #MOVE HELPERS
 #-----------------------------------------
-func elementModCalc(userElement,defenderElement,PreMod = 0):
+func elementModCalc(userElement,receiverElement,PreMod = 0):
 	var ElementModifier: float = 1
 	
 	match userElement:
 		"Fire":
-			match defenderElement:
+			match receiverElement:
 				"Water":
 					ElementModifier = .75 - PreMod
 				"Elec":
@@ -328,7 +328,7 @@ func elementModCalc(userElement,defenderElement,PreMod = 0):
 				_:
 					ElementModifier = 1
 		"Water":
-			match defenderElement:
+			match receiverElement:
 				"Fire":
 					ElementModifier = 1.25 + PreMod
 				"Elec":
@@ -336,7 +336,7 @@ func elementModCalc(userElement,defenderElement,PreMod = 0):
 				_:
 					ElementModifier = 1
 		"Elec":
-			match defenderElement:
+			match receiverElement:
 				"Fire":
 					ElementModifier = .75 - PreMod
 				"Water":
@@ -344,7 +344,7 @@ func elementModCalc(userElement,defenderElement,PreMod = 0):
 				_:
 					ElementModifier = 1
 		"Light":
-			match defenderElement:
+			match receiverElement:
 				"Fire":
 					ElementModifier = .75 - PreMod
 				"Elec":
@@ -352,7 +352,7 @@ func elementModCalc(userElement,defenderElement,PreMod = 0):
 				_:
 					ElementModifier = 1
 		"Comet":
-			match defenderElement:
+			match receiverElement:
 				"Fire":
 					ElementModifier = 1.25 + PreMod
 				"Water":
@@ -360,7 +360,7 @@ func elementModCalc(userElement,defenderElement,PreMod = 0):
 				_:
 					ElementModifier = 1
 		"Aurora":
-			match defenderElement:
+			match receiverElement:
 				"Water":
 					ElementModifier = 1.25 + PreMod
 				"Elec":
@@ -399,7 +399,7 @@ func elementMatchup(matchup,targetElement):
 	
 	return returnElement
 
-func phy_weakness(user,defender,PreMod = 0):
+func phy_weakness(user,receiver,PreMod = 0):
 	var PhyMod = 0
 	
 	if user == "Neutral":
@@ -411,29 +411,29 @@ func phy_weakness(user,defender,PreMod = 0):
 	var userFlag = HelperFunctions.String_to_Flag(user,"Element")
 	
 	#Search every possible flag in Weakness and resist
-	#Make sure to check if the defender even has a weakness/resistance
+	#Make sure to check if the receiver even has a weakness/resistance
 	for i in range(6):
 		#Flag is the binary version of i
 		var flag = 1 << i
 		#Check if it has a weakness if it does don't check resistance
-		if defender.Weakness != null and defender.Weakness & flag != 0 and userFlag & flag != 0:
+		if receiver.Weakness != null and receiver.Weakness & flag != 0 and userFlag & flag != 0:
 			PhyMod += .25  + PreMod
 			continue
 		
 		#Check if it has a resistance otherwise
-		if defender.Resist != null and defender.Resist & flag != 0 and userFlag & flag != 0:
+		if receiver.Resist != null and receiver.Resist & flag != 0 and userFlag & flag != 0:
 			PhyMod -= .25
 	
 	return PhyMod
 
-func crit_chance(move,user,defender,aura):
+func crit_chance(move,user,receiver,aura):
 	var crit = false
 	var auraMod = 1
 	if aura == "CritDouble":
 		auraMod = 2
 	
 	var chance = move.BaseCrit + (1 + user.data.luckBoost) * user.data.luck * sqrt(user.data.luck)
-	chance = chance - (defender.data.luck * sqrt(defender.data.luck) * (1 + defender.data.luckBoost))
+	chance = chance - (receiver.data.luck * sqrt(receiver.data.luck) * (1 + receiver.data.luckBoost))
 	chance *= auraMod
 	
 	#evil tracia rng lol
@@ -444,20 +444,25 @@ func crit_chance(move,user,defender,aura):
 	
 	if randi() % 100 <= chance:
 		crit = true
-		applyXSoft(move,user,defender,true,determineXSoft(move,user))
+		if move.Ailment != "None":
+			print("Crit Ailment")
+			applyNegativeAilment(move,receiver,user,true)
+		else:
+			print("Crit Soft")
+			applyXSoft(move,user,receiver,true,determineXSoft(move,user))
 	
 	return crit
 
-func ailment_calc(move,user,defender):#Ailment chance is like crit chance except it also depends on element matchups
+func ailment_calc(move,user,receiver):#Ailment chance is like crit chance except it also depends on element matchups
 	var ailment = false
 	var offenseElement = user.data.element
 	
 	if move.element != "neutral":
 		offenseElement = move.element
-	var elementMod = elementModCalc(offenseElement, defender.data.element)
+	var elementMod = elementModCalc(offenseElement, receiver.data.element)
 	
 	var chance = (move.BaseAilment + (elementMod * (1 + user.data.luckBoost) * user.data.luck * sqrt(user.data.luck))
-	- (defender.data.luck * sqrt(defender.data.luck) * (1 + defender.data.luckBoost)))
+	- (receiver.data.luck * sqrt(receiver.data.luck) * (1 + receiver.data.luckBoost)))
 	
 	#Not evil for this
 	if chance > 100:
@@ -470,9 +475,9 @@ func ailment_calc(move,user,defender):#Ailment chance is like crit chance except
 	
 	return ailment
 
-func ailmentCategory(defender):#Will check if an ailment fits under the boxes: Physical, Mental, Negative and/or Positive
-	print("Defender Ailemnt: ",defender.data.Ailment)
-	match defender.data.Ailment:
+func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: Physical, Mental, Negative and/or Positive
+	print("receiver Ailemnt: ",receiver.data.Ailment)
+	match receiver.data.Ailment:
 		"Healthy":
 			return "Healthy"
 		"Overdrive":
@@ -480,8 +485,8 @@ func ailmentCategory(defender):#Will check if an ailment fits under the boxes: P
 		"Protected":
 			return "Protected"
 		_:
-			if (defender.data.Ailment == "Reckless" or defender.data.Ailment == "Miserable" or 
-			defender.data.Ailment == "Miserable" or defender.data.Ailment == "Dumbfounded"):
+			if (receiver.data.Ailment == "Reckless" or receiver.data.Ailment == "Miserable" or 
+			receiver.data.Ailment == "Miserable" or receiver.data.Ailment == "Dumbfounded"):
 				return "Mental"
 			else:
 				return "Nonmental"
@@ -500,33 +505,33 @@ func determineXSoft(move,user):
 			else:
 				return user.data.phyElement
 
-func checkCondition(seeking,defender):
+func checkCondition(seeking,receiver):
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	var found = false
 	#Search every possible flag in condition
 	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
-		if defender.data.Condition != null and defender.data.Condition & flag != 0 and defender.data.Condition & seekingFlag != 0:
+		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
 			found = true
 			break
 
 	return found
 
-func checkXSoft(seeking,defender):
+func checkXSoft(seeking,receiver):
 	var softAmmount: float = 0.0
 	var k: int = 0
 	if seeking == "Neutral":
 		return 0
 	
-	for element in defender.data.XSoft:
+	for element in receiver.data.XSoft:
 		k += 1
 		if seeking == element:
 			softAmmount += .15
 			break
 	
-	while k != (defender.data.XSoft.size()):
-		if seeking == defender.data.XSoft[k]:
+	while k != (receiver.data.XSoft.size()):
+		if seeking == receiver.data.XSoft[k]:
 			softAmmount += .1
 		k += 1
 	
@@ -535,20 +540,18 @@ func checkXSoft(seeking,defender):
 #-----------------------------------------
 #STATUS CONDITION HANDLDLING
 #-----------------------------------------
-func removeCondition(seeking,defender):
+func removeCondition(seeking,receiver):
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	#Search every possible flag in condition
-	#Make sure to check if the defender even has a weakness/resistance
+	#Make sure to check if the receiver even has a weakness/resistance
 	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i
-		if defender.data.Condition != null and defender.data.Condition & flag != 0 and defender.data.Condition & seekingFlag != 0:
-			defender.data.Condition = defender.data.Condition & ~seekingFlag
-			defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
+		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
+			receiver.data.Condition = receiver.data.Condition & ~seekingFlag
+			receiver.currentCondition.text = HelperFunctions.Flag_to_String(receiver.data.Condition, "Condition")
 
 func statBoostHandling():
-	print(statBoostSprites)
-	print(statBoostSlots)
 	for boost in range(statBoostSlots.size()):
 		if statBoostSlots[boost] > 0:
 			statBoostSlots[boost] -= .05
@@ -559,8 +562,16 @@ func statBoostHandling():
 			buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
 		
 		if statBoostSlots[boost] == 0:
-			print(statBoostSlots[boost])
 			statBoostSprites[boost].hide()
+
+func endPhaseAilments(Ailment):
+	match Ailment:
+		"Poison":
+			var damage = int(data.MaxHP * data.AilmentNum * .05)
+			currentHP -= damage
+			
+			tweenDamage(self, .4, str("Took ",damage," Poison Damage"))
+
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
@@ -572,6 +583,17 @@ func displayQuick(quick):
 	Info.text = quick
 	InfoBox.show()
 	$Timer.start()
+
+func tweenDamage(targetting,tweenTiming,infomation):
+	var tween = targetting.HPBar.create_tween()
+	targetting.displayQuick(infomation)
+	print( infomation,"|| ",targetting.data.name)
+	
+	targetting.HPtext.text = str("HP: ",targetting.currentHP)
+	await tween.tween_property(targetting.HPBar, "value",
+	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(4).set_ease(1)
+	
+	infomation = ""
 
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
