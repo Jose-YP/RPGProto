@@ -87,8 +87,8 @@ func _ready(): #Assign current team according to starting bool
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		print(team[i].chooseMove())
-		enemyAction = team[i].chooseMove()
+		print(team[i].chooseMove(enemyTP))
+		enemyAction = team[i].chooseMove(enemyTP)
 	
 	$Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
 
@@ -107,7 +107,7 @@ func movesetDisplay(player): #Format every player's menu to include the name of 
 		for n in range(player.moveset[tab].size()):
 			currentMenu[n].text = player.moveset[tab][n].name
 			tabDescriptions.append(movesetDescription(player.moveset[tab][n],player,tab))
-			tabTPs.append(SaveTPCosts(player.moveset[tab][n],tab))
+			tabTPs.append(SaveTPCosts(player.moveset[tab][n]))
 		player.descriptions.append(tabDescriptions)
 		player.TPArray.append(tabTPs)
 
@@ -117,7 +117,7 @@ func movesetDescription(moveset,player,n):
 	var desc: String = ""
 	var Elements: String = ""
 	var Power: String = ""
-	if n == 2:
+	if move is Item:
 		move = moveset.attackData
 	
 	#Determine if element should be displayed
@@ -178,9 +178,9 @@ func movesetDescription(moveset,player,n):
 	
 	return fullDesc
 
-func SaveTPCosts(moveset,n):
+func SaveTPCosts(moveset):
 	var move = moveset
-	if n == 2:
+	if move is Item:
 		move = moveset.attackData
 	var TPCost = move.TPCost
 	return TPCost
@@ -509,13 +509,10 @@ func TPChange(player = true):
 #-----------------------------------------
 func offense(move,targetting,user):
 	targetting.selected.hide()
-	var halfMoonCheck = 0
 	if move.property & 1:
 		targetting.currentHP -= user.attack(move, targetting, user,"Physical",currentAura)
-		halfMoonCheck += 1
 	if move.property & 2:
 		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic",currentAura)
-		halfMoonCheck += 1
 	elif move.property & 4:
 		targetting.currentHP -= user.BOMB(move, targetting)
 	
@@ -619,11 +616,38 @@ func next_entity():
 			checkCosts(team[i])
 			team[i].menu.show()
 		else:
-			enemyAction = team[i].chooseMove()
+			enemyAction = team[i].chooseMove(enemyTP)
 	
 	actionNum -= 1
 	switchPhase()
 	targetDied = false
+
+func switchPhase():
+	if actionNum <= 0:
+		playerTurn = not playerTurn
+		
+		if playerTurn:
+			team = playerOrder
+			opposing = enemyOrder
+			
+			playerTP += int(float(playerMaxTP) *.5)
+			checkCosts(playerOrder[0])
+			playerOrder[0].menu.show()
+			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
+			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
+			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+		else:
+			team = enemyOrder
+			opposing = playerOrder
+			enemyAction = enemyOrder[0].chooseMove(enemyTP)
+			
+			enemyTP += int(float(enemyMaxTP) *.5)
+			var TPtween = $EnemyTP.create_tween()#TP management must be handled here
+			var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
+			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+			Globals.attacking = false
+		actionNum = 3
+		print("Switch")
 
 func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
 	for category in player.moveset:
@@ -746,33 +770,6 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	if InitialPsize != playerOrder.size() or InitialESize != enemyOrder.size():
 		j = 0
 		index = 0
-
-func switchPhase():
-	if actionNum <= 0:
-		playerTurn = not playerTurn
-		
-		if playerTurn:
-			team = playerOrder
-			opposing = enemyOrder
-			
-			playerTP += int(float(playerMaxTP) *.5)
-			checkCosts(playerOrder[0])
-			playerOrder[0].menu.show()
-			var TPtween = $PlayerTP.create_tween()#TP management must be handled here
-			var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
-			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
-		else:
-			team = enemyOrder
-			opposing = playerOrder
-			enemyAction = enemyOrder[0].chooseMove()
-			
-			enemyTP += int(float(enemyMaxTP) *.5)
-			var TPtween = $EnemyTP.create_tween()#TP management must be handled here
-			var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
-			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
-			Globals.attacking = false
-		actionNum = 3
-		print("Switch")
 
 func _on_timer_timeout():
 	waiting = false

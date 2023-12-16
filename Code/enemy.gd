@@ -52,11 +52,13 @@ func _process(_delta):
 #-----------------------------------------
 #EnemyAI
 #-----------------------------------------
-func chooseMove():
+func chooseMove(TP):
 	var move
+	var allowed = allowedMoveset(TP)
+	
 	match enemyData.AIType:
 		"Random":
-			move = aiInstance.RandomMove(moveset)
+			move = aiInstance.RandomMove(allowed)
 			if move is Item:
 				print("move was item", move, move is Item)
 				move = move.attackData
@@ -76,35 +78,31 @@ func chooseMove():
 #TARGETTING TYPES
 #-----------------------------------------
 func SingleSelect(targetting,move):
-	var target
+	var trgt
 	match enemyData.AIType:
 		"Random":
-			target = aiInstance.Single(targetting)
-			print(move.name, target)
-			return target
+			trgt = aiInstance.Single(targetting)
+			print(move.name, trgt)
+			return trgt
 		"Pick Off":
 			pass
 		"Support":
 			pass
 		"Debuff":
-			pass
-		_:
 			pass
 
 func GroupSelect(targetting,move):
-	var target
+	var trgt
 	match enemyData.AIType:
 		"Random":
-			target = aiInstance.Single(targetting)
-			print(move.name, target)
-			return target
+			trgt = aiInstance.Single(targetting)
+			print(move.name, trgt)
+			return trgt
 		"Pick Off":
 			pass
 		"Support":
 			pass
 		"Debuff":
-			pass
-		_:
 			pass
 #-----------------------------------------
 #PAYING ITEM&TP
@@ -118,3 +116,17 @@ func payCost(move):
 	
 	print("Used", move.name)
 	return move.TPCost - (data.speed * (1 + data.speedBoost))
+
+func allowedMoveset(TP):
+	var allowed: Array = []
+	for move in moveset:
+		var use = move
+		if move is Item:
+			use = move.attackData
+		
+		var TPCost = use.TPCost - (data.speed * (1 + data.speedBoost))
+		if TP > TPCost:
+			allowed.append(use)
+	
+	print(allowed)
+	return allowed
