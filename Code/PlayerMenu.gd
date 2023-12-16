@@ -115,8 +115,6 @@ func _on_player_can_pay_for(menuI, buttonI, allowed):
 		print("Allowed: ", allowed)
 	
 	if allowed:
-		if fullMenu[menuI+1][buttonI].name == "Burst":
-			print("WHO")
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:
 		print(fullMenu[menuI+1][buttonI].name)

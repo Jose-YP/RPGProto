@@ -24,12 +24,15 @@ var i: int = 0
 var j: int = 0
 var index: int = 0
 var groupIndex: int = 0
+var overdriveI: int = 0
 var team: Array = []
 var opposing: Array = []
+var everyone: Array = []
+var overdriveHold: Array = []
 var targetArray: Array = []
 var targetArrayGroup: Array = []
 var waiting: bool = false
-var multihitReady: bool = true
+var overdriveTurn: bool = false
 var finished: bool = false
 var targetDied: bool = false
 #Battle Stats
@@ -87,9 +90,9 @@ func _ready(): #Assign current team according to starting bool
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		print(team[i].chooseMove(enemyTP))
 		enemyAction = team[i].chooseMove(enemyTP)
 	
+	everyone = playerOrder + enemyOrder
 	$Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
 
 func movesetDisplay(player): #Format every player's menu to include the name of their moveset
@@ -186,7 +189,11 @@ func SaveTPCosts(moveset):
 	return TPCost
 
 func _process(_delta):#If player turn ever changes change current team to match the bool
-	if playerTurn:
+	if overdriveTurn:
+		if Globals.attacking or not waiting:
+			nextTarget(overdriveHold)
+	
+	elif playerTurn:
 		team = playerOrder
 		opposing = enemyOrder
 		if Globals.attacking:
@@ -257,18 +264,19 @@ func findWhich(useMove):
 	
 	return returnWhich
 
-func nextTarget():
+func nextTarget(TeamSide = team,OpposingSide = opposing):
 	match which:
 		whichTypes.ENEMY:
-			targetArray = opposing
+			targetArray = OpposingSide
 		whichTypes.ALLY:
-			targetArray = team
+			targetArray = TeamSide
 		whichTypes.BOTH:
-			targetArray = team + opposing
+			targetArray = TeamSide + OpposingSide
 	match target:
 		targetTypes.SINGLE:
 			if playerTurn:
-				PSingleSelect(targetArray)
+				if Globals.attacking:
+					PSingleSelect(targetArray)
 			else:
 				print("Single")
 				waiting = true
@@ -279,9 +287,10 @@ func nextTarget():
 			targetArrayGroup = []
 			establishGroups(targetArray)
 			if playerTurn:
-				for k in targetArrayGroup[groupIndex]:
-					k.show()
-				PGroupSelect(targetArrayGroup)
+				if Globals.attacking:
+					for k in targetArrayGroup[groupIndex]:
+						k.show()
+					PGroupSelect(targetArrayGroup)
 			else:
 				print("Group")
 				waiting = true
@@ -295,21 +304,24 @@ func nextTarget():
 			targetArray = team
 			index = i
 			if playerTurn:
-				PConfirmSelect(targetArray[index])
+				if Globals.attacking:
+					PConfirmSelect(targetArray[index])
 			else:
 				waiting = true
 				EfinishSelectiong(enemyAction)
 		
 		targetTypes.ALL:
 			if playerTurn:
-				PAllSelect(targetArray)
+				if Globals.attacking:
+					PAllSelect(targetArray)
 			else:
 				waiting = true
 				EfinishSelectiong(enemyAction)
 		
 		targetTypes.RANDOM:
 			if playerTurn:
-				PAllSelect(targetArray)
+				if Globals.attacking:
+					PAllSelect(targetArray)
 			else:
 				waiting = true
 				EfinishSelectiong(enemyAction)
@@ -368,7 +380,6 @@ func PAllSelect(targetting):
 
 func _on_cancel_selected():
 	Globals.attacking = false
-	var everyone = team + opposing
 	for k in range(everyone.size()):
 		everyone[k].selected.hide()
 
@@ -594,7 +605,16 @@ func tweenDamage(targetting,user):
 	user.feedback = ""
 
 func next_entity():
-	var everyone = team + opposing
+	if overdriveTurn: #Return things to normal
+		if team[i].has_node("CanvasLayer"):
+			team[i].menu.hide()
+		
+#		print("Try to make it normal again")
+#		print("OverdriveHolds:",overdriveHold,overdriveI)
+		overdriveTurn = false
+		team = overdriveHold
+		i = overdriveI
+	
 	for k in range(everyone.size()):
 		everyone[k].selected.hide()
 	
@@ -602,25 +622,29 @@ func next_entity():
 	if team[i].has_node("CanvasLayer"):
 		team[i].menu.hide()
 	
-	#Get to the next entity
-	#If the current team's index is higher than the size, reset both indexes and switch teams
-	i += 1
-	if i > (team.size() - 1):
-		i = 0
-		j = 0
-		index = 0
+	overdriveTurnManager()
 	
-	
-	else:
-		if team[i].has_node("CanvasLayer"):
-			checkCosts(team[i])
-			team[i].menu.show()
+	if not overdriveTurn:
+		#Get to the next entity
+		#If the current team's index is higher than the size, reset both indexes and switch teams
+		actionNum -= 1
+		i += 1
+		if i > (team.size() - 1):
+			i = 0
+			j = 0
+			index = 0
+		
 		else:
-			enemyAction = team[i].chooseMove(enemyTP)
-	
-	actionNum -= 1
-	switchPhase()
-	targetDied = false
+			if team[i].has_node("CanvasLayer"):
+				checkCosts(team[i])
+				team[i].menu.show()
+			else:
+				enemyAction = team[i].chooseMove(enemyTP)
+				target = findTarget(enemyAction)
+				which = findWhich(enemyAction)
+		
+		switchPhase()
+		targetDied = false
 
 func switchPhase():
 	if actionNum <= 0:
@@ -647,7 +671,6 @@ func switchPhase():
 			TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 			Globals.attacking = false
 		actionNum = 3
-		print("Switch")
 
 func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
 	for category in player.moveset:
@@ -657,13 +680,11 @@ func checkCosts(player): #Check if the player can afford certain moves, if they 
 				0:
 					if move.CostType == "Overdrive": #Check if it has Overdrive first, if not TP Count doesn't matter
 						if not checkCostsMini(player, player.data.AilmentNum, "Overdrive", move, menuIndex):
-							print("Continue")
 							continue
 					checkCostsMini(player, playerTP, "TP", move, menuIndex)
 					
 				1: #All the others check TP first then the thing they're missing 
 					if not checkCostsMini(player, playerTP, "TP", move, menuIndex):
-						print("Continue")
 						continue#Continue so a having the right ammount of one cost isn't enough
 					if move.CostType == "LP":
 						checkCostsMini(player, player.currentLP, "LP", move, menuIndex)
@@ -770,6 +791,29 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	if InitialPsize != playerOrder.size() or InitialESize != enemyOrder.size():
 		j = 0
 		index = 0
+
+func overdriveTurnManager():
+	for k in range(everyone.size()):
+		if everyone[k].checkCondition("AnotherTurn",everyone[k]):
+			overdriveTurn = true
+			everyone[k].removeCondition("AnotherTurn",everyone[k])
+			
+			#Hold the regular team order in here
+			if overdriveHold.size() == 0:
+				overdriveHold = team
+				overdriveI = i
+			
+			i = 0
+			team = []
+			team.append(everyone[k])
+			
+			if team[i].has_node("CanvasLayer"):
+				checkCosts(team[i])
+				team[i].menu.show()
+			else:
+				enemyAction = team[i].chooseMove(enemyTP)
+				target = findTarget(enemyAction)
+				which = findWhich(enemyAction)
 
 func _on_timer_timeout():
 	waiting = false

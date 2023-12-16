@@ -498,8 +498,7 @@ text = "+%"
 [node name="ConditionDisplay" type="RichTextLabel" parent="."]
 offset_left = -65.0
 offset_top = -62.0
-offset_right = 15.0
-offset_bottom = -20.0
-metadata/_edit_lock_ = true
+offset_right = 62.0
+offset_bottom = 61.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

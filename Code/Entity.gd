@@ -10,12 +10,11 @@ extends Node2D
 @onready var currentCondition: RichTextLabel = $ConditionDisplay
 @onready var AilmentImages = $AilmentDisplay/AilmentType.get_children()
 @onready var XSoftTabs = $XSoftDisplay/HBoxContainer.get_children()
-@onready var XSoftSlots = []
-@onready var basicAttack = data.attackData
-@onready var attacks: Array = [basicAttack]
+@onready var XSoftSlots: Array = []
+@onready var statBoostSprites: Array = [$Buffs/Attack,$Buffs/Defense,$Buffs/Speed,$Buffs/Luck]
+@onready var statBoostSlots: Array = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
+@onready var attacks: Array = [data.attackData]
 @onready var items: Array = []
-
-signal overdriveReady(overdrive)
 
 var currentHP: int
 var feedback: String
@@ -82,18 +81,24 @@ func processer():
 		$AilmentDisplay.hide()
 	if data.Ailment == "Overdrive": #Overdrive can only have an Ailment Num of 1
 		data.AilmentNum = 1
+	
+	for boost in range(statBoostSlots.size()):
+		if statBoostSlots[boost] == 0:
+			statBoostSprites[boost].hide()
 
-#--------------------------------
+#-----------------------------------------
 #MOVE PROPERTYS
 #-----------------------------------------
 func attack(move, defender, user, property, aura):
 	var attackStat: int
 	var defenseStat: int
 	var softMod: float = 0.0
+	var overdriveMod: float = 0.0
 	var offenseElement = user.data.TempElement
 	var offensePhyEle = move.phyElement
 	var critMod = 0
 	var phyMod = 0
+	var chargeMod = 1
 	var auraMod = 1
 	feedback = ""
 	
@@ -134,19 +139,28 @@ func attack(move, defender, user, property, aura):
 			if aura == "BodyBroken":
 				feedback = str("{",aura,"}",feedback)
 				auraMod = .5
+			if checkCondition("Charge",user):
+				chargeMod = 2.5
+				removeCondition("Charge",user)
 		"Ballistic":
 			attackStat = user.data.ballistics
 			defenseStat = defender.data.resistance
 			if aura == "WillWrecked":
 				feedback = str("{",aura,"}",feedback)
 				auraMod = .5
+			if checkCondition("Amp",user):
+				chargeMod = 2.5
+				removeCondition("Amp",user)
 	
 	if crit_chance(move,user,defender,aura):
 		critMod = .25
 		feedback = str("{Crit}", feedback)
 	
-	var totalFirstMod = 1 + user.data.attackBoost + phyMod + softMod + critMod
-	var totalSecondMod = auraMod*elementMod
+	if user.data.Ailment == "Overdrive":
+		overdriveMod = .25
+	
+	var totalFirstMod = 1 + user.data.attackBoost + phyMod + softMod + critMod + overdriveMod
+	var totalSecondMod = chargeMod*auraMod*elementMod
 	#Get total attack power, subtract it by total defense then multiply by element mod*AuraMod
 	var damage = ((randi_range(0,user.data.level) + move.Power + attackStat) * totalFirstMod)
 	damage =  damage - ((1.25 * defenseStat) * (1 + defender.data.defenseBoost))
@@ -237,7 +251,6 @@ func applyPositiveAilment(move,defender):
 		else:
 			defender.data.AilmentNum += 1
 			defender.data.Ailment = "Overdrive"
-			overdriveReady.emit(true)
 
 func applyXSoft(move,defender,user,preWin = false,PreSoft = ""):
 	var win = preWin
@@ -278,7 +291,7 @@ func buffStat(defender,boostType,boostAmmount = 1):#For actively buffing and deb
 
 func buffCondition(move,defender):
 	defender.data.Condition |= move.Condition
-	currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
+	defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
 
 func buffElementChange(move,defender,user):
 	var prev = defender.data.TempElement
@@ -408,7 +421,6 @@ func phy_weakness(user,defender,PreMod = 0):
 		
 		#Check if it has a resistance otherwise
 		if defender.Resist != null and defender.Resist & flag != 0 and userFlag & flag != 0:
-			print(defender.Resist, flag, userFlag)
 			PhyMod -= .25
 	
 	return PhyMod
@@ -490,14 +502,13 @@ func determineXSoft(move,user):
 func checkCondition(seeking,defender):
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	var found = false
-
 	#Search every possible flag in condition
-	#Make sure to check if the defender even has a weakness/resistance
-	for i in range(9):
+	for i in range(10):
 		#Flag is the binary version of i
-		var flag = 1 << i
-		if defender.Condition != null and defender.Condition & flag != 0 and defender.Condition & seekingFlag != 0:
+		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+		if defender.data.Condition != null and defender.data.Condition & flag != 0 and defender.data.Condition & seekingFlag != 0:
 			found = true
+			break
 
 	return found
 
@@ -519,6 +530,20 @@ func checkXSoft(seeking,defender):
 		k += 1
 	
 	return softAmmount
+
+#-----------------------------------------
+#STATUS CONDITION HANDLDLING
+#-----------------------------------------
+func removeCondition(seeking,defender):
+	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
+	#Search every possible flag in condition
+	#Make sure to check if the defender even has a weakness/resistance
+	for i in range(10):
+		#Flag is the binary version of i
+		var flag = 1 << i
+		if defender.data.Condition != null and defender.data.Condition & flag != 0 and defender.data.Condition & seekingFlag != 0:
+			defender.data.Condition = defender.data.Condition & ~seekingFlag
+			defender.currentCondition.text = HelperFunctions.Flag_to_String(defender.data.Condition, "Condition")
 
 #-----------------------------------------
 #UI CHANGES

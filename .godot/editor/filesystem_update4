@@ -60,3 +60,5 @@ res://Code/Player.gd
 res://Code/PlayerMenu.gd
 res://Resources/Move Data/Enemy Moves/RedShift.tres
 res://Resources/Move Data/Player Moves/Overdrive.tres
+res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
+res://Resources/Move Data/Player Moves/Veritate.tres

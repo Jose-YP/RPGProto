@@ -24,8 +24,6 @@ var skills: Array = []
 var tactics: Array = []
 var moveset: Array = []
 var descriptions: Array
-var overdrive: bool = true
-var active: bool = false
 var dead: bool = false
 var displaying: bool = false
 
@@ -49,10 +47,6 @@ func _ready():
 
 func _process(_delta):
 	processer()
-	
-	if data.Ailment == "Overdrive":
-		overdrive = true
-		overdriveReady.emit(overdrive)
 
 #-----------------------------------------
 #COST MANAGEMENT
@@ -75,8 +69,6 @@ func payCost(move):
 			
 		"Overdrive":
 			data.AilmentNum = 0
-			overdrive = false
-			overdriveReady.emit(overdrive)
 		
 		"Item":
 			for item in data.itemData:

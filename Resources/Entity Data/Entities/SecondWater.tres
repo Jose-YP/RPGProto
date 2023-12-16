@@ -39,7 +39,7 @@ ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }
 XSoft = null
-Condition = null
+Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
