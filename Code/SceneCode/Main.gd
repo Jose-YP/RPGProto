@@ -35,7 +35,6 @@ var overdriveTurn: bool = false
 var finished: bool = false
 var targetDied: bool = false
 var scanning: bool = false
-var playerWin: bool = false
 var fightOver: bool = false
 #Battle Stats
 var playerTP: int = 0
@@ -928,13 +927,15 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	#Win condition
 	if enemyOrder.size() == 0:
 		print("STOP")
+		fightOver = true
 		team[i].menu.hide()
-		endScreen()
+		endScreen(true)
 		return
 	
 	if playerOrder.size() == 0:
 		print("You lose")
-		endScreen()
+		fightOver = true
+		endScreen(false)
 		return
 	
 	#Resize 
@@ -957,7 +958,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		j = 0
 		index = 0
 
-func endScreen():
+func endScreen(playerWin):
 	var endScreenTween = $".".create_tween()
 	endScreenTween.set_parallel(true)
 	
