@@ -6,7 +6,7 @@
 script = ExtResource("1_x3esi")
 name = "Crash"
 description = "Lower Enemy TP Count by the ammount of Ailments they have. Clear all their Ailments."
-TPCost = 90
+TPCost = 45
 Which = "Enemy"
 Target = "Single"
 element = "Neutral"

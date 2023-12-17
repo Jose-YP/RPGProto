@@ -1,3 +1,4 @@
+res://Scene
 res://Code/Globals
 res://Resources/Item Data/ItemMoves
 res://Resources/Item Data/ItemSpecifics
@@ -7,7 +8,6 @@ res://Code
 res://Resources/Move Data
 res://Resources
 res://Themes/HasSingle
-res://Scene
 res://
 res://Resources/Move Data/Enemy Moves
 res://Resources/Entity Data/Entities

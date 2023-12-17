@@ -246,6 +246,8 @@ func findTarget(useMove):
 
 func findWhich(useMove):
 	var returnWhich
+	index = 0
+	
 	match useMove.Which:
 		"Enemy":
 			returnWhich = whichTypes.ENEMY
@@ -353,7 +355,7 @@ func establishGroups(targetting):
 #PLAYERSELECTING // UI CONTROLS
 #-----------------------------------------
 func PSingleSelect(targetting):
-	if not whichTypes.BOTH:#Simple line movement
+	if which != whichTypes.BOTH:#Simple line movement
 		if Input.is_action_just_pressed("Left"):
 			targetArray[index].selected.hide()
 			index -= 1
@@ -365,7 +367,7 @@ func PSingleSelect(targetting):
 			if index > (targetting.size() - 1):
 				index = 0
 	
-	if whichTypes.BOTH: #Moves like a Grid
+	if which == whichTypes.BOTH: #Moves like a Grid
 		if Input.is_action_just_pressed("Left"):
 			targetArray[index].selected.hide()
 			index -= 1
@@ -450,6 +452,7 @@ func stopScanning():
 
 func _on_cancel_selected():
 	Globals.attacking = false
+	index = 0
 	for k in range(everyone.size()):
 		everyone[k].selected.hide()
 
@@ -472,6 +475,7 @@ func _on_start_select(useMove):
 	Globals.attacking = true
 	target = findTarget(useMove)
 	which = findWhich(useMove)
+	print(target," | ",which)
 
 func _on_move_selected(useMove):
 	playerTP -= team[i].payCost(useMove) #The function handles the player's other costs on it's own

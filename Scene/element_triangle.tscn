@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf5fc1lfuejso"]
+
+[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="1_u6bit"]
+[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="2_hexgl"]
+[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="3_iqjrb"]
+[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="4_kim1o"]
+
+[node name="ElementTriangle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 42.0
+offset_top = -14.0
+offset_right = 82.0
+offset_bottom = 26.0
+
+[node name="Fire" type="TextureRect" parent="PanelContainer"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("1_u6bit")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+offset_left = -20.0
+offset_top = -110.0
+offset_right = 20.0
+offset_bottom = -70.0
+
+[node name="Water" type="TextureRect" parent="PanelContainer2"]
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_hexgl")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+offset_left = -74.0
+offset_top = -14.0
+offset_right = -34.0
+offset_bottom = 26.0
+
+[node name="Elec" type="TextureRect" parent="PanelContainer3"]
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_iqjrb")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(6, -1.90735e-06)
+rotation = -1.5708
+scale = Vector2(0.519385, 0.200317)
+texture = ExtResource("4_kim1o")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(-34, -46)
+rotation = 0.383972
+scale = Vector2(0.519385, 0.200317)
+texture = ExtResource("4_kim1o")
+
+[node name="Arrow4" type="Sprite2D" parent="."]
+position = Vector2(42, -48)
+rotation = -0.401426
+scale = Vector2(-0.519, -0.2)
+texture = ExtResource("4_kim1o")

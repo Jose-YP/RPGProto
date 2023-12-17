@@ -1,7 +1,9 @@
+TextureRect
+PanelContainer
+Control
 Button
 RichTextLabel
 ColorRect
-PanelContainer
 HBoxContainer
 VBoxContainer
 Label
@@ -11,12 +13,10 @@ GridContainer
 Panel
 TextEdit
 TabContainer
-TextureRect
 Node
 AnimationPlayer
 Node2D
 MarginContainer
 MenuButton
-Control
 CanvasLayer
 SplitContainer

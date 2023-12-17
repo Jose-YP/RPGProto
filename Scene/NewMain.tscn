@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bj1l11wng7bfb"]
+[gd_scene load_steps=15 format=3 uid="uid://bj1l11wng7bfb"]
 
 [ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Player.tscn" id="1_28r4w"]
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_ltfm5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Assets/GreyCircle.png" id="11_atlpm"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Assets/white-circle-icon-7-1397688648.png" id="12_ejskb"]
 [ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Assets/GreenCircle.png" id="13_w8prj"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="14_2ardw"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="14_fwpqc"]
 
 [node name="Node2D" type="Node2D"]
@@ -120,6 +121,7 @@ offset_top = -23.0
 offset_right = 1288.0
 offset_bottom = 776.0
 color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
 
 [node name="Button" type="Button" parent="EndScreen"]
 visible = false
@@ -143,6 +145,13 @@ theme_override_font_sizes/normal_font_size = 60
 text = "YOU WIN"
 autowrap_mode = 2
 metadata/_edit_lock_ = true
+
+[node name="ElementTriangle" parent="." instance=ExtResource("14_2ardw")]
+offset_left = 1214.0
+offset_top = 437.0
+offset_right = 1428.0
+offset_bottom = 519.0
+scale = Vector2(0.5, 0.5)
 
 [connection signal="timeout" from="PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
