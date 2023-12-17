@@ -14,13 +14,14 @@ ______
 TODO
 ______
 *Implement Lower TP Aura||
+*Implement end of battle ||
+*Main Menu ||
+*Change Battles ||
 ______
 LOFTY TODOS
 ______
 *Implement other EnemyAI types(So far only random) ||
 *Change player stats based on level ||
-*Implement end of battle ||
-*Change Battles ||
 *Maybe Animations???? ||
 *Implement Summon moves ||
 
