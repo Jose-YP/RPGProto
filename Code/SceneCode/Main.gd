@@ -246,8 +246,6 @@ func findTarget(useMove):
 
 func findWhich(useMove):
 	var returnWhich
-	index = 0
-	
 	match useMove.Which:
 		"Enemy":
 			returnWhich = whichTypes.ENEMY
@@ -355,6 +353,8 @@ func establishGroups(targetting):
 #PLAYERSELECTING // UI CONTROLS
 #-----------------------------------------
 func PSingleSelect(targetting):
+	var playerSize = playerOrder.size()
+	var enemySize = enemyOrder.size()
 	if which != whichTypes.BOTH:#Simple line movement
 		if Input.is_action_just_pressed("Left"):
 			targetArray[index].selected.hide()
@@ -373,43 +373,51 @@ func PSingleSelect(targetting):
 			index -= 1
 			if index < 0:
 				print("Left")
-				index = playerOrder.size() - 1
-			elif index == playerOrder.size() - 1: #Fix how it works with [1,2,x][x,3,4]
+				index = playerSize - 1
+			elif index == playerSize - 1:
 				print("Lefter")
 				index = targetArray.size() - 1
+				#If there is one enemy pressing left will return to the player
+				if enemySize == 1: 
+					print("to player Lefter")
+					index = 0
+		
 		if Input.is_action_just_pressed("Right"):
 			targetArray[index].selected.hide()
 			index += 1
-			if index > (targetArray.size() - 1) and enemyOrder.size() != 1:
+			if index > (targetArray.size() - 1) and enemySize != 1:
 				print("Right")
-				index = playerOrder.size()
-				#elif is effectively xor
-			elif (index == playerOrder.size()) != (enemyOrder.size() == 1): #Fix how it works with [1,2,x][x,3,4]
+				index = playerSize
+			elif targetArray[index - 1].has_node("CanvasLayer"):
+				if (index == playerSize):
+					print("playeright")
+					index = 0
+			elif (enemySize == 1): #If there is one enemy pressing right will return to the player
 				print("Righter")
-				index = 0
+				index = playerSize - 1
 			
 		if Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down"):
 			targetArray[index].selected.hide()
 			if targetArray[index].has_node("CanvasLayer"):
-				if index > (enemyOrder.size() - 1):
-					print(index, "+", enemyOrder.size())
-					index += enemyOrder.size()
+				if index > (enemySize - 1):
+					print(index, "+", enemySize)
+					index += enemySize
 					print(targetArray[index])
 					if targetArray[index].has_node("CanvasLayer"): #just in case
 						print("+1")
 						index += 1
 				else:
-					print(index, "+", playerOrder.size())
-					index += playerOrder.size()
+					print(index, "+", playerSize)
+					index += playerSize
 			else:
-				print(index - 3,"vs",(playerOrder.size() - 1))
-				if (index - 3) < (playerOrder.size() - 1):
-					print(index, "-", playerOrder.size())
-					index -= playerOrder.size()
+				print(index - 3,"vs",(playerSize - 1))
+				if (index - 3) < (playerSize - 1):
+					print(index, "-", playerSize)
+					index -= playerSize
 				else:
 					
-					print(index, "-", enemyOrder.size())
-					index -= enemyOrder.size()
+					print(index, "-", enemySize)
+					index -= enemySize
 	
 	PConfirmSelect(targetArray[index])
 
@@ -475,7 +483,6 @@ func _on_start_select(useMove):
 	Globals.attacking = true
 	target = findTarget(useMove)
 	which = findWhich(useMove)
-	print(target," | ",which)
 
 func _on_move_selected(useMove):
 	playerTP -= team[i].payCost(useMove) #The function handles the player's other costs on it's own
@@ -826,7 +833,8 @@ func checkCosts(player): #Check if the player can afford certain moves, if they 
 							ammount = player.data.itemData[item]
 					checkCostsMini(player, ammount, "Item", move, menuIndex, true)
 				3:
-					checkCostsMini(player, playerTP, "TP", move, menuIndex)
+					if move.name != "Wait": #Wait should always be availible
+						checkCostsMini(player, playerTP, "TP", move, menuIndex)
 
 func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	var buttonIndex = player.moveset[menuIndex].find(move)

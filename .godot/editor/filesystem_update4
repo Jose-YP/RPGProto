@@ -51,3 +51,4 @@ res://Resources/Entity Data/Entities/FireEntity.tres
 res://Scene/Entity.tscn
 res://Scene/enemy.tscn
 res://Scene/Player.tscn
+res://Code/SceneCode/enemy.gd

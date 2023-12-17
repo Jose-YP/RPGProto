@@ -18,7 +18,6 @@ func _ready():
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
-	moveset.append(data.waitData)
 	
 	match enemyData.AIType:#Determine which AI to use
 		"Random":
@@ -181,5 +180,7 @@ func allowedMoveset(TP):
 		if TP > TPCost:
 			allowed.append(use)
 	
-	print(allowed)
+	if allowed.size() == 0: #if they can't use anything else they have to wait
+		allowed.append(data.waitData)
+	
 	return allowed
