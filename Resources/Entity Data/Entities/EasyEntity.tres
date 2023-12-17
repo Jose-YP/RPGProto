@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=5 format=3 uid="uid://cexehs6jvcmbd"]
+
+[ext_resource type="Resource" uid="uid://b6bm1esff11v3" path="res://BasicAttackBallistic.tres" id="1_g2xj2"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_npcim"]
+[ext_resource type="Resource" uid="uid://raxx13ahatc5" path="res://Resources/Entity Data/Enemy Data/Amebozo.tres" id="3_xxosb"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="4_88fcb"]
+
+[resource]
+script = ExtResource("1_npcim")
+level = 0
+name = "Amebozo"
+species = "Microscopium"
+specificData = ExtResource("3_xxosb")
+MaxHP = 5
+MaxTP = 80
+strength = 1
+toughness = 60
+ballistics = 5
+resistance = 60
+speed = 0
+luck = 1
+element = "Elec"
+Weakness = 0
+Resist = 64
+phyElement = "Pierce"
+attackData = ExtResource("1_g2xj2")
+skillData = []
+itemData = {}
+waitData = ExtResource("4_88fcb")
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

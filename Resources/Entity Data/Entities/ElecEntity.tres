@@ -6,11 +6,11 @@
 [ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemyThrid.tres" id="3_gmcsw"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="3_tx3ms"]
 [ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_s6ak4"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="7_iwxqw"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_gcpsc"]
 
 [resource]
 script = ExtResource("2_eib2i")
-level = 0
+level = 5
 name = "fkddvs"
 species = "Something"
 specificData = ExtResource("3_gmcsw")
@@ -31,7 +31,7 @@ skillData = [ExtResource("3_tx3ms"), ExtResource("5_s6ak4")]
 itemData = {
 ExtResource("2_ttvud"): 1
 }
-waitData = ExtResource("7_iwxqw")
+waitData = ExtResource("7_gcpsc")
 XSoft = Array[String]([])
 Condition = 0
 TempElement = null

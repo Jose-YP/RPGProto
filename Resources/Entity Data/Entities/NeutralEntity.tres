@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Overdrive.tres" id="7_75417"]
 [ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
 [ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="12_s6h8p"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3x2es"]
 
 [resource]
 script = ExtResource("1_axch6")
@@ -24,7 +24,7 @@ MaxTP = 90
 strength = 4
 toughness = 7
 ballistics = 4
-resistance = 4
+resistance = 6
 speed = 5
 luck = 6
 element = "Neutral"
@@ -39,7 +39,7 @@ ExtResource("4_52qji"): 3,
 ExtResource("4_iqbw6"): 2,
 ExtResource("5_nkxyx"): 2
 }
-waitData = ExtResource("12_s6h8p")
+waitData = ExtResource("12_3x2es")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

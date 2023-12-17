@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_l4s34"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_rrmmm"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="3_5xdqx"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="3_5xdqx"]
 
 [resource]
 script = ExtResource("2_rrmmm")

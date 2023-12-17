@@ -45,6 +45,7 @@ offset_bottom = 28.0
 offset_right = 224.0
 
 [connection signal="canPayFor" from="." to="CanvasLayer" method="_on_player_can_pay_for"]
+[connection signal="selectedAgain" from="." to="CanvasLayer" method="_on_player_selected_again"]
 [connection signal="Attack" from="CanvasLayer" to="." method="_on_canvas_layer_attack"]
 [connection signal="Focusing" from="CanvasLayer" to="." method="_on_canvas_layer_focusing"]
 [connection signal="Item" from="CanvasLayer" to="." method="_on_canvas_layer_item"]

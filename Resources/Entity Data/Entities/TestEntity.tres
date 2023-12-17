@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="3_uv8oh"]
 [ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="4_5cn73"]
 [ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/new_resource.tres" id="5_d238i"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="7_sxukr"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_sxukr"]
 
 [resource]
 script = ExtResource("2_punov")

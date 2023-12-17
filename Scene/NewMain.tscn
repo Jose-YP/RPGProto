@@ -1,11 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bj1l11wng7bfb"]
+[gd_scene load_steps=13 format=3 uid="uid://bj1l11wng7bfb"]
 
 [ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Player.tscn" id="1_28r4w"]
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_ltfm5"]
 [ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/enemy.tscn" id="2_jglk6"]
-[ext_resource type="Resource" uid="uid://f83w7ts343k8" path="res://Resources/Entity Data/Entities/SecondFire.tres" id="3_5yjrk"]
-[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Entities/WaterEntity.tres" id="4_kpyhu"]
-[ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Entities/ElecEntity.tres" id="5_xpchx"]
+[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Entities/EasyEntity.tres" id="3_tn0h4"]
 [ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/Entities/NeutralEntity.tres" id="7_gpmlw"]
 [ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/Entities/SecondWater.tres" id="8_f36rs"]
 [ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/Entities/FireEntity.tres" id="9_nfj74"]
@@ -32,16 +30,16 @@ one_shot = true
 [node name="Enemy1" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(160, 119)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("3_5yjrk")
+data = ExtResource("3_tn0h4")
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(555, 132)
-data = ExtResource("4_kpyhu")
+data = ExtResource("3_tn0h4")
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(1001, 122)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("5_xpchx")
+data = ExtResource("3_tn0h4")
 
 [node name="Players" type="Node2D" parent="."]
 

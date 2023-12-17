@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
 [ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
 [ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="12_3flck"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3flck"]
 
 [resource]
 script = ExtResource("1_lrusg")

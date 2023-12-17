@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://raxx13ahatc5"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/EnemyMaker.gd" id="1_jbhjl"]
+
+[resource]
+script = ExtResource("1_jbhjl")
+xp = 140
+cents = 20
+Boss = false
+Revivable = false
+AIType = "Random"

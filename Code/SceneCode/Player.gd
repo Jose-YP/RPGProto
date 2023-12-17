@@ -15,6 +15,7 @@ signal moveSelected(useMove)
 signal wait
 signal boost
 signal scan
+signal selectedAgain
 signal cancel
 
 #Current values only a player would have
@@ -95,7 +96,7 @@ func displayDesc(category,num):
 #MENU SIGNALS
 #-----------------------------------------
 func _on_canvas_layer_attack(i):
-	
+	print("Emit")
 	if Globals.attacking:
 		moveSelected.emit(attacks[i])
 	else:

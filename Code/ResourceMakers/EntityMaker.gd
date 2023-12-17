@@ -21,14 +21,14 @@ class_name entityData
 
 @export_group("Properties")
 @export_enum("Fire","Water","Elec","Neutral") var element: String = "Fire"
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Weakness
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Resist
+@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Weakness: int = 0
+@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Resist: int = 0
 
 @export_group("Attack Properties")
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement: String = "Neutral"
 @export var attackData: Move
 @export var skillData: Array = [Move]
-@export var itemData: Dictionary
+@export var itemData: Dictionary = {}
 @export var waitData: Move
 
 @export_group("Temp Property")

@@ -371,51 +371,39 @@ func PSingleSelect(targetting):
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
-				print("Left")
 				index = playerSize - 1
 			elif index == playerSize - 1:
-				print("Lefter")
 				index = targetArray.size() - 1
 				#If there is one enemy pressing left will return to the player
-				if enemySize == 1: 
-					print("to player Lefter")
+				if enemySize == 1:
 					index = 0
 		
 		if Input.is_action_just_pressed("Right"):
 			targetArray[index].selected.hide()
 			index += 1
 			if index > (targetArray.size() - 1) and enemySize != 1:
-				print("Right")
 				index = playerSize
 			elif targetArray[index - 1].has_node("CanvasLayer"):
 				if (index == playerSize):
-					print("playeright")
 					index = 0
 			elif (enemySize == 1): #If there is one enemy pressing right will return to the player
-				print("Righter")
 				index = playerSize - 1
 			
 		if Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down"):
 			targetArray[index].selected.hide()
 			if targetArray[index].has_node("CanvasLayer"):
 				if index > (enemySize - 1):
-					print(index, "+", enemySize)
 					index += enemySize
 					print(targetArray[index])
 					if targetArray[index].has_node("CanvasLayer"): #just in case
-						print("+1")
 						index += 1
 				else:
-					print(index, "+", playerSize)
 					index += playerSize
+			
 			else:
-				print(index - 3,"vs",(playerSize - 1))
 				if (index - 3) < (playerSize - 1):
-					print(index, "-", playerSize)
 					index -= playerSize
 				else:
-					
-					print(index, "-", enemySize)
 					index -= enemySize
 	
 	PConfirmSelect(targetArray[index])
@@ -488,9 +476,10 @@ func _on_move_selected(useMove):
 	TPChange()
 	
 	team[i].menu.hide() #Don't let the player mash buttons until attack is over
+	print("Attack")
 	await action(useMove)
 	Globals.attacking = false
-	if not scanning:
+	if not scanning and not fightOver:
 		next_entity()
 
 #-----------------------------------------
@@ -708,9 +697,6 @@ func next_entity():
 	if overdriveTurn: #Return things to normal
 		if team[i].has_node("CanvasLayer"):
 			team[i].menu.hide()
-		
-#		print("Try to make it normal again")
-#		print("OverdriveHolds:",overdriveHold,overdriveI)
 		overdriveTurn = false
 		team = overdriveHold
 		i = overdriveI
@@ -739,6 +725,7 @@ func next_entity():
 				checkCosts(team[i])
 				team[i].menu.show()
 				team[i].firstButton.grab_focus()
+				team[i].selectedAgain.emit()
 			else:
 				enemyAction = team[i].chooseMove(enemyTP)
 				target = findTarget(enemyAction)
@@ -765,7 +752,7 @@ func overdriveTurnManager():
 			if team[i].has_node("CanvasLayer"):
 				checkCosts(team[i])
 				team[i].menu.show()
-				playerOrder[0].firstButton.grab_focus()
+				team[i].firstButton.grab_focus()
 			else:
 				enemyAction = team[i].chooseMove(enemyTP)
 				target = findTarget(enemyAction)
@@ -787,6 +774,7 @@ func switchPhase():
 		checkCosts(playerOrder[0])
 		playerOrder[0].menu.show()
 		playerOrder[0].firstButton.grab_focus()
+		playerOrder[0].selectedAgain.emit()
 		
 		var TPtween = $PlayerTP.create_tween()#TP management must be handled here
 		var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
@@ -926,14 +914,12 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	
 	#Win condition
 	if enemyOrder.size() == 0:
-		print("STOP")
 		fightOver = true
 		team[i].menu.hide()
 		endScreen(true)
 		return
 	
 	if playerOrder.size() == 0:
-		print("You lose")
 		fightOver = true
 		endScreen(false)
 		return
@@ -963,18 +949,20 @@ func endScreen(playerWin):
 	endScreenTween.set_parallel(true)
 	
 	if playerWin:
-		endScreenTween.tween_property($EndScreen, "modulate", Color("0000af30"),1.5)
+		endScreenTween.tween_property($EndScreen, "modulate", Color("0000afae"),1.5)
 	else:
 		endScreenTween.tween_property($EndScreen, "modulate", Color("ce000030"),1.5)
 		$EndScreen/RichTextLabel.text = "You Lose"
 	
-	endScreenTween.tween_property($EndScreen/RichTextLabel, "modulate", Color.BLACK,1.5)
-	endScreenTween.tween_property($EndScreen/Button, "modulate", Color.WHITE,1.5)
+	endScreenTween.tween_property($EndScreen/RichTextLabel, "modulate", Color("000000"),1.5)
+	endScreenTween.tween_property($EndScreen/Button, "modulate", Color("ffffff"),1.5)
+	$EndScreen/Button.show()
 
 func _on_timer_timeout():
 	waiting = false
 	team[i].hideDesc()
-	next_entity()
+	if not fightOver:
+		next_entity()
 
 func _on_post_phase_timer_timeout():
 	waiting = false

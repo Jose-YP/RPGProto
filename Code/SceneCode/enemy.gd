@@ -54,10 +54,7 @@ func chooseMove(TP):
 		"Random":
 			move = aiInstance.RandomMove(allowed)
 			if move is Item:
-				print("move was item", move, move is Item)
 				move = move.attackData
-				print("Now using", move)
-			print(move.name)
 			return move
 		"Pick Off":
 			pass
@@ -71,12 +68,11 @@ func chooseMove(TP):
 #-----------------------------------------
 #TARGETTING TYPES
 #-----------------------------------------
-func SingleSelect(targetting,move):
+func SingleSelect(targetting,_move):
 	var trgt
 	match enemyData.AIType:
 		"Random":
 			trgt = aiInstance.Single(targetting)
-			print(move.name, trgt)
 			return trgt
 		"Pick Off":
 			pass
@@ -85,12 +81,11 @@ func SingleSelect(targetting,move):
 		"Debuff":
 			pass
 
-func GroupSelect(targetting,move):
+func GroupSelect(targetting,_move):
 	var trgt
 	match enemyData.AIType:
 		"Random":
 			trgt = aiInstance.Single(targetting)
-			print(move.name, trgt)
 			return trgt
 		"Pick Off":
 			pass
@@ -161,12 +156,10 @@ func getScanned():
 #-----------------------------------------
 func payCost(move):
 	if move.CostType == "Item":
-		print("Using Item")
 		for item in data.itemData:
 			if item.name == move.name:
 				data.itemData[item] -= move.cost
 	
-	print("Used", move.name)
 	return move.TPCost - (data.speed * (1 + data.speedBoost))
 
 func allowedMoveset(TP):

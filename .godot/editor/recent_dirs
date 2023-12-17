@@ -1,4 +1,7 @@
 res://Scene
+res://
+res://Resources/Entity Data/Enemy Data
+res://Resources/Entity Data/Entities
 res://Code/Globals
 res://Resources/Item Data/ItemMoves
 res://Resources/Item Data/ItemSpecifics
@@ -8,12 +11,9 @@ res://Code
 res://Resources/Move Data
 res://Resources
 res://Themes/HasSingle
-res://
 res://Resources/Move Data/Enemy Moves
-res://Resources/Entity Data/Entities
 res://Resources/Entity Data/Player Data
 res://Themes
 res://Themes/ButtonStyle
-res://Resources/Entity Data/Enemy Data
 res://Resources/Entity Data
 res://Resources/Item Data

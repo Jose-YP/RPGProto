@@ -223,7 +223,6 @@ func healAilment(move, receiver):
 	if move.HealedAilment == "All":
 		receiver.data.AilmentNum -= move.HealAilAmmount
 		receiver.data.XSoft.resize(3-move.HealAilAmmount)
-		print(receiver.data.AilmentNum)
 	
 	var category = ailmentCategory(receiver)
 	
@@ -411,8 +410,8 @@ func phy_weakness(user,receiver,PreMod = 0):
 	
 	if user == "Neutral":
 		return 0
-	if user == "All":
-		PhyMod += .25 + PreMod
+	if receiver.Resist & 64 != 0:
+		PhyMod -= .25 + PreMod
 		return PhyMod
 	
 	var userFlag = HelperFunctions.String_to_Flag(user,"Element")
@@ -481,7 +480,6 @@ func ailment_calc(move,user,receiver):#Ailment chance is like crit chance except
 	return ailment
 
 func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: Physical, Mental, Negative and/or Positive
-	print("receiver Ailemnt: ",receiver.data.Ailment)
 	match receiver.data.Ailment:
 		"Healthy":
 			return "Healthy"
@@ -575,7 +573,6 @@ func midTurnAilments(Ailment, currentAura):
 		"Reckless":
 			var chance = 25
 			var damage = 0
-			print("Reckless")
 			if data.AilmentNum >= 2:
 				chance *= 2
 			
@@ -631,7 +628,6 @@ func displayQuick(quick):
 func tweenDamage(targetting,tweenTiming,infomation):
 	var tween = targetting.HPBar.create_tween()
 	targetting.displayQuick(infomation)
-	print( infomation,"|| ",targetting.data.name)
 	
 	targetting.HPtext.text = str("HP: ",targetting.currentHP)
 	await tween.tween_property(targetting.HPBar, "value",
@@ -662,7 +658,6 @@ func buffConditionDisplay():
 		#Flag is the binary version of i
 		var flag = 1 << i
 		if data.Condition != null and data.Condition & flag != 0:
-			print(HelperFunctions.Flag_to_String(flag,"Condition"))
 			if conditionString != "":
 				conditionString = str(HelperFunctions.Flag_to_String(flag,"Condition"),"\n",conditionString)
 			else:

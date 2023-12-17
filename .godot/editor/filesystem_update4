@@ -52,3 +52,10 @@ res://Scene/Entity.tscn
 res://Scene/enemy.tscn
 res://Scene/Player.tscn
 res://Code/SceneCode/enemy.gd
+res://Resources/Entity Data/Entities/EasyEntity.tres
+res://BasicAttackBallistic.tres
+res://Code/ResourceMakers/EntityMaker.gd
+res://Code/SceneCode/Entity.gd
+res://Code/SceneCode/Player.gd
+res://Code/SceneCode/PlayerMenu.gd
+res://Scene/PlayerMenu.tscn
