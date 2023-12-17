@@ -26,9 +26,10 @@ class_name entityData
 
 @export_group("Attack Properties")
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement: String = "Neutral"
-@export var attackData: Move = load("res://BasicAttack.tres")
+@export var attackData: Move
 @export var skillData: Array = [Move]
 @export var itemData: Dictionary
+@export var waitData: Move
 
 @export_group("Temp Property")
 @export var XSoft: Array[String] = ["","",""]

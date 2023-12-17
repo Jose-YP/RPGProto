@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://27w6xpavu67e"]
+[gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://27w6xpavu67e"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_5fnqg"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_lrusg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
 [ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
 [ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="12_3flck"]
 
 [resource]
 script = ExtResource("1_lrusg")
@@ -38,12 +39,12 @@ ExtResource("3_a821f"): 1,
 ExtResource("4_s74kn"): 1,
 ExtResource("5_ksymp"): 1
 }
+waitData = ExtResource("12_3flck")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
-XSoftNum = 0
 attackBoost = 0.0
 defenseBoost = 0.0
 speedBoost = 0.0

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=3 format=3 uid="uid://seilwthpp2l1"]
+[gd_resource type="Resource" script_class="entityData" load_steps=4 format=3 uid="uid://seilwthpp2l1"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_l4s34"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_rrmmm"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="3_5xdqx"]
 
 [resource]
 script = ExtResource("2_rrmmm")
@@ -23,12 +24,12 @@ phyElement = "Neutral"
 attackData = ExtResource("1_l4s34")
 skillData = [ExtResource("1_l4s34"), ExtResource("1_l4s34")]
 itemData = {}
+waitData = ExtResource("3_5xdqx")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
-XSoftNum = 0
 attackBoost = 0.0
 defenseBoost = 0.0
 speedBoost = 0.0

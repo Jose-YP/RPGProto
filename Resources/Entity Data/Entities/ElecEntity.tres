@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=7 format=3 uid="uid://ce2oymswsnn6j"]
+[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://ce2oymswsnn6j"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_tasbs"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_eib2i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemyThrid.tres" id="3_gmcsw"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="3_tx3ms"]
 [ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_s6ak4"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="7_iwxqw"]
 
 [resource]
 script = ExtResource("2_eib2i")
@@ -13,7 +14,7 @@ level = 0
 name = "fkddvs"
 species = "Something"
 specificData = ExtResource("3_gmcsw")
-MaxHP = 550
+MaxHP = 430
 MaxTP = 80
 strength = 1
 toughness = 2
@@ -30,7 +31,8 @@ skillData = [ExtResource("3_tx3ms"), ExtResource("5_s6ak4")]
 itemData = {
 ExtResource("2_ttvud"): 1
 }
-XSoft = Array[String](["Fire", "Fire"])
+waitData = ExtResource("7_iwxqw")
+XSoft = Array[String]([])
 Condition = 0
 TempElement = null
 Ailment = "Healthy"

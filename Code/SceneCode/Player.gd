@@ -38,7 +38,7 @@ func _ready():
 	for skill in data.skillData:
 		skills.append(skill)
 	
-	tactics = [playerData.Tactics1,playerData.Tactics2,playerData.Tactics3,playerData.Tactics4]
+	tactics = [data.waitData,playerData.Tactics2,playerData.Tactics3,playerData.Tactics4]
 	
 	
 	LPtext.text = str("LP: ",currentLP)

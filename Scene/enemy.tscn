@@ -8,20 +8,22 @@
 script = ExtResource("2_i0hmc")
 
 [node name="HPBar" parent="." index="2"]
+visible = false
 offset_bottom = 105.0
 
 [node name="Icon" parent="." index="7"]
 modulate = Color(1, 0.0392157, 0, 1)
 
 [node name="NameContainer" type="PanelContainer" parent="." index="11"]
-offset_left = -123.0
-offset_top = 169.0
-offset_right = 128.0
-offset_bottom = 197.0
+offset_left = -125.0
+offset_top = 166.0
+offset_right = 131.0
+offset_bottom = 194.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NameContainer" index="0"]
 layout_mode = 2
 bbcode_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="ScanBox" type="PanelContainer" parent="." index="12"]
 visible = false

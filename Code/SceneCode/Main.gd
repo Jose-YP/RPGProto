@@ -36,6 +36,8 @@ var overdriveTurn: bool = false
 var finished: bool = false
 var targetDied: bool = false
 var scanning: bool = false
+var playerWin: bool = false
+var fightOver: bool = false
 #Battle Stats
 var playerTP: int = 0
 var playerMaxTP: int = 0
@@ -177,37 +179,38 @@ func SaveTPCosts(moveset):
 	return TPCost
 
 func _process(_delta):#If player turn ever changes change current team to match the bool
-	if overdriveTurn:
-		if Globals.attacking or not waiting:
-			nextTarget(overdriveHold)
-	
-	elif playerTurn:
-		team = playerOrder
-		opposing = enemyOrder
-		if Globals.attacking:
-			nextTarget()
-	else:
-		team = enemyOrder
-		opposing = playerOrder
-		if not waiting:
-			which = findWhich(enemyAction)
-			target = findTarget(enemyAction)
-			nextTarget()
-	
-	if scanning:
-		stopScanning()
-	
-	#Keep cursor on current active turn
-	cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
-	#TP Displays
-	if playerMaxTP < playerTP:
-		playerTP = playerMaxTP
-	if enemyMaxTP < enemyTP:
-		enemyTP = enemyMaxTP
-	
-	everyone = playerOrder + enemyOrder
-	PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
-	EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
+	if not fightOver:
+		if overdriveTurn:
+			if Globals.attacking or not waiting:
+				nextTarget(overdriveHold)
+		
+		elif playerTurn:
+			team = playerOrder
+			opposing = enemyOrder
+			if Globals.attacking:
+				nextTarget()
+		else:
+			team = enemyOrder
+			opposing = playerOrder
+			if not waiting:
+				which = findWhich(enemyAction)
+				target = findTarget(enemyAction)
+				nextTarget()
+		
+		if scanning:
+			stopScanning()
+		
+		#Keep cursor on current active turn
+		cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
+		#TP Displays
+		if playerMaxTP < playerTP:
+			playerTP = playerMaxTP
+		if enemyMaxTP < enemyTP:
+			enemyTP = enemyMaxTP
+		
+		everyone = playerOrder + enemyOrder
+		PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
+		EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
 
 func initializeTP(players=false): #Make and remake max TPs when an entiy is gone or enters
 	if players:
@@ -672,6 +675,7 @@ func determineFunction(moveName,reciever,_user):
 			scanning = true
 			reciever.gettingScanned = true
 			reciever.ScanBox.show()
+			reciever.HPBar.show()
 
 #-----------------------------------------
 #TURN END FUNCTIONS
@@ -764,6 +768,8 @@ func switchPhase():
 		var TPtween = $PlayerTP.create_tween()#TP management must be handled here
 		var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
 		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+		actionNum = playerOrder.size()
+	
 	else:
 		team = enemyOrder
 		opposing = playerOrder
@@ -774,7 +780,7 @@ func switchPhase():
 		var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
 		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 		Globals.attacking = false
-	actionNum = 3
+		actionNum = enemyOrder.size()
 
 func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
 	for category in player.moveset:
@@ -892,11 +898,13 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	#Win condition
 	if enemyOrder.size() == 0:
 		team[i].menu.hide()
-		get_tree().paused = true
+		endScreen()
+		return
 	
 	if playerOrder.size() == 0:
 		print("You lose")
-		get_tree().paused = true
+		endScreen()
+		return
 	
 	#Resize 
 	playerOrder.resize(InitialPsize - lowerP)
@@ -918,6 +926,19 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		j = 0
 		index = 0
 
+func endScreen():
+	var endScreenTween = $".".create_tween()
+	endScreenTween.set_parallel(true)
+	
+	if playerWin:
+		endScreenTween.tween_property($EndScreen, "modulate", Color("0000af30"),1.5)
+	else:
+		endScreenTween.tween_property($EndScreen, "modulate", Color("ce000030"),1.5)
+		$EndScreen/RichTextLabel.text = "You Lose"
+	
+	endScreenTween.tween_property($EndScreen/RichTextLabel, "modulate", Color.BLACK,1.5)
+	endScreenTween.tween_property($EndScreen/Button, "modulate", Color.WHITE,1.5)
+
 func _on_timer_timeout():
 	waiting = false
 	team[i].hideDesc()
@@ -926,3 +947,6 @@ func _on_timer_timeout():
 func _on_post_phase_timer_timeout():
 	waiting = false
 	switchPhase()
+
+func _on_button_pressed():
+	print("Press!")

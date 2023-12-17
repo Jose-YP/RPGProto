@@ -12,7 +12,6 @@ class_name Player
 
 @export_group("Tactics")
 @export_flags("Attack","Defense","Speed","Luck") var boostStat
-@export var Tactics1: Move#For some reason it breaks when I make Tactics an Array[Move]
-@export var Tactics2: Move
+@export var Tactics2: Move#For some reason it breaks when I make Tactics an Array[Move]
 @export var Tactics3: Move
 @export var Tactics4: Move

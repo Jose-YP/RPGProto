@@ -69,3 +69,5 @@ res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres
 res://Code/ResourceMakers/EntityMaker.gd
 res://Code/Globals/MiscFunctions.gd
 res://Code/Globals/HelperFunctions.gd
+res://Resources/Entity Data/Entities/TestEntity.tres
+res://Code/ResourceMakers/PlayerMaker.gd

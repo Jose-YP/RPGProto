@@ -1,11 +1,12 @@
+Button
 RichTextLabel
+ColorRect
 PanelContainer
 HBoxContainer
 VBoxContainer
 Label
 Timer
 TextureProgressBar
-ColorRect
 GridContainer
 Panel
 TextEdit
@@ -16,7 +17,6 @@ AnimationPlayer
 Node2D
 MarginContainer
 MenuButton
-Button
 Control
 CanvasLayer
 SplitContainer

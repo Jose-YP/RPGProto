@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://2imequ6g5pi0"]
+[gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://2imequ6g5pi0"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_4dami"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_ecoj4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/Player Data/TestDamir.tres" id="9_ksugu"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="9_p70vf"]
 [ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/Charge.tres" id="10_nu8v2"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="12_f4mo3"]
 
 [resource]
 script = ExtResource("1_ecoj4")
@@ -38,12 +39,12 @@ ExtResource("3_yqn7x"): 2,
 ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }
-XSoft = null
+waitData = ExtResource("12_f4mo3")
+XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null
 Ailment = "Healthy"
 AilmentNum = 0
-XSoftNum = 0
 attackBoost = 0.0
 defenseBoost = 0.0
 speedBoost = 0.0

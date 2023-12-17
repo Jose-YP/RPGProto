@@ -18,6 +18,7 @@ func _ready():
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
+	moveset.append(data.waitData)
 	
 	match enemyData.AIType:#Determine which AI to use
 		"Random":
@@ -134,6 +135,9 @@ func makeDesc():
 		resist = str("Res: ", resist)
 	
 	for move in moveset:
+		if move.name == "Attack" or move.name == "Wait":
+			continue
+		
 		if move is Item:
 			if items != "":
 				items = str(items,",","[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
