@@ -6,7 +6,7 @@
 script = ExtResource("1_nn401")
 name = "DieLOL"
 description = "Basic Attack"
-TPCost = 150
+TPCost = 170
 Which = "Enemy"
 Target = "Single"
 element = "Neutral"

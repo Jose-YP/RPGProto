@@ -1,5 +1,6 @@
 res://Scene/NewMain.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
+res://Code/SceneCode/Main.gd
 res://BasicAttack.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/ButtonStyle/Disabled.tres
@@ -9,17 +10,16 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Themes/Blue.tres
 res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
-res://Resources/Move Data/Heal.tres
-res://Resources/Move Data/Poison.tres
+res://Resources/Move Data/Entity Moves/Heal.tres
+res://Resources/Move Data/Entity Moves/Poison.tres
 res://Resources/Move Data/Enemy Moves/Seiqa.tres
 res://Resources/Entity Data/Entities/SecondFire.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
-res://Resources/Move Data/Bahr.tres
+res://Resources/Move Data/Entity Moves/Bahr.tres
 res://Resources/Entity Data/Enemy Data/TestBoss.tres
 res://Resources/Entity Data/Entities/WaterEntity.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
-res://Resources/Move Data/BlueShift.tres
 res://Resources/Entity Data/Entities/ElecEntity.tres
 res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
 res://Resources/Move Data/Player Moves/Crash.tres
@@ -28,9 +28,11 @@ res://Resources/Entity Data/Player Data/TestPlayer.tres
 res://Resources/Move Data/Player Moves/StarMissiles.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
+res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
 res://Resources/Move Data/Player Moves/Overdrive.tres
+res://Resources/Move Data/Player Moves/Refresh.tres
 res://Resources/Entity Data/Entities/NeutralEntity.tres
 res://Resources/Move Data/Player Moves/RendingArm.tres
 res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
@@ -38,36 +40,14 @@ res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres
 res://Resources/Item Data/ItemMoves/ElecBombMove.tres
 res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
 res://Resources/Entity Data/Player Data/TestDamir.tres
-res://Resources/Move Data/Charge.tres
 res://Resources/Entity Data/Entities/SecondWater.tres
 res://Resources/Entity Data/Player Data/TestPepper.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
 res://Resources/Item Data/ItemSpecifics/Softy!.tres
-res://Resources/Move Data/Hariq.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Move Data/Player Moves/Scapegoat.tres
-res://Resources/Move Data/Player Moves/Veritate.tres
 res://Resources/Entity Data/Entities/FireEntity.tres
-res://Code/enemy.gd
-res://Code/Entity.gd
-res://Code/Main.gd
-res://Scene/enemy.tscn
 res://Scene/Entity.tscn
-res://Scene/PlayerMenu.tscn
+res://Scene/enemy.tscn
 res://Scene/Player.tscn
-res://Code/SceneCode/Player.gd
-res://Code/SceneCode/enemy.gd
-res://Code/SceneCode/Main.gd
-res://Resources/Move Data/Entity Moves/Poison.tres
-res://Code/SceneCode/Entity.gd
-res://Resources/Move Data/Entity Moves/Bahr.tres
-res://Resources/Move Data/Entity Moves/Heal.tres
-res://Resources/Move Data/Player Moves/Refresh.tres
-res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
-res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres
-res://Code/ResourceMakers/EntityMaker.gd
-res://Code/Globals/MiscFunctions.gd
-res://Code/Globals/HelperFunctions.gd
-res://Resources/Entity Data/Entities/TestEntity.tres
-res://Code/ResourceMakers/PlayerMaker.gd

@@ -3,7 +3,6 @@ extends Node2D
 #Main Scene is a battle so this is where initial order is decided and managed
 @export var playerTurn: bool = true #Starting Bool
 @export var tweenTiming: float = .2 #Make the timing with the hits editable
-@onready var cursor: Sprite2D = $Cursor
 @onready var PlayerTPDisplay = $PlayerTP
 @onready var PlayerTPText = $PlayerTP/Label
 @onready var EnemyTPDisplay = $EnemyTP
@@ -200,8 +199,6 @@ func _process(_delta):#If player turn ever changes change current team to match 
 		if scanning:
 			stopScanning()
 		
-		#Keep cursor on current active turn
-		cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
 		#TP Displays
 		if playerMaxTP < playerTP:
 			playerTP = playerMaxTP
@@ -225,6 +222,7 @@ func initializeTP(players=false): #Make and remake max TPs when an entiy is gone
 			enemyMaxTP += enemy.data.MaxTP
 		if enemyTP > enemyMaxTP:
 			enemyTP = enemyMaxTP
+
 #-----------------------------------------
 #TARGETTING MANAGERS
 #-----------------------------------------
@@ -372,27 +370,44 @@ func PSingleSelect(targetting):
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
-				index = 2
-			elif index == 2:
-				index = targetting.size() - 1
+				print("Left")
+				index = playerOrder.size() - 1
+			elif index == playerOrder.size() - 1: #Fix how it works with [1,2,x][x,3,4]
+				print("Lefter")
+				index = targetArray.size() - 1
 		if Input.is_action_just_pressed("Right"):
 			targetArray[index].selected.hide()
 			index += 1
-			if index > (targetting.size() - 1):
-				index = 3
-			elif  index == 3:
+			if index > (targetArray.size() - 1) and enemyOrder.size() != 1:
+				print("Right")
+				index = playerOrder.size()
+				#elif is effectively xor
+			elif (index == playerOrder.size()) != (enemyOrder.size() == 1): #Fix how it works with [1,2,x][x,3,4]
+				print("Righter")
 				index = 0
 			
-		if Input.is_action_just_pressed("Up"):
+		if Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down"):
 			targetArray[index].selected.hide()
-			index += 3
-			if index > (targetting.size() - 1):
-				index -= 6
-		if Input.is_action_just_pressed("Down"):
-			targetArray[index].selected.hide()
-			index -= 3
-			if index < 0:
-				index += 6
+			if targetArray[index].has_node("CanvasLayer"):
+				if index > (enemyOrder.size() - 1):
+					print(index, "+", enemyOrder.size())
+					index += enemyOrder.size()
+					print(targetArray[index])
+					if targetArray[index].has_node("CanvasLayer"): #just in case
+						print("+1")
+						index += 1
+				else:
+					print(index, "+", playerOrder.size())
+					index += playerOrder.size()
+			else:
+				print(index - 3,"vs",(playerOrder.size() - 1))
+				if (index - 3) < (playerOrder.size() - 1):
+					print(index, "-", playerOrder.size())
+					index -= playerOrder.size()
+				else:
+					
+					print(index, "-", enemyOrder.size())
+					index -= enemyOrder.size()
 	
 	PConfirmSelect(targetArray[index])
 
@@ -424,14 +439,12 @@ func PAllSelect(targetting):
 
 func stopScanning():
 	if Input.is_action_just_pressed("Accept"):
-		var removeScanFrom
 		var scanBoxTween
 		scanning = false
 		
 		for enemy in enemyOrder:
 			if enemy.gettingScanned == true:
 				scanBoxTween = enemy.create_tween()
-				print("Modulating",enemy)
 				scanBoxTween.tween_property(enemy.ScanBox, "modulate", Color.TRANSPARENT,1)
 		next_entity()
 
@@ -833,7 +846,6 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	if pay < use:
 		canpay = false
 	if not canpay:
-		print(cost,"|", pay,"vs",use,"Can't pay for", move.name)
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,false)
 	else:
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,true)
@@ -889,14 +901,21 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	for defeatedPlayer in defeatedPlayers:
 		playerOrder.erase(defeatedPlayer)
 		defeatedPlayer.modulate = Color(454545)
+		initializeTP(true)
+		TPChange()
+	
 	for defeatedEnemy in defeatedEnemies:
 		enemyOrder.erase(defeatedEnemy)
 		if defeatedEnemy.enemyData.Boss:
 			defeatedEnemy.modulate = Color(454545)
 		else:
 			defeatedEnemy.queue_free()
+		initializeTP()
+		TPChange(false)
+	
 	#Win condition
 	if enemyOrder.size() == 0:
+		print("STOP")
 		team[i].menu.hide()
 		endScreen()
 		return

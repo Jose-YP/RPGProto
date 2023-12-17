@@ -111,9 +111,6 @@ func _on_tactic_pressed(index):
 	Tactic.emit(index)
 
 func _on_player_can_pay_for(menuI, buttonI, allowed):
-	if fullMenu[menuI+1][buttonI].name == "Burst":
-		print("Allowed: ", allowed)
-	
 	if allowed:
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:

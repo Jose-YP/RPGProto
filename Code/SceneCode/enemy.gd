@@ -111,22 +111,19 @@ func makeDesc():
 	var foundRes: bool
 	var weak: String = ""
 	var resist: String = ""
-	var moves: String = ""
-	var items: String = ""
+	var moveString: String = ""
+	var itemString: String = ""
 	var stats = str("str:",data.strength,"|tgh:",data.toughness,"|bal:",data.ballistics
 	,"\nres:",data.resistance,"|spd:",data.speed,"|luk:",data.luck)
 	
 	for i in range(6):
 		#Flag is the binary version of i
 		var flag = 1 << i
-		print(flag, data.Weakness)
 		if flag & data.Weakness:
 			foundWeak = true
-			print(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
 			weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
 		if flag & data.Resist:
 			foundRes = true
-			print(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
 			resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
 	
 	if foundWeak:
@@ -139,23 +136,23 @@ func makeDesc():
 			continue
 		
 		if move is Item:
-			if items != "":
-				items = str(items,",","[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
+			if itemString != "":
+				itemString = str(items,",","[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
 			else:
-				items = str("[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
+				itemString = str("[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
 			
 		else:
-			if moves != "":
-				moves = str(moves,",",move.name)
+			if moveString != "":
+				moveString = str(moveString,",",move.name)
 			else:
-				moves = str(move.name)
+				moveString = str(move.name)
 	
-	if moves != "":
-		moves = str("Moves: ", moves)
-	if items != "":
-		items = str("Items:", items)
+	if moveString != "":
+		moveString = str("Moves: ", moveString)
+	if itemString != "":
+		itemString = str("Items:", itemString)
 	
-	description = str(weak,"\n",resist,"\n",stats,"\n",moves,"\n",items)
+	description = str(weak,"\n",resist,"\n",stats,"\n",moveString,"\n",itemString)
 
 func getScanned():
 	pass

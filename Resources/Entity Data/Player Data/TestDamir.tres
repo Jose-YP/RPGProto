@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Player" load_steps=9 format=3 uid="uid://c50jb0vd5pl13"]
+[gd_resource type="Resource" script_class="Player" load_steps=8 format=3 uid="uid://c50jb0vd5pl13"]
 
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/Boost.tres" id="1_q50yc"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/Scan.tres" id="1_vsrph"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Resources/Move Data/Entity Moves/Wait.tres" id="2_apkwk"]
 [ext_resource type="Resource" uid="uid://dn0uugdcutkno" path="res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres" id="2_ebwpf"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="2_t2rrv"]
 [ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/Crash.tres" id="3_dqu83"]
@@ -17,7 +16,6 @@ Skills = 3
 RechargeRate = 1.0
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("3_dqu83"), ExtResource("2_ebwpf"), ExtResource("4_1jxuc")])
 boostStat = 2
-Tactics1 = ExtResource("2_apkwk")
 Tactics2 = ExtResource("1_q50yc")
 Tactics3 = ExtResource("1_vsrph")
 Tactics4 = ExtResource("7_pbc4w")

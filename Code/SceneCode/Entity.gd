@@ -223,6 +223,7 @@ func healAilment(move, receiver):
 	if move.HealedAilment == "All":
 		receiver.data.AilmentNum -= move.HealAilAmmount
 		receiver.data.XSoft.resize(3-move.HealAilAmmount)
+		print(receiver.data.AilmentNum)
 	
 	var category = ailmentCategory(receiver)
 	
@@ -296,7 +297,7 @@ func buffStat(receiver,boostType,boostAmmount = 1):#For actively buffing and deb
 
 func buffCondition(move,receiver):
 	receiver.data.Condition |= move.Condition
-	receiver.currentCondition.text = HelperFunctions.Flag_to_String(receiver.data.Condition, "Condition")
+	receiver.buffConditionDisplay()
 	if checkCondition("Targetted", receiver):#Targetted will last until 
 		targetCount = 2
 
@@ -599,13 +600,13 @@ func reactionaryAilments(Ailment):
 		"Rust":
 			if data.AilmentNum >= 1:
 				data.defenseBoost -= .2
-				buffStatManager($Buffs/Defense,data.defenseBoost)
 				if data.AilmentNum >= 2:
 					data.attackBoost -= .2
-					buffStatManager($Buffs/Attack,data.attackBoost)
 					if data.AilmentNum == 3:
 						data.speedBoost -= .2
-						buffStatManager($Buffs/Speed,data.speedBoost)
+			statBoostHandling()
+		"Miserable":
+			pass
 
 func endPhaseAilments(Ailment):
 	match Ailment:
@@ -642,6 +643,9 @@ func tweenDamage(targetting,tweenTiming,infomation):
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
 	var textStore = str(100 * ammount,"%")
+	if int(ammount) == 0:
+		type.hide()
+	
 	if ammount != 0:
 		label.text = textStore
 		type.show()
@@ -651,6 +655,20 @@ func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 		
 	elif ammount < 0:
 		type.modulate = Color(0.58, 0.592, 0.541, 0.671)
+
+func buffConditionDisplay():
+	var conditionString: String = ""
+	for i in range(10):
+		#Flag is the binary version of i
+		var flag = 1 << i
+		if data.Condition != null and data.Condition & flag != 0:
+			print(HelperFunctions.Flag_to_String(flag,"Condition"))
+			if conditionString != "":
+				conditionString = str(HelperFunctions.Flag_to_String(flag,"Condition"),"\n",conditionString)
+			else:
+				conditionString = str(HelperFunctions.Flag_to_String(flag,"Condition"))
+	
+	currentCondition.text = conditionString
 
 func _on_timer_timeout():
 	hideDesc()
