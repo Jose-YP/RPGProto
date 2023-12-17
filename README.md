@@ -9,14 +9,11 @@ ______
 *Fixing Diplay for non Damaging/Healing moves (Check if these are still an issue)
 *Controls being stuck and weird after turns sometimes
 *Enemy Turn still needs to be more stable
+*In general STABILITY
 ______
 TODO
 ______
-*Implement the moves Crash and Scan||
-*StatBoost decay||
 *Implement Lower TP Aura||
-*Implement Ailments(Poison and Reckless) ||
-*Implement Targetted Condition ||
 ______
 LOFTY TODOS
 ______
