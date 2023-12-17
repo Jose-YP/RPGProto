@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg6popaxjbvc4"]
+[gd_scene load_steps=4 format=3 uid="uid://cg6popaxjbvc4"]
 
 [ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_bvt52"]
 [ext_resource type="Script" path="res://Code/SceneCode/enemy.gd" id="2_i0hmc"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="3_sw75k"]
 
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
@@ -21,3 +22,17 @@ offset_bottom = 197.0
 [node name="RichTextLabel" type="RichTextLabel" parent="NameContainer" index="0"]
 layout_mode = 2
 bbcode_enabled = true
+
+[node name="ScanBox" type="PanelContainer" parent="." index="12"]
+visible = false
+offset_left = 64.0
+offset_top = -113.0
+offset_right = 266.0
+offset_bottom = 62.0
+
+[node name="ScanDescription" type="RichTextLabel" parent="ScanBox" index="0"]
+layout_mode = 2
+theme = ExtResource("3_sw75k")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+metadata/_edit_lock_ = true

@@ -2,9 +2,12 @@ extends "res://Code/SceneCode/Entity.gd"
 
 @onready var EnemyLabel = $NameContainer/RichTextLabel
 @onready var enemyData = data.specificData
+@onready var ScanBox = $ScanBox
+@onready var gettingScanned: bool = false
 
 var enemyAI
 var aiInstance
+var description: String
 var moveset: Array = []
 
 #-----------------------------------------
@@ -30,6 +33,8 @@ func _ready():
 			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
 	
 	aiInstance = enemyAI.new()
+	makeDesc()
+	$ScanBox/ScanDescription.append_text(description)
 
 func _process(_delta):
 	processer()
@@ -99,6 +104,57 @@ func GroupSelect(targetting,move):
 func displayMove(move):
 	InfoBox.show()
 	Info.text = str(data.name, " used ", move.name)
+
+func makeDesc():
+	var foundWeak: bool
+	var foundRes: bool
+	var weak: String = ""
+	var resist: String = ""
+	var moves: String = ""
+	var items: String = ""
+	var stats = str("str:",data.strength,"|tgh:",data.toughness,"|bal:",data.ballistics
+	,"\nres:",data.resistance,"|spd:",data.speed,"|luk:",data.luck)
+	
+	for i in range(6):
+		#Flag is the binary version of i
+		var flag = 1 << i
+		print(flag, data.Weakness)
+		if flag & data.Weakness:
+			foundWeak = true
+			print(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
+			weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
+		if flag & data.Resist:
+			foundRes = true
+			print(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
+			resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
+	
+	if foundWeak:
+		weak = str("Weak: ", weak)
+	if foundRes:
+		resist = str("Res: ", resist)
+	
+	for move in moveset:
+		if move is Item:
+			if items != "":
+				items = str(items,",","[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
+			else:
+				items = str("[",data.itemData.get(move),"/",move.maxItems,"]",move.name)
+			
+		else:
+			if moves != "":
+				moves = str(moves,",",move.name)
+			else:
+				moves = str(move.name)
+	
+	if moves != "":
+		moves = str("Moves: ", moves)
+	if items != "":
+		items = str("Items:", items)
+	
+	description = str(weak,"\n",resist,"\n",stats,"\n",moves,"\n",items)
+
+func getScanned():
+	pass
 
 #-----------------------------------------
 #PAYING ITEM&TP

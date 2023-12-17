@@ -1,9 +1,9 @@
 RichTextLabel
+PanelContainer
 HBoxContainer
 VBoxContainer
 Label
 Timer
-PanelContainer
 TextureProgressBar
 ColorRect
 GridContainer

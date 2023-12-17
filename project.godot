@@ -20,6 +20,7 @@ config/icon="res://Assets/icon.svg"
 
 Globals="*res://Code/Globals/Globals.gd"
 HelperFunctions="*res://Code/Globals/HelperFunctions.gd"
+MiscFunctions="*res://Code/Globals/MiscFunctions.gd"
 
 [display]
 

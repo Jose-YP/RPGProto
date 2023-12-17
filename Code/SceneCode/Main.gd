@@ -35,6 +35,7 @@ var waiting: bool = false
 var overdriveTurn: bool = false
 var finished: bool = false
 var targetDied: bool = false
+var scanning: bool = false
 #Battle Stats
 var playerTP: int = 0
 var playerMaxTP: int = 0
@@ -121,6 +122,7 @@ func movesetDescription(moveset,player,n):
 	var move = moveset
 	var desc: String = ""
 	var Elements: String = ""
+	var PhyElement: String = ""
 	var Power: String = ""
 	if move is Item:
 		move = moveset.attackData
@@ -128,23 +130,11 @@ func movesetDescription(moveset,player,n):
 	#Determine if element should be displayed
 	if move.element != "Neutral":
 		Elements = str("[",move.element,"]")
-		match move.element:
-			"Fire":
-				Elements = str("[color=red]",Elements,"[/color]")
-			"Water":
-				Elements = str("[color=aqua]",Elements,"[/color]")
-			"Elec":
-				Elements = str("[color=gold]",Elements,"[/color]")
+		Elements = HelperFunctions.colorElements(move.element, Elements)
 		
 	if move.phyElement != "Neutral":
-		Elements = str("[",move.phyElement,"]",Elements)
-		match move.phyElement:
-			"Slash":
-				Elements = str("[color=forest_green]",Elements,"[/color]")
-			"Crush":
-				Elements = str("[color=olive]",Elements,"[/color]")
-			"Pierce":
-				Elements = str("[color=orange]",Elements,"[/color]")
+		PhyElement = str("[",move.phyElement,"]")
+		PhyElement = HelperFunctions.colorElements(move.phyElement, PhyElement)
 	
 	if move.property & 1 or move.property & 2 or move.property & 4:
 			Power = str("Pow: ",move.Power," ")
@@ -152,15 +142,11 @@ func movesetDescription(moveset,player,n):
 	match n:
 		0:
 			if move.name == "Attack" or move.name == "Crash" or move.name == "Burst":
-				Elements = str("[",player.data.phyElement,"]")
-				match player.data.phyElement:
-					"Slash":
-						Elements = str("[color=forest_green]",Elements,"[/color]")
-					"Crush":
-						Elements = str("[color=olive]",Elements,"[/color]")
-					"Pierce":
-						Elements = str("[color=orange]",Elements,"[/color]")
-			fullDesc = str(move.description, Elements, Power)
+				PhyElement = str("[",player.data.phyElement,"]")
+				PhyElement = HelperFunctions.colorElements(move.phyElement, PhyElement)
+			
+			fullDesc = str(move.description, Elements, PhyElement, Power)
+			
 		1: #Skills should show the specific cost and their ammount
 			desc = str(move.description)
 			var costText
@@ -169,13 +155,13 @@ func movesetDescription(moveset,player,n):
 			if move.CostType == "LP":
 				costText = str("[color=aqua]"+"LP: ",int(move.cost), "[/color]")
 			
-			fullDesc = str(costText, desc, Elements, Power,)
+			fullDesc = str(costText, desc, Elements, PhyElement, Power,)
 			
 		2: #Item Descriptions need to show #ofItems/MaxItems
 			var itemMax = moveset.maxItems #Moveset has Item Specifics, move has thier attack data
 			desc = str("/",itemMax,"]"+"[/i]",move.description)
 			
-			fullDesc = str(desc, Elements, Power)
+			fullDesc = str(desc, Elements, PhyElement, Power)
 		_:
 			fullDesc = str(move.description)
 			if move.name == "Boost":
@@ -207,6 +193,9 @@ func _process(_delta):#If player turn ever changes change current team to match 
 			which = findWhich(enemyAction)
 			target = findTarget(enemyAction)
 			nextTarget()
+	
+	if scanning:
+		stopScanning()
 	
 	#Keep cursor on current active turn
 	cursor.position = team[i].position + Vector2(-30,-30)	#Keep cursor on current active turn
@@ -430,6 +419,19 @@ func PAllSelect(targetting):
 	for k in targetting:
 		k.selected.show()
 
+func stopScanning():
+	if Input.is_action_just_pressed("Accept"):
+		var removeScanFrom
+		var scanBoxTween
+		scanning = false
+		
+		for enemy in enemyOrder:
+			if enemy.gettingScanned == true:
+				scanBoxTween = enemy.create_tween()
+				print("Modulating",enemy)
+				scanBoxTween.tween_property(enemy.ScanBox, "modulate", Color.TRANSPARENT,1)
+		next_entity()
+
 func _on_cancel_selected():
 	Globals.attacking = false
 	for k in range(everyone.size()):
@@ -462,7 +464,8 @@ func _on_move_selected(useMove):
 	team[i].menu.hide() #Don't let the player mash buttons until attack is over
 	await action(useMove)
 	Globals.attacking = false
-	next_entity()
+	if not scanning:
+		next_entity()
 
 #-----------------------------------------
 #USING MOVES
@@ -505,6 +508,16 @@ func action(useMove):
 		
 		_:
 			await useAction(useMove,targetArray[index],team[i],hits)
+	
+	#Remove Charge and Amp only if they were used
+	#Do them here so multihits don't lose charge/amp instantly
+	if team[i].checkCondition("Charge",team[i]) and team[i].chargeUsed:
+		team[i].removeCondition("Charge",team[i])
+		team[i].chargeUsed = false
+	
+	if team[i].checkCondition("Amp",team[i]) and team[i].ampUsed:
+		team[i].removeCondition("Amp",team[i])
+		team[i].ampUsed = false
 
 func useAction(useMove, targetting, user, hits):
 	var times = 0
@@ -532,6 +545,8 @@ func useActionRandom(useMove, targetting, user, hits):
 		await get_tree().create_timer(1).timeout
 
 func checkProperties(move,targetting,user):
+	if move.property & 256: #Misc first allows cetain changes before attacks
+		determineFunction(move.name,targetting,user)
 	if move.property & 1:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
@@ -555,8 +570,6 @@ func checkProperties(move,targetting,user):
 		summon(move,user)
 	if move.property & 128:
 		ailment(move,targetting,user)
-	if move.property & 256:
-		pass
 	
 	checkHP()
 
@@ -645,6 +658,20 @@ func ailment(move,targetting,user):
 		user.applyNegativeAilment(move,targetting,user)
 	else:
 		user.applyXSoft(move,targetting,user)
+
+func determineFunction(moveName,reciever,_user):
+	match moveName:
+		"Crash":
+			if playerTurn:
+				enemyTP = MiscFunctions.miscFunCrash(reciever,enemyMaxTP,enemyTP)
+				TPChange(false)
+			else:
+				playerTP = MiscFunctions.miscFunCrash(reciever,playerMaxTP,playerTP)
+				TPChange()
+		"Scan":
+			scanning = true
+			reciever.gettingScanned = true
+			reciever.ScanBox.show()
 
 #-----------------------------------------
 #TURN END FUNCTIONS

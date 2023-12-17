@@ -67,3 +67,5 @@ res://Resources/Move Data/Player Moves/Refresh.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres
 res://Code/ResourceMakers/EntityMaker.gd
+res://Code/Globals/MiscFunctions.gd
+res://Code/Globals/HelperFunctions.gd

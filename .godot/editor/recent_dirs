@@ -1,3 +1,4 @@
+res://Code/Globals
 res://Resources/Item Data/ItemMoves
 res://Resources/Item Data/ItemSpecifics
 res://Resources/Move Data/Player Moves
@@ -15,5 +16,4 @@ res://Themes
 res://Themes/ButtonStyle
 res://Resources/Entity Data/Enemy Data
 res://Resources/Entity Data
-res://Code/Globals
 res://Resources/Item Data

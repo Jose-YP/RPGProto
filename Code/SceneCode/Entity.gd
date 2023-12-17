@@ -18,6 +18,8 @@ extends Node2D
 
 var currentHP: int
 var targetCount: int
+var chargeUsed: bool = false
+var ampUsed: bool = false
 var feedback: String
 var TPArray: Array = []
 
@@ -141,8 +143,9 @@ func attack(move, receiver, user, property, currentAura):
 				feedback = str("{",currentAura,"}",feedback)
 				auraMod = .5
 			if checkCondition("Charge",user):
+				feedback = str("{Charged}",feedback)
 				chargeMod = 2.5
-				removeCondition("Charge",user)
+				chargeUsed = true
 		"Ballistic":
 			attackStat = user.data.ballistics
 			defenseStat = receiver.data.resistance
@@ -150,8 +153,9 @@ func attack(move, receiver, user, property, currentAura):
 				feedback = str("{",currentAura,"}",feedback)
 				auraMod = .5
 			if checkCondition("Amp",user):
+				feedback = str("{Amped}",feedback)
 				chargeMod = 2.5
-				removeCondition("Amp",user)
+				ampUsed = true
 	
 	if crit_chance(move,user,receiver,currentAura):
 		critMod = .25
@@ -218,7 +222,7 @@ func healAilment(move, receiver):
 	var canHeal = true
 	if move.HealedAilment == "All":
 		receiver.data.AilmentNum -= move.HealAilAmmount
-		receiver.data.XSoft.pop_front()
+		receiver.data.XSoft.resize(3-move.HealAilAmmount)
 	
 	var category = ailmentCategory(receiver)
 	
@@ -593,7 +597,15 @@ func midTurnAilments(Ailment, currentAura):
 func reactionaryAilments(Ailment):
 	match Ailment:
 		"Rust":
-			pass
+			if data.AilmentNum >= 1:
+				data.defenseBoost -= .2
+				buffStatManager($Buffs/Defense,data.defenseBoost)
+				if data.AilmentNum >= 2:
+					data.attackBoost -= .2
+					buffStatManager($Buffs/Attack,data.attackBoost)
+					if data.AilmentNum == 3:
+						data.speedBoost -= .2
+						buffStatManager($Buffs/Speed,data.speedBoost)
 
 func endPhaseAilments(Ailment):
 	match Ailment:
@@ -624,6 +636,7 @@ func tweenDamage(targetting,tweenTiming,infomation):
 	await tween.tween_property(targetting.HPBar, "value",
 	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(4).set_ease(1)
 	
+	targetting.reactionaryAilments(targetting.data.Ailment)
 	infomation = ""
 
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed

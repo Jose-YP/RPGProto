@@ -134,3 +134,23 @@ func emptyXSoftSlots(list):
 			nulls += 1
 	
 	return nulls
+
+func colorElements(element,inbetween = ""):
+	var Elements = ""
+	if inbetween == "":
+		inbetween = str(element)
+	
+	match element:
+		"Fire":
+			Elements = str("[color=red]",inbetween,"[/color]")
+		"Water":
+			Elements = str("[color=aqua]",inbetween,"[/color]")
+		"Elec":
+			Elements = str("[color=gold]",inbetween,"[/color]")
+		"Slash":
+			Elements = str("[color=forest_green]",inbetween,"[/color]")
+		"Crush":
+			Elements = str("[color=olive]",inbetween,"[/color]")
+		"Pierce":
+			Elements = str("[color=orange]",inbetween,"[/color]")
+	return Elements
