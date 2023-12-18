@@ -6,23 +6,19 @@ I'm going to keep updating this until the GameJam starts so maybe it'll look bet
 ______
 ISSUES
 ______
-*Fixing Diplay for non Damaging/Healing moves (Check if these are still an issue)
-*Controls being stuck and weird after turns sometimes
-*Enemy Turn still needs to be more stable
+*Fixing Diplay for non Damaging/Healing moves
 *In general STABILITY
 ______
 TODO
 ______
 *Implement Lower TP Aura||
-*Implement end of battle ||
 *Main Menu ||
-*Change Battles ||
+*Change Players and enemies before battle ||
 ______
 LOFTY TODOS
 ______
 *Implement other EnemyAI types(So far only random) ||
 *Change player stats based on level ||
-*Maybe Animations???? ||
 *Implement Summon moves ||
 
 ______
