@@ -59,3 +59,7 @@ res://Code/SceneCode/Entity.gd
 res://Code/SceneCode/Player.gd
 res://Code/SceneCode/PlayerMenu.gd
 res://Scene/PlayerMenu.tscn
+res://Scene/MainMenu.tscn
+res://Code/Globals/HelperFunctions.gd
+res://Code/ResourceMakers/MoveMaker.gd
+res://Resources/Move Data/Entity Moves/Charge.tres

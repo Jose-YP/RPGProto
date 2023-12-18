@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
 [ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
 [ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3flck"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_pkfdm"]
 
 [resource]
 script = ExtResource("1_lrusg")
@@ -26,9 +26,9 @@ toughness = 7
 ballistics = 14
 resistance = 8
 speed = 10
-luck = 11
+luck = 60
 element = "Fire"
-Weakness = null
+Weakness = 0
 Resist = 32
 phyElement = "Pierce"
 attackData = ExtResource("1_5fnqg")
@@ -39,7 +39,7 @@ ExtResource("3_a821f"): 1,
 ExtResource("4_s74kn"): 1,
 ExtResource("5_ksymp"): 1
 }
-waitData = ExtResource("12_3flck")
+waitData = ExtResource("12_pkfdm")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

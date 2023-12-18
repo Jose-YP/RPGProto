@@ -59,16 +59,20 @@ func processer():
 		if Globals.elementGroups[k] == data.TempElement:
 			$CurrentElement.current_tab = k
 	
-	for soft in range(data.XSoft.size()): #Show any XSofts that are on the entity
-		var oneTrue = false
-		for i in range(6):
-			if data.XSoft[soft] == XSoftSlots[soft][i].name:
-				$XSoftDisplay.show()
-				XSoftTabs[soft].current_tab = i
-				XSoftTabs[soft].show()
-				oneTrue = true
-			if not oneTrue:
-				XSoftTabs[soft].hide()
+#	var oneTrue = false
+#	for soft in range(data.XSoft.size()): #Show any XSofts that are on the entity
+#		for i in range(6):
+#			if data.XSoft[soft] == XSoftSlots[soft][i].name:
+#				print(data.XSoft)
+#				print("Found XSoft",data.XSoft[soft],"=",XSoftSlots[soft][i].name,"Tab:",i)
+#				$XSoftDisplay.show()
+#				XSoftTabs[soft].current_tab = i
+#				XSoftTabs[soft].show()
+#				oneTrue = true
+#
+#		if not oneTrue:
+##			print(XSoftTabs[soft],"||",oneTrue)
+#			XSoftTabs[soft].hide()
 	
 	if data.XSoft.size() == 0: #If there are none, hide display
 		$XSoftDisplay.hide()
@@ -220,9 +224,13 @@ func healHP(move,receiver):
 
 func healAilment(move, receiver):
 	var canHeal = true
+	var usedHeal = false
 	if move.HealedAilment == "All":
 		receiver.data.AilmentNum -= move.HealAilAmmount
 		receiver.data.XSoft.resize(3-move.HealAilAmmount)
+		usedHeal = true
+		receiver.XSoftDisplay()
+		
 	
 	var category = ailmentCategory(receiver)
 	
@@ -230,10 +238,16 @@ func healAilment(move, receiver):
 		canHeal = false
 	
 	if (category == move.HealedAilment or receiver.data.Ailment == move.HealedAilment 
-	or move.HealedAilment == "Negative") and canHeal:
+	or move.HealedAilment == "Negative") and canHeal and not usedHeal:
 		receiver.data.AilmentNum -= move.HealAilAmmount
 		if receiver.data.AilmentNum <= 0:
 			receiver.data.AilmentNum  = 0
+			usedHeal = true
+		
+	if (move.HealedAilment == "XSoft" or move.HealedAilment == "Negative") and not usedHeal:
+		print("Healing XSoft?")
+		receiver.data.XSoft.resize(3-move.HealAilAmmount)
+		receiver.XSoftDisplay()
 
 func applyNegativeAilment(move,receiver,user,preWin = false):
 	if move.BaseAilment > 200:
@@ -268,7 +282,8 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 	if not win:
 		win = ailment_calc(move,receiver,user)
 	
-	if HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0 or receiver.data.XSoft.size() < 3:
+	print(HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0 or data.XSoft.size() < 3)
+	if HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0:
 		if win:
 			if PreSoft != "":
 				ele = PreSoft
@@ -277,8 +292,10 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 			else:
 				ele = determineXSoft(move,user)
 	
-	for i in times:
+	for i in range(times):
 		receiver.data.XSoft = HelperFunctions.NullorAppend(receiver.data.XSoft,ele)
+	
+	receiver.XSoftDisplay()
 
 func buffStat(receiver,boostType,boostAmmount = 1):#For actively buffing and debuffing moves
 	if boostType & 1:
@@ -410,6 +427,11 @@ func phy_weakness(user,receiver,PreMod = 0):
 	
 	if user == "Neutral":
 		return 0
+	
+	if receiver.Weakness & 64 != 0:
+		PhyMod += .25 + PreMod
+		return PhyMod
+	
 	if receiver.Resist & 64 != 0:
 		PhyMod -= .25 + PreMod
 		return PhyMod
@@ -453,7 +475,7 @@ func crit_chance(move,user,receiver,currentAura):
 		if move.Ailment != "None":
 			applyNegativeAilment(move,receiver,user,true)
 		else:
-			applyXSoft(move,user,receiver,true,determineXSoft(move,user))
+			applyXSoft(move,receiver,user,true,determineXSoft(move,user))
 	
 	return crit
 
@@ -495,6 +517,10 @@ func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: P
 				return "Nonmental"
 
 func determineXSoft(move,user):
+	if move.name == "Attack" or move.name == "Burst": #XSoft
+		print(user.data.phyElement)
+		return user.data.phyElement
+	
 	match move.Ailment:
 		"PhySoft":
 			return move.PhyElement
@@ -506,6 +532,7 @@ func determineXSoft(move,user):
 			elif move.element != "Neutral":
 				return move.element
 			else:
+				print(user.data.phyElement)
 				return user.data.phyElement
 
 func checkCondition(seeking,receiver):
@@ -664,6 +691,22 @@ func buffConditionDisplay():
 				conditionString = str(HelperFunctions.Flag_to_String(flag,"Condition"))
 	
 	currentCondition.text = conditionString
+
+func XSoftDisplay():
+	var oneTrue = false
+	for soft in range(data.XSoft.size()): #Show any XSofts that are on the entity
+		for i in range(6):
+			if data.XSoft[soft] == XSoftSlots[soft][i].name:
+				print(data.XSoft)
+				print("Found XSoft",data.XSoft[soft],"=",XSoftSlots[soft][i].name,"Tab:",i)
+				$XSoftDisplay.show()
+				XSoftTabs[soft].current_tab = i
+				XSoftTabs[soft].show()
+				oneTrue = true
+
+		if not oneTrue:
+			print(XSoftTabs[soft],"||",oneTrue)
+			XSoftTabs[soft].hide()
 
 func _on_timer_timeout():
 	hideDesc()

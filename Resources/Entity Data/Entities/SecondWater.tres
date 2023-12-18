@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/Player Data/TestDamir.tres" id="9_ksugu"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="9_p70vf"]
 [ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/Charge.tres" id="10_nu8v2"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_f4mo3"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_gjt0h"]
 
 [resource]
 script = ExtResource("1_ecoj4")
@@ -26,9 +26,9 @@ toughness = 8
 ballistics = 4
 resistance = 10
 speed = 7
-luck = 5
+luck = 60
 element = "Water"
-Weakness = null
+Weakness = 0
 Resist = 8
 phyElement = "Slash"
 attackData = ExtResource("1_4dami")
@@ -39,7 +39,7 @@ ExtResource("3_yqn7x"): 2,
 ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }
-waitData = ExtResource("12_f4mo3")
+waitData = ExtResource("12_gjt0h")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

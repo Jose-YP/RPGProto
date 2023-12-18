@@ -22,7 +22,7 @@ class_name Move
 @export var BaseAilment: int = -200
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive","PhySoft","EleSoft") var Ailment: String = "None"
-@export_range(0,3) var AilmentAmmount: int
+@export_range(1,3) var AilmentAmmount: int = 1
 
 @export_group("Healing")
 @export var percentage: bool

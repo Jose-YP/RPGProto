@@ -131,6 +131,7 @@ func emptyXSoftSlots(list):
 	var nulls: int = 0
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
+			print("Found a null")
 			nulls += 1
 	
 	return nulls
