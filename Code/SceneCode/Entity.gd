@@ -218,7 +218,6 @@ func healAilment(move, receiver):
 	
 	var category = ailmentCategory(receiver)
 	if category != "Mental" and category != "Nonmental":
-		print("DB")
 		canHeal = false
 	
 	if (category == move.HealedAilment or receiver.data.Ailment == move.HealedAilment 
@@ -230,7 +229,6 @@ func healAilment(move, receiver):
 			receiver.data.AilmentNum  = 0
 		
 	if (move.HealedAilment == "XSoft" or move.HealedAilment == "Negative") and canHeal:
-		print("Last")
 		for i in range(move.HealAilAmmount):
 			receiver.data.XSoft.pop_front()
 		
