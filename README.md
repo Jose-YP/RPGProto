@@ -13,13 +13,13 @@ TODO
 ______
 *Implement Lower TP Aura||
 *Main Menu ||
-*Change Players and enemies before battle ||
+*Change enemies before battle ||
 ______
 LOFTY TODOS
 ______
 *Implement other EnemyAI types(So far only random) ||
-*Change player stats based on level ||
 *Implement Summon moves ||
+*4th character and 6th enemy
 
 ______
 STATS
