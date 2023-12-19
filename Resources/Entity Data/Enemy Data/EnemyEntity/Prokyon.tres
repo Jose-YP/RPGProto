@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://ce2oymswsnn6j"]
 
-[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_mqtav"]
-[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="2_4ejtm"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_cyo8e"]
-[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="4_1mktr"]
-[ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_ny2o0"]
-[ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres" id="6_352ok"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_hleoj"]
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_6hmse"]
+[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="2_gfuim"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_8p231"]
+[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="4_6mqpn"]
+[ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_flyvk"]
+[ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres" id="6_doiot"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_q7d6y"]
 
 [resource]
-script = ExtResource("3_cyo8e")
+script = ExtResource("3_8p231")
 level = 4
 name = "Prokyon"
 species = "Canis Minor"
-specificData = ExtResource("6_352ok")
+specificData = ExtResource("6_doiot")
 MaxHP = 350
 MaxTP = 80
 strength = 1
@@ -26,12 +26,12 @@ element = "Fire"
 Weakness = 8
 Resist = 32
 phyElement = "Crush"
-attackData = ExtResource("1_mqtav")
-skillData = [ExtResource("4_1mktr"), ExtResource("5_ny2o0")]
+attackData = ExtResource("1_6hmse")
+skillData = [ExtResource("4_6mqpn"), ExtResource("5_flyvk")]
 itemData = {
-ExtResource("2_4ejtm"): 1
+ExtResource("2_gfuim"): 1
 }
-waitData = ExtResource("7_hleoj")
+waitData = ExtResource("7_q7d6y")
 XSoft = Array[String]([])
 Condition = 0
 TempElement = null

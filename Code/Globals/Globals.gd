@@ -5,6 +5,9 @@ var elementGroups: Array = ["Fire","Water","Elec","Neutral"]
 var XSoftTypes: Array = ["Fire","Water","Elec","Slash","Crush","Pierce"]
 var AilmentTypes: Array = ["Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive",]
+var current_player_entities: Array = []
+var current_enemy_entities: Array = []
+var currentAura = ""
 var attacking: bool
 
 func _ready(): #Uselike this: Dict[Character][Level][Stat]
@@ -32,3 +35,10 @@ func getStats(Entity,character,level):
 	Entity.luck = int(stats["Luck"])
 	
 	return Entity
+
+func getTPCost(move,entity,aura):
+	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))
+	if aura == "LowTicks":
+		TPCost = TPCost / 2
+	
+	return int(TPCost)

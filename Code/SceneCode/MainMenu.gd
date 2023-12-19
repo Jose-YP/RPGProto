@@ -13,9 +13,7 @@ extends Node2D
 @onready var enemyElements: Array = [$EnemyElements/EnemyElement,$EnemyElements/EnemyElement2,$EnemyElements/EnemyElement3]
 @onready var enemyPhyEle: Array = [$EnemyElements/EnemyPhyElement,$EnemyElements/EnemyPhyElement2,$EnemyElements/EnemyPhyElement3]
 
-signal battleStart(playerLineup,enemyLineup)
-
-var Battle: PackedScene = load("res://NewMain.tscn")
+var Battle: PackedScene = load("res://Scene/Main.tscn")
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
 var players: Array
 var enemies: Array
@@ -79,9 +77,16 @@ func makeEnemyLineup():
 	enemiesShown.clear()
 	var enLiString: String
 	for i in range(enemyChoices.size()):
-		var enemyEntity  = enemyEntities[enemyChoices[i].selected]#enemyChoices[i].get_item_text(enemyChoices[i].selected)
-		enLiString = str(enLiString, i+1,". ","[",enemyEntity.species,"]\t",enemyEntity.name,"\n\n\n")
-		getElements(enemyEntities[enemyChoices[i].selected],enemyElements[i],enemyPhyEle[i])
+		var enemyEntity
+		if enemyChoices[i].selected != 6:
+			enemyElements[i].show()
+			enemyPhyEle[i].show()
+			enemyEntity  = enemyEntities[enemyChoices[i].selected]#enemyChoices[i].get_item_text(enemyChoices[i].selected)
+			enLiString = str(enLiString, i+1,". ","[",enemyEntity.species,"]\t",enemyEntity.name,"\n\n\n")
+			getElements(enemyEntities[enemyChoices[i].selected],enemyElements[i],enemyPhyEle[i])
+		else:
+			enemyElements[i].hide()
+			enemyPhyEle[i].hide()
 	
 	enemiesShown.append_text(enLiString)
 
@@ -111,16 +116,16 @@ func enemyChoiceChanged(_index):
 func _on_help_button_pressed():
 	$HelpMenu.show()
 
-func _on_fight_button_pressed():
-	players = []
-	enemies = []
-	
-	for i in range(3):
-		players.append(playerEntities[playerChoices[i].selected])
-		if enemyChoices[i].selected != 6:
-			enemies.append(enemyEntities[enemyChoices[i].selected])
-	
-	battleStart.emit(players, enemies)
-
 func _on_exit_button_pressed():
 	$HelpMenu.hide()
+
+func _on_fight_button_pressed():
+	Globals.current_player_entities = []
+	Globals.current_enemy_entities = []
+	
+	for i in range(3):
+		Globals.current_player_entities.append(playerEntities[playerChoices[i].selected])
+		if enemyChoices[i].selected != 6:
+			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
+	
+	get_tree().change_scene_to_packed(Battle)

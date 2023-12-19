@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://clepibgdex38y"]
+[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://clepibgdex38y"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f8eo8"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_ntahk"]
+[ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="2_7b4pj"]
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/Overdrive.tres" id="3_g5k7p"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="3_l4pfg"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/Burst.tres" id="4_ds5c8"]
@@ -29,7 +30,9 @@ Resist = 0
 phyElement = "Slash"
 attackData = ExtResource("1_f8eo8")
 skillData = [ExtResource("3_g5k7p"), ExtResource("4_ds5c8"), ExtResource("5_44k0u"), ExtResource("6_770bw")]
-itemData = {}
+itemData = {
+ExtResource("2_7b4pj"): 1
+}
 waitData = ExtResource("3_l4pfg")
 XSoft = Array[String](["", "", ""])
 Condition = 0

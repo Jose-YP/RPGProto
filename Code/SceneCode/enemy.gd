@@ -13,6 +13,9 @@ var moveset: Array = []
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
+#func _init():
+#	pass
+
 func _ready():
 	moreReady()
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
@@ -170,6 +173,9 @@ func allowedMoveset(TP):
 			use = move.attackData
 		
 		var TPCost = use.TPCost - (data.speed * (1 + data.speedBoost))
+		if Globals.currentAura == "LowTicks":
+			TPCost = TPCost / 2
+		
 		if TP > TPCost:
 			allowed.append(use)
 	

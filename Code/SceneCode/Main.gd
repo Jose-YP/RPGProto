@@ -9,10 +9,15 @@ extends Node2D
 @onready var EnemyTPText = $EnemyTP/Label
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
+@onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
+@onready var enemyPosition = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
 @onready var enemyOrder: Array = []
 @onready var playerOrder: Array = []
 
 #Make every player's menu
+var mainMenuScene: PackedScene = preload("res://Scene/MainMenu.tscn")
+var playerScene: PackedScene = preload("res://Scene/Player.tscn")
+var enemyScene: PackedScene = preload("res://Scene/enemy.tscn")
 var currentMenu
 var groups = ["Attack","Skills","Items","Tactics"]
 #Hold current enemy's action
@@ -41,7 +46,6 @@ var playerTP: int = 0
 var playerMaxTP: int = 0
 var enemyTP: int = 0
 var enemyMaxTP: int = 0
-var currentAura = ""
 #Determines which targetting system to use
 var target
 var which
@@ -52,6 +56,7 @@ enum targetTypes {
 	ALL,
 	RANDOM,
 	TARGETTED,
+	REVIVE,
 	NONE
 }
 enum whichTypes {
@@ -64,7 +69,20 @@ enum whichTypes {
 #INTIALIZATION & PROCESS
 #-----------------------------------------
 func _ready(): #Assign current team according to starting bool
-#	get_node("Node2D").process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	Globals.currentAura = ""
+	
+	for k in range(Globals.current_player_entities.size()): #Add player scenes as necessary
+		var pNew = playerScene.instantiate()
+		pNew.data = Globals.current_player_entities[k]
+		pNew.position = playerPositions[k].position
+		$Players.add_child(pNew)
+	
+	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
+		var eNew = enemyScene.instantiate()
+		eNew.data = Globals.current_enemy_entities[k]
+		eNew.position = enemyPosition[k].position
+		$Enemies.add_child(eNew)
+	
 	for player in get_tree().get_nodes_in_group("Players"):
 		player.currentHP = player.data.MaxHP
 		playerMaxTP += player.data.MaxTP
@@ -544,7 +562,7 @@ func useAction(useMove, targetting, user, hits):
 		if useMove.property & 1 and useMove.property & 2:
 			times += 1
 		
-		if user.midTurnAilments(user.data.Ailment, currentAura):
+		if user.midTurnAilments(user.data.Ailment, Globals.currentAura):
 			checkProperties(useMove,targetting,user)
 		
 		times += 1
@@ -561,7 +579,7 @@ func useActionRandom(useMove, targetting, user, hits):
 
 func checkProperties(move,targetting,user):
 	if move.property & 256: #Misc first allows cetain changes before attacks
-		determineFunction(move.name,targetting,user)
+		determineFunction(move,targetting,user)
 	if move.property & 1:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
@@ -605,9 +623,9 @@ func TPChange(player = true):
 func offense(move,targetting,user):
 	targetting.selected.hide()
 	if move.property & 1:
-		targetting.currentHP -= user.attack(move, targetting, user,"Physical",currentAura)
+		targetting.currentHP -= user.attack(move, targetting, user,"Physical",Globals.currentAura)
 	if move.property & 2:
-		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic",currentAura)
+		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic",Globals.currentAura)
 	elif move.property & 4:
 		targetting.currentHP -= user.BOMB(move, targetting)
 	
@@ -650,18 +668,23 @@ func aura(move):
 		"None":
 			AuraFog.hide()
 			AuraLabel.hide()
+			Globals.currentAura = ""
 		"BodyBroken":
 			AuraFog.modulate = Color("#ffa5ff21")
 			AuraLabel.text = "BodyBreak!"
+			Globals.currentAura = "BodyBroken"
 		"WillWrecked":
 			AuraFog.modulate = Color("#2ee8f221")
 			AuraLabel.text = "WillWreck!"
+			Globals.currentAura = "WillWrecked"
 		"LowTicks":
 			AuraFog.modulate = Color("#2ee8f221")
 			AuraLabel.text = "LowTick!"
+			Globals.currentAura = "LowTicks"
 		"CritDouble":
 			AuraFog.modulate = Color("#2ee8f221")
 			AuraLabel.text = "CritsChanceDoubled!"
+			Globals.currentAura = "CritDouble"
 
 func summon(_move,_user):
 	pass
@@ -674,8 +697,8 @@ func ailment(move,targetting,user):
 	else:
 		user.applyXSoft(move,targetting,user)
 
-func determineFunction(moveName,reciever,_user):
-	match moveName:
+func determineFunction(move,reciever,user):
+	match move.name:
 		"Crash":
 			if playerTurn:
 				enemyTP = MiscFunctions.miscFunCrash(reciever,enemyMaxTP,enemyTP)
@@ -688,6 +711,10 @@ func determineFunction(moveName,reciever,_user):
 			reciever.gettingScanned = true
 			reciever.ScanBox.show()
 			reciever.HPBar.show()
+		"Gatling Volley":
+			user.buffElementChange(move,reciever,user)
+		"Whim Berry":
+			MiscFunctions.miscFunWhimBerry(reciever)
 
 #-----------------------------------------
 #TURN END FUNCTIONS
@@ -830,9 +857,9 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	match cost:
 		"TP":
 			if searchingItem:
-				use = int(move.attackData.TPCost - (player.data.speed*(1 + player.data.speedBoost)))
+				use = Globals.getTPCost(move.attackData,player,Globals.currentAura)
 			else:
-				use = int(move.TPCost - (player.data.speed*(1 + player.data.speedBoost)))
+				use = Globals.getTPCost(move,player,Globals.currentAura)
 		"Overdrive":
 			use = 1
 		"HP":

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_nn401")
-name = "DieLOL"
+name = "Stampede"
 description = "Basic Attack"
 TPCost = 170
 Which = "Enemy"
@@ -27,7 +27,7 @@ healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
 BoostAmmount = -1
-BoostType = 9
+BoostType = 1
 Condition = 0
 Aura = ""
 ElementChange = "None"

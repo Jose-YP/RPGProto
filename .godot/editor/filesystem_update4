@@ -62,3 +62,22 @@ res://Resources/Move Data/Enemy Moves/Black Hole.tres
 res://Resources/Item Data/ItemSpecifics/Endurian.tres
 res://Resources/Item Data/ItemMoves/EndurianMove.tres
 res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres
+res://Resources/Move Data/Enemy Moves/WishingStar.tres
+res://Resources/Move Data/Enemy Moves/FiringSquad.tres
+res://Resources/Move Data/Enemy Moves/Insult.tres
+res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
+res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
+res://Resources/Move Data/Enemy Moves/dielol.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
+res://NewMain.tscn
+res://Scene/NewMain.tscn
+res://Themes/Blue.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/TestEntity.tres
+res://Code/SceneCode/enemy.gd
+res://Code/SceneCode/Player.gd
+res://Code/Globals/MiscFunctions.gd
+res://Code/SceneCode/Entity.gd
+res://Scene/Main.tscn
+res://Scene/Player.tscn

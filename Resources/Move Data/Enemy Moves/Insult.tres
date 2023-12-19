@@ -4,14 +4,14 @@
 
 [resource]
 script = ExtResource("1_essw7")
-name = "Attack"
+name = "Insult"
 description = "Basic Attack"
-TPCost = 50
+TPCost = 70
 Which = "Enemy"
 Target = "Single"
 element = "Neutral"
 phyElement = "Neutral"
-property = 1
+property = 8
 CostType = "Free"
 cost = 0.0
 Power = 30
@@ -26,8 +26,8 @@ reset = false
 healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
-BoostAmmount = 0
-BoostType = 0
+BoostAmmount = -1
+BoostType = 14
 Condition = 0
 Aura = ""
 ElementChange = "None"

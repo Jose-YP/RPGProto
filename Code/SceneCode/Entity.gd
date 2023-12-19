@@ -640,13 +640,16 @@ func displayQuick(quick):
 
 func tweenDamage(targetting,tweenTiming,infomation):
 	var tween = targetting.HPBar.create_tween()
+	var prevValue = HPBar.value
 	targetting.displayQuick(infomation)
 	
 	targetting.HPtext.text = str("HP: ",targetting.currentHP)
 	await tween.tween_property(targetting.HPBar, "value",
 	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(4).set_ease(1)
 	
-	targetting.reactionaryAilments(targetting.data.Ailment)
+	if prevValue > HPBar.value: #only do this if the entity has taken damage
+		targetting.reactionaryAilments(targetting.data.Ailment)
+	
 	infomation = ""
 
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed

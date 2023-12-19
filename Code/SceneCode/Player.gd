@@ -28,7 +28,12 @@ var descriptions: Array
 var dead: bool = false
 var displaying: bool = false
 
-#Set current values
+#-----------------------------------------
+#INITALIZATION
+#-----------------------------------------
+#func _init(entity_data: entityData):
+#	data = entity_data
+
 func _ready():
 	moreReady()
 	currentLP = playerData.MaxLP
@@ -76,10 +81,16 @@ func payCost(move):
 				if item.name == move.name:
 					data.itemData[item] -= move.cost
 	
-	return move.TPCost - (data.speed * (1 + data.speedBoost))
+	var payTP = move.TPCost - (data.speed * (1 + data.speedBoost))
+	if Globals.currentAura == "LowTicks":
+		payTP = int(payTP/2)
+	return payTP
 
 func displayDesc(category,num):
 	var TrueTPCost = int(TPArray[category][num] - (data.speed * (1 + data.speedBoost)))
+	if Globals.currentAura == "LowTicks":
+		TrueTPCost = int(TrueTPCost * .5)
+	
 	var desc = str(descriptions[category][num])
 	if category == 2: #For items only
 		var itemNum = data.itemData.get(moveset[category][num])

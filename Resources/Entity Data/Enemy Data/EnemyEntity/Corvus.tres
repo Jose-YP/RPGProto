@@ -1,20 +1,20 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://f83w7ts343k8"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_hvnm7"]
-[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_lnoty"]
-[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_ttlex"]
-[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="4_i3igc"]
-[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="5_br015"]
-[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Enemy Moves/Seiqa.tres" id="6_d5clq"]
-[ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres" id="7_j3118"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="8_lcspp"]
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_2c0gp"]
+[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_5fr8k"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_4u4ra"]
+[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="4_06unb"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="5_3doyy"]
+[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Enemy Moves/Seiqa.tres" id="6_n6yf6"]
+[ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres" id="7_qj433"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="8_mkxik"]
 
 [resource]
-script = ExtResource("1_hvnm7")
+script = ExtResource("3_4u4ra")
 level = 12
 name = "Raven"
 species = "Corvus"
-specificData = ExtResource("7_j3118")
+specificData = ExtResource("7_qj433")
 MaxHP = 300
 MaxTP = 80
 strength = 2
@@ -27,12 +27,12 @@ element = "Elec"
 Weakness = 16
 Resist = 8
 phyElement = "Slash"
-attackData = ExtResource("1_lnoty")
-skillData = [ExtResource("4_i3igc"), ExtResource("5_br015"), ExtResource("6_d5clq")]
+attackData = ExtResource("1_2c0gp")
+skillData = [ExtResource("4_06unb"), ExtResource("5_3doyy"), ExtResource("6_n6yf6")]
 itemData = {
-ExtResource("2_ttlex"): 1
+ExtResource("2_5fr8k"): 1
 }
-waitData = ExtResource("8_lcspp")
+waitData = ExtResource("8_mkxik")
 XSoft = Array[String]([])
 Condition = 0
 TempElement = null
