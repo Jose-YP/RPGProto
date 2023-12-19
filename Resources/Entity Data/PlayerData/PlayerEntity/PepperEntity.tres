@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
 [ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
 [ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
-[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/Player Data/PlayerSpecifics/TestPepper.tres" id="11_bnayv"]
+[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres" id="11_bnayv"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_pkfdm"]
 
 [resource]
@@ -36,7 +36,7 @@ skillData = [ExtResource("3_u7vtt"), ExtResource("4_4kg4v"), ExtResource("5_sd4c
 itemData = {
 ExtResource("2_mj2xn"): 3,
 ExtResource("3_a821f"): 1,
-ExtResource("4_s74kn"): 1,
+ExtResource("4_s74kn"): 10,
 ExtResource("5_ksymp"): 1
 }
 waitData = ExtResource("12_pkfdm")

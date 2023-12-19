@@ -35,7 +35,7 @@ attackData = ExtResource("1_4dami")
 skillData = [ExtResource("7_e8cvv"), ExtResource("4_7jfry"), ExtResource("9_p70vf"), ExtResource("10_nu8v2")]
 itemData = {
 ExtResource("2_l51hs"): 3,
-ExtResource("3_yqn7x"): 2,
+ExtResource("3_yqn7x"): 7,
 ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cr78tj4typ1fa"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_8ask6"]
+[ext_resource type="Resource" uid="uid://d4hlq3s718687" path="res://Resources/Item Data/ItemMoves/EndurianMove.tres" id="1_kke5t"]
+
+[resource]
+script = ExtResource("1_8ask6")
+name = "Endurian"
+maxItems = 2
+centCost = 3000
+attackData = ExtResource("1_kke5t")

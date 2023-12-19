@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wr4vco42ijs0"]
+[gd_scene load_steps=22 format=3 uid="uid://wr4vco42ijs0"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/MainMenu.gd" id="1_2apsh"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_2ilmm"]
@@ -6,17 +6,26 @@
 [ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_t4kw1"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="3_3low4"]
 [ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_p3jnp"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="4_80m3o"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_ry1ib"]
-[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/SecondWater.tres" id="4_yrkox"]
-[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/FireEntity.tres" id="5_lfttw"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="5_rjakb"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="5_sigjf"]
+[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_ime6b"]
+[ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_2t53m"]
+[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_i7oi5"]
+[ext_resource type="Resource" uid="uid://f83w7ts343k8" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres" id="9_525rk"]
+[ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_022bv"]
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="11_tjnnv"]
+[ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_ua5p8"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="12_i6xnp"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="13_203gr"]
+[ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="19_251aw"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="20_4mfkg"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2apsh")
-playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_t4kw1"), ExtResource("3_p3jnp"), ExtResource("4_yrkox"), ExtResource("5_lfttw")])
+playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_t4kw1"), ExtResource("3_p3jnp"), ExtResource("4_80m3o"), ExtResource("5_rjakb")])
+enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_ime6b"), ExtResource("7_2t53m"), ExtResource("8_i7oi5"), ExtResource("9_525rk"), ExtResource("10_022bv"), ExtResource("11_ua5p8")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -24.0
@@ -91,6 +100,7 @@ offset_left = 96.0
 offset_top = -290.0
 offset_right = 136.0
 offset_bottom = -250.0
+theme = ExtResource("1_2ilmm")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -217,10 +227,12 @@ anchors_preset = 0
 offset_top = 97.0
 offset_right = 40.0
 offset_bottom = 137.0
+theme = ExtResource("1_2ilmm")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="PlayerPhyElements"]
+layout_mode = 0
 offset_left = 125.0
 offset_top = 356.0
 offset_right = 165.0
@@ -251,6 +263,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement2" type="TabContainer" parent="PlayerPhyElements"]
+layout_mode = 0
 offset_left = 293.0
 offset_top = 356.0
 offset_right = 333.0
@@ -281,6 +294,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement3" type="TabContainer" parent="PlayerPhyElements"]
+layout_mode = 0
 offset_left = 456.0
 offset_top = 356.0
 offset_right = 496.0
@@ -318,12 +332,12 @@ offset_bottom = 40.0
 
 [node name="EnemyMenu1" type="HBoxContainer" parent="EnemyMenu"]
 layout_mode = 0
-offset_left = 816.0
-offset_top = 187.0
+offset_left = 771.0
+offset_top = 259.0
 offset_right = 1245.0
-offset_bottom = 216.0
+offset_bottom = 288.0
 theme = ExtResource("1_2ilmm")
-theme_override_constants/separation = 30
+theme_override_constants/separation = 45
 
 [node name="Enemy1" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
 layout_mode = 2
@@ -336,15 +350,15 @@ item_count = 6
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
-popup/item_1/text = "lv2 Basic Enemy"
+popup/item_1/text = "lv4 Buffer"
 popup/item_1/id = 1
-popup/item_2/text = "lv3 Buffer"
+popup/item_2/text = "lv8 Boss"
 popup/item_2/id = 2
-popup/item_3/text = "lv4 Boss"
+popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
-popup/item_4/text = "lv 5 Healer"
+popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv 6 Other"
+popup/item_5/text = "lv20 Ireo"
 popup/item_5/id = 5
 
 [node name="Enemy2" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
@@ -354,20 +368,22 @@ metadata/_edit_lock_ = true
 
 [node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy2"]
 layout_mode = 2
-item_count = 6
+item_count = 7
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
-popup/item_1/text = "lv2 Basic Enemy"
+popup/item_1/text = "lv4 Buffer"
 popup/item_1/id = 1
-popup/item_2/text = "lv3 Buffer"
+popup/item_2/text = "lv8 Boss"
 popup/item_2/id = 2
-popup/item_3/text = "lv4 Boss"
+popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
-popup/item_4/text = "lv 5 Healer"
+popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv 6 Other"
+popup/item_5/text = "lv20 Ireo"
 popup/item_5/id = 5
+popup/item_6/text = "None"
+popup/item_6/id = 6
 
 [node name="Enemy3" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
 layout_mode = 2
@@ -376,77 +392,28 @@ metadata/_edit_lock_ = true
 
 [node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy3"]
 layout_mode = 2
-item_count = 6
+item_count = 7
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
-popup/item_1/text = "lv2 Basic Enemy"
+popup/item_1/text = "lv4 Buffer"
 popup/item_1/id = 1
-popup/item_2/text = "lv3 Buffer"
+popup/item_2/text = "lv8 Boss"
 popup/item_2/id = 2
-popup/item_3/text = "lv4 Boss"
+popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
-popup/item_4/text = "lv 5 Healer"
+popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv 6 Other"
+popup/item_5/text = "lv20 Ireo"
 popup/item_5/id = 5
-
-[node name="EnemyMenu2" type="HBoxContainer" parent="EnemyMenu"]
-layout_mode = 0
-offset_left = 898.0
-offset_top = 373.0
-offset_right = 1174.0
-offset_bottom = 402.0
-theme = ExtResource("1_2ilmm")
-theme_override_constants/separation = 30
-
-[node name="Enemy4" type="PanelContainer" parent="EnemyMenu/EnemyMenu2"]
-layout_mode = 2
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu2/Enemy4"]
-layout_mode = 2
-item_count = 6
-popup/item_0/text = "lv1 Amebozo"
-popup/item_0/id = 0
-popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/id = 1
-popup/item_2/text = "lv3 Buffer"
-popup/item_2/id = 2
-popup/item_3/text = "lv4 Boss"
-popup/item_3/id = 3
-popup/item_4/text = "lv 5 Healer"
-popup/item_4/id = 4
-popup/item_5/text = "lv 6 Other"
-popup/item_5/id = 5
-
-[node name="Enemy5" type="PanelContainer" parent="EnemyMenu/EnemyMenu2"]
-layout_mode = 2
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu2/Enemy5"]
-layout_mode = 2
-item_count = 6
-popup/item_0/text = "lv1 Amebozo"
-popup/item_0/id = 0
-popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/id = 1
-popup/item_2/text = "lv3 Buffer"
-popup/item_2/id = 2
-popup/item_3/text = "lv4 Boss"
-popup/item_3/id = 3
-popup/item_4/text = "lv 5 Healer"
-popup/item_4/id = 4
-popup/item_5/text = "lv 6 Other"
-popup/item_5/id = 5
+popup/item_6/text = "None"
+popup/item_6/id = 6
 
 [node name="HelpButton" type="Button" parent="."]
-offset_left = 1049.0
-offset_top = 34.0
-offset_right = 1209.0
-offset_bottom = 88.0
+offset_left = 559.0
+offset_top = 519.0
+offset_right = 719.0
+offset_bottom = 573.0
 theme = ExtResource("1_2ilmm")
 text = "What is this?"
 
@@ -575,11 +542,355 @@ popup/item_3/text = "Pepper"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged" binds= [0]]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged" binds= [1]]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged" binds= [2]]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu2/Enemy4/MenuButton" to="." method="enemyChoiceChanged" binds= [3]]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu2/Enemy5/MenuButton" to="." method="enemyChoiceChanged" binds= [4]]
+[node name="EnemyElements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 790.0
+offset_top = 573.0
+offset_right = 830.0
+offset_bottom = 613.0
+
+[node name="EnemyPhyElement" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_left = 49.0
+offset_right = 89.0
+offset_bottom = 40.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="EnemyElements/EnemyPhyElement"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="EnemyElements/EnemyPhyElement"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="EnemyElements/EnemyPhyElement"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="EnemyElement" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="EnemyElements/EnemyElement"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("5_sigjf")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="EnemyElements/EnemyElement"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("4_ry1ib")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="EnemyElements/EnemyElement"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_3low4")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="EnemyElements/EnemyElement"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_6qgqg")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="EnemyPhyElement2" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 56.0
+offset_right = 89.0
+offset_bottom = 96.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="EnemyElements/EnemyPhyElement2"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="EnemyElements/EnemyPhyElement2"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="EnemyElements/EnemyPhyElement2"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="EnemyElement2" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 40.0
+offset_bottom = 96.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="EnemyElements/EnemyElement2"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("5_sigjf")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="EnemyElements/EnemyElement2"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("4_ry1ib")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="EnemyElements/EnemyElement2"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_3low4")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="EnemyElements/EnemyElement2"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_6qgqg")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="EnemyPhyElement3" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 123.0
+offset_right = 89.0
+offset_bottom = 163.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="EnemyElements/EnemyPhyElement3"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="EnemyElements/EnemyPhyElement3"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="EnemyElements/EnemyPhyElement3"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="EnemyElement3" type="TabContainer" parent="EnemyElements"]
+layout_mode = 0
+offset_top = 123.0
+offset_right = 40.0
+offset_bottom = 163.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="EnemyElements/EnemyElement3"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("5_sigjf")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="EnemyElements/EnemyElement3"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("4_ry1ib")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="EnemyElements/EnemyElement3"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_3low4")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="EnemyElements/EnemyElement3"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_6qgqg")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="HelpMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 136.0
+offset_bottom = 72.0
+theme = ExtResource("1_2ilmm")
+
+[node name="HelpPanel" type="PanelContainer" parent="HelpMenu"]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 681.0
+theme = ExtResource("1_2ilmm")
+theme_override_styles/panel = ExtResource("19_251aw")
+metadata/_edit_lock_ = true
+
+[node name="ExitPanel" type="PanelContainer" parent="HelpMenu"]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 607.0
+offset_right = 648.0
+offset_bottom = 647.0
+theme = ExtResource("1_2ilmm")
+metadata/_edit_lock_ = true
+
+[node name="ExitButton" type="Button" parent="HelpMenu/ExitPanel"]
+layout_mode = 2
+text = "Exit"
+metadata/_edit_lock_ = true
+
+[node name="Text" type="Control" parent="HelpMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 32.0
+offset_right = 756.0
+offset_bottom = 97.0
+theme_override_font_sizes/normal_font_size = 40
+text = "How this works"
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 143.0
+offset_right = 328.0
+offset_bottom = 681.0
+text = "Ailments, aka Status Consitions
+Most can be stacked 3 times for worsening effects with the only exception being Overdrive
+You can only have one Ailment stacked
+
+Overdrive:
+1: A damage boost while the Ailment is up
+2: Access to Burst, a high damage all targetting move that consumes Overdrive upon use
+3: Immediete access to another turn
+
+XSofts are a seperate kind of Status Effect
+The first Soft of a certain element will make the entity take 15% more damage to that element
+proceeeding Softs of the same element will add 10%
+The six softs are Fire,Water,Elec,Slash,Crush & Pierce 
+They will be applied whener you crit, with PhyElements taking priority
+You can only have a total of 3 softs of any type"
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 97.0
+offset_right = 347.0
+offset_bottom = 162.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Ailments & Status"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 103.0
+offset_right = 631.0
+offset_bottom = 143.0
+theme_override_font_sizes/normal_font_size = 25
+text = "BASIC STATS"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 147.0
+offset_right = 1144.0
+offset_bottom = 647.0
+text = "Regular Elements: There are four regular elements: Fire, Water, Elec and Neutral. Fire, Water and Elec have a RPS system against eachother the winning element takes less damage, deals more damage and has a higher chance to inflict Ailments. If a move has a non-Neutral element tied to it, the defender will have to take that element's damage Otherwise offensive element depends on user's element (Neutral using neutral will be just neutral)
+
+PhyElements: Some moves have PhyElements Slash/Crush/Pierce. If an entity has a Weakness, it'll deal more damage, and Resistance will deal less damage. However Weaknesses take priority even if they have a Resistance at the same time. Regular attacks use the user's PhyElement, all others ddepend on the move.
+
+*Group targetting hits entities of the same element. If it only hits one, then it'll hit them twice"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 821.0
+offset_top = 97.0
+offset_right = 973.0
+offset_bottom = 143.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Elements"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="HelpMenu/Text"]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 147.0
+offset_right = 779.0
+offset_bottom = 444.0
+text = "HP: When it hits 0 you die
+LP: Spent whenever using certain skills
+TP: Both parties have a collective TP gauge. It's spent whenever taking any action.
+
+Strength: Physical Attack | Toughness: Physical Defense
+Ballistics: Ballistic Attack | Resistance: Ballistic Defense
+Speed: Lowers TP Cost
+Luck: Raises user's hit/avoid of Ailments and Crits
+
+There are 4 kind of stat buffs: Attack, Defense, Speed and Luck.
+They can be applied twice with each stack adding 30%
+They will decay by 5% every turn"
+
+[node name="ElementTriangle" parent="." instance=ExtResource("20_4mfkg")]
+offset_left = 1116.0
+offset_top = 157.0
+offset_right = 1116.0
+offset_bottom = 157.0
+
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="FightButton" to="." method="_on_fight_button_pressed"]
 [connection signal="value_changed" from="PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
@@ -588,3 +899,4 @@ metadata/_edit_lock_ = true
 [connection signal="item_selected" from="PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
 [connection signal="item_selected" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
 [connection signal="item_selected" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
+[connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

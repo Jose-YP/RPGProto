@@ -30,3 +30,5 @@ func getStats(Entity,character,level):
 	Entity.resistance = int(stats["Resistance"])
 	Entity.speed = int(stats["Speed"])
 	Entity.luck = int(stats["Luck"])
+	
+	return Entity

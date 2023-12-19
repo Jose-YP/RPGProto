@@ -10,9 +10,9 @@
 
 [resource]
 script = ExtResource("3_2r2vh")
-level = 5
-name = "Man"
-species = "Derivative"
+level = 8
+name = "Polkan"
+species = "Centaurus"
 specificData = ExtResource("6_j8mqt")
 MaxHP = 500
 MaxTP = 120

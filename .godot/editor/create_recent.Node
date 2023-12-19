@@ -1,13 +1,13 @@
 Control
+RichTextLabel
+PanelContainer
+Button
 TabContainer
 OptionButton
 GridContainer
 Label
 SpinBox
 VBoxContainer
-RichTextLabel
-PanelContainer
-Button
 TextureButton
 HBoxContainer
 MenuButton

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dt8ucmph1nrix"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_6b2s8"]
+[ext_resource type="Resource" uid="uid://crcc2wclxky4" path="res://Resources/Item Data/ItemMoves/BlackCatJewelMove.tres" id="1_to1rx"]
+
+[resource]
+script = ExtResource("1_6b2s8")
+name = "Black Cat Jewel"
+maxItems = 1
+centCost = 6666
+attackData = ExtResource("1_to1rx")

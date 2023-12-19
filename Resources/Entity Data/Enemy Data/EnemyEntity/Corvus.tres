@@ -11,9 +11,9 @@
 
 [resource]
 script = ExtResource("1_hvnm7")
-level = 4
-name = "Electric"
-species = "Test"
+level = 12
+name = "Raven"
+species = "Corvus"
 specificData = ExtResource("7_j3118")
 MaxHP = 300
 MaxTP = 80

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dovb15oajym1j"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_u57n4"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_7j853"]
 
 [resource]
-script = ExtResource("1_u57n4")
+script = ExtResource("1_7j853")
 name = "Overdrive"
 description = "Grant an ally overdrive, bossting their attack and giving them the attack burst. Allow them to move again."
 TPCost = 60

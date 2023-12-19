@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://dkk0yyfyygrch"]
+[gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://dkk0yyfyygrch"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_0pg0s"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_n2r4l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://yh443rnyasqw" path="res://Resources/Item Data/ItemSpecifics/WhimBerry.tres" id="2_w5leb"]
 [ext_resource type="Resource" uid="uid://b6efw4occoe6v" path="res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres" id="3_gamqd"]
 [ext_resource type="Resource" uid="uid://c874usgm1v4dt" path="res://Resources/Item Data/ItemSpecifics/TPItem.tres" id="4_ld73l"]
+[ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="5_mdyqu"]
 [ext_resource type="Resource" uid="uid://thjky3n7j4up" path="res://Resources/Move Data/Player Moves/SwitchGear.tres" id="6_rtcer"]
 [ext_resource type="Resource" uid="uid://bu26ysf3sttpc" path="res://Resources/Move Data/Player Moves/FullStream.tres" id="7_pj3of"]
 [ext_resource type="Resource" uid="uid://cgnjxe1278mhx" path="res://Resources/Move Data/Player Moves/GatlingVolley.tres" id="8_d6b22"]
@@ -35,7 +36,8 @@ skillData = [ExtResource("6_rtcer"), ExtResource("7_pj3of"), ExtResource("8_d6b2
 itemData = {
 ExtResource("2_w5leb"): 3,
 ExtResource("3_gamqd"): 1,
-ExtResource("4_ld73l"): 1
+ExtResource("4_ld73l"): 1,
+ExtResource("5_mdyqu"): 2
 }
 waitData = ExtResource("11_dj6mo")
 XSoft = Array[String](["", "", ""])

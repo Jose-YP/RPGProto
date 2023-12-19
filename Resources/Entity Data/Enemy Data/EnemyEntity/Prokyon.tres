@@ -10,9 +10,9 @@
 
 [resource]
 script = ExtResource("3_cyo8e")
-level = 5
-name = "fkddvs"
-species = "Something"
+level = 4
+name = "Prokyon"
+species = "Canis Minor"
 specificData = ExtResource("6_352ok")
 MaxHP = 350
 MaxTP = 80
@@ -22,7 +22,7 @@ ballistics = 9
 resistance = 8
 speed = 5
 luck = 1
-element = "Elec"
+element = "Fire"
 Weakness = 8
 Resist = 32
 phyElement = "Crush"

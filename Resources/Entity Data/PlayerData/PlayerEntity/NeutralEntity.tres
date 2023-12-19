@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://dayy6sakl1jwx"]
+[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://dayy6sakl1jwx"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
-[ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="3_pv4re"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
 [ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="4_iqbw6"]
 [ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="5_nkxyx"]
-[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Overdrive.tres" id="7_75417"]
+[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/Overdrive.tres" id="6_a6uk1"]
 [ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
 [ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
 [ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="11_40s1d"]
@@ -32,9 +31,8 @@ Weakness = 0
 Resist = 16
 phyElement = "Slash"
 attackData = ExtResource("1_rr6oq")
-skillData = [ExtResource("7_kj7iu"), ExtResource("4_5dvqg"), ExtResource("7_75417"), ExtResource("10_b0nti")]
+skillData = [ExtResource("6_a6uk1"), ExtResource("7_kj7iu"), ExtResource("10_b0nti"), ExtResource("4_5dvqg")]
 itemData = {
-ExtResource("3_pv4re"): 2,
 ExtResource("4_52qji"): 3,
 ExtResource("4_iqbw6"): 2,
 ExtResource("5_nkxyx"): 2

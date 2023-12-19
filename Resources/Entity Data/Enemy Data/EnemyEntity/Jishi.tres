@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://cy3co5wko705g"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_3hkbs"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_3ynnf"]
+[ext_resource type="Resource" uid="uid://kwgbpij34p52" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres" id="2_rprem"]
+[ext_resource type="Resource" uid="uid://cdy8ivnm8kgsm" path="res://Resources/Move Data/Enemy Moves/FiringSquad.tres" id="3_mevwe"]
+[ext_resource type="Resource" uid="uid://dvo6surflcpc6" path="res://Resources/Move Data/Enemy Moves/Insult.tres" id="4_eh5if"]
+[ext_resource type="Resource" uid="uid://bh62qfgi0esk7" path="res://Resources/Move Data/Enemy Moves/WishingStar.tres" id="5_l3egg"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_o0dve"]
+
+[resource]
+script = ExtResource("1_3ynnf")
+level = 17
+name = "Jishi Recruit"
+species = "Reticulum"
+specificData = ExtResource("2_rprem")
+MaxHP = 600
+MaxTP = 120
+strength = 8
+toughness = 20
+ballistics = 19
+resistance = 14
+speed = 9
+luck = 2
+element = "Fire"
+Weakness = 18
+Resist = 8
+phyElement = "Neutral"
+attackData = ExtResource("1_3hkbs")
+skillData = [ExtResource("3_mevwe"), ExtResource("4_eh5if"), ExtResource("5_l3egg")]
+itemData = {}
+waitData = ExtResource("7_o0dve")
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0
