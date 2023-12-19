@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Player.tscn" id="1_28r4w"]
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_ltfm5"]
 [ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/enemy.tscn" id="2_jglk6"]
-[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Entities/EasyEntity.tres" id="3_tn0h4"]
-[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/Entities/NeutralEntity.tres" id="7_gpmlw"]
-[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/Entities/SecondWater.tres" id="8_f36rs"]
-[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/Entities/FireEntity.tres" id="9_nfj74"]
+[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="3_hcytf"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="5_gumwr"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/SecondWater.tres" id="6_nyo4f"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/FireEntity.tres" id="7_8xm7i"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Assets/GreyCircle.png" id="11_atlpm"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Assets/white-circle-icon-7-1397688648.png" id="12_ejskb"]
 [ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Assets/GreenCircle.png" id="13_w8prj"]
@@ -30,33 +30,33 @@ one_shot = true
 [node name="Enemy1" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(160, 119)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("3_tn0h4")
+data = ExtResource("3_hcytf")
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(555, 132)
-data = ExtResource("3_tn0h4")
+data = ExtResource("3_hcytf")
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_jglk6")]
 position = Vector2(1001, 122)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("3_tn0h4")
+data = ExtResource("3_hcytf")
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player1" parent="Players" instance=ExtResource("1_28r4w")]
 position = Vector2(200, 560)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("7_gpmlw")
+data = ExtResource("5_gumwr")
 
 [node name="Player2" parent="Players" instance=ExtResource("1_28r4w")]
 position = Vector2(591, 560)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("8_f36rs")
+data = ExtResource("6_nyo4f")
 
 [node name="Player3" parent="Players" instance=ExtResource("1_28r4w")]
 position = Vector2(986, 563)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("9_nfj74")
+data = ExtResource("7_8xm7i")
 
 [node name="Aura" type="ColorRect" parent="."]
 visible = false

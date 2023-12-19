@@ -1,5 +1,5 @@
-entityData
-Item
 Move
+Item
+entityData
 Player
 Enemy

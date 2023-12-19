@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://yh443rnyasqw"]
+
+[ext_resource type="Resource" uid="uid://f4aj1kpn37ke" path="res://Resources/Item Data/ItemMoves/WhimBerryMove.tres" id="1_exim0"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="2_ivu41"]
+
+[resource]
+script = ExtResource("2_ivu41")
+name = "Whim Berry"
+maxItems = 20
+centCost = 1200
+attackData = ExtResource("1_exim0")

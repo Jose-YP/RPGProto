@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
-[ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/Player Data/TestPlayer.tres" id="3_0pc3x"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="3_pv4re"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
@@ -11,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Overdrive.tres" id="7_75417"]
 [ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
 [ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
+[ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="11_40s1d"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3x2es"]
 
 [resource]
@@ -18,7 +18,7 @@ script = ExtResource("1_axch6")
 level = 5
 name = "Dreamer"
 species = "Derivative"
-specificData = ExtResource("3_0pc3x")
+specificData = ExtResource("11_40s1d")
 MaxHP = 140
 MaxTP = 90
 strength = 4
@@ -30,7 +30,7 @@ luck = 8
 element = "Neutral"
 Weakness = 0
 Resist = 16
-phyElement = "Crush"
+phyElement = "Slash"
 attackData = ExtResource("1_rr6oq")
 skillData = [ExtResource("7_kj7iu"), ExtResource("4_5dvqg"), ExtResource("7_75417"), ExtResource("10_b0nti")]
 itemData = {

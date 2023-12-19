@@ -8,9 +8,9 @@
 [ext_resource type="Resource" uid="uid://d3kx4skcjkrso" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="4_bqcmc"]
 [ext_resource type="Resource" uid="uid://b87gkmkaqxfdl" path="res://Resources/Item Data/ItemSpecifics/ElecBomb.tres" id="5_31aqc"]
 [ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Entity Moves/Bahr.tres" id="7_e8cvv"]
-[ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/Player Data/TestDamir.tres" id="9_ksugu"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="9_p70vf"]
 [ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/Charge.tres" id="10_nu8v2"]
+[ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres" id="11_xx008"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_gjt0h"]
 
 [resource]
@@ -18,7 +18,7 @@ script = ExtResource("1_ecoj4")
 level = 5
 name = "Damir"
 species = "Derivative"
-specificData = ExtResource("9_ksugu")
+specificData = ExtResource("11_xx008")
 MaxHP = 175
 MaxTP = 90
 strength = 13

@@ -1,14 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://wr4vco42ijs0"]
+[gd_scene load_steps=14 format=3 uid="uid://wr4vco42ijs0"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/MainMenu.gd" id="1_2apsh"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_2ilmm"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Assets/white-circle-icon-7-1397688648.png" id="2_6qgqg"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_t4kw1"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="3_3low4"]
+[ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_p3jnp"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_ry1ib"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/SecondWater.tres" id="4_yrkox"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/FireEntity.tres" id="5_lfttw"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="5_sigjf"]
+[ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="11_tjnnv"]
+[ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="12_i6xnp"]
+[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Assets/arrow.png" id="13_203gr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2apsh")
+playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_t4kw1"), ExtResource("3_p3jnp"), ExtResource("4_yrkox"), ExtResource("5_lfttw")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -24.0
@@ -19,6 +27,7 @@ color = Color(0.294118, 0.458824, 0.494118, 0.639216)
 metadata/_edit_lock_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 401.0
 offset_top = 96.0
 offset_right = 887.0
@@ -35,11 +44,14 @@ offset_left = 183.0
 offset_top = 404.0
 offset_right = 338.0
 offset_bottom = 750.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Player1Stats" type="PanelContainer" parent="PlayerStats"]
-layout_mode = 2
+layout_mode = 0
+offset_left = -163.0
 offset_top = -2.0
-offset_right = 155.0
+offset_right = -8.0
 offset_bottom = 344.0
 theme = ExtResource("1_2ilmm")
 metadata/_edit_group_ = true
@@ -49,9 +61,9 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="Player2Stats" type="PanelContainer" parent="PlayerStats"]
-offset_left = -163.0
+layout_mode = 2
 offset_top = -2.0
-offset_right = -8.0
+offset_right = 155.0
 offset_bottom = 344.0
 theme = ExtResource("1_2ilmm")
 metadata/_edit_group_ = true
@@ -61,6 +73,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="Player3Stats" type="PanelContainer" parent="PlayerStats"]
+layout_mode = 0
 offset_left = 164.0
 offset_right = 319.0
 offset_bottom = 346.0
@@ -74,16 +87,20 @@ layout_mode = 2
 [node name="PlayerElements" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 96.0
+offset_top = -290.0
+offset_right = 136.0
+offset_bottom = -250.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Player1Element" type="TabContainer" parent="PlayerElements"]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 698.0
 offset_right = 69.0
 offset_bottom = 738.0
 tabs_visible = false
-metadata/_edit_lock_ = true
 
 [node name="Fire" type="TextureRect" parent="PlayerElements/Player1Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
@@ -117,12 +134,12 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player2Element" type="TabContainer" parent="PlayerElements"]
+layout_mode = 0
 offset_left = 197.0
 offset_top = 698.0
 offset_right = 237.0
 offset_bottom = 738.0
 tabs_visible = false
-metadata/_edit_lock_ = true
 
 [node name="Fire" type="TextureRect" parent="PlayerElements/Player2Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
@@ -156,12 +173,12 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player3Element" type="TabContainer" parent="PlayerElements"]
+layout_mode = 0
 offset_left = 360.0
 offset_top = 698.0
 offset_right = 400.0
 offset_bottom = 738.0
 tabs_visible = false
-metadata/_edit_lock_ = true
 
 [node name="Fire" type="TextureRect" parent="PlayerElements/Player3Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
@@ -194,6 +211,105 @@ texture = ExtResource("2_6qgqg")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
+[node name="PlayerPhyElements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 97.0
+offset_right = 40.0
+offset_bottom = 137.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement1" type="TabContainer" parent="PlayerPhyElements"]
+offset_left = 125.0
+offset_top = 356.0
+offset_right = 165.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement1"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement1"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement1"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement2" type="TabContainer" parent="PlayerPhyElements"]
+offset_left = 293.0
+offset_top = 356.0
+offset_right = 333.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement2"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement2"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement2"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement3" type="TabContainer" parent="PlayerPhyElements"]
+offset_left = 456.0
+offset_top = 356.0
+offset_right = 496.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement3"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("11_tjnnv")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement3"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("12_i6xnp")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerPhyElements/PlayerPhyElement3"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("13_203gr")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
 [node name="EnemyMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -201,9 +317,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EnemyMenu1" type="HBoxContainer" parent="EnemyMenu"]
-offset_left = 894.0
+layout_mode = 0
+offset_left = 816.0
 offset_top = 187.0
-offset_right = 1095.0
+offset_right = 1245.0
 offset_bottom = 216.0
 theme = ExtResource("1_2ilmm")
 theme_override_constants/separation = 30
@@ -213,28 +330,21 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="MenuButton" parent="EnemyMenu/EnemyMenu1/Enemy1"]
+[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy1"]
 layout_mode = 2
-text = "Enemy"
-switch_on_hover = true
 item_count = 6
+selected = 0
 popup/item_0/text = "lv1 Amebozo"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "lv3 Buffer"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "lv4 Boss"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 popup/item_4/text = "lv 5 Healer"
-popup/item_4/checkable = 2
 popup/item_4/id = 4
 popup/item_5/text = "lv 6 Other"
-popup/item_5/checkable = 2
 popup/item_5/id = 5
 
 [node name="Enemy2" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
@@ -242,28 +352,21 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="MenuButton" parent="EnemyMenu/EnemyMenu1/Enemy2"]
+[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy2"]
 layout_mode = 2
-text = "Enemy"
-switch_on_hover = true
 item_count = 6
+selected = 0
 popup/item_0/text = "lv1 Amebozo"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "lv3 Buffer"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "lv4 Boss"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 popup/item_4/text = "lv 5 Healer"
-popup/item_4/checkable = 2
 popup/item_4/id = 4
 popup/item_5/text = "lv 6 Other"
-popup/item_5/checkable = 2
 popup/item_5/id = 5
 
 [node name="Enemy3" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
@@ -271,34 +374,28 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="MenuButton" parent="EnemyMenu/EnemyMenu1/Enemy3"]
+[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy3"]
 layout_mode = 2
-text = "Enemy"
-switch_on_hover = true
 item_count = 6
+selected = 0
 popup/item_0/text = "lv1 Amebozo"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "lv3 Buffer"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "lv4 Boss"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 popup/item_4/text = "lv 5 Healer"
-popup/item_4/checkable = 2
 popup/item_4/id = 4
 popup/item_5/text = "lv 6 Other"
-popup/item_5/checkable = 2
 popup/item_5/id = 5
 
 [node name="EnemyMenu2" type="HBoxContainer" parent="EnemyMenu"]
-offset_left = 925.0
+layout_mode = 0
+offset_left = 898.0
 offset_top = 373.0
-offset_right = 1049.0
+offset_right = 1174.0
 offset_bottom = 402.0
 theme = ExtResource("1_2ilmm")
 theme_override_constants/separation = 30
@@ -308,28 +405,20 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="MenuButton" parent="EnemyMenu/EnemyMenu2/Enemy4"]
+[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu2/Enemy4"]
 layout_mode = 2
-text = "Enemy"
-switch_on_hover = true
 item_count = 6
 popup/item_0/text = "lv1 Amebozo"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "lv3 Buffer"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "lv4 Boss"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 popup/item_4/text = "lv 5 Healer"
-popup/item_4/checkable = 2
 popup/item_4/id = 4
 popup/item_5/text = "lv 6 Other"
-popup/item_5/checkable = 2
 popup/item_5/id = 5
 
 [node name="Enemy5" type="PanelContainer" parent="EnemyMenu/EnemyMenu2"]
@@ -337,28 +426,20 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="MenuButton" parent="EnemyMenu/EnemyMenu2/Enemy5"]
+[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu2/Enemy5"]
 layout_mode = 2
-text = "Enemy"
-switch_on_hover = true
 item_count = 6
 popup/item_0/text = "lv1 Amebozo"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "lv2 Basic Enemy"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "lv3 Buffer"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "lv4 Boss"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 popup/item_4/text = "lv 5 Healer"
-popup/item_4/checkable = 2
 popup/item_4/id = 4
 popup/item_5/text = "lv 6 Other"
-popup/item_5/checkable = 2
 popup/item_5/id = 5
 
 [node name="HelpButton" type="Button" parent="."]
@@ -370,14 +451,15 @@ theme = ExtResource("1_2ilmm")
 text = "What is this?"
 
 [node name="EnemyLineup" type="PanelContainer" parent="."]
-offset_left = 785.0
+offset_left = 771.0
 offset_top = 546.0
-offset_right = 1184.0
+offset_right = 1245.0
 offset_bottom = 748.0
 theme = ExtResource("1_2ilmm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EnemyLineup"]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="FightButton" type="Button" parent="."]
 offset_left = 559.0
@@ -400,8 +482,8 @@ metadata/_edit_lock_ = true
 [node name="Player1Level" type="SpinBox" parent="PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
-max_value = 60.0
-value = 1.0
+max_value = 30.0
+value = 5.0
 custom_arrow_step = 1.0
 
 [node name="Label" type="Label" parent="PlayerMenu/Player1Level"]
@@ -414,8 +496,8 @@ text = "Level"
 [node name="Player2Level" type="SpinBox" parent="PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
-max_value = 60.0
-value = 1.0
+max_value = 30.0
+value = 5.0
 
 [node name="Label" type="Label" parent="PlayerMenu/Player2Level"]
 layout_mode = 0
@@ -427,8 +509,8 @@ text = "Level"
 [node name="Player3Level" type="SpinBox" parent="PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
-max_value = 60.0
-value = 1.0
+max_value = 30.0
+value = 5.0
 
 [node name="Label" type="Label" parent="PlayerMenu/Player3Level"]
 layout_mode = 0
@@ -440,22 +522,18 @@ text = "Level"
 [node name="Player1" type="PanelContainer" parent="PlayerMenu"]
 layout_mode = 2
 
-[node name="MenuButton" type="MenuButton" parent="PlayerMenu/Player1"]
+[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player1"]
 layout_mode = 2
-text = "Character1 |V|"
-switch_on_hover = true
 item_count = 4
+selected = 0
+allow_reselect = true
 popup/item_0/text = "DREAMER"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "Lonna"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "Damir"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "Pepper"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
@@ -463,22 +541,18 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="MenuButton" parent="PlayerMenu/Player2"]
+[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player2"]
 layout_mode = 2
-text = "Character2 |V|"
-switch_on_hover = true
 item_count = 4
+selected = 2
+allow_reselect = true
 popup/item_0/text = "DREAMER"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "Lonna"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "Damir"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "Pepper"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
@@ -486,35 +560,31 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="MenuButton" parent="PlayerMenu/Player3"]
+[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player3"]
 layout_mode = 2
-text = "Character3 |V|"
-switch_on_hover = true
 item_count = 4
+selected = 3
+allow_reselect = true
 popup/item_0/text = "DREAMER"
-popup/item_0/checkable = 2
 popup/item_0/id = 0
 popup/item_1/text = "Lonna"
-popup/item_1/checkable = 2
 popup/item_1/id = 1
 popup/item_2/text = "Damir"
-popup/item_2/checkable = 2
 popup/item_2/id = 2
 popup/item_3/text = "Pepper"
-popup/item_3/checkable = 2
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged" binds= [0]]
-[connection signal="pressed" from="EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged" binds= [1]]
-[connection signal="pressed" from="EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged" binds= [2]]
-[connection signal="pressed" from="EnemyMenu/EnemyMenu2/Enemy4/MenuButton" to="." method="enemyChoiceChanged" binds= [3]]
-[connection signal="pressed" from="EnemyMenu/EnemyMenu2/Enemy5/MenuButton" to="." method="enemyChoiceChanged" binds= [4]]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged" binds= [0]]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged" binds= [1]]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged" binds= [2]]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu2/Enemy4/MenuButton" to="." method="enemyChoiceChanged" binds= [3]]
+[connection signal="item_selected" from="EnemyMenu/EnemyMenu2/Enemy5/MenuButton" to="." method="enemyChoiceChanged" binds= [4]]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="FightButton" to="." method="_on_fight_button_pressed"]
-[connection signal="changed" from="PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
-[connection signal="changed" from="PlayerMenu/Player2Level" to="." method="levelChange" binds= [1]]
-[connection signal="changed" from="PlayerMenu/Player3Level" to="." method="levelChange" binds= [2]]
-[connection signal="pressed" from="PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
-[connection signal="pressed" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged"]
-[connection signal="pressed" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
+[connection signal="value_changed" from="PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
+[connection signal="value_changed" from="PlayerMenu/Player2Level" to="." method="levelChange" binds= [1]]
+[connection signal="value_changed" from="PlayerMenu/Player3Level" to="." method="levelChange" binds= [2]]
+[connection signal="item_selected" from="PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
+[connection signal="item_selected" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
+[connection signal="item_selected" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]

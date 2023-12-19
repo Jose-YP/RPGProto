@@ -2,7 +2,6 @@
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_5fnqg"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_lrusg"]
-[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/Player Data/TestPepper.tres" id="2_8iwnb"]
 [ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_mj2xn"]
 [ext_resource type="Resource" uid="uid://bp3hni787i2io" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="3_a821f"]
 [ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="3_u7vtt"]
@@ -11,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
 [ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
 [ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
+[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/Player Data/PlayerSpecifics/TestPepper.tres" id="11_bnayv"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_pkfdm"]
 
 [resource]
@@ -18,7 +18,7 @@ script = ExtResource("1_lrusg")
 level = 5
 name = "Pepper"
 species = "Andromeda"
-specificData = ExtResource("2_8iwnb")
+specificData = ExtResource("11_bnayv")
 MaxHP = 125
 MaxTP = 90
 strength = 2

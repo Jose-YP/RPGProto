@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bu26ysf3sttpc"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_fxogr"]
+
+[resource]
+script = ExtResource("1_fxogr")
+name = "FullSteam"
+description = "Buff ally group's speed by 1 stage"
+TPCost = 50
+Which = "Ally"
+Target = "Group"
+element = "Neutral"
+phyElement = "Neutral"
+property = 8
+CostType = "LP"
+cost = 10.0
+Power = 30
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 1
+percentage = false
+revive = false
+reset = false
+healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostAmmount = 1
+BoostType = 4
+Condition = 0
+Aura = ""
+ElementChange = "None"
+Summon = []

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6efw4occoe6v"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_mhps6"]
+[ext_resource type="Resource" uid="uid://bpfaulvlrowf1" path="res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres" id="1_numm7"]
+
+[resource]
+script = ExtResource("1_mhps6")
+name = "Ampa Anta"
+maxItems = 5
+centCost = 500
+attackData = ExtResource("1_numm7")

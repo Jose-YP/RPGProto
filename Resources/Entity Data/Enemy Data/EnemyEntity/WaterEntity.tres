@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://dmm6qvo3byjgc"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_fbih2"]
+[ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="2_luepq"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_2r2vh"]
+[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Entity Moves/Bahr.tres" id="4_6oohn"]
+[ext_resource type="Resource" uid="uid://d2hopjlup3igp" path="res://Resources/Move Data/Enemy Moves/dielol.tres" id="5_v6sea"]
+[ext_resource type="Resource" uid="uid://drx2b5a1fmwlh" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres" id="6_j8mqt"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_g2pgv"]
+
+[resource]
+script = ExtResource("3_2r2vh")
+level = 5
+name = "Man"
+species = "Derivative"
+specificData = ExtResource("6_j8mqt")
+MaxHP = 500
+MaxTP = 120
+strength = 6
+toughness = 8
+ballistics = 8
+resistance = 8
+speed = 19
+luck = 2
+element = "Water"
+Weakness = 32
+Resist = 16
+phyElement = "Pierce"
+attackData = ExtResource("1_fbih2")
+skillData = [ExtResource("4_6oohn"), ExtResource("5_v6sea")]
+itemData = {
+ExtResource("2_luepq"): 1
+}
+waitData = ExtResource("7_g2pgv")
+XSoft = Array[String]([])
+Condition = 0
+TempElement = null
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

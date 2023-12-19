@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Player" load_steps=8 format=3 uid="uid://bjxxa7n1ednd5"]
+
+[ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/Crash.tres" id="1_namyh"]
+[ext_resource type="Resource" uid="uid://dn0uugdcutkno" path="res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres" id="2_tb6m0"]
+[ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Player Moves/Burst.tres" id="3_ujl4q"]
+[ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/Boost.tres" id="4_3cwns"]
+[ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/Scan.tres" id="5_a606w"]
+[ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/SummonPlaceholder.tres" id="6_p4xum"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="7_y5m6s"]
+
+[resource]
+script = ExtResource("7_y5m6s")
+MaxLP = 10
+MaxCPU = 10
+Skills = 4
+RechargeRate = 1.75
+Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_namyh"), ExtResource("2_tb6m0"), ExtResource("3_ujl4q")])
+boostStat = 1
+Tactics2 = ExtResource("4_3cwns")
+Tactics3 = ExtResource("5_a606w")
+Tactics4 = ExtResource("6_p4xum")
