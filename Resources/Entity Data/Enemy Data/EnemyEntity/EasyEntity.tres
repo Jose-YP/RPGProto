@@ -27,6 +27,7 @@ attackData = ExtResource("1_g2xj2")
 skillData = []
 itemData = {}
 waitData = ExtResource("4_88fcb")
+KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

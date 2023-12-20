@@ -1,6 +1,7 @@
 extends Node
 
 var playerStats: Dictionary
+var statTypes:Array = ["Attack","Defense","Speed","Luck"]
 var elementGroups: Array = ["Fire","Water","Elec","Neutral"]
 var XSoftTypes: Array = ["Fire","Water","Elec","Slash","Crush","Pierce"]
 var AilmentTypes: Array = ["Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",

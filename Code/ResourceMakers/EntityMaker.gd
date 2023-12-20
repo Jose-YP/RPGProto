@@ -32,6 +32,7 @@ class_name entityData
 @export var waitData: Move
 
 @export_group("Temp Property")
+@export var KO: bool = false
 @export var XSoft: Array[String] = ["","",""]
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition: int = 0
 @export_enum("Fire","Water","Elec","Neutral") var TempElement = element

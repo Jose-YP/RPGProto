@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://dayy6sakl1jwx"]
+[gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://dayy6sakl1jwx"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
 [ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="4_iqbw6"]
+[ext_resource type="Resource" uid="uid://cm7guxbx8nbyw" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="5_0t6nh"]
 [ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="5_nkxyx"]
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/Overdrive.tres" id="6_a6uk1"]
 [ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
@@ -35,9 +36,11 @@ skillData = [ExtResource("6_a6uk1"), ExtResource("7_kj7iu"), ExtResource("10_b0n
 itemData = {
 ExtResource("4_52qji"): 3,
 ExtResource("4_iqbw6"): 2,
-ExtResource("5_nkxyx"): 2
+ExtResource("5_nkxyx"): 2,
+ExtResource("5_0t6nh"): 1
 }
 waitData = ExtResource("12_3x2es")
+KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

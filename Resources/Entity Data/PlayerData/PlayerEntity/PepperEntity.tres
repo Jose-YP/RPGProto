@@ -1,24 +1,24 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://27w6xpavu67e"]
 
-[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_5fnqg"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_lrusg"]
-[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_mj2xn"]
-[ext_resource type="Resource" uid="uid://bp3hni787i2io" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="3_a821f"]
-[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="3_u7vtt"]
-[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="4_4kg4v"]
-[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="4_s74kn"]
-[ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_ksymp"]
-[ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="5_sd4c7"]
-[ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_s0v14"]
-[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres" id="11_bnayv"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_pkfdm"]
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f45nv"]
+[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_u7v5h"]
+[ext_resource type="Resource" uid="uid://bp3hni787i2io" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="3_juvv8"]
+[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="4_iy6dd"]
+[ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_bcwvy"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="6_hh3x3"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="7_d3ke1"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="8_gspn8"]
+[ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Scapegoat.tres" id="9_pxw3c"]
+[ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Veritate.tres" id="10_ijdmo"]
+[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres" id="11_enolg"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_mtms2"]
 
 [resource]
-script = ExtResource("1_lrusg")
+script = ExtResource("6_hh3x3")
 level = 5
 name = "Pepper"
 species = "Andromeda"
-specificData = ExtResource("11_bnayv")
+specificData = ExtResource("11_enolg")
 MaxHP = 125
 MaxTP = 90
 strength = 2
@@ -31,15 +31,15 @@ element = "Fire"
 Weakness = 0
 Resist = 32
 phyElement = "Pierce"
-attackData = ExtResource("1_5fnqg")
-skillData = [ExtResource("3_u7vtt"), ExtResource("4_4kg4v"), ExtResource("5_sd4c7"), ExtResource("10_s0v14")]
+attackData = ExtResource("1_f45nv")
+skillData = [ExtResource("7_d3ke1"), ExtResource("8_gspn8"), ExtResource("9_pxw3c"), ExtResource("10_ijdmo")]
 itemData = {
-ExtResource("2_mj2xn"): 3,
-ExtResource("3_a821f"): 1,
-ExtResource("4_s74kn"): 10,
-ExtResource("5_ksymp"): 1
+ExtResource("2_u7v5h"): 3,
+ExtResource("3_juvv8"): 1,
+ExtResource("4_iy6dd"): 10,
+ExtResource("5_bcwvy"): 1
 }
-waitData = ExtResource("12_pkfdm")
+waitData = ExtResource("12_mtms2")
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

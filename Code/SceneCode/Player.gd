@@ -20,6 +20,7 @@ signal cancel
 
 #Current values only a player would have
 var currentLP: int
+var playerNum: int
 var currentMenu: Array
 var skills: Array = []
 var tactics: Array = []

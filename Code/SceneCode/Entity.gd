@@ -234,6 +234,9 @@ func healAilment(move, receiver):
 		
 		receiver.XSoftDisplay()
 
+func healKO(receiver):
+	receiver.KO = false
+
 func applyNegativeAilment(move,receiver,user,preWin = false):
 	if move.BaseAilment > 200:
 		preWin = true

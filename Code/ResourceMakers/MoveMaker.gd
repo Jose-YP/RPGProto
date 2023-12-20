@@ -6,7 +6,7 @@ class_name Move
 @export var description: String = "Basic Attack"
 @export var TPCost: int = 50
 @export_enum("Enemy","Ally","Both") var Which = "Enemy"
-@export_enum("Single","Group","Self","All","Random","None") var Target = "Single"
+@export_enum("Single","Group","Self","All","Random","KO","None") var Target = "Single"
 @export_enum("Fire","Water","Elec","Light","Aurora","Comet","Neutral","Aether") var element: String = "Neutral"
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement = "Neutral"
 @export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property = 1

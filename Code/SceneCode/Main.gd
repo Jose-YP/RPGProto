@@ -35,6 +35,8 @@ var everyone: Array = []
 var overdriveHold: Array = []
 var targetArray: Array = []
 var targetArrayGroup: Array = []
+var deadPlayers: Array = []
+var deadEnemies: Array = []
 var waiting: bool = false
 var overdriveTurn: bool = false
 var finished: bool = false
@@ -57,6 +59,7 @@ enum targetTypes {
 	RANDOM,
 	TARGETTED,
 	REVIVE,
+	KO,
 	NONE
 }
 enum whichTypes {
@@ -75,6 +78,7 @@ func _ready(): #Assign current team according to starting bool
 		var pNew = playerScene.instantiate()
 		pNew.data = Globals.current_player_entities[k].duplicate()
 		pNew.position = playerPositions[k].position
+		pNew.playerNum = k
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
@@ -110,7 +114,7 @@ func _ready(): #Assign current team according to starting bool
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		enemyAction = team[i].chooseMove(enemyTP)
+		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 	
 	everyone = playerOrder + enemyOrder
 	$Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
@@ -256,6 +260,8 @@ func findTarget(useMove):
 			returnTarget = targetTypes.ALL
 		"Random":
 			returnTarget = targetTypes.RANDOM
+		"KO":
+			returnTarget = targetTypes.KO
 		"None":
 			returnTarget = targetTypes.NONE
 	
@@ -308,7 +314,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 		
 		targetTypes.GROUP:
 			targetArrayGroup = []
-			if whichTypes.BOTH:
+			if which == whichTypes.BOTH:
 				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
 			else:
 				targetArrayGroup = establishGroups(targetArray)
@@ -321,7 +327,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 			else:
 				waiting = true
 				targetArrayGroup = []
-				establishGroups(targetArray)
+				targetArrayGroup = establishGroups(targetArray)
 				groupIndex = team[i].GroupSelect(targetArrayGroup,enemyAction)
 				
 				EfinishSelecting(enemyAction)
@@ -350,6 +356,16 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 					PAllSelect(targetArray)
 			else:
 				waiting = true
+				EfinishSelecting(enemyAction)
+		
+		targetTypes.KO:
+			if playerTurn:
+				if Globals.attacking:
+					targetArray = deadPlayers
+					PSingleSelect(targetArray)
+			else:
+				waiting = true
+				targetArray = deadEnemies
 				EfinishSelecting(enemyAction)
 		
 		targetTypes.TARGETTED:
@@ -642,6 +658,17 @@ func offense(move,targetting,user):
 
 func healing(move,targetting,user):
 	targetting.selected.hide()
+	
+	if move.revive:
+		targetting.healKO(targetting)
+		if targetting.has_node("CanvasLayer"):
+			if playerOrder.size() != 1 or targetting.playerNum == 0:
+				playerOrder.insert(targetting.playerNum,targetting)
+			else:
+				playerOrder.append(targetting)
+		else:
+			pass
+	
 	if move.healing != 0:
 		targetting.currentHP += user.healHP(move, targetting)
 		if targetting.currentHP >= targetting.data.MaxHP:
@@ -763,7 +790,7 @@ func next_entity():
 				team[i].firstButton.grab_focus()
 				team[i].selectedAgain.emit()
 			else:
-				enemyAction = team[i].chooseMove(enemyTP)
+				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 		
@@ -790,7 +817,7 @@ func overdriveTurnManager():
 				team[i].menu.show()
 				team[i].firstButton.grab_focus()
 			else:
-				enemyAction = team[i].chooseMove(enemyTP)
+				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 
@@ -820,7 +847,7 @@ func switchPhase():
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		enemyAction = enemyOrder[0].chooseMove(enemyTP)
+		enemyAction = enemyOrder[0].chooseMove(enemyTP,playerOrder,enemyOrder)
 		
 		enemyTP += int(float(enemyMaxTP) *.5)
 		var TPtween = $EnemyTP.create_tween()#TP management must be handled here
@@ -935,13 +962,17 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 	#Deal with them and their side's array accordingly
 	for defeatedPlayer in defeatedPlayers:
 		playerOrder.erase(defeatedPlayer)
+		defeatedPlayer.data.KO = true
+		deadPlayers.append(defeatedPlayer)
 		defeatedPlayer.modulate = Color(454545)
 		initializeTP(true)
 		TPChange()
 	
 	for defeatedEnemy in defeatedEnemies:
 		enemyOrder.erase(defeatedEnemy)
-		if defeatedEnemy.enemyData.Boss:
+		if defeatedEnemy.enemyData.Revivable:
+			defeatedEnemy.data.KO = true
+			deadEnemies.append(defeatedEnemy)
 			defeatedEnemy.modulate = Color(454545)
 		else:
 			defeatedEnemy.queue_free()

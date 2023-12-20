@@ -13,9 +13,6 @@ var moveset: Array = []
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
-#func _init():
-#	pass
-
 func _ready():
 	moreReady()
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
@@ -26,14 +23,12 @@ func _ready():
 		"Random":
 			enemyAI = preload("res://Code/EnemyAI/EnemyRandom.gd")
 		"Pick Off":
-			pass
-			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
+			enemyAI = preload("res://Code/EnemyAI/EnemyPickOff.gd")
 		"Support":
 			pass
 			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
 		"Debuff":
-			pass
-			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
+			enemyAI = preload("res://Code/EnemyAI/EnemyDebuff.gd")
 	
 	aiInstance = enemyAI.new()
 	makeDesc()
@@ -49,7 +44,7 @@ func _process(_delta):
 #-----------------------------------------
 #ENEMYAI
 #-----------------------------------------
-func chooseMove(TP):
+func chooseMove(TP,allies,opposing):
 	var move
 	var allowed = allowedMoveset(TP)
 	
@@ -59,12 +54,12 @@ func chooseMove(TP):
 			if move is Item:
 				move = move.attackData
 			return move
-		"Pick Off":
+		"Pick Off": #This Ai should KILL
 			pass
-		"Support":
+		"Support": #This Ai should prioritize healing
 			pass
-		"Debuff":
-			pass
+		"Debuff": #This Ai should prioritize buffing moves
+			move = aiInstance.ShouldDebuff(allowed,allies,opposing)
 		_:
 			pass
 

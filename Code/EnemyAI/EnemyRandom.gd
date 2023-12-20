@@ -1,6 +1,5 @@
 extends Node
 
-
 func RandomMove(moveset):
 	var index = randi()%moveset.size()
 	return moveset[index]

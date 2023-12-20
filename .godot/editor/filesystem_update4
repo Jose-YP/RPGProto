@@ -1,4 +1,4 @@
-res://Scene/MainMenu.tscn
+res://Scene/enemy.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -7,26 +7,28 @@ res://Themes/HasSingle/Pannel.tres
 res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://BasicAttack.tres
-res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
-res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
 res://Resources/Move Data/Player Moves/StarMissiles.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
-res://Resources/Move Data/Player Moves/Overdrive.tres
+res://Resources/Move Data/Entity Moves/Overdrive.tres
 res://Resources/Move Data/Player Moves/Refresh.tres
 res://Resources/Move Data/Player Moves/Crash.tres
 res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
-res://Resources/Move Data/Player Moves/Burst.tres
+res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres
 res://Resources/Item Data/ItemSpecifics/WhimBerry.tres
 res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
+res://Resources/Item Data/ItemMoves/TPItemMove.tres
+res://Resources/Item Data/ItemSpecifics/TPItem.tres
 res://Resources/Move Data/Player Moves/SwitchGear.tres
 res://Resources/Move Data/Player Moves/FullStream.tres
 res://Resources/Move Data/Player Moves/DragonScrew.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres
+res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
+res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
 res://Resources/Move Data/Player Moves/RendingArm.tres
 res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
@@ -38,47 +40,31 @@ res://Resources/Move Data/Entity Moves/Charge.tres
 res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
 res://Resources/Item Data/ItemSpecifics/Softy!.tres
-res://Resources/Move Data/Entity Moves/Poison.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
+res://Resources/Move Data/Entity Moves/Poison.tres
 res://Resources/Move Data/Player Moves/Scapegoat.tres
-res://BasicAttackBallistic.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/ElecEntity.tres
+res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Move Data/Entity Moves/Heal.tres
 res://Resources/Move Data/Enemy Moves/Seiqa.tres
-res://Resources/Entity Data/placeholder.tres
-res://Scene/enemy.tscn
-res://Code/SceneCode/MainMenu.gd
-res://Code/Globals/Globals.gd
-res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
-res://Resources/Entity Data/PlayerData/PlayerEntity/FireEntity.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/SecondFire.tres
-res://Resources/Entity Data/PlayerData/PlayerEntity/SecondWater.tres
-res://Resources/Move Data/Entity Moves/Overdrive.tres
-res://Resources/Move Data/Enemy Moves/Black Hole.tres
-res://Resources/Item Data/ItemSpecifics/Endurian.tres
-res://Resources/Item Data/ItemMoves/EndurianMove.tres
-res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres
-res://Resources/Move Data/Enemy Moves/WishingStar.tres
-res://Resources/Move Data/Enemy Moves/FiringSquad.tres
-res://Resources/Move Data/Enemy Moves/Insult.tres
-res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
-res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
-res://Resources/Move Data/Enemy Moves/dielol.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
-res://NewMain.tscn
-res://Scene/NewMain.tscn
+res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
+res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/TestEntity.tres
-res://Code/SceneCode/enemy.gd
-res://Code/SceneCode/Player.gd
-res://Code/Globals/MiscFunctions.gd
+res://Code/EnemyAI/EnemyAIGlobal.gd
+res://Code/EnemyAI/EnemyDebuff.gd
+res://Scene/MainMenu.tscn
+res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
+res://Resources/Item Data/ItemMoves/IdolMove.tres
+res://Resources/Item Data/ItemSpecifics/Idol.tres
 res://Code/SceneCode/Entity.gd
+res://Code/ResourceMakers/EntityMaker.gd
+res://Code/Globals/Globals.gd
+res://Code/ResourceMakers/MoveMaker.gd
+res://Code/SceneCode/Player.gd
 res://Scene/Main.tscn
-res://Scene/Player.tscn
-res://Code/Globals/HelperFunctions.gd
+res://Code/EnemyAI/EnemyRandom.gd
