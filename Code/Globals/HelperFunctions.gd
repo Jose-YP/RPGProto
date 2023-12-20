@@ -122,6 +122,7 @@ func NullorAppend(list,value,XSoft=true,maxSize=3):
 	
 	if XSoft:
 		if list.size() < maxSize:
+			print("list")
 			list.append(value)
 			return list
 	

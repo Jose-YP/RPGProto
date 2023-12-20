@@ -312,6 +312,7 @@ func buffElementChange(move,receiver,user):
 			receiver.data.TempElement = elementMatchup(false,receiver.data.TempElement)
 		"UWin":
 			receiver.data.TempElement = elementMatchup(true,user.data.TempElement)
+			
 		"ULose":
 			receiver.data.TempElement = elementMatchup(false,user.data.TempElement)
 		_:
@@ -321,6 +322,7 @@ func buffElementChange(move,receiver,user):
 		feedback = str("Element unchanged")
 	else:
 		feedback = str(prev," changed to ",receiver.data.TempElement)
+
 #-----------------------------------------
 #MOVE HELPERS
 #-----------------------------------------
@@ -531,7 +533,6 @@ func checkCondition(seeking,receiver):
 		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
 			found = true
 			break
-
 	return found
 
 func checkXSoft(seeking,receiver):
@@ -643,6 +644,10 @@ func tweenDamage(targetting,tweenTiming,infomation):
 	var prevValue = HPBar.value
 	targetting.displayQuick(infomation)
 	
+	if checkCondition("Endure",targetting):
+		targetting.currentHP = 1
+		removeCondition("Endure",targetting)
+	
 	targetting.HPtext.text = str("HP: ",targetting.currentHP)
 	await tween.tween_property(targetting.HPBar, "value",
 	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(4).set_ease(1)
@@ -654,6 +659,9 @@ func tweenDamage(targetting,tweenTiming,infomation):
 
 func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
+	if ammount > .6:
+		ammount = .6
+	
 	var textStore = str(100 * ammount,"%")
 	if int(ammount) == 0:
 		type.hide()

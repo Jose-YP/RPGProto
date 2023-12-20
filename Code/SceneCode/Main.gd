@@ -73,13 +73,13 @@ func _ready(): #Assign current team according to starting bool
 	
 	for k in range(Globals.current_player_entities.size()): #Add player scenes as necessary
 		var pNew = playerScene.instantiate()
-		pNew.data = Globals.current_player_entities[k]
+		pNew.data = Globals.current_player_entities[k].duplicate()
 		pNew.position = playerPositions[k].position
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
 		var eNew = enemyScene.instantiate()
-		eNew.data = Globals.current_enemy_entities[k]
+		eNew.data = Globals.current_enemy_entities[k].duplicate()
 		eNew.position = enemyPosition[k].position
 		$Enemies.add_child(eNew)
 	
@@ -294,7 +294,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 			targetArray = TeamSide
 		whichTypes.BOTH:
 			targetArray = TeamSide + OpposingSide
-			
+	
 	targetArray = checkForTargetted(targetArray)
 	match target:
 		targetTypes.SINGLE:
@@ -308,7 +308,11 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 		
 		targetTypes.GROUP:
 			targetArrayGroup = []
-			establishGroups(targetArray)
+			if whichTypes.BOTH:
+				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
+			else:
+				targetArrayGroup = establishGroups(targetArray)
+			
 			if playerTurn:
 				if Globals.attacking:
 					for k in targetArrayGroup[groupIndex]:
@@ -357,14 +361,20 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 				EfinishSelecting(enemyAction)
 
 func establishGroups(targetting):
+	var returnGroup: Array = []
+	
 	for element in Globals.elementGroups:
 		var tempChecking: Array = []
 		for k in range(targetting.size()):
+			
 			if targetting[k].data.TempElement == element:
 				tempChecking.append(targetting[k])
+		
 		if tempChecking.size() != 0:
-			targetArrayGroup.append(tempChecking)
+			returnGroup.append(tempChecking)
+	
 	finished = true
+	return returnGroup
 
 #-----------------------------------------
 #PLAYERSELECTING // UI CONTROLS
@@ -412,7 +422,6 @@ func PSingleSelect(targetting):
 			if targetArray[index].has_node("CanvasLayer"):
 				if index > (enemySize - 1):
 					index += enemySize
-					print(targetArray[index])
 					if targetArray[index].has_node("CanvasLayer"): #just in case
 						index += 1
 				else:
@@ -435,13 +444,16 @@ func PGroupSelect(targetting):
 		if groupIndex < 0:
 			groupIndex = targetting.size() - 1
 		print(targetArrayGroup[groupIndex])
+	
 	if Input.is_action_just_pressed("Right"):
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
 		groupIndex += 1
+		
 		if groupIndex > (targetting.size() - 1):
 			groupIndex = 0
-	
+		print(targetArrayGroup[groupIndex])
+
 	for k in targetArrayGroup[groupIndex]:
 		PConfirmSelect(k)
 
@@ -494,7 +506,6 @@ func _on_move_selected(useMove):
 	TPChange()
 	
 	team[i].menu.hide() #Don't let the player mash buttons until attack is over
-	print("Attack")
 	await action(useMove)
 	Globals.attacking = false
 	if not scanning and not fightOver:
@@ -510,7 +521,7 @@ func action(useMove):
 		targetTypes.GROUP:
 			var groupSize = targetArrayGroup[groupIndex].size()
 			var offset = 0
-			if groupSize == 1:
+			if groupSize == 1 and useMove.nae != "Switch Gear":
 				hits *= 2
 			
 			for k in range(groupSize):
@@ -519,9 +530,6 @@ func action(useMove):
 					establishGroups(targetArray)
 					offset += 1
 					targetDied = false
-				print(targetArrayGroup)
-				print("Group Index: ",groupIndex,"Group Size: ", groupSize, "k:", k, "Offset: ", offset)
-				print(targetArrayGroup[groupIndex][k - offset].name)
 				
 				await useAction(useMove,targetArrayGroup[groupIndex][k - offset],team[i],hits)
 			groupIndex = 0
@@ -563,7 +571,7 @@ func useAction(useMove, targetting, user, hits):
 			times += 1
 		
 		if user.midTurnAilments(user.data.Ailment, Globals.currentAura):
-			checkProperties(useMove,targetting,user)
+			checkProperties(useMove,targetting,user,times)
 		
 		times += 1
 		await get_tree().create_timer(.5).timeout
@@ -573,13 +581,13 @@ func useActionRandom(useMove, targetting, user, hits):
 	while times < hits:
 		if useMove.property & 1 and useMove.property & 2:
 			times += 1
-		checkProperties(useMove,targetting,user)
+		checkProperties(useMove,targetting,user,times)
 		times += 1
 		await get_tree().create_timer(1).timeout
 
-func checkProperties(move,targetting,user):
+func checkProperties(move,targetting,user,hitNum):
 	if move.property & 256: #Misc first allows cetain changes before attacks
-		determineFunction(move,targetting,user)
+		determineFunction(move,targetting,user,hitNum)
 	if move.property & 1:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
@@ -697,7 +705,7 @@ func ailment(move,targetting,user):
 	else:
 		user.applyXSoft(move,targetting,user)
 
-func determineFunction(move,reciever,user):
+func determineFunction(move,reciever,user,hitNum):
 	match move.name:
 		"Crash":
 			if playerTurn:
@@ -712,7 +720,8 @@ func determineFunction(move,reciever,user):
 			reciever.ScanBox.show()
 			reciever.HPBar.show()
 		"Gatling Volley":
-			user.buffElementChange(move,reciever,user)
+			if hitNum == 0:
+				user.buffElementChange(move,user,reciever)
 		"Whim Berry":
 			MiscFunctions.miscFunWhimBerry(reciever)
 
@@ -996,4 +1005,4 @@ func _on_post_phase_timer_timeout():
 	switchPhase()
 
 func _on_button_pressed():
-	print("Press!")
+	get_tree().change_scene_to_packed(mainMenuScene)

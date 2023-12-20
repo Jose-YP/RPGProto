@@ -19,7 +19,7 @@ func miscFunWhimBerry(reciever):
 		reciever.currentLP = reciever.playerData.MaxLP
 	
 	var tween = reciever.LPBar.create_tween() #Tween LP change
-	reciever.displayQuick("Healed ", healed, "LP!")
+	reciever.displayQuick(str("Healed ", healed, "LP!"))
 	
 	reciever.HPtext.text = str("HP: ",reciever.currentHP)
 	await tween.tween_property(reciever.HPBar, "value",
