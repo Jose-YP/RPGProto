@@ -1,4 +1,4 @@
-res://Scene/Main.tscn
+res://Scene/MainMenu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -18,6 +18,7 @@ res://Resources/Move Data/Entity Moves/Overdrive.tres
 res://Resources/Move Data/Player Moves/Refresh.tres
 res://Resources/Move Data/Player Moves/Crash.tres
 res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
+res://Resources/Move Data/Player Moves/Boost.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres
 res://Resources/Item Data/ItemSpecifics/WhimBerry.tres
@@ -56,13 +57,9 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://default_bus_layout.tres
-res://Scene/PlayerMenu.tscn
-res://Code/SceneCode/PlayerMenu.gd
-res://Scene/MainMenu.tscn
+res://Scene/Main.tscn
 res://Scene/enemy.tscn
-res://Code/EnemyAI/EnemyAIGlobal.gd
-res://Code/SceneCode/MainMenu.gd
-res://Code/EnemyAI/EnemyDebuff.gd
+res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Resources/Move Data/Player Moves/Boost.tres
+res://Code/Globals/MiscFunctions.gd
+res://Code/SceneCode/Entity.gd

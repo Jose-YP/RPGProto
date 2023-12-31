@@ -11,6 +11,7 @@ extends Node2D
 @onready var AuraLabel = $Label
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 @onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
+@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,$MoveSFX/Elements/NeutralBal]
 @onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
 @onready var ReactionSFX: Array[AudioStreamPlayer] = [$MoveSFX/Reaction/Crit,$MoveSFX/Reaction/AilHit,$MoveSFX/Reaction/EleWeak,$MoveSFX/Reaction/PhyWeak,$MoveSFX/Reaction/Resist]
@@ -109,6 +110,11 @@ func _ready(): #Assign current team according to starting bool
 		enemy.currentHP = enemy.data.MaxHP
 		enemyMaxTP += enemy.data.MaxTP
 		enemyOrder.append(enemy)
+	
+	everyone = playerOrder + enemyOrder
+	
+	for entity in everyone:
+		entity.connect("ailmentSound",playAilment)
 	
 	actionNum = 3
 	playerTP = playerMaxTP
@@ -465,6 +471,7 @@ func PSingleSelect(targetting):
 	PConfirmSelect(targetArray[index])
 
 func PGroupSelect(targetting):
+	#print(targetArrayGroup[groupIndex])
 	if Input.is_action_just_pressed("Left"):
 		SFX[2].play()
 		for k in targetArrayGroup[groupIndex]:
@@ -483,7 +490,6 @@ func PGroupSelect(targetting):
 		
 		if groupIndex > (targetting.size() - 1):
 			groupIndex = 0
-		print(targetArrayGroup[groupIndex])
 
 	for k in targetArrayGroup[groupIndex]:
 		PConfirmSelect(k)
@@ -552,16 +558,21 @@ func action(useMove):
 	
 	match target:
 		targetTypes.GROUP:
+			print(targetArray)
+			print(targetArrayGroup)
+			#var usedArray
+			
 			var groupSize = targetArrayGroup[groupIndex].size()
 			var offset = 0
-			if groupSize == 1 and useMove.nae != "Switch Gear":
+			if groupSize == 1 and useMove.name != "Switch Gear":
 				hits *= 2
 			
 			for k in range(groupSize):
 				if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
-					targetArrayGroup = [] #Resestablish Groups
-					establishGroups(targetArray)
+					targetArrayGroup = [establishGroups(targetArray)] #Resestablish Groups
 					offset += 1
+					print(targetArray)
+					print(k - offset)
 					targetDied = false
 				
 				await useAction(useMove,targetArrayGroup[groupIndex][k - offset],team[i],hits)
@@ -624,24 +635,30 @@ func checkProperties(move,targetting,user,hitNum):
 	if move.property & 1:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
+		playAttackMove(move,"Physical")
 		await get_tree().create_timer(.4).timeout #Damage deserves a little more time to be seen
 	if move.property & 2:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
+		playAttackMove(move,"Ballistic")
 		await get_tree().create_timer(.4).timeout
 	if move.property & 4:
 		offense(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
+		playAttackMove(move,"BOMB")
 		await get_tree().create_timer(.4).timeout
 	if move.property & 8:
 		buffing(move,targetting,user)
 	if move.property & 16:
 		healing(move,targetting,user)
 		targetting.tweenDamage(targetting,tweenTiming,user.feedback)
+		ETCSFX[0].play()
 	if move.property & 32:
 		aura(move)
+		ETCSFX[1].play()
 	if move.property & 64:
 		summon(move,user)
+		ETCSFX[2].play()
 	if move.property & 128:
 		ailment(move,targetting,user)
 	
@@ -1071,14 +1088,24 @@ func playButton(value):
 func playMenu():
 	SFX[2].play()
 
-func playAttackMove(move):
+func playAttackMove(move,property):
 	var playEffect = null
-	for i in range(3,6):
-		if Globals.XSoftTypes[i] == move.phyElement:
-			playEffect = ElementSFX[i]
-	for i in range(0,3):
-		if Globals.XSoftTypes[i] == move.element:
-			playEffect = ElementSFX[i]
+	for k in range(3,6):
+		if Globals.XSoftTypes[k] == move.phyElement:
+			playEffect = ElementSFX[k]
+	if playEffect == null:
+		for k in range(0,3):
+			if Globals.XSoftTypes[k] == move.element:
+				playEffect = ElementSFX[k]
+	
+	if playEffect == null:
+		match property:
+			"Physical":
+				playEffect = NeutralSFX[0]
+			"Ballistic":
+				playEffect = NeutralSFX[1]
+			_:
+				pass
 	
 	playEffect.play()
 
@@ -1087,3 +1114,9 @@ func playBuffStat(move):
 		BuffSFX[0].play()
 	elif move.BoostAmmount < 0:
 		BuffSFX[1].play()
+
+func playAilment(type):
+	for k in range(Globals.AilmentTypes.size()):
+		if type == Globals.AilmentTypes[i]:
+			AilmentSFX[i].play()
+			break

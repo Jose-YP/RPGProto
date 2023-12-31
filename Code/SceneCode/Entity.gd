@@ -16,6 +16,8 @@ extends Node2D
 @onready var attacks: Array = [data.attackData]
 @onready var items: Array = []
 
+signal ailmentSound(type)
+
 var currentHP: int
 var targetCount: int
 var chargeUsed: bool = false
@@ -244,6 +246,8 @@ func applyNegativeAilment(move,receiver,user,preWin = false):
 	#If the ailment calc returns true then apply ailment to receiver
 	if ailment_calc(move,receiver,user) or preWin:
 		#Raise number first so Ailment doesn't instantly become Healthy from process
+		ailmentSound.emit(move.Ailment)
+		
 		if receiver.data.AilmentNum < 3:
 			receiver.data.AilmentNum += move.AilmentAmmount
 		
@@ -252,6 +256,7 @@ func applyNegativeAilment(move,receiver,user,preWin = false):
 
 func applyPositiveAilment(move,receiver):
 	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Nonmental":
+		ailmentSound.emit(move.Ailment)
 		if move.Ailment == "Protected":
 			receiver.data.AilmentNum += 1
 			receiver.data.Ailment = "Protected"
@@ -488,7 +493,7 @@ func ailment_calc(move,user,receiver):#Ailment chance is like crit chance except
 		chance = 0
 	
 	if randi() % 100 <= chance:
-		ailment = true 
+		ailment = true
 	
 	return ailment
 
