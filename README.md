@@ -11,15 +11,13 @@ ______
 ______
 TODO
 ______
-*Implement Lower TP Aura||
-*Main Menu ||
-*Change enemies before battle ||
+*Fix/Balance other enemies
+*Implement other EnemyAI types(So far only random) ||
 ______
 LOFTY TODOS
 ______
-*Implement other EnemyAI types(So far only random) ||
-*Implement Summon moves ||
-*4th character and 6th enemy
+*Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
+*Visuals of any kind
 
 ______
 STATS
@@ -128,3 +126,4 @@ but being on the main character who not only game overs upon death but is the on
 it's super fun and risky to use and I love it
 So here it is in the prototype
 
+  
