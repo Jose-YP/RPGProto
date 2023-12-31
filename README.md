@@ -13,12 +13,12 @@ TODO
 ______
 *Fix/Balance other enemies
 *Implement other EnemyAI types(So far only random) ||
+*Adding SFX
 ______
 LOFTY TODOS
 ______
 *Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
 *Visuals of any kind
-
 ______
 STATS
 _____
@@ -125,5 +125,9 @@ Despite the decently high HP Cost it's a super strong move
 but being on the main character who not only game overs upon death but is the only healer for half the game
 it's super fun and risky to use and I love it
 So here it is in the prototype
+
+______
+THINGS I DON'T OWN
+______
 
   
