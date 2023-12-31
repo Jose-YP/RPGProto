@@ -14,7 +14,11 @@ config/name="GitHub RPG Prototype"
 config/tags=PackedStringArray("made", "reference", "test")
 run/main_scene="res://Scene/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+config/icon="res://Art/Icons/AilmentIcons/Cursed.png"
+
+[audio]
+
+buses/default_bus_layout="res://Audio/Buses/default_bus_layout.tres"
 
 [autoload]
 

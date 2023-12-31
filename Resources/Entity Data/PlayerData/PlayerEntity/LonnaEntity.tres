@@ -40,6 +40,7 @@ ExtResource("4_ld73l"): 1,
 ExtResource("5_mdyqu"): 2
 }
 waitData = ExtResource("11_dj6mo")
+KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

@@ -32,6 +32,7 @@ itemData = {
 ExtResource("2_luepq"): 1
 }
 waitData = ExtResource("7_g2pgv")
+KO = false
 XSoft = Array[String]([])
 Condition = 0
 TempElement = null

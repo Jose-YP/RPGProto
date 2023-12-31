@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://da8iornffdc3c" path="res://Themes/ButtonStyle/Hover.tres" id="2_mdkd6"]
 [ext_resource type="StyleBox" uid="uid://csn7gcgx0jah7" path="res://Themes/ButtonStyle/Normal.tres" id="3_fq2xi"]
 [ext_resource type="StyleBox" uid="uid://dqp2it5itff85" path="res://Themes/ButtonStyle/Pressed.tres" id="4_duwx5"]
-[ext_resource type="FontFile" uid="uid://fvv2fagfsd1a" path="res://Assets/AdobeClean-Bold.ttf" id="5_o83p1"]
+[ext_resource type="FontFile" uid="uid://fvv2fagfsd1a" path="res://Themes/AdobeClean-Bold.ttf" id="5_o83p1"]
 [ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="6_e5cc2"]
 [ext_resource type="StyleBox" uid="uid://o6ph7ekev63x" path="res://Themes/HasSingle/TabContainer.tres" id="7_vf7pj"]
 

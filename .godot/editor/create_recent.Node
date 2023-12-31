@@ -1,3 +1,5 @@
+AudioStreamPlayer
+Node
 Marker2D
 Control
 RichTextLabel
@@ -19,7 +21,6 @@ Timer
 TextureProgressBar
 Panel
 TextEdit
-Node
 AnimationPlayer
 Node2D
 CanvasLayer

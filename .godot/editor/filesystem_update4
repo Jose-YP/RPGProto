@@ -1,4 +1,4 @@
-res://Scene/enemy.tscn
+res://Scene/Main.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -11,6 +11,7 @@ res://Resources/Move Data/Player Moves/StarMissiles.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
+res://Resources/Item Data/ItemMoves/IdolMove.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
 res://Resources/Move Data/Entity Moves/Overdrive.tres
@@ -45,6 +46,7 @@ res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Move Data/Entity Moves/Poison.tres
 res://Resources/Move Data/Player Moves/Scapegoat.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Move Data/Entity Moves/Heal.tres
@@ -54,17 +56,13 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/EnemyAI/EnemyAIGlobal.gd
-res://Code/EnemyAI/EnemyDebuff.gd
+res://default_bus_layout.tres
+res://Scene/PlayerMenu.tscn
+res://Code/SceneCode/PlayerMenu.gd
 res://Scene/MainMenu.tscn
-res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
-res://Resources/Item Data/ItemMoves/IdolMove.tres
-res://Resources/Item Data/ItemSpecifics/Idol.tres
-res://Code/SceneCode/Entity.gd
-res://Code/ResourceMakers/EntityMaker.gd
-res://Code/Globals/Globals.gd
-res://Code/ResourceMakers/MoveMaker.gd
-res://Code/SceneCode/Player.gd
-res://Scene/Main.tscn
-res://Code/EnemyAI/EnemyRandom.gd
+res://Scene/enemy.tscn
+res://Code/EnemyAI/EnemyAIGlobal.gd
+res://Code/SceneCode/MainMenu.gd
+res://Code/EnemyAI/EnemyDebuff.gd
+res://Scene/Player.tscn
+res://Resources/Move Data/Player Moves/Boost.tres

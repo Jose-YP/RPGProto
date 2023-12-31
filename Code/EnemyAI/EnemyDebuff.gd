@@ -1,9 +1,9 @@
 extends Node
 
 func shouldDebuff(moveset,allies,opposing):
-	var index = randi()%moveset.size()
+	#var index = randi()%moveset.size()
 	var debuffs = getDebuffs(moveset)
-	var usableDebuffs: Array
+	var usableDebuffs: Array = []
 	var usableBuffs: Array = shouldBuff(moveset, allies)
 	var usableMoves: Array = shouldMove(moveset)
 	var usingMove
@@ -34,7 +34,7 @@ func shouldDebuff(moveset,allies,opposing):
 
 func shouldBuff(moveset,allies):
 	var buffs = getBuffs(moveset)
-	var usableBuffs: Array
+	var usableBuffs: Array = []
 	
 	for ally in allies:
 		var stats = [ally.data.attackBoost, ally.data.defenseBoost, ally.data.speedBoost, ally.data.luckBoost]

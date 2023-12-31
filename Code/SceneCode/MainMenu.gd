@@ -12,6 +12,7 @@ extends Node2D
 @onready var enemiesShown: RichTextLabel = $EnemyLineup/RichTextLabel
 @onready var enemyElements: Array = [$EnemyElements/EnemyElement,$EnemyElements/EnemyElement2,$EnemyElements/EnemyElement3]
 @onready var enemyPhyEle: Array = [$EnemyElements/EnemyPhyElement,$EnemyElements/EnemyPhyElement2,$EnemyElements/EnemyPhyElement3]
+@onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
 var Battle: PackedScene = load("res://Scene/Main.tscn")
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
@@ -21,6 +22,9 @@ var enemies: Array
 func _ready():
 	for i in range(3):
 		playerDescriptions(playerStats[i],i)
+	for menu in (playerChoices + enemyChoices):
+		menu.connect("pressed",_on_menu_button_pressed)
+	
 	makeEnemyLineup()
 
 func playerDescriptions(description,i):
@@ -99,24 +103,29 @@ func getElements(entity,ElementTab,PhyEleTab):
 			PhyEleTab.current_tab = k
 
 func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames second is for playerChoices
+	SFX[0].play()
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = playerLevels[infoIndex].value
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 
 func levelChange(level,infoIndex):
+	SFX[2].play()
 	playerStats[infoIndex].clear()
 	var playerIndex = playerChoices[infoIndex].selected
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 
 func enemyChoiceChanged(_index):
+	SFX[0].play()
 	makeEnemyLineup()
 
 func _on_help_button_pressed():
+	SFX[0].play()
 	$HelpMenu.show()
 
 func _on_exit_button_pressed():
+	SFX[1].play()
 	$HelpMenu.hide()
 
 func _on_fight_button_pressed():
@@ -129,3 +138,6 @@ func _on_fight_button_pressed():
 			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 	
 	get_tree().change_scene_to_packed(Battle)
+
+func _on_menu_button_pressed():
+	SFX[1].play()

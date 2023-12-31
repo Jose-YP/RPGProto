@@ -10,7 +10,9 @@ signal Skill(i)
 signal Item(i)
 signal Tactic(i)
 signal Focusing(focus,menuI,buttonI)
+signal confirm(bool)
 signal cancel
+signal move
 
 #Determines if up/down inputs should be taken 
 var selectingMenu: bool = true
@@ -43,9 +45,11 @@ func _process(_delta):
 
 func menuMove():
 	if Input.is_action_just_pressed("Left"):
+		confirm.emit(false)
 		menuIndex = 0
 		Tab.visible = false
 	if Input.is_action_just_pressed("Right"):
+		confirm.emit(true)
 		Tab.visible = true
 		if menuIndex == 0:
 			menuIndex = menuDictionary.get(fullMenu[menuIndex][buttonIndex].name)
@@ -54,6 +58,7 @@ func menuMove():
 	#Don't accept up/down if they already pressed a move button
 	if selectingMenu:
 		if Input.is_action_just_pressed("Down"):
+			move.emit()
 			if buttonIndex >= 3:
 				buttonIndex = 0
 			else:
@@ -61,6 +66,7 @@ func menuMove():
 			changed = true
 			
 		if Input.is_action_just_pressed("Up"):
+			move.emit()
 			if buttonIndex <= 0:
 				buttonIndex = 3
 			else:
@@ -88,6 +94,8 @@ func menuConfirm():
 				print("selectattackmenu")
 			print(selectingMenu)
 		
+		confirm.emit(true)
+		
 	if Input.is_action_just_pressed("Cancel"):
 		if menuIndex == 0: #Cancel selection out of the menu
 			if Globals.attacking:
@@ -102,6 +110,8 @@ func menuConfirm():
 			selectingMenu = true
 			confirmed = false
 			cancel.emit()
+		
+		confirm.emit(false)
 
 #Regular menu's buttons all have arguments to the index they should send to
 func _on_first_pressed(index):

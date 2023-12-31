@@ -15,7 +15,7 @@ func verifyMove(move,opposing,allies,PrioitizeAttack = true): #Attacks don't nee
 					should = verifyCondition(target.data,move)
 				
 			if move.property & 16:
-				should = verifyHealHP(target,move) or verifyHealAilment(target.data,move)
+				should = verifyHealHP(target) or verifyHealAilment(target.data)
 			if move.property & 32:
 				should = verifyAura(move)
 			if move.property & 64:
@@ -62,7 +62,7 @@ func verifyHealHP(target): #Check if target even needs to be healed
 		should = false
 	return should
 
-func verifyHealAilment(target,move): #Check if target even needs to have ailments healed
+func verifyHealAilment(target): #Check if target even needs to have ailments healed
 	var should
 	if target.data.AilmentNum == 0:
 		should = false
@@ -76,10 +76,10 @@ func verifyAura(move): #Check if aura isn't already up
 	
 	return should
 
-func verifySummon(target,move): #Check if an entity can even be summoned
+func verifySummon(_target,_move): #Check if an entity can even be summoned
 	pass
 
-func verifyAilment(targetData,move): #Check if target doesn't already have max Ailments
+func verifyAilment(targetData,_move): #Check if target doesn't already have max Ailments
 	var should = true
 	if targetData.AilmentNum > 2:
 		should = false

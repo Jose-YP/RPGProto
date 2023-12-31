@@ -9,6 +9,12 @@ extends Node2D
 @onready var EnemyTPText = $EnemyTP/Label
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
+@onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
+@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Basic]
+@onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
+@onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
+@onready var ReactionSFX: Array[AudioStreamPlayer] = [$MoveSFX/Reaction/Crit,$MoveSFX/Reaction/AilHit,$MoveSFX/Reaction/EleWeak,$MoveSFX/Reaction/PhyWeak,$MoveSFX/Reaction/Resist]
+@onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
 @onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
 @onready var enemyPosition = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
 @onready var enemyOrder: Array = []
@@ -96,6 +102,8 @@ func _ready(): #Assign current team according to starting bool
 		player.connect("startSelect", _on_start_select)
 		player.connect("moveSelected", _on_move_selected)
 		player.connect("cancel", _on_cancel_selected)
+		player.menu.connect("confirm",playButton)
+		player.menu.connect("move",playMenu)
 	
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		enemy.currentHP = enemy.data.MaxHP
@@ -117,8 +125,8 @@ func _ready(): #Assign current team according to starting bool
 		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 	
 	everyone = playerOrder + enemyOrder
-	$Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
-	$PostPhaseTimer.set_paused(false)
+	$Timers/Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
+	$Timers/PostPhaseTimer.set_paused(false)
 
 func movesetDisplay(player): #Format every player's menu to include the name of their moveset
 	#get the player's complete moveset
@@ -400,11 +408,13 @@ func PSingleSelect(targetting):
 	var enemySize = enemyOrder.size()
 	if which != whichTypes.BOTH:#Simple line movement
 		if Input.is_action_just_pressed("Left"):
+			SFX[2].play()
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
 				index = targetting.size() - 1
 		if Input.is_action_just_pressed("Right"):
+			SFX[2].play()
 			targetArray[index].selected.hide()
 			index += 1
 			if index > (targetting.size() - 1):
@@ -412,6 +422,7 @@ func PSingleSelect(targetting):
 	
 	if which == whichTypes.BOTH: #Moves like a Grid
 		if Input.is_action_just_pressed("Left"):
+			SFX[2].play()
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
@@ -423,6 +434,7 @@ func PSingleSelect(targetting):
 					index = 0
 		
 		if Input.is_action_just_pressed("Right"):
+			SFX[2].play()
 			targetArray[index].selected.hide()
 			index += 1
 			if index > (targetArray.size() - 1) and enemySize != 1:
@@ -434,6 +446,7 @@ func PSingleSelect(targetting):
 				index = playerSize - 1
 			
 		if Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down"):
+			SFX[2].play()
 			targetArray[index].selected.hide()
 			if targetArray[index].has_node("CanvasLayer"):
 				if index > (enemySize - 1):
@@ -453,6 +466,7 @@ func PSingleSelect(targetting):
 
 func PGroupSelect(targetting):
 	if Input.is_action_just_pressed("Left"):
+		SFX[2].play()
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
 		groupIndex -= 1
@@ -462,6 +476,7 @@ func PGroupSelect(targetting):
 		print(targetArrayGroup[groupIndex])
 	
 	if Input.is_action_just_pressed("Right"):
+		SFX[2].play()
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
 		groupIndex += 1
@@ -482,6 +497,7 @@ func PAllSelect(targetting):
 
 func stopScanning():
 	if Input.is_action_just_pressed("Accept"):
+		SFX[1].play()
 		var scanBoxTween
 		scanning = false
 		
@@ -492,6 +508,7 @@ func stopScanning():
 		next_entity()
 
 func _on_cancel_selected():
+	SFX[1].play()
 	Globals.attacking = false
 	index = 0
 	for k in range(everyone.size()):
@@ -507,7 +524,7 @@ func EfinishSelecting(useMove):
 	
 	team[i].displayMove(useMove)
 	await action(useMove)
-	$Timer.start()
+	$Timers/Timer.start()
 
 #-----------------------------------------
 #UI BUTTONS
@@ -681,15 +698,19 @@ func healing(move,targetting,user):
 func buffing(move,targetting,user):
 	if move.BoostType != 0 and move.BoostType != null:
 		user.buffStat(targetting,move.BoostType,move.BoostAmmount)
+		playBuffStat(move)
 	elif user.has_node("CanvasLayer"):
-		if user.playerData.boostStat != null:
+		if user.playerData.boostStat != null and move.BoostAmmount != 0:
 			user.buffStat(targetting,user.playerData.boostStat,move.BoostAmmount)
+			playBuffStat(move)
 	
 	if move.Condition != 0 and move.Condition != null:
 		user.buffCondition(move,targetting)
+		BuffSFX[2].play()
 	
 	if move.ElementChange != "None" and move.ElementChange != null and move.ElementChange != "":
 		user.buffElementChange(move,targetting,user)
+		BuffSFX[3].play()
 	
 	Globals.attacking = false
 	targetting.selected.hide()
@@ -824,7 +845,7 @@ func overdriveTurnManager():
 func startSwitchPhase():
 	if actionNum <= 0:
 		waiting = true
-		$PostPhaseTimer.start()
+		$Timers/PostPhaseTimer.start()
 		playerTurn = not playerTurn
 		endPhaseCheck()
 
@@ -1037,3 +1058,24 @@ func _on_post_phase_timer_timeout():
 
 func _on_button_pressed():
 	get_tree().change_scene_to_packed(mainMenuScene)
+
+#-----------------------------------------
+#AUDIO
+#-----------------------------------------
+func playButton(value):
+	if value:
+		SFX[0].play()
+	else:
+		SFX[1].play()
+
+func playMenu():
+	SFX[2].play()
+
+func playAttackMove(move):
+	pass
+
+func playBuffStat(move):
+	if move.BoostAmmount > 0:
+		BuffSFX[0].play()
+	elif move.BoostAmmount < 0:
+		BuffSFX[1].play()
