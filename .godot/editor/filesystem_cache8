@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704058882
+::res://::1704063423
 BasicAttack.tres::Resource/Move::813570649422974877::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 default_bus_layout.tres::AudioBusLayout::5738995766253824335::1704045522::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1702160677::0::1::::<><>::
-README.md::TextFile::-1::1702948677::0::1::::<><>::
+README.md::TextFile::-1::1704063326::0::1::::<><>::
 Wait.tres::Resource/Resource::2298183527291014208::1702577640::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 ::res://Art/::1704036409
 arrow.png::CompressedTexture2D::565833993136645844::1702045732::1704036397::1::::<><>::
@@ -69,10 +69,10 @@ EntityMaker.gd::GDScript::-1::1703104218::0::1::::entityData<>Resource<>::
 ItemMaker.gd::GDScript::-1::1702326193::0::1::::Item<>Resource<>::
 MoveMaker.gd::GDScript::-1::1703104218::0::1::::Move<>Resource<>::
 PlayerMaker.gd::GDScript::-1::1702781318::0::1::::Player<>Resource<>::
-::res://Code/SceneCode/::1704047368
+::res://Code/SceneCode/::1704063248
 enemy.gd::GDScript::-1::1703047135::0::1::::<>Node2D<>::
 Entity.gd::GDScript::-1::1703104218::0::1::::<>Node2D<>::
-Main.gd::GDScript::-1::1704047368::0::1::::<>Node2D<>::
+Main.gd::GDScript::-1::1704063248::0::1::::<>Node2D<>::
 MainMenu.gd::GDScript::-1::1704039251::0::1::::<>Node2D<>::
 Player.gd::GDScript::-1::1703104218::0::1::::<>Node2D<>::
 PlayerMenu.gd::GDScript::-1::1704045283::0::1::::<>Control<>::
@@ -199,7 +199,7 @@ Hariq.tres::Resource/Resource::5660866090425169513::1702736487::0::1::::<><>::re
 Heal.tres::Resource/Move::6326592694254700641::1704036396::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Overdrive.tres::Resource/Move::8185366539822056829::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Poison.tres::Resource/Move::2044303108598356622::1704036396::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-::res://Resources/Move Data/Player Moves/::1704058882
+::res://Resources/Move Data/Player Moves/::1704063248
 Boost.tres::Resource/Move::8117518103525662301::1704047295::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Crash.tres::Resource/Move::2904378205345023857::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 DragonScrew.tres::Resource/Move::1916859720755177041::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
@@ -210,16 +210,16 @@ MiscPlaceHolder.tres::Resource/Move::8124576837851516232::1704036395::0::1::::<>
 Refresh.tres::Resource/Move::5912052772793661611::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 RendingArm.tres::Resource/Move::5654191757136436814::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Scan.tres::Resource/Resource::6445950163424348128::1702577640::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-Scapegoat.tres::Resource/Move::1205787742953343976::1704047368::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
+Scapegoat.tres::Resource/Move::1205787742953343976::1704063248::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 StarMissiles.tres::Resource/Move::6869714083004564138::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 SummonPlaceholder.tres::Resource/Resource::8750828350220666381::1702650117::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 SwitchGear.tres::Resource/Move::1348604288723719187::1704036395::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Veritate.tres::Resource/Resource::5387186962969910143::1702764348::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-::res://Scene/::1704047369
+::res://Scene/::1704063248
 element_triangle.tscn::PackedScene::2799604773910722774::1702836914::0::1::::<><>::uid://dl471fyo3f1ka
 enemy.tscn::PackedScene::5258906684503772589::1704047368::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entity.tscn<>res://Code/SceneCode/enemy.gd<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
 Entity.tscn::PackedScene::1379891203059323209::1702936006::0::1::::<><>::res://Code/SceneCode/Entity.gd<>uid://seilwthpp2l1
-Main.tscn::PackedScene::1532566806015587122::1704047368::0::1::::<><>::res://Code/SceneCode/Main.gd<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav<>uid://y7i1ns6fatdh::::res://Audio/SFX/Hariq.wav<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dfalyo44qobf2::::res://Audio/SFX/Saeqia.wav<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://dyf0jixnhljlo::::res://Audio/SFX/basicAction.wav<>uid://ccu14eobkjjpa::::res://Audio/SFX/Bahr.wav<>uid://csee58lac65lh::::res://Audio/SFX/Lower.wav<>uid://dbn6jal5lr7gg::::res://Audio/SFX/Buff.wav<>uid://hai5c0y6wxla::::res://Audio/SFX/fsmash_1.ogg<>uid://e5johxxe7f31::::res://Audio/SFX/Crush.wav<>uid://eaev1hj8wghu::::res://Audio/SFX/beam.ogg
+Main.tscn::PackedScene::1532566806015587122::1704063248::0::1::::<><>::res://Code/SceneCode/Main.gd<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav<>uid://y7i1ns6fatdh::::res://Audio/SFX/Hariq.wav<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dfalyo44qobf2::::res://Audio/SFX/Saeqia.wav<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://dyf0jixnhljlo::::res://Audio/SFX/basicAction.wav<>uid://ccu14eobkjjpa::::res://Audio/SFX/Bahr.wav<>uid://csee58lac65lh::::res://Audio/SFX/Lower.wav<>uid://dbn6jal5lr7gg::::res://Audio/SFX/Buff.wav<>uid://hai5c0y6wxla::::res://Audio/SFX/fsmash_1.ogg<>uid://e5johxxe7f31::::res://Audio/SFX/Crush.wav<>uid://b5p3u32p1iisc::::res://Audio/SFX/Pierce.wav<>uid://chlnoaabffn7e::::res://Audio/SFX/heavy1.ogg<>uid://dsr8dtipxinm1::::res://Audio/SFX/fspecial.ogg<>uid://eaev1hj8wghu::::res://Audio/SFX/beam.ogg<>uid://cx0csltfuqpng::::res://Audio/SFX/overdrive.wav<>uid://dn36iyl1mxrg1::::res://Audio/SFX/Ailment.wav<>uid://2n11d6lo8ktw::::res://Audio/SFX/Reckless.wav<>uid://7ldlpiqsa0qx::::res://Audio/SFX/rustFinal.wav<>uid://csrxt7jammqf::::res://Audio/SFX/clear_02_Ab2Db_low.ogg<>uid://2n741f4ivddi::::res://Audio/SFX/Aura.wav
 MainMenu.tscn::PackedScene::1581047404345954865::1704047368::0::1::::<><>::res://Code/SceneCode/MainMenu.gd<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://dkk0yyfyygrch::::res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://ce2oymswsnn6j::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres<>uid://dmm6qvo3byjgc::::res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres<>uid://f83w7ts343k8::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres<>uid://cy3co5wko705g::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://clepibgdex38y::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://cbmvpuynhcqqe::::res://Themes/HasSingle/Pannel.tres<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
 NewMain.tscn::PackedScene::3072509815795643567::1703027262::0::1::::<><>::uid://dspj6gkwkq7ko
 Player.tscn::PackedScene::8454229047022486594::1704047369::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entity.tscn<>res://Code/SceneCode/Player.gd<>uid://cpmeoneud23qm::::res://Scene/PlayerMenu.tscn<>uid://bkxsl0ggqtckk::::res://Themes/Black.tres<>uid://b2jmmrkt8ei3e::::res://Themes/Blue.tres
