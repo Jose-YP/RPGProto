@@ -10,7 +10,7 @@ extends Node2D
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
-@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Basic]
+@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
 @onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
 @onready var ReactionSFX: Array[AudioStreamPlayer] = [$MoveSFX/Reaction/Crit,$MoveSFX/Reaction/AilHit,$MoveSFX/Reaction/EleWeak,$MoveSFX/Reaction/PhyWeak,$MoveSFX/Reaction/Resist]
@@ -1072,7 +1072,15 @@ func playMenu():
 	SFX[2].play()
 
 func playAttackMove(move):
-	pass
+	var playEffect = null
+	for i in range(3,6):
+		if Globals.XSoftTypes[i] == move.phyElement:
+			playEffect = ElementSFX[i]
+	for i in range(0,3):
+		if Globals.XSoftTypes[i] == move.element:
+			playEffect = ElementSFX[i]
+	
+	playEffect.play()
 
 func playBuffStat(move):
 	if move.BoostAmmount > 0:
