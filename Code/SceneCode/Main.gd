@@ -569,10 +569,11 @@ func action(useMove):
 			
 			for k in range(groupSize):
 				if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
-					targetArrayGroup = [establishGroups(targetArray)] #Resestablish Groups
+					targetArrayGroup = establishGroups(targetArray) #Resestablish Groups
 					offset += 1
 					print(targetArray)
 					print(k - offset)
+					print(targetArrayGroup[groupIndex][k - offset])
 					targetDied = false
 				
 				await useAction(useMove,targetArrayGroup[groupIndex][k - offset],team[i],hits)
