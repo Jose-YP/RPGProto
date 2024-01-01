@@ -1,4 +1,10 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dj8o40cyyjhxq"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dj8o40cyyjhxq"]
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_gpdku"]
+resource_name = "Phaser"
+rate_hz = 0.7
+feedback = 0.3
+depth = 0.5
 
 [resource]
 bus/1/name = &"SFX"
@@ -13,3 +19,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"SFX"
+bus/2/effect/0/effect = SubResource("AudioEffectPhaser_gpdku")
+bus/2/effect/0/enabled = false

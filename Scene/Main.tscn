@@ -177,7 +177,7 @@ bus = &"SFX"
 [node name="MoveSFX" type="Node" parent="."]
 
 [node name="Elements" type="Node" parent="MoveSFX"]
-editor_description = "Don't have Pierce"
+editor_description = "Doesn't have bomb"
 
 [node name="Fire" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
 stream = ExtResource("10_al6ab")
@@ -235,7 +235,7 @@ stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
 
 [node name="Ailment" type="Node" parent="MoveSFX"]
-editor_description = "Don't have any Ailments"
+editor_description = "Add future Ailments if necessary"
 
 [node name="Overdrive" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
 stream = ExtResource("22_7idfh")

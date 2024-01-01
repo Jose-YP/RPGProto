@@ -63,3 +63,5 @@ res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
 res://Code/Globals/MiscFunctions.gd
 res://Code/SceneCode/Entity.gd
+res://Audio/Buses/default_bus_layout.tres
+res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres

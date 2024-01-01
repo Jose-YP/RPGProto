@@ -12,8 +12,9 @@ ______
 TODO
 ______
 *Fix/Balance other enemies
-*Implement other EnemyAI types(So far only random) ||
-*Adding SFX
+*Implement other EnemyAI types(So far only random)
+*Adding Crit effects and XSOFT SFX
+*Implementing Revives
 ______
 LOFTY TODOS
 ______
