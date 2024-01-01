@@ -414,9 +414,9 @@ popup/item_6/id = 6
 
 [node name="HelpButton" type="Button" parent="."]
 offset_left = 559.0
-offset_top = 519.0
+offset_top = 696.0
 offset_right = 719.0
-offset_bottom = 573.0
+offset_bottom = 750.0
 theme = ExtResource("1_2ilmm")
 text = "What is this?"
 
@@ -434,10 +434,9 @@ metadata/_edit_lock_ = true
 [node name="FightButton" type="Button" parent="."]
 offset_left = 559.0
 offset_top = 647.0
-offset_right = 708.0
+offset_right = 719.0
 offset_bottom = 687.0
 text = "START FIGHTING"
-metadata/_edit_lock_ = true
 
 [node name="PlayerMenu" type="GridContainer" parent="."]
 offset_left = 40.0
@@ -758,6 +757,44 @@ texture = ExtResource("16_6rc6j")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
+[node name="MusicMenu" type="PanelContainer" parent="."]
+offset_left = 585.0
+offset_top = 408.0
+offset_right = 690.0
+offset_bottom = 437.0
+theme = ExtResource("1_2ilmm")
+
+[node name="MenuButton" type="OptionButton" parent="MusicMenu"]
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Blair Dame"
+popup/item_1/id = 1
+popup/item_2/text = "...Delve!!"
+popup/item_2/id = 2
+popup/item_3/text = "Miitopia Boss"
+popup/item_3/id = 3
+metadata/_edit_lock_ = true
+
+[node name="OptionButton" type="Button" parent="."]
+visible = false
+offset_left = 585.0
+offset_top = 590.0
+offset_right = 690.0
+offset_bottom = 630.0
+text = "Options"
+
+[node name="OptionsMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 585.0
+offset_top = 590.0
+offset_right = 625.0
+offset_bottom = 630.0
+
 [node name="HelpMenu" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -920,4 +957,5 @@ bus = &"SFX"
 [connection signal="item_selected" from="PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
 [connection signal="item_selected" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
 [connection signal="item_selected" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
+[connection signal="item_selected" from="MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

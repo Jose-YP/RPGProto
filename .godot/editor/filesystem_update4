@@ -1,4 +1,5 @@
-res://Scene/MainMenu.tscn
+res://Audio/Buses/default_bus_layout.tres
+res://Scene/Main.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -57,11 +58,12 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Scene/Main.tscn
+res://README.md
+res://Code/SceneCode/MainMenu.gd
+res://Scene/MainMenu.tscn
+res://Code/Globals/Globals.gd
 res://Scene/enemy.tscn
 res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Code/Globals/MiscFunctions.gd
+res://Code/Globals/HelperFunctions.gd
 res://Code/SceneCode/Entity.gd
-res://Audio/Buses/default_bus_layout.tres
-res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres

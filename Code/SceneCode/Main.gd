@@ -3,19 +3,24 @@ extends Node2D
 #Main Scene is a battle so this is where initial order is decided and managed
 @export var playerTurn: bool = true #Starting Bool
 @export var tweenTiming: float = .2 #Make the timing with the hits editable
+
+#UI ELEMENTS
 @onready var PlayerTPDisplay = $PlayerTP
 @onready var PlayerTPText = $PlayerTP/Label
 @onready var EnemyTPDisplay = $EnemyTP
 @onready var EnemyTPText = $EnemyTP/Label
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
+#AUDIO DESIGN
+@onready var music: AudioStreamPlayer = $Music
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 @onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
-@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,$MoveSFX/Elements/NeutralBal]
+@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,$MoveSFX/Elements/NeutralBal,$MoveSFX/Elements/NeutralBOMB]
 @onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
-@onready var ReactionSFX: Array[AudioStreamPlayer] = [$MoveSFX/Reaction/Crit,$MoveSFX/Reaction/AilHit,$MoveSFX/Reaction/EleWeak,$MoveSFX/Reaction/PhyWeak,$MoveSFX/Reaction/Resist]
 @onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
+@onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
+#TURN MANAGERS
 @onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
 @onready var enemyPosition = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
 @onready var enemyOrder: Array = []
@@ -25,11 +30,11 @@ extends Node2D
 var mainMenuScene: PackedScene = preload("res://Scene/MainMenu.tscn")
 var playerScene: PackedScene = preload("res://Scene/Player.tscn")
 var enemyScene: PackedScene = preload("res://Scene/enemy.tscn")
-var currentMenu
 var groups = ["Attack","Skills","Items","Tactics"]
+var currentMenu
 #Hold current enemy's action
-var actionNum = 0
 var enemyAction
+var actionNum: int = 0
 #Holds current team and temmate's turn
 var i: int = 0
 var j: int = 0
@@ -80,6 +85,9 @@ enum whichTypes {
 #-----------------------------------------
 func _ready(): #Assign current team according to starting bool
 	Globals.currentAura = ""
+	if Globals.currentSong != "":
+		music.set_stream(load(Globals.currentSong))
+		music.play()
 	
 	for k in range(Globals.current_player_entities.size()): #Add player scenes as necessary
 		var pNew = playerScene.instantiate()
@@ -115,6 +123,7 @@ func _ready(): #Assign current team according to starting bool
 	
 	for entity in everyone:
 		entity.connect("ailmentSound",playAilment)
+		entity.connect("critical", setCrit)
 	
 	actionNum = 3
 	playerTP = playerMaxTP
@@ -560,7 +569,6 @@ func action(useMove):
 		targetTypes.GROUP:
 			print(targetArray)
 			print(targetArrayGroup)
-			#var usedArray
 			
 			var groupSize = targetArrayGroup[groupIndex].size()
 			var offset = 0
@@ -590,7 +598,8 @@ func action(useMove):
 		
 		targetTypes.RANDOM:
 			for k in range(hits):
-				await useAction(useMove,targetArray[randi()%targetArray.size()],team[i],1)
+				if targetArray.size() != 0:
+					await useAction(useMove,targetArray[randi()%targetArray.size()],team[i],1)
 		
 		_:
 			await useAction(useMove,targetArray[index],team[i],hits)
@@ -664,6 +673,7 @@ func checkProperties(move,targetting,user,hitNum):
 		ailment(move,targetting,user)
 	
 	checkHP()
+	critSFXEffect = false
 
 func TPChange(player = true):
 	var TPtween
@@ -788,13 +798,14 @@ func determineFunction(move,reciever,user,hitNum):
 		"Gatling Volley":
 			if hitNum == 0:
 				user.buffElementChange(move,user,reciever)
+				BuffSFX[3].play()
 		"Whim Berry":
 			MiscFunctions.miscFunWhimBerry(reciever)
+			ETCSFX[0].play()
 
 #-----------------------------------------
 #TURN END FUNCTIONS
 #-----------------------------------------
-
 func next_entity():
 	if overdriveTurn: #Return things to normal
 		if team[i].has_node("CanvasLayer"):
@@ -1062,6 +1073,7 @@ func endScreen(playerWin):
 	
 	endScreenTween.tween_property($EndScreen/RichTextLabel, "modulate", Color("000000"),1.5)
 	endScreenTween.tween_property($EndScreen/Button, "modulate", Color("ffffff"),1.5)
+	endScreenTween.tween_property(music,"volume_db",-80,5)
 	$EndScreen/Button.show()
 
 func _on_timer_timeout():
@@ -1091,8 +1103,12 @@ func playMenu():
 
 func playAttackMove(move,property):
 	var playEffect = null
+	var usePhy = move.phyElement
+	if move.name == "Attack":
+		usePhy = team[i].data.phyElement
+	
 	for k in range(3,6):
-		if Globals.XSoftTypes[k] == move.phyElement:
+		if Globals.XSoftTypes[k] == usePhy:
 			playEffect = ElementSFX[k]
 	if playEffect == null:
 		for k in range(0,3):
@@ -1106,7 +1122,7 @@ func playAttackMove(move,property):
 			"Ballistic":
 				playEffect = NeutralSFX[1]
 			_:
-				pass
+				playEffect = NeutralSFX[2]
 	
 	playEffect.play()
 
@@ -1121,3 +1137,6 @@ func playAilment(type):
 		if type == Globals.AilmentTypes[i]:
 			AilmentSFX[i].play()
 			break
+
+func setCrit():
+	critSFXEffect = true

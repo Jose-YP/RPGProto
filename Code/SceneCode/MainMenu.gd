@@ -15,6 +15,7 @@ extends Node2D
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
 var Battle: PackedScene = load("res://Scene/Main.tscn")
+var songList:Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav","res://Audio/Music/178.-Boss-Battle.wav"]
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
 var players: Array
 var enemies: Array
@@ -119,6 +120,12 @@ func levelChange(level,infoIndex):
 func enemyChoiceChanged(_index):
 	SFX[0].play()
 	makeEnemyLineup()
+
+func _on_music_button_item_selected(index):
+	if index == 0:
+		Globals.currentSong = ""
+	else:
+		Globals.currentSong = songList[index - 1]
 
 func _on_help_button_pressed():
 	SFX[0].play()

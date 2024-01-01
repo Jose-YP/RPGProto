@@ -17,6 +17,7 @@ extends Node2D
 @onready var items: Array = []
 
 signal ailmentSound(type)
+signal critical
 
 var currentHP: int
 var targetCount: int
@@ -320,7 +321,6 @@ func buffElementChange(move,receiver,user):
 			receiver.data.TempElement = elementMatchup(false,receiver.data.TempElement)
 		"UWin":
 			receiver.data.TempElement = elementMatchup(true,user.data.TempElement)
-			
 		"ULose":
 			receiver.data.TempElement = elementMatchup(false,user.data.TempElement)
 		_:
@@ -468,6 +468,7 @@ func crit_chance(move,user,receiver,currentAura):
 	
 	if randi() % 100 <= chance:
 		crit = true
+		critical.emit()
 		if move.Ailment != "None":
 			applyNegativeAilment(move,receiver,user,true)
 		else:

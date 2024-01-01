@@ -214,6 +214,12 @@ volume_db = -2.0
 pitch_scale = 0.9
 bus = &"MoveSFX"
 
+[node name="NeutralBOMB" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+stream = ExtResource("17_ti1a4")
+volume_db = -2.0
+pitch_scale = 0.9
+bus = &"MoveSFX"
+
 [node name="Buff" type="Node" parent="MoveSFX"]
 
 [node name="BuffStat" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
@@ -263,29 +269,6 @@ volume_db = 10.0
 pitch_scale = 0.94
 bus = &"MoveSFX"
 
-[node name="Reaction" type="Node" parent="MoveSFX"]
-editor_description = "Don't have Reactions"
-
-[node name="Crit" type="AudioStreamPlayer" parent="MoveSFX/Reaction"]
-stream = ExtResource("12_y7mf4")
-bus = &"MoveSFX"
-
-[node name="AilHit" type="AudioStreamPlayer" parent="MoveSFX/Reaction"]
-stream = ExtResource("12_y7mf4")
-bus = &"MoveSFX"
-
-[node name="EleWeak" type="AudioStreamPlayer" parent="MoveSFX/Reaction"]
-stream = ExtResource("12_y7mf4")
-bus = &"MoveSFX"
-
-[node name="PhyWeak" type="AudioStreamPlayer" parent="MoveSFX/Reaction"]
-stream = ExtResource("12_y7mf4")
-bus = &"MoveSFX"
-
-[node name="Resist" type="AudioStreamPlayer" parent="MoveSFX/Reaction"]
-stream = ExtResource("12_y7mf4")
-bus = &"MoveSFX"
-
 [node name="ETC" type="Node" parent="MoveSFX"]
 editor_description = "Don't have ETC"
 
@@ -300,6 +283,11 @@ bus = &"MoveSFX"
 [node name="Summon" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="EndScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timers/PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]

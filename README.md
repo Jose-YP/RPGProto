@@ -8,6 +8,7 @@ ISSUES
 ______
 *Fixing Diplay for non Damaging/Healing moves
 *In general STABILITY
+
 ______
 TODO
 ______
@@ -15,11 +16,13 @@ ______
 *Implement other EnemyAI types(So far only random)
 *Adding Crit effects and XSOFT SFX
 *Implementing Revives
+
 ______
 LOFTY TODOS
 ______
 *Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
 *Visuals of any kind
+
 ______
 STATS
 _____
@@ -31,6 +34,7 @@ _____
 *resistance:  Ballistic Defense
 *speed:  Lowers TP cost of moves
 *luck:  Raises chance of getting crit/ailment hits and lowers opponents chances of doing the same to you
+
 _______
 PROPERTIES
 _______
@@ -108,6 +112,7 @@ It determines what moves you can use in a turn to turn basis, think of it like m
 Every character's TP is collected into one per team
 Both sides start with full TP and every proceeding turn they gain half of their max back
 For now you can't use a move if it goes over the team's currentTP
+
 ______
 OVERDRIVE
 ______
@@ -128,7 +133,19 @@ it's super fun and risky to use and I love it
 So here it is in the prototype
 
 ______
-THINGS I DON'T OWN
+CREDITS - THINGS I DON'T OWN
 ______
+ART)
+Ailment Icons, Element Icons, Crush Icon and Stat Icons - 
 
-  
+Music)
+Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
+...Delve!! - [John "Joy" Tay] https://youtu.be/d7ZqYAlUlAU
+Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
+
+SFX)
+beam.ogg used with Neutral Ballistic attacks- took from Power Bomberman
+clear_02_ab2Db_low.ogg used with Healing - took from Mixolumia
+fssmash_1.ogg used with slash attacks - stock sword sfx
+fspecial.ogg used with Condition Buffs - unsure
+heavy1.ogg used with NeutralPhysical attacks - unsure
