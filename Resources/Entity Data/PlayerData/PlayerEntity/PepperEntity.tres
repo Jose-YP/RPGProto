@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://27w6xpavu67e"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f45nv"]
-[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_u7v5h"]
 [ext_resource type="Resource" uid="uid://bp3hni787i2io" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="3_juvv8"]
 [ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="4_iy6dd"]
 [ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="5_bcwvy"]
+[ext_resource type="Resource" uid="uid://cm7guxbx8nbyw" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="5_iywg2"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="6_hh3x3"]
 [ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="7_d3ke1"]
 [ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="8_gspn8"]
@@ -34,10 +34,10 @@ phyElement = "Pierce"
 attackData = ExtResource("1_f45nv")
 skillData = [ExtResource("7_d3ke1"), ExtResource("8_gspn8"), ExtResource("9_pxw3c"), ExtResource("10_ijdmo")]
 itemData = {
-ExtResource("2_u7v5h"): 3,
 ExtResource("3_juvv8"): 1,
 ExtResource("4_iy6dd"): 10,
-ExtResource("5_bcwvy"): 1
+ExtResource("5_bcwvy"): 1,
+ExtResource("5_iywg2"): 2
 }
 waitData = ExtResource("12_mtms2")
 KO = false

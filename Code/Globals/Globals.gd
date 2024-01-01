@@ -8,8 +8,9 @@ var AilmentTypes: Array = ["Overdrive","Poison","Reckless","Exhausted","Rust","S
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive",]
 var current_player_entities: Array = []
 var current_enemy_entities: Array = []
-var currentAura = ""
-var currentSong = ""
+var currentAura: String = ""
+var currentSong: String = ""
+var playerFirst: bool = true
 var attacking: bool
 
 func _ready(): #Uselike this: Dict[Character][Level][Stat]

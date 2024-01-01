@@ -1,8 +1,11 @@
-AudioStreamPlayer
-Control
-Button
-OptionButton
+HBoxContainer
+Label
 PanelContainer
+CheckButton
+Button
+Control
+AudioStreamPlayer
+OptionButton
 Panel
 MenuButton
 Node
@@ -10,11 +13,9 @@ Marker2D
 RichTextLabel
 TabContainer
 GridContainer
-Label
 SpinBox
 VBoxContainer
 TextureButton
-HBoxContainer
 MarginContainer
 ColorRect
 TextureRect

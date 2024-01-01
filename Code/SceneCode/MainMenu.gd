@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @export var playerEntities: Array[entityData]
 @export var enemyEntities: Array[entityData]
@@ -15,10 +15,10 @@ extends Node2D
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
 var Battle: PackedScene = load("res://Scene/Main.tscn")
-var songList:Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav","res://Audio/Music/178.-Boss-Battle.wav"]
+var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav","res://Audio/Music/178.-Boss-Battle.wav"]
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
-var players: Array
-var enemies: Array
+var players: Array[entityData] = [null, null, null]
+var enemies: Array[entityData] = [null, null, null]
 
 func _ready():
 	for i in range(3):
@@ -33,6 +33,7 @@ func playerDescriptions(description,i):
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
 	description.append_text(makePlayerDesc(i,playerChoices[i].selected,currentName,level))
 	playerNames[i] = playerEntities[playerChoices[i].selected]
+	print(playerNames[i])
 
 func makePlayerDesc(index,playerNum,currentName,level):
 	var entity = Globals.getStats(playerEntities[playerNum],currentName,str(level))
@@ -46,6 +47,8 @@ func makePlayerDesc(index,playerNum,currentName,level):
 	var charName = str("[",entity.species,"]\nlv.",level, entity.name)
 	var resourceStats = str("[color=red]HP: ",entity.MaxHP,"[/color]\n[color=aqua]LP: ",entity.specificData.MaxLP,"[/color]\n[color=green]TP:", entity.MaxTP,"[/color]")
 	var stats = str("str: ",entity.strength,"\ttgh: ",entity.toughness,"\tspd: ",entity.speed,"\nbal: ",entity.ballistics,"\tres: ",entity.resistance,"\tluk: ",entity.luck)
+	
+	players[index] = entity.duplicate()
 	
 	for i in range(6):
 		#Flag is the binary version of i
@@ -86,7 +89,7 @@ func makeEnemyLineup():
 		if enemyChoices[i].selected != 6:
 			enemyElements[i].show()
 			enemyPhyEle[i].show()
-			enemyEntity  = enemyEntities[enemyChoices[i].selected]#enemyChoices[i].get_item_text(enemyChoices[i].selected)
+			enemyEntity  = enemyEntities[enemyChoices[i].selected].duplicate()#enemyChoices[i].get_item_text(enemyChoices[i].selected)
 			enLiString = str(enLiString, i+1,". ","[",enemyEntity.species,"]\t",enemyEntity.name,"\n\n\n")
 			getElements(enemyEntities[enemyChoices[i].selected],enemyElements[i],enemyPhyEle[i])
 		else:
@@ -121,11 +124,21 @@ func enemyChoiceChanged(_index):
 	SFX[0].play()
 	makeEnemyLineup()
 
+func _on_player_order_toggled(button_pressed):
+	Globals.playerFirst = button_pressed
+	if button_pressed:
+		$PlayerFirstToggle/HBoxContainer/Label.text = "ON"
+		SFX[0].play()
+	else:
+		$PlayerFirstToggle/HBoxContainer/Label.text = "OFF"
+		SFX[1].play()
+
 func _on_music_button_item_selected(index):
 	if index == 0:
 		Globals.currentSong = ""
 	else:
 		Globals.currentSong = songList[index - 1]
+	SFX[0].play()
 
 func _on_help_button_pressed():
 	SFX[0].play()
@@ -135,15 +148,23 @@ func _on_exit_button_pressed():
 	SFX[1].play()
 	$HelpMenu.hide()
 
+func _on_option_button_pressed():
+	SFX[0].play()
+	$OptionsMenu.show()
+
+func _on_exit_option_pressed():
+	SFX[1].play()
+	$OptionsMenu.hide()
+
 func _on_fight_button_pressed():
 	Globals.current_player_entities = []
 	Globals.current_enemy_entities = []
 	
 	for i in range(3):
-		Globals.current_player_entities.append(playerEntities[playerChoices[i].selected])
 		if enemyChoices[i].selected != 6:
 			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 	
+	Globals.current_player_entities = players
 	get_tree().change_scene_to_packed(Battle)
 
 func _on_menu_button_pressed():

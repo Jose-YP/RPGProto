@@ -1,5 +1,5 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/Main.tscn
+res://Scene/MainMenu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -40,7 +40,6 @@ res://Resources/Item Data/ItemMoves/ElecBombMove.tres
 res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
 res://Resources/Move Data/Entity Moves/Bahr.tres
 res://Resources/Move Data/Entity Moves/Charge.tres
-res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
 res://Resources/Item Data/ItemSpecifics/Softy!.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
@@ -51,6 +50,7 @@ res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
 res://Resources/Move Data/Entity Moves/Heal.tres
 res://Resources/Move Data/Enemy Moves/Seiqa.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres
@@ -58,12 +58,9 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://README.md
-res://Code/SceneCode/MainMenu.gd
-res://Scene/MainMenu.tscn
-res://Code/Globals/Globals.gd
+res://Scene/Main.tscn
 res://Scene/enemy.tscn
 res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Code/Globals/HelperFunctions.gd
+res://Code/SceneCode/MainMenu.gd
 res://Code/SceneCode/Entity.gd

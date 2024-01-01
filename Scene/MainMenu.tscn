@@ -25,12 +25,15 @@
 [ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="23_pak7s"]
 [ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="24_d2xip"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_2apsh")
 playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_t4kw1"), ExtResource("3_p3jnp"), ExtResource("4_80m3o"), ExtResource("5_rjakb")])
 enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_ime6b"), ExtResource("7_2t53m"), ExtResource("8_i7oi5"), ExtResource("9_525rk"), ExtResource("10_022bv"), ExtResource("11_ua5p8")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 1286.0
@@ -413,6 +416,7 @@ popup/item_6/text = "None"
 popup/item_6/id = 6
 
 [node name="HelpButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 559.0
 offset_top = 696.0
 offset_right = 719.0
@@ -421,6 +425,7 @@ theme = ExtResource("1_2ilmm")
 text = "What is this?"
 
 [node name="EnemyLineup" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 771.0
 offset_top = 546.0
 offset_right = 1245.0
@@ -432,6 +437,7 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="FightButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 559.0
 offset_top = 647.0
 offset_right = 719.0
@@ -439,6 +445,7 @@ offset_bottom = 687.0
 text = "START FIGHTING"
 
 [node name="PlayerMenu" type="GridContainer" parent="."]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 187.0
 offset_right = 500.0
@@ -758,6 +765,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="MusicMenu" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 585.0
 offset_top = 408.0
 offset_right = 690.0
@@ -780,6 +788,7 @@ metadata/_edit_lock_ = true
 
 [node name="OptionButton" type="Button" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 585.0
 offset_top = 590.0
 offset_right = 690.0
@@ -794,6 +803,20 @@ offset_left = 585.0
 offset_top = 590.0
 offset_right = 625.0
 offset_bottom = 630.0
+
+[node name="ExitPanel2" type="PanelContainer" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 57.0
+offset_right = 123.0
+offset_bottom = 97.0
+theme = ExtResource("1_2ilmm")
+metadata/_edit_lock_ = true
+
+[node name="ExitButton" type="Button" parent="OptionsMenu/ExitPanel2"]
+layout_mode = 2
+text = "Exit"
+metadata/_edit_lock_ = true
 
 [node name="HelpMenu" type="Control" parent="."]
 visible = false
@@ -926,7 +949,37 @@ There are 4 kind of stat buffs: Attack, Defense, Speed and Luck.
 They can be applied twice with each stack adding 30%
 They will decay by 5% every turn"
 
+[node name="PlayerFirstToggle" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 232.0
+offset_right = 928.0
+offset_bottom = 256.0
+theme = ExtResource("1_2ilmm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerFirstToggle"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerOrder" type="CheckButton" parent="PlayerFirstToggle/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "                      "
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="PlayerFirstToggle/HBoxContainer/PlayerOrder"]
+layout_mode = 2
+offset_right = 87.0
+offset_bottom = 24.0
+text = "Player First"
+
+[node name="Label" type="Label" parent="PlayerFirstToggle/HBoxContainer"]
+layout_mode = 2
+text = "ON"
+metadata/_edit_lock_ = true
+
 [node name="ElementTriangle" parent="." instance=ExtResource("20_4mfkg")]
+layout_mode = 1
 offset_left = 1116.0
 offset_top = 157.0
 offset_right = 1116.0
@@ -958,4 +1011,9 @@ bus = &"SFX"
 [connection signal="item_selected" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
 [connection signal="item_selected" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
 [connection signal="item_selected" from="MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
+[connection signal="pressed" from="MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
+[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="toggled" from="PlayerFirstToggle/HBoxContainer/PlayerOrder" to="." method="_on_player_order_toggled"]

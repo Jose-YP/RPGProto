@@ -19,8 +19,8 @@ extends Node2D
 signal ailmentSound(type)
 signal critical
 
-var currentHP: int
-var targetCount: int
+var currentHP: int = 0
+var targetCount: int = 0
 var chargeUsed: bool = false
 var ampUsed: bool = false
 var feedback: String
@@ -238,7 +238,7 @@ func healAilment(move, receiver):
 		receiver.XSoftDisplay()
 
 func healKO(receiver):
-	receiver.KO = false
+	receiver.data.KO = false
 
 func applyNegativeAilment(move,receiver,user,preWin = false):
 	if move.BaseAilment > 200:

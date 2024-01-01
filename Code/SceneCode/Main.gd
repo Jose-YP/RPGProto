@@ -1,7 +1,6 @@
 extends Node2D
 
 #Main Scene is a battle so this is where initial order is decided and managed
-@export var playerTurn: bool = true #Starting Bool
 @export var tweenTiming: float = .2 #Make the timing with the hits editable
 
 #UI ELEMENTS
@@ -19,6 +18,7 @@ extends Node2D
 @onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
 @onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
+@onready var DieSFX: AudioStreamPlayer = $SFX/Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
 #TURN MANAGERS
 @onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
@@ -49,6 +49,7 @@ var targetArray: Array = []
 var targetArrayGroup: Array = []
 var deadPlayers: Array = []
 var deadEnemies: Array = []
+var playerTurn: bool = Globals.playerFirst #Starting Bool
 var waiting: bool = false
 var overdriveTurn: bool = false
 var finished: bool = false
@@ -94,6 +95,7 @@ func _ready(): #Assign current team according to starting bool
 		pNew.data = Globals.current_player_entities[k].duplicate()
 		pNew.position = playerPositions[k].position
 		pNew.playerNum = k
+		print(pNew.data.MaxHP)
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
@@ -706,9 +708,12 @@ func healing(move,targetting,user):
 	
 	if move.revive:
 		targetting.healKO(targetting)
+		targetting.modulate = Color.WHITE
 		if targetting.has_node("CanvasLayer"):
 			if playerOrder.size() != 1 or targetting.playerNum == 0:
 				playerOrder.insert(targetting.playerNum,targetting)
+				print(team)
+				actionNum += 1
 			else:
 				playerOrder.append(targetting)
 		else:
@@ -893,6 +898,7 @@ func switchPhase():
 		var newValue = int(100*(float(playerTP) / float(playerMaxTP)))
 		TPtween.tween_property(PlayerTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 		actionNum = playerOrder.size()
+		print(actionNum)
 	
 	else:
 		team = enemyOrder
@@ -1015,6 +1021,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		defeatedPlayer.data.KO = true
 		deadPlayers.append(defeatedPlayer)
 		defeatedPlayer.modulate = Color(454545)
+		DieSFX.play()
 		initializeTP(true)
 		TPChange()
 	
@@ -1026,6 +1033,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 			defeatedEnemy.modulate = Color(454545)
 		else:
 			defeatedEnemy.queue_free()
+		DieSFX.play()
 		initializeTP()
 		TPChange(false)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://v3nffaaihyp3"]
+[gd_scene load_steps=29 format=3 uid="uid://v3nffaaihyp3"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_680s0"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_tc2to"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="7_grrul"]
 [ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="8_vscp8"]
 [ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="9_v0q5r"]
+[ext_resource type="AudioStream" uid="uid://bc41v187fp0wf" path="res://Audio/SFX/Bass.wav" id="10_6gkw8"]
 [ext_resource type="AudioStream" uid="uid://y7i1ns6fatdh" path="res://Audio/SFX/Hariq.wav" id="10_al6ab"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="11_pqwg8"]
 [ext_resource type="AudioStream" uid="uid://dfalyo44qobf2" path="res://Audio/SFX/Saeqia.wav" id="11_r3qse"]
@@ -171,6 +172,11 @@ bus = &"SFX"
 
 [node name="Menu" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("9_v0q5r")
+volume_db = -2.0
+bus = &"SFX"
+
+[node name="Die" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_6gkw8")
 volume_db = -2.0
 bus = &"SFX"
 

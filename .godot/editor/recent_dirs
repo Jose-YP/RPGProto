@@ -1,4 +1,4 @@
-res://Assets/Icons/AilmentIcons
+res://Scene
 res://Code/EnemyAI
 res://Code/SceneCode
 res://Resources/Item Data/ItemMoves
@@ -7,7 +7,6 @@ res://Resources/Move Data/Enemy Moves
 res://Resources/Entity Data/Enemy Data/EnemySpecific
 res://Resources/Entity Data/Enemy Data/EnemyEntity
 res://Resources/Move Data/Player Moves
-res://Scene
 res://
 res://Resources/Entity Data/Enemy Data
 res://Code/Globals
