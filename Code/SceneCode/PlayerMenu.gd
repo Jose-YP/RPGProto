@@ -76,7 +76,6 @@ func menuMove():
 func menuConfirm():
 	if Input.is_action_just_pressed("Accept"):
 		if menuIndex == 0: #get to the next item in the menu
-			print("Menu index is 0")
 			Tab.visible = true
 			menuIndex = menuDictionary.get(fullMenu[menuIndex][buttonIndex].name)
 			Tab.current_tab = menuIndex - 1
@@ -85,14 +84,11 @@ func menuConfirm():
 			if selectingMenu:
 				fullMenu[menuIndex][buttonIndex].emit_signal("pressed")
 				selectingMenu = false
-				print("selectmenu")
 			else:
 				fullMenu[menuIndex][buttonIndex].emit_signal("pressed")
 				Tab.visible = false
 				menuIndex = 0
 				fullMenu[menuIndex][buttonIndex].grab_focus()
-				print("selectattackmenu")
-			print(selectingMenu)
 		
 		confirm.emit(true)
 		
@@ -138,5 +134,4 @@ func _on_player_can_pay_for(menuI, buttonI, allowed):
 		fullMenu[menuI+1][buttonI].disabled = true
 
 func _on_player_selected_again():
-	print("A")
 	selectingMenu = true

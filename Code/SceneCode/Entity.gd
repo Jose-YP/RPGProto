@@ -276,7 +276,6 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 	if not win:
 		win = ailment_calc(move,receiver,user)
 	
-	print(HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0 or data.XSoft.size() < 3)
 	if HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0:
 		if win:
 			if PreSoft != "":
@@ -288,7 +287,6 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 	
 	for i in range(times):
 		receiver.data.XSoft = HelperFunctions.NullorAppend(receiver.data.XSoft,ele)
-		print(receiver.data.XSoft)
 	
 	receiver.XSoftDisplay()
 
@@ -515,7 +513,6 @@ func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: P
 
 func determineXSoft(move,user):
 	if move.name == "Attack" or move.name == "Burst": #XSoft
-		print(user.data.phyElement)
 		return user.data.phyElement
 	
 	match move.Ailment:
@@ -529,7 +526,6 @@ func determineXSoft(move,user):
 			elif move.element != "Neutral":
 				return move.element
 			else:
-				print(user.data.phyElement)
 				return user.data.phyElement
 
 func checkCondition(seeking,receiver):
@@ -703,15 +699,12 @@ func XSoftDisplay():
 		var oneTrue = false
 		for i in range(6):
 			if data.XSoft[soft] == XSoftSlots[soft][i].name:
-				print(data.XSoft)
-				print("Found XSoft",data.XSoft[soft],"=",XSoftSlots[soft][i].name,"Tab:",i)
 				$XSoftDisplay.show()
 				XSoftTabs[soft].current_tab = i
 				XSoftTabs[soft].show()
 				oneTrue = true
 		
 		if not oneTrue:
-			print(XSoftTabs[soft],"||",oneTrue)
 			XSoftTabs[soft].hide()
 
 func _on_timer_timeout():

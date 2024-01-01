@@ -33,7 +33,6 @@ func playerDescriptions(description,i):
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
 	description.append_text(makePlayerDesc(i,playerChoices[i].selected,currentName,level))
 	playerNames[i] = playerEntities[playerChoices[i].selected]
-	print(playerNames[i])
 
 func makePlayerDesc(index,playerNum,currentName,level):
 	var entity = Globals.getStats(playerEntities[playerNum],currentName,str(level))

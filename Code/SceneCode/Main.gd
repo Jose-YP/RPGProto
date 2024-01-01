@@ -95,7 +95,6 @@ func _ready(): #Assign current team according to starting bool
 		pNew.data = Globals.current_player_entities[k].duplicate()
 		pNew.position = playerPositions[k].position
 		pNew.playerNum = k
-		print(pNew.data.MaxHP)
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
@@ -290,6 +289,7 @@ func findTarget(useMove):
 		"None":
 			returnTarget = targetTypes.NONE
 	
+	print(returnTarget)
 	return returnTarget
 
 func findWhich(useMove):
@@ -847,6 +847,7 @@ func next_entity():
 			else:
 				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 				target = findTarget(enemyAction)
+				print(target)
 				which = findWhich(enemyAction)
 		
 		startSwitchPhase()

@@ -117,13 +117,11 @@ func Flag_to_String(flag,type):
 func NullorAppend(list,value,XSoft=true,maxSize=3):
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
-			print("Found a null")
 			list[i] = value
 			return list
 	
 	if XSoft:
 		if list.size() < maxSize:
-			print("list", value)
 			list.append(value)
 			return list
 	
@@ -133,7 +131,6 @@ func emptyXSoftSlots(list):
 	var nulls: int = 0
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
-			print("Found a null")
 			nulls += 1
 	
 	return nulls
