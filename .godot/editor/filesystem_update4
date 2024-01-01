@@ -62,8 +62,5 @@ res://Scene/Main.tscn
 res://Scene/enemy.tscn
 res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Code/SceneCode/MainMenu.gd
 res://Code/SceneCode/Entity.gd
-res://Code/Globals/HelperFunctions.gd
-res://Code/SceneCode/Player.gd
-res://Code/SceneCode/PlayerMenu.gd
+res://README.md

@@ -707,5 +707,22 @@ func XSoftDisplay():
 		if not oneTrue:
 			XSoftTabs[soft].hide()
 
+func reset():
+	for boost in range(statBoostSlots.size()): #Reset Stat boosts to 0
+		statBoostSlots[boost] = 0
+		buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
+	
+	for i in range(10): #Reset conditions to nothing
+		var flag = 1 << i
+		print(HelperFunctions.Flag_to_String(data.Condition, "Condition"))
+		print(HelperFunctions.Flag_to_String(flag, "Condition"))
+		if data.Condition != null and data.Condition & flag != 0:
+			data.Condition = data.Condition & ~flag
+			currentCondition.text = HelperFunctions.Flag_to_String(data.Condition, "Condition")
+	
+	data.Ailment = "Healthy" #Reset Ailment
+	data.AilmentNum = 0
+	targetCount = 0 #Reset target count
+
 func _on_timer_timeout():
 	hideDesc()

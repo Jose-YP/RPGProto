@@ -135,7 +135,7 @@ ______
 CREDITS - THINGS I DON'T OWN
 ______
 ART)
-Ailment Icons, Element Icons, Crush Icon and Stat Icons - 
+Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
 
 Music)
 Blair Dame's Theme - [Takayuki Aihara] Fighting Layer

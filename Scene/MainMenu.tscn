@@ -1013,7 +1013,7 @@ bus = &"SFX"
 [connection signal="item_selected" from="MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="toggled" from="PlayerFirstToggle/HBoxContainer/PlayerOrder" to="." method="_on_player_order_toggled"]

@@ -982,7 +982,7 @@ func endPhaseCheck():
 		for player in playerOrder:
 			if player.checkCondition("Targetted", player):
 				if player.targetCount != 0:
-					target -= 1
+					player.targetCount -= 1
 				else:
 					player.removeCondition("Targetted",player)
 		
@@ -990,7 +990,7 @@ func endPhaseCheck():
 		for enemy in enemyOrder:
 			if enemy.checkCondition("Targetted", enemy):
 				if enemy.targetCount != 0:
-					target -= 1
+					enemy.targetCount -= 1
 				else:
 					enemy.removeCondition("Targetted",enemy)
 
@@ -1022,6 +1022,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 		defeatedPlayer.data.KO = true
 		deadPlayers.append(defeatedPlayer)
 		defeatedPlayer.modulate = Color(454545)
+		defeatedPlayer.reset()
 		DieSFX.play()
 		initializeTP(true)
 		TPChange()
@@ -1032,6 +1033,7 @@ func checkHP(): #Delete enemies, disable players and resize arrays as necessary 
 			defeatedEnemy.data.KO = true
 			deadEnemies.append(defeatedEnemy)
 			defeatedEnemy.modulate = Color(454545)
+			defeatedEnemy.reset()
 		else:
 			defeatedEnemy.queue_free()
 		DieSFX.play()
