@@ -14,7 +14,6 @@ TODO
 ______
 *Fix/Balance other enemies
 *Implement other EnemyAI types(So far only random)
-*Implementing Revives
 
 ______
 LOFTY TODOS

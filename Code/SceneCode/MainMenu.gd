@@ -3,19 +3,27 @@ extends Control
 @export var playerEntities: Array[entityData]
 @export var enemyEntities: Array[entityData]
 
-@onready var playerChoices: Array = [$PlayerMenu/Player1/MenuButton,$PlayerMenu/Player2/MenuButton,$PlayerMenu/Player3/MenuButton]
+@onready var playerChoices: Array = [$PlayerMenu/Player1/MenuButton,
+$PlayerMenu/Player2/MenuButton,$PlayerMenu/Player3/MenuButton]
 @onready var playerLevels: Array = [$PlayerMenu/Player1Level,$PlayerMenu/Player2Level,$PlayerMenu/Player3Level]
-@onready var playerStats: Array = [$PlayerStats/Player1Stats/RichTextLabel,$PlayerStats/Player2Stats/RichTextLabel,$PlayerStats/Player3Stats/RichTextLabel2]
-@onready var playerElements: Array = [$PlayerElements/Player1Element,$PlayerElements/Player2Element,$PlayerElements/Player3Element]
-@onready var playerPhyEle: Array = [$PlayerPhyElements/PlayerPhyElement1,$PlayerPhyElements/PlayerPhyElement2,$PlayerPhyElements/PlayerPhyElement3]
-@onready var enemyChoices: Array = [$EnemyMenu/EnemyMenu1/Enemy1/MenuButton,$EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemyMenu/EnemyMenu1/Enemy3/MenuButton]
-@onready var enemiesShown: RichTextLabel = $EnemyLineup/RichTextLabel
-@onready var enemyElements: Array = [$EnemyElements/EnemyElement,$EnemyElements/EnemyElement2,$EnemyElements/EnemyElement3]
-@onready var enemyPhyEle: Array = [$EnemyElements/EnemyPhyElement,$EnemyElements/EnemyPhyElement2,$EnemyElements/EnemyPhyElement3]
+@onready var playerStats: Array = [$PlayerDisplay/PlayerStats/Player1Stats/RichTextLabel,
+$PlayerDisplay/PlayerStats/Player2Stats/RichTextLabel,$PlayerDisplay/PlayerStats/Player3Stats/RichTextLabel2]
+@onready var playerElements: Array = [$PlayerDisplay/PlayerElements/Player1Element,
+$PlayerDisplay/PlayerElements/Player2Element,$PlayerDisplay/PlayerElements/Player3Element]
+@onready var playerPhyEle: Array = [$PlayerDisplay/PlayerPhyElements/PlayerPhyElement1,
+$PlayerDisplay/PlayerPhyElements/PlayerPhyElement2,$PlayerDisplay/PlayerPhyElements/PlayerPhyElement3]
+@onready var enemyChoices: Array = [$EnemyMenu/EnemyMenu1/Enemy1/MenuButton,
+$EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemyMenu/EnemyMenu1/Enemy3/MenuButton]
+@onready var enemiesShown: RichTextLabel = $EnemyDisplay/EnemyLineup/RichTextLabel
+@onready var enemyElements: Array = [$EnemyDisplay/EnemyElements/EnemyElement,
+$EnemyDisplay/EnemyElements/EnemyElement2,$EnemyDisplay/EnemyElements/EnemyElement3]
+@onready var enemyPhyEle: Array = [$EnemyDisplay/EnemyElements/EnemyPhyElement,
+$EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemyDisplay/EnemyElements/EnemyPhyElement3]
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
 var Battle: PackedScene = load("res://Scene/Main.tscn")
-var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav","res://Audio/Music/178.-Boss-Battle.wav"]
+var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
+"res://Audio/Music/178.-Boss-Battle.wav"]
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
 var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]

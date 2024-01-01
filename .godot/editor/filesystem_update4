@@ -58,9 +58,8 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
+res://Code/SceneCode/MainMenu.gd
 res://Scene/Main.tscn
 res://Scene/enemy.tscn
 res://Scene/PlayerMenu.tscn
 res://Scene/Player.tscn
-res://Code/SceneCode/Entity.gd
-res://README.md

@@ -13,10 +13,14 @@ extends Node2D
 #AUDIO DESIGN
 @onready var music: AudioStreamPlayer = $Music
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
-@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
-@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,$MoveSFX/Elements/NeutralBal,$MoveSFX/Elements/NeutralBOMB]
-@onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
-@onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
+@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,
+$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
+@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,
+$MoveSFX/Elements/NeutralBal,$MoveSFX/Elements/NeutralBOMB]
+@onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,
+$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
+@onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,
+$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
 @onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
 @onready var DieSFX: AudioStreamPlayer = $SFX/Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
@@ -141,7 +145,7 @@ func _ready(): #Assign current team according to starting bool
 		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 	
 	everyone = playerOrder + enemyOrder
-	$Timers/Timer.set_paused(false) #Should've done this to avoid so much ;-; It took so long to figure out I DESERVE TO USE THIS
+	$Timers/Timer.set_paused(false) 
 	$Timers/PostPhaseTimer.set_paused(false)
 
 func movesetDisplay(player): #Format every player's menu to include the name of their moveset
@@ -913,7 +917,8 @@ func switchPhase():
 		Globals.attacking = false
 		actionNum = enemyOrder.size()
 
-func checkCosts(player): #Check if the player can afford certain moves, if they can't disable those buttons
+#Check if the player can afford certain moves, if they can't disable those buttons
+func checkCosts(player): 
 	for category in player.moveset:
 		var menuIndex = player.moveset.find(category)
 		for move in category:
@@ -994,7 +999,8 @@ func endPhaseCheck():
 				else:
 					enemy.removeCondition("Targetted",enemy)
 
-func checkHP(): #Delete enemies, disable players and resize arrays as necessary also handles win and lose condition
+#Delete enemies, disable players and resize arrays as necessary also handles win and lose condition
+func checkHP():
 	var defeatedPlayers = []
 	var defeatedEnemies = []
 	var InitialPsize = playerOrder.size()
