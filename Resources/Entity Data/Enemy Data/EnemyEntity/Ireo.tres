@@ -3,12 +3,13 @@
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f8eo8"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_ntahk"]
 [ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="2_7b4pj"]
-[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/Overdrive.tres" id="3_g5k7p"]
+[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/MostPlayer/Overdrive.tres" id="3_g5k7p"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="3_l4pfg"]
-[ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/Burst.tres" id="4_ds5c8"]
+[ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="4_ds5c8"]
 [ext_resource type="Resource" uid="uid://cco1bbvhfnbot" path="res://Resources/Move Data/Enemy Moves/Galactic Ghoul.tres" id="5_44k0u"]
 [ext_resource type="Resource" uid="uid://bwanxk3g1m6u5" path="res://Resources/Move Data/Enemy Moves/Black Hole.tres" id="6_770bw"]
 [ext_resource type="Resource" uid="uid://h2yolidxah3d" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres" id="7_iwcrg"]
+
 
 [resource]
 script = ExtResource("1_ntahk")

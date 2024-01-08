@@ -4,14 +4,15 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_ecoj4"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="2_l51hs"]
 [ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="3_yqn7x"]
-[ext_resource type="Resource" uid="uid://cms6yhioy6q35" path="res://Resources/Move Data/Player Moves/RendingArm.tres" id="4_7jfry"]
+[ext_resource type="Resource" uid="uid://cms6yhioy6q35" path="res://Resources/Move Data/Player Moves/Skills/RendingArm.tres" id="4_7jfry"]
 [ext_resource type="Resource" uid="uid://d3kx4skcjkrso" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="4_bqcmc"]
 [ext_resource type="Resource" uid="uid://b87gkmkaqxfdl" path="res://Resources/Item Data/ItemSpecifics/ElecBomb.tres" id="5_31aqc"]
-[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Entity Moves/Bahr.tres" id="7_e8cvv"]
-[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/BlueShift.tres" id="9_p70vf"]
-[ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/Charge.tres" id="10_nu8v2"]
+[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="7_e8cvv"]
+[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres" id="9_p70vf"]
+[ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/MostEnemy/Charge.tres" id="10_nu8v2"]
 [ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres" id="11_xx008"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_gjt0h"]
+
 
 [resource]
 script = ExtResource("1_ecoj4")

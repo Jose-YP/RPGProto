@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_fbih2"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="2_luepq"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_2r2vh"]
-[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Entity Moves/Bahr.tres" id="4_6oohn"]
+[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="4_6oohn"]
 [ext_resource type="Resource" uid="uid://d2hopjlup3igp" path="res://Resources/Move Data/Enemy Moves/dielol.tres" id="5_v6sea"]
 [ext_resource type="Resource" uid="uid://drx2b5a1fmwlh" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres" id="6_j8mqt"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_g2pgv"]

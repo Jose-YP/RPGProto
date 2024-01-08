@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=5 format=3 uid="uid://cexehs6jvcmbd"]
 
-[ext_resource type="Resource" uid="uid://b6bm1esff11v3" path="res://Resources/Move Data/Entity Moves/BasicAttackBallistic.tres" id="1_g2xj2"]
+[ext_resource type="Resource" uid="uid://b6bm1esff11v3" path="res://Resources/Move Data/Entity Moves/MostEnemy/BasicAttackBallistic.tres" id="1_g2xj2"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_npcim"]
 [ext_resource type="Resource" uid="uid://raxx13ahatc5" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres" id="3_xxosb"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="4_88fcb"]

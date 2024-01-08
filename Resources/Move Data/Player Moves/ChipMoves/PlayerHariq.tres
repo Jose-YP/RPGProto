@@ -1,21 +1,21 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cmwfvw5gugpo8"]
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://b1je0kh3ofgme"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_3444w"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_owu27"]
 
 [resource]
-script = ExtResource("1_3444w")
+script = ExtResource("1_owu27")
 name = "Hariq"
-description = "Ballistic Fire Attack that hits 4 random opponents"
-TPCost = 70
+description = "Ballistic Fire Attack that hits 3 random opponents"
+TPCost = 90
 Which = "Enemy"
 Target = "Random"
 element = "Fire"
 phyElement = "Neutral"
 property = 2
-CostType = "LP"
-cost = 6.0
+CostType = "Free"
+cost = 0.0
 Power = 15
-HitNum = 4
+HitNum = 3
 BaseCrit = -10
 BaseAilment = -200
 Ailment = "None"

@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
-[ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/StarMissiles.tres" id="4_5dvqg"]
+[ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/Skills/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
 [ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="4_iqbw6"]
 [ext_resource type="Resource" uid="uid://cm7guxbx8nbyw" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="5_0t6nh"]
 [ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="5_nkxyx"]
-[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/Overdrive.tres" id="6_a6uk1"]
-[ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Refresh.tres" id="7_kj7iu"]
-[ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/HalfMoon.tres" id="10_b0nti"]
+[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/MostPlayer/Overdrive.tres" id="6_a6uk1"]
+[ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Skills/Refresh.tres" id="7_kj7iu"]
+[ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/Skills/HalfMoon.tres" id="10_b0nti"]
 [ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="11_40s1d"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3x2es"]
 

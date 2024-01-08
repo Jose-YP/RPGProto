@@ -1,5 +1,5 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/MainMenu.tscn
+res://Scene/GameManager.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -44,6 +44,7 @@ res://Resources/Item Data/ItemMoves/SoftyMove.tres
 res://Resources/Item Data/ItemSpecifics/Softy!.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
+res://Resources/Move Data/Entity Moves/Hariq.tres
 res://Resources/Move Data/Entity Moves/Poison.tres
 res://Resources/Move Data/Player Moves/Scapegoat.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
@@ -58,8 +59,8 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/SceneCode/MainMenu.gd
-res://Scene/Main.tscn
-res://Scene/enemy.tscn
-res://Scene/PlayerMenu.tscn
-res://Scene/Player.tscn
+res://Resources/Move Data/Entity Moves/Firestorm.tres
+res://Resources/Move Data/Entity Moves/PlayerHariq.tres
+res://Resources/Move Data/Player Moves/ChipMoves/PlayerSeiqa.tres
+res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres
+res://Resources/Move Data/Player Moves/Blizzard.tres

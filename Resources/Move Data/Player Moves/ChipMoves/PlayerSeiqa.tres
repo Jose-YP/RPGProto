@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://odp58d5b58qw"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_7rd87"]
+
+[resource]
+script = ExtResource("1_7rd87")
+name = "Seiqa"
+description = "Basic ballistic electric move, single target high damage and crit"
+TPCost = 70
+Which = "Enemy"
+Target = "Single"
+element = "Elec"
+phyElement = "Neutral"
+property = 2
+CostType = "Free"
+cost = 0.0
+Power = 30
+HitNum = 1
+BaseCrit = 20
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 0
+percentage = false
+revive = false
+reset = false
+healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostAmmount = 0
+BoostType = 0
+Condition = 0
+Aura = ""
+ElementChange = "None"
+Summon = []

@@ -3,10 +3,11 @@
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_a2tqr"]
 [ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_cejmc"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_e7jf7"]
-[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="4_3gp0v"]
-[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Entity Moves/Hariq.tres" id="5_5e544"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="4_3gp0v"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="5_5e544"]
 [ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres" id="6_fkl4q"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_1c2sn"]
+
 
 [resource]
 script = ExtResource("3_e7jf7")
