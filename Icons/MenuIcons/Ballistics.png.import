@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2e38wrpun3ls"
-path="res://.godot/imported/Strength.png-c4af9fef82d019aa2aea78fb95ef649c.ctex"
+uid="uid://cvex4ys5jcush"
+path="res://.godot/imported/Ballistics.png-693d170f3d94500c812b454b87a0d724.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Strength.png"
-dest_files=["res://.godot/imported/Strength.png-c4af9fef82d019aa2aea78fb95ef649c.ctex"]
+source_file="res://Icons/MenuIcons/Ballistics.png"
+dest_files=["res://.godot/imported/Ballistics.png-693d170f3d94500c812b454b87a0d724.ctex"]
 
 [params]
 

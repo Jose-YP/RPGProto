@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_u75po"]
 [ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_bws8n"]
 [ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_i0exl"]
-[ext_resource type="Resource" uid="uid://f83w7ts343k8" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres" id="9_t3m0f"]
+[ext_resource type="Resource" uid="uid://bdrlqlvn6kv8c" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres" id="9_t3m0f"]
 [ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_fo5mt"]
 [ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_4grnk"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="12_jmjrn"]
@@ -33,6 +33,7 @@ playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([Ex
 enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_u75po"), ExtResource("7_bws8n"), ExtResource("8_i0exl"), ExtResource("9_t3m0f"), ExtResource("10_fo5mt"), ExtResource("11_4grnk")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 1286.0
@@ -51,290 +52,19 @@ theme_override_font_sizes/normal_font_size = 64
 text = "RPG PROTOTYPE"
 metadata/_edit_lock_ = true
 
-[node name="PlayerDisplay" type="Control" parent="."]
+[node name="ElementTriangle" parent="ColorRect" instance=ExtResource("21_4hl4l")]
+layout_mode = 1
+offset_left = 1140.0
+offset_top = 181.0
+offset_right = 1140.0
+offset_bottom = 181.0
+
+[node name="EnemySide" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PlayerStats" type="Control" parent="PlayerDisplay"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 183.0
-offset_top = 404.0
-offset_right = 338.0
-offset_bottom = 750.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="Player1Stats" type="PanelContainer" parent="PlayerDisplay/PlayerStats"]
-layout_mode = 0
-offset_left = -163.0
-offset_top = -2.0
-offset_right = -8.0
-offset_bottom = 344.0
-theme = ExtResource("12_jmjrn")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerDisplay/PlayerStats/Player1Stats"]
-layout_mode = 2
-
-[node name="Player2Stats" type="PanelContainer" parent="PlayerDisplay/PlayerStats"]
-layout_mode = 2
-offset_top = -2.0
-offset_right = 155.0
-offset_bottom = 344.0
-theme = ExtResource("12_jmjrn")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerDisplay/PlayerStats/Player2Stats"]
-layout_mode = 2
-
-[node name="Player3Stats" type="PanelContainer" parent="PlayerDisplay/PlayerStats"]
-layout_mode = 0
-offset_left = 164.0
-offset_right = 319.0
-offset_bottom = 346.0
-theme = ExtResource("12_jmjrn")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="PlayerDisplay/PlayerStats/Player3Stats"]
-layout_mode = 2
-
-[node name="PlayerElements" type="Control" parent="PlayerDisplay"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 96.0
-offset_top = -290.0
-offset_right = 136.0
-offset_bottom = -250.0
-theme = ExtResource("12_jmjrn")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="Player1Element" type="TabContainer" parent="PlayerDisplay/PlayerElements"]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 698.0
-offset_right = 69.0
-offset_bottom = 738.0
-tabs_visible = false
-
-[node name="Fire" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player1Element"]
-modulate = Color(1, 0.160784, 0.223529, 1)
-layout_mode = 2
-texture = ExtResource("13_1lo6d")
-expand_mode = 4
-stretch_mode = 5
-metadata/_edit_lock_ = true
-
-[node name="Water" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player1Element"]
-visible = false
-modulate = Color(0.298039, 0.384314, 1, 1)
-layout_mode = 2
-texture = ExtResource("14_kkjw6")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Elec" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player1Element"]
-visible = false
-modulate = Color(1, 1, 0.333333, 0.682353)
-layout_mode = 2
-texture = ExtResource("15_qqxep")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Neutral" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player1Element"]
-visible = false
-layout_mode = 2
-texture = ExtResource("16_vcwra")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Player2Element" type="TabContainer" parent="PlayerDisplay/PlayerElements"]
-layout_mode = 0
-offset_left = 197.0
-offset_top = 698.0
-offset_right = 237.0
-offset_bottom = 738.0
-tabs_visible = false
-
-[node name="Fire" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player2Element"]
-modulate = Color(1, 0.160784, 0.223529, 1)
-layout_mode = 2
-texture = ExtResource("13_1lo6d")
-expand_mode = 4
-stretch_mode = 5
-metadata/_edit_lock_ = true
-
-[node name="Water" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player2Element"]
-visible = false
-modulate = Color(0.298039, 0.384314, 1, 1)
-layout_mode = 2
-texture = ExtResource("14_kkjw6")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Elec" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player2Element"]
-visible = false
-modulate = Color(1, 1, 0.333333, 0.682353)
-layout_mode = 2
-texture = ExtResource("15_qqxep")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Neutral" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player2Element"]
-visible = false
-layout_mode = 2
-texture = ExtResource("16_vcwra")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Player3Element" type="TabContainer" parent="PlayerDisplay/PlayerElements"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 698.0
-offset_right = 400.0
-offset_bottom = 738.0
-tabs_visible = false
-
-[node name="Fire" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player3Element"]
-modulate = Color(1, 0.160784, 0.223529, 1)
-layout_mode = 2
-texture = ExtResource("13_1lo6d")
-expand_mode = 4
-stretch_mode = 5
-metadata/_edit_lock_ = true
-
-[node name="Water" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player3Element"]
-visible = false
-modulate = Color(0.298039, 0.384314, 1, 1)
-layout_mode = 2
-texture = ExtResource("14_kkjw6")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Elec" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player3Element"]
-visible = false
-modulate = Color(1, 1, 0.333333, 0.682353)
-layout_mode = 2
-texture = ExtResource("15_qqxep")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="Neutral" type="TextureRect" parent="PlayerDisplay/PlayerElements/Player3Element"]
-visible = false
-layout_mode = 2
-texture = ExtResource("16_vcwra")
-expand_mode = 4
-metadata/_edit_lock_ = true
-
-[node name="PlayerPhyElements" type="Control" parent="PlayerDisplay"]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 97.0
-offset_right = 40.0
-offset_bottom = 137.0
-theme = ExtResource("12_jmjrn")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="PlayerPhyElement1" type="TabContainer" parent="PlayerDisplay/PlayerPhyElements"]
-layout_mode = 0
-offset_left = 125.0
-offset_top = 356.0
-offset_right = 165.0
-offset_bottom = 396.0
-tabs_visible = false
-
-[node name="Slash" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
-modulate = Color(0, 0.615686, 0.192157, 0.682353)
-layout_mode = 2
-texture = ExtResource("17_6y66w")
-expand_mode = 3
-metadata/_edit_lock_ = true
-
-[node name="Crush" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
-visible = false
-modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
-layout_mode = 2
-texture = ExtResource("18_fptq7")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Pierce" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
-visible = false
-modulate = Color(1, 0.588235, 0.12549, 0.682353)
-layout_mode = 2
-texture = ExtResource("19_dxbfy")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="PlayerPhyElement2" type="TabContainer" parent="PlayerDisplay/PlayerPhyElements"]
-layout_mode = 0
-offset_left = 293.0
-offset_top = 356.0
-offset_right = 333.0
-offset_bottom = 396.0
-tabs_visible = false
-
-[node name="Slash" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
-modulate = Color(0, 0.615686, 0.192157, 0.682353)
-layout_mode = 2
-texture = ExtResource("17_6y66w")
-expand_mode = 3
-metadata/_edit_lock_ = true
-
-[node name="Crush" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
-visible = false
-modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
-layout_mode = 2
-texture = ExtResource("18_fptq7")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Pierce" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
-visible = false
-modulate = Color(1, 0.588235, 0.12549, 0.682353)
-layout_mode = 2
-texture = ExtResource("19_dxbfy")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="PlayerPhyElement3" type="TabContainer" parent="PlayerDisplay/PlayerPhyElements"]
-layout_mode = 0
-offset_left = 456.0
-offset_top = 356.0
-offset_right = 496.0
-offset_bottom = 396.0
-tabs_visible = false
-
-[node name="Slash" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
-modulate = Color(0, 0.615686, 0.192157, 0.682353)
-layout_mode = 2
-texture = ExtResource("17_6y66w")
-expand_mode = 3
-metadata/_edit_lock_ = true
-
-[node name="Crush" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
-visible = false
-modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
-layout_mode = 2
-texture = ExtResource("18_fptq7")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Pierce" type="TextureRect" parent="PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
-visible = false
-modulate = Color(1, 0.588235, 0.12549, 0.682353)
-layout_mode = 2
-texture = ExtResource("19_dxbfy")
-expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="EnemyDisplay" type="Control" parent="."]
+[node name="EnemyDisplay" type="Control" parent="EnemySide"]
 layout_mode = 2
 anchors_preset = 0
 offset_left = 771.0
@@ -342,17 +72,17 @@ offset_top = 546.0
 offset_right = 1245.0
 offset_bottom = 748.0
 
-[node name="EnemyLineup" type="PanelContainer" parent="EnemyDisplay"]
+[node name="EnemyLineup" type="PanelContainer" parent="EnemySide/EnemyDisplay"]
 layout_mode = 0
 offset_right = 474.0
 offset_bottom = 202.0
 theme = ExtResource("12_jmjrn")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="EnemyDisplay/EnemyLineup"]
+[node name="RichTextLabel" type="RichTextLabel" parent="EnemySide/EnemyDisplay/EnemyLineup"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="EnemyElements" type="Control" parent="EnemyDisplay"]
+[node name="EnemyElements" type="Control" parent="EnemySide/EnemyDisplay"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 19.0
@@ -360,21 +90,21 @@ offset_top = 27.0
 offset_right = 59.0
 offset_bottom = 67.0
 
-[node name="EnemyPhyElement" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyPhyElement" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_left = 49.0
 offset_right = 89.0
 offset_bottom = 40.0
 tabs_visible = false
 
-[node name="Slash" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement"]
+[node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
 texture = ExtResource("17_6y66w")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement"]
+[node name="Crush" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -382,7 +112,7 @@ texture = ExtResource("18_fptq7")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement"]
+[node name="Pierce" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -390,13 +120,13 @@ texture = ExtResource("19_dxbfy")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="EnemyElement" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyElement" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 tabs_visible = false
 
-[node name="Fire" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement"]
+[node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("13_1lo6d")
@@ -404,7 +134,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement"]
+[node name="Water" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -412,7 +142,7 @@ texture = ExtResource("14_kkjw6")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement"]
+[node name="Elec" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -420,14 +150,14 @@ texture = ExtResource("15_qqxep")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement"]
+[node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 visible = false
 layout_mode = 2
 texture = ExtResource("16_vcwra")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="EnemyPhyElement2" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyPhyElement2" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_left = 49.0
 offset_top = 56.0
@@ -435,14 +165,14 @@ offset_right = 89.0
 offset_bottom = 96.0
 tabs_visible = false
 
-[node name="Slash" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement2"]
+[node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
 texture = ExtResource("17_6y66w")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement2"]
+[node name="Crush" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -450,7 +180,7 @@ texture = ExtResource("18_fptq7")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement2"]
+[node name="Pierce" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -458,14 +188,14 @@ texture = ExtResource("19_dxbfy")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="EnemyElement2" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyElement2" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_top = 56.0
 offset_right = 40.0
 offset_bottom = 96.0
 tabs_visible = false
 
-[node name="Fire" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement2"]
+[node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("13_1lo6d")
@@ -473,7 +203,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement2"]
+[node name="Water" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -481,7 +211,7 @@ texture = ExtResource("14_kkjw6")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement2"]
+[node name="Elec" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -489,14 +219,14 @@ texture = ExtResource("15_qqxep")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement2"]
+[node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 visible = false
 layout_mode = 2
 texture = ExtResource("16_vcwra")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="EnemyPhyElement3" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyPhyElement3" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_left = 49.0
 offset_top = 123.0
@@ -504,14 +234,14 @@ offset_right = 89.0
 offset_bottom = 163.0
 tabs_visible = false
 
-[node name="Slash" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement3"]
+[node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
 texture = ExtResource("17_6y66w")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement3"]
+[node name="Crush" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -519,7 +249,7 @@ texture = ExtResource("18_fptq7")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyPhyElement3"]
+[node name="Pierce" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -527,14 +257,14 @@ texture = ExtResource("19_dxbfy")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="EnemyElement3" type="TabContainer" parent="EnemyDisplay/EnemyElements"]
+[node name="EnemyElement3" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
 layout_mode = 0
 offset_top = 123.0
 offset_right = 40.0
 offset_bottom = 163.0
 tabs_visible = false
 
-[node name="Fire" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement3"]
+[node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("13_1lo6d")
@@ -542,7 +272,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement3"]
+[node name="Water" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -550,7 +280,7 @@ texture = ExtResource("14_kkjw6")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement3"]
+[node name="Elec" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -558,20 +288,20 @@ texture = ExtResource("15_qqxep")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="EnemyDisplay/EnemyElements/EnemyElement3"]
+[node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 visible = false
 layout_mode = 2
 texture = ExtResource("16_vcwra")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="EnemyMenu" type="Control" parent="."]
+[node name="EnemyMenu" type="Control" parent="EnemySide"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="EnemyMenu1" type="HBoxContainer" parent="EnemyMenu"]
+[node name="EnemyMenu1" type="HBoxContainer" parent="EnemySide/EnemyMenu"]
 layout_mode = 0
 offset_left = 771.0
 offset_top = 259.0
@@ -580,12 +310,12 @@ offset_bottom = 288.0
 theme = ExtResource("12_jmjrn")
 theme_override_constants/separation = 45
 
-[node name="Enemy1" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
+[node name="Enemy1" type="PanelContainer" parent="EnemySide/EnemyMenu/EnemyMenu1"]
 layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy1"]
+[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy1"]
 layout_mode = 2
 item_count = 6
 selected = 0
@@ -602,12 +332,12 @@ popup/item_4/id = 4
 popup/item_5/text = "lv20 Ireo"
 popup/item_5/id = 5
 
-[node name="Enemy2" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
+[node name="Enemy2" type="PanelContainer" parent="EnemySide/EnemyMenu/EnemyMenu1"]
 layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy2"]
+[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy2"]
 layout_mode = 2
 item_count = 7
 selected = 0
@@ -626,12 +356,12 @@ popup/item_5/id = 5
 popup/item_6/text = "None"
 popup/item_6/id = 6
 
-[node name="Enemy3" type="PanelContainer" parent="EnemyMenu/EnemyMenu1"]
+[node name="Enemy3" type="PanelContainer" parent="EnemySide/EnemyMenu/EnemyMenu1"]
 layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemyMenu/EnemyMenu1/Enemy3"]
+[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy3"]
 layout_mode = 2
 item_count = 7
 selected = 0
@@ -650,7 +380,12 @@ popup/item_5/id = 5
 popup/item_6/text = "None"
 popup/item_6/id = 6
 
-[node name="PlayerMenu" type="GridContainer" parent="."]
+[node name="PlayerSide" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerMenu" type="GridContainer" parent="PlayerSide"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 187.0
@@ -661,50 +396,50 @@ theme_override_constants/h_separation = 90
 columns = 3
 metadata/_edit_lock_ = true
 
-[node name="Player1Level" type="SpinBox" parent="PlayerMenu"]
+[node name="Player1Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
 custom_arrow_step = 1.0
 
-[node name="Label" type="Label" parent="PlayerMenu/Player1Level"]
+[node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player1Level"]
 layout_mode = 0
 offset_top = -30.0
 offset_right = 76.0
 offset_bottom = -4.0
 text = "Level"
 
-[node name="Player2Level" type="SpinBox" parent="PlayerMenu"]
+[node name="Player2Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
 
-[node name="Label" type="Label" parent="PlayerMenu/Player2Level"]
+[node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player2Level"]
 layout_mode = 0
 offset_top = -30.0
 offset_right = 76.0
 offset_bottom = -4.0
 text = "Level"
 
-[node name="Player3Level" type="SpinBox" parent="PlayerMenu"]
+[node name="Player3Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
 
-[node name="Label" type="Label" parent="PlayerMenu/Player3Level"]
+[node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player3Level"]
 layout_mode = 0
 offset_top = -30.0
 offset_right = 76.0
 offset_bottom = -4.0
 text = "Level"
 
-[node name="Player1" type="PanelContainer" parent="PlayerMenu"]
+[node name="Player1" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 
-[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player1"]
+[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player1"]
 layout_mode = 2
 item_count = 4
 selected = 0
@@ -719,11 +454,11 @@ popup/item_3/text = "Pepper"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[node name="Player2" type="PanelContainer" parent="PlayerMenu"]
+[node name="Player2" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player2"]
+[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player2"]
 layout_mode = 2
 item_count = 4
 selected = 2
@@ -738,11 +473,11 @@ popup/item_3/text = "Pepper"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[node name="Player3" type="PanelContainer" parent="PlayerMenu"]
+[node name="Player3" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="OptionButton" parent="PlayerMenu/Player3"]
+[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player3"]
 layout_mode = 2
 item_count = 4
 selected = 3
@@ -757,7 +492,291 @@ popup/item_3/text = "Pepper"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
+[node name="PlayerDisplay" type="Control" parent="PlayerSide"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerStats" type="Control" parent="PlayerSide/PlayerDisplay"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 183.0
+offset_top = 404.0
+offset_right = 338.0
+offset_bottom = 750.0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Player1Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
+layout_mode = 0
+offset_left = -163.0
+offset_top = -2.0
+offset_right = -8.0
+offset_bottom = 344.0
+theme = ExtResource("12_jmjrn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player1Stats"]
+layout_mode = 2
+
+[node name="Player2Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
+layout_mode = 2
+offset_top = -2.0
+offset_right = 155.0
+offset_bottom = 344.0
+theme = ExtResource("12_jmjrn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player2Stats"]
+layout_mode = 2
+
+[node name="Player3Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 346.0
+theme = ExtResource("12_jmjrn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player3Stats"]
+layout_mode = 2
+
+[node name="PlayerElements" type="Control" parent="PlayerSide/PlayerDisplay"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 96.0
+offset_top = -290.0
+offset_right = 136.0
+offset_bottom = -250.0
+theme = ExtResource("12_jmjrn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Player1Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 698.0
+offset_right = 69.0
+offset_bottom = 738.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("13_1lo6d")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("14_kkjw6")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("15_qqxep")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
+visible = false
+layout_mode = 2
+texture = ExtResource("16_vcwra")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Player2Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 698.0
+offset_right = 237.0
+offset_bottom = 738.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("13_1lo6d")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("14_kkjw6")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("15_qqxep")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
+visible = false
+layout_mode = 2
+texture = ExtResource("16_vcwra")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Player3Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 698.0
+offset_right = 400.0
+offset_bottom = 738.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("13_1lo6d")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("14_kkjw6")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("15_qqxep")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
+visible = false
+layout_mode = 2
+texture = ExtResource("16_vcwra")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElements" type="Control" parent="PlayerSide/PlayerDisplay"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 97.0
+offset_right = 40.0
+offset_bottom = 137.0
+theme = ExtResource("12_jmjrn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement1" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 356.0
+offset_right = 165.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("17_6y66w")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("18_fptq7")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("19_dxbfy")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement2" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 356.0
+offset_right = 333.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("17_6y66w")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("18_fptq7")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("19_dxbfy")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement3" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 356.0
+offset_right = 496.0
+offset_bottom = 396.0
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("17_6y66w")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("18_fptq7")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("19_dxbfy")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
 [node name="PlayerFirstToggle" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 771.0
 offset_top = 232.0
 offset_right = 928.0
@@ -785,28 +804,33 @@ layout_mode = 2
 text = "ON"
 metadata/_edit_lock_ = true
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Navigation" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buttons" type="Control" parent="Navigation"]
 anchors_preset = 0
 offset_left = 559.0
 offset_top = 696.0
 offset_right = 599.0
 offset_bottom = 736.0
 
-[node name="HelpButton" type="Button" parent="Buttons"]
+[node name="HelpButton" type="Button" parent="Navigation/Buttons"]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 54.0
 theme = ExtResource("12_jmjrn")
 text = "What is this?"
 
-[node name="FightButton" type="Button" parent="Buttons"]
+[node name="FightButton" type="Button" parent="Navigation/Buttons"]
 layout_mode = 0
 offset_top = -49.0
 offset_right = 160.0
 offset_bottom = -9.0
 text = "START FIGHTING"
 
-[node name="OptionButton" type="Button" parent="Buttons"]
+[node name="OptionButton" type="Button" parent="Navigation/Buttons"]
 visible = false
 layout_mode = 0
 offset_left = 26.0
@@ -815,15 +839,15 @@ offset_right = 131.0
 offset_bottom = -66.0
 text = "Options"
 
-[node name="MusicMenu" type="PanelContainer" parent="."]
+[node name="MusicMenu" type="PanelContainer" parent="Navigation"]
 layout_mode = 0
 offset_left = 585.0
 offset_top = 408.0
-offset_right = 690.0
+offset_right = 692.0
 offset_bottom = 437.0
 theme = ExtResource("12_jmjrn")
 
-[node name="MenuButton" type="OptionButton" parent="MusicMenu"]
+[node name="MenuButton" type="OptionButton" parent="Navigation/MusicMenu"]
 layout_mode = 2
 item_count = 4
 selected = 0
@@ -837,7 +861,7 @@ popup/item_3/text = "Miitopia Boss"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[node name="OptionsMenu" type="Control" parent="."]
+[node name="OptionsMenu" type="Control" parent="Navigation"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -846,7 +870,7 @@ offset_top = 590.0
 offset_right = 625.0
 offset_bottom = 630.0
 
-[node name="ExitPanel2" type="PanelContainer" parent="OptionsMenu"]
+[node name="ExitPanel2" type="PanelContainer" parent="Navigation/OptionsMenu"]
 layout_mode = 0
 offset_left = -26.0
 offset_top = 57.0
@@ -855,12 +879,12 @@ offset_bottom = 97.0
 theme = ExtResource("12_jmjrn")
 metadata/_edit_lock_ = true
 
-[node name="ExitButton" type="Button" parent="OptionsMenu/ExitPanel2"]
+[node name="ExitButton" type="Button" parent="Navigation/OptionsMenu/ExitPanel2"]
 layout_mode = 2
 text = "Exit"
 metadata/_edit_lock_ = true
 
-[node name="HelpMenu" type="Control" parent="."]
+[node name="HelpMenu" type="Control" parent="Navigation"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -870,7 +894,7 @@ offset_right = 136.0
 offset_bottom = 72.0
 theme = ExtResource("12_jmjrn")
 
-[node name="HelpPanel" type="PanelContainer" parent="HelpMenu"]
+[node name="HelpPanel" type="PanelContainer" parent="Navigation/HelpMenu"]
 layout_mode = 0
 offset_right = 1149.0
 offset_bottom = 681.0
@@ -878,7 +902,7 @@ theme = ExtResource("12_jmjrn")
 theme_override_styles/panel = ExtResource("20_utjeg")
 metadata/_edit_lock_ = true
 
-[node name="ExitPanel" type="PanelContainer" parent="HelpMenu"]
+[node name="ExitPanel" type="PanelContainer" parent="Navigation/HelpMenu"]
 layout_mode = 0
 offset_left = 499.0
 offset_top = 607.0
@@ -887,18 +911,18 @@ offset_bottom = 647.0
 theme = ExtResource("12_jmjrn")
 metadata/_edit_lock_ = true
 
-[node name="ExitButton" type="Button" parent="HelpMenu/ExitPanel"]
+[node name="ExitButton" type="Button" parent="Navigation/HelpMenu/ExitPanel"]
 layout_mode = 2
 text = "Exit"
 metadata/_edit_lock_ = true
 
-[node name="Text" type="Control" parent="HelpMenu"]
+[node name="Text" type="Control" parent="Navigation/HelpMenu"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 436.0
 offset_top = 32.0
@@ -907,7 +931,7 @@ offset_bottom = 97.0
 theme_override_font_sizes/normal_font_size = 40
 text = "How this works"
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 143.0
@@ -930,7 +954,7 @@ The six softs are Fire,Water,Elec,Slash,Crush & Pierce
 They will be applied whener you crit, with PhyElements taking priority
 You can only have a total of 3 softs of any type"
 
-[node name="RichTextLabel7" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel7" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 97.0
@@ -939,7 +963,7 @@ offset_bottom = 162.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Ailments & Status"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 474.0
 offset_top = 103.0
@@ -948,7 +972,7 @@ offset_bottom = 143.0
 theme_override_font_sizes/normal_font_size = 25
 text = "BASIC STATS"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 803.0
 offset_top = 147.0
@@ -963,7 +987,7 @@ PhyElements: Some moves have PhyElements Slash/Crush/Pierce.
 
 *Group targetting hits entities of the same element. If it only hits one, then it'll hit them twice"
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 821.0
 offset_top = 97.0
@@ -972,7 +996,7 @@ offset_bottom = 143.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Elements"
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="HelpMenu/Text"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Navigation/HelpMenu/Text"]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 147.0
@@ -991,13 +1015,6 @@ There are 4 kind of stat buffs: Attack, Defense, Speed and Luck.
 They can be applied twice with each stack adding 30%
 They will decay by 5% every turn"
 
-[node name="ElementTriangle" parent="." instance=ExtResource("21_4hl4l")]
-layout_mode = 1
-offset_left = 1116.0
-offset_top = 157.0
-offset_right = 1116.0
-offset_bottom = 157.0
-
 [node name="SFX" type="Node" parent="."]
 
 [node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
@@ -1012,21 +1029,21 @@ bus = &"SFX"
 stream = ExtResource("24_8j3dy")
 bus = &"SFX"
 
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]
-[connection signal="item_selected" from="EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged"]
-[connection signal="value_changed" from="PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
-[connection signal="value_changed" from="PlayerMenu/Player2Level" to="." method="levelChange" binds= [1]]
-[connection signal="value_changed" from="PlayerMenu/Player3Level" to="." method="levelChange" binds= [2]]
-[connection signal="item_selected" from="PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
-[connection signal="item_selected" from="PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
-[connection signal="item_selected" from="PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="value_changed" from="PlayerSide/PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
+[connection signal="value_changed" from="PlayerSide/PlayerMenu/Player2Level" to="." method="levelChange" binds= [1]]
+[connection signal="value_changed" from="PlayerSide/PlayerMenu/Player3Level" to="." method="levelChange" binds= [2]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
 [connection signal="toggled" from="PlayerFirstToggle/HBoxContainer/PlayerOrder" to="." method="_on_player_order_toggled"]
-[connection signal="pressed" from="Buttons/HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="Buttons/FightButton" to="." method="_on_fight_button_pressed"]
-[connection signal="pressed" from="Buttons/OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="item_selected" from="MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
-[connection signal="pressed" from="MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
-[connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/FightButton" to="." method="_on_fight_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
+[connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
+[connection signal="pressed" from="Navigation/HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

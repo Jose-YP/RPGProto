@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvex4ys5jcush"
-path="res://.godot/imported/Ballistics.png-e81370fd9f08a4dd8e2bd685b94d2a78.ctex"
+uid="uid://bu1iudacj3rft"
+path="res://.godot/imported/icons-set-2_0000s_0069__Group_.png-bdd0e313776e78b9e2e6eaa87e4e801c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Ballistics.png"
-dest_files=["res://.godot/imported/Ballistics.png-e81370fd9f08a4dd8e2bd685b94d2a78.ctex"]
+source_file="res://Icons/MenuIcons/icons-set-2_0000s_0069__Group_.png"
+dest_files=["res://.godot/imported/icons-set-2_0000s_0069__Group_.png-bdd0e313776e78b9e2e6eaa87e4e801c.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@ class_name Move
 
 @export_category("Information")
 @export var name: String = "Attack"
-@export var description: String = "Basic Attack"
+@export_multiline var description: String = "Basic Attack"
 @export var TPCost: int = 50
 @export_enum("Enemy","Ally","Both") var Which = "Enemy"
 @export_enum("Single","Group","Self","All","Random","KO","None") var Target = "Single"

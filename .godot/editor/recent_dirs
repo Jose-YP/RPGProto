@@ -1,25 +1,22 @@
+res://
+res://Scene
+res://Code/SceneCode
+res://Resources/Entity Data/Enemy Data/EnemyEntity
 <<<<<<< Updated upstream
 =======
 res://Resources/Chip Data
 res://Resources/Gear Data
 res://AddOns
 >>>>>>> Stashed changes
-res://Scene
 res://Code/EnemyAI
-res://Code/SceneCode
 res://Resources/Item Data/ItemMoves
 res://Resources/Item Data/ItemSpecifics
 res://Resources/Move Data/Enemy Moves
 res://Resources/Entity Data/Enemy Data/EnemySpecific
-res://Resources/Entity Data/Enemy Data/EnemyEntity
 res://Resources/Move Data/Player Moves
-res://
 res://Resources/Entity Data/Enemy Data
 res://Code/Globals
 C:/Users/Jose/Desktop/Godots/Godot 4/Games/Godot-RPG-PRoject-main/Code/EnemyAI
 res://Code
 res://Resources/Move Data
 res://Resources
-res://Themes/HasSingle
-res://Themes
-res://Themes/ButtonStyle

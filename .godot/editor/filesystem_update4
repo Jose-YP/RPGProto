@@ -1,93 +1,51 @@
-<<<<<<< Updated upstream
 res://Audio/Buses/default_bus_layout.tres
+res://Scene/MainMenuNew.tscn
 res://Scene/GameManager.tscn
-=======
-res://Scene/MainMenu.tscn
->>>>>>> Stashed changes
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
+res://BasicAttack.tres
+res://Resources/Entity Data/placeholder.tres
 res://Themes/ButtonStyle/Disabled.tres
 res://Themes/ButtonStyle/Normal.tres
 res://Themes/HasSingle/Pannel.tres
 res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
-res://BasicAttack.tres
-res://Resources/Move Data/Player Moves/StarMissiles.tres
+res://Themes/Blue.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://Resources/Item Data/ItemMoves/IdolMove.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
-res://Resources/Move Data/Entity Moves/Overdrive.tres
-res://Resources/Move Data/Player Moves/Refresh.tres
-res://Resources/Move Data/Player Moves/Crash.tres
-res://Resources/Move Data/Player Moves/MiscPlaceHolder.tres
-res://Resources/Move Data/Player Moves/Boost.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
+res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
+res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
+res://Resources/Item Data/ItemMoves/NutMove.tres
+res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
+res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres
+res://Resources/Item Data/ItemMoves/ElecBombMove.tres
+res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
+res://Resources/Item Data/ItemMoves/SoftyMove.tres
+res://Resources/Item Data/ItemSpecifics/Softy!.tres
+res://Resources/Item Data/ItemMoves/TaxReportMove.tres
+res://Resources/Item Data/ItemSpecifics/TaxReport.tres
+res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres
 res://Resources/Item Data/ItemSpecifics/WhimBerry.tres
 res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
 res://Resources/Item Data/ItemMoves/TPItemMove.tres
 res://Resources/Item Data/ItemSpecifics/TPItem.tres
-res://Resources/Move Data/Player Moves/SwitchGear.tres
-res://Resources/Move Data/Player Moves/FullStream.tres
-res://Resources/Move Data/Player Moves/DragonScrew.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres
-res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
-res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
-res://Resources/Item Data/ItemMoves/NutMove.tres
-res://Resources/Move Data/Player Moves/RendingArm.tres
-res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
-res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres
-res://Resources/Item Data/ItemMoves/ElecBombMove.tres
-res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
-res://Resources/Move Data/Entity Moves/Bahr.tres
-res://Resources/Move Data/Entity Moves/Charge.tres
-res://Resources/Item Data/ItemMoves/SoftyMove.tres
-res://Resources/Item Data/ItemSpecifics/Softy!.tres
-res://Resources/Item Data/ItemMoves/TaxReportMove.tres
-res://Resources/Item Data/ItemSpecifics/TaxReport.tres
-res://Resources/Move Data/Entity Moves/Hariq.tres
-res://Resources/Move Data/Entity Moves/Poison.tres
-res://Resources/Move Data/Player Moves/Scapegoat.tres
-res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
-res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
-res://Resources/Move Data/Entity Moves/Heal.tres
-res://Resources/Move Data/Enemy Moves/Seiqa.tres
-res://Resources/Entity Data/Enemy Data/EnemyEntity/Corvus.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
-res://Resources/Entity Data/placeholder.tres
-res://Themes/Blue.tres
-<<<<<<< Updated upstream
-res://Resources/Move Data/Entity Moves/Firestorm.tres
-res://Resources/Move Data/Entity Moves/PlayerHariq.tres
-res://Resources/Move Data/Player Moves/ChipMoves/PlayerSeiqa.tres
-res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres
-res://Resources/Move Data/Player Moves/Blizzard.tres
-=======
-res://Code/ResourceMakers/ChipMaker.gd
-res://Code/ResourceMakers/GearMaker.gd
-res://Code/ResourceMakers/PlayerMaker.gd
-res://Resources/Gear Data/PoolNoodle.tres
-res://Resources/Gear Data/WitchSword.tres
-res://Resources/Gear Data/StoreboughtMotor.tres
-res://Resources/Gear Data/RefurbishedEngine.tres
-res://Resources/Gear Data/NewSuperGreatSword.tres
-res://Resources/Gear Data/Betelgeuse Axe.tres
-res://Resources/Gear Data/ShadowGloves.tres
-res://Resources/Gear Data/DevilishMittens.tres
-res://Resources/Chip Data/Mind.tres
-res://Resources/Chip Data/Fire.tres
-res://Resources/Chip Data/Blood.tres
-res://Resources/Chip Data/Body.tres
-res://Resources/Chip Data/Boss.tres
+res://Code/SceneCode/MainMenu.gd
+res://ChipMenu.tscn
 res://Resources/Chip Data/Paradox.tres
-res://Resources/Chip Data/Soul.tres
-res://Resources/Chip Data/Water.tres
-res://Resources/Chip Data/Memory.tres
->>>>>>> Stashed changes
+res://Resources/Gear Data/PoolNoodle.tres
+res://Code/ResourceMakers/ChipMaker.gd
+res://ChipMenu.gd
+res://Code/ResourceMakers/GearMaker.gd
+res://Code/ResourceMakers/MoveMaker.gd

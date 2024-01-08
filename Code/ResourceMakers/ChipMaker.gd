@@ -3,7 +3,7 @@ class_name Chip
 
 @export_category("Information")
 @export var name: String = "Basic"
-@export var description: String = "Does something"
+@export_multiline var description: String = "Does something"
 @export var CpuCost: int = 4
 @export_enum("Red","Blue","Yellow") var ChipType = "Red"
 @export var other: String

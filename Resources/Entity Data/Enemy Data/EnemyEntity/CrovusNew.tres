@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=5 format=3 uid="uid://bdrlqlvn6kv8c"]
+
+[ext_resource type="Resource" uid="uid://b6bm1esff11v3" path="res://Resources/Move Data/Entity Moves/MostEnemy/BasicAttackBallistic.tres" id="1_niohx"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_3g4il"]
+[ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres" id="3_viwcf"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="4_4vvhm"]
+
+[resource]
+script = ExtResource("2_3g4il")
+level = 12
+name = "Healer"
+species = "Corvus"
+specificData = ExtResource("3_viwcf")
+MaxHP = 400
+MaxTP = 80
+strength = 0
+toughness = 0
+ballistics = 0
+resistance = 0
+speed = 0
+luck = 0
+element = "Elec"
+Weakness = 48
+Resist = 0
+phyElement = "Pierce"
+attackData = ExtResource("1_niohx")
+skillData = []
+itemData = {}
+waitData = ExtResource("4_4vvhm")
+KO = false
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0
