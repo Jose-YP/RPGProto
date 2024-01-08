@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://hq7hd3pd2y2r"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_iy0e1"]
+
+[resource]
+script = ExtResource("1_iy0e1")
+name = "Blood"
+description = "-100 HP +20 CPU"
+CpuCost = -15
+ChipType = "Yellow"
+other = ""
+PhyNeutralChange = "None"
+AffectedMove = null
+NewTarget = null
+ItemChange = null
+calcBonus = "None"
+calcAmmount = 0.0
+costBonus = null
+costMod = null
+NewElement = null
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+immunity = "None"
+resist = null
+HP = -100
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+StatSwap = false
+FirstSwap = null
+SecondSwap = null

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://0tf2axtfcetw"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_t0j28"]
+
+[resource]
+script = ExtResource("1_t0j28")
+name = "Devilish Mittens"
+description = "Adds 10% to Base Ailment Hit"
+Char = "Pepper"
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+calcBonus = "None"
+calcAmmount = 0.0
+miscCalc = "None"

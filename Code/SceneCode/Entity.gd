@@ -220,7 +220,7 @@ func healAilment(move, receiver):
 		
 	
 	var category = ailmentCategory(receiver)
-	if category != "Mental" and category != "Nonmental":
+	if category != "Mental" and category != "Chemical":
 		canHeal = false
 	
 	if (category == move.HealedAilment or receiver.data.Ailment == move.HealedAilment 
@@ -256,7 +256,7 @@ func applyNegativeAilment(move,receiver,user,preWin = false):
 			receiver.data.Ailment = move.Ailment
 
 func applyPositiveAilment(move,receiver):
-	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Nonmental":
+	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Chemical":
 		ailmentSound.emit(move.Ailment)
 		if move.Ailment == "Protected":
 			receiver.data.AilmentNum += 1
@@ -509,7 +509,7 @@ func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: P
 			receiver.data.Ailment == "Miserable" or receiver.data.Ailment == "Dumbfounded"):
 				return "Mental"
 			else:
-				return "Nonmental"
+				return "Chemical"
 
 func determineXSoft(move,user):
 	if move.name == "Attack" or move.name == "Burst": #XSoft

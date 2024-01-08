@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cx4hfxuyplmfn"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_8xe6w"]
+
+[resource]
+script = ExtResource("1_8xe6w")
+name = "Body"
+description = "Changes the user's element to Water"
+CpuCost = 4
+ChipType = "Blue"
+other = ""
+PhyNeutralChange = "None"
+AffectedMove = null
+NewTarget = null
+ItemChange = null
+calcBonus = "None"
+calcAmmount = 0.0
+costBonus = null
+costMod = null
+NewElement = 1
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+immunity = "None"
+resist = null
+HP = 0
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+StatSwap = false
+FirstSwap = null
+SecondSwap = null

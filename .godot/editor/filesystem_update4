@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 res://Audio/Buses/default_bus_layout.tres
 res://Scene/GameManager.tscn
+=======
+res://Scene/MainMenu.tscn
+>>>>>>> Stashed changes
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://Themes/ButtonStyle/Disabled.tres
@@ -59,8 +63,31 @@ res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
+<<<<<<< Updated upstream
 res://Resources/Move Data/Entity Moves/Firestorm.tres
 res://Resources/Move Data/Entity Moves/PlayerHariq.tres
 res://Resources/Move Data/Player Moves/ChipMoves/PlayerSeiqa.tres
 res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres
 res://Resources/Move Data/Player Moves/Blizzard.tres
+=======
+res://Code/ResourceMakers/ChipMaker.gd
+res://Code/ResourceMakers/GearMaker.gd
+res://Code/ResourceMakers/PlayerMaker.gd
+res://Resources/Gear Data/PoolNoodle.tres
+res://Resources/Gear Data/WitchSword.tres
+res://Resources/Gear Data/StoreboughtMotor.tres
+res://Resources/Gear Data/RefurbishedEngine.tres
+res://Resources/Gear Data/NewSuperGreatSword.tres
+res://Resources/Gear Data/Betelgeuse Axe.tres
+res://Resources/Gear Data/ShadowGloves.tres
+res://Resources/Gear Data/DevilishMittens.tres
+res://Resources/Chip Data/Mind.tres
+res://Resources/Chip Data/Fire.tres
+res://Resources/Chip Data/Blood.tres
+res://Resources/Chip Data/Body.tres
+res://Resources/Chip Data/Boss.tres
+res://Resources/Chip Data/Paradox.tres
+res://Resources/Chip Data/Soul.tres
+res://Resources/Chip Data/Water.tres
+res://Resources/Chip Data/Memory.tres
+>>>>>>> Stashed changes

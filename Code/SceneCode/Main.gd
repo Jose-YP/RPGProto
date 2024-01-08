@@ -980,7 +980,7 @@ func endPhaseCheck():
 	for k in range(opposing.size()):
 		opposing[k].statBoostHandling()
 		var holdAilment = opposing[k].ailmentCategory(opposing[k])
-		if holdAilment != "Mental" or holdAilment != "Nonmental":
+		if holdAilment != "Mental" or holdAilment != "Chemical":
 			opposing[k].endPhaseAilments(opposing[k].data.Ailment)
 		
 	if playerTurn:

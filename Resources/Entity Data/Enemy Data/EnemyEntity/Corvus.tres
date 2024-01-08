@@ -3,9 +3,15 @@
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_2c0gp"]
 [ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_5fr8k"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_4u4ra"]
+<<<<<<< Updated upstream
 [ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres" id="4_06unb"]
 [ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="5_3doyy"]
 [ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Enemy Moves/Seiqa.tres" id="6_n6yf6"]
+=======
+[ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/Heal.tres" id="4_06unb"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/Poison.tres" id="5_3doyy"]
+[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Entity Moves/Seiqa.tres" id="6_n6yf6"]
+>>>>>>> Stashed changes
 [ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres" id="7_qj433"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="8_mkxik"]
 

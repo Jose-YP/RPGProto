@@ -30,7 +30,7 @@ class_name Move
 @export var reset: bool
 @export var healing: int = 0
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None",
-"Protected","Dumbfounded","Miserable","Worn Out", "Explosive", "Negative","Nonmental",
+"Protected","Dumbfounded","Miserable","Worn Out", "Explosive", "Negative","Chemical",
 "Mental","Positive","XSoft","All") var HealedAilment: String = "None"
 @export_range(0,3) var HealAilAmmount: int
 

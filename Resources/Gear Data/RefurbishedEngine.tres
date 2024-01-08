@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://cin6fhle3g8yy"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_7dxoy"]
+
+[resource]
+script = ExtResource("1_7dxoy")
+name = "Refurbished Engine"
+description = "+4 Tgh/Res"
+Char = "Lonna"
+Strength = 0
+Toughness = 4
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+calcBonus = "None"
+calcAmmount = 0.0
+miscCalc = "None"

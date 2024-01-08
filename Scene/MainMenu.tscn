@@ -33,6 +33,7 @@ playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([Ex
 enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_ime6b"), ExtResource("7_2t53m"), ExtResource("8_i7oi5"), ExtResource("9_525rk"), ExtResource("10_022bv"), ExtResource("11_ua5p8")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 1286.0
@@ -758,6 +759,7 @@ popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
 [node name="PlayerFirstToggle" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 771.0
 offset_top = 232.0
 offset_right = 928.0
@@ -1027,6 +1029,6 @@ bus = &"SFX"
 [connection signal="pressed" from="Buttons/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="item_selected" from="MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
+[connection signal="pressed" from="OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

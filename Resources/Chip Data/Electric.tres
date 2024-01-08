@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cm78hd27sc8np"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_712ww"]
+
+[resource]
+script = ExtResource("1_712ww")
+name = "Basic Gear"
+description = "Does something"
+CpuCost = 50
+ChipType = "Red"

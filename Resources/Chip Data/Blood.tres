@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://43atp7yyoob5"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_ldw40"]
+
+[resource]
+script = ExtResource("1_ldw40")
+name = "Wicked"
+description = "+4 Speed"
+CpuCost = 6
+ChipType = "Yellow"
+other = ""
+PhyNeutralChange = "None"
+AffectedMove = 2
+NewTarget = 1
+ItemChange = null
+calcBonus = "None"
+calcAmmount = 0.0
+costBonus = null
+costMod = null
+NewElement = null
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+immunity = "Debuff"
+resist = null
+HP = 0
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 4
+Luck = 0
+StatSwap = false
+FirstSwap = null
+SecondSwap = null

@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+=======
+res://Resources/Chip Data
+res://Resources/Gear Data
+res://AddOns
+>>>>>>> Stashed changes
 res://Scene
 res://Code/EnemyAI
 res://Code/SceneCode
@@ -17,4 +23,3 @@ res://Resources
 res://Themes/HasSingle
 res://Themes
 res://Themes/ButtonStyle
-res://Resources/Entity Data

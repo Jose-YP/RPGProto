@@ -6,7 +6,6 @@ I'm going to keep updating this until the GameJam starts so maybe it'll look bet
 ______
 ISSUES
 ______
-*Fixing Diplay for non Damaging/Healing moves
 *In general STABILITY
 
 ______
@@ -19,6 +18,7 @@ ______
 LOFTY TODOS
 ______
 *Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
+*Better Damage displays
 *Visuals of any kind
 
 ______

@@ -7,6 +7,10 @@ class_name Player
 @export_range(1,8) var Skills: int = 1
 @export_range(.5,2,.05) var RechargeRate: float = 1
 
+@export_category("Equipment")
+@export var GearData: Gear
+@export var ChipData: Array[Chip]
+
 @export_group("Basic Moves")
 @export var Basics: Array[Move]
 

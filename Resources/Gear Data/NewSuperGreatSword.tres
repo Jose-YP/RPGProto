@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://bn1f71pv8j7qo"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_v6vpp"]
+
+[resource]
+script = ExtResource("1_v6vpp")
+name = "New Super Greatsword"
+description = "+6 Strength"
+Char = "Damir"
+Strength = 6
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+calcBonus = "None"
+calcAmmount = 0.0
+miscCalc = "None"

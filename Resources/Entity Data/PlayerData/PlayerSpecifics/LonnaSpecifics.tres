@@ -14,6 +14,7 @@ MaxLP = 10
 MaxCPU = 10
 Skills = 4
 RechargeRate = 1.75
+ChipData = Array[Resource]([])
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_namyh"), ExtResource("2_tb6m0"), ExtResource("3_ujl4q")])
 boostStat = 1
 Tactics2 = ExtResource("4_3cwns")

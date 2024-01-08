@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://ddb1bxsdk77eo"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_y0mgh"]
+
+[resource]
+script = ExtResource("1_y0mgh")
+name = "Basic Gear"
+description = "Does something"
+CpuCost = 50
+Char = "DREAMER"

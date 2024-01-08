@@ -1,3 +1,5 @@
+Chip
+Gear
 Item
 entityData
 Move

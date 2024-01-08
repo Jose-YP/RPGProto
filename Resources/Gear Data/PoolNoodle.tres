@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://ljunc8hoyajg"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_vrr1t"]
+
+[resource]
+script = ExtResource("1_vrr1t")
+name = "Pool Noodle"
+description = "-5 Str/Bal, +5 Luck, Crits now apply Dumbfounded"
+Char = "DREAMER"
+Strength = -5
+Toughness = 0
+Ballistics = -5
+Resistance = 0
+Speed = 0
+Luck = 5
+calcBonus = "None"
+calcAmmount = 0.0
+miscCalc = "None"
