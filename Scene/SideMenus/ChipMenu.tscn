@@ -1,12 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://e86h6ygu2yew"]
+[gd_scene load_steps=18 format=3 uid="uid://e86h6ygu2yew"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_r1j1a"]
 [ext_resource type="Script" path="res://Code/SceneCode/ChipMenu.gd" id="2_7gxe8"]
 [ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/ChipinInv.tscn" id="2_tnvcm"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="3_4l6kn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_ke5yo"]
+[ext_resource type="Material" uid="uid://g13xvkbcpfoj" path="res://Themes/ButtonStyle/Dock.tres" id="5_5gu6r"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="5_685xo"]
-[ext_resource type="StyleBox" uid="uid://behgx34f1n8ve" path="res://Themes/ButtonStyle/DockSelected.tres" id="5_nbqy2"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="6_7kf02"]
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="7_8meyi"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="8_8tpd0"]
@@ -29,6 +29,15 @@ corner_detail = 12
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
 border_width_left = 5
 corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxis2"]
+bg_color = Color(1, 1, 1, 0.505882)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.121569, 1)
+border_blend = true
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -63,13 +72,18 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="ChipSelection" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+material = ExtResource("5_5gu6r")
+use_parent_material = true
 custom_minimum_size = Vector2(650, 725)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ak5bq")
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ChipSelection"]
 layout_mode = 2
-theme_override_styles/focus = ExtResource("5_nbqy2")
+focus_neighbor_left = NodePath("../../CurrentCharChips/Button")
+focus_neighbor_right = NodePath("../../CurrentCharChips/Button")
+focus_next = NodePath("../../CurrentCharChips/Button")
+focus_previous = NodePath("../../CurrentCharChips/Button")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button"]
 layout_mode = 2
@@ -134,13 +148,19 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CurrentCharChips" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+material = ExtResource("5_5gu6r")
+use_parent_material = true
 custom_minimum_size = Vector2(600, 725)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4fmou")
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/CurrentCharChips"]
 layout_mode = 2
-theme_override_styles/focus = ExtResource("5_nbqy2")
+focus_neighbor_left = NodePath("../../ChipSelection/Button")
+focus_neighbor_right = NodePath("../../ChipSelection/Button")
+focus_next = NodePath("../../ChipSelection/Button")
+focus_previous = NodePath("../../ChipSelection/Button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button"]
 layout_mode = 2

@@ -42,3 +42,11 @@ res://Themes/Theme.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
 res://Themes/ButtonStyle/DockSelected.tres
+res://Scene/SideMenus/ChipMenu.tscn
+res://Shaders/OutlineInline.gdshader
+res://Themes/ButtonStyle/Dock.tres
+res://Scene/Mains/GameManager.tscn
+res://Scene/Mains/MainMenu.tscn
+res://Scene/SideMenus/ChipinInv.tscn
+res://Scene/SideMenus/ChipinChar.tscn
+res://Scene/SideMenus/ChipMenuNew.tscn
