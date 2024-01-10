@@ -1,20 +1,20 @@
 [gd_scene load_steps=13 format=3 uid="uid://bj1l11wng7bfb"]
 
-[ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Player.tscn" id="1_28r4w"]
-[ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_ltfm5"]
-[ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/enemy.tscn" id="2_jglk6"]
-[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="3_hcytf"]
-[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="5_gumwr"]
-[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="6_nyo4f"]
-[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="7_8xm7i"]
-[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="11_atlpm"]
-[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="12_ejskb"]
-[ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="13_w8prj"]
-[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="14_2ardw"]
-[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="14_fwpqc"]
+[ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_pgkg1"]
+[ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/Entities/enemy.tscn" id="2_igkd6"]
+[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="3_tk7wc"]
+[ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Entities/Player.tscn" id="4_220tf"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="5_2e3q4"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="6_bqta2"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="7_sues4"]
+[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="8_076iv"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="9_elqm0"]
+[ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="10_poyo7"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="11_1kedy"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="12_dtk7b"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_ltfm5")
+script = ExtResource("1_pgkg1")
 tweenTiming = 0.5
 
 [node name="PostPhaseTimer" type="Timer" parent="."]
@@ -27,19 +27,19 @@ one_shot = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy1" parent="Enemies" instance=ExtResource("2_jglk6")]
+[node name="Enemy1" parent="Enemies" instance=ExtResource("2_igkd6")]
 position = Vector2(160, 119)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("3_hcytf")
+data = ExtResource("3_tk7wc")
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("2_jglk6")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_igkd6")]
 position = Vector2(555, 132)
-data = ExtResource("3_hcytf")
+data = ExtResource("3_tk7wc")
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("2_jglk6")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_igkd6")]
 position = Vector2(1001, 122)
 scale = Vector2(0.8, 0.8)
-data = ExtResource("3_hcytf")
+data = ExtResource("3_tk7wc")
 
 [node name="Position1" type="Marker2D" parent="Enemies"]
 position = Vector2(161, 119)
@@ -52,20 +52,20 @@ position = Vector2(1008, 125)
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" instance=ExtResource("1_28r4w")]
+[node name="Player1" parent="Players" instance=ExtResource("4_220tf")]
 position = Vector2(200, 560)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("5_gumwr")
+data = ExtResource("5_2e3q4")
 
-[node name="Player2" parent="Players" instance=ExtResource("1_28r4w")]
+[node name="Player2" parent="Players" instance=ExtResource("4_220tf")]
 position = Vector2(591, 560)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("6_nyo4f")
+data = ExtResource("6_bqta2")
 
-[node name="Player3" parent="Players" instance=ExtResource("1_28r4w")]
+[node name="Player3" parent="Players" instance=ExtResource("4_220tf")]
 position = Vector2(986, 563)
 scale = Vector2(0.75, 0.75)
-data = ExtResource("7_8xm7i")
+data = ExtResource("7_sues4")
 
 [node name="Position1" type="Marker2D" parent="Players"]
 position = Vector2(200, 560)
@@ -93,9 +93,9 @@ offset_bottom = 293.0
 value = 100.0
 fill_mode = 4
 nine_patch_stretch = true
-texture_under = ExtResource("11_atlpm")
-texture_over = ExtResource("12_ejskb")
-texture_progress = ExtResource("13_w8prj")
+texture_under = ExtResource("8_076iv")
+texture_over = ExtResource("9_elqm0")
+texture_progress = ExtResource("10_poyo7")
 
 [node name="Label" type="Label" parent="EnemyTP"]
 layout_mode = 0
@@ -111,9 +111,9 @@ offset_bottom = 437.0
 value = 100.0
 fill_mode = 5
 nine_patch_stretch = true
-texture_under = ExtResource("11_atlpm")
-texture_over = ExtResource("12_ejskb")
-texture_progress = ExtResource("13_w8prj")
+texture_under = ExtResource("8_076iv")
+texture_over = ExtResource("9_elqm0")
+texture_progress = ExtResource("10_poyo7")
 
 [node name="Label" type="Label" parent="PlayerTP"]
 layout_mode = 0
@@ -146,7 +146,7 @@ offset_left = 550.0
 offset_top = 418.0
 offset_right = 699.0
 offset_bottom = 451.0
-theme = ExtResource("14_fwpqc")
+theme = ExtResource("11_1kedy")
 text = "BACK TO MAIN MENU"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EndScreen"]
@@ -156,13 +156,13 @@ offset_left = 509.0
 offset_top = 339.0
 offset_right = 758.0
 offset_bottom = 425.0
-theme = ExtResource("14_fwpqc")
+theme = ExtResource("11_1kedy")
 theme_override_font_sizes/normal_font_size = 60
 text = "YOU WIN"
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="ElementTriangle" parent="." instance=ExtResource("14_2ardw")]
+[node name="ElementTriangle" parent="." instance=ExtResource("12_dtk7b")]
 offset_left = 1214.0
 offset_top = 437.0
 offset_right = 1428.0

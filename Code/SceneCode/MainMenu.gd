@@ -28,6 +28,10 @@ $EnemySide/EnemyDisplay/EnemyElements/EnemyElement2,$EnemySide/EnemyDisplay/Enem
 $EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3]
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
+signal chipMenu
+signal gearMenu
+signal itemMenu
+
 var Battle: PackedScene = load("res://Scene/Main.tscn")
 var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
@@ -58,9 +62,14 @@ func makePlayerDesc(index,playerNum,currentName,level):
 	var description: String
 	var skills = entity.skillData
 	var items = entity.itemData
-	var charName = str("[",entity.species,"]\nlv.",level, entity.name)
-	var resourceStats = str("[color=red]HP: ",entity.MaxHP,"[/color]\n[color=aqua]LP: ",entity.specificData.MaxLP,"[/color]\n[color=green]TP:", entity.MaxTP,"[/color]")
-	var stats = str("str: ",entity.strength,"\ttgh: ",entity.toughness,"\tspd: ",entity.speed,"\nbal: ",entity.ballistics,"\tres: ",entity.resistance,"\tluk: ",entity.luck)
+	var charName = str("[",entity.species,"]\nlv.",level, Globals.charColor(entity))
+	
+	var resourceStats = str("[color=red]HP: ",entity.MaxHP,"[/color]\n[color=aqua]LP: ",
+	entity.specificData.MaxLP,"[/color]\n[color=green]TP:", entity.MaxTP,"[/color]\n[color=yellow]"
+	,"CPU:",entity.specificData.MaxCPU,"[/color]")
+	
+	var stats = str("str: ",entity.strength,"\ttgh: ",entity.toughness,"\tspd: ",entity.speed,
+	"\nbal: ",entity.ballistics,"\tres: ",entity.resistance,"\tluk: ",entity.luck)
 	
 	players[index] = entity.duplicate()
 	
@@ -183,3 +192,12 @@ func _on_fight_button_pressed():
 
 func _on_menu_button_pressed():
 	SFX[1].play()
+
+func _on_chip_button_pressed():
+	pass # Replace with function body.
+
+func _on_gear_button_pressed():
+	pass # Replace with function body.
+
+func _on_item_button_pressed():
+	pass # Replace with function body.

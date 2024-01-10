@@ -1,11 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704844866
+::res://::1704859503
 BasicAttack.tres::Resource/Move::813570649422974877::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 export_presets.cfg::TextFile::-1::1702160677::0::1::::<><>::
-README.md::TextFile::-1::1704753696::0::1::::<><>::
+README.md::TextFile::-1::1704854151::0::1::::<><>::
 Wait.tres::Resource/Resource::2298183527291014208::1702577640::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 ::res://AddOns/::1704150174
-::res://Art/::1704847716
+::res://Art/::1704847717
 4Tb6Xje4c-3913742659.png::CompressedTexture2D::1114688633941885548::1704839015::1704839016::1::::<><>::
 857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png::CompressedTexture2D::3531232264342568023::1704838737::1704838759::1::::<><>::
 824067_white-star-png-transparent-background-2867859687.png::CompressedTexture2D::613605004350703953::1704838737::1704838759::1::::<><>::
@@ -68,25 +68,26 @@ EnemyAIGlobal.gd::GDScript::-1::1704039091::0::1::::<>Node<>::
 EnemyDebuff.gd::GDScript::-1::1704041280::0::1::::<>Node<>::
 EnemyPickOff.gd::GDScript::-1::1703045290::0::1::::<>Node<>::
 EnemyRandom.gd::GDScript::-1::1703104635::0::1::::<>Node<>::
-::res://Code/Globals/::1704753696
-Globals.gd::GDScript::-1::1704753696::0::1::::<>Node<>::
+::res://Code/Globals/::1704858155
+Globals.gd::GDScript::-1::1704858155::0::1::::<>Node<>::
 HelperFunctions.gd::GDScript::-1::1704753696::0::1::::<>Node<>::
 MiscFunctions.gd::GDScript::-1::1704753696::0::1::::<>Node<>::
-::res://Code/ResourceMakers/::1704844865
+::res://Code/ResourceMakers/::1704855509
 ChipMaker.gd::GDScript::-1::1704756537::0::1::::Chip<>Resource<>::
 EnemyMaker.gd::GDScript::-1::1704844865::0::1::::Enemy<>Resource<>::
 EntityMaker.gd::GDScript::-1::1703104218::0::1::::entityData<>Resource<>::
-GearMaker.gd::GDScript::-1::1704756537::0::1::::Gear<>Resource<>::
-ItemMaker.gd::GDScript::-1::1702326193::0::1::::Item<>Resource<>::
+GearMaker.gd::GDScript::-1::1704850521::0::1::::Gear<>Resource<>::
+InventoryMaker.gd::GDScript::-1::1704855509::0::1::::Inven<>Resource<>::
+ItemMaker.gd::GDScript::-1::1704853594::0::1::::Item<>Resource<>::
 MoveMaker.gd::GDScript::-1::1704756537::0::1::::Move<>Resource<>::
-PlayerMaker.gd::GDScript::-1::1704753696::0::1::::Player<>Resource<>::
-::res://Code/SceneCode/::1704845752
-ChipMenu.gd::GDScript::-1::1704845752::0::1::::<>Control<>::
+PlayerMaker.gd::GDScript::-1::1704847798::0::1::::Player<>Resource<>::
+::res://Code/SceneCode/::1704859384
+ChipMenu.gd::GDScript::-1::1704859384::0::1::::<>Control<>::
 enemy.gd::GDScript::-1::1703047135::0::1::::<>Node2D<>::
 Entity.gd::GDScript::-1::1704753696::0::1::::<>Node2D<>::
-GameManager.gd::GDScript::-1::1704754464::0::1::::<>Node2D<>::
+GameManager.gd::GDScript::-1::1704858155::0::1::::<>Node2D<>::
 Main.gd::GDScript::-1::1704844865::0::1::::<>Node2D<>::
-MainMenu.gd::GDScript::-1::1704754990::0::1::::<>Control<>::
+MainMenu.gd::GDScript::-1::1704858822::0::1::::<>Control<>::
 Player.gd::GDScript::-1::1704753696::0::1::::<>Node2D<>::
 PlayerMenu.gd::GDScript::-1::1704753696::0::1::::<>Control<>::
 ::res://Icons/::1704756312
@@ -116,15 +117,27 @@ Reckless.png::CompressedTexture2D::5919760446644409355::1702511264::1702595863::
 Rust.png::CompressedTexture2D::6482444571763289502::1702511437::1702595863::1::::<><>::
 Stunned.png::CompressedTexture2D::8429177068991802258::1702511316::1702595863::1::::<><>::
 Worn Out.png::CompressedTexture2D::5190360080020052134::1702512473::1702595863::1::::<><>::
-::res://Icons/MenuIcons/::1704836201
+::res://Icons/MenuIcons/::1704851329
 Ballistics.png::CompressedTexture2D::6256514163400066971::1702328750::1704756153::1::::<><>::
+Controller_0028__Group_.png::CompressedTexture2D::6665670750397958750::1704851170::1704851171::1::::<><>::
+Controller_0032__Group_.png::CompressedTexture2D::3168238428519948119::1704851221::1704851222::1::::<><>::
+Food-icon-collection_0000s_0007_Layer-11.png::CompressedTexture2D::4783559302801667700::1704851024::1704851030::1::::<><>::
+Food-icon-collection_0000s_0010_Layer-14.png::CompressedTexture2D::1906874869222031147::1704850979::1704850987::1::::<><>::
 Food-icon-collection_0000s_0012_Layer-16.png::CompressedTexture2D::2123092777035352700::1704756147::1704756147::1::::<><>::
+Food-icon-collection_0000s_0019_Layer-23.png::CompressedTexture2D::8764308136828183997::1704850278::1704850285::1::::<><>::
 icon-1024x1024.jpg::CompressedTexture2D::6860889430216778025::1704836201::1704836201::1::::<><>::
+icons-set-1_0000s_0003_Layer-95.png::CompressedTexture2D::2689753899871438953::1704850339::1704850346::1::::<><>::
+icons-set-2_0000s_0013__Group_.png::CompressedTexture2D::5064276537347786670::1704850164::1704850174::1::::<><>::
 icons-set-2_0000s_0020__Group_.png::CompressedTexture2D::4987409915654939360::1704756235::1704756238::1::::<><>::
 icons-set-2_0000s_0029__Group_.png::CompressedTexture2D::7389225462582892384::1704756205::1704756241::1::::<><>::
+icons-set-2_0000s_0031__Group_.png::CompressedTexture2D::2446208828126451538::1704851328::1704851329::1::::<><>::
 icons-set-2_0000s_0045__Group_.png::CompressedTexture2D::5748290742225799184::1704756299::1704756310::1::::<><>::
+icons-set-2_0000s_0055__Group_.png::CompressedTexture2D::489535684631176023::1704850137::1704850137::1::::<><>::
 icons-set-2_0000s_0056__Group_.png::CompressedTexture2D::3913729529946330598::1704756306::1704756313::1::::<><>::
+icons-set-2_0000s_0065__Group_.png::CompressedTexture2D::1207214526101580623::1704850782::1704850782::1::::<><>::
 icons-set-2_0000s_0069__Group_.png::CompressedTexture2D::3844392987553601201::1704756331::1704756332::1::::<><>::
+icons-set-2_0000s_0091__Group_.png::CompressedTexture2D::1331353668169162432::1704850892::1704850919::1::::<><>::
+icons-set-2_0000s_0096__Group_.png::CompressedTexture2D::7538187567093851327::1704850741::1704850750::1::::<><>::
 Strength.png::CompressedTexture2D::9064378529802919232::1702328720::1704756016::1::::<><>::
 ::res://JSONS/::1702935308
 Damir.json::JSON::-1::1702922323::0::1::::<><>::
@@ -132,7 +145,7 @@ DREAMER.json::JSON::-1::1702922081::0::1::::<><>::
 Lonna.json::JSON::-1::1702922081::0::1::::<><>::
 Pepper.json::JSON::-1::1702922081::0::1::::<><>::
 PlayerDatabase.json::JSON::-1::1702935308::0::1::::<><>::
-::res://Resources/::1704753696
+::res://Resources/::1704849087
 ::res://Resources/Chip Data/::1704756537
 Blood.tres::Resource/Resource::2093313811107888104::1704753696::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Body.tres::Resource/Resource::6447486913891653423::1704753696::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
@@ -178,18 +191,22 @@ PlayerPlaceholder.tres::Resource/Resource::172776347169463305::1702618465::0::1:
 TestDamir.tres::Resource/Resource::6930665704809116980::1704753696::0::1::::<><>::uid://bhm5xjryx4rpx::::res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres<>uid://dn0uugdcutkno::::res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres<>uid://c28i0xr8452a4::::res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres<>uid://dnwglp1s48nar::::res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres<>uid://cx3p4fgj5kidk::::res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres<>uid://dww74njams2pt::::res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres<>res://Code/ResourceMakers/PlayerMaker.gd
 TestPepper.tres::Resource/Resource::7464647677787998805::1704753696::0::1::::<><>::uid://bhm5xjryx4rpx::::res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres<>uid://dn0uugdcutkno::::res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres<>uid://c28i0xr8452a4::::res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres<>uid://dnwglp1s48nar::::res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres<>uid://cx3p4fgj5kidk::::res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres<>uid://dww74njams2pt::::res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres<>res://Code/ResourceMakers/PlayerMaker.gd
 TestPlayer.tres::Resource/Resource::3671877268543595208::1704753696::0::1::::<><>::uid://bhm5xjryx4rpx::::res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres<>uid://dn0uugdcutkno::::res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres<>uid://c28i0xr8452a4::::res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres<>uid://dnwglp1s48nar::::res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres<>uid://cx3p4fgj5kidk::::res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres<>uid://dww74njams2pt::::res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres<>res://Code/ResourceMakers/PlayerMaker.gd
-::res://Resources/Gear Data/::1704756537
-Betelgeuse Axe.tres::Resource/Resource::7112767242822583372::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-DevilishMittens.tres::Resource/Resource::1794296106077750060::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-NewSuperGreatSword.tres::Resource/Resource::3352911592739669478::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-PoolNoodle.tres::Resource/Resource::791894391343933432::1704756537::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-RefurbishedEngine.tres::Resource/Resource::5363080567914256636::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-ShadowGloves.tres::Resource/Resource::8584978864770557897::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-SolidSword.tres::Resource/Resource::7373474623347790358::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-StoreboughtMotor.tres::Resource/Resource::8098356657664708374::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
-WitchSword.tres::Resource/Resource::6402028531876145104::1704753696::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd
+::res://Resources/Gear Data/::1704850521
+Betelgeuse Axe.tres::Resource/Gear::7112767242822583372::1704850520::0::1::::<><>::uid://g8et04vt34hf::::res://Icons/MenuIcons/icons-set-2_0000s_0055__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
+DevilishMittens.tres::Resource/Gear::1794296106077750060::1704850520::0::1::::<><>::uid://ceff5oid2lrhu::::res://Icons/MenuIcons/icons-set-2_0000s_0013__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
+NewSuperGreatSword.tres::Resource/Gear::3352911592739669478::1704850520::0::1::::<><>::uid://d2e38wrpun3ls::::res://Icons/MenuIcons/Strength.png<>res://Code/ResourceMakers/GearMaker.gd
+PoolNoodle.tres::Resource/Gear::791894391343933432::1704850520::0::1::::<><>::uid://dw4q4y7u0q8x2::::res://Icons/MenuIcons/Food-icon-collection_0000s_0019_Layer-23.png<>res://Code/ResourceMakers/GearMaker.gd
+RefurbishedEngine.tres::Resource/Gear::5363080567914256636::1704850521::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd<>uid://bek64a6505sir::::res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png
+ShadowGloves.tres::Resource/Gear::8584978864770557897::1704850521::0::1::::<><>::uid://ceff5oid2lrhu::::res://Icons/MenuIcons/icons-set-2_0000s_0013__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
+SolidSword.tres::Resource/Gear::7373474623347790358::1704850521::0::1::::<><>::uid://cn5rrkbq8phi3::::res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
+StoreboughtMotor.tres::Resource/Gear::8098356657664708374::1704850521::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd<>uid://bek64a6505sir::::res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png
+WitchSword.tres::Resource/Gear::6402028531876145104::1704850521::0::1::::<><>::uid://cn5rrkbq8phi3::::res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
+::res://Resources/Inventory Data/::1704849974
+ChipInventory.tres::Resource/Resource::1041220715768079303::1704849145::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
+GearInventory.tres::Resource/Inven::6762860636247572811::1704849974::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
+ItemInventory.tres::Resource/Inven::6847021755212279916::1704849974::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
 ::res://Resources/Item Data/::1702747235
-::res://Resources/Item Data/ItemMoves/::1704844866
+::res://Resources/Item Data/ItemMoves/::1704853594
 AmpaAntaMove.tres::Resource/Move::3449611553632811196::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 BlackCatJewelMove.tres::Resource/Resource::175598566891061661::1703008303::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 BobyBreakerMove.tres::Resource/Move::4170658003792404426::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
@@ -202,29 +219,29 @@ NutMove.tres::Resource/Move::6114359746616284279::1704844866::0::1::::<><>::res:
 SoftyMove.tres::Resource/Move::2769184569792027083::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 SpeedScrewMove.tres::Resource/Move::6422555532585509136::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 SpicyPopMove.tres::Resource/Move::8595431511191657307::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-SpikeBombMove.tres::Resource/Resource::3053857913772407146::1704682076::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
+SpikeBombMove.tres::Resource/Move::3053857913772407146::1704853594::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 TaxReportMove.tres::Resource/Move::2475476530779486485::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 TPItemMove.tres::Resource/Move::8572184362199077613::1704844866::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 WaterBalloonMove.tres::Resource/Resource::8424409512757896719::1704753696::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 WhimBerryMove.tres::Resource/Resource::410828626958228968::1702940664::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-::res://Resources/Item Data/ItemSpecifics/::1704844866
-AmpaAnta.tres::Resource/Resource::4570876764816599571::1702940664::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://bpfaulvlrowf1::::res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
-BlackCatJewel.tres::Resource/Resource::8562193111334621715::1703008550::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://crcc2wclxky4::::res://Resources/Item Data/ItemMoves/BlackCatJewelMove.tres
-BodyBreaker.tres::Resource/Item::9146642690313336278::1704844866::0::1::::<><>::uid://b0okel7gs3k8a::::res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-CoughSyrup.tres::Resource/Resource::7962000516765017894::1703010375::0::1::::<><>::uid://cjwy33t5lajbu::::res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-ElecBomb.tres::Resource/Item::4769095417524267453::1704844866::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://dp8uvgxs0katg::::res://Resources/Item Data/ItemMoves/ElecBombMove.tres
-Endurian.tres::Resource/Resource::6034149906613596074::1703008550::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://d4hlq3s718687::::res://Resources/Item Data/ItemMoves/EndurianMove.tres
-Idol.tres::Resource/Resource::5681568807678684770::1703105027::0::1::::<><>::uid://bsstfp6df7luh::::res://Resources/Item Data/ItemMoves/IdolMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-MintyPop.tres::Resource/Item::2359282855060191782::1704844866::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://d2300embeoiyi::::res://Resources/Item Data/ItemMoves/MintyPopMove.tres
-Nut.tres::Resource/Resource::4564363742951089144::1702581739::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://ctd3u2es6ugap::::res://Resources/Item Data/ItemMoves/NutMove.tres
-Softy!.tres::Resource/Item::3497504620810409578::1704844866::0::1::::<><>::uid://bfpochp3cyb2r::::res://Resources/Item Data/ItemMoves/SoftyMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-SpeedScrew.tres::Resource/Item::1062772793158897218::1704844866::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://cxres0jkcemt1::::res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
-SpicyPop.tres::Resource/Item::6367661329124518426::1704844866::0::1::::<><>::uid://dupxrbmokishf::::res://Resources/Item Data/ItemMoves/SpicyPopMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-SpikeBomb.tres::Resource/Resource::5989689163737165577::1702419263::0::1::::<><>::uid://bjrkugjoysreo::::res://Resources/Item Data/ItemMoves/SpikeBombMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-TaxReport.tres::Resource/Item::3888667190875382260::1704844866::0::1::::<><>::uid://bbje0by2nixy0::::res://Resources/Item Data/ItemMoves/TaxReportMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-TPItem.tres::Resource/Item::7156930759509466933::1704844866::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://dueovhnatv1dh::::res://Resources/Item Data/ItemMoves/TPItemMove.tres
-WaterBalloon.tres::Resource/Item::6926728130135171325::1704844866::0::1::::<><>::uid://dsa318xu84qep::::res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
-WhimBerry.tres::Resource/Item::1700796969942898142::1704844866::0::1::::<><>::uid://f4aj1kpn37ke::::res://Resources/Item Data/ItemMoves/WhimBerryMove.tres<>res://Code/ResourceMakers/ItemMaker.gd
+::res://Resources/Item Data/ItemSpecifics/::1704857112
+AmpaAnta.tres::Resource/Item::4570876764816599571::1704853594::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://bpfaulvlrowf1::::res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres<>uid://dfns33fl8tmf4::::res://Icons/MenuIcons/icons-set-2_0000s_0096__Group_.png
+BlackCatJewel.tres::Resource/Item::8562193111334621715::1704853594::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://crcc2wclxky4::::res://Resources/Item Data/ItemMoves/BlackCatJewelMove.tres<>uid://bu1iudacj3rft::::res://Icons/MenuIcons/icons-set-2_0000s_0069__Group_.png
+BodyBreaker.tres::Resource/Item::9146642690313336278::1704853594::0::1::::<><>::uid://b0okel7gs3k8a::::res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://bek64a6505sir::::res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png
+CoughSyrup.tres::Resource/Item::7962000516765017894::1704857112::0::1::::<><>::uid://cjwy33t5lajbu::::res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://s76g2wt18jto::::res://Icons/MenuIcons/icons-set-2_0000s_0091__Group_.png
+ElecBomb.tres::Resource/Item::4769095417524267453::1704857112::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://dp8uvgxs0katg::::res://Resources/Item Data/ItemMoves/ElecBombMove.tres<>uid://cn3k0waq127p6::::res://Art/Icons/Bomb.png
+Endurian.tres::Resource/Item::6034149906613596074::1704857112::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://d4hlq3s718687::::res://Resources/Item Data/ItemMoves/EndurianMove.tres<>uid://5ipa7gvaf43i::::res://Icons/MenuIcons/Food-icon-collection_0000s_0012_Layer-16.png
+Idol.tres::Resource/Item::5681568807678684770::1704857112::0::1::::<><>::uid://bsstfp6df7luh::::res://Resources/Item Data/ItemMoves/IdolMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://cdb66bapgwdoi::::res://Icons/MenuIcons/icons-set-2_0000s_0020__Group_.png
+MintyPop.tres::Resource/Item::2359282855060191782::1704857112::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://d2300embeoiyi::::res://Resources/Item Data/ItemMoves/MintyPopMove.tres<>uid://cafgr1nlcedpk::::res://Icons/MenuIcons/Food-icon-collection_0000s_0007_Layer-11.png
+Nut.tres::Resource/Item::4564363742951089144::1704857112::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://ctd3u2es6ugap::::res://Resources/Item Data/ItemMoves/NutMove.tres<>uid://2fx7k1m65whf::::res://Icons/MenuIcons/Food-icon-collection_0000s_0010_Layer-14.png
+Softy!.tres::Resource/Item::3497504620810409578::1704857112::0::1::::<><>::uid://bfpochp3cyb2r::::res://Resources/Item Data/ItemMoves/SoftyMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://rg1v81r4c6rr::::res://Icons/MenuIcons/icons-set-2_0000s_0065__Group_.png
+SpeedScrew.tres::Resource/Item::1062772793158897218::1704857112::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://cxres0jkcemt1::::res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres<>uid://bleyoogfvft08::::res://Icons/MenuIcons/Controller_0032__Group_.png
+SpicyPop.tres::Resource/Item::6367661329124518426::1704857112::0::1::::<><>::uid://dupxrbmokishf::::res://Resources/Item Data/ItemMoves/SpicyPopMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://cafgr1nlcedpk::::res://Icons/MenuIcons/Food-icon-collection_0000s_0007_Layer-11.png
+SpikeBomb.tres::Resource/Item::5989689163737165577::1704857112::0::1::::<><>::uid://bjrkugjoysreo::::res://Resources/Item Data/ItemMoves/SpikeBombMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://cn3k0waq127p6::::res://Art/Icons/Bomb.png
+TaxReport.tres::Resource/Item::3888667190875382260::1704853594::0::1::::<><>::uid://bbje0by2nixy0::::res://Resources/Item Data/ItemMoves/TaxReportMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://ba37x4rs07dyg::::res://Icons/MenuIcons/icons-set-2_0000s_0031__Group_.png
+TPItem.tres::Resource/Item::7156930759509466933::1704853594::0::1::::<><>::res://Code/ResourceMakers/ItemMaker.gd<>uid://dueovhnatv1dh::::res://Resources/Item Data/ItemMoves/TPItemMove.tres<>uid://rg1v81r4c6rr::::res://Icons/MenuIcons/icons-set-2_0000s_0065__Group_.png
+WaterBalloon.tres::Resource/Item::6926728130135171325::1704857112::0::1::::<><>::uid://dsa318xu84qep::::res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://cn3k0waq127p6::::res://Art/Icons/Bomb.png
+WhimBerry.tres::Resource/Item::1700796969942898142::1704857112::0::1::::<><>::uid://f4aj1kpn37ke::::res://Resources/Item Data/ItemMoves/WhimBerryMove.tres<>res://Code/ResourceMakers/ItemMaker.gd<>uid://5ipa7gvaf43i::::res://Icons/MenuIcons/Food-icon-collection_0000s_0012_Layer-16.png
 ::res://Resources/Move Data/::1704753696
 ::res://Resources/Move Data/Enemy Moves/::1704753696
 Bahr.tres::Resource/Resource::1282762920290663239::1704753696::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
@@ -271,21 +288,25 @@ Scapegoat.tres::Resource/Resource::1205787742953343976::1704753696::0::1::::<><>
 StarMissiles.tres::Resource/Resource::6869714083004564138::1704753696::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 SwitchGear.tres::Resource/Resource::1348604288723719187::1704753696::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 Veritate.tres::Resource/Resource::5387186962969910143::1704753696::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
-::res://Scene/::1704846558
-ChipMenu.tscn::PackedScene::350776233368785622::1704846558::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://p1gv2u05pahj::::res://Scene/MenuinInv.tscn<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://cvedj5nkr8e8v::::res://Scene/MenuinChar.tscn
+::res://Scene/::1704859513
 element_triangle.tscn::PackedScene::2799604773910722774::1702836914::0::1::::<><>::uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://icdg55qighh1::::res://Assets/arrow.png
-enemy.tscn::PackedScene::5258906684503772589::1704846530::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entity.tscn<>res://Code/SceneCode/enemy.gd<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
+::res://Scene/Constants/::1704859513
+::res://Scene/Entities/::1704859452
+enemy.tscn::PackedScene::5258906684503772589::1704859452::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entities/Entity.tscn<>res://Code/SceneCode/enemy.gd<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
 Entity.tscn::PackedScene::1379891203059323209::1704756016::0::1::::<><>::res://Code/SceneCode/Entity.gd<>uid://seilwthpp2l1::::res://Resources/Entity Data/placeholder.tres<>uid://b7jc4yykvnhq::::res://Art/icon.svg<>uid://bfrgfh0hu465y::::res://Themes/Red2D.tres<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://ciyya85ww81pf::::res://Themes/HasSingle/SubtleCircle.tres<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://1v00vl2wogxp::::res://Icons/AilmentIcons/Overdrive.png<>uid://bcstakg861inr::::res://Icons/AilmentIcons/Poison.png<>uid://cqltubwlee2c2::::res://Icons/AilmentIcons/Reckless.png<>uid://dng51xikpovi2::::res://Icons/AilmentIcons/Exhausted.png<>uid://cyme6d0fmctt3::::res://Icons/AilmentIcons/Rust.png<>uid://dsdfkx6hoc1a1::::res://Icons/AilmentIcons/Stunned.png<>uid://5toa35wsopwp::::res://Icons/AilmentIcons/Cursed.png<>uid://b50111s2g4v8e::::res://Icons/AilmentIcons/Protected.png<>uid://dwtj5n12ksju0::::res://Icons/AilmentIcons/Dumbfounded.png<>uid://6tssut687iln::::res://Icons/AilmentIcons/Miserable.png<>uid://cf7iqb4hvjtis::::res://Icons/AilmentIcons/Worn Out.png<>uid://cn3k0waq127p6::::res://Icons/AilmentIcons/Bomb.png<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://b344afv7s0klp::::res://Themes/AdobeClean-Regular.ttf<>uid://d2e38wrpun3ls::::res://Icons/MenuIcons/Strength.png<>uid://dym3sjt3b7bda::::res://Icons/Toughness.png<>uid://c51stapggxm0i::::res://Icons/Speed.png<>uid://um5ahdqwyaub::::res://Icons/Luck.png
-GameManager.tscn::PackedScene::5751309859732872597::1704846530::0::1::::<><>::res://Code/SceneCode/GameManager.gd<>uid://4gou4dfa1ija::::res://Scene/MainMenu.tscn
-Main.tscn::PackedScene::1532566806015587122::1704846530::0::1::::<><>::res://Code/SceneCode/Main.gd<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav<>uid://bc41v187fp0wf::::res://Audio/SFX/Bass.wav<>uid://y7i1ns6fatdh::::res://Audio/SFX/Hariq.wav<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dfalyo44qobf2::::res://Audio/SFX/Saeqia.wav<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://dyf0jixnhljlo::::res://Audio/SFX/basicAction.wav<>uid://ccu14eobkjjpa::::res://Audio/SFX/Bahr.wav<>uid://csee58lac65lh::::res://Audio/SFX/Lower.wav<>uid://dbn6jal5lr7gg::::res://Audio/SFX/Buff.wav<>uid://hai5c0y6wxla::::res://Audio/SFX/fsmash_1.ogg<>uid://e5johxxe7f31::::res://Audio/SFX/Crush.wav<>uid://b5p3u32p1iisc::::res://Audio/SFX/Pierce.wav<>uid://chlnoaabffn7e::::res://Audio/SFX/heavy1.ogg<>uid://dsr8dtipxinm1::::res://Audio/SFX/fspecial.ogg<>uid://eaev1hj8wghu::::res://Audio/SFX/beam.ogg<>uid://cx0csltfuqpng::::res://Audio/SFX/overdrive.wav<>uid://dn36iyl1mxrg1::::res://Audio/SFX/Ailment.wav<>uid://2n11d6lo8ktw::::res://Audio/SFX/Reckless.wav<>uid://7ldlpiqsa0qx::::res://Audio/SFX/rustFinal.wav<>uid://csrxt7jammqf::::res://Audio/SFX/clear_02_Ab2Db_low.ogg<>uid://2n741f4ivddi::::res://Audio/SFX/Aura.wav
-MainMenu.tscn::PackedScene::2048750013843902210::1704846531::0::1::::<><>::res://Code/SceneCode/MainMenu.gd<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://dkk0yyfyygrch::::res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://ce2oymswsnn6j::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres<>uid://dmm6qvo3byjgc::::res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres<>uid://bdrlqlvn6kv8c::::res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres<>uid://cy3co5wko705g::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres<>uid://clepibgdex38y::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://cbmvpuynhcqqe::::res://Themes/HasSingle/Pannel.tres<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
-MenuinInv.tscn::PackedScene::1106909730007749231::1704844865::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png<>uid://p4702lq24xjg::::res://Art/4Tb6Xje4c-3913742659.png
-NewMain.tscn::PackedScene::3072509815795643567::1704846531::0::1::::<><>::uid://dspj6gkwkq7ko::::res://Scene/Player.tscn<>res://Code/SceneCode/Main.gd<>uid://cg6popaxjbvc4::::res://Scene/enemy.tscn<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
+Player.tscn::PackedScene::8454229047022486594::1704859452::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entities/Entity.tscn<>res://Code/SceneCode/Player.gd<>uid://cpmeoneud23qm::::res://Scene/Entities/PlayerMenu.tscn<>uid://bkxsl0ggqtckk::::res://Themes/Black.tres<>uid://b2jmmrkt8ei3e::::res://Themes/Blue.tres
+PlayerMenu.tscn::PackedScene::5850715113987720740::1704847800::0::1::::<><>::res://Code/SceneCode/PlayerMenu.gd<>uid://csn7gcgx0jah7::::res://Themes/ButtonStyle/Normal.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
+::res://Scene/Mains/::1704859478
+GameManager.tscn::PackedScene::5751309859732872597::1704859475::0::1::::<><>::res://Code/SceneCode/GameManager.gd<>uid://4gou4dfa1ija::::res://Scene/Mains/MainMenu.tscn<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
+Main.tscn::PackedScene::1532566806015587122::1704847800::0::1::::<><>::res://Code/SceneCode/Main.gd<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav<>uid://bc41v187fp0wf::::res://Audio/SFX/Bass.wav<>uid://y7i1ns6fatdh::::res://Audio/SFX/Hariq.wav<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dfalyo44qobf2::::res://Audio/SFX/Saeqia.wav<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://dyf0jixnhljlo::::res://Audio/SFX/basicAction.wav<>uid://ccu14eobkjjpa::::res://Audio/SFX/Bahr.wav<>uid://csee58lac65lh::::res://Audio/SFX/Lower.wav<>uid://dbn6jal5lr7gg::::res://Audio/SFX/Buff.wav<>uid://hai5c0y6wxla::::res://Audio/SFX/fsmash_1.ogg<>uid://e5johxxe7f31::::res://Audio/SFX/Crush.wav<>uid://b5p3u32p1iisc::::res://Audio/SFX/Pierce.wav<>uid://chlnoaabffn7e::::res://Audio/SFX/heavy1.ogg<>uid://dsr8dtipxinm1::::res://Audio/SFX/fspecial.ogg<>uid://eaev1hj8wghu::::res://Audio/SFX/beam.ogg<>uid://cx0csltfuqpng::::res://Audio/SFX/overdrive.wav<>uid://dn36iyl1mxrg1::::res://Audio/SFX/Ailment.wav<>uid://2n11d6lo8ktw::::res://Audio/SFX/Reckless.wav<>uid://7ldlpiqsa0qx::::res://Audio/SFX/rustFinal.wav<>uid://csrxt7jammqf::::res://Audio/SFX/clear_02_Ab2Db_low.ogg<>uid://2n741f4ivddi::::res://Audio/SFX/Aura.wav
+MainMenu.tscn::PackedScene::2048750013843902210::1704859515::0::1::::<><>::res://Code/SceneCode/MainMenu.gd<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://dkk0yyfyygrch::::res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://ce2oymswsnn6j::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres<>uid://dmm6qvo3byjgc::::res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres<>uid://bdrlqlvn6kv8c::::res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres<>uid://cy3co5wko705g::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres<>uid://clepibgdex38y::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://cbmvpuynhcqqe::::res://Themes/HasSingle/Pannel.tres<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
+NewMain.tscn::PackedScene::3072509815795643567::1704859515::0::1::::<><>::res://Code/SceneCode/Main.gd<>uid://cg6popaxjbvc4::::res://Scene/Entities/enemy.tscn<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://dspj6gkwkq7ko::::res://Scene/Entities/Player.tscn<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://bf5fc1lfuejso::::res://Scene/element_triangle.tscn
+::res://Scene/SideMenus/::1704859503
+ChipinChar.tscn::PackedScene::6255264414185901215::1704844920::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png
+ChipMenu.tscn::PackedScene::350776233368785622::1704859498::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/ChipMenu.gd<>uid://p1gv2u05pahj::::res://Scene/SideMenus/MenuinInv.tscn<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://cvedj5nkr8e8v::::res://Scene/SideMenus/ChipinChar.tscn<>uid://dgoj57i606hsw::::res://Art/yellow-ball-icon-6-3137490973.png
+ChipMenuNew.tscn::PackedScene::2835232528360666371::1704859498::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://p1gv2u05pahj::::res://Scene/SideMenus/MenuinInv.tscn<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://cvedj5nkr8e8v::::res://Scene/SideMenus/ChipinChar.tscn
+MenuinInv.tscn::PackedScene::1106909730007749231::1704858822::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png<>uid://p4702lq24xjg::::res://Art/4Tb6Xje4c-3913742659.png
 options_menu.tscn::PackedScene::1849702126104635348::1704753696::0::1::::<><>::
-Player.tscn::PackedScene::8454229047022486594::1704846530::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entity.tscn<>res://Code/SceneCode/Player.gd<>uid://cpmeoneud23qm::::res://Scene/PlayerMenu.tscn<>uid://bkxsl0ggqtckk::::res://Themes/Black.tres<>uid://b2jmmrkt8ei3e::::res://Themes/Blue.tres
-PlayerMenu.tscn::PackedScene::5850715113987720740::1704846530::0::1::::<><>::res://Code/SceneCode/PlayerMenu.gd<>uid://csn7gcgx0jah7::::res://Themes/ButtonStyle/Normal.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
-MenuinChar.tscn::PackedScene::6255264414185901215::1704844920::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png
-ChipMenuNew.tscn::PackedScene::2835232528360666371::1704846531::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://p1gv2u05pahj::::res://Scene/MenuinInv.tscn<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://cvedj5nkr8e8v::::res://Scene/MenuinChar.tscn
 ::res://Shaders/::1704839525
 ::res://Themes/::1704845431
 AdobeClean-Bold.ttf::FontFile::395619687205701920::1702310882::1704036409::1::::<><>::

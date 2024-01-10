@@ -1,3 +1,5 @@
+Button
+TextureRect
 HBoxContainer
 RichTextLabel
 TextureProgressBar
@@ -6,8 +8,6 @@ ScrollContainer
 GridContainer
 VBoxContainer
 MarginContainer
-Button
-TextureRect
 TabContainer
 Container
 ItemList

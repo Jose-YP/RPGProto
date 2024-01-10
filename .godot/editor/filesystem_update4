@@ -54,3 +54,30 @@ res://Scene/ChipMenuNew.tscn
 res://Scene/ChipMenu.tscn
 res://Code/Globals/Globals.gd
 res://Code/ResourceMakers/PlayerMaker.gd
+res://Code/SceneCode/MainMenu.gd
+res://Code/ResourceMakers/InventoryMaker.gd
+res://Resources/Inventory Data/GearInventory.tres
+res://Resources/Inventory Data/ItemInventory.tres
+res://Code/SceneCode/GameManager.gd
+res://Resources/Gear Data/Betelgeuse Axe.tres
+res://Resources/Gear Data/DevilishMittens.tres
+res://Resources/Gear Data/NewSuperGreatSword.tres
+res://Resources/Gear Data/PoolNoodle.tres
+res://Resources/Gear Data/RefurbishedEngine.tres
+res://Resources/Gear Data/ShadowGloves.tres
+res://Resources/Gear Data/SolidSword.tres
+res://Resources/Gear Data/StoreboughtMotor.tres
+res://Resources/Gear Data/WitchSword.tres
+res://Code/ResourceMakers/GearMaker.gd
+res://Code/ResourceMakers/ItemMaker.gd
+res://Resources/Item Data/ItemSpecifics/Idol.tres
+res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres
+res://Resources/Item Data/ItemSpecifics/Endurian.tres
+res://Resources/Item Data/ItemSpecifics/Nut.tres
+res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
+res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
+res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres
+res://README.md
+res://Scene/Mains/NewMain.tscn
+res://Scene/Mains/MainMenu.tscn

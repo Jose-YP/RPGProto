@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://bn1f71pv8j7qo"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://bn1f71pv8j7qo"]
 
+[ext_resource type="Texture2D" uid="uid://d2e38wrpun3ls" path="res://Icons/MenuIcons/Strength.png" id="1_0h28q"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_v6vpp"]
 
 [resource]
 script = ExtResource("1_v6vpp")
 name = "New Super Greatsword"
 description = "+6 Strength"
+icon = ExtResource("1_0h28q")
 Char = "Damir"
 Strength = 6
 Toughness = 0

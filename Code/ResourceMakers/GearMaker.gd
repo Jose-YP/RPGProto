@@ -4,6 +4,7 @@ class_name Gear
 @export_category("Information")
 @export var name: String = "Basic Gear"
 @export_multiline var description: String = "Does something"
+@export var icon = Texture2D
 @export_enum("DREAMER","Lonna","Damir","Pepper") var Char = "DREAMER"
 
 @export_group("Stat Bonuses")

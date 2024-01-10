@@ -1,10 +1,20 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://ddb1bxsdk77eo"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://ddb1bxsdk77eo"]
 
+[ext_resource type="Texture2D" uid="uid://cn5rrkbq8phi3" path="res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png" id="1_c4bv3"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_y0mgh"]
 
 [resource]
 script = ExtResource("1_y0mgh")
 name = "Basic Gear"
 description = "Does something"
-CpuCost = 50
+icon = ExtResource("1_c4bv3")
 Char = "DREAMER"
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+calcBonus = "None"
+calcAmmount = 0.0
+miscCalc = "None"

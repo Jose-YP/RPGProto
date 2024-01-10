@@ -11,6 +11,8 @@ ______
 ______
 TODO
 ______
+*Make functioning menu for chips, gear and items
+*Implement Chips, gear and item selection
 *Fix/Balance other enemies
 *Implement other EnemyAI types(So far only random)
 

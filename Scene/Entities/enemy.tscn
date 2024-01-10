@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg6popaxjbvc4"]
 
-[ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entity.tscn" id="1_bvt52"]
+[ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entities/Entity.tscn" id="1_bvt52"]
 [ext_resource type="Script" path="res://Code/SceneCode/enemy.gd" id="2_i0hmc"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="3_sw75k"]
 

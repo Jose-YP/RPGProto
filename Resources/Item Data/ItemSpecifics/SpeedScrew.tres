@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://pe2yh2hq4sdm"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://pe2yh2hq4sdm"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_7c28b"]
 [ext_resource type="Resource" uid="uid://cxres0jkcemt1" path="res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres" id="1_s3sxc"]
+[ext_resource type="Texture2D" uid="uid://bleyoogfvft08" path="res://Icons/MenuIcons/Controller_0032__Group_.png" id="2_fuaba"]
 
 [resource]
 script = ExtResource("1_7c28b")
 name = "Speed Screw"
+maxCarry = 50
 maxItems = 5
+currentItems = 1
 centCost = 120
+icon = ExtResource("2_fuaba")
 attackData = ExtResource("1_s3sxc")

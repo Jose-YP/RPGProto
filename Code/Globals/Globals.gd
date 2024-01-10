@@ -1,5 +1,8 @@
 extends Node
 
+var ChipInventory: Inven
+var GearInventory: Inven
+var ItemInventory: Inven
 var playerStats: Dictionary
 var statTypes:Array = ["Attack","Defense","Speed","Luck"]
 var elementGroups: Array = ["Fire","Water","Elec","Neutral"]
@@ -46,3 +49,14 @@ func getTPCost(move,entity,aura):
 		TPCost = TPCost / 2
 	
 	return int(TPCost)
+
+func charColor(entity):
+	match entity.name:
+		"Dreamer":
+			return str("[color=#f4892b]",entity.name,"[/color]")
+		"Lonna":
+			return str("[color=#9800dc]",entity.name,"[/color]")
+		"Damir":
+			return str("[color=#2929ea]",entity.name,"[/color]")
+		"Pepper":
+			return str("[color=#e12828]",entity.name,"[/color]")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn68h6qjgcyqf"]
-
-[ext_resource type="Script" path="res://Code/SceneCode/GameManager.gd" id="1_fnwwp"]
-[ext_resource type="PackedScene" uid="uid://4gou4dfa1ija" path="res://Scene/MainMenu.tscn" id="2_lyisp"]
-
-[node name="GameManager" type="Node2D"]
-script = ExtResource("1_fnwwp")
-
-[node name="MainMenu" parent="." instance=ExtResource("2_lyisp")]

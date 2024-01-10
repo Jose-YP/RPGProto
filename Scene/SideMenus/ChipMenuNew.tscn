@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bgnn4or8oswgp"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_xac86"]
-[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/MenuinInv.tscn" id="2_8s4c7"]
+[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/MenuinInv.tscn" id="2_8s4c7"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="3_j1vxn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_rejs5"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="5_y01y0"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="7_mhn2d"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="8_pxh5w"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="9_dlpp5"]
-[ext_resource type="PackedScene" uid="uid://cvedj5nkr8e8v" path="res://Scene/MenuinChar.tscn" id="10_r4ntd"]
+[ext_resource type="PackedScene" uid="uid://cvedj5nkr8e8v" path="res://Scene/SideMenus/ChipinChar.tscn" id="10_r4ntd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak5bq"]
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)

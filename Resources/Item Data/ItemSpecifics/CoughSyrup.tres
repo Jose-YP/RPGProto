@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dlo38q7g0vh5w"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dlo38q7g0vh5w"]
 
 [ext_resource type="Resource" uid="uid://cjwy33t5lajbu" path="res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres" id="1_esx8i"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_t1c72"]
+[ext_resource type="Texture2D" uid="uid://s76g2wt18jto" path="res://Icons/MenuIcons/icons-set-2_0000s_0091__Group_.png" id="2_5ik24"]
 
 [resource]
 script = ExtResource("1_t1c72")
 name = "Cough Syrup"
+maxCarry = 200
 maxItems = 20
+currentItems = 1
 centCost = 800
+icon = ExtResource("2_5ik24")
 attackData = ExtResource("1_esx8i")

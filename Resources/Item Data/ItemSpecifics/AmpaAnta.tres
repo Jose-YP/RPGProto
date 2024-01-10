@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6efw4occoe6v"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b6efw4occoe6v"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_mhps6"]
 [ext_resource type="Resource" uid="uid://bpfaulvlrowf1" path="res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres" id="1_numm7"]
+[ext_resource type="Texture2D" uid="uid://dfns33fl8tmf4" path="res://Icons/MenuIcons/icons-set-2_0000s_0096__Group_.png" id="2_lkhe5"]
 
 [resource]
 script = ExtResource("1_mhps6")
 name = "Ampa Anta"
+maxCarry = 90
 maxItems = 5
+currentItems = 5
 centCost = 500
+icon = ExtResource("2_lkhe5")
 attackData = ExtResource("1_numm7")

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://c8lqick44axlk"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://c8lqick44axlk"]
 
+[ext_resource type="Texture2D" uid="uid://g8et04vt34hf" path="res://Icons/MenuIcons/icons-set-2_0000s_0055__Group_.png" id="1_c0x45"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_ttout"]
 
 [resource]
 script = ExtResource("1_ttout")
 name = "Betelgeuse Axe"
 description = "User's attack drains 15% Damage"
+icon = ExtResource("1_c0x45")
 Char = "Damir"
 Strength = 0
 Toughness = 0

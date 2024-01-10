@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bvnx1sip88ck7"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bvnx1sip88ck7"]
 
 [ext_resource type="Resource" uid="uid://bbje0by2nixy0" path="res://Resources/Item Data/ItemMoves/TaxReportMove.tres" id="1_dhwr8"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_x2uko"]
+[ext_resource type="Texture2D" uid="uid://ba37x4rs07dyg" path="res://Icons/MenuIcons/icons-set-2_0000s_0031__Group_.png" id="2_bjytd"]
 
 [resource]
 script = ExtResource("1_x2uko")
 name = "Tax Report"
+maxCarry = 1
 maxItems = 1
+currentItems = 1
 centCost = 2000
+icon = ExtResource("2_bjytd")
 attackData = ExtResource("1_dhwr8")

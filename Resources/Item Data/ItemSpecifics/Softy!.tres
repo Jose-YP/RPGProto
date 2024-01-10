@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bp3hni787i2io"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bp3hni787i2io"]
 
 [ext_resource type="Resource" uid="uid://bfpochp3cyb2r" path="res://Resources/Item Data/ItemMoves/SoftyMove.tres" id="1_0afju"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_8x4gp"]
+[ext_resource type="Texture2D" uid="uid://rg1v81r4c6rr" path="res://Icons/MenuIcons/icons-set-2_0000s_0065__Group_.png" id="2_oxx8b"]
 
 [resource]
 script = ExtResource("1_8x4gp")
 name = "Softy!"
+maxCarry = 10
 maxItems = 5
+currentItems = 1
 centCost = 350
+icon = ExtResource("2_oxx8b")
 attackData = ExtResource("1_0afju")

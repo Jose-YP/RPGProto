@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://dnm50seajcvmk"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://dnm50seajcvmk"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_r1p3t"]
+[ext_resource type="Texture2D" uid="uid://bek64a6505sir" path="res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png" id="1_tio3g"]
 
 [resource]
 script = ExtResource("1_r1p3t")
 name = "StoreBought Motor"
 description = "Everyone's elemental modifer boosts by 15%"
+icon = ExtResource("1_tio3g")
 Char = "Lonna"
 Strength = 0
 Toughness = 0

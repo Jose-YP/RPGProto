@@ -1,36 +1,36 @@
 [gd_scene load_steps=25 format=3 uid="uid://4gou4dfa1ija"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/MainMenu.gd" id="1_gsw2h"]
-[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_o6ag0"]
-[ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_3wuxl"]
-[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="4_kv8v1"]
-[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="5_l6hc0"]
-[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_u75po"]
-[ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_bws8n"]
-[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_i0exl"]
-[ext_resource type="Resource" uid="uid://bdrlqlvn6kv8c" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres" id="9_t3m0f"]
-[ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_fo5mt"]
-[ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_4grnk"]
-[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="12_jmjrn"]
-[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="13_1lo6d"]
-[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="14_kkjw6"]
-[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="15_qqxep"]
-[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="16_vcwra"]
-[ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="17_6y66w"]
-[ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="18_fptq7"]
-[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="19_dxbfy"]
-[ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="20_utjeg"]
-[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="21_4hl4l"]
-[ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="22_mpkbd"]
-[ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="23_fke8n"]
-[ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="24_8j3dy"]
+[ext_resource type="Script" path="res://Code/SceneCode/MainMenu.gd" id="1_xp3rd"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_06l5v"]
+[ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_xexs8"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="4_y276q"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="5_b5f14"]
+[ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_eryj0"]
+[ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_e8ky1"]
+[ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_2bbwp"]
+[ext_resource type="Resource" uid="uid://bdrlqlvn6kv8c" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres" id="9_m6byd"]
+[ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_m8dbs"]
+[ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_57rpg"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="12_c1ybm"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="13_3ppe8"]
+[ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="14_mj71e"]
+[ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="15_saclg"]
+[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="16_ptdrs"]
+[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="17_tsx3c"]
+[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="18_vhx43"]
+[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="19_upg58"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="20_rqm5k"]
+[ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="21_uf183"]
+[ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="22_f8t16"]
+[ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="23_marwr"]
+[ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="24_jwieh"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_gsw2h")
-playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_o6ag0"), ExtResource("3_3wuxl"), ExtResource("4_kv8v1"), ExtResource("5_l6hc0")])
-enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_u75po"), ExtResource("7_bws8n"), ExtResource("8_i0exl"), ExtResource("9_t3m0f"), ExtResource("10_fo5mt"), ExtResource("11_4grnk")])
+script = ExtResource("1_xp3rd")
+playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_06l5v"), ExtResource("3_xexs8"), ExtResource("4_y276q"), ExtResource("5_b5f14")])
+enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("11_57rpg")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -47,12 +47,12 @@ offset_left = 401.0
 offset_top = 96.0
 offset_right = 887.0
 offset_bottom = 188.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 theme_override_font_sizes/normal_font_size = 64
 text = "RPG PROTOTYPE"
 metadata/_edit_lock_ = true
 
-[node name="ElementTriangle" parent="ColorRect" instance=ExtResource("21_4hl4l")]
+[node name="ElementTriangle" parent="ColorRect" instance=ExtResource("13_3ppe8")]
 layout_mode = 1
 offset_left = 1140.0
 offset_top = 181.0
@@ -76,7 +76,7 @@ offset_bottom = 748.0
 layout_mode = 0
 offset_right = 474.0
 offset_bottom = 202.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EnemySide/EnemyDisplay/EnemyLineup"]
 layout_mode = 2
@@ -100,7 +100,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -108,7 +108,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -116,7 +116,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -129,7 +129,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -138,7 +138,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -146,14 +146,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -168,7 +168,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -176,7 +176,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -184,7 +184,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -198,7 +198,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -207,7 +207,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -215,14 +215,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement2"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -237,7 +237,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -245,7 +245,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -253,7 +253,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -267,7 +267,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -276,7 +276,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -284,14 +284,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="EnemySide/EnemyDisplay/EnemyElements/EnemyElement3"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -307,7 +307,7 @@ offset_left = 771.0
 offset_top = 259.0
 offset_right = 1245.0
 offset_bottom = 288.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 theme_override_constants/separation = 45
 
 [node name="Enemy1" type="PanelContainer" parent="EnemySide/EnemyMenu/EnemyMenu1"]
@@ -388,20 +388,21 @@ offset_bottom = 40.0
 [node name="PlayerMenu" type="GridContainer" parent="PlayerSide"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 187.0
-offset_right = 500.0
-offset_bottom = 241.0
-theme = ExtResource("12_jmjrn")
-theme_override_constants/h_separation = 90
+offset_top = 183.0
+offset_right = 480.0
+offset_bottom = 237.0
+theme = ExtResource("12_c1ybm")
+theme_override_constants/h_separation = 70
 columns = 3
-metadata/_edit_lock_ = true
 
 [node name="Player1Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
 custom_arrow_step = 1.0
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player1Level"]
 layout_mode = 0
@@ -411,10 +412,12 @@ offset_bottom = -4.0
 text = "Level"
 
 [node name="Player2Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player2Level"]
 layout_mode = 0
@@ -424,10 +427,12 @@ offset_bottom = -4.0
 text = "Level"
 
 [node name="Player3Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = 1.0
 max_value = 30.0
 value = 5.0
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PlayerSide/PlayerMenu/Player3Level"]
 layout_mode = 0
@@ -437,7 +442,9 @@ offset_bottom = -4.0
 text = "Level"
 
 [node name="Player1" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+metadata/_edit_group_ = true
 
 [node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player1"]
 layout_mode = 2
@@ -455,6 +462,7 @@ popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
 [node name="Player2" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 metadata/_edit_group_ = true
 
@@ -474,6 +482,7 @@ popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
 [node name="Player3" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 metadata/_edit_group_ = true
 
@@ -496,12 +505,13 @@ metadata/_edit_lock_ = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerStats" type="Control" parent="PlayerSide/PlayerDisplay"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 183.0
-offset_top = 404.0
+offset_top = 380.0
 offset_right = 338.0
 offset_bottom = 750.0
 metadata/_edit_group_ = true
@@ -512,10 +522,9 @@ layout_mode = 0
 offset_left = -163.0
 offset_top = -2.0
 offset_right = -8.0
-offset_bottom = 344.0
-theme = ExtResource("12_jmjrn")
+offset_bottom = 370.0
+theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player1Stats"]
 layout_mode = 2
@@ -524,10 +533,9 @@ layout_mode = 2
 layout_mode = 2
 offset_top = -2.0
 offset_right = 155.0
-offset_bottom = 344.0
-theme = ExtResource("12_jmjrn")
+offset_bottom = 368.0
+theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player2Stats"]
 layout_mode = 2
@@ -536,10 +544,9 @@ layout_mode = 2
 layout_mode = 0
 offset_left = 164.0
 offset_right = 319.0
-offset_bottom = 346.0
-theme = ExtResource("12_jmjrn")
+offset_bottom = 368.0
+theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player3Stats"]
 layout_mode = 2
@@ -551,7 +558,7 @@ offset_left = 96.0
 offset_top = -290.0
 offset_right = 136.0
 offset_bottom = -250.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -567,7 +574,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -576,7 +583,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -584,14 +591,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player1Element"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -607,7 +614,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -616,7 +623,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -624,14 +631,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player2Element"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -647,7 +654,7 @@ tabs_visible = false
 [node name="Fire" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
-texture = ExtResource("13_1lo6d")
+texture = ExtResource("17_tsx3c")
 expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -656,7 +663,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
-texture = ExtResource("14_kkjw6")
+texture = ExtResource("18_vhx43")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -664,14 +671,14 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
-texture = ExtResource("15_qqxep")
+texture = ExtResource("19_upg58")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Neutral" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerElements/Player3Element"]
 visible = false
 layout_mode = 2
-texture = ExtResource("16_vcwra")
+texture = ExtResource("20_rqm5k")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
@@ -681,7 +688,7 @@ anchors_preset = 0
 offset_top = 97.0
 offset_right = 40.0
 offset_bottom = 137.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -697,7 +704,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -705,7 +712,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -713,7 +720,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -729,7 +736,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -737,7 +744,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -745,7 +752,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -761,7 +768,7 @@ tabs_visible = false
 [node name="Slash" type="TextureRect" parent="PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
-texture = ExtResource("17_6y66w")
+texture = ExtResource("14_mj71e")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
@@ -769,7 +776,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
-texture = ExtResource("18_fptq7")
+texture = ExtResource("15_saclg")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -777,7 +784,7 @@ metadata/_edit_lock_ = true
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
-texture = ExtResource("19_dxbfy")
+texture = ExtResource("16_ptdrs")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -787,7 +794,7 @@ offset_left = 771.0
 offset_top = 232.0
 offset_right = 928.0
 offset_bottom = 256.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerFirstToggle"]
 layout_mode = 2
@@ -826,7 +833,7 @@ offset_bottom = 736.0
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 54.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 text = "What is this?"
 
 [node name="FightButton" type="Button" parent="Navigation/Buttons"]
@@ -845,13 +852,37 @@ offset_right = 131.0
 offset_bottom = -66.0
 text = "Options"
 
+[node name="ChipButton" type="Button" parent="Navigation/Buttons"]
+layout_mode = 0
+offset_left = -539.0
+offset_top = -369.0
+offset_right = -384.0
+offset_bottom = -335.0
+text = "SET CHIPS"
+
+[node name="GearButton" type="Button" parent="Navigation/Buttons"]
+layout_mode = 0
+offset_left = -212.0
+offset_top = -369.0
+offset_right = -57.0
+offset_bottom = -335.0
+text = "SET ITEMS"
+
+[node name="ItemButton" type="Button" parent="Navigation/Buttons"]
+layout_mode = 0
+offset_left = -376.0
+offset_top = -369.0
+offset_right = -221.0
+offset_bottom = -335.0
+text = "SET GEAR"
+
 [node name="MusicMenu" type="PanelContainer" parent="Navigation"]
 layout_mode = 0
 offset_left = 585.0
 offset_top = 408.0
 offset_right = 692.0
 offset_bottom = 437.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 
 [node name="MenuButton" type="OptionButton" parent="Navigation/MusicMenu"]
 layout_mode = 2
@@ -882,7 +913,7 @@ offset_left = -26.0
 offset_top = 57.0
 offset_right = 123.0
 offset_bottom = 97.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 metadata/_edit_lock_ = true
 
 [node name="ExitButton" type="Button" parent="Navigation/OptionsMenu/ExitPanel2"]
@@ -898,14 +929,14 @@ offset_left = 60.0
 offset_top = 40.0
 offset_right = 136.0
 offset_bottom = 72.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 
 [node name="HelpPanel" type="PanelContainer" parent="Navigation/HelpMenu"]
 layout_mode = 0
 offset_right = 1149.0
 offset_bottom = 681.0
-theme = ExtResource("12_jmjrn")
-theme_override_styles/panel = ExtResource("20_utjeg")
+theme = ExtResource("12_c1ybm")
+theme_override_styles/panel = ExtResource("21_uf183")
 metadata/_edit_lock_ = true
 
 [node name="ExitPanel" type="PanelContainer" parent="Navigation/HelpMenu"]
@@ -914,7 +945,7 @@ offset_left = 499.0
 offset_top = 607.0
 offset_right = 648.0
 offset_bottom = 647.0
-theme = ExtResource("12_jmjrn")
+theme = ExtResource("12_c1ybm")
 metadata/_edit_lock_ = true
 
 [node name="ExitButton" type="Button" parent="Navigation/HelpMenu/ExitPanel"]
@@ -1024,15 +1055,15 @@ They will decay by 5% every turn"
 [node name="SFX" type="Node" parent="."]
 
 [node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("22_mpkbd")
+stream = ExtResource("22_f8t16")
 bus = &"SFX"
 
 [node name="Back" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("23_fke8n")
+stream = ExtResource("23_marwr")
 bus = &"SFX"
 
 [node name="Menu" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("24_8j3dy")
+stream = ExtResource("24_jwieh")
 bus = &"SFX"
 
 [connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
@@ -1048,6 +1079,9 @@ bus = &"SFX"
 [connection signal="pressed" from="Navigation/Buttons/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/FightButton" to="." method="_on_fight_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/ChipButton" to="." method="_on_chip_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/ItemButton" to="." method="_on_item_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://y7i1ns6fatdh" path="res://Audio/SFX/Hariq.wav" id="10_al6ab"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="11_pqwg8"]
 [ext_resource type="AudioStream" uid="uid://dfalyo44qobf2" path="res://Audio/SFX/Saeqia.wav" id="11_r3qse"]
-[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="12_lcaqv"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="12_lcaqv"]
 [ext_resource type="AudioStream" uid="uid://dyf0jixnhljlo" path="res://Audio/SFX/basicAction.wav" id="12_y7mf4"]
 [ext_resource type="AudioStream" uid="uid://ccu14eobkjjpa" path="res://Audio/SFX/Bahr.wav" id="12_yb80k"]
 [ext_resource type="AudioStream" uid="uid://csee58lac65lh" path="res://Audio/SFX/Lower.wav" id="13_u5fxv"]

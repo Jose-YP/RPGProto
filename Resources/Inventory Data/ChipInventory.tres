@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Inven" load_steps=2 format=3 uid="uid://o3m0uspetw28"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/InventoryMaker.gd" id="1_kyfla"]
+
+[resource]
+script = ExtResource("1_kyfla")
+type = null
+inventory = {}

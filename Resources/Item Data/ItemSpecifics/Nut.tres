@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b6ban0ahb1a3a"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b6ban0ahb1a3a"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_pbchp"]
 [ext_resource type="Resource" uid="uid://ctd3u2es6ugap" path="res://Resources/Item Data/ItemMoves/NutMove.tres" id="1_wa0rl"]
+[ext_resource type="Texture2D" uid="uid://2fx7k1m65whf" path="res://Icons/MenuIcons/Food-icon-collection_0000s_0010_Layer-14.png" id="2_xtwhr"]
 
 [resource]
 script = ExtResource("1_pbchp")
 name = "Nut"
+maxCarry = 200
 maxItems = 20
+currentItems = 1
 centCost = 25
+icon = ExtResource("2_xtwhr")
 attackData = ExtResource("1_wa0rl")
