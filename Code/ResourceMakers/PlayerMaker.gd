@@ -10,6 +10,7 @@ class_name Player
 @export_category("Equipment")
 @export var GearData: Gear
 @export var ChipData: Array[Chip]
+@export var currentCPU: int = 0
 
 @export_group("Basic Moves")
 @export var Basics: Array[Move]

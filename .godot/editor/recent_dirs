@@ -1,5 +1,6 @@
-res://
 res://Scene
+res://Themes/HasSingle
+res://
 res://Code/SceneCode
 res://Resources/Entity Data/Enemy Data/EnemyEntity
 <<<<<<< Updated upstream
@@ -19,4 +20,3 @@ res://Code/Globals
 C:/Users/Jose/Desktop/Godots/Godot 4/Games/Godot-RPG-PRoject-main/Code/EnemyAI
 res://Code
 res://Resources/Move Data
-res://Resources

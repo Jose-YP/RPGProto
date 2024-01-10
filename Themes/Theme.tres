@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bqt13gd00jakt"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bqt13gd00jakt"]
 
 [ext_resource type="StyleBox" uid="uid://bmnp5omb2d47q" path="res://Themes/ButtonStyle/Disabled.tres" id="1_eytf4"]
 [ext_resource type="StyleBox" uid="uid://da8iornffdc3c" path="res://Themes/ButtonStyle/Hover.tres" id="2_mdkd6"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dqp2it5itff85" path="res://Themes/ButtonStyle/Pressed.tres" id="4_duwx5"]
 [ext_resource type="FontFile" uid="uid://fvv2fagfsd1a" path="res://Themes/AdobeClean-Bold.ttf" id="5_o83p1"]
 [ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="6_e5cc2"]
+[ext_resource type="StyleBox" uid="uid://7hbcyu4mqewp" path="res://Themes/HasSingle/Scrollbar.tres" id="7_2d1vf"]
 [ext_resource type="StyleBox" uid="uid://o6ph7ekev63x" path="res://Themes/HasSingle/TabContainer.tres" id="7_vf7pj"]
 
 [resource]
@@ -36,6 +37,7 @@ MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 3
 PanelContainer/styles/panel = ExtResource("6_e5cc2")
+ScrollContainer/styles/panel = ExtResource("7_2d1vf")
 TabContainer/styles/panel = ExtResource("7_vf7pj")
 TextEdit/font_sizes/font_size = 16
 TextEdit/fonts/font = ExtResource("5_o83p1")

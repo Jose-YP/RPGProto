@@ -7,9 +7,9 @@
 [ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="5_gumwr"]
 [ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="6_nyo4f"]
 [ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="7_8xm7i"]
-[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Assets/GreyCircle.png" id="11_atlpm"]
-[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Assets/white-circle-icon-7-1397688648.png" id="12_ejskb"]
-[ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Assets/GreenCircle.png" id="13_w8prj"]
+[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="11_atlpm"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="12_ejskb"]
+[ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="13_w8prj"]
 [ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/element_triangle.tscn" id="14_2ardw"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="14_fwpqc"]
 

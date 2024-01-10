@@ -28,6 +28,7 @@ func getStats(Entity,character,level):
 	Entity.MaxHP = int(stats["HP"])
 	Entity.specificData.MaxLP = int(stats["LP"])
 	Entity.MaxTP = int(level)*2 + 80
+	Entity.specificData.MaxCPU = int(stats["CPU"])
 	
 	#Battle Stats
 	Entity.strength = int(stats["Strength"])

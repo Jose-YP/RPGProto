@@ -556,6 +556,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Player1Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 29.0
 offset_top = 698.0
@@ -595,6 +596,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player2Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 197.0
 offset_top = 698.0
@@ -634,6 +636,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player3Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 360.0
 offset_top = 698.0
@@ -683,6 +686,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 125.0
 offset_top = 356.0
@@ -714,6 +718,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement2" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 293.0
 offset_top = 356.0
@@ -745,6 +750,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement3" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 456.0
 offset_top = 356.0
