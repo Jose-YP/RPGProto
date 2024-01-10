@@ -13,3 +13,4 @@ currentItems = 1
 centCost = 350
 icon = ExtResource("2_oxx8b")
 attackData = ExtResource("1_0afju")
+equippedOn = 0

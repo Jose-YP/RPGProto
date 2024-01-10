@@ -388,9 +388,9 @@ offset_bottom = 40.0
 [node name="PlayerMenu" type="GridContainer" parent="PlayerSide"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 183.0
+offset_top = 192.0
 offset_right = 480.0
-offset_bottom = 237.0
+offset_bottom = 246.0
 theme = ExtResource("12_c1ybm")
 theme_override_constants/h_separation = 70
 columns = 3
@@ -503,9 +503,10 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerDisplay" type="Control" parent="PlayerSide"]
 anchors_preset = 0
+offset_top = -24.0
 offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_lock_ = true
+offset_bottom = 16.0
+metadata/_edit_group_ = true
 
 [node name="PlayerStats" type="Control" parent="PlayerSide/PlayerDisplay"]
 layout_mode = 3
@@ -515,7 +516,6 @@ offset_top = 380.0
 offset_right = 338.0
 offset_bottom = 750.0
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="Player1Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
 layout_mode = 0
@@ -791,9 +791,9 @@ metadata/_edit_lock_ = true
 [node name="PlayerFirstToggle" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 771.0
-offset_top = 232.0
+offset_top = 208.0
 offset_right = 928.0
-offset_bottom = 256.0
+offset_bottom = 232.0
 theme = ExtResource("12_c1ybm")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerFirstToggle"]
@@ -819,8 +819,9 @@ metadata/_edit_lock_ = true
 
 [node name="Navigation" type="Control" parent="."]
 anchors_preset = 0
+offset_top = -24.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 16.0
 
 [node name="Buttons" type="Control" parent="Navigation"]
 anchors_preset = 0
@@ -1084,6 +1085,6 @@ bus = &"SFX"
 [connection signal="pressed" from="Navigation/Buttons/ItemButton" to="." method="_on_item_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="Navigation/HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

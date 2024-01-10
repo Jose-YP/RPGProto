@@ -43,7 +43,7 @@ custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 theme = ExtResource("1_ybr5t")
 bbcode_enabled = true
-text = "[center]wordiest ever Chip [color=yellow]CPU: 24[/color] 6/6 [/center]"
+text = "[center]wordiest ever Chip [color=gray]6/6[/color][/center]"
 
 [node name="Characters" type="GridContainer" parent="Button/MarginContainer/Chip1"]
 custom_minimum_size = Vector2(42, 20)

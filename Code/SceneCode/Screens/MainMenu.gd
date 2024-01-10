@@ -115,6 +115,9 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = playerLevels[infoIndex].value
+	print(currentName, level)
+	noRepeats(currentName, infoIndex)
+	setPlayerGlobals()
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 
 func levelChange(level,infoIndex):
@@ -123,6 +126,22 @@ func levelChange(level,infoIndex):
 	var playerIndex = playerChoices[infoIndex].selected
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+
+func noRepeats(name, infoIndex):
+	var hold
+	
+	for index in range(players.size()):
+		if index == infoIndex:
+			continue
+		
+		if players[infoIndex].name == players[index].name:
+			print(players)
+	
+	pass
+
+func setPlayerGlobals():
+	Globals.current_player_entities = []
+	Globals.current_player_entities = players
 
 #-----------------------------------------
 #ENEMY SETUP
@@ -143,6 +162,12 @@ func makeEnemyLineup():
 			enemyPhyEle[i].hide()
 	
 	enemiesShown.append_text(enLiString)
+
+func setEnemyGlobals():
+	Globals.current_enemy_entities = []
+	for i in range(3):
+		if enemyChoices[i].selected != 6:
+			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 
 func enemyChoiceChanged(_index):
 	SFX[0].play()
@@ -198,14 +223,9 @@ func _on_exit_option_pressed():
 	$OptionsMenu.hide()
 
 func _on_fight_button_pressed():
-	Globals.current_player_entities = []
-	Globals.current_enemy_entities = []
+	setEnemyGlobals()
+	setPlayerGlobals()
 	
-	for i in range(3):
-		if enemyChoices[i].selected != 6:
-			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
-	
-	Globals.current_player_entities = players
 	get_tree().change_scene_to_packed(Battle)
 
 func _on_menu_button_pressed():

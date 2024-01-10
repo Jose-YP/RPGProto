@@ -13,3 +13,4 @@ currentItems = 1
 centCost = 20
 icon = ExtResource("2_wpbvu")
 attackData = ExtResource("1_62i8p")
+equippedOn = 0
