@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bj1l11wng7bfb"]
+[gd_scene load_steps=35 format=3 uid="uid://bj1l11wng7bfb"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_pgkg1"]
 [ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/Entities/enemy.tscn" id="2_igkd6"]
@@ -15,6 +15,25 @@
 [ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="13_crl53"]
 [ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="14_iq0t7"]
 [ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="15_ssb33"]
+[ext_resource type="AudioStream" uid="uid://y7i1ns6fatdh" path="res://Audio/SFX/Hariq.wav" id="16_d7c0l"]
+[ext_resource type="AudioStream" uid="uid://ccu14eobkjjpa" path="res://Audio/SFX/Bahr.wav" id="17_w6iqx"]
+[ext_resource type="AudioStream" uid="uid://dfalyo44qobf2" path="res://Audio/SFX/Saeqia.wav" id="18_g5uqx"]
+[ext_resource type="AudioStream" uid="uid://hai5c0y6wxla" path="res://Audio/SFX/fsmash_1.ogg" id="19_egt8s"]
+[ext_resource type="AudioStream" uid="uid://e5johxxe7f31" path="res://Audio/SFX/Crush.wav" id="20_mgbcm"]
+[ext_resource type="AudioStream" uid="uid://b5p3u32p1iisc" path="res://Audio/SFX/Pierce.wav" id="21_2lekw"]
+[ext_resource type="AudioStream" uid="uid://dsr8dtipxinm1" path="res://Audio/SFX/fspecial.ogg" id="22_abvrt"]
+[ext_resource type="AudioStream" uid="uid://dbn6jal5lr7gg" path="res://Audio/SFX/Buff.wav" id="22_f6gwr"]
+[ext_resource type="AudioStream" uid="uid://csee58lac65lh" path="res://Audio/SFX/Lower.wav" id="22_vmgfi"]
+[ext_resource type="AudioStream" uid="uid://d4fpw5xri4jxg" path="res://Audio/SFX/drum-hitfinish2.ogg" id="23_b17fc"]
+[ext_resource type="AudioStream" uid="uid://dyf0jixnhljlo" path="res://Audio/SFX/basicAction.wav" id="23_dvq5n"]
+[ext_resource type="AudioStream" uid="uid://cx0csltfuqpng" path="res://Audio/SFX/overdrive.wav" id="23_wlq3y"]
+[ext_resource type="AudioStream" uid="uid://eaev1hj8wghu" path="res://Audio/SFX/beam.ogg" id="24_7fke7"]
+[ext_resource type="AudioStream" uid="uid://dn36iyl1mxrg1" path="res://Audio/SFX/Ailment.wav" id="24_rlm4a"]
+[ext_resource type="AudioStream" uid="uid://2n11d6lo8ktw" path="res://Audio/SFX/Reckless.wav" id="25_365xy"]
+[ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="26_xihro"]
+[ext_resource type="AudioStream" uid="uid://csrxt7jammqf" path="res://Audio/SFX/clear_02_Ab2Db_low.ogg" id="28_os6bf"]
+[ext_resource type="AudioStream" uid="uid://2n741f4ivddi" path="res://Audio/SFX/Aura.wav" id="29_ghgol"]
+[ext_resource type="AudioStream" uid="uid://bc41v187fp0wf" path="res://Audio/SFX/Bass.wav" id="30_djcmu"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pgkg1")
@@ -190,11 +209,80 @@ bus = &"SFX"
 
 [node name="Element" type="Node" parent="MoveSFX"]
 
+[node name="Fire" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("16_d7c0l")
+
+[node name="Water" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("17_w6iqx")
+
+[node name="Elec" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("18_g5uqx")
+
+[node name="Slash" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("19_egt8s")
+
+[node name="Crush" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("20_mgbcm")
+
+[node name="Pierce" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("21_2lekw")
+
+[node name="NeutralPhy" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("23_dvq5n")
+
+[node name="NeutralBal" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("22_abvrt")
+
+[node name="NeutralBOMB" type="AudioStreamPlayer" parent="MoveSFX/Element"]
+stream = ExtResource("23_b17fc")
+
 [node name="Buff" type="Node" parent="MoveSFX"]
+
+[node name="BuffStat" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+stream = ExtResource("22_f6gwr")
+volume_db = -2.5
+pitch_scale = 0.97
+
+[node name="DebuffStat" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+stream = ExtResource("22_vmgfi")
+
+[node name="Condition" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+stream = ExtResource("24_7fke7")
+volume_db = -4.0
+pitch_scale = 1.1
+
+[node name="EleChange" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+stream = ExtResource("23_dvq5n")
 
 [node name="Ailment" type="Node" parent="MoveSFX"]
 
+[node name="Overdrive" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+stream = ExtResource("23_wlq3y")
+
+[node name="Poison" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+stream = ExtResource("24_rlm4a")
+
+[node name="Reckless" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+stream = ExtResource("25_365xy")
+
+[node name="Exhausted" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+
+[node name="Rust" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+stream = ExtResource("26_xihro")
+
 [node name="ETC" type="Node" parent="MoveSFX"]
+
+[node name="Heal" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+stream = ExtResource("28_os6bf")
+
+[node name="Aura" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+stream = ExtResource("29_ghgol")
+
+[node name="Summon" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+stream = ExtResource("23_dvq5n")
+
+[node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+stream = ExtResource("30_djcmu")
 
 [connection signal="timeout" from="PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

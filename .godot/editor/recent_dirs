@@ -1,3 +1,4 @@
+res://Themes/ButtonStyle
 res://Code/SceneCode
 res://Resources/Inventory Data
 res://Scene
@@ -8,7 +9,6 @@ res://Resources/Entity Data/Enemy Data/EnemyEntity
 =======
 res://Resources/Chip Data
 res://Resources/Gear Data
-res://AddOns
 >>>>>>> Stashed changes
 res://Code/EnemyAI
 res://Resources/Item Data/ItemMoves

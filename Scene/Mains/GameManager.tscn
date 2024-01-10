@@ -25,6 +25,8 @@ bus = &"SFX"
 stream = ExtResource("5_2l50b")
 bus = &"SFX"
 
+[node name="Music" type="Node" parent="."]
+
 [connection signal="chipMenu" from="MainMenu" to="." method="_on_main_menu_chip_menu"]
 [connection signal="gearMenu" from="MainMenu" to="." method="_on_main_menu_gear_menu"]
 [connection signal="itemMenu" from="MainMenu" to="." method="_on_main_menu_item_menu"]

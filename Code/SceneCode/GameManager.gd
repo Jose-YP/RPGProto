@@ -6,13 +6,21 @@ extends Node2D
 @onready var chipInv: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
 @onready var gearInv: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
 @onready var itemInv: Inven = load("res://Resources/Inventory Data/ItemInventory.tres")
+@onready var regSFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
+@onready var currentScene = $MainMenu
 
 var gearFolder = "res://Resources/Gear Data/"
 var chipFolder = "res://Resources/Chip Data/"
 var itemFolder = "res://Resources/Item Data/ItemSpecifics/"
 
+var mainMenu: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
+var optionsMenu: PackedScene = preload("res://Scene/SideMenus/options_menu.tscn")
 var chipMenu: PackedScene = preload("res://Scene/SideMenus/ChipMenu.tscn")
+var battleScene: PackedScene = load("res://Scene/Mains/Main.tscn")
 
+#-----------------------------------------
+#INITALIZATION
+#-----------------------------------------
 func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
 	chipInv.type = "Chip"
@@ -75,8 +83,25 @@ func getFilesinFolder(path) -> Array:
 	
 	return files #return array of every resource
 
+#-----------------------------------------
+#SCENE CONNECTIONS
+#-----------------------------------------
+
+#-----------------------------------------
+#SIGNALS
+#-----------------------------------------
 func _on_main_menu_chip_menu():
-	get_tree().change_scene_to_packed(chipMenu)
+	currentScene.get_tree().change_scene_to_packed(chipMenu)
+	currentScene.connect("exitMenu",_back_to_main_menu)
+
+func _on_main_menu_options_menu():
+	currentScene.get_tree().change_scene_to_packed(optionsMenu)
+
+func _back_to_main_menu():
+	currentScene.get_tree().change_scene_to_packed(mainMenu)
+
+func _on_change_to_battle():
+	currentScene.get_tree().change_scene_to_packed(battleScene)
 
 func _on_main_menu_gear_menu():
 	pass # Replace with function body.

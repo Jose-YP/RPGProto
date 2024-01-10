@@ -22,7 +22,7 @@ $MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,
 $MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
 @onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
-@onready var DieSFX: AudioStreamPlayer = $SFX/Die
+@onready var DieSFX: AudioStreamPlayer = $SFX/ETC/Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
 #TURN MANAGERS
 @onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]

@@ -4,29 +4,35 @@
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="2_yhucp"]
 
 [node name="MenuItem" type="PanelContainer"]
+custom_minimum_size = Vector2(290, 55)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_043dc")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Button" type="Button" parent="."]
 layout_mode = 2
 
-[node name="Chip1" type="HBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+layout_mode = 2
+offset_right = 279.0
+offset_bottom = 52.0
+
+[node name="Chip1" type="HBoxContainer" parent="Button/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_043dc")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Chip1"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_yhucp")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Chip1"]
+[node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/Chip1"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Chip1/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Chip1/MarginContainer"]
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 theme = ExtResource("1_043dc")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://e86h6ygu2yew"]
+[gd_scene load_steps=17 format=3 uid="uid://e86h6ygu2yew"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_r1j1a"]
 [ext_resource type="Script" path="res://Code/SceneCode/ChipMenu.gd" id="2_7gxe8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="3_4l6kn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_ke5yo"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="5_685xo"]
+[ext_resource type="StyleBox" uid="uid://behgx34f1n8ve" path="res://Themes/ButtonStyle/DockSelected.tres" id="5_nbqy2"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="6_7kf02"]
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="7_8meyi"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="8_8tpd0"]
@@ -55,104 +56,118 @@ layout_mode = 2
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]CHIP SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Exit: X	 		Switch Dock: ZL/ZR			Next Char: R			Prev Char: L[/center]"
+[center]Accept: A			Cancel: B			Sort: Y			Exit: X	 		Switch Dock: ZL/ZR			Next Char: R			Prev Char: L[/center]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="ChipSelection" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(650, 725)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ak5bq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ChipSelection"]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("5_nbqy2")
 
-[node name="INVENTORYTEXT" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button"]
+layout_mode = 2
+offset_right = 665.0
+offset_bottom = 710.0
+
+[node name="INVENTORYTEXT" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/INVENTORYTEXT"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]INVENTORY[/center]"
 metadata/_edit_lock_ = true
 
-[node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
+[node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer"]
 custom_minimum_size = Vector2(665, 460)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/ChipSelection"]
 layout_mode = 2
 columns = 2
 
-[node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
+[node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info"]
+[node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo"]
 layout_mode = 2
 
-[node name="Title" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer"]
+[node name="Title" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
 metadata/_edit_lock_ = true
 
-[node name="Details" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer"]
+[node name="Details" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer"]
 custom_minimum_size = Vector2(420, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]60/60 | YELLOW CHIP
 OWNERS: DREAMER,LONNA,DAMIR,PEPPER[/center]"
 metadata/_edit_lock_ = true
 
-[node name="Description" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info"]
+[node name="Description" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info"]
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/Description"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/Description"]
 layout_mode = 2
 
 [node name="CurrentCharChips" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 725)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4fmou")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/CurrentCharChips"]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("5_nbqy2")
 
-[node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button"]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 713.0
+
+[node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer"]
 custom_minimum_size = Vector2(600, 10)
 layout_mode = 2
 
-[node name="Character" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+[node name="Character" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo"]
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Character"]
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
 LP:100 TP: 100"
 
-[node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+[node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
 tabs_visible = false
 
-[node name="Fire" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element"]
+[node name="Fire" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Player1Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("3_4l6kn")
@@ -160,7 +175,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element"]
+[node name="Water" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Player1Element"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -168,7 +183,7 @@ texture = ExtResource("4_ke5yo")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element"]
+[node name="Elec" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Player1Element"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -176,27 +191,27 @@ texture = ExtResource("5_685xo")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element"]
+[node name="Neutral" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Player1Element"]
 visible = false
 layout_mode = 2
 texture = ExtResource("6_7kf02")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+[node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 tabs_visible = false
 
-[node name="Slash" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
+[node name="Slash" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
 texture = ExtResource("7_8meyi")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
+[node name="Crush" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -204,7 +219,7 @@ texture = ExtResource("8_8tpd0")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
+[node name="Pierce" type="TextureRect" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/PlayerPhyElement1"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -212,25 +227,25 @@ texture = ExtResource("9_1ugo8")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Stats" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+[node name="Stats" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo"]
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Stats"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
 BAL: 60:		RES: 60		LUK: 60[/center]"
 metadata/_edit_lock_ = true
 
-[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/CPUBox"]
 layout_mode = 2
 
-[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 value = 100.0
@@ -240,55 +255,55 @@ texture_under = ExtResource("10_022b4")
 texture_over = ExtResource("6_7kf02")
 texture_progress = ExtResource("11_1dv5i")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "100/100
 CPU"
 
-[node name="CurrentChips" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer"]
+[node name="CurrentChips" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer"]
 custom_minimum_size = Vector2(0, 460)
 layout_mode = 2
 
-[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips"]
+[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CurrentChips"]
 layout_mode = 2
 columns = 2
 
-[node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer"]
+[node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info"]
+[node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo"]
 layout_mode = 2
 
-[node name="Title" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer"]
+[node name="Title" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
 metadata/_edit_lock_ = true
 
-[node name="Details" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer"]
+[node name="Details" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer"]
 custom_minimum_size = Vector2(370, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]60/60 | YELLOW CHIP[/center]"
 metadata/_edit_lock_ = true
 
-[node name="Description" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info"]
+[node name="Description" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info"]
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/Description"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/Description"]
 layout_mode = 2
 metadata/_edit_lock_ = true

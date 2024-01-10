@@ -1,5 +1,5 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/MenuinInv.tscn
+res://Scene/Mains/NewMain.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Code/SceneCode/Main.gd
 res://BasicAttack.tres
@@ -20,7 +20,6 @@ res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
 res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
-res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres
 res://Resources/Item Data/ItemMoves/ElecBombMove.tres
 res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
@@ -37,75 +36,9 @@ res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Themes/ButtonStyle/Disabled.tres
 res://Themes/ButtonStyle/Normal.tres
 res://Themes/HasSingle/Pannel.tres
+res://Themes/HasSingle/Scrollbar.tres
 res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Themes/HasSingle/Scrollbar.tres
-res://Scene/Main.tscn
-res://Scene/enemy.tscn
-res://Scene/PlayerMenu.tscn
-res://Scene/Player.tscn
-res://Scene/GameManager.tscn
-res://Scene/NewMain.tscn
-res://Scene/MainMenu.tscn
-res://Code/SceneCode/ChipMenu.gd
-res://Scene/ChipMenuNew.tscn
-res://Scene/ChipMenu.tscn
-res://Code/Globals/Globals.gd
-res://Code/ResourceMakers/PlayerMaker.gd
-res://Code/SceneCode/MainMenu.gd
-res://Code/ResourceMakers/InventoryMaker.gd
-res://Resources/Inventory Data/GearInventory.tres
-res://Resources/Inventory Data/ItemInventory.tres
-res://Code/SceneCode/GameManager.gd
-res://Resources/Gear Data/Betelgeuse Axe.tres
-res://Resources/Gear Data/DevilishMittens.tres
-res://Resources/Gear Data/NewSuperGreatSword.tres
-res://Resources/Gear Data/PoolNoodle.tres
-res://Resources/Gear Data/RefurbishedEngine.tres
-res://Resources/Gear Data/ShadowGloves.tres
-res://Resources/Gear Data/SolidSword.tres
-res://Resources/Gear Data/StoreboughtMotor.tres
-res://Resources/Gear Data/WitchSword.tres
-res://Code/ResourceMakers/GearMaker.gd
-res://Code/ResourceMakers/ItemMaker.gd
-res://Resources/Item Data/ItemSpecifics/Idol.tres
-res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres
-res://Resources/Item Data/ItemSpecifics/Endurian.tres
-res://Resources/Item Data/ItemSpecifics/Nut.tres
-res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
-res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres
-res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
-res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres
-res://README.md
-res://Scene/Mains/NewMain.tscn
-res://Scene/Mains/MainMenu.tscn
-res://Scene/SideMenus/ChipMenu.tscn
-res://Scene/Mains/GameManager.tscn
-res://Scene/SideMenus/ChipinInv.tscn
-res://Scene/SideMenus/ChipinChar.tscn
-res://Scene/SideMenus/ChipMenuNew.tscn
-res://Resources/Chip Data/Blood.tres
-res://Code/SceneCode/ChipinInv.gd
-res://Code/ResourceMakers/ChipMaker.gd
-res://Code/Globals/HelperFunctions.gd
-res://Resources/Chip Data/Together.tres
-res://Resources/Chip Data/Mind.tres
-res://Resources/Chip Data/Body.tres
-res://Resources/Chip Data/Boss.tres
-res://Resources/Chip Data/Fire.tres
-res://Resources/Chip Data/Soul.tres
-res://Resources/Chip Data/Tick.tres
-res://Resources/Chip Data/Water.tres
-res://Resources/Chip Data/Electric.tres
-res://Resources/Chip Data/Wicked.tres
-res://Resources/Chip Data/Pact.tres
-res://Resources/Chip Data/Chuck.tres
-res://Resources/Chip Data/SelfFullfilling.tres
-res://Resources/Chip Data/Murphys.tres
-res://Resources/Chip Data/AllIn.tres
-res://Resources/Chip Data/Fold.tres
-res://Resources/Chip Data/Blast.tres
-res://Resources/Chip Data/Awkward.tres
-res://Resources/Inventory Data/ChipInventory.tres
+res://Themes/ButtonStyle/DockSelected.tres
