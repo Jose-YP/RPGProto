@@ -1,7 +1,7 @@
+TextureRect
 AudioStreamPlayer
 Button
 Node
-TextureRect
 HBoxContainer
 RichTextLabel
 TextureProgressBar

@@ -1,7 +1,14 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/NewMain.tscn
+res://Scene/SideMenus/Gear/GearinInv.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
-res://Code/SceneCode/Main.gd
+res://Themes/ButtonStyle/Disabled.tres
+res://Themes/ButtonStyle/Normal.tres
+res://Themes/HasSingle/Pannel.tres
+res://Themes/HasSingle/Scrollbar.tres
+res://Themes/HasSingle/TabContainer.tres
+res://Themes/Theme.tres
+res://Shaders/OutlineInline.gdshader
+res://Themes/ButtonStyle/Dock.tres
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
@@ -33,20 +40,39 @@ res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
-res://Themes/ButtonStyle/Disabled.tres
-res://Themes/ButtonStyle/Normal.tres
-res://Themes/HasSingle/Pannel.tres
-res://Themes/HasSingle/Scrollbar.tres
-res://Themes/HasSingle/TabContainer.tres
-res://Themes/Theme.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Themes/ButtonStyle/DockSelected.tres
-res://Scene/SideMenus/ChipMenu.tscn
-res://Shaders/OutlineInline.gdshader
-res://Themes/ButtonStyle/Dock.tres
-res://Scene/Mains/GameManager.tscn
-res://Scene/Mains/MainMenu.tscn
-res://Scene/SideMenus/ChipinInv.tscn
-res://Scene/SideMenus/ChipinChar.tscn
-res://Scene/SideMenus/ChipMenuNew.tscn
+res://Code/SceneCode/Entities/enemy.gd
+res://Code/SceneCode/Individuals/GearinInv.gd
+res://Code/SceneCode/Individuals/IteminInv.gd
+res://Code/SceneCode/Entities/Player.gd
+res://Scene/SideMenus/Item/IteminInv.tscn
+res://Scene/SideMenus/Chip/ChipMenuNew.tscn
+res://Scene/SideMenus/Chip/ChipinInv.tscn
+res://Code/ResourceMakers/ItemMaker.gd
+res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres
+res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres
+res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres
+res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres
+res://Resources/Chip Data/AllIn.tres
+res://Resources/Chip Data/Blast.tres
+res://Resources/Chip Data/Awkward.tres
+res://Resources/Chip Data/Blood.tres
+res://Resources/Chip Data/Body.tres
+res://Resources/Chip Data/Boss.tres
+res://Resources/Chip Data/Chuck.tres
+res://Resources/Chip Data/Electric.tres
+res://Resources/Chip Data/Fold.tres
+res://Resources/Chip Data/Murphys.tres
+res://Resources/Chip Data/Mind.tres
+res://Resources/Chip Data/Pact.tres
+res://Resources/Chip Data/Paradox.tres
+res://Resources/Chip Data/SelfFullfilling.tres
+res://Resources/Chip Data/Soul.tres
+res://Resources/Chip Data/Tick.tres
+res://Resources/Chip Data/Together.tres
+res://Resources/Chip Data/Water.tres
+res://Resources/Chip Data/Wicked.tres
+res://Resources/Entity Data/PlayerData/PlayerSpecifics/PlayerPlaceholder.tres
+res://Resources/Gear Data/WitchSword.tres
+res://Code/Globals/Globals.gd

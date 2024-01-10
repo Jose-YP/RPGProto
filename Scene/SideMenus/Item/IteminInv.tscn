@@ -1,0 +1,146 @@
+[gd_scene load_steps=6 format=3 uid="uid://ben1evmx5sg1s"]
+
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_ybr5t"]
+[ext_resource type="Script" path="res://Code/SceneCode/Individuals/IteminInv.gd" id="2_hxa4o"]
+[ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_5vr73"]
+[ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_jg8u6"]
+[ext_resource type="Texture2D" uid="uid://p4702lq24xjg" path="res://Art/4Tb6Xje4c-3913742659.png" id="5_64ojj"]
+
+[node name="MenuItem" type="PanelContainer"]
+custom_minimum_size = Vector2(330, 52)
+offset_right = 330.0
+offset_bottom = 52.0
+size_flags_vertical = 4
+theme = ExtResource("1_ybr5t")
+script = ExtResource("2_hxa4o")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+layout_mode = 2
+offset_right = 330.0
+offset_bottom = 52.0
+
+[node name="Chip1" type="HBoxContainer" parent="Button/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_ybr5t")
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("3_5vr73")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/Chip1"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Chip1/MarginContainer"]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+theme = ExtResource("1_ybr5t")
+bbcode_enabled = true
+text = "[center]wordiest ever Chip [color=yellow]CPU: 24[/color] 6/6 [/center]"
+
+[node name="Characters" type="GridContainer" parent="Button/MarginContainer/Chip1"]
+custom_minimum_size = Vector2(42, 20)
+layout_mode = 2
+columns = 2
+
+[node name="DreamerStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
+visible = false
+modulate = Color(0.956863, 0.537255, 0.168627, 1)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+tabs_visible = false
+use_hidden_tabs_for_min_size = true
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_jg8u6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("5_64ojj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="LonnaStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
+visible = false
+modulate = Color(0.596078, 0, 0.862745, 1)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+tabs_visible = false
+use_hidden_tabs_for_min_size = true
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_jg8u6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("5_64ojj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="DamirStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
+visible = false
+modulate = Color(0.160784, 0.160784, 0.917647, 1)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+tabs_visible = false
+use_hidden_tabs_for_min_size = true
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_jg8u6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("5_64ojj")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="PepperStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
+visible = false
+modulate = Color(0.882353, 0.156863, 0.156863, 1)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+tabs_visible = false
+use_hidden_tabs_for_min_size = true
+
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_jg8u6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("5_64ojj")
+expand_mode = 4
+stretch_mode = 5
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

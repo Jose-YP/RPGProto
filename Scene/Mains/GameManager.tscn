@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn68h6qjgcyqf"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/GameManager.gd" id="1_fnwwp"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/GameManager.gd" id="1_fnwwp"]
 [ext_resource type="PackedScene" uid="uid://4gou4dfa1ija" path="res://Scene/Mains/MainMenu.tscn" id="2_lyisp"]
 [ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="3_4q0i6"]
 [ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="4_snur7"]

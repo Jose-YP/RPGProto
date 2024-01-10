@@ -8,6 +8,7 @@ name = "Paradox"
 description = "Swaps the user's Strength and Ballistic Stats"
 CpuCost = 8
 ChipType = "Yellow"
+equippedOn = 0
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

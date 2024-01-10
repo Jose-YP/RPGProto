@@ -1,4 +1,4 @@
-extends "res://Code/SceneCode/Entity.gd"
+extends "res://Code/SceneCode/Entities/Entity.gd"
 
 @onready var EnemyLabel = $NameContainer/RichTextLabel
 @onready var enemyData = data.specificData

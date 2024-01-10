@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres" id="11_xx008"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_gjt0h"]
 
-
 [resource]
 script = ExtResource("1_ecoj4")
 level = 5
@@ -41,6 +40,7 @@ ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }
 waitData = ExtResource("12_gjt0h")
+KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
 TempElement = null

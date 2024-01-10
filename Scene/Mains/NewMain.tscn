@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://bj1l11wng7bfb"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_pgkg1"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_pgkg1"]
 [ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/Entities/enemy.tscn" id="2_igkd6"]
 [ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="3_tk7wc"]
 [ext_resource type="PackedScene" uid="uid://dspj6gkwkq7ko" path="res://Scene/Entities/Player.tscn" id="4_220tf"]

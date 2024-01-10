@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpmeoneud23qm"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/PlayerMenu.gd" id="1_pl12r"]
+[ext_resource type="Script" path="res://Code/SceneCode/Entities/PlayerMenu.gd" id="1_pl12r"]
 [ext_resource type="StyleBox" uid="uid://csn7gcgx0jah7" path="res://Themes/ButtonStyle/Normal.tres" id="2_y267t"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="6_8ho7p"]
+
 
 [node name="PlayerMenu" type="Control"]
 layout_mode = 3

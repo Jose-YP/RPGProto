@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://v3nffaaihyp3"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_680s0"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_680s0"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_tc2to"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="3_ppboi"]
 [ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="4_vnyh2"]
@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://hai5c0y6wxla" path="res://Audio/SFX/fsmash_1.ogg" id="14_phdx7"]
 [ext_resource type="AudioStream" uid="uid://e5johxxe7f31" path="res://Audio/SFX/Crush.wav" id="15_1spfb"]
 [ext_resource type="AudioStream" uid="uid://b5p3u32p1iisc" path="res://Audio/SFX/Pierce.wav" id="15_5i4pm"]
-[ext_resource type="AudioStream" uid="uid://chlnoaabffn7e" path="res://Audio/SFX/heavy1.ogg" id="16_kxgsr"]
+[ext_resource type="AudioStream" path="res://Audio/SFX/heavy1.ogg" id="16_kxgsr"]
 [ext_resource type="AudioStream" uid="uid://dsr8dtipxinm1" path="res://Audio/SFX/fspecial.ogg" id="17_ti1a4"]
 [ext_resource type="AudioStream" uid="uid://eaev1hj8wghu" path="res://Audio/SFX/beam.ogg" id="18_rfs7m"]
 [ext_resource type="AudioStream" uid="uid://cx0csltfuqpng" path="res://Audio/SFX/overdrive.wav" id="22_7idfh"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="25_s5dkk"]
 [ext_resource type="AudioStream" uid="uid://csrxt7jammqf" path="res://Audio/SFX/clear_02_Ab2Db_low.ogg" id="26_whajc"]
 [ext_resource type="AudioStream" uid="uid://2n741f4ivddi" path="res://Audio/SFX/Aura.wav" id="27_oy0k6"]
+
 
 [node name="MainBattle" type="Node2D"]
 script = ExtResource("1_680s0")

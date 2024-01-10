@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Player" load_steps=2 format=3 uid="uid://cpxuo8mpbpxh"]
+[gd_resource type="Resource" script_class="Player" load_steps=3 format=3 uid="uid://cpxuo8mpbpxh"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="1_c4fbv"]
+[ext_resource type="Resource" uid="uid://j510cp656e33" path="res://Resources/Chip Data/Tick.tres" id="1_revfq"]
 
 [resource]
 script = ExtResource("1_c4fbv")
@@ -8,6 +9,7 @@ MaxLP = 10
 MaxCPU = 10
 Skills = 1
 RechargeRate = 1.0
+ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("1_revfq")])
+currentCPU = 0
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([])
 boostStat = 4
-Tactics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([])

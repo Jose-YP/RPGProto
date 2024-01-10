@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="Player" load_steps=8 format=3 uid="uid://del6wldfbl02t"]
+[gd_resource type="Resource" script_class="Player" load_steps=10 format=3 uid="uid://del6wldfbl02t"]
 
 [ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres" id="1_6t6t6"]
 [ext_resource type="Resource" uid="uid://dn0uugdcutkno" path="res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres" id="2_pleko"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="3_2n3y0"]
+[ext_resource type="Resource" uid="uid://60wcuok8bjor" path="res://Resources/Chip Data/Pact.tres" id="4_i3rco"]
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres" id="4_rrmdr"]
+[ext_resource type="Resource" uid="uid://dukvl236lt7qb" path="res://Resources/Gear Data/ShadowGloves.tres" id="5_abca5"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres" id="5_pjxpt"]
 [ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres" id="6_ye4k3"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="7_3w0to"]
-
 
 [resource]
 script = ExtResource("7_3w0to")
@@ -15,6 +16,9 @@ MaxLP = 50
 MaxCPU = 25
 Skills = 1
 RechargeRate = 1.0
+GearData = ExtResource("5_abca5")
+ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("4_i3rco")])
+currentCPU = 0
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_6t6t6"), ExtResource("2_pleko"), ExtResource("3_2n3y0")])
 boostStat = 1
 Tactics2 = ExtResource("4_rrmdr")

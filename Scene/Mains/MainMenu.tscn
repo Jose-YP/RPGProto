@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://4gou4dfa1ija"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/MainMenu.gd" id="1_xp3rd"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/MainMenu.gd" id="1_xp3rd"]
 [ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_06l5v"]
 [ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_xexs8"]
 [ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="4_y276q"]

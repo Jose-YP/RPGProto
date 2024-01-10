@@ -26,6 +26,7 @@ Globals="*res://Code/Globals/Globals.gd"
 HelperFunctions="*res://Code/Globals/HelperFunctions.gd"
 MiscFunctions="*res://Code/Globals/MiscFunctions.gd"
 EnemyAiGlobal="*res://Code/EnemyAI/EnemyAIGlobal.gd"
+ChipFunctions="*res://Code/Globals/chip_functions.gd"
 
 [display]
 

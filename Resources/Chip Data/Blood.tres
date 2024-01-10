@@ -8,6 +8,7 @@ name = "Blood"
 description = "-100 HP +20 CPU"
 CpuCost = -15
 ChipType = "Yellow"
+equippedOn = 0
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

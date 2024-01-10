@@ -1,4 +1,4 @@
-extends "res://Code/SceneCode/Entity.gd"
+extends "res://Code/SceneCode/Entities/Entity.gd"
 
 #Make sure these can be refered to outside the code
 #inside the code it just looks nicer

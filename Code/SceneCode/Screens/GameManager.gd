@@ -15,8 +15,8 @@ var itemFolder = "res://Resources/Item Data/ItemSpecifics/"
 
 var mainMenu: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
 var optionsMenu: PackedScene = preload("res://Scene/SideMenus/options_menu.tscn")
-var chipMenu: PackedScene = preload("res://Scene/SideMenus/ChipMenu.tscn")
-var battleScene: PackedScene = load("res://Scene/Mains/Main.tscn")
+var chipMenu: PackedScene = preload("res://Scene/SideMenus/Chip/ChipMenu.tscn")
+var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
 
 #-----------------------------------------
 #INITALIZATION
