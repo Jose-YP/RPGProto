@@ -6,7 +6,7 @@ class_name Chip
 @export_multiline var description: String = "Does something"
 @export var CpuCost: int = 4
 @export_enum("Red","Blue","Yellow") var ChipType = "Red"
-@export_flags("Dreamer","Lonna","Damir","Pepper") var equippedOn
+@export_flags("Dreamer","Lonna","Damir","Pepper") var equippedOn = 0
 @export var other: String
 
 @export_group("Red Properties")

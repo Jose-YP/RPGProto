@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj1l11wng7bfb"]
+[gd_scene load_steps=16 format=3 uid="uid://bj1l11wng7bfb"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Main.gd" id="1_pgkg1"]
 [ext_resource type="PackedScene" uid="uid://cg6popaxjbvc4" path="res://Scene/Entities/enemy.tscn" id="2_igkd6"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="10_poyo7"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="11_1kedy"]
 [ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="12_dtk7b"]
+[ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="13_crl53"]
+[ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="14_iq0t7"]
+[ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="15_ssb33"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pgkg1")
@@ -168,6 +171,30 @@ offset_top = 437.0
 offset_right = 1428.0
 offset_bottom = 519.0
 scale = Vector2(0.5, 0.5)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("13_crl53")
+bus = &"SFX"
+
+[node name="Back" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_iq0t7")
+bus = &"SFX"
+
+[node name="Menu" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("15_ssb33")
+bus = &"SFX"
+
+[node name="MoveSFX" type="Node" parent="."]
+
+[node name="Element" type="Node" parent="MoveSFX"]
+
+[node name="Buff" type="Node" parent="MoveSFX"]
+
+[node name="Ailment" type="Node" parent="MoveSFX"]
+
+[node name="ETC" type="Node" parent="MoveSFX"]
 
 [connection signal="timeout" from="PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://0v1ufecm6g5s"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_0wxhg"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_mf22f"]
 
 [resource]
-script = ExtResource("1_0wxhg")
-name = "Paradox"
-description = "Swaps the user's Strength and Ballistic Stats"
-CpuCost = 8
-ChipType = "Yellow"
-equippedOn = null
+script = ExtResource("1_mf22f")
+name = "Blast"
+description = "Bomb attacks now use the user's Ballistic stat"
+CpuCost = 5
+ChipType = "Red"
+equippedOn = 7
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null
 NewTarget = null
-ItemChange = null
+ItemChange = 1
 calcBonus = "None"
 calcAmmount = 0.0
 costBonus = null
@@ -33,6 +33,6 @@ Ballistics = 0
 Resistance = 0
 Speed = 0
 Luck = 0
-StatSwap = true
-FirstSwap = 0
-SecondSwap = 2
+StatSwap = false
+FirstSwap = null
+SecondSwap = null

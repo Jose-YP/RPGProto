@@ -3,8 +3,8 @@ extends Node2D
 @export var maxGear: int = 1
 @export var maxChips: int = 3
 
-@onready var gearInv: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
-@onready var chipInv: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
+@onready var chipInv: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
+@onready var gearInv: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
 @onready var itemInv: Inven = load("res://Resources/Inventory Data/ItemInventory.tres")
 
 var gearFolder = "res://Resources/Gear Data/"
@@ -29,6 +29,7 @@ func _ready(): #Make every inventory
 	itemInv.inventory = getInventoryDict(itemFolder)
 	Globals.ItemInventory = itemInv
 	
+	print(Globals.ChipInventory.inventory)
 	for chip in chipInv.inventory:
 		print(chip, chipInv.inventory[chip])
 

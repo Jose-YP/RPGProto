@@ -1,3 +1,4 @@
+Node
 Button
 TextureRect
 HBoxContainer
@@ -11,4 +12,3 @@ MarginContainer
 TabContainer
 Container
 ItemList
-Control

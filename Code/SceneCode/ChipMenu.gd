@@ -14,13 +14,19 @@ extends Control
 @onready var playerChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
 @onready var playerChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/Description/RichTextLabel
 #Current Player Info
-@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
+@onready var playerResource: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character/RichTextLabel
+@onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element
+@onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1
+@onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats/RichTextLabel
 @onready var CPUText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
+@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
 
 var ChipIcon = preload("res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png")
 var InvMenu: Array[Array] = [[],[]]
 var side: int = 0
 var num: int = 0
+var playerIndex: int = 0
+var CPUusage: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,22 +45,51 @@ func _ready():
 	
 	side = 0
 	InvMenu[side][num].focus.grab_focus()
+	
+	getPlayerStats(playerIndex)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
-func getElements(entity,ElementTab,PhyEleTab):
+func getPlayerStats(index):
+	var entity = Globals.current_player_entities[index]
+	var CPUtween = CPUBar.create_tween()
+	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
+	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
+	entity.MaxTP,"[/color]")
+	var stats = str("str: ",entity.strength,"\ttgh: ",entity.toughness,"\tspd: ",entity.speed,
+	"\nbal: ",entity.ballistics,"\tres: ",entity.resistance,"\tluk: ",entity.luck)
+	var currentCPUtext = str((entity.specificData.MaxCPU - CPUusage),"/",entity.specificData.MaxCPU,"\nCPU")
+	
+	playerResource.clear()
+	playerBattleStats.clear()
+	CPUText.clear()
+	
+	playerResource.append_text(resourceString)
+	playerBattleStats.append_text(stats)
+	CPUText.append_text(currentCPUtext)
+	
+	getElements(entity)
+	
+	var newValue = int(100*(float(entity.specificData.MaxCPU - CPUusage) / float(entity.specificData.MaxCPU)))
+	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+
+func getElements(entity):
 	for k in range(4):
 		if Globals.elementGroups[k] == entity.element:
-			ElementTab.current_tab = k
+			playerElement.current_tab = k
 	for k in range(3):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
-			PhyEleTab.current_tab = k
+			playerPhyEle.current_tab = k
 
 func on_inv_focused(data):
 	invChipTitle.clear()
-	invChipTitle.append_text(data.name)
+	invChipTitle.append_text(str(data.chipData.name, " Chip"))
+	
+	invChipDetails.clear()
+	invChipDetails.append_text(str("[center]",data.chipData.ChipType," Chip\nOwners:",
+	data.currentPlayers,"[/center]"))
 	
 	invChipDisc.clear()
-	invChipDisc.append_text(data.description)
+	invChipDisc.append_text(data.chipData.description)

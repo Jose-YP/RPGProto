@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_kyfla")
-type = null
+type = 2
 inventory = {}
