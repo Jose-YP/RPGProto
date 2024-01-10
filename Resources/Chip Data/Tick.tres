@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_o1leq")
-name = "Memory"
-description = "Immune to Stat Debuffs"
+name = "Tick"
+description = "+80 TP"
 CpuCost = 10
-ChipType = "Blue"
+ChipType = "Yellow"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null
@@ -23,9 +24,9 @@ ElementModBoost = 0.0
 SameElement = false
 immunity = "Debuff"
 resist = null
-HP = -100
+HP = 0
 LP = 0
-TP = 0
+TP = 80
 Strength = 0
 Toughness = 0
 Ballistics = 0

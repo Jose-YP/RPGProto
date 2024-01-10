@@ -8,6 +8,7 @@ name = "Boss"
 description = "+150 HP"
 CpuCost = 12
 ChipType = "Yellow"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

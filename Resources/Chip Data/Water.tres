@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Chip" load_steps=3 format=3 uid="uid://dtgluxta5eqok"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_7hdv1"]
-[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Entity Moves/Bahr.tres" id="1_i1yer"]
+[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="1_i1yer"]
 
 [resource]
 script = ExtResource("1_7hdv1")
@@ -9,6 +9,7 @@ name = "Water"
 description = "The user's third basic move becomes Bahr"
 CpuCost = 4
 ChipType = "Red"
+equippedOn = null
 other = ""
 NewMove = ExtResource("1_i1yer")
 PhyNeutralChange = "None"

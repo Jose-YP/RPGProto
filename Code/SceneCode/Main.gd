@@ -31,9 +31,9 @@ $MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$Mo
 @onready var playerOrder: Array = []
 
 #Make every player's menu
-var mainMenuScene: PackedScene = preload("res://Scene/MainMenu.tscn")
-var playerScene: PackedScene = preload("res://Scene/Player.tscn")
-var enemyScene: PackedScene = preload("res://Scene/enemy.tscn")
+var mainMenuScene: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
+var playerScene: PackedScene = preload("res://Scene/Entities/Player.tscn")
+var enemyScene: PackedScene = preload("res://Scene/Entities/enemy.tscn")
 var groups = ["Attack","Skills","Items","Tactics"]
 var currentMenu
 #Hold current enemy's action

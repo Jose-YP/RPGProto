@@ -1,10 +1,40 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cm78hd27sc8np"]
+[gd_resource type="Resource" script_class="Chip" load_steps=3 format=3 uid="uid://cm78hd27sc8np"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_712ww"]
+[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Entity Moves/Seiqa.tres" id="1_f71uc"]
 
 [resource]
 script = ExtResource("1_712ww")
-name = "Basic Gear"
-description = "Does something"
-CpuCost = 50
+name = "Electric"
+description = "The user's third basic move becomes Saeiqa"
+CpuCost = 3
 ChipType = "Red"
+equippedOn = null
+other = ""
+NewMove = ExtResource("1_f71uc")
+PhyNeutralChange = "None"
+AffectedMove = null
+NewTarget = null
+ItemChange = null
+calcBonus = "None"
+calcAmmount = 0.0
+costBonus = null
+costMod = null
+NewElement = null
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+immunity = "None"
+resist = null
+HP = 0
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+StatSwap = false
+FirstSwap = null
+SecondSwap = null

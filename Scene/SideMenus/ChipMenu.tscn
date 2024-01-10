@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_r1j1a"]
 [ext_resource type="Script" path="res://Code/SceneCode/ChipMenu.gd" id="2_7gxe8"]
-[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/MenuinInv.tscn" id="2_tnvcm"]
+[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/ChipinInv.tscn" id="2_tnvcm"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="3_4l6kn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_ke5yo"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="5_685xo"]
@@ -79,7 +79,7 @@ text = "[center]INVENTORY[/center]"
 metadata/_edit_lock_ = true
 
 [node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
-custom_minimum_size = Vector2(655, 460)
+custom_minimum_size = Vector2(665, 460)
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection"]
@@ -224,7 +224,7 @@ BAL: 60:		RES: 60		LUK: 60[/center]"
 metadata/_edit_lock_ = true
 
 [node name="CPUBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(55, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox"]

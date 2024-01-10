@@ -8,6 +8,7 @@ name = "Soul"
 description = "Changes the user's element to Fire"
 CpuCost = 4
 ChipType = "Blue"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

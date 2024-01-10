@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgnn4or8oswgp"]
+[gd_scene load_steps=16 format=3 uid="uid://cngfyr61wfcoq"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_xac86"]
-[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/MenuinInv.tscn" id="2_8s4c7"]
+[ext_resource type="PackedScene" uid="uid://p1gv2u05pahj" path="res://Scene/SideMenus/ChipinInv.tscn" id="2_8s4c7"]
+[ext_resource type="Script" path="res://Code/SceneCode/ChipMenu.gd" id="2_gmrrb"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="3_j1vxn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="4_rejs5"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="5_y01y0"]
@@ -10,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="8_pxh5w"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="9_dlpp5"]
 [ext_resource type="PackedScene" uid="uid://cvedj5nkr8e8v" path="res://Scene/SideMenus/ChipinChar.tscn" id="10_r4ntd"]
+[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="12_m67un"]
+[ext_resource type="Texture2D" uid="uid://dgoj57i606hsw" path="res://Art/yellow-ball-icon-6-3137490973.png" id="13_bxytu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak5bq"]
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
@@ -32,6 +35,9 @@ anchors_preset = 0
 offset_left = -1274.0
 offset_right = -1274.0
 theme = ExtResource("1_xac86")
+script = ExtResource("2_gmrrb")
+InvChipPanel = ExtResource("2_8s4c7")
+playerChipPanel = ExtResource("10_r4ntd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -48,7 +54,8 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Title"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center]CHIP SELECTION MENU[/center]"
+text = "[center]CHIP SELECTION MENU[/center]
+[center]Accept: A			Cancel: B			Exit: X	 		Switch Dock: ZL/ZR			Next Char: R			Prev Char: L[/center]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -62,24 +69,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ak5bq")
 layout_mode = 2
 
 [node name="INVENTORYTEXT" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
-custom_minimum_size = Vector2(0, 45)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]INVENTORY[/center]"
+metadata/_edit_lock_ = true
 
 [node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
-custom_minimum_size = Vector2(655, 465)
+custom_minimum_size = Vector2(655, 460)
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection"]
 layout_mode = 2
 columns = 2
-
-[node name="MenuItem" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer" instance=ExtResource("2_8s4c7")]
-layout_mode = 2
 
 [node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -132,16 +137,18 @@ custom_minimum_size = Vector2(600, 10)
 layout_mode = 2
 
 [node name="Character" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character"]
 layout_mode = 2
-text = "CHARACTER"
+bbcode_enabled = true
+text = "CHARACTER HP: 100
+LP:100 TP: 100"
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
-custom_minimum_size = Vector2(50, 40)
+custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
 tabs_visible = false
 
@@ -178,7 +185,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 tabs_visible = false
 
@@ -206,7 +213,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Stats" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(385, 40)
+custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats"]
@@ -214,6 +221,30 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
 BAL: 60:		RES: 60		LUK: 60[/center]"
+metadata/_edit_lock_ = true
+
+[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox"]
+layout_mode = 2
+
+[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("12_m67un")
+texture_over = ExtResource("6_vds4y")
+texture_progress = ExtResource("13_bxytu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "100/100
+CPU"
 
 [node name="CurrentChips" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer"]
 custom_minimum_size = Vector2(0, 460)
@@ -222,9 +253,6 @@ layout_mode = 2
 [node name="PanelContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips"]
 layout_mode = 2
 columns = 2
-
-[node name="MenuItem" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer" instance=ExtResource("10_r4ntd")]
-layout_mode = 2
 
 [node name="Info" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)

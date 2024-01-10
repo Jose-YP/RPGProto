@@ -6,6 +6,7 @@ class_name Chip
 @export_multiline var description: String = "Does something"
 @export var CpuCost: int = 4
 @export_enum("Red","Blue","Yellow") var ChipType = "Red"
+@export_flags("Dreamer","Lonna","Damir","Pepper") var equippedOn
 @export var other: String
 
 @export_group("Red Properties")
@@ -17,7 +18,7 @@ class_name Chip
 @export_enum("Physical","Ballistic","Freebie") var ItemChange
 @export_subgroup("Calc Bonuses")
 @export_enum("None","Drain","AilmentHit","CritChance") var calcBonus = "None"
-@export_range(0,20,.05) var calcAmmount: float
+@export_range(0,100,.05) var calcAmmount: float
 @export_enum("HP","LP","HP/LP","TP") var costBonus
 @export_range(0,2,.01) var costMod
 
@@ -25,7 +26,7 @@ class_name Chip
 @export_subgroup("Properties")
 @export_enum("Fire","Water","Elec","Neutral") var NewElement
 @export_enum("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb") var Condition
-@export_range(0,1,.01) var ElementModBoost: float
+@export_range(-1,1,.05) var ElementModBoost: float
 @export var SameElement: bool = false
 @export_subgroup("Defense")
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None","Protected",

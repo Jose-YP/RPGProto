@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://43atp7yyoob5"]
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://ctyq62rykb8wt"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="2_ge2d2"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_13h3m"]
 
 [resource]
-script = ExtResource("2_ge2d2")
-name = "Awkward"
-description = "+4 Luck"
-CpuCost = 4
-ChipType = "Yellow"
+script = ExtResource("1_13h3m")
+name = "Fold"
+description = "Lowers Elemental Advantage to and from the user by 15%"
+CpuCost = 6
+ChipType = "Blue"
 equippedOn = null
 other = ""
 PhyNeutralChange = "None"
@@ -20,9 +20,9 @@ costBonus = null
 costMod = null
 NewElement = null
 Condition = null
-ElementModBoost = 0.0
+ElementModBoost = -0.15
 SameElement = false
-immunity = "Debuff"
+immunity = "None"
 resist = null
 HP = 0
 LP = 0
@@ -32,7 +32,7 @@ Toughness = 0
 Ballistics = 0
 Resistance = 0
 Speed = 0
-Luck = 4
+Luck = 0
 StatSwap = false
 FirstSwap = null
 SecondSwap = null

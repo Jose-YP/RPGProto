@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://43atp7yyoob5"]
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://hq7hd3pd2y2r"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_ldw40"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_iy0e1"]
 
 [resource]
-script = ExtResource("1_ldw40")
-name = "Wicked"
-description = "+4 Speed"
-CpuCost = 6
+script = ExtResource("1_iy0e1")
+name = "Blood"
+description = "-100 HP +20 CPU"
+CpuCost = -15
 ChipType = "Yellow"
 other = ""
 PhyNeutralChange = "None"
-AffectedMove = 2
-NewTarget = 1
+AffectedMove = null
+NewTarget = null
 ItemChange = null
 calcBonus = "None"
 calcAmmount = 0.0
@@ -21,16 +21,16 @@ NewElement = null
 Condition = null
 ElementModBoost = 0.0
 SameElement = false
-immunity = "Debuff"
+immunity = "None"
 resist = null
-HP = 0
+HP = -100
 LP = 0
 TP = 0
 Strength = 0
 Toughness = 0
 Ballistics = 0
 Resistance = 0
-Speed = 4
+Speed = 0
 Luck = 0
 StatSwap = false
 FirstSwap = null

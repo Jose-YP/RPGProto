@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var maxGear: int = 1
-@export var maxChips: int = 4
+@export var maxChips: int = 3
 
 @onready var gearInv: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
 @onready var chipInv: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
@@ -11,7 +11,7 @@ var gearFolder = "res://Resources/Gear Data/"
 var chipFolder = "res://Resources/Chip Data/"
 var itemFolder = "res://Resources/Item Data/ItemSpecifics/"
 
-var chipMenu: PackedScene = load("res://Scene/ChipMenu.tscn")
+var chipMenu: PackedScene = preload("res://Scene/SideMenus/ChipMenu.tscn")
 
 func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
@@ -29,7 +29,8 @@ func _ready(): #Make every inventory
 	itemInv.inventory = getInventoryDict(itemFolder)
 	Globals.ItemInventory = itemInv
 	
-	print(chipInv,gearInv,itemInv)
+	for chip in chipInv.inventory:
+		print(chip, chipInv.inventory[chip])
 
 func getInventoryDict(Folder) -> Dictionary:
 	var localDict: Dictionary = {}
@@ -72,3 +73,12 @@ func getFilesinFolder(path) -> Array:
 				continue
 	
 	return files #return array of every resource
+
+func _on_main_menu_chip_menu():
+	get_tree().change_scene_to_packed(chipMenu)
+
+func _on_main_menu_gear_menu():
+	pass # Replace with function body.
+
+func _on_main_menu_item_menu():
+	pass # Replace with function body.

@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_m8dbs"]
 [ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_57rpg"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="12_c1ybm"]
-[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="13_3ppe8"]
+[ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="13_n6ucx"]
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="14_mj71e"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="15_saclg"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="16_ptdrs"]
@@ -52,7 +52,7 @@ theme_override_font_sizes/normal_font_size = 64
 text = "RPG PROTOTYPE"
 metadata/_edit_lock_ = true
 
-[node name="ElementTriangle" parent="ColorRect" instance=ExtResource("13_3ppe8")]
+[node name="ElementTriangle" parent="ColorRect" instance=ExtResource("13_n6ucx")]
 layout_mode = 1
 offset_left = 1140.0
 offset_top = 181.0

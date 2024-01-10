@@ -74,8 +74,7 @@ var boostStrings = {
 	"Attack": 1,
 	"Defense": 2,
 	"Speed": 4,
-	"Luck": 8
-}
+	"Luck": 8}
 
 func inCaseNone(property):
 	if property == null:

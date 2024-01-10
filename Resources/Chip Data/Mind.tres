@@ -8,6 +8,7 @@ name = "Mind"
 description = "User's element changed to Elec"
 CpuCost = 4
 ChipType = "Blue"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

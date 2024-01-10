@@ -4,14 +4,15 @@
 
 [resource]
 script = ExtResource("1_adaya")
-name = "Memory"
-description = "Immune to Stat Debuffs"
+name = "Together"
+description = "Boost now affects ally groups"
 CpuCost = 10
-ChipType = "Blue"
+ChipType = "Red"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
-AffectedMove = null
-NewTarget = null
+AffectedMove = 2
+NewTarget = 1
 ItemChange = null
 calcBonus = "None"
 calcAmmount = 0.0

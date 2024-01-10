@@ -8,6 +8,7 @@ name = "Body"
 description = "Changes the user's element to Water"
 CpuCost = 4
 ChipType = "Blue"
+equippedOn = null
 other = ""
 PhyNeutralChange = "None"
 AffectedMove = null

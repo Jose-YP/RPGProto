@@ -32,13 +32,16 @@ signal chipMenu
 signal gearMenu
 signal itemMenu
 
-var Battle: PackedScene = load("res://Scene/Main.tscn")
+var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
 var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
 var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
 var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]
 
+#-----------------------------------------
+#INITALIZATION
+#-----------------------------------------
 func _ready():
 	for i in range(3):
 		playerDescriptions(playerStats[i],i)
@@ -47,6 +50,9 @@ func _ready():
 	
 	makeEnemyLineup()
 
+#-----------------------------------------
+#PLAYER SETUP
+#-----------------------------------------
 func playerDescriptions(description,i):
 	var level = playerLevels[i].value
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
@@ -104,6 +110,23 @@ func makePlayerDesc(index,playerNum,currentName,level):
 	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
 	return description
 
+func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames second is for playerChoices
+	SFX[0].play()
+	playerStats[infoIndex].clear()
+	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
+	var level = playerLevels[infoIndex].value
+	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+
+func levelChange(level,infoIndex):
+	SFX[2].play()
+	playerStats[infoIndex].clear()
+	var playerIndex = playerChoices[infoIndex].selected
+	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
+	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+
+#-----------------------------------------
+#ENEMY SETUP
+#-----------------------------------------
 func makeEnemyLineup():
 	enemiesShown.clear()
 	var enLiString: String
@@ -121,6 +144,13 @@ func makeEnemyLineup():
 	
 	enemiesShown.append_text(enLiString)
 
+func enemyChoiceChanged(_index):
+	SFX[0].play()
+	makeEnemyLineup()
+
+#-----------------------------------------
+#GENERAL SETUP
+#-----------------------------------------
 func getElements(entity,ElementTab,PhyEleTab):
 	for k in range(4):
 		if Globals.elementGroups[k] == entity.element:
@@ -129,24 +159,9 @@ func getElements(entity,ElementTab,PhyEleTab):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
 			PhyEleTab.current_tab = k
 
-func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames second is for playerChoices
-	SFX[0].play()
-	playerStats[infoIndex].clear()
-	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
-	var level = playerLevels[infoIndex].value
-	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
-
-func levelChange(level,infoIndex):
-	SFX[2].play()
-	playerStats[infoIndex].clear()
-	var playerIndex = playerChoices[infoIndex].selected
-	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
-	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
-
-func enemyChoiceChanged(_index):
-	SFX[0].play()
-	makeEnemyLineup()
-
+#-----------------------------------------
+#MISC TOGGLES
+#-----------------------------------------
 func _on_player_order_toggled(button_pressed):
 	Globals.playerFirst = button_pressed
 	if button_pressed:
@@ -163,6 +178,9 @@ func _on_music_button_item_selected(index):
 		Globals.currentSong = songList[index - 1]
 	SFX[0].play()
 
+#-----------------------------------------
+#NAVIGATION BUTTONS
+#-----------------------------------------
 func _on_help_button_pressed():
 	SFX[0].play()
 	$HelpMenu.show()
@@ -194,10 +212,14 @@ func _on_menu_button_pressed():
 	SFX[1].play()
 
 func _on_chip_button_pressed():
-	pass # Replace with function body.
+	Globals.current_player_entities = players
+	SFX[1].play()
+	chipMenu.emit()
 
 func _on_gear_button_pressed():
-	pass # Replace with function body.
+	Globals.current_player_entities = players
+	gearMenu.emit()
 
 func _on_item_button_pressed():
-	pass # Replace with function body.
+	Globals.current_player_entities = players
+	itemMenu.emit()

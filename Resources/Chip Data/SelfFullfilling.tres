@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://43atp7yyoob5"]
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://brkqca17wwc6k"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="2_ge2d2"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_oa851"]
 
 [resource]
-script = ExtResource("2_ge2d2")
-name = "Awkward"
-description = "+4 Luck"
-CpuCost = 4
+script = ExtResource("1_oa851")
+name = "Self Fullfiling"
+description = "Swaps the user's Strength and Luck Stats"
+CpuCost = 8
 ChipType = "Yellow"
 equippedOn = null
 other = ""
@@ -22,7 +22,7 @@ NewElement = null
 Condition = null
 ElementModBoost = 0.0
 SameElement = false
-immunity = "Debuff"
+immunity = "None"
 resist = null
 HP = 0
 LP = 0
@@ -32,7 +32,7 @@ Toughness = 0
 Ballistics = 0
 Resistance = 0
 Speed = 0
-Luck = 4
-StatSwap = false
-FirstSwap = null
-SecondSwap = null
+Luck = 0
+StatSwap = true
+FirstSwap = 0
+SecondSwap = 5
