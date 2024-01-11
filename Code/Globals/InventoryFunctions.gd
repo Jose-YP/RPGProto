@@ -46,14 +46,104 @@ func chipHandlerResult(chip,chara,result):
 			else:
 				chip.equippedOn &= ~8
 
-func redChipFun():
+func redChipFun(entity, chip):
+	if chip.NewMove != null:
+		entity.specificData.Basics[1] = chip.NewMove
+	if chip.PhyNeutralChange != "None":
+		pass
+	if chip.AffectedMove != "None":
+		pass
+	if chip.ItemChange != null:
+		pass
+	if chip.CalcBonus != "None":
+		pass
+	if chip.CostBonus != null:
+		pass
+
+func blueChipFun(entity, chip):
+	if chip.NewElement != null:
+		entity.element = chip.NewElement
+	if chip.Condition != null:
+		entity.Condition |= chip.Condition
+	if chip.Immunity != "None":
+		entity.Immunity |= chip.Immunity
+	if chip.Resist != null:
+		entity.resist |= chip.resist
+	if chip.SameElement:
+		entity.sameElement = true
+	
+	entity.elementMod += chip.ElementModBoost
+
+func yellowChipFun(entity,chip):
+	entity.MaxHP += chip.HP
+	entity.specificData.MaxLP += chip.LP
+	entity.MaxTP += chip.TP
+	
+	entity.strength += chip.Strength
+	entity.toughness += chip.Toughness
+	entity.ballistics += chip.Ballistics
+	entity.resistance += chip.Resistance
+	entity.speed += chip.Speed
+	entity.luck += chip.Luck
+	
+	if chip.StatSwap:
+		var firstStat = yellowStatSwap(entity, chip.FirstSwap)
+		var secondStat = yellowStatSwap(entity, chip.SecondSwap)
+		var holdStat = firstStat
+		
+		firstStat = secondStat
+		secondStat = firstStat
+
+func yellowStatSwap(entity, StatType):
+	match StatType:
+		"Strength":
+			return entity.strength
+		"Toughness":
+			return entity.toughness
+		"Ballistics":
+			return entity.ballistics
+		"Resistance":
+			return entity.resistance
+		"Speed":
+			return entity.speed
+		"Luck":
+			return entity.luck
+
+func reverseRed(entity,chip):
 	pass
 
-func blueChipFun():
-	pass
+func reverseBlue(entity,chip):
+	if chip.NewElement != null:
+		entity.element = entity.specificData.permanentElement
+	if chip.Condition != null:
+		entity.Condition &= ~chip.Condition
+	if chip.Immunity != "None":
+		entity.Immunity &= ~chip.Immunity
+	if chip.Resist != null:
+		entity.resist &= ~chip.resist
+	if chip.SameElement:
+		entity.sameElement = false
+	entity.elementMod -= chip.ElementModBoost
 
-func yellowChipFun():
-	pass
+func reverseYellow(entity,chip):
+	entity.MaxHP -= chip.HP
+	entity.specificData.MaxLP -= chip.LP
+	entity.MaxTP -= chip.TP
+	
+	entity.strength -= chip.Strength
+	entity.toughness -= chip.Toughness
+	entity.ballistics -= chip.Ballistics
+	entity.resistance -= chip.Resistance
+	entity.speed -= chip.Speed
+	entity.luck -= chip.Luck
+	
+	if chip.StatSwap:
+		var firstStat = yellowStatSwap(entity, chip.FirstSwap)
+		var secondStat = yellowStatSwap(entity, chip.SecondSwap)
+		var holdStat = firstStat
+		
+		firstStat = secondStat
+		secondStat = firstStat
 
 func gearApply():
 	pass

@@ -14,6 +14,7 @@
 script = ExtResource("7_3w0to")
 MaxLP = 50
 MaxCPU = 25
+permanentElement = "Fire"
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("5_abca5")

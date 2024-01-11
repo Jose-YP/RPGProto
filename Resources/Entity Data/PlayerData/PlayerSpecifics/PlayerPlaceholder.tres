@@ -7,6 +7,7 @@
 script = ExtResource("1_c4fbv")
 MaxLP = 10
 MaxCPU = 10
+permanentElement = "Neutral"
 Skills = 1
 RechargeRate = 1.0
 ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("1_revfq")])
