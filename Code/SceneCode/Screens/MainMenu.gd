@@ -46,6 +46,7 @@ func _ready():
 		menu.connect("pressed",_on_menu_button_pressed)
 	
 	Globals.inactive_player_entities.append(playerEntities[1])
+	setPlayerGlobals()
 	makeEnemyLineup()
 
 #-----------------------------------------
@@ -113,7 +114,7 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = getLevel(currentName)
-	noRepeats(currentName, infoIndex, playerIndex, level)
+	noRepeats(currentName, infoIndex)
 	setPlayerGlobals()
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	playerLevels[infoIndex].value = level
@@ -121,7 +122,7 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 #-----------------------------------------
 #PLAYER HELPERS
 #-----------------------------------------
-func noRepeats(currentName, infoIndex, playerIndex, level):
+func noRepeats(currentName, infoIndex):
 	var result: bool = true
 	var hold = players[infoIndex]
 	var prevIndex: int = getOldIndex(hold.name)
@@ -150,14 +151,14 @@ func levelChange(level,infoIndex):
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	saveLevels(currentName,level)
 
-func saveLevels(char,level):
+func saveLevels(chara,level):
 	for playerIndex in range(playerNamesHold.size()):
-		if playerNamesHold[playerIndex] == char:
+		if playerNamesHold[playerIndex] == chara:
 			playerLevelsHold[playerIndex] = int(level)
 
-func getLevel(char):
+func getLevel(chara):
 	for playerIndex in range(playerNamesHold.size()):
-		if playerNamesHold[playerIndex] == char:
+		if playerNamesHold[playerIndex] == chara:
 			return playerLevelsHold[playerIndex]
 
 func setPlayerGlobals():
