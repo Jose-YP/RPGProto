@@ -4,13 +4,15 @@ var ChipInventory: Inven
 var GearInventory: Inven
 var ItemInventory: Inven
 var playerStats: Dictionary
-var statTypes:Array = ["Attack","Defense","Speed","Luck"]
-var elementGroups: Array = ["Fire","Water","Elec","Neutral"]
-var XSoftTypes: Array = ["Fire","Water","Elec","Slash","Crush","Pierce"]
-var AilmentTypes: Array = ["Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
+var statTypes:Array[String] = ["Attack","Defense","Speed","Luck"]
+var elementGroups: Array[String] = ["Fire","Water","Elec","Neutral"]
+var XSoftTypes: Array[String] = ["Fire","Water","Elec","Slash","Crush","Pierce"]
+var AilmentTypes: Array[String] = ["Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive",]
-var current_player_entities: Array = []
-var current_enemy_entities: Array = []
+var every_player_entity: Array[entityData] = [null]
+var inactive_player_entities: Array[entityData] = []
+var current_player_entities: Array[entityData] = []
+var current_enemy_entities: Array[entityData] = []
 var currentAura: String = ""
 var currentSong: String = ""
 var playerFirst: bool = true

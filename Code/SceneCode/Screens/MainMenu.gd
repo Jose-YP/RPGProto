@@ -4,27 +4,23 @@ extends Control
 @export var enemyEntities: Array[entityData]
 
 #PLAYER VARIABLES
-@onready var playerChoices: Array = [$PlayerSide/PlayerMenu/Player1/MenuButton,
+@onready var playerChoices: Array[OptionButton] = [$PlayerSide/PlayerMenu/Player1/MenuButton,
 $PlayerSide/PlayerMenu/Player2/MenuButton,$PlayerSide/PlayerMenu/Player3/MenuButton]
-@onready var playerLevels: Array = [$PlayerSide/PlayerMenu/Player1Level,
+@onready var playerLevels: Array[SpinBox] = [$PlayerSide/PlayerMenu/Player1Level,
 $PlayerSide/PlayerMenu/Player2Level,$PlayerSide/PlayerMenu/Player3Level]
-@onready var playerStats: Array = [$PlayerSide/PlayerDisplay/PlayerStats/Player1Stats/RichTextLabel,
-$PlayerSide/PlayerDisplay/PlayerStats/Player2Stats/RichTextLabel,
-$PlayerSide/PlayerDisplay/PlayerStats/Player3Stats/RichTextLabel2]
-@onready var playerElements: Array = [$PlayerSide/PlayerDisplay/PlayerElements/Player1Element,
-$PlayerSide/PlayerDisplay/PlayerElements/Player2Element,
-$PlayerSide/PlayerDisplay/PlayerElements/Player3Element]
-@onready var playerPhyEle: Array = [$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1,
-$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2,
-$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3]
+@onready var playerStats: Array[RichTextLabel] = [$PlayerSide/PlayerDisplay/PlayerStats/Player1Stats/RichTextLabel,
+$PlayerSide/PlayerDisplay/PlayerStats/Player2Stats/RichTextLabel,$PlayerSide/PlayerDisplay/PlayerStats/Player3Stats/RichTextLabel2]
+@onready var playerElements: Array[TabContainer] = [$PlayerSide/PlayerDisplay/PlayerElements/Player1Element,
+$PlayerSide/PlayerDisplay/PlayerElements/Player2Element,$PlayerSide/PlayerDisplay/PlayerElements/Player3Element]
+@onready var playerPhyEle: Array[TabContainer] = [$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1,
+$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2,$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3]
 #ENEMY VARIABLES
-@onready var enemyChoices: Array = [$EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton,
-$EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton,
-$EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton]
+@onready var enemyChoices: Array[OptionButton] = [$EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton,
+$EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton]
 @onready var enemiesShown: RichTextLabel = $EnemySide/EnemyDisplay/EnemyLineup/RichTextLabel
-@onready var enemyElements: Array = [$EnemySide/EnemyDisplay/EnemyElements/EnemyElement,
+@onready var enemyElements: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyElement,
 $EnemySide/EnemyDisplay/EnemyElements/EnemyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyElement3]
-@onready var enemyPhyEle: Array = [$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement,
+@onready var enemyPhyEle: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement,
 $EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3]
 @onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
@@ -33,9 +29,10 @@ signal gearMenu
 signal itemMenu
 
 var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
-var songList: Array = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
+var songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
-var playerNames: Array = ["DREAMER","Lonna","Damir","Pepper"]
+var playerNamesHold: Array[String] = ["DREAMER","Lonna","Damir","Pepper"]
+var playerLevelsHold: Array[int] = [5,5,5,5]
 var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]
 
@@ -48,6 +45,7 @@ func _ready():
 	for menu in (playerChoices + enemyChoices):
 		menu.connect("pressed",_on_menu_button_pressed)
 	
+	Globals.inactive_player_entities.append(playerEntities[1])
 	makeEnemyLineup()
 
 #-----------------------------------------
@@ -57,7 +55,7 @@ func playerDescriptions(description,i):
 	var level = playerLevels[i].value
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
 	description.append_text(makePlayerDesc(i,playerChoices[i].selected,currentName,level))
-	playerNames[i] = playerEntities[playerChoices[i].selected]
+	players[i] = playerEntities[playerChoices[i].selected]
 
 func makePlayerDesc(index,playerNum,currentName,level):
 	var entity = Globals.getStats(playerEntities[playerNum],currentName,str(level))
@@ -114,11 +112,35 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	SFX[0].play()
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
-	var level = playerLevels[infoIndex].value
-	#print(currentName, level, playerIndex)
+	var level = getLevel(currentName)
 	noRepeats(currentName, infoIndex, playerIndex, level)
 	setPlayerGlobals()
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+	playerLevels[infoIndex].value = level
+
+#-----------------------------------------
+#PLAYER HELPERS
+#-----------------------------------------
+func noRepeats(currentName, infoIndex, playerIndex, level):
+	var result: bool = true
+	var hold = players[infoIndex]
+	var prevIndex: int = getOldIndex(hold.name)
+	var prevLevel = getLevel(hold.name)
+	
+	for index in range(players.size()):
+		if index == infoIndex:
+			continue
+		
+		if players[index].name == currentName:
+			result = false
+			playerStats[index].clear()
+			playerChoices[index].select(prevIndex)
+			playerStats[index].append_text(makePlayerDesc(index,prevIndex,hold.name,prevLevel))
+			
+			playerLevels[index].value = prevLevel
+	
+	if result:
+		setInactivePlayer(hold)
 
 func levelChange(level,infoIndex):
 	SFX[2].play()
@@ -126,28 +148,25 @@ func levelChange(level,infoIndex):
 	var playerIndex = playerChoices[infoIndex].selected
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+	saveLevels(currentName,level)
 
-func noRepeats(currentName, infoIndex, playerIndex, level):
-	var hold = players[infoIndex]
-	var prevIndex: int = getOldIndex(hold.name)
-	print(prevIndex)
-	
-	for index in range(players.size()):
-		if index == infoIndex:
-			continue
-		
-		if players[index].name == currentName:
-			print(players[index].name, index, players[infoIndex].name)
-			playerStats[index].clear()
-			playerChoices[index].select(prevIndex)
-			print(playerStats[index],playerEntities[playerIndex].name)
-			playerStats[index].append_text(makePlayerDesc(index,prevIndex,hold.name,level))
-	
-	pass
+func saveLevels(char,level):
+	for playerIndex in range(playerNamesHold.size()):
+		if playerNamesHold[playerIndex] == char:
+			playerLevelsHold[playerIndex] = int(level)
+
+func getLevel(char):
+	for playerIndex in range(playerNamesHold.size()):
+		if playerNamesHold[playerIndex] == char:
+			return playerLevelsHold[playerIndex]
 
 func setPlayerGlobals():
 	Globals.current_player_entities = []
 	Globals.current_player_entities = players
+	Globals.every_player_entity = players + Globals.inactive_player_entities
+
+func setInactivePlayer(held):
+	Globals.inactive_player_entities[0] = held
 
 func getOldIndex(prevName) -> int:
 	match prevName:

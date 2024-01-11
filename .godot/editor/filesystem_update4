@@ -75,3 +75,4 @@ res://Code/EnemyAI/EnemyRandom.gd
 res://Code/SceneCode/Entities/Entity.gd
 res://Code/ResourceMakers/EntityMaker.gd
 res://export_presets.cfg
+res://Code/Globals/Globals.gd
