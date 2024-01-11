@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://4gou4dfa1ija"]
+[gd_scene load_steps=22 format=3 uid="uid://4gou4dfa1ija"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/MainMenu.gd" id="1_xp3rd"]
 [ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_06l5v"]
@@ -21,9 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="19_upg58"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="20_rqm5k"]
 [ext_resource type="StyleBox" uid="uid://cbmvpuynhcqqe" path="res://Themes/HasSingle/Pannel.tres" id="21_uf183"]
-[ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="22_f8t16"]
-[ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="23_marwr"]
-[ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="24_jwieh"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -1052,20 +1049,6 @@ Luck: Raises user's hit/avoid of Ailments and Crits
 There are 4 kind of stat buffs: Attack, Defense, Speed and Luck.
 They can be applied twice with each stack adding 30%
 They will decay by 5% every turn"
-
-[node name="SFX" type="Node" parent="."]
-
-[node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("22_f8t16")
-bus = &"SFX"
-
-[node name="Back" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("23_marwr")
-bus = &"SFX"
-
-[node name="Menu" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("24_jwieh")
-bus = &"SFX"
 
 [connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
 [connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]

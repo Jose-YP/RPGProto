@@ -36,10 +36,6 @@ func _ready(): #Make every inventory
 	itemInv.type = "Item"
 	itemInv.inventory = getInventoryDict(itemFolder)
 	Globals.ItemInventory = itemInv
-	
-	#print(Globals.ChipInventory.inventory)
-	#for chip in chipInv.inventory:
-		#print(chip, chipInv.inventory[chip])
 
 func getInventoryDict(Folder) -> Dictionary:
 	var localDict: Dictionary = {}
@@ -86,14 +82,24 @@ func getFilesinFolder(path) -> Array:
 #-----------------------------------------
 #SCENE CONNECTIONS
 #-----------------------------------------
+func changeScene(scene):
+	currentScene.queue_free()
+	var newScene = scene.instantiate()
+	$".".add_child(newScene)
+	currentScene = newScene
+	currentScene.connect("makeNoise",makeNoise)
+
+#-----------------------------------------
+#SIGNALS
+#-----------------------------------------
 func _on_main_menu_options_menu():
-	currentScene.get_tree().change_scene_to_packed(optionsMenu)
+	changeScene(optionsMenu)
 
 func _back_to_main_menu():
-	currentScene.get_tree().change_scene_to_packed(mainMenu)
+	changeScene(mainMenu)
 
 func _on_change_to_battle():
-	currentScene.get_tree().change_scene_to_packed(battleScene)
+	changeScene(battleScene)
 
 func _on_main_menu_gear_menu():
 	pass # Replace with function body.
@@ -101,18 +107,13 @@ func _on_main_menu_gear_menu():
 func _on_main_menu_item_menu():
 	pass # Replace with function body.
 
-
-#-----------------------------------------
-#SIGNALS
-#-----------------------------------------
 func _on_main_menu_chip_menu():
 	$SFX/Confirm.play()
-	currentScene.queue_free()
-	var newScene = chipMenu.instantiate()
-	$".".add_child(newScene)
-	currentScene = newScene
+	changeScene(chipMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
-	currentScene.connect("makeNoise",makeNoise)
 
 func makeNoise(num):
 	regSFX[num].play()
+
+func playMusic():
+	pass

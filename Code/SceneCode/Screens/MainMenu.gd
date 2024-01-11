@@ -22,11 +22,12 @@ $EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemySide/EnemyMenu/EnemyMenu
 $EnemySide/EnemyDisplay/EnemyElements/EnemyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyElement3]
 @onready var enemyPhyEle: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement,
 $EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3]
-@onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 
+signal battleStart
 signal chipMenu
 signal gearMenu
 signal itemMenu
+signal makeNoise(num)
 
 var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
 var songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
@@ -110,7 +111,7 @@ func makePlayerDesc(index,playerNum,currentName,level):
 	return description
 
 func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames second is for playerChoices
-	SFX[0].play()
+	makeNoise.emit(0)
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = getLevel(currentName)
@@ -118,6 +119,14 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	setPlayerGlobals()
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	playerLevels[infoIndex].value = level
+
+func levelChange(level,infoIndex):
+	makeNoise.emit(2)
+	playerStats[infoIndex].clear()
+	var playerIndex = playerChoices[infoIndex].selected
+	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
+	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+	saveLevels(currentName,level)
 
 #-----------------------------------------
 #PLAYER HELPERS
@@ -142,14 +151,6 @@ func noRepeats(currentName, infoIndex):
 	
 	if result:
 		setInactivePlayer(hold)
-
-func levelChange(level,infoIndex):
-	SFX[2].play()
-	playerStats[infoIndex].clear()
-	var playerIndex = playerChoices[infoIndex].selected
-	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
-	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
-	saveLevels(currentName,level)
 
 func saveLevels(chara,level):
 	for playerIndex in range(playerNamesHold.size()):
@@ -210,7 +211,7 @@ func setEnemyGlobals():
 			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 
 func enemyChoiceChanged(_index):
-	SFX[0].play()
+	makeNoise.emit(0)
 	makeEnemyLineup()
 
 #-----------------------------------------
@@ -231,45 +232,45 @@ func _on_player_order_toggled(button_pressed):
 	Globals.playerFirst = button_pressed
 	if button_pressed:
 		$PlayerFirstToggle/HBoxContainer/Label.text = "ON"
-		SFX[0].play()
+		makeNoise.emit(0)
 	else:
 		$PlayerFirstToggle/HBoxContainer/Label.text = "OFF"
-		SFX[1].play()
+		makeNoise.emit(1)
 
 func _on_music_button_item_selected(index):
 	if index == 0:
 		Globals.currentSong = ""
 	else:
 		Globals.currentSong = songList[index - 1]
-	SFX[0].play()
+	makeNoise.emit(0)
 
 #-----------------------------------------
 #NAVIGATION BUTTONS
 #-----------------------------------------
 func _on_help_button_pressed():
-	SFX[0].play()
+	makeNoise.emit(0)
 	$HelpMenu.show()
 
 func _on_exit_button_pressed():
-	SFX[1].play()
+	makeNoise.emit(1)
 	$HelpMenu.hide()
 
 func _on_option_button_pressed():
-	SFX[0].play()
+	makeNoise.emit(0)
 	$OptionsMenu.show()
 
 func _on_exit_option_pressed():
-	SFX[1].play()
+	makeNoise.emit(1)
 	$OptionsMenu.hide()
 
 func _on_fight_button_pressed():
 	setEnemyGlobals()
 	setPlayerGlobals()
 	
-	get_tree().change_scene_to_packed(Battle)
+	battleStart.emit()
 
 func _on_menu_button_pressed():
-	SFX[1].play()
+	makeNoise.emit(1)
 
 func _on_chip_button_pressed():
 	Globals.current_player_entities = players
