@@ -43,6 +43,7 @@ ExtResource("5_bcwvy"): 1,
 ExtResource("5_iywg2"): 2
 }
 waitData = ExtResource("12_mtms2")
+ItemChange = ""
 calcBonus = "None"
 calcAmmount = 0.0
 KO = false

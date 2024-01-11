@@ -41,10 +41,12 @@ border_blend = true
 
 [node name="Control" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1266.0
-offset_bottom = -768.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_4087y")
 script = ExtResource("2_j4e5n")
 InvChipPanel = ExtResource("3_28es8")
@@ -94,6 +96,7 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(665, 460)
 layout_mode = 2
 follow_focus = true
+scroll_vertical_custom_step = 100.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -335,6 +338,12 @@ focus_previous = NodePath("../../ChipSelection/Button")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(1341, 320)
+visible = false
 scale = Vector2(-0.474, -0.134)
 texture = ExtResource("12_j7l71")
+
+[node name="PlayeFirst" type="Marker2D" parent="."]
+position = Vector2(681, 147)
+
+[node name="InvFirst" type="Marker2D" parent="."]
+position = Vector2(3, 147)

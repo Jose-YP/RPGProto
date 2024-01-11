@@ -6,7 +6,9 @@ extends Control
 #Menus
 @onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer
 @onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer
-@onready var Docks: Array[Button] = [$VBoxContainer/HBoxContainer/ChipSelection/Button,$VBoxContainer/HBoxContainer/CurrentCharChips/Button]
+@onready var InvMarkers: Array[Marker2D] = [$InvFirst]
+@onready var PlayMarkers: Array[Marker2D] = [$PlayeFirst]
+@onready var Arrow: Sprite2D = $Arrow
 #Descriptions
 @onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
 @onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
@@ -29,7 +31,8 @@ signal makeNoise(num)
 var ChipIcon = preload("res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png")
 var InvMenu: Array[Array] = [[],[]]
 var PlayMenu: Array[Array] = [[],[]]
-var currentDock: int = 0
+var markerArray: Array = []
+var markerIndex: int = 0
 var side: int = 0
 var num: int = 0
 var playerIndex: int = 0
@@ -51,6 +54,7 @@ func _ready():
 		chipInv.add_child(chipPanel)
 		
 		InvMenu[side].append(chipPanel)
+		InvMarkers.append(chipPanel.inBetween)
 		swap(side)
 	
 	side = 0
@@ -58,36 +62,74 @@ func _ready():
 	getPlayerStats(playerIndex)
 	getPlayerChips(playerIndex)
 	
-	print(InvMenu[0][0])
 	InvMenu[0][0].focus.grab_focus()
 
 func _process(_delta):
+	movement()
+	buttons()
+
+func movement():
 	if Input.is_action_just_pressed("Left"):
 		if movingChip:
-			pass
+			markerIndex -= 1
+			if markerIndex < 0:
+				markerIndex = 0
+			if markerIndex%2 != 1:
+				swap(side)
+				markerIndex += 1
+			if markerIndex > (markerArray[side].size() - 1):
+				markerIndex = markerArray[side].size() - 1
+			
+			print(markerArray[side][markerIndex])
+			Arrow.global_position = markerArray[side][markerIndex].global_position
+			
 		else:
 			pass
 	
 	if Input.is_action_just_pressed("Right"):
 		if movingChip:
-			pass
+			markerIndex += 1
+			if markerIndex%2 != 0:
+				swap(side)
+				markerIndex -= 1
+			if markerIndex > (markerArray[side].size() - 1):
+				markerIndex = markerArray[side].size() - 1
+			
+			print(markerArray[side][markerIndex])
+			Arrow.global_position = markerArray[side][markerIndex].global_position
 		else:
 			pass
 	
+	if Input.is_action_just_pressed("Up"):
+		if movingChip:
+			pass
 	
+	if Input.is_action_just_pressed("Down"):
+		if movingChip:
+			pass
+
+func buttons():
 	if Input.is_action_just_pressed("Accept"):
 		makeNoise.emit(0)
 		if movingChip:
-			pass
+			movingChip = false
 		else:
-			pass
+			movingChip = true
+			Arrow.show()
+			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
 		if movingChip:
-			pass
+			movingChip = false
 		else:
-			pass
+			exitMenu.emit()
+	
+	if Input.is_action_just_pressed("X"):
+		exitMenu.emit()
+	
+	if Input.is_action_just_pressed("Y"):
+		pass
 	
 	if Input.is_action_just_pressed("ZL") or Input.is_action_just_pressed("ZR"):
 		pass
@@ -115,12 +157,6 @@ func _process(_delta):
 		
 		if get_viewport().gui_get_focus_owner() == null:
 			PlayMenu[0][0].focus.grab_focus()
-	
-	if Input.is_action_just_pressed("X"):
-		exitMenu.emit()
-	
-	if Input.is_action_just_pressed("Y"):
-		pass
 
 #-----------------------------------------
 #INVENTORY DOCK
@@ -165,12 +201,16 @@ func getPlayerChips(index):
 		playerChips.add_child(chipPannel)
 		
 		PlayMenu[side].append(chipPannel)
+		PlayMarkers.append(chipPannel.inBetween)
+		
 		swap(side)
 	
 	side = 0
+	markerArray = [InvMarkers,PlayMarkers]
 
 func clearPlayerChips():
 	PlayMenu = [[],[]]
+	PlayMarkers = [$PlayeFirst]
 	for thing in playerChips.get_children():
 		playerChips.remove_child(thing)
 		thing.queue_free()

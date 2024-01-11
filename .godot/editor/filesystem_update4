@@ -1,13 +1,5 @@
-res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/Main.tscn
-res://Themes/ButtonStyle/Disabled.tres
-res://Themes/ButtonStyle/Normal.tres
-res://Themes/HasSingle/Pannel.tres
-res://Themes/HasSingle/Scrollbar.tres
-res://Themes/HasSingle/TabContainer.tres
-res://Themes/Theme.tres
-res://Shaders/OutlineInline.gdshader
-res://Themes/ButtonStyle/Dock.tres
+res://Scene/SideMenus/Chip/ChipMenu.tscn
+res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/MintyPop.tres
@@ -19,8 +11,8 @@ res://Resources/Chip Data/Tick.tres
 res://Resources/Gear Data/WitchSword.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
-res://Resources/Chip Data/AllIn.tres
-res://Resources/Chip Data/Electric.tres
+res://Resources/Chip Data/Awkward.tres
+res://Resources/Chip Data/Soul.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres
 res://Resources/Item Data/ItemSpecifics/WhimBerry.tres
 res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
@@ -34,7 +26,7 @@ res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
 res://Resources/Item Data/ItemMoves/ElecBombMove.tres
 res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
 res://Resources/Chip Data/Chuck.tres
-res://Resources/Chip Data/Fold.tres
+res://Resources/Chip Data/Blood.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
@@ -44,54 +36,26 @@ res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Chip Data/Pact.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
-res://Code/ResourceMakers/EnemyMaker.gd
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
+res://Themes/ButtonStyle/Disabled.tres
+res://Themes/ButtonStyle/Normal.tres
+res://Themes/HasSingle/Pannel.tres
+res://Themes/HasSingle/Scrollbar.tres
+res://Themes/HasSingle/TabContainer.tres
+res://Themes/Theme.tres
+res://Shaders/OutlineInline.gdshader
+res://Themes/ButtonStyle/Dock.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/SceneCode/Screens/Main.gd
-res://Scene/SideMenus/Chip/ChipMenu.tscn
 res://Code/SceneCode/Screens/ChipMenu.gd
-res://Code/Globals/InventoryFunctions.gd
 res://Scene/SideMenus/Chip/ChipinChar.tscn
-res://Code/SceneCode/Individuals/ChipinChar.gd
-res://Scene/Mains/GameManager.tscn
-res://Scene/Mains/MainMenu.tscn
 res://Scene/SideMenus/Chip/ChipinInv.tscn
-res://Scene/SideMenus/Item/IteminInv.tscn
-res://Code/SceneCode/Screens/GameManager.gd
-res://Code/SceneCode/Screens/MainMenu.gd
-res://Code/SceneCode/Individuals/ChipinInv.gd
-res://Code/ResourceMakers/ChipMaker.gd
-res://JSONS/Damir.json
-res://Code/SceneCode/Entities/enemy.gd
-res://Code/EnemyAI/EnemyAIGlobal.gd
-res://Code/EnemyAI/EnemyDebuff.gd
-res://Code/EnemyAI/EnemyRandom.gd
-res://Code/SceneCode/Entities/Entity.gd
-res://Code/ResourceMakers/EntityMaker.gd
-res://export_presets.cfg
-res://Code/Globals/Globals.gd
-res://Resources/Chip Data/Awkward.tres
-res://Resources/Chip Data/Blood.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/PlayerPlaceholder.tres
-res://Code/ResourceMakers/PlayerMaker.gd
-res://Resources/Chip Data/Paradox.tres
-res://Resources/Chip Data/Soul.tres
-res://Resources/Chip Data/Fire.tres
-res://Resources/Chip Data/Body.tres
-res://Resources/Chip Data/Blast.tres
-res://Resources/Chip Data/Boss.tres
-res://Resources/Chip Data/Wicked.tres
-res://Resources/Chip Data/Water.tres
-res://Resources/Chip Data/Together.tres
-res://Resources/Chip Data/SelfFullfilling.tres
-res://Resources/Chip Data/Murphys.tres
-res://Resources/Chip Data/Mind.tres
+res://Scene/Mains/Main.tscn
 res://Resources/Inventory Data/GearInventory.tres
 res://Resources/Inventory Data/ItemInventory.tres
-res://Resources/Chip Data/Spear.tres
+res://Code/SceneCode/Individuals/ChipinChar.gd

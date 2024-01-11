@@ -13,6 +13,7 @@ var maxNum: int
 var currentNum: int
 
 func _ready():
+	print(inBetween.position)
 	match ChipData.ChipType:
 		"Red":
 			iconColor.modulate = Color.RED

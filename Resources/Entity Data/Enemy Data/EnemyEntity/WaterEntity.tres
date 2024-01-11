@@ -25,6 +25,9 @@ luck = 2
 element = "Water"
 Weakness = 32
 Resist = 16
+immunity = "None"
+elementMod = 0.0
+sameElement = false
 phyElement = "Pierce"
 attackData = ExtResource("1_fbih2")
 skillData = [ExtResource("4_6oohn"), ExtResource("5_v6sea")]
@@ -32,6 +35,9 @@ itemData = {
 ExtResource("2_luepq"): 1
 }
 waitData = ExtResource("7_g2pgv")
+ItemChange = ""
+calcBonus = "None"
+calcAmmount = 0.0
 KO = false
 XSoft = Array[String]([])
 Condition = 0

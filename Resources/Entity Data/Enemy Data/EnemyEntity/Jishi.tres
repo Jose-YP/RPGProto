@@ -26,6 +26,9 @@ luck = 2
 element = "Fire"
 Weakness = 18
 Resist = 8
+immunity = "None"
+elementMod = 0.0
+sameElement = false
 phyElement = "Neutral"
 attackData = ExtResource("1_3hkbs")
 skillData = [ExtResource("3_mevwe"), ExtResource("4_eh5if"), ExtResource("5_l3egg")]
@@ -33,6 +36,9 @@ itemData = {
 ExtResource("2_nijm8"): 2
 }
 waitData = ExtResource("7_o0dve")
+ItemChange = ""
+calcBonus = "None"
+calcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
