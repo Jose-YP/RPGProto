@@ -61,14 +61,14 @@ func redChipFun(entity, chip):
 		pass
 
 func blueChipFun(entity, chip):
-	if chip.NewElement != null:
+	if chip.NewElement != "None" and chip.NewElement != "":
 		entity.element = chip.NewElement
 	if chip.Condition != null:
 		entity.Condition |= chip.Condition
 	if chip.Immunity != "None":
 		entity.Immunity |= chip.Immunity
 	if chip.Resist != null:
-		entity.resist |= chip.resist
+		entity.Resist |= chip.Resist
 	if chip.SameElement:
 		entity.sameElement = true
 	
@@ -87,27 +87,134 @@ func yellowChipFun(entity,chip):
 	entity.luck += chip.Luck
 	
 	if chip.StatSwap:
-		var firstStat = yellowStatSwap(entity, chip.FirstSwap)
-		var secondStat = yellowStatSwap(entity, chip.SecondSwap)
-		var holdStat = firstStat
-		
-		firstStat = secondStat
-		secondStat = firstStat
+		yellowStatSwap(entity, chip.FirstSwap, chip.SecondSwap)
 
-func yellowStatSwap(entity, StatType):
-	match StatType:
+func yellowStatSwap(entity, firstStatType, secondStatType):
+	var firstStat
+	
+	match firstStatType:
 		"Strength":
-			return entity.strength
+			firstStat = entity.strength
+			match secondStatType:
+				"Toughness":
+					entity.strength = entity.toughness
+					entity.toughness = firstStat
+				"Ballistics":
+					entity.strength = entity.ballistics
+					entity.ballistics = firstStat
+				"Resistance":
+					entity.strength = entity.resistance
+					entity.resistance = firstStat
+				"Speed":
+					entity.strength = entity.speed
+					entity.speed = firstStat
+				"Luck":
+					entity.strength = entity.luck
+					entity.luck = firstStat
+				_:
+					print("Ah")
 		"Toughness":
-			return entity.toughness
+			firstStat = entity.toughness
+			match secondStatType:
+				"Strength":
+					entity.toughness = entity.strength
+					entity.strength = firstStat
+				"Ballistics":
+					entity.toughness = entity.ballistics
+					entity.ballistics = firstStat
+				"Resistance":
+					entity.toughness = entity.resistance
+					entity.resistance = firstStat
+				"Speed":
+					entity.toughness = entity.speed
+					entity.speed = firstStat
+				"Luck":
+					entity.toughness = entity.luck
+					entity.luck = firstStat
+				_:
+					print("Ah")
 		"Ballistics":
-			return entity.ballistics
+			firstStat = entity.ballistics
+			match secondStatType:
+				"Strength":
+					entity.ballistics = entity.strength
+					entity.strength = firstStat
+				"Toughness":
+					entity.ballistics = entity.toughness
+					entity.toughness = firstStat
+				"Resistance":
+					entity.ballistics = entity.resistance
+					entity.resistance = firstStat
+				"Speed":
+					entity.ballistics = entity.speed
+					entity.speed = firstStat
+				"Luck":
+					entity.ballistics = entity.luck
+					entity.luck = firstStat
+				_:
+					print("Ah")
 		"Resistance":
-			return entity.resistance
+			firstStat = entity.resistance
+			match secondStatType:
+				"Strength":
+					entity.resistance = entity.strength
+					entity.strength = firstStat
+				"Toughness":
+					entity.resistance = entity.toughness
+					entity.toughness = firstStat
+				"Ballistics":
+					entity.resistance = entity.ballistics
+					entity.ballistics = firstStat
+				"Speed":
+					entity.resistance = entity.speed
+					entity.speed = firstStat
+				"Luck":
+					entity.resistance = entity.luck
+					entity.luck = firstStat
+				_:
+					print("Ah")
 		"Speed":
-			return entity.speed
+			firstStat = entity.speed
+			match secondStatType:
+				"Strength":
+					entity.speed = entity.strength
+					entity.strength = firstStat
+				"Toughness":
+					entity.speed = entity.toughness
+					entity.toughness = firstStat
+				"Ballistics":
+					entity.speed = entity.ballistics
+					entity.ballistics = firstStat
+				"Resistance":
+					entity.speed = entity.resistance
+					entity.resistance = firstStat
+				"Luck":
+					entity.speed = entity.luck
+					entity.luck = firstStat
+				_:
+					print("Ah")
 		"Luck":
-			return entity.luck
+			firstStat = entity.luck
+			match secondStatType:
+				"Strength":
+					entity.luck = entity.strength
+					entity.strength = firstStat
+				"Toughness":
+					entity.luck = entity.toughness
+					entity.toughness = firstStat
+				"Ballistics":
+					entity.luck = entity.ballistics
+					entity.ballistics = firstStat
+				"Resistance":
+					entity.luck = entity.resistance
+					entity.resistance = firstStat
+				"Speed":
+					entity.luck = entity.speed
+					entity.speed = firstStat
+				_:
+					print("Ah")
+		_:
+			print("Ah")
 
 func reverseRed(entity,chip):
 	pass
@@ -138,12 +245,7 @@ func reverseYellow(entity,chip):
 	entity.luck -= chip.Luck
 	
 	if chip.StatSwap:
-		var firstStat = yellowStatSwap(entity, chip.FirstSwap)
-		var secondStat = yellowStatSwap(entity, chip.SecondSwap)
-		var holdStat = firstStat
-		
-		firstStat = secondStat
-		secondStat = firstStat
+		yellowStatSwap(entity, chip.FirstSwap, chip.SceondSwap)
 
 func gearApply():
 	pass

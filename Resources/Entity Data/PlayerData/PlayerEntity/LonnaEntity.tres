@@ -30,6 +30,9 @@ luck = 12
 element = "Elec"
 Weakness = 0
 Resist = 8
+immunity = "None"
+elementMod = 0.0
+sameElement = false
 phyElement = "Crush"
 attackData = ExtResource("1_n2r4l")
 skillData = [ExtResource("6_rtcer"), ExtResource("7_pj3of"), ExtResource("8_d6b22"), ExtResource("9_l8yu0")]
@@ -40,6 +43,8 @@ ExtResource("4_ld73l"): 1,
 ExtResource("5_mdyqu"): 2
 }
 waitData = ExtResource("11_dj6mo")
+calcBonus = "None"
+calcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0

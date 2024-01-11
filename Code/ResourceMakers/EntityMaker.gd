@@ -34,6 +34,10 @@ class_name entityData
 @export var skillData: Array = [Move]
 @export var itemData: Dictionary = {}
 @export var waitData: Move
+@export_enum("Physical","Ballistic","Freebie") var ItemChange: String
+@export_enum("None","Drain","AilmentHit","CritChance") var calcBonus = "None"
+@export_range(0,100,.05) var calcAmmount: float
+
 
 @export_group("Temp Property")
 @export var KO: bool = false

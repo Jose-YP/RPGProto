@@ -45,7 +45,7 @@ func _ready():
 	
 	for chip in Globals.ChipInventory.inventory:
 		var chipPanel = InvChipPanel.instantiate()
-		chipPanel.chipData = chip
+		chipPanel.ChipData = chip
 		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPanel.connect("getDesc",on_inv_focused)
 		chipInv.add_child(chipPanel)
@@ -145,7 +145,7 @@ func getPlayerChips(index):
 	for chip in entity.specificData.ChipData:
 		var chipPannel = playerChipPanel.instantiate()
 		entity.specificData.currentCPU += chip.CpuCost
-		chipPannel.chipData = chip
+		chipPannel.ChipData = chip
 		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPannel.connect("getDesc",on_play_focused)
 		playerChips.add_child(chipPannel)
@@ -176,26 +176,26 @@ func on_inv_focused(data):
 	makeNoise.emit(2)
 	
 	invChipTitle.clear()
-	invChipTitle.append_text(str(data.chipData.name, " Chip"))
+	invChipTitle.append_text(str(data.ChipData.name, " Chip"))
 	
 	invChipDetails.clear()
-	invChipDetails.append_text(str("[center]",data.chipData.ChipType," Chip\nOwners:",
+	invChipDetails.append_text(str("[center]",data.ChipData.ChipType," Chip\nOwners:",
 	data.currentPlayers,"[/center]"))
 	
 	invChipDisc.clear()
-	invChipDisc.append_text(data.chipData.description)
+	invChipDisc.append_text(data.ChipData.description)
 
 func on_play_focused(data):
 	makeNoise.emit(2)
 	
 	playerChipTitle.clear()
-	playerChipTitle.append_text(str(data.chipData.name, " Chip"))
+	playerChipTitle.append_text(str(data.ChipData.name, " Chip"))
 	
 	playerChipDetails.clear()
-	playerChipDetails.append_text(str("[center]",data.chipData.ChipType," Chip[/center]"))
+	playerChipDetails.append_text(str("[center]",data.ChipData.ChipType," Chip[/center]"))
 	
 	playerChipDisc.clear()
-	playerChipDisc.append_text(data.chipData.description)
+	playerChipDisc.append_text(data.ChipData.description)
 
 #-----------------------------------------
 #HELPER FUNCTIONS

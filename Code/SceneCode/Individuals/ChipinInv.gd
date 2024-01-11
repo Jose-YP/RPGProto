@@ -10,14 +10,14 @@ $Button/MarginContainer/Chip1/Characters/PepperStatus]
 signal getDesc(data)
 signal startSelect
 
-var chipData: Chip
+var ChipData: Chip
 var currentPlayers: String
 var maxNum: int
 var currentNum: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	match chipData.ChipType:
+	match ChipData.ChipType:
 		"Red":
 			iconColor.modulate = Color.RED
 		"Blue":
@@ -35,29 +35,29 @@ func update():
 	currentNum = 3
 	currentPlayers = ""
 	
-	if chipData.equippedOn != null:
-		if chipData.equippedOn & 1:
+	if ChipData.equippedOn != null:
+		if ChipData.equippedOn & 1:
 			characterStatus[0].show()
 			updatePlayers("DREAMER")
 			currentNum -= 1
 		else:
 			characterStatus[0].hide()
 		
-		if chipData.equippedOn & 2:
+		if ChipData.equippedOn & 2:
 			characterStatus[1].show()
 			updatePlayers("Lonna")
 			currentNum -= 1
 		else:
 			characterStatus[1].hide()
 		
-		if chipData.equippedOn & 4:
+		if ChipData.equippedOn & 4:
 			characterStatus[2].show()
 			updatePlayers("Damir")
 			currentNum -= 1
 		else:
 			characterStatus[2].hide()
 		
-		if chipData.equippedOn & 8:
+		if ChipData.equippedOn & 8:
 			characterStatus[3].show()
 			updatePlayers("Pepper")
 			currentNum -= 1
@@ -68,11 +68,11 @@ func update():
 		currentPlayers = "None"
 	
 	chipText.clear()
-	var cost = chipData.CpuCost
+	var cost = ChipData.CpuCost
 	if cost < 0:
-		cost = str("+", chipData.CpuCost * -1)
+		cost = str("+", ChipData.CpuCost * -1)
 	
-	chipText.append_text(str(chipData.name," Chip | [color=yellow]CPU: ",cost,"[/color] | ",currentNum,"/",maxNum))
+	chipText.append_text(str(ChipData.name," Chip | [color=yellow]CPU: ",cost,"[/color] | ",currentNum,"/",maxNum))
 
 func updatePlayers(player):
 	if currentPlayers == "":

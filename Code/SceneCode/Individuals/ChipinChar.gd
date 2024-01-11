@@ -7,13 +7,13 @@ extends PanelContainer
 signal getDesc(data)
 signal startSelect
 
-var chipData: Chip
+var ChipData: Chip
 var maxNum: int
 var currentNum: int
 
 
 func _ready():
-	match chipData.ChipType:
+	match ChipData.ChipType:
 		"Red":
 			iconColor.modulate = Color.RED
 		"Blue":
@@ -22,11 +22,11 @@ func _ready():
 			iconColor.modulate = Color.YELLOW
 	
 	chipText.clear()
-	var cost = chipData.CpuCost
+	var cost = ChipData.CpuCost
 	if cost < 0:
-		cost = str("+", chipData.CpuCost * -1)
+		cost = str("+", ChipData.CpuCost * -1)
 	
-	chipText.append_text(str(chipData.name," Chip | [color=yellow]CPU: ",cost,"[/color]"))
+	chipText.append_text(str(ChipData.name," Chip | [color=yellow]CPU: ",cost,"[/color]"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

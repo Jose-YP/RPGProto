@@ -43,20 +43,22 @@ func getStats(Entity,character,level):
 	Entity.speed = int(stats["Speed"])
 	Entity.luck = int(stats["Luck"])
 	
-	applyChips(Entity)
+	preapplyChips(Entity)
 	
 	return Entity
 
-func applyChips(Entity):
-	for chip in Entity.specificData.chipData:
-		match chip.chipType:
-			"Red":
-				pass
+func preapplyChips(Entity):
+	for chip in Entity.specificData.ChipData:
+		match chip.ChipType:
 			"Blue":
-				pass
+				InventoryFunctions.blueChipFun(Entity,chip)
 			"Yellow":
-				pass
-	
+				InventoryFunctions.yellowChipFun(Entity,chip)
+
+func applyRedChip(Entity):
+	for chip in Entity.specificData.ChipData:
+		if chip.ChipType == "Red":
+			InventoryFunctions.redChipFun(Entity,chip)
 
 func getTPCost(move,entity,aura):
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))

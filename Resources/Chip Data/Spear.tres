@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://b6xe0obautoce"]
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cottnb5kligla"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_y60ib"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_fnqfp"]
 
 [resource]
-script = ExtResource("1_y60ib")
-name = "Soul"
-description = "Changes the user's element to Fire"
-CpuCost = 4
-ChipType = "Blue"
+script = ExtResource("1_fnqfp")
+name = "Spear"
+description = "Changes PhyElement to Pierce"
+CpuCost = 2
+ChipType = "Red"
 equippedOn = 0
 other = ""
-PhyNeutralChange = "None"
+PhyNeutralChange = "Pierce"
 AffectedMove = "None"
 NewTarget = ""
 ItemChange = ""
@@ -18,7 +18,7 @@ calcBonus = "None"
 calcAmmount = 0.0
 costBonus = ""
 costMod = 0.0
-NewElement = "Fire"
+NewElement = "None"
 Condition = null
 ElementModBoost = 0.0
 SameElement = false

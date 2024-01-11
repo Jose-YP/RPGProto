@@ -1,5 +1,5 @@
-Inven
 Chip
+Inven
 Gear
 Item
 entityData

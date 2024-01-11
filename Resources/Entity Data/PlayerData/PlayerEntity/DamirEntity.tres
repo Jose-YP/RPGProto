@@ -30,6 +30,9 @@ luck = 5
 element = "Water"
 Weakness = 0
 Resist = 8
+immunity = "None"
+elementMod = 0.0
+sameElement = false
 phyElement = "Slash"
 attackData = ExtResource("1_4dami")
 skillData = [ExtResource("7_e8cvv"), ExtResource("4_7jfry"), ExtResource("9_p70vf"), ExtResource("10_nu8v2")]
@@ -40,6 +43,8 @@ ExtResource("4_bqcmc"): 1,
 ExtResource("5_31aqc"): 2
 }
 waitData = ExtResource("12_gjt0h")
+calcBonus = "None"
+calcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0

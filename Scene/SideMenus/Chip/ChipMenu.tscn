@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://e86h6ygu2yew"]
+[gd_scene load_steps=18 format=3 uid="uid://e86h6ygu2yew"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_4087y"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/ChipMenu.gd" id="2_j4e5n"]
@@ -14,9 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="12_j7l71"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="13_wqtrl"]
 [ext_resource type="Texture2D" uid="uid://dgoj57i606hsw" path="res://Art/yellow-ball-icon-6-3137490973.png" id="14_1oas2"]
-[ext_resource type="AudioStream" uid="uid://705qjjkq5dhp" path="res://Audio/SFX/MenuConfirm.wav" id="15_0p8c2"]
-[ext_resource type="AudioStream" uid="uid://o2tniob8ig5x" path="res://Audio/SFX/MenuDeselect.wav" id="16_elgpr"]
-[ext_resource type="AudioStream" uid="uid://bltd707bj7c8e" path="res://Audio/SFX/MenuMove.wav" id="17_me6by"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak5bq"]
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
@@ -336,18 +333,3 @@ focus_neighbor_right = NodePath("../../ChipSelection/Button")
 focus_next = NodePath("../../ChipSelection/Button")
 focus_previous = NodePath("../../ChipSelection/Button")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
-
-[node name="SFX" type="Node" parent="."]
-
-[node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("15_0p8c2")
-bus = &"SFX"
-
-[node name="Back" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("16_elgpr")
-bus = &"SFX"
-
-[node name="Menu" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("17_me6by")
-volume_db = -2.0
-bus = &"SFX"

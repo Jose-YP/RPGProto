@@ -80,3 +80,18 @@ res://Resources/Chip Data/Awkward.tres
 res://Resources/Chip Data/Blood.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/PlayerPlaceholder.tres
 res://Code/ResourceMakers/PlayerMaker.gd
+res://Resources/Chip Data/Paradox.tres
+res://Resources/Chip Data/Soul.tres
+res://Resources/Chip Data/Fire.tres
+res://Resources/Chip Data/Body.tres
+res://Resources/Chip Data/Blast.tres
+res://Resources/Chip Data/Boss.tres
+res://Resources/Chip Data/Wicked.tres
+res://Resources/Chip Data/Water.tres
+res://Resources/Chip Data/Together.tres
+res://Resources/Chip Data/SelfFullfilling.tres
+res://Resources/Chip Data/Murphys.tres
+res://Resources/Chip Data/Mind.tres
+res://Resources/Inventory Data/GearInventory.tres
+res://Resources/Inventory Data/ItemInventory.tres
+res://Resources/Chip Data/Spear.tres

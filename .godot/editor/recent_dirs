@@ -1,3 +1,4 @@
+res://Resources/Chip Data
 res://Code/SceneCode/Individuals
 res://Code/Globals
 res://Themes/ButtonStyle
@@ -9,7 +10,6 @@ res://
 res://Resources/Entity Data/Enemy Data/EnemyEntity
 <<<<<<< Updated upstream
 =======
-res://Resources/Chip Data
 res://Resources/Gear Data
 >>>>>>> Stashed changes
 res://Code/EnemyAI

@@ -30,6 +30,9 @@ luck = 12
 element = "Fire"
 Weakness = 0
 Resist = 32
+immunity = "None"
+elementMod = 0.0
+sameElement = false
 phyElement = "Pierce"
 attackData = ExtResource("1_f45nv")
 skillData = [ExtResource("7_d3ke1"), ExtResource("8_gspn8"), ExtResource("9_pxw3c"), ExtResource("10_ijdmo")]
@@ -40,6 +43,8 @@ ExtResource("5_bcwvy"): 1,
 ExtResource("5_iywg2"): 2
 }
 waitData = ExtResource("12_mtms2")
+calcBonus = "None"
+calcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
