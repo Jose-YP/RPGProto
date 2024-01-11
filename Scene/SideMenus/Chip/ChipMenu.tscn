@@ -333,3 +333,8 @@ focus_neighbor_right = NodePath("../../ChipSelection/Button")
 focus_next = NodePath("../../ChipSelection/Button")
 focus_previous = NodePath("../../ChipSelection/Button")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(1341, 320)
+scale = Vector2(-0.474, -0.134)
+texture = ExtResource("12_j7l71")

@@ -142,5 +142,8 @@ texture = ExtResource("5_n1lsq")
 expand_mode = 4
 stretch_mode = 5
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(341, 23)
+
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

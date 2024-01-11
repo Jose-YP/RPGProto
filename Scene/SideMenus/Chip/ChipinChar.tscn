@@ -13,6 +13,7 @@ script = ExtResource("2_m4au8")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Button"]
 layout_mode = 2
@@ -40,5 +41,8 @@ layout_mode = 2
 theme = ExtResource("1_043dc")
 bbcode_enabled = true
 text = "[center] The biggest wordiest Chip 60/60 [/center]"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(302, 26)
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

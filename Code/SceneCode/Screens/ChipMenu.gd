@@ -76,12 +76,14 @@ func _process(_delta):
 	
 	
 	if Input.is_action_just_pressed("Accept"):
+		makeNoise.emit(0)
 		if movingChip:
 			pass
 		else:
 			pass
 		
 	if Input.is_action_just_pressed("Cancel"):
+		makeNoise.emit(1)
 		if movingChip:
 			pass
 		else:
@@ -91,18 +93,25 @@ func _process(_delta):
 		pass
 	
 	if Input.is_action_just_pressed("L"):
+		makeNoise.emit(2)
 		playerIndex -= 1
 		if playerIndex < 0:
 			playerIndex = 2
 		
-		getPlayerStats(playerChips)
+		getPlayerStats(playerIndex)
+		getPlayerChips(playerIndex)
+		
+		if get_viewport().gui_get_focus_owner() == null:
+			PlayMenu[0][0].focus.grab_focus()
 	
 	if Input.is_action_just_pressed("R"):
+		makeNoise.emit(2)
 		playerIndex += 1
-		if playerIndex < 2:
+		if playerIndex > (Globals.every_player_entity.size() - 1):
 			playerIndex = 0
 		
-		getPlayerStats(playerChips)
+		getPlayerStats(playerIndex)
+		getPlayerChips(playerIndex)
 	
 	if Input.is_action_just_pressed("X"):
 		exitMenu.emit()
@@ -118,7 +127,7 @@ func _process(_delta):
 #PLAYER DOCK
 #-----------------------------------------
 func getPlayerStats(index):
-	var entity = Globals.current_player_entities[index]
+	var entity = Globals.every_player_entity[index]
 	var CPUtween = CPUBar.create_tween()
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
 	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
@@ -141,7 +150,9 @@ func getPlayerStats(index):
 	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 
 func getPlayerChips(index):
-	var entity = Globals.current_player_entities[index]
+	clearPlayerChips()
+	
+	var entity = Globals.every_player_entity[index]
 	for chip in entity.specificData.ChipData:
 		var chipPannel = playerChipPanel.instantiate()
 		entity.specificData.currentCPU += chip.CpuCost
@@ -154,6 +165,12 @@ func getPlayerChips(index):
 		swap(side)
 	
 	side = 0
+
+func clearPlayerChips():
+	PlayMenu = [[],[]]
+	for thing in playerChips.get_children():
+		playerChips.remove_child(thing)
+		thing.queue_free()
 
 func getElements(entity):
 	for k in range(4):

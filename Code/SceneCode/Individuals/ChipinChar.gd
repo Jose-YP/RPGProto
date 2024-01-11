@@ -1,6 +1,7 @@
 extends PanelContainer
 
 @onready var focus: Button = $Button
+@onready var inBetween: Marker2D = $Marker2D
 @onready var iconColor: TextureRect = $Button/MarginContainer/Chip1/TextureRect
 @onready var chipText: RichTextLabel = $Button/MarginContainer/Chip1/MarginContainer/RichTextLabel
 
@@ -10,7 +11,6 @@ signal startSelect
 var ChipData: Chip
 var maxNum: int
 var currentNum: int
-
 
 func _ready():
 	match ChipData.ChipType:

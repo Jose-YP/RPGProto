@@ -217,7 +217,8 @@ func yellowStatSwap(entity, firstStatType, secondStatType):
 			print("Ah")
 
 func reverseRed(entity,chip):
-	pass
+	if chip.NewMove != null:
+		entity.specificData.Basics[1] = chip.NewMove
 
 func reverseBlue(entity,chip):
 	if chip.NewElement != null:
