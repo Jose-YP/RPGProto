@@ -52,7 +52,7 @@ func getTPCost(move,entity,aura):
 
 func charColor(entity):
 	match entity.name:
-		"Dreamer":
+		"DREAMER":
 			return str("[color=#f4892b]",entity.name,"[/color]")
 		"Lonna":
 			return str("[color=#9800dc]",entity.name,"[/color]")

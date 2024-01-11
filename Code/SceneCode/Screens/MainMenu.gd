@@ -115,8 +115,8 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = playerLevels[infoIndex].value
-	print(currentName, level)
-	noRepeats(currentName, infoIndex)
+	#print(currentName, level, playerIndex)
+	noRepeats(currentName, infoIndex, playerIndex, level)
 	setPlayerGlobals()
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 
@@ -127,21 +127,41 @@ func levelChange(level,infoIndex):
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 
-func noRepeats(name, infoIndex):
-	var hold
+func noRepeats(currentName, infoIndex, playerIndex, level):
+	var hold = players[infoIndex]
+	var prevIndex: int = getOldIndex(hold.name)
+	print(prevIndex)
 	
 	for index in range(players.size()):
 		if index == infoIndex:
 			continue
 		
-		if players[infoIndex].name == players[index].name:
-			print(players)
+		if players[index].name == currentName:
+			print(players[index].name, index, players[infoIndex].name)
+			playerStats[index].clear()
+			playerChoices[index].select(prevIndex)
+			print(playerStats[index],playerEntities[playerIndex].name)
+			playerStats[index].append_text(makePlayerDesc(index,prevIndex,hold.name,level))
 	
 	pass
 
 func setPlayerGlobals():
 	Globals.current_player_entities = []
 	Globals.current_player_entities = players
+
+func getOldIndex(prevName) -> int:
+	match prevName:
+		"DREAMER":
+			return 0
+		"Lonna":
+			return 1
+		"Damir":
+			return 2
+		"Pepper":
+			return 3
+		_:
+			print("Oh no")
+			return 10
 
 #-----------------------------------------
 #ENEMY SETUP
@@ -233,7 +253,6 @@ func _on_menu_button_pressed():
 
 func _on_chip_button_pressed():
 	Globals.current_player_entities = players
-	SFX[1].play()
 	chipMenu.emit()
 
 func _on_gear_button_pressed():

@@ -37,9 +37,9 @@ func _ready(): #Make every inventory
 	itemInv.inventory = getInventoryDict(itemFolder)
 	Globals.ItemInventory = itemInv
 	
-	print(Globals.ChipInventory.inventory)
-	for chip in chipInv.inventory:
-		print(chip, chipInv.inventory[chip])
+	#print(Globals.ChipInventory.inventory)
+	#for chip in chipInv.inventory:
+		#print(chip, chipInv.inventory[chip])
 
 func getInventoryDict(Folder) -> Dictionary:
 	var localDict: Dictionary = {}
@@ -91,6 +91,7 @@ func getFilesinFolder(path) -> Array:
 #SIGNALS
 #-----------------------------------------
 func _on_main_menu_chip_menu():
+	$SFX/Confirm.play()
 	currentScene.get_tree().change_scene_to_packed(chipMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
 

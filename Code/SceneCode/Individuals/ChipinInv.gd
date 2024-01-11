@@ -38,7 +38,7 @@ func update():
 	if chipData.equippedOn != null:
 		if chipData.equippedOn & 1:
 			characterStatus[0].show()
-			updatePlayers("Dreamer")
+			updatePlayers("DREAMER")
 			currentNum -= 1
 		else:
 			characterStatus[0].hide()

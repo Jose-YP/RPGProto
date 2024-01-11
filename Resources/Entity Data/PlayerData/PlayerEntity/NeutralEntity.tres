@@ -16,7 +16,7 @@
 [resource]
 script = ExtResource("1_axch6")
 level = 5
-name = "Dreamer"
+name = "DREAMER"
 species = "Derivative"
 specificData = ExtResource("11_40s1d")
 MaxHP = 140

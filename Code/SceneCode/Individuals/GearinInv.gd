@@ -17,7 +17,7 @@ var charColor: Color
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	match char:
-		"Dreamer":
+		"DREAMER":
 			charColor = Color(0.957, 0.537, 0.169)
 		"Lonna":
 			charColor = Color(0.596, 0, 0.863)

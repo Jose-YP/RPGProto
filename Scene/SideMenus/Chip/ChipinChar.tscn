@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvedj5nkr8e8v"]
+[gd_scene load_steps=4 format=3 uid="uid://cvedj5nkr8e8v"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_043dc"]
+[ext_resource type="Script" path="res://Code/SceneCode/Individuals/ChipinChar.gd" id="2_m4au8"]
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="2_yhucp"]
 
 [node name="MenuItem" type="PanelContainer"]
@@ -8,6 +9,7 @@ custom_minimum_size = Vector2(290, 55)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_043dc")
+script = ExtResource("2_m4au8")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

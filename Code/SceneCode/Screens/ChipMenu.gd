@@ -28,6 +28,7 @@ enum MenuTypes {DOCK, SUB, MOVING}
 
 var ChipIcon = preload("res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png")
 var InvMenu: Array[Array] = [[],[]]
+var PlayMenu: Array[Array] = [[],[]]
 var currentDock: int = 0
 var side: int = 0
 var num: int = 0
@@ -39,6 +40,8 @@ var currentMenu = MenuTypes.DOCK
 #INITALIZATION AND PROCESSING
 #-----------------------------------------
 func _ready():
+	InventoryFunctions.chipHandler()
+	
 	for chip in Globals.ChipInventory.inventory:
 		var chipPanel = InvChipPanel.instantiate()
 		chipPanel.chipData = chip
@@ -53,6 +56,7 @@ func _ready():
 	Docks[0].grab_focus()
 	
 	getPlayerStats(playerIndex)
+	getPlayerChips(playerIndex)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Left"):
@@ -147,6 +151,21 @@ func getPlayerStats(index):
 	var newValue = int(100*(float(entity.specificData.MaxCPU - CPUusage) / float(entity.specificData.MaxCPU)))
 	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 
+func getPlayerChips(index):
+	var entity = Globals.current_player_entities[index]
+	for chip in entity.specificData.ChipData:
+		var chipPannel = playerChipPanel.instantiate()
+		entity.specificData.currentCPU += chip.CpuCost
+		chipPannel.chipData = chip
+		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
+		chipPannel.connect("getDesc",on_inv_focused)
+		playerChips.add_child(chipPannel)
+		
+		PlayMenu[side].append(chipPannel)
+		swap(side)
+	
+	side = 0
+
 func getElements(entity):
 	for k in range(4):
 		if Globals.elementGroups[k] == entity.element:
@@ -154,6 +173,12 @@ func getElements(entity):
 	for k in range(3):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
 			playerPhyEle.current_tab = k
+
+func addChip():
+	pass
+
+func removeChip():
+	pass
 
 #-----------------------------------------
 #SIGNALS
