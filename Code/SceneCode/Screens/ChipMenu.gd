@@ -4,27 +4,27 @@ extends Control
 @export var playerChipPanel: PackedScene
 
 #Menus
-@onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/ChipSelection/GridContainer
-@onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CurrentChips/PanelContainer
+@onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer
+@onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer
 @onready var Docks: Array[Button] = [$VBoxContainer/HBoxContainer/ChipSelection/Button,$VBoxContainer/HBoxContainer/CurrentCharChips/Button]
 #Descriptions
-@onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var invChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/Button/VBoxContainer/Info/Description/RichTextLabel
-@onready var playerChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var playerChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var playerChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/Info/Description/RichTextLabel
+@onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
+@onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
+@onready var invChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/Description/RichTextLabel
+@onready var playerChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
+@onready var playerChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
+@onready var playerChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/MarginContainer/Description/RichTextLabel
 #Current Player Info
-@onready var playerResource: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Character/RichTextLabel
-@onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Player1Element
-@onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/PlayerPhyElement1
-@onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/Stats/RichTextLabel
-@onready var CPUText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
-@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/Button/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
+@onready var playerResource: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character/RichTextLabel
+@onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element
+@onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1
+@onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats/RichTextLabel
+@onready var CPUText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
+@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
 
+signal chipMenu
 signal exitMenu
-
-enum MenuTypes {DOCK, SUB, MOVING} 
+signal makeNoise(num)
 
 var ChipIcon = preload("res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png")
 var InvMenu: Array[Array] = [[],[]]
@@ -34,12 +34,13 @@ var side: int = 0
 var num: int = 0
 var playerIndex: int = 0
 var CPUusage: int = 0
-var currentMenu = MenuTypes.DOCK
+var movingChip: bool = false
 
 #-----------------------------------------
 #INITALIZATION AND PROCESSING
 #-----------------------------------------
 func _ready():
+	emit_signal("chipMenu")
 	InventoryFunctions.chipHandler()
 	
 	for chip in Globals.ChipInventory.inventory:
@@ -53,50 +54,38 @@ func _ready():
 		swap(side)
 	
 	side = 0
-	Docks[0].grab_focus()
 	
 	getPlayerStats(playerIndex)
 	getPlayerChips(playerIndex)
+	
+	print(InvMenu[0][0])
+	InvMenu[0][0].focus.grab_focus()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Left"):
-		match currentMenu:
-			MenuTypes.DOCK:
-				swap(currentDock)
-				Docks[currentDock].grab_focus()
-			MenuTypes.SUB:
-				pass
-			MenuTypes.MOVING:
-				pass
+		if movingChip:
+			pass
+		else:
+			pass
 	
 	if Input.is_action_just_pressed("Right"):
-		match currentMenu:
-			MenuTypes.DOCK:
-				swap(currentDock)
-				Docks[currentDock].grab_focus()
-			MenuTypes.SUB:
-				pass
-			MenuTypes.MOVING:
-				pass
+		if movingChip:
+			pass
+		else:
+			pass
 	
 	
 	if Input.is_action_just_pressed("Accept"):
-		match currentMenu:
-			MenuTypes.DOCK:
-				pass
-			MenuTypes.SUB:
-				pass
-			MenuTypes.MOVING:
-				pass
+		if movingChip:
+			pass
+		else:
+			pass
 		
 	if Input.is_action_just_pressed("Cancel"):
-		match currentMenu:
-			MenuTypes.DOCK:
-				pass
-			MenuTypes.SUB:
-				pass
-			MenuTypes.MOVING:
-				pass
+		if movingChip:
+			pass
+		else:
+			pass
 	
 	if Input.is_action_just_pressed("ZL") or Input.is_action_just_pressed("ZR"):
 		pass
@@ -134,8 +123,8 @@ func getPlayerStats(index):
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
 	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
 	entity.MaxTP,"[/color]")
-	var stats = str("str: ",entity.strength,"\ttgh: ",entity.toughness,"\tspd: ",entity.speed,
-	"\nbal: ",entity.ballistics,"\tres: ",entity.resistance,"\tluk: ",entity.luck)
+	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
+	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
 	var currentCPUtext = str((entity.specificData.MaxCPU - CPUusage),"/",entity.specificData.MaxCPU,"\nCPU")
 	
 	playerResource.clear()
@@ -158,7 +147,7 @@ func getPlayerChips(index):
 		entity.specificData.currentCPU += chip.CpuCost
 		chipPannel.chipData = chip
 		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
-		chipPannel.connect("getDesc",on_inv_focused)
+		chipPannel.connect("getDesc",on_play_focused)
 		playerChips.add_child(chipPannel)
 		
 		PlayMenu[side].append(chipPannel)
@@ -184,6 +173,8 @@ func removeChip():
 #SIGNALS
 #-----------------------------------------
 func on_inv_focused(data):
+	makeNoise.emit(2)
+	
 	invChipTitle.clear()
 	invChipTitle.append_text(str(data.chipData.name, " Chip"))
 	
@@ -193,6 +184,18 @@ func on_inv_focused(data):
 	
 	invChipDisc.clear()
 	invChipDisc.append_text(data.chipData.description)
+
+func on_play_focused(data):
+	makeNoise.emit(2)
+	
+	playerChipTitle.clear()
+	playerChipTitle.append_text(str(data.chipData.name, " Chip"))
+	
+	playerChipDetails.clear()
+	playerChipDetails.append_text(str("[center]",data.chipData.ChipType," Chip[/center]"))
+	
+	playerChipDisc.clear()
+	playerChipDisc.append_text(data.chipData.description)
 
 #-----------------------------------------
 #HELPER FUNCTIONS

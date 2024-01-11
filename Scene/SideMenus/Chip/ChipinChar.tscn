@@ -40,3 +40,5 @@ layout_mode = 2
 theme = ExtResource("1_043dc")
 bbcode_enabled = true
 text = "[center] The biggest wordiest Chip 60/60 [/center]"
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

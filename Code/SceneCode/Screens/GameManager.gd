@@ -86,15 +86,6 @@ func getFilesinFolder(path) -> Array:
 #-----------------------------------------
 #SCENE CONNECTIONS
 #-----------------------------------------
-
-#-----------------------------------------
-#SIGNALS
-#-----------------------------------------
-func _on_main_menu_chip_menu():
-	$SFX/Confirm.play()
-	currentScene.get_tree().change_scene_to_packed(chipMenu)
-	currentScene.connect("exitMenu",_back_to_main_menu)
-
 func _on_main_menu_options_menu():
 	currentScene.get_tree().change_scene_to_packed(optionsMenu)
 
@@ -109,3 +100,19 @@ func _on_main_menu_gear_menu():
 
 func _on_main_menu_item_menu():
 	pass # Replace with function body.
+
+
+#-----------------------------------------
+#SIGNALS
+#-----------------------------------------
+func _on_main_menu_chip_menu():
+	$SFX/Confirm.play()
+	currentScene.queue_free()
+	var newScene = chipMenu.instantiate()
+	$".".add_child(newScene)
+	currentScene = newScene
+	currentScene.connect("exitMenu",_back_to_main_menu)
+	currentScene.connect("makeNoise",makeNoise)
+
+func makeNoise(num):
+	regSFX[num].play()

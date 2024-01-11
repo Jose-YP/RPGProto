@@ -64,6 +64,9 @@ func update():
 		else:
 			characterStatus[3].hide()
 	
+	if currentPlayers == "":
+		currentPlayers = "None"
+	
 	chipText.clear()
 	var cost = chipData.CpuCost
 	if cost < 0:
