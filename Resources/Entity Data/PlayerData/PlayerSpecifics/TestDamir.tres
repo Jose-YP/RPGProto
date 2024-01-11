@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cxjjcerpigyb6" path="res://Resources/Chip Data/Chuck.tres" id="4_gsn3c"]
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres" id="4_s6h8b"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres" id="5_ac7v6"]
-[ext_resource type="Resource" uid="uid://ctyq62rykb8wt" path="res://Resources/Chip Data/Fold.tres" id="5_fmrha"]
+[ext_resource type="Resource" uid="uid://hq7hd3pd2y2r" path="res://Resources/Chip Data/Blood.tres" id="5_b0i67"]
 [ext_resource type="Resource" uid="uid://bn1f71pv8j7qo" path="res://Resources/Gear Data/NewSuperGreatSword.tres" id="6_8j780"]
 [ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres" id="6_na5ha"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="7_0xluh"]
@@ -19,7 +19,7 @@ permanentElement = "Water"
 Skills = 3
 RechargeRate = 1.0
 GearData = ExtResource("6_8j780")
-ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("4_gsn3c"), ExtResource("5_fmrha")])
+ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("4_gsn3c"), ExtResource("5_b0i67")])
 currentCPU = 0
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_1acyi"), ExtResource("2_mbbrc"), ExtResource("3_wt8w2")])
 boostStat = 2

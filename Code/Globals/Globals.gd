@@ -49,6 +49,8 @@ func getStats(Entity,character,level):
 
 func preapplyChips(Entity):
 	for chip in Entity.specificData.ChipData:
+		Entity.specificData.currentCPU += chip.CpuCost
+		
 		match chip.ChipType:
 			"Blue":
 				InventoryFunctions.blueChipFun(Entity,chip)

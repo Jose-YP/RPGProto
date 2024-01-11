@@ -63,7 +63,7 @@ layout_mode = 2
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]CHIP SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Sort: Y			Exit: X	 		Switch Dock: ZL/ZR			Next Char: R			Prev Char: L[/center]"
+[center]Accept: A			Cancel: B			Sort: Y			Exit: X	 		Next Menu: ZR		Prev Menu: ZL		Next Char: R			Prev Char: L[/center]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

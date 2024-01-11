@@ -12,7 +12,6 @@ class_name Chip
 @export_group("Red Properties")
 @export_subgroup("Move Changes")
 @export var NewMove: Move
-@export_enum("Slash","Crush","Pierce","None") var PhyNeutralChange: String = "None"
 @export_enum("None","Basic","Boost") var AffectedMove: String = "None"
 @export_enum("Single","Group","All","Random") var NewTarget: String
 @export_enum("Physical","Ballistic","Freebie") var ItemChange: String
@@ -25,6 +24,7 @@ class_name Chip
 @export_group("Blue Properties")
 @export_subgroup("Properties")
 @export_enum("Fire","Water","Elec","Neutral","None") var NewElement: String = "None"
+@export_enum("Slash","Crush","Pierce","None") var newPhyElement: String = "None"
 @export_enum("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb") var Condition
 @export_range(-1,1,.05) var ElementModBoost: float = 0.0
 @export var SameElement: bool = false

@@ -49,8 +49,6 @@ func chipHandlerResult(chip,chara,result):
 func redChipFun(entity, chip):
 	if chip.NewMove != null:
 		entity.specificData.Basics[1] = chip.NewMove
-	if chip.PhyNeutralChange != "None":
-		pass
 	if chip.AffectedMove != "None":
 		pass
 	if chip.ItemChange != null:
@@ -63,6 +61,8 @@ func redChipFun(entity, chip):
 func blueChipFun(entity, chip):
 	if chip.NewElement != "None" and chip.NewElement != "":
 		entity.element = chip.NewElement
+	if chip.newPhyElement != "None" and chip.newPhyElement != "":
+		entity.phyElement = chip.newPhyElement
 	if chip.Condition != null:
 		entity.Condition |= chip.Condition
 	if chip.Immunity != "None":
@@ -78,6 +78,8 @@ func yellowChipFun(entity,chip):
 	entity.MaxHP += chip.HP
 	entity.specificData.MaxLP += chip.LP
 	entity.MaxTP += chip.TP
+	if chip.CpuCost < 0:
+		entity.specificData.MaxCPU += (chip.CpuCost * -1)
 	
 	entity.strength += chip.Strength
 	entity.toughness += chip.Toughness
@@ -237,6 +239,8 @@ func reverseYellow(entity,chip):
 	entity.MaxHP -= chip.HP
 	entity.specificData.MaxLP -= chip.LP
 	entity.MaxTP -= chip.TP
+	if chip.CpuCost < 0:
+		entity.specificData.MaxCPU += chip.CpuCost
 	
 	entity.strength -= chip.Strength
 	entity.toughness -= chip.Toughness

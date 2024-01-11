@@ -112,6 +112,9 @@ func _process(_delta):
 		
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
+		
+		if get_viewport().gui_get_focus_owner() == null:
+			PlayMenu[0][0].focus.grab_focus()
 	
 	if Input.is_action_just_pressed("X"):
 		exitMenu.emit()
@@ -134,7 +137,7 @@ func getPlayerStats(index):
 	entity.MaxTP,"[/color]")
 	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
 	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
-	var currentCPUtext = str((entity.specificData.MaxCPU - CPUusage),"/",entity.specificData.MaxCPU,"\nCPU")
+	var currentCPUtext = str((entity.specificData.MaxCPU - entity.specificData.currentCPU),"/",entity.specificData.MaxCPU,"\nCPU")
 	
 	playerResource.clear()
 	playerBattleStats.clear()
@@ -146,7 +149,7 @@ func getPlayerStats(index):
 	
 	getElements(entity)
 	
-	var newValue = int(100*(float(entity.specificData.MaxCPU - CPUusage) / float(entity.specificData.MaxCPU)))
+	var newValue = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
 	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 
 func getPlayerChips(index):
