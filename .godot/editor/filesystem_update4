@@ -59,3 +59,4 @@ res://Scene/Mains/Main.tscn
 res://Resources/Inventory Data/GearInventory.tres
 res://Resources/Inventory Data/ItemInventory.tres
 res://Code/SceneCode/Individuals/ChipinChar.gd
+res://Code/SceneCode/Individuals/ChipinInv.gd

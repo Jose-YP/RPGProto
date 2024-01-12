@@ -6,8 +6,8 @@ extends Control
 #Menus
 @onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer
 @onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer
-@onready var InvMarkers: Array[Marker2D] = [$InvFirst]
-@onready var PlayMarkers: Array[Marker2D] = [$PlayeFirst]
+@onready var InvMarkers: Array[Marker2D] = []
+@onready var PlayMarkers: Array[Marker2D] = []
 @onready var Arrow: Sprite2D = $Arrow
 #Descriptions
 @onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
@@ -48,18 +48,7 @@ func _ready():
 	emit_signal("chipMenu")
 	InventoryFunctions.chipHandler()
 	
-	for chip in Globals.ChipInventory.inventory:
-		var chipPanel = InvChipPanel.instantiate()
-		chipPanel.ChipData = chip
-		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
-		chipPanel.connect("getDesc",on_inv_focused)
-		chipInv.add_child(chipPanel)
-		
-		InvMenu[side].append(chipPanel)
-		InvMarkers.append(chipPanel.inBetween)
-		side = swap(side)
-	
-	side = 0
+	getChipInventory()
 	
 	getPlayerStats(playerIndex)
 	getPlayerChips(playerIndex)
@@ -185,6 +174,20 @@ func _unhandled_input(_event):
 #-----------------------------------------
 #INVENTORY DOCK
 #-----------------------------------------
+func getChipInventory():
+	for chip in Globals.ChipInventory.inventory:
+		var chipPanel = InvChipPanel.instantiate()
+		chipPanel.ChipData = chip
+		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
+		chipPanel.connect("getDesc",on_inv_focused)
+		chipInv.add_child(chipPanel)
+		
+		InvMenu[side].append(chipPanel)
+		InvMarkers.append(chipPanel.inBetween)
+		side = swap(side)
+	
+	InvMarkers.append(InvMenu[side].final)
+	side = 0
 
 #-----------------------------------------
 #PLAYER DOCK
