@@ -25,6 +25,8 @@ extends Control
 @onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
 
 signal chipMenu
+signal gearMenu
+signal itemMenu
 signal exitMenu
 signal makeNoise(num)
 
@@ -55,7 +57,7 @@ func _ready():
 		
 		InvMenu[side].append(chipPanel)
 		InvMarkers.append(chipPanel.inBetween)
-		swap(side)
+		side = swap(side)
 	
 	side = 0
 	
@@ -71,42 +73,56 @@ func _process(_delta):
 func movement():
 	if Input.is_action_just_pressed("Left"):
 		if movingChip:
-			markerIndex -= 1
+			if markerIndex%3 == 0 and markerIndex != 0:
+				side = swap(side)
+			else:
+				markerIndex -= 1
 			if markerIndex < 0:
-				markerIndex = 0
-			if markerIndex%2 != 1:
-				swap(side)
-				markerIndex += 1
+				if side == 1:
+					side = swap(side)
+					markerIndex = 1
+				else:
+					markerIndex = 0
 			if markerIndex > (markerArray[side].size() - 1):
 				markerIndex = markerArray[side].size() - 1
 			
+			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
 			Arrow.global_position = markerArray[side][markerIndex].global_position
-			
-		else:
-			pass
 	
 	if Input.is_action_just_pressed("Right"):
 		if movingChip:
 			markerIndex += 1
-			if markerIndex%2 != 0:
-				swap(side)
+			if markerIndex%3 == 0:
+				print("Swap")
+				side = swap(side)
 				markerIndex -= 1
 			if markerIndex > (markerArray[side].size() - 1):
 				markerIndex = markerArray[side].size() - 1
 			
+			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
 			Arrow.global_position = markerArray[side][markerIndex].global_position
-		else:
-			pass
 	
 	if Input.is_action_just_pressed("Up"):
 		if movingChip:
-			pass
+			markerIndex -= 2
+			if markerIndex < 0:
+				markerIndex = 0
+			
+			Arrow.global_position = markerArray[side][markerIndex].global_position
+			print(side,markerIndex)
+			print(markerArray[side][markerIndex])
 	
 	if Input.is_action_just_pressed("Down"):
 		if movingChip:
-			pass
+			markerIndex += 2
+			if markerIndex > (markerArray[side].size() - 1):
+				markerIndex = markerArray[side].size() - 1
+			
+			Arrow.global_position = markerArray[side][markerIndex].global_position
+			print(side,markerIndex)
+			print(markerArray[side][markerIndex])
 
 func buttons():
 	if Input.is_action_just_pressed("Accept"):
@@ -131,8 +147,12 @@ func buttons():
 	if Input.is_action_just_pressed("Y"):
 		pass
 	
-	if Input.is_action_just_pressed("ZL") or Input.is_action_just_pressed("ZR"):
-		pass
+	#[chip,gear,item]
+	if Input.is_action_just_pressed("ZL"):
+		itemMenu.emit()
+	
+	if Input.is_action_just_pressed("ZR"):
+		gearMenu.emit()
 	
 	if Input.is_action_just_pressed("L"):
 		makeNoise.emit(2)
@@ -157,6 +177,10 @@ func buttons():
 		
 		if get_viewport().gui_get_focus_owner() == null:
 			PlayMenu[0][0].focus.grab_focus()
+
+func _unhandled_input(_event):
+	if movingChip:
+		return
 
 #-----------------------------------------
 #INVENTORY DOCK
@@ -186,12 +210,14 @@ func getPlayerStats(index):
 	getElements(entity)
 	
 	var newValue = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
-	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
+	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC).from(entity.specificData.MaxCPU)
 
 func getPlayerChips(index):
 	clearPlayerChips()
 	
 	var entity = Globals.every_player_entity[index]
+	entity.specificData.currentCPU = 0
+	
 	for chip in entity.specificData.ChipData:
 		var chipPannel = playerChipPanel.instantiate()
 		entity.specificData.currentCPU += chip.CpuCost
@@ -203,7 +229,7 @@ func getPlayerChips(index):
 		PlayMenu[side].append(chipPannel)
 		PlayMarkers.append(chipPannel.inBetween)
 		
-		swap(side)
+		side = swap(side)
 	
 	side = 0
 	markerArray = [InvMarkers,PlayMarkers]
@@ -223,11 +249,11 @@ func getElements(entity):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
 			playerPhyEle.current_tab = k
 
-func addChip():
-	pass
+func addChip(entity,chip):
+	entity.specificData.chipData.append(chip)
 
-func removeChip():
-	pass
+func removeChip(entity,chip):
+	entity.specificData.chipData.erase(chip)
 
 #-----------------------------------------
 #SIGNALS
@@ -260,8 +286,9 @@ func on_play_focused(data):
 #-----------------------------------------
 #HELPER FUNCTIONS
 #-----------------------------------------
-func swap(value):
+func swap(value) -> int:
 	if value == 0:
 		value += 1
 	else:
 		value -= 1
+	return value

@@ -342,8 +342,8 @@ visible = false
 scale = Vector2(-0.474, -0.134)
 texture = ExtResource("12_j7l71")
 
-[node name="PlayeFirst" type="Marker2D" parent="."]
-position = Vector2(681, 147)
-
 [node name="InvFirst" type="Marker2D" parent="."]
-position = Vector2(3, 147)
+position = Vector2(13, 148)
+
+[node name="PlayeFirst" type="Marker2D" parent="."]
+position = Vector2(686, 148)
