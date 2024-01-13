@@ -2,7 +2,8 @@ extends Control
 
 @export var InvChipPanel: PackedScene
 @export var playerChipPanel: PackedScene
-
+@export var scrollAmmount: int = 55
+@export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
 @onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer
 @onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer
@@ -44,7 +45,7 @@ var keepFocus
 var grabbedChip
 
 #-----------------------------------------
-#INITALIZATION AND PROCESSING
+#INITALIZATION
 #-----------------------------------------
 func _ready():
 	emit_signal("chipMenu")
@@ -57,15 +58,25 @@ func _ready():
 	
 	InvMenu[0][0].focus.grab_focus()
 
+#-----------------------------------------
+#PROCESSING
+#-----------------------------------------
 func _process(_delta):
 	movement()
 	buttons()
 	if movingChip:
 		keepFocus.grab_focus()
+		if Arrow.global_position.y < scrollDeadzone.x:
+			scrollUp()
+			Arrow.global_position = markerArray[side][markerIndex].global_position
+		elif Arrow.global_position.y > scrollDeadzone.y:
+			scrollDown()
+			Arrow.global_position = markerArray[side][markerIndex].global_position
 
 func movement():
 	if Input.is_action_just_pressed("Left"):
 		if movingChip:
+			makeNoise.emit(2)
 			if markerIndex%2 == 0 and markerIndex != 0:
 				side = swap(side)
 			else:
@@ -104,6 +115,7 @@ func movement():
 				markerIndex = 0
 			
 			Arrow.global_position = markerArray[side][markerIndex].global_position
+			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
 	
@@ -114,27 +126,35 @@ func movement():
 				markerIndex = markerArray[side].size() - 1
 			
 			Arrow.global_position = markerArray[side][markerIndex].global_position
+			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
-
 
 func buttons():
 	if Input.is_action_just_pressed("Accept"):
 		makeNoise.emit(0)
+		
 		if movingChip:
 			movingChip = false
 			Arrow.hide()
 		else:
-			movingChip = true
-			Arrow.show()
-			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
 			keepFocus = get_viewport().gui_get_focus_owner()
-			
+			if keepFocus is OptionButton:
+				pass
+			else:
+				movingChip = true
+				var adress = getButtonIndex(keepFocus)
+				side = adress.x
+				markerIndex = adress.y
+				
+				Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
+				Arrow.show()
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
 		if movingChip:
 			movingChip = false
+			Arrow.hide()
 		else:
 			exitMenu.emit()
 	
@@ -184,7 +204,6 @@ func getChipInventory():
 		chipPanel.ChipData = chip
 		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPanel.connect("getDesc",on_inv_focused)
-		chipPanel.connect("startSelect", on_start_selecting)
 		chipInv.add_child(chipPanel)
 		
 		InvMenu[side].append(chipPanel)
@@ -233,7 +252,6 @@ func getPlayerChips(index):
 		chipPannel.ChipData = chip
 		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPannel.connect("getDesc",on_play_focused)
-		chipPannel.connect("startSelect", on_start_selecting)
 		playerChips.add_child(chipPannel)
 		
 		PlayMenu[side].append(chipPannel)
@@ -288,6 +306,7 @@ func on_inv_focused(data):
 
 func on_play_focused(data):
 	makeNoise.emit(2)
+	grabbedChip = data
 	
 	playerChipTitle.clear()
 	playerChipTitle.append_text(str(data.ChipData.name, " Chip"))
@@ -298,9 +317,6 @@ func on_play_focused(data):
 	playerChipDisc.clear()
 	playerChipDisc.append_text(data.ChipData.description)
 
-func on_start_selecting(data):
-	grabbedChip = data
-
 #-----------------------------------------
 #HELPER FUNCTIONS
 #-----------------------------------------
@@ -310,3 +326,42 @@ func swap(value) -> int:
 	else:
 		value -= 1
 	return value
+
+func scrollUp() -> void:
+	if side == 0:
+		chipInv.get_parent().scroll_vertical -= scrollAmmount
+	else:
+		playerChips.get_parent().scroll_vertical -= scrollAmmount
+
+func scrollDown() -> void:
+	if side == 0:
+		chipInv.get_parent().scroll_vertical += scrollAmmount
+	else:
+		playerChips.get_parent().scroll_vertical += scrollAmmount
+
+func getButtonIndex(searching) -> Vector2:
+	var menu: Array
+	var found: int
+	var locSide: int
+	var dock: int
+	
+	searching = searching.get_parent()
+	if searching.inChar:
+		menu = InvMenu
+		dock = 0
+	else:
+		menu = PlayMenu
+		dock = 1
+	
+	for adress in range(menu.size()):
+		for button in range(menu[adress].size()):
+			if menu[adress][button] == searching:
+				print("Found in, ",adress, "|", button)
+				found = button * 2
+				locSide = adress
+				break
+	
+	if locSide == 1:
+		found += 1
+	
+	return Vector2(dock, found)

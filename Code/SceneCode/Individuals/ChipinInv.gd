@@ -16,6 +16,7 @@ var ChipData: Chip
 var currentPlayers: String
 var maxNum: int
 var currentNum: int
+var inChar: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -80,6 +81,3 @@ func updatePlayers(player):
 
 func _on_button_focus_entered():
 	getDesc.emit(self)
-
-func _on_button_pressed():
-	startSelect.emit(self)

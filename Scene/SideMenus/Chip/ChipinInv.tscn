@@ -149,4 +149,3 @@ position = Vector2(-9, 23)
 position = Vector2(341, 23)
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

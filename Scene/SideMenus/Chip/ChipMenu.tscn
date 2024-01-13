@@ -51,6 +51,8 @@ theme = ExtResource("1_4087y")
 script = ExtResource("2_j4e5n")
 InvChipPanel = ExtResource("3_28es8")
 playerChipPanel = ExtResource("4_nivrl")
+scrollDeadzone = Vector2(280, 420)
+metadata/_edit_pinned_properties_ = [&"scrollDeadzone"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -385,7 +387,7 @@ focus_previous = NodePath("../../ChipSelection/Button")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(9.75294, -30.6764)
+position = Vector2(5, -15)
 rotation = 0.523599
 scale = Vector2(-0.474, -0.134)
 texture = ExtResource("12_j7l71")

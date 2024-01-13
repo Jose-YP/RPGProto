@@ -12,6 +12,7 @@ signal startSelect(data)
 var ChipData: Chip
 var maxNum: int
 var currentNum: int
+var inChar: bool = true
 
 func _ready():
 	print(inBetween.position)
@@ -32,6 +33,3 @@ func _ready():
 
 func _on_button_focus_entered():
 	getDesc.emit(self)
-
-func _on_button_pressed():
-	startSelect.emit(self)
