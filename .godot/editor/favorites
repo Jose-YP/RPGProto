@@ -1,3 +1,7 @@
 res://Scene/
 res://Code/SceneCode/
 res://Resources/
+res://Code/EnemyAI/
+res://Scene/Mains/GameManager.tscn
+res://Scene/Mains/Main.tscn
+res://Scene/Mains/MainMenu.tscn

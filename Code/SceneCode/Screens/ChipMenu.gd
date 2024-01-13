@@ -41,6 +41,7 @@ var playerIndex: int = 0
 var CPUusage: int = 0
 var movingChip: bool = false
 var keepFocus
+var grabbedChip
 
 #-----------------------------------------
 #INITALIZATION AND PROCESSING
@@ -59,6 +60,8 @@ func _ready():
 func _process(_delta):
 	movement()
 	buttons()
+	if movingChip:
+		keepFocus.grab_focus()
 
 func movement():
 	if Input.is_action_just_pressed("Left"):
@@ -113,20 +116,20 @@ func movement():
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
-	
-	if movingChip:
-		keepFocus.grab_focus()
+
 
 func buttons():
 	if Input.is_action_just_pressed("Accept"):
 		makeNoise.emit(0)
 		if movingChip:
 			movingChip = false
+			Arrow.hide()
 		else:
 			movingChip = true
 			Arrow.show()
 			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
 			keepFocus = get_viewport().gui_get_focus_owner()
+			
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
@@ -181,6 +184,7 @@ func getChipInventory():
 		chipPanel.ChipData = chip
 		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPanel.connect("getDesc",on_inv_focused)
+		chipPanel.connect("startSelect", on_start_selecting)
 		chipInv.add_child(chipPanel)
 		
 		InvMenu[side].append(chipPanel)
@@ -229,6 +233,7 @@ func getPlayerChips(index):
 		chipPannel.ChipData = chip
 		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
 		chipPannel.connect("getDesc",on_play_focused)
+		chipPannel.connect("startSelect", on_start_selecting)
 		playerChips.add_child(chipPannel)
 		
 		PlayMenu[side].append(chipPannel)
@@ -246,7 +251,7 @@ func getPlayerChips(index):
 
 func clearPlayerChips():
 	PlayMenu = [[],[]]
-	PlayMarkers = [$PlayeFirst]
+	PlayMarkers = []
 	for thing in playerChips.get_children():
 		playerChips.remove_child(thing)
 		thing.queue_free()
@@ -292,6 +297,9 @@ func on_play_focused(data):
 	
 	playerChipDisc.clear()
 	playerChipDisc.append_text(data.ChipData.description)
+
+func on_start_selecting(data):
+	grabbedChip = data
 
 #-----------------------------------------
 #HELPER FUNCTIONS

@@ -60,3 +60,9 @@ res://Resources/Inventory Data/GearInventory.tres
 res://Resources/Inventory Data/ItemInventory.tres
 res://Code/SceneCode/Individuals/ChipinChar.gd
 res://Code/SceneCode/Individuals/ChipinInv.gd
+res://Resources/Chip Data/SelfFullfilling.tres
+res://Resources/Chip Data/Murphys.tres
+res://Resources/Chip Data/Paradox.tres
+res://Code/SceneCode/Screens/Main.gd
+res://Scene/Mains/GameManager.tscn
+res://Code/SceneCode/Screens/GameManager.gd

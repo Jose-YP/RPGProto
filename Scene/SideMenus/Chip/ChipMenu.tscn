@@ -61,11 +61,28 @@ offset_bottom = 779.0
 custom_minimum_size = Vector2(10, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Title"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Title"]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "
+<- Item Menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(1050, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]CHIP SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Sort: Y			Exit: X	 		Next Menu: ZR		Prev Menu: ZL		Next Char: R			Prev Char: L[/center]"
+[center]Accept: A			Cancel: B			Sort: Y			Exit: X		Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "
+[right]Gear Menu -->[/right]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -86,11 +103,41 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer"]
+custom_minimum_size = Vector2(500, 42)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]INVENTORY[/center]"
 metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 101.0
+offset_bottom = 32.0
+item_count = 5
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Sort Manual"
+popup/item_0/id = 0
+popup/item_1/text = "Sort Alpha"
+popup/item_1/id = 1
+popup/item_2/text = "Sort Color"
+popup/item_2/id = 2
+popup/item_3/text = "Sort Cost"
+popup/item_3/id = 3
+popup/item_4/text = "Sort Owners"
+popup/item_4/id = 4
 
 [node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer"]
 custom_minimum_size = Vector2(665, 460)
@@ -338,6 +385,8 @@ focus_previous = NodePath("../../ChipSelection/Button")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(9.75294, -30.6764)
+rotation = 0.523599
 scale = Vector2(-0.474, -0.134)
 texture = ExtResource("12_j7l71")
+offset = Vector2(-38, 245.462)

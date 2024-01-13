@@ -5,12 +5,11 @@
 [resource]
 script = ExtResource("1_0cpai")
 name = "Murphy's"
-description = "Swaps the user's Luck and Ballistic Stats"
+description = "Swaps the user's Luck and Ballistic Stats. Order matters when applying chips."
 CpuCost = 8
 ChipType = "Yellow"
 equippedOn = null
 other = ""
-PhyNeutralChange = "None"
 AffectedMove = null
 NewTarget = null
 ItemChange = null
@@ -19,6 +18,7 @@ calcAmmount = 0.0
 costBonus = null
 costMod = null
 NewElement = null
+newPhyElement = "None"
 Condition = null
 ElementModBoost = 0.0
 SameElement = false

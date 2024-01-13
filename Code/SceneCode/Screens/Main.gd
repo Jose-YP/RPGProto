@@ -11,7 +11,6 @@ extends Node2D
 @onready var AuraLabel = $Label
 #AUDIO DESIGN
 @onready var music: AudioStreamPlayer = $Music
-@onready var SFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 @onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,
 $MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
 @onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,
@@ -28,6 +27,9 @@ $MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$Mo
 @onready var enemyPosition = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
 @onready var enemyOrder: Array = []
 @onready var playerOrder: Array = []
+
+signal makeNoise(num)
+signal playMusic(song)
 
 #Make every player's menu
 var mainMenuScene: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
@@ -90,8 +92,7 @@ enum whichTypes {
 func _ready(): #Assign current team according to starting bool
 	Globals.currentAura = ""
 	if Globals.currentSong != "":
-		music.set_stream(load(Globals.currentSong))
-		music.play()
+		playMusic.emit(Globals.currentSong)
 	
 	for k in range(Globals.current_player_entities.size()): #Add player scenes as necessary
 		var pNew = playerScene.instantiate()
@@ -428,13 +429,13 @@ func PSingleSelect(targetting):
 	var enemySize = enemyOrder.size()
 	if which != whichTypes.BOTH:#Simple line movement
 		if Input.is_action_just_pressed("Left"):
-			SFX[2].play()
+			makeNoise.emit(2)
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
 				index = targetting.size() - 1
 		if Input.is_action_just_pressed("Right"):
-			SFX[2].play()
+			makeNoise.emit(2)
 			targetArray[index].selected.hide()
 			index += 1
 			if index > (targetting.size() - 1):
@@ -442,7 +443,7 @@ func PSingleSelect(targetting):
 	
 	if which == whichTypes.BOTH: #Moves like a Grid
 		if Input.is_action_just_pressed("Left"):
-			SFX[2].play()
+			makeNoise.emit(2)
 			targetArray[index].selected.hide()
 			index -= 1
 			if index < 0:
@@ -454,7 +455,7 @@ func PSingleSelect(targetting):
 					index = 0
 		
 		if Input.is_action_just_pressed("Right"):
-			SFX[2].play()
+			makeNoise.emit(2)
 			targetArray[index].selected.hide()
 			index += 1
 			if index > (targetArray.size() - 1) and enemySize != 1:
@@ -466,7 +467,7 @@ func PSingleSelect(targetting):
 				index = playerSize - 1
 			
 		if Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down"):
-			SFX[2].play()
+			makeNoise.emit(2)
 			targetArray[index].selected.hide()
 			if targetArray[index].has_node("CanvasLayer"):
 				if index > (enemySize - 1):
@@ -487,7 +488,7 @@ func PSingleSelect(targetting):
 func PGroupSelect(targetting):
 	#print(targetArrayGroup[groupIndex])
 	if Input.is_action_just_pressed("Left"):
-		SFX[2].play()
+		makeNoise.emit(2)
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
 		groupIndex -= 1
@@ -497,7 +498,7 @@ func PGroupSelect(targetting):
 		print(targetArrayGroup[groupIndex])
 	
 	if Input.is_action_just_pressed("Right"):
-		SFX[2].play()
+		makeNoise.emit(2)
 		for k in targetArrayGroup[groupIndex]:
 			k.selected.hide()
 		groupIndex += 1
@@ -517,7 +518,7 @@ func PAllSelect(targetting):
 
 func stopScanning():
 	if Input.is_action_just_pressed("Accept"):
-		SFX[1].play()
+		makeNoise.emit(1)
 		var scanBoxTween
 		scanning = false
 		
@@ -528,7 +529,7 @@ func stopScanning():
 		next_entity()
 
 func _on_cancel_selected():
-	SFX[1].play()
+	makeNoise.emit(1)
 	Globals.attacking = false
 	index = 0
 	for k in range(everyone.size()):
@@ -1110,12 +1111,12 @@ func _on_button_pressed():
 #-----------------------------------------
 func playButton(value):
 	if value:
-		SFX[0].play()
+		makeNoise.emit(0)
 	else:
-		SFX[1].play()
+		makeNoise.emit(1)
 
 func playMenu():
-	SFX[2].play()
+	makeNoise.emit(2)
 
 func playAttackMove(move,property):
 	var playEffect = null

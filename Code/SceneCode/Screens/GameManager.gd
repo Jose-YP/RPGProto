@@ -101,19 +101,25 @@ func _back_to_main_menu():
 func _on_change_to_battle():
 	changeScene(battleScene)
 
-func _on_main_menu_gear_menu():
-	pass # Replace with function body.
+func _on_to_gear_menu():
+	$SFX/Confirm.play()
 
-func _on_main_menu_item_menu():
-	pass # Replace with function body.
+func _on_to_item_menu():
+	$SFX/Confirm.play()
 
-func _on_main_menu_chip_menu():
+func _on_to_chip_menu():
 	$SFX/Confirm.play()
 	changeScene(chipMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
+	currentScene.connect("gearMenu",_on_to_gear_menu)
+	currentScene.connect("itemMenu",_on_to_item_menu)
 
+#-----------------------------------------
+#AUDIO SIGNALS
+#-----------------------------------------
 func makeNoise(num):
 	regSFX[num].play()
 
-func playMusic():
-	pass
+func playMusic(song):
+	$Music.set_stream(load(song))
+	$Music.play()

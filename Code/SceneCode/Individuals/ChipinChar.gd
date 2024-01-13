@@ -7,7 +7,7 @@ extends PanelContainer
 @onready var chipText: RichTextLabel = $Button/MarginContainer/Chip1/MarginContainer/RichTextLabel
 
 signal getDesc(data)
-signal startSelect
+signal startSelect(data)
 
 var ChipData: Chip
 var maxNum: int
@@ -30,9 +30,8 @@ func _ready():
 	
 	chipText.append_text(str(ChipData.name," Chip | [color=yellow]CPU: ",cost,"[/color]"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func _on_button_focus_entered():
 	getDesc.emit(self)
+
+func _on_button_pressed():
+	startSelect.emit(self)

@@ -25,9 +25,10 @@ bus = &"SFX"
 stream = ExtResource("5_2l50b")
 bus = &"SFX"
 
-[node name="Music" type="Node" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 
-[connection signal="chipMenu" from="MainMenu" to="." method="_on_main_menu_chip_menu"]
-[connection signal="gearMenu" from="MainMenu" to="." method="_on_main_menu_gear_menu"]
-[connection signal="itemMenu" from="MainMenu" to="." method="_on_main_menu_item_menu"]
+[connection signal="battleStart" from="MainMenu" to="." method="_on_change_to_battle"]
+[connection signal="chipMenu" from="MainMenu" to="." method="_on_to_chip_menu"]
+[connection signal="gearMenu" from="MainMenu" to="." method="_on_to_gear_menu"]
+[connection signal="itemMenu" from="MainMenu" to="." method="_on_to_item_menu"]
 [connection signal="makeNoise" from="MainMenu" to="." method="makeNoise"]

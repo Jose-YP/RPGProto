@@ -10,7 +10,7 @@ $Button/MarginContainer/Chip1/Characters/LonnaStatus,$Button/MarginContainer/Chi
 $Button/MarginContainer/Chip1/Characters/PepperStatus]
 
 signal getDesc(data)
-signal startSelect
+signal startSelect(data)
 
 var ChipData: Chip
 var currentPlayers: String
@@ -28,10 +28,6 @@ func _ready():
 			iconColor.modulate = Color.YELLOW
 	
 	update()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func update():
 	currentNum = 3
@@ -81,9 +77,9 @@ func updatePlayers(player):
 		currentPlayers = str(player)
 	else:
 		currentPlayers = str(currentPlayers,", ",player)
-	
+
 func _on_button_focus_entered():
 	getDesc.emit(self)
 
 func _on_button_pressed():
-	startSelect.emit()
+	startSelect.emit(self)
