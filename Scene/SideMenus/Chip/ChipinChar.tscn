@@ -43,6 +43,9 @@ bbcode_enabled = true
 text = "[center] The biggest wordiest Chip 60/60 [/center]"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(301, 26)
+position = Vector2(-7, 31)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(300, 31)
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

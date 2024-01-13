@@ -40,6 +40,7 @@ var num: int = 0
 var playerIndex: int = 0
 var CPUusage: int = 0
 var movingChip: bool = false
+var keepFocus
 
 #-----------------------------------------
 #INITALIZATION AND PROCESSING
@@ -62,7 +63,7 @@ func _process(_delta):
 func movement():
 	if Input.is_action_just_pressed("Left"):
 		if movingChip:
-			if markerIndex%3 == 0 and markerIndex != 0:
+			if markerIndex%2 == 0 and markerIndex != 0:
 				side = swap(side)
 			else:
 				markerIndex -= 1
@@ -82,7 +83,7 @@ func movement():
 	if Input.is_action_just_pressed("Right"):
 		if movingChip:
 			markerIndex += 1
-			if markerIndex%3 == 0:
+			if markerIndex%2 == 0:
 				print("Swap")
 				side = swap(side)
 				markerIndex -= 1
@@ -112,6 +113,9 @@ func movement():
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
+	
+	if movingChip:
+		keepFocus.grab_focus()
 
 func buttons():
 	if Input.is_action_just_pressed("Accept"):
@@ -122,6 +126,7 @@ func buttons():
 			movingChip = true
 			Arrow.show()
 			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
+			keepFocus = get_viewport().gui_get_focus_owner()
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
@@ -167,10 +172,6 @@ func buttons():
 		if get_viewport().gui_get_focus_owner() == null:
 			PlayMenu[0][0].focus.grab_focus()
 
-func _unhandled_input(_event):
-	if movingChip:
-		return
-
 #-----------------------------------------
 #INVENTORY DOCK
 #-----------------------------------------
@@ -186,7 +187,8 @@ func getChipInventory():
 		InvMarkers.append(chipPanel.inBetween)
 		side = swap(side)
 	
-	InvMarkers.append(InvMenu[side].final)
+	print(InvMenu)
+	InvMarkers.append(InvMenu[side][-1].final)
 	side = 0
 
 #-----------------------------------------
@@ -234,6 +236,11 @@ func getPlayerChips(index):
 		
 		side = swap(side)
 	
+	print(PlayMenu)
+	if PlayMenu[side].size() == 0:
+		PlayMarkers.append(PlayMenu[swap(side)][-1].final)
+	else:
+		PlayMarkers.append(PlayMenu[side][-1].final)
 	side = 0
 	markerArray = [InvMarkers,PlayMarkers]
 
