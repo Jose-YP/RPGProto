@@ -36,6 +36,7 @@ signal makeNoise(num)
 var ChipIcon = preload("res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png")
 var InvMenu: Array[Array] = [[],[]]
 var PlayMenu: Array[Array] = [[],[]]
+var currentInv: Array = []
 var markerArray: Array = []
 var markerIndex: int = 0
 var side: int = 0
@@ -55,8 +56,9 @@ var wasChar
 #-----------------------------------------
 func _ready():
 	emit_signal("chipMenu")
-	InventoryFunctions.chipHandler()
 	
+	currentInv = Globals.ChipInventory.inventory
+	InventoryFunctions.chipHandler(currentInv)
 	getChipInventory()
 	
 	getPlayerStats(playerIndex)
@@ -201,7 +203,6 @@ func buttons() -> void:
 	if Input.is_action_just_pressed("Y"):
 		sorting = true
 		
-	
 	if Input.is_action_just_pressed("L"):
 		makeNoise.emit(2)
 		if movingChip:
@@ -251,10 +252,10 @@ func buttons() -> void:
 #INVENTORY DOCK
 #-----------------------------------------
 func getChipInventory() -> void:
-	for chip in Globals.ChipInventory.inventory:
+	for chip in currentInv:
 		var chipPanel = InvChipPanel.instantiate()
 		chipPanel.ChipData = chip
-		chipPanel.maxNum = Globals.ChipInventory.inventory[chip]
+		chipPanel.maxNum = chip.maxNum
 		chipPanel.connect("getDesc",on_inv_focused)
 		chipInv.add_child(chipPanel)
 		
@@ -278,9 +279,6 @@ func update() -> void:
 	
 	acrossPlayers = false
 	InvMenu[0][0].focus.grab_focus()
-
-func manualSort():
-	pass
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -307,7 +305,7 @@ func getPlayerStats(index) -> void:
 	
 	var newValue = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
 	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC).from(entity.specificData.MaxCPU)
-	InventoryFunctions.miniChipHandler(entity.name,entity.specificData.ChipData)
+	InventoryFunctions.miniChipHandler(entity.name,entity.specificData.ChipData, currentInv)
 
 func getPlayerChips(index) -> void:
 	clearPlayerChips()
@@ -319,7 +317,7 @@ func getPlayerChips(index) -> void:
 		var chipPannel = playerChipPanel.instantiate()
 		entity.specificData.currentCPU += chip.CpuCost
 		chipPannel.ChipData = chip
-		chipPannel.maxNum = Globals.ChipInventory.inventory[chip]
+		chipPannel.maxNum = chip.maxNum
 		chipPannel.connect("getDesc",on_play_focused)
 		playerChips.add_child(chipPannel)
 		
@@ -375,20 +373,19 @@ func removeChip(chip) -> void:
 	print(entity.specificData.ChipData)
 
 func sortPlayerChip(chip) -> void:
-	var holdChip = chip
 	var entity = Globals.every_player_entity[playerIndex]
 	
 	if acrossPlayers and chip.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
 		var fromEntity = Globals.every_player_entity[tempIndex]
 		fromEntity.specificData.ChipData.erase(chip)
 		entity.specificData.ChipData.insert(markerIndex, chip)
-		InventoryFunctions.chipHandler() #Update chip ownership from prev entity
+		InventoryFunctions.chipHandler(currentInv) #Update chip ownership from prev entity
 	else:
 		entity.specificData.ChipData.erase(chip)
 		entity.specificData.ChipData.insert(markerIndex, chip)
 	
 	update()
-	
+
 #-----------------------------------------
 #SIGNALS
 #-----------------------------------------
@@ -418,6 +415,20 @@ func on_play_focused(data) -> void:
 	
 	playerChipDisc.clear()
 	playerChipDisc.append_text(data.ChipData.description)
+
+func _on_option_button_item_selected(index) -> void:
+	makeNoise.emit(0)
+	var newSort = sortingOptions.get_item_text(index)
+	match newSort:
+		"Sort Alpha":
+			currentInv = Globals.ChipInventory.inventory
+		"Sort Color":
+			currentInv = Globals.ChipInventory.inventorySort1
+		"Sort Cost":
+			currentInv = Globals.ChipInventory.inventorySort2
+	
+	print("NewSoert")
+	update()
 
 #-----------------------------------------
 #HELPER FUNCTIONS

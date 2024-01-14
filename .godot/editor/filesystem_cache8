@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1705158103
+::res://::1705250285
 BasicAttack.tres::Resource/Move::813570649422974877::1705123055::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 export_presets.cfg::TextFile::-1::1704939111::0::1::::<><>::
-README.md::TextFile::-1::1704854151::0::1::::<><>::
+README.md::TextFile::-1::1705200665::0::1::::<><>::
 Wait.tres::Resource/Resource::2298183527291014208::1702577640::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
 ::res://AddOns/::1704150174
 ::res://Art/::1705122999
@@ -69,17 +69,17 @@ EnemyAIGlobal.gd::GDScript::-1::1704939111::0::1::::<>Node<>::
 EnemyDebuff.gd::GDScript::-1::1704939111::0::1::::<>Node<>::
 EnemyPickOff.gd::GDScript::-1::1703045290::0::1::::<>Node<>::
 EnemyRandom.gd::GDScript::-1::1704939111::0::1::::<>Node<>::
-::res://Code/Globals/::1704990473
-Globals.gd::GDScript::-1::1704990473::0::1::::<>Node<>::
+::res://Code/Globals/::1705213188
+Globals.gd::GDScript::-1::1705198762::0::1::::<>Node<>::
 HelperFunctions.gd::GDScript::-1::1704861366::0::1::::<>Node<>::
-InventoryFunctions.gd::GDScript::-1::1704990473::0::1::::<>Node<>::
+InventoryFunctions.gd::GDScript::-1::1705213188::0::1::::<>Node<>::
 MiscFunctions.gd::GDScript::-1::1704753696::0::1::::<>Node<>::
-::res://Code/ResourceMakers/::1705123055
+::res://Code/ResourceMakers/::1705213188
 ChipMaker.gd::GDScript::-1::1704990237::0::1::::Chip<>Resource<>::
 EnemyMaker.gd::GDScript::-1::1705123055::0::1::::Enemy<>Resource<>::
 EntityMaker.gd::GDScript::-1::1704986474::0::1::::entityData<>Resource<>::
 GearMaker.gd::GDScript::-1::1704850521::0::1::::Gear<>Resource<>::
-InventoryMaker.gd::GDScript::-1::1704855509::0::1::::Inven<>Resource<>::
+InventoryMaker.gd::GDScript::-1::1705213188::0::1::::Inven<>Resource<>::
 ItemMaker.gd::GDScript::-1::1704939107::0::1::::Item<>Resource<>::
 MoveMaker.gd::GDScript::-1::1704756537::0::1::::Move<>Resource<>::
 PlayerMaker.gd::GDScript::-1::1704953357::0::1::::Player<>Resource<>::
@@ -89,14 +89,14 @@ enemy.gd::GDScript::-1::1704939111::0::1::::<>Node2D<>::
 Entity.gd::GDScript::-1::1704939111::0::1::::<>Node2D<>::
 Player.gd::GDScript::-1::1704924405::0::1::::<>Node2D<>::
 PlayerMenu.gd::GDScript::-1::1704924405::0::1::::<>Control<>::
-::res://Code/SceneCode/Individuals/::1705124993
-ChipinChar.gd::GDScript::-1::1705124993::0::1::::<>PanelContainer<>::
-ChipinInv.gd::GDScript::-1::1705124993::0::1::::<>PanelContainer<>::
+::res://Code/SceneCode/Individuals/::1705200745
+ChipinChar.gd::GDScript::-1::1705200745::0::1::::<>PanelContainer<>::
+ChipinInv.gd::GDScript::-1::1705187294::0::1::::<>PanelContainer<>::
 GearinInv.gd::GDScript::-1::1704939107::0::1::::<>PanelContainer<>::
 IteminInv.gd::GDScript::-1::1704924405::0::1::::<>PanelContainer<>::
-::res://Code/SceneCode/Screens/::1705158037
-ChipMenu.gd::GDScript::-1::1705158037::0::1::::<>Control<>::
-GameManager.gd::GDScript::-1::1705122741::0::1::::<>Node2D<>::
+::res://Code/SceneCode/Screens/::1705213623
+ChipMenu.gd::GDScript::-1::1705213435::0::1::::<>Control<>::
+GameManager.gd::GDScript::-1::1705213623::0::1::::<>Node2D<>::
 Main.gd::GDScript::-1::1705122741::0::1::::<>Node2D<>::
 MainMenu.gd::GDScript::-1::1704950005::0::1::::<>Control<>::
 ::res://Icons/::1704756312
@@ -155,9 +155,9 @@ Lonna.json::JSON::-1::1702922081::0::1::::<><>::
 Pepper.json::JSON::-1::1702922081::0::1::::<><>::
 PlayerDatabase.json::JSON::-1::1702935308::0::1::::<><>::
 ::res://Resources/::1704849087
-::res://Resources/Chip Data/::1705158103
-A.tres::Resource/Chip::2093313811107888104::1704984624::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
+::res://Resources/Chip Data/::1705187198
 AllIn.tres::Resource/Resource::7191720758389944836::1704984623::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
+Awkward.tres::Resource/Chip::2093313811107888104::1705187198::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Blast.tres::Resource/Resource::1799687650380192542::1704984624::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Blood.tres::Resource/Chip::526307595368248559::1705123056::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Body.tres::Resource/Resource::6447486913891653423::1704984624::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
@@ -176,7 +176,7 @@ Spear.tres::Resource/Resource::5795885293165975998::1704990237::0::1::::<><>::re
 Tick.tres::Resource/Chip::695254341692213980::1705123056::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Together.tres::Resource/Resource::2675986311982074677::1704984624::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 Water.tres::Resource/Resource::8505941186953409638::1704984624::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd<>uid://sjm6hcqloohb::::res://Resources/Move Data/Enemy Moves/Bahr.tres
-Wicked.tres::Resource/Chip::6187207651523043199::1705123056::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
+Wicked.tres::Resource/Resource::6187207651523043199::1705123056::0::1::::<><>::res://Code/ResourceMakers/ChipMaker.gd
 ::res://Resources/Entity Data/::1705123057
 placeholder.tres::Resource/entityData::1272163261379608836::1705123057::0::1::::<><>::uid://ludnisaxi0lt::::res://BasicAttack.tres<>res://Code/ResourceMakers/EntityMaker.gd<>uid://70i0npfwnuu7::::res://Wait.tres
 TestEntity.tres::Resource/Resource::1660235353960569781::1704753696::0::1::::<><>::res://Code/Globals/EntityMaker.gd
@@ -218,10 +218,10 @@ ShadowGloves.tres::Resource/Resource::8584978864770557897::1704850521::0::1::::<
 SolidSword.tres::Resource/Resource::7373474623347790358::1704850521::0::1::::<><>::uid://cn5rrkbq8phi3::::res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
 StoreboughtMotor.tres::Resource/Resource::8098356657664708374::1704850521::0::1::::<><>::res://Code/ResourceMakers/GearMaker.gd<>uid://bek64a6505sir::::res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png
 WitchSword.tres::Resource/Gear::6402028531876145104::1705123056::0::1::::<><>::uid://cn5rrkbq8phi3::::res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png<>res://Code/ResourceMakers/GearMaker.gd
-::res://Resources/Inventory Data/::1704985653
+::res://Resources/Inventory Data/::1705199489
 ChipInventory.tres::Resource/Resource::1041220715768079303::1704895023::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
-GearInventory.tres::Resource/Resource::6762860636247572811::1704985653::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
-ItemInventory.tres::Resource/Resource::6847021755212279916::1704985653::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
+GearInventory.tres::Resource/Inven::6762860636247572811::1705199488::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
+ItemInventory.tres::Resource/Inven::6847021755212279916::1705199489::0::1::::<><>::res://Code/ResourceMakers/InventoryMaker.gd
 ::res://Resources/Item Data/::1702747235
 ::res://Resources/Item Data/ItemMoves/::1705123057
 AmpaAntaMove.tres::Resource/Move::3449611553632811196::1705123056::0::1::::<><>::res://Code/ResourceMakers/MoveMaker.gd
@@ -308,27 +308,27 @@ Veritate.tres::Resource/Resource::5387186962969910143::1704753696::0::1::::<><>:
 ::res://Scene/::1704859515
 ::res://Scene/Constants/::1704859515
 element_triangle.tscn::PackedScene::2799604773910722774::1702836914::0::1::::<><>::uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://icdg55qighh1::::res://Assets/arrow.png
-::res://Scene/Entities/::1704924405
+::res://Scene/Entities/::1705211411
 enemy.tscn::PackedScene::5258906684503772589::1704924405::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entities/Entity.tscn<>res://Code/SceneCode/Entities/enemy.gd<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
 Entity.tscn::PackedScene::1379891203059323209::1704924405::0::1::::<><>::res://Code/SceneCode/Entities/Entity.gd<>uid://seilwthpp2l1::::res://Resources/Entity Data/placeholder.tres<>uid://b7jc4yykvnhq::::res://Art/icon.svg<>uid://bfrgfh0hu465y::::res://Themes/Red2D.tres<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://ciyya85ww81pf::::res://Themes/HasSingle/SubtleCircle.tres<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://1v00vl2wogxp::::res://Icons/AilmentIcons/Overdrive.png<>uid://bcstakg861inr::::res://Icons/AilmentIcons/Poison.png<>uid://cqltubwlee2c2::::res://Icons/AilmentIcons/Reckless.png<>uid://dng51xikpovi2::::res://Icons/AilmentIcons/Exhausted.png<>uid://cyme6d0fmctt3::::res://Icons/AilmentIcons/Rust.png<>uid://dsdfkx6hoc1a1::::res://Icons/AilmentIcons/Stunned.png<>uid://5toa35wsopwp::::res://Icons/AilmentIcons/Cursed.png<>uid://b50111s2g4v8e::::res://Icons/AilmentIcons/Protected.png<>uid://dwtj5n12ksju0::::res://Icons/AilmentIcons/Dumbfounded.png<>uid://6tssut687iln::::res://Icons/AilmentIcons/Miserable.png<>uid://cf7iqb4hvjtis::::res://Icons/AilmentIcons/Worn Out.png<>uid://cn3k0waq127p6::::res://Icons/AilmentIcons/Bomb.png<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://b344afv7s0klp::::res://Themes/AdobeClean-Regular.ttf<>uid://d2e38wrpun3ls::::res://Icons/MenuIcons/Strength.png<>uid://dym3sjt3b7bda::::res://Icons/Toughness.png<>uid://c51stapggxm0i::::res://Icons/Speed.png<>uid://um5ahdqwyaub::::res://Icons/Luck.png
 Player.tscn::PackedScene::8454229047022486594::1704924405::0::1::::<><>::uid://twouvei3cmnp::::res://Scene/Entities/Entity.tscn<>res://Code/SceneCode/Entities/Player.gd<>uid://cpmeoneud23qm::::res://Scene/Entities/PlayerMenu.tscn<>uid://bkxsl0ggqtckk::::res://Themes/Black.tres<>uid://b2jmmrkt8ei3e::::res://Themes/Blue.tres
-PlayerMenu.tscn::PackedScene::5850715113987720740::1704924405::0::1::::<><>::res://Code/SceneCode/Entities/PlayerMenu.gd<>uid://csn7gcgx0jah7::::res://Themes/ButtonStyle/Normal.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
-::res://Scene/Mains/::1705158037
-GameManager.tscn::PackedScene::5751309859732872597::1705158037::0::1::::<><>::res://Code/SceneCode/Screens/GameManager.gd<>uid://4gou4dfa1ija::::res://Scene/Mains/MainMenu.tscn<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
+PlayerMenu.tscn::PackedScene::5850715113987720740::1705211411::0::1::::<><>::res://Code/SceneCode/Entities/PlayerMenu.gd<>uid://csn7gcgx0jah7::::res://Themes/ButtonStyle/Normal.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres
+::res://Scene/Mains/::1705213435
+GameManager.tscn::PackedScene::5751309859732872597::1705213435::0::1::::<><>::res://Code/SceneCode/Screens/GameManager.gd<>uid://4gou4dfa1ija::::res://Scene/Mains/MainMenu.tscn<>uid://705qjjkq5dhp::::res://Audio/SFX/MenuConfirm.wav<>uid://o2tniob8ig5x::::res://Audio/SFX/MenuDeselect.wav<>uid://bltd707bj7c8e::::res://Audio/SFX/MenuMove.wav
 Main.tscn::PackedScene::1532566806015587122::1705122741::0::1::::<><>::res://Code/SceneCode/Screens/Main.gd<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bq4hbuqlbbiu0::::res://Art/GreenCircle.png<>uid://y7i1ns6fatdh::::res://Audio/SFX/Hariq.wav<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://dfalyo44qobf2::::res://Audio/SFX/Saeqia.wav<>uid://bf5fc1lfuejso::::res://Scene/Constants/element_triangle.tscn<>uid://dyf0jixnhljlo::::res://Audio/SFX/basicAction.wav<>uid://ccu14eobkjjpa::::res://Audio/SFX/Bahr.wav<>uid://csee58lac65lh::::res://Audio/SFX/Lower.wav<>uid://dbn6jal5lr7gg::::res://Audio/SFX/Buff.wav<>uid://hai5c0y6wxla::::res://Audio/SFX/fsmash_1.ogg<>uid://e5johxxe7f31::::res://Audio/SFX/Crush.wav<>uid://b5p3u32p1iisc::::res://Audio/SFX/Pierce.wav<>uid://bf1042hn2tpmh::::res://Audio/SFX/ex3down.ogg<>uid://dsr8dtipxinm1::::res://Audio/SFX/fspecial.ogg<>uid://eaev1hj8wghu::::res://Audio/SFX/beam.ogg<>uid://cx0csltfuqpng::::res://Audio/SFX/overdrive.wav<>uid://dn36iyl1mxrg1::::res://Audio/SFX/Ailment.wav<>uid://2n11d6lo8ktw::::res://Audio/SFX/Reckless.wav<>uid://7ldlpiqsa0qx::::res://Audio/SFX/rustFinal.wav<>uid://csrxt7jammqf::::res://Audio/SFX/clear_02_Ab2Db_low.ogg<>uid://2n741f4ivddi::::res://Audio/SFX/Aura.wav
 MainMenu.tscn::PackedScene::2048750013843902210::1704986104::0::1::::<><>::res://Code/SceneCode/Screens/MainMenu.gd<>uid://dayy6sakl1jwx::::res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres<>uid://dkk0yyfyygrch::::res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres<>uid://2imequ6g5pi0::::res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres<>uid://27w6xpavu67e::::res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres<>uid://cexehs6jvcmbd::::res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres<>uid://ce2oymswsnn6j::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres<>uid://dmm6qvo3byjgc::::res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres<>uid://bdrlqlvn6kv8c::::res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres<>uid://cy3co5wko705g::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres<>uid://clepibgdex38y::::res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres<>uid://bqt13gd00jakt::::res://Themes/Theme.tres<>uid://bf5fc1lfuejso::::res://Scene/Constants/element_triangle.tscn<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://cbmvpuynhcqqe::::res://Themes/HasSingle/Pannel.tres
 ::res://Scene/SideMenus/::1704924405
 options_menu.tscn::PackedScene::1849702126104635348::1704753696::0::1::::<><>::
-::res://Scene/SideMenus/Chip/::1705158037
-ChipinChar.tscn::PackedScene::6255264414185901215::1705158037::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/ChipinChar.gd<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png
-ChipinInv.tscn::PackedScene::1106909730007749231::1705158037::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/ChipinInv.gd<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png<>uid://p4702lq24xjg::::res://Art/4Tb6Xje4c-3913742659.png
-ChipMenu.tscn::PackedScene::350776233368785622::1705158037::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Screens/ChipMenu.gd<>uid://p1gv2u05pahj::::res://Scene/SideMenus/Chip/ChipinInv.tscn<>uid://cvedj5nkr8e8v::::res://Scene/SideMenus/Chip/ChipinChar.tscn<>uid://g13xvkbcpfoj::::res://Themes/ButtonStyle/Dock.tres<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://dgoj57i606hsw::::res://Art/yellow-ball-icon-6-3137490973.png
+::res://Scene/SideMenus/Chip/::1705213623
+ChipinChar.tscn::PackedScene::6255264414185901215::1705211411::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/ChipinChar.gd<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png
+ChipinInv.tscn::PackedScene::1106909730007749231::1705211411::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/ChipinInv.gd<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png<>uid://p4702lq24xjg::::res://Art/4Tb6Xje4c-3913742659.png
+ChipMenu.tscn::PackedScene::350776233368785622::1705213623::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Screens/ChipMenu.gd<>uid://p1gv2u05pahj::::res://Scene/SideMenus/Chip/ChipinInv.tscn<>uid://cvedj5nkr8e8v::::res://Scene/SideMenus/Chip/ChipinChar.tscn<>uid://g13xvkbcpfoj::::res://Themes/ButtonStyle/Dock.tres<>uid://dl471fyo3f1ka::::res://Icons/Fire.png<>uid://vanfvr734cq5::::res://Icons/Water.png<>uid://ccs1i0vinm0bf::::res://Icons/Elec.png<>uid://ca5svcpu5gu86::::res://Art/white-circle-icon-7-1397688648.png<>uid://bvl2silysy33m::::res://Icons/keyboard-icons-_0000s_0023__Group_.png<>uid://1k8pas0ikvxp::::res://Icons/Crush.png<>uid://icdg55qighh1::::res://Art/arrow.png<>uid://i22u0cruxh66::::res://Art/GreyCircle.png<>uid://dgoj57i606hsw::::res://Art/yellow-ball-icon-6-3137490973.png
 ::res://Scene/SideMenus/Gear/::1704925717
 GearinInv.tscn::PackedScene::7195474406672930813::1704925717::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/GearinInv.gd<>uid://ljunc8hoyajg::::res://Resources/Gear Data/PoolNoodle.tres<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png
 ::res://Scene/SideMenus/Item/::1704949357
 IteminInv.tscn::PackedScene::2695599876649381486::1704949357::0::1::::<><>::uid://bqt13gd00jakt::::res://Themes/Theme.tres<>res://Code/SceneCode/Individuals/IteminInv.gd<>uid://ddjnp1e1pss0g::::res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png<>uid://bqks45w4cuv2n::::res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png<>uid://p4702lq24xjg::::res://Art/4Tb6Xje4c-3913742659.png
-::res://Shaders/::1705158037
-OutlineInline.gdshader::Shader::-1::1705158037::0::1::::<><>::
+::res://Shaders/::1705213625
+OutlineInline.gdshader::Shader::-1::1705213625::0::1::::<><>::
 ::res://Themes/::1705123057
 AdobeClean-Bold.ttf::FontFile::395619687205701920::1702310882::1704036409::1::::<><>::
 AdobeClean-Regular.ttf::FontFile::4413336349752594389::1702518696::1704036409::1::::<><>::

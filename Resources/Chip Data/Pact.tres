@@ -7,6 +7,7 @@ script = ExtResource("1_dvl0a")
 name = "Pact"
 description = "+60% Base Crit Rate, but all HP/LP skills have a X1.3 Cost"
 CpuCost = 10
+maxNum = 3
 ChipType = "Red"
 equippedOn = 0
 other = ""

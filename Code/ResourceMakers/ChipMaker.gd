@@ -5,7 +5,9 @@ class_name Chip
 @export var name: String = "Basic"
 @export_multiline var description: String = "Does something"
 @export var CpuCost: int = 4
+@export var maxNum: int = 3
 @export_enum("Red","Blue","Yellow") var ChipType: String = "Red"
+@export var ownerNum: int = 0
 @export_flags("DREAMER","Lonna","Damir","Pepper") var equippedOn = 0
 @export var other: String
 

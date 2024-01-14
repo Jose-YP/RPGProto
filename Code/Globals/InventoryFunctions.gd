@@ -7,21 +7,20 @@ var effectiveItemInven
 func itemHandler():
 	pass
 
-func chipHandler():
+func chipHandler(inventory):
 	for player in Globals.every_player_entity:
 		for chip in player.specificData.ChipData:
-			for viewingChip in Globals.ChipInventory.inventory:
+			for viewingChip in inventory:
 				if viewingChip == chip:
 					chipHandlerResult(chip,player.name,true)
 
-func miniChipHandler(chara,playerChips):
+func miniChipHandler(chara,playerChips,inventory):
 	for chip in playerChips:
-		print(Globals.ChipInventory)
-		for viewingChip in Globals.ChipInventory.inventory:
+		for viewingChip in inventory:
 			if viewingChip == chip:
-				chipHandlerResult(chip,chara,true)
+				chipHandlerResult(viewingChip,chara,true)
 			else:
-				chipHandlerResult(chip,chara,false)
+				chipHandlerResult(viewingChip,chara,false)
 
 func chipHandlerResult(chip,chara,result):
 	if chip.equippedOn == null: #Make sure the chip being operated on isn't null
@@ -30,7 +29,10 @@ func chipHandlerResult(chip,chara,result):
 	match chara:
 		"DREAMER":
 			if result:
+				print(chip.name, " found on the dreamer")
 				chip.equippedOn |= 1
+				print(chip.equippedOn)
+				
 			else:
 				chip.equippedOn &= ~1
 		"Lonna":

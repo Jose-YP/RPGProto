@@ -7,6 +7,7 @@ script = ExtResource("1_y60ib")
 name = "Soul"
 description = "Changes the user's element to Fire"
 CpuCost = 4
+maxNum = 3
 ChipType = "Blue"
 equippedOn = 0
 other = ""

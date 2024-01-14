@@ -9,4 +9,5 @@ class_name Item
 @export var centCost: int = 20
 @export var icon: Texture2D
 @export var attackData: Move = load("res://BasicAttack.tres")
+@export var ownerNum: int = 0
 @export_flags("DREAMER","Lonna","Damir","Pepper") var equippedOn = 0

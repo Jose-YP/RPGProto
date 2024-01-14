@@ -24,42 +24,30 @@ var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
 func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
 	chipInv.type = "Chip"
-	chipInv.inventory = getInventoryDict(chipFolder)
+	chipInv.inventory = getInventoryArray(chipFolder)
 	chipInv = getChipSorts(chipInv)
 	
 	Globals.ChipInventory = chipInv
 	print(Globals.ChipInventory)
 	#MAKE GEAR INVENTORY
 	gearInv.type = "Gear"
-	gearInv.inventory = getInventoryDict(gearFolder)
+	gearInv.inventory = getInventoryArray(gearFolder)
 	Globals.GearInventory = gearInv
 	
 	#MAKE ITEM INVENTORY
 	itemInv.type = "Item"
-	itemInv.inventory = getInventoryDict(itemFolder)
+	itemInv.inventory = getInventoryArray(itemFolder)
 	Globals.ItemInventory = getItemSorts(itemInv)
 
-func getInventoryDict(Folder) -> Dictionary:
-	var localDict: Dictionary = {}
+func getInventoryArray(Folder) -> Array:
+	var localArray: Array = []
 	var resources: Array = getFilesinFolder(Folder)
-	var folderMax = 1
 	var item = false
 	
-	match Folder: #Depending on folder get max
-		chipFolder:
-			folderMax = maxChips
-		gearFolder:
-			folderMax = maxGear
-		itemFolder:
-			item = true
-	
 	for resource in resources:
-		if item == true: #If item it depends on item specific
-			folderMax = resource.maxCarry
-		
-		localDict[resource] = folderMax
+		localArray.append(resource)
 	
-	return localDict
+	return localArray
 
 func getFilesinFolder(path) -> Array:
 	var files = []
@@ -82,46 +70,59 @@ func getFilesinFolder(path) -> Array:
 	return files #return array of every resource
 
 func getChipSorts(chips) -> Inven:
-	var holdChips = chips
-	var CPUsort: Dictionary
-	var colorSort: Dictionary
-	var ownerSort: Dictionary
-	var reds: Dictionary
-	var blues: Dictionary
-	var yellows: Dictionary
-	
+	var CPUsort: Array = []
+	var colorSort: Array = []
+	var ownerSort: Array = []
+	var reds: Array = []
+	var blues: Array = []
+	var yellows: Array = []
 	
 	for chip in chips.inventory:
-		var Cost: int = chip.CpuCost
-		var ownerNum: int
+		var _ownerNum: int = 0
+		var foundInsert: bool = false
 		
 		match chip.ChipType:
 			"Red":
-				reds[chip] = chip.find_key()
+				reds.append(chip)
 			"Blue":
-				blues[chip] = chip.find_key()
+				blues.append(chip)
 			"Yellow":
-				yellows[chip] = chip.find_key()
+				yellows.append(chip)
 		
-		if chip.equippedOn == null: #Make sure the chip being operated on isn't null
-			chip.equippedOn = 0
+		for checkedChips in range(CPUsort.size()):
+			print(CPUsort[checkedChips])
+			if CPUsort[checkedChips].CpuCost > chip.CpuCost:
+				CPUsort.insert(checkedChips, chip)
+				foundInsert = true
+				break
 		
-		if chip.equippedOn != null:
-			if chip.equippedOn & 1:
-				ownerNum += 1
-			if chip.equippedOn & 2:
-				ownerNum += 1
-			if chip.equippedOn & 4:
-				ownerNum += 1
-			if chip.equippedOn & 8:
-				ownerNum += 1
-		
-	colorSort.merge(reds) 
-	colorSort.merge(blues)
-	colorSort.merge(yellows)
+		if CPUsort.size() == 0 or not foundInsert:
+			CPUsort.append(chip)
+		#if chip.equippedOn == null: #Make sure the chip being operated on isn't null
+			#chip.equippedOn = 0
+		#if chip.equippedOn != null:
+			#if chip.equippedOn & 1:
+				#ownerNum += 1
+			#if chip.equippedOn & 2:
+				#ownerNum += 1
+			#if chip.equippedOn & 4:
+				#ownerNum += 1
+			#if chip.equippedOn & 8:
+				#ownerNum += 1
+		#chip.ownerNum = ownerNum
+		#
+		#if ownerSort.size() == 0:
+			#ownerSort.append(chip)
+		#for checkedChips in range(ownerSort.size()):
+			#print(ownerSort[checkedChips])
+			#if ownerSort[checkedChips].ownerNum > chip.ownerNum:
+				#ownerSort.insert(checkedChips, chip)
+				#break
+	
+	colorSort = reds + blues + yellows
 	chips.inventorySort1 = colorSort
 	chips.inventorySort2 = CPUsort
-	chips.inventorySort3 = ownerSort
+	#chips.inventorySort3 = ownerSort
 	return chips
 
 func getItemSorts(items) -> Inven:
