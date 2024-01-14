@@ -22,6 +22,25 @@ ______
 *Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
 *Better Damage displays
 *Visuals of any kind
+*Save system
+
+______
+CREDITS - THINGS I DON'T OWN
+______
+ART)
+Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
+
+Music)
+Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
+...Delve!! - [John "Joy" Tay] https://youtu.be/d7ZqYAlUlAU
+Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
+
+SFX)
+beam.ogg used with Neutral Ballistic attacks- took from Power Bomberman
+clear_02_ab2Db_low.ogg used with Healing - took from Mixolumia
+fssmash_1.ogg used with slash attacks - stock sword sfx
+fspecial.ogg used with Condition Buffs - unsure
+heavy1.ogg used with NeutralPhysical attacks - unsure
 
 ______
 STATS
@@ -131,21 +150,3 @@ Despite the decently high HP Cost it's a super strong move
 but being on the main character who not only game overs upon death but is the only healer for half the game
 it's super fun and risky to use and I love it
 So here it is in the prototype
-
-______
-CREDITS - THINGS I DON'T OWN
-______
-ART)
-Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
-
-Music)
-Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
-...Delve!! - [John "Joy" Tay] https://youtu.be/d7ZqYAlUlAU
-Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
-
-SFX)
-beam.ogg used with Neutral Ballistic attacks- took from Power Bomberman
-clear_02_ab2Db_low.ogg used with Healing - took from Mixolumia
-fssmash_1.ogg used with slash attacks - stock sword sfx
-fspecial.ogg used with Condition Buffs - unsure
-heavy1.ogg used with NeutralPhysical attacks - unsure
