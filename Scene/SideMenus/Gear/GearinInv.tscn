@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://darsoarlvp0i8"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_f4abs"]
-[ext_resource type="Script" path="res://Code/SceneCode/Individuals/GearinInv.gd" id="2_jwox3"]
+[ext_resource type="Script" path="res://Code/SceneCode/Individuals/GearinChar.gd" id="2_jwox3"]
 [ext_resource type="Resource" uid="uid://ljunc8hoyajg" path="res://Resources/Gear Data/PoolNoodle.tres" id="3_aoq6t"]
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_ctc55"]
 [ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_4l5kg"]

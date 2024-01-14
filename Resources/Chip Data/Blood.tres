@@ -5,10 +5,11 @@
 [resource]
 script = ExtResource("1_iy0e1")
 name = "Blood"
-description = "-90 HP +15 CPU"
-CpuCost = -15
+description = "-90 HP +12 CPU"
+CpuCost = -12
 maxNum = 3
 ChipType = "Yellow"
+ownerNum = 0
 equippedOn = 0
 other = ""
 AffectedMove = "None"

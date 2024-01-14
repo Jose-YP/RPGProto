@@ -26,9 +26,8 @@ func _ready(): #Make every inventory
 	chipInv.type = "Chip"
 	chipInv.inventory = getInventoryArray(chipFolder)
 	chipInv = getChipSorts(chipInv)
-	
 	Globals.ChipInventory = chipInv
-	print(Globals.ChipInventory)
+	
 	#MAKE GEAR INVENTORY
 	gearInv.type = "Gear"
 	gearInv.inventory = getInventoryArray(gearFolder)
@@ -42,7 +41,6 @@ func _ready(): #Make every inventory
 func getInventoryArray(Folder) -> Array:
 	var localArray: Array = []
 	var resources: Array = getFilesinFolder(Folder)
-	var item = false
 	
 	for resource in resources:
 		localArray.append(resource)
@@ -88,7 +86,6 @@ func getChipSorts(chips) -> Inven:
 				yellows.append(chip)
 		
 		for checkedChips in range(CPUsort.size()):
-			print(CPUsort[checkedChips])
 			if CPUsort[checkedChips].CpuCost > chip.CpuCost:
 				CPUsort.insert(checkedChips, chip)
 				foundInsert = true

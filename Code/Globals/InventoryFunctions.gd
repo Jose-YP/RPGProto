@@ -4,8 +4,12 @@ var effectiveChipInven
 var effectiveGearInven
 var effectiveItemInven
 
-func itemHandler():
-	pass
+func itemHandler(inventory):
+	for player in Globals.every_player_entity:
+		for chip in player.ItemData:
+			for viewingChip in inventory:
+				if viewingChip == chip:
+					chipHandlerResult(chip,player.name,true)
 
 func chipHandler(inventory):
 	for player in Globals.every_player_entity:

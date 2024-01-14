@@ -51,7 +51,6 @@ func preapplyChips(Entity):
 	Entity.specificData.currentCPU = 0
 	for chip in Entity.specificData.ChipData:
 		Entity.specificData.currentCPU += chip.CpuCost
-		
 		match chip.ChipType:
 			"Red":
 				InventoryFunctions.redChipFun(Entity,chip)

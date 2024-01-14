@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bniepn4mhvn2g"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_pi0x2"]
-[ext_resource type="Script" path="res://Code/SceneCode/Individuals/ChipinInv.gd" id="2_dsump"]
+[ext_resource type="Script" path="res://Code/SceneCode/Individuals/IteminInv.gd" id="2_o30cu"]
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_rj02c"]
 [ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_g451y"]
 [ext_resource type="Texture2D" uid="uid://p4702lq24xjg" path="res://Art/4Tb6Xje4c-3913742659.png" id="5_ad8mp"]
@@ -12,7 +12,7 @@ offset_right = 330.0
 offset_bottom = 52.0
 size_flags_vertical = 4
 theme = ExtResource("1_pi0x2")
-script = ExtResource("2_dsump")
+script = ExtResource("2_o30cu")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
