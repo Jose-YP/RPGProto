@@ -45,6 +45,6 @@ text = "[center] The biggest wordiest Chip 60/60 [/center]"
 position = Vector2(-7, 31)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(300, 31)
+position = Vector2(295, 31)
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

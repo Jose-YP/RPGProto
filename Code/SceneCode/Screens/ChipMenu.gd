@@ -297,10 +297,12 @@ func getPlayerChips(index):
 		side = swap(side)
 	
 	print(PlayMenu)
-	if PlayMenu[side].size() == 0:
+	if PlayMenu.size() == 0:
+		print("HBCIBCBIC")
 		PlayMarkers.append(placeholderPos)
 	else:
-		PlayMarkers.append(PlayMenu[side][-1].final)
+		print(PlayMenu[side].size())
+		PlayMarkers.append(PlayMenu[swap(side)][PlayMenu[side].size() - 1].final)
 	side = 0
 	markerArray = [InvMarkers,PlayMarkers]
 
