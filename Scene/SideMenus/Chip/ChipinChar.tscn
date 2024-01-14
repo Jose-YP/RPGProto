@@ -48,4 +48,3 @@ position = Vector2(-7, 31)
 position = Vector2(300, 31)
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

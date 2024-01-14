@@ -140,16 +140,16 @@ func buttons():
 			print(markerArray[side][markerIndex].get_parent() is Panel)
 			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
 				if keepFocus.get_parent().inChar:
-					print("Sort Player inventory")
+					print("Sort Player inventory (",side,",",markerIndex,")")
 				else:
-					print("Place in character", markerArray[side][markerIndex].get_parent().inChar)
+					print("Place in character (",side,",",markerIndex,")")
 					addChip(grabbedChip)
 			else:
 				if keepFocus.get_parent().inChar:
-					print("Removed from character", markerArray[side][markerIndex].get_parent().inChar)
+					print("Removed from character (",side,",",markerIndex,")")
 					removeChip(grabbedChip)
 				else:
-					print("Sort Inventory", markerArray[side][markerIndex].get_parent().inChar)
+					print("Sort Inventory (",side,",",markerIndex,")")
 			
 			
 			movingChip = false
@@ -245,6 +245,7 @@ func update():
 	getPlayerStats(playerIndex)
 	getChipInventory()
 	getPlayerChips(playerIndex)
+	InvMenu[0][0].focus.grab_focus()
 
 func manualSort():
 	pass
@@ -322,17 +323,17 @@ func addChip(chip):
 	var entity = Globals.every_player_entity[playerIndex]
 	
 	if chip.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
-		print("applied", chip.name)
-		entity.specificData.ChipData.append(chip)
+		print("applied", chip.name, " at ", markerIndex - 1)
+		entity.specificData.ChipData.insert(markerIndex, chip)
 		update()
+		print(entity.specificData.ChipData)
 
 func removeChip(chip):
 	var entity = Globals.every_player_entity[playerIndex]
 	print("removed", chip.name)
 	entity.specificData.ChipData.erase(chip)
-	print(entity.specificData.ChipData)
 	update()
-	InvMenu[0][0].focus.grab_focus()
+	print(entity.specificData.ChipData)
 
 #-----------------------------------------
 #SIGNALS

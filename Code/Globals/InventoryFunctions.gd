@@ -20,6 +20,8 @@ func miniChipHandler(chara,playerChips):
 		for viewingChip in Globals.ChipInventory.inventory:
 			if viewingChip == chip:
 				chipHandlerResult(chip,chara,true)
+			else:
+				chipHandlerResult(chip,chara,false)
 
 func chipHandlerResult(chip,chara,result):
 	if chip.equippedOn == null: #Make sure the chip being operated on isn't null
