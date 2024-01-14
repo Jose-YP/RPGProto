@@ -46,7 +46,6 @@ var tempIndex: int = 0
 var CPUusage: int = 0
 var movingChip: bool = false
 var acrossPlayers: bool = false
-var sorting: bool = false
 var keepFocus
 var grabbedChip
 var wasChar
@@ -127,9 +126,6 @@ func movement() -> void:
 			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
-		
-		elif sorting:
-			pass
 	
 	if Input.is_action_just_pressed("Down"):
 		if movingChip:
@@ -141,9 +137,6 @@ func movement() -> void:
 			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
-		
-		elif sorting:
-			pass
 
 func buttons() -> void:
 	if Input.is_action_just_pressed("Accept"):
@@ -177,7 +170,6 @@ func buttons() -> void:
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
 			if keepFocus is OptionButton:
-				sorting = true
 				sortingOptions.press()
 			else:
 				movingChip = true
@@ -201,7 +193,13 @@ func buttons() -> void:
 		exitMenu.emit()
 	
 	if Input.is_action_just_pressed("Y"):
-		sorting = true
+		makeNoise.emit(1)
+		var select = sortingOptions.selected
+		select += 1
+		if select >= 3:
+			select = 0
+		sortingOptions.select(select)
+		sortingOptions.item_selected.emit(select)
 		
 	if Input.is_action_just_pressed("L"):
 		makeNoise.emit(2)
@@ -241,7 +239,7 @@ func buttons() -> void:
 			PlayMenu[0][0].focus.grab_focus()
 	
 	#[chip,gear,item]
-	if not movingChip and not sorting:
+	if not movingChip:
 		if Input.is_action_just_pressed("ZL"):
 			itemMenu.emit()
 		
@@ -258,6 +256,7 @@ func getChipInventory() -> void:
 		chipPanel.maxNum = chip.maxNum
 		chipPanel.connect("getDesc",on_inv_focused)
 		chipInv.add_child(chipPanel)
+		chipPanel.focus.set_focus_mode(2)
 		
 		InvMenu[side].append(chipPanel)
 		InvMarkers.append(chipPanel.inBetween)
@@ -269,7 +268,11 @@ func getChipInventory() -> void:
 func update() -> void:
 	InvMenu = [[],[]]
 	InvMarkers = []
+	var prevKeep
 	for thing in chipInv.get_children():
+		if movingChip and thing == keepFocus.get_parent():
+			print(thing)
+			prevKeep = thing.ChipData
 		chipInv.remove_child(thing)
 		thing.queue_free()
 	
@@ -277,8 +280,15 @@ func update() -> void:
 	getChipInventory()
 	getPlayerChips(playerIndex)
 	
+	for thing in chipInv.get_children():
+		if thing.ChipData == prevKeep:
+			keepFocus = thing.focus
+	
 	acrossPlayers = false
-	InvMenu[0][0].focus.grab_focus()
+	if movingChip:
+		keepFocus.grab_focus()
+	else:
+		InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -326,12 +336,9 @@ func getPlayerChips(index) -> void:
 		
 		side = swap(side)
 	
-	print(PlayMenu)
 	if PlayMenu[0].size() == 0:
-		print("HBCIBCBIC")
 		PlayMarkers.append(placeholderPos)
 	else:
-		print(PlayMenu[side].size())
 		PlayMarkers.append(PlayMenu[swap(side)][PlayMenu[side].size() - 1].final)
 	side = 0
 	markerArray = [InvMarkers,PlayMarkers]
@@ -357,20 +364,16 @@ func addChip(chip) -> void:
 		entity = Globals.every_player_entity[tempIndex]
 	
 	if chip.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
-		print("applied", chip.name, " at ", markerIndex - 1)
 		entity.specificData.ChipData.insert(markerIndex, chip)
 		update()
-		print(entity.specificData.ChipData)
 
 func removeChip(chip) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	print("removed", chip.name)
 	entity.specificData.ChipData.erase(chip)
 	update()
-	print(entity.specificData.ChipData)
 
 func sortPlayerChip(chip) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
@@ -427,7 +430,6 @@ func _on_option_button_item_selected(index) -> void:
 		"Sort Cost":
 			currentInv = Globals.ChipInventory.inventorySort2
 	
-	print("NewSoert")
 	update()
 
 #-----------------------------------------

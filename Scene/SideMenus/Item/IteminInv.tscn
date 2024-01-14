@@ -1,18 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ben1evmx5sg1s"]
+[gd_scene load_steps=6 format=3 uid="uid://bniepn4mhvn2g"]
 
-[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_ybr5t"]
-[ext_resource type="Script" path="res://Code/SceneCode/Individuals/IteminInv.gd" id="2_hxa4o"]
-[ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_5vr73"]
-[ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_jg8u6"]
-[ext_resource type="Texture2D" uid="uid://p4702lq24xjg" path="res://Art/4Tb6Xje4c-3913742659.png" id="5_64ojj"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_pi0x2"]
+[ext_resource type="Script" path="res://Code/SceneCode/Individuals/ChipinInv.gd" id="2_dsump"]
+[ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_rj02c"]
+[ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_g451y"]
+[ext_resource type="Texture2D" uid="uid://p4702lq24xjg" path="res://Art/4Tb6Xje4c-3913742659.png" id="5_ad8mp"]
 
 [node name="MenuItem" type="PanelContainer"]
 custom_minimum_size = Vector2(330, 52)
 offset_right = 330.0
 offset_bottom = 52.0
 size_flags_vertical = 4
-theme = ExtResource("1_ybr5t")
-script = ExtResource("2_hxa4o")
+theme = ExtResource("1_pi0x2")
+script = ExtResource("2_dsump")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -25,12 +25,12 @@ offset_bottom = 52.0
 
 [node name="Chip1" type="HBoxContainer" parent="Button/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_ybr5t")
+theme = ExtResource("1_pi0x2")
 
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-texture = ExtResource("3_5vr73")
+texture = ExtResource("3_rj02c")
 expand_mode = 5
 stretch_mode = 5
 
@@ -41,9 +41,9 @@ theme_override_constants/margin_top = 5
 [node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Chip1/MarginContainer"]
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
-theme = ExtResource("1_ybr5t")
+theme = ExtResource("1_pi0x2")
 bbcode_enabled = true
-text = "[center]wordiest ever Chip [color=gray]6/6[/color][/center]"
+text = "[center]wordiest ever Chip [color=yellow]CPU: 24[/color] 6/6 [/center]"
 
 [node name="Characters" type="GridContainer" parent="Button/MarginContainer/Chip1"]
 custom_minimum_size = Vector2(42, 20)
@@ -61,7 +61,7 @@ use_hidden_tabs_for_min_size = true
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("4_jg8u6")
+texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
@@ -69,7 +69,7 @@ stretch_mode = 5
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("5_64ojj")
+texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
@@ -84,7 +84,7 @@ use_hidden_tabs_for_min_size = true
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("4_jg8u6")
+texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
@@ -92,7 +92,7 @@ stretch_mode = 5
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("5_64ojj")
+texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
@@ -107,7 +107,7 @@ use_hidden_tabs_for_min_size = true
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("4_jg8u6")
+texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
@@ -115,7 +115,7 @@ stretch_mode = 5
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("5_64ojj")
+texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
@@ -130,7 +130,7 @@ use_hidden_tabs_for_min_size = true
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("4_jg8u6")
+texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
@@ -138,9 +138,14 @@ stretch_mode = 5
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-texture = ExtResource("5_64ojj")
+texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-9, 23)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(341, 23)
+
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

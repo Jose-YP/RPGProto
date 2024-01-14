@@ -72,13 +72,11 @@ func getFilesinFolder(path) -> Array:
 func getChipSorts(chips) -> Inven:
 	var CPUsort: Array = []
 	var colorSort: Array = []
-	var ownerSort: Array = []
 	var reds: Array = []
 	var blues: Array = []
 	var yellows: Array = []
 	
 	for chip in chips.inventory:
-		var _ownerNum: int = 0
 		var foundInsert: bool = false
 		
 		match chip.ChipType:
@@ -98,31 +96,10 @@ func getChipSorts(chips) -> Inven:
 		
 		if CPUsort.size() == 0 or not foundInsert:
 			CPUsort.append(chip)
-		#if chip.equippedOn == null: #Make sure the chip being operated on isn't null
-			#chip.equippedOn = 0
-		#if chip.equippedOn != null:
-			#if chip.equippedOn & 1:
-				#ownerNum += 1
-			#if chip.equippedOn & 2:
-				#ownerNum += 1
-			#if chip.equippedOn & 4:
-				#ownerNum += 1
-			#if chip.equippedOn & 8:
-				#ownerNum += 1
-		#chip.ownerNum = ownerNum
-		#
-		#if ownerSort.size() == 0:
-			#ownerSort.append(chip)
-		#for checkedChips in range(ownerSort.size()):
-			#print(ownerSort[checkedChips])
-			#if ownerSort[checkedChips].ownerNum > chip.ownerNum:
-				#ownerSort.insert(checkedChips, chip)
-				#break
 	
 	colorSort = reds + blues + yellows
 	chips.inventorySort1 = colorSort
 	chips.inventorySort2 = CPUsort
-	#chips.inventorySort3 = ownerSort
 	return chips
 
 func getItemSorts(items) -> Inven:
@@ -146,15 +123,24 @@ func _on_main_menu_options_menu():
 
 func _back_to_main_menu():
 	changeScene(mainMenu)
+	currentScene.connect("chipMenu",_on_to_chip_menu)
+	currentScene.connect("gearMenu",_on_to_gear_menu)
+	currentScene.connect("itemMenu",_on_to_item_menu)
 
 func _on_change_to_battle():
 	changeScene(battleScene)
 
 func _on_to_gear_menu():
 	$SFX/Confirm.play()
+	currentScene.connect("exitMenu",_back_to_main_menu)
+	currentScene.connect("chipMenu",_on_to_chip_menu)
+	currentScene.connect("itemMenu",_on_to_item_menu)
 
 func _on_to_item_menu():
 	$SFX/Confirm.play()
+	currentScene.connect("exitMenu",_back_to_main_menu)
+	currentScene.connect("gearMenu",_on_to_gear_menu)
+	currentScene.connect("chipMenu",_on_to_chip_menu)
 
 func _on_to_chip_menu():
 	$SFX/Confirm.play()

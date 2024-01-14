@@ -29,10 +29,7 @@ func chipHandlerResult(chip,chara,result):
 	match chara:
 		"DREAMER":
 			if result:
-				print(chip.name, " found on the dreamer")
 				chip.equippedOn |= 1
-				print(chip.equippedOn)
-				
 			else:
 				chip.equippedOn &= ~1
 		"Lonna":

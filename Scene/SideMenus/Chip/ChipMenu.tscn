@@ -127,6 +127,7 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 101.0
 offset_bottom = 32.0
+focus_mode = 0
 item_count = 3
 selected = 0
 allow_reselect = true
