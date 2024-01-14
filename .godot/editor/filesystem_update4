@@ -58,3 +58,8 @@ res://Scene/SideMenus/Chip/ChipinInv.tscn
 res://Scene/Mains/GameManager.tscn
 res://Code/SceneCode/Individuals/ChipinChar.gd
 res://Code/SceneCode/Individuals/ChipinInv.gd
+res://Code/Globals/Globals.gd
+res://Code/Globals/InventoryFunctions.gd
+res://Code/SceneCode/Screens/GameManager.gd
+res://Resources/Inventory Data/GearInventory.tres
+res://Resources/Inventory Data/ItemInventory.tres

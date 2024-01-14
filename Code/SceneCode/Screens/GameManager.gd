@@ -23,10 +23,11 @@ var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
 #-----------------------------------------
 func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
+	print("GAMEMANAGER")
 	chipInv.type = "Chip"
 	chipInv.inventory = getInventoryDict(chipFolder)
 	Globals.ChipInventory = chipInv
-	
+	print(Globals.ChipInventory)
 	#MAKE GEAR INVENTORY
 	gearInv.type = "Gear"
 	gearInv.inventory = getInventoryDict(gearFolder)

@@ -1,23 +1,23 @@
-[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cufen2nyialel"]
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://43atp7yyoob5"]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_f6b7g"]
 
 [resource]
 script = ExtResource("1_f6b7g")
-name = "Wicked"
-description = "+4 Speed"
-CpuCost = 6
+name = "Awkward"
+description = "+4 Luck"
+CpuCost = 4
 ChipType = "Yellow"
-equippedOn = 0
+equippedOn = null
 other = ""
-AffectedMove = "None"
-NewTarget = ""
-ItemChange = ""
+AffectedMove = null
+NewTarget = null
+ItemChange = null
 calcBonus = "None"
 calcAmmount = 0.0
-costBonus = ""
-costMod = 0.0
-NewElement = ""
+costBonus = null
+costMod = null
+NewElement = null
 newPhyElement = "None"
 Condition = null
 ElementModBoost = 0.0
@@ -31,8 +31,8 @@ Strength = 0
 Toughness = 0
 Ballistics = 0
 Resistance = 0
-Speed = 4
-Luck = 0
+Speed = 0
+Luck = 4
 StatSwap = false
-FirstSwap = ""
-SecondSwap = ""
+FirstSwap = null
+SecondSwap = null

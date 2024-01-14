@@ -28,7 +28,7 @@ func readJSON(filePath): #Don't open, Godot might kill itself
 	return jsonObject.get_data()
 
 func getStats(Entity,character,level):
-	var stats = playerStats[character][level]
+	var stats = playerStats[character][str(level)]
 	#Resource Stats
 	Entity.MaxHP = int(stats["HP"])
 	Entity.specificData.MaxLP = int(stats["LP"])
@@ -48,19 +48,17 @@ func getStats(Entity,character,level):
 	return Entity
 
 func preapplyChips(Entity):
+	Entity.specificData.currentCPU = 0
 	for chip in Entity.specificData.ChipData:
 		Entity.specificData.currentCPU += chip.CpuCost
 		
 		match chip.ChipType:
+			"Red":
+				InventoryFunctions.redChipFun(Entity,chip)
 			"Blue":
 				InventoryFunctions.blueChipFun(Entity,chip)
 			"Yellow":
 				InventoryFunctions.yellowChipFun(Entity,chip)
-
-func applyRedChip(Entity):
-	for chip in Entity.specificData.ChipData:
-		if chip.ChipType == "Red":
-			InventoryFunctions.redChipFun(Entity,chip)
 
 func getTPCost(move,entity,aura):
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))

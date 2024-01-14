@@ -10,6 +10,7 @@ extends Control
 @onready var InvMarkers: Array[Marker2D] = []
 @onready var PlayMarkers: Array[Marker2D] = []
 @onready var Arrow: Sprite2D = $Arrow
+@onready var placeholderPos: Marker2D = $Marker2D
 #Descriptions
 @onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
 @onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
@@ -41,6 +42,7 @@ var num: int = 0
 var playerIndex: int = 0
 var CPUusage: int = 0
 var movingChip: bool = false
+var acrossPlayers: bool = false
 var keepFocus
 var grabbedChip
 
@@ -135,8 +137,25 @@ func buttons():
 		makeNoise.emit(0)
 		
 		if movingChip:
+			print(markerArray[side][markerIndex].get_parent() is Panel)
+			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
+				if keepFocus.get_parent().inChar:
+					print("Sort Player inventory")
+				else:
+					print("Place in character", markerArray[side][markerIndex].get_parent().inChar)
+					addChip(grabbedChip)
+			else:
+				if keepFocus.get_parent().inChar:
+					print("Removed from character", markerArray[side][markerIndex].get_parent().inChar)
+					removeChip(grabbedChip)
+				else:
+					print("Sort Inventory", markerArray[side][markerIndex].get_parent().inChar)
+			
+			
 			movingChip = false
+			print(grabbedChip)
 			Arrow.hide()
+		
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
 			if keepFocus is OptionButton:
@@ -177,6 +196,9 @@ func buttons():
 		if playerIndex < 0:
 			playerIndex = 2
 		
+		if movingChip:
+			pass
+		
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
 		
@@ -210,15 +232,28 @@ func getChipInventory():
 		InvMarkers.append(chipPanel.inBetween)
 		side = swap(side)
 	
-	print(InvMenu)
 	InvMarkers.append(InvMenu[side][-1].final)
 	side = 0
+
+func update():
+	InvMenu = [[],[]]
+	InvMarkers = []
+	for thing in chipInv.get_children():
+		chipInv.remove_child(thing)
+		thing.queue_free()
+	
+	getPlayerStats(playerIndex)
+	getChipInventory()
+	getPlayerChips(playerIndex)
+
+func manualSort():
+	pass
 
 #-----------------------------------------
 #PLAYER DOCK
 #-----------------------------------------
 func getPlayerStats(index):
-	var entity = Globals.every_player_entity[index]
+	var entity = Globals.getStats(Globals.every_player_entity[index], Globals.every_player_entity[index].name ,Globals.every_player_entity[index].level)
 	var CPUtween = CPUBar.create_tween()
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
 	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
@@ -239,6 +274,7 @@ func getPlayerStats(index):
 	
 	var newValue = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
 	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC).from(entity.specificData.MaxCPU)
+	InventoryFunctions.miniChipHandler(entity.name,entity.specificData.ChipData)
 
 func getPlayerChips(index):
 	clearPlayerChips()
@@ -261,7 +297,7 @@ func getPlayerChips(index):
 	
 	print(PlayMenu)
 	if PlayMenu[side].size() == 0:
-		PlayMarkers.append(PlayMenu[swap(side)][-1].final)
+		PlayMarkers.append(placeholderPos)
 	else:
 		PlayMarkers.append(PlayMenu[side][-1].final)
 	side = 0
@@ -282,17 +318,28 @@ func getElements(entity):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
 			playerPhyEle.current_tab = k
 
-func addChip(entity,chip):
-	entity.specificData.chipData.append(chip)
+func addChip(chip):
+	var entity = Globals.every_player_entity[playerIndex]
+	
+	if chip.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
+		print("applied", chip.name)
+		entity.specificData.ChipData.append(chip)
+		update()
 
-func removeChip(entity,chip):
-	entity.specificData.chipData.erase(chip)
+func removeChip(chip):
+	var entity = Globals.every_player_entity[playerIndex]
+	print("removed", chip.name)
+	entity.specificData.ChipData.erase(chip)
+	print(entity.specificData.ChipData)
+	update()
+	InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #SIGNALS
 #-----------------------------------------
 func on_inv_focused(data):
 	makeNoise.emit(2)
+	grabbedChip = data.ChipData
 	
 	invChipTitle.clear()
 	invChipTitle.append_text(str(data.ChipData.name, " Chip"))
@@ -306,7 +353,7 @@ func on_inv_focused(data):
 
 func on_play_focused(data):
 	makeNoise.emit(2)
-	grabbedChip = data
+	grabbedChip = data.ChipData
 	
 	playerChipTitle.clear()
 	playerChipTitle.append_text(str(data.ChipData.name, " Chip"))

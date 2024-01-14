@@ -16,7 +16,7 @@ var ChipData: Chip
 var currentPlayers: String
 var maxNum: int
 var currentNum: int
-var inChar: bool = true
+var inChar: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

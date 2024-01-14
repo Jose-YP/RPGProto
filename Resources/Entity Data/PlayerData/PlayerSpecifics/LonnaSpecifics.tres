@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="3_ujl4q"]
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres" id="4_3cwns"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres" id="5_a606w"]
-[ext_resource type="Resource" uid="uid://cufen2nyialel" path="res://Resources/Chip Data/Awkward.tres" id="5_ekn0u"]
+[ext_resource type="Resource" uid="uid://cufen2nyialel" path="res://Resources/Chip Data/Wicked.tres" id="5_ekn0u"]
 [ext_resource type="Resource" uid="uid://b6xe0obautoce" path="res://Resources/Chip Data/Soul.tres" id="5_nl1yl"]
 [ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres" id="6_p4xum"]
 [ext_resource type="Resource" uid="uid://cin6fhle3g8yy" path="res://Resources/Gear Data/RefurbishedEngine.tres" id="6_rvm2w"]

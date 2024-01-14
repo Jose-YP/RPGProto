@@ -16,6 +16,7 @@ func chipHandler():
 
 func miniChipHandler(chara,playerChips):
 	for chip in playerChips:
+		print(Globals.ChipInventory)
 		for viewingChip in Globals.ChipInventory.inventory:
 			if viewingChip == chip:
 				chipHandlerResult(chip,chara,true)
@@ -53,9 +54,9 @@ func redChipFun(entity, chip):
 		pass
 	if chip.ItemChange != null:
 		pass
-	if chip.CalcBonus != "None":
+	if chip.calcBonus != "None":
 		pass
-	if chip.CostBonus != null:
+	if chip.costBonus != null:
 		pass
 
 func blueChipFun(entity, chip):
