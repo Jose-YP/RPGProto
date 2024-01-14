@@ -63,3 +63,5 @@ res://Code/Globals/InventoryFunctions.gd
 res://Code/SceneCode/Screens/GameManager.gd
 res://Resources/Inventory Data/GearInventory.tres
 res://Resources/Inventory Data/ItemInventory.tres
+res://Scene/Entities/PlayerMenu.tscn
+res://Code/ResourceMakers/InventoryMaker.gd

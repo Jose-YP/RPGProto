@@ -222,7 +222,7 @@ layout_mode = 2
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
-LP:100 TP: 100"
+LP:99 TP: 100"
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)

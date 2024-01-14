@@ -11,6 +11,7 @@ extends Control
 @onready var PlayMarkers: Array[Marker2D] = []
 @onready var Arrow: Sprite2D = $Arrow
 @onready var placeholderPos: Marker2D = $Marker2D
+@onready var sortingOptions: OptionButton = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton
 #Descriptions
 @onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
 @onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
@@ -44,6 +45,7 @@ var tempIndex: int = 0
 var CPUusage: int = 0
 var movingChip: bool = false
 var acrossPlayers: bool = false
+var sorting: bool = false
 var keepFocus
 var grabbedChip
 var wasChar
@@ -123,6 +125,9 @@ func movement() -> void:
 			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
+		
+		elif sorting:
+			pass
 	
 	if Input.is_action_just_pressed("Down"):
 		if movingChip:
@@ -134,6 +139,9 @@ func movement() -> void:
 			
 			print(side,markerIndex)
 			print(markerArray[side][markerIndex])
+		
+		elif sorting:
+			pass
 
 func buttons() -> void:
 	if Input.is_action_just_pressed("Accept"):
@@ -167,7 +175,8 @@ func buttons() -> void:
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
 			if keepFocus is OptionButton:
-				pass
+				sorting = true
+				sortingOptions.press()
 			else:
 				movingChip = true
 				var adress = getButtonIndex(keepFocus)
@@ -190,14 +199,8 @@ func buttons() -> void:
 		exitMenu.emit()
 	
 	if Input.is_action_just_pressed("Y"):
-		pass
-	
-	#[chip,gear,item]
-	if Input.is_action_just_pressed("ZL"):
-		itemMenu.emit()
-	
-	if Input.is_action_just_pressed("ZR"):
-		gearMenu.emit()
+		sorting = true
+		
 	
 	if Input.is_action_just_pressed("L"):
 		makeNoise.emit(2)
@@ -235,6 +238,14 @@ func buttons() -> void:
 		
 		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
 			PlayMenu[0][0].focus.grab_focus()
+	
+	#[chip,gear,item]
+	if not movingChip and not sorting:
+		if Input.is_action_just_pressed("ZL"):
+			itemMenu.emit()
+		
+		if Input.is_action_just_pressed("ZR"):
+			gearMenu.emit()
 
 #-----------------------------------------
 #INVENTORY DOCK
@@ -367,10 +378,11 @@ func sortPlayerChip(chip) -> void:
 	var holdChip = chip
 	var entity = Globals.every_player_entity[playerIndex]
 	
-	if acrossPlayers:
+	if acrossPlayers and chip.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
 		var fromEntity = Globals.every_player_entity[tempIndex]
 		fromEntity.specificData.ChipData.erase(chip)
 		entity.specificData.ChipData.insert(markerIndex, chip)
+		InventoryFunctions.chipHandler() #Update chip ownership from prev entity
 	else:
 		entity.specificData.ChipData.erase(chip)
 		entity.specificData.ChipData.insert(markerIndex, chip)

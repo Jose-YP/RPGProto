@@ -23,9 +23,10 @@ var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
 #-----------------------------------------
 func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
-	print("GAMEMANAGER")
 	chipInv.type = "Chip"
 	chipInv.inventory = getInventoryDict(chipFolder)
+	chipInv = getChipSorts(chipInv)
+	
 	Globals.ChipInventory = chipInv
 	print(Globals.ChipInventory)
 	#MAKE GEAR INVENTORY
@@ -36,7 +37,7 @@ func _ready(): #Make every inventory
 	#MAKE ITEM INVENTORY
 	itemInv.type = "Item"
 	itemInv.inventory = getInventoryDict(itemFolder)
-	Globals.ItemInventory = itemInv
+	Globals.ItemInventory = getItemSorts(itemInv)
 
 func getInventoryDict(Folder) -> Dictionary:
 	var localDict: Dictionary = {}
@@ -79,6 +80,52 @@ func getFilesinFolder(path) -> Array:
 				continue
 	
 	return files #return array of every resource
+
+func getChipSorts(chips) -> Inven:
+	var holdChips = chips
+	var CPUsort: Dictionary
+	var colorSort: Dictionary
+	var ownerSort: Dictionary
+	var reds: Dictionary
+	var blues: Dictionary
+	var yellows: Dictionary
+	
+	
+	for chip in chips.inventory:
+		var Cost: int = chip.CpuCost
+		var ownerNum: int
+		
+		match chip.ChipType:
+			"Red":
+				reds[chip] = chip.find_key()
+			"Blue":
+				blues[chip] = chip.find_key()
+			"Yellow":
+				yellows[chip] = chip.find_key()
+		
+		if chip.equippedOn == null: #Make sure the chip being operated on isn't null
+			chip.equippedOn = 0
+		
+		if chip.equippedOn != null:
+			if chip.equippedOn & 1:
+				ownerNum += 1
+			if chip.equippedOn & 2:
+				ownerNum += 1
+			if chip.equippedOn & 4:
+				ownerNum += 1
+			if chip.equippedOn & 8:
+				ownerNum += 1
+		
+	colorSort.merge(reds) 
+	colorSort.merge(blues)
+	colorSort.merge(yellows)
+	chips.inventorySort1 = colorSort
+	chips.inventorySort2 = CPUsort
+	chips.inventorySort3 = ownerSort
+	return chips
+
+func getItemSorts(items) -> Inven:
+	return items
 
 #-----------------------------------------
 #SCENE CONNECTIONS
