@@ -14,14 +14,14 @@ class_name Chip
 @export_group("Red Properties") #Directly affects moves
 @export_subgroup("Move Changes")
 @export var NewMove: Move
-@export_enum("None","Basic","Boost") var AffectedMove: String = "None"
 @export_enum("Slash","Crush","Pierce","None") var newPhyElement: String = "None"
+@export_enum("None","Basic","Boost") var AffectedMove: String = "None"
 @export_enum("Single","Group","All","Random") var NewTarget: String
 @export_enum("Physical","Ballistic","Freebie") var ItemChange: String
 @export_subgroup("Calc Bonuses")
 @export_enum("None","Drain","AilmentHit","CritChance") var calcBonus: String = "None"
 @export_range(0,100,.05) var calcAmmount: float = 0.0
-@export_enum("HP","LP","HP/LP","TP") var costBonus: String
+@export_enum("HP","LP","HP/LP","TP","None") var costBonus: String = "None"
 @export_range(0,2,.01) var costMod: float = 0.0
 
 @export_group("Blue Properties") #If it has defensive uses

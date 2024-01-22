@@ -41,7 +41,7 @@ enum target {
 func _ready():
 	moreReady()
 
-func moreReady():#Make a function so it'll work on parent and child nodes
+func moreReady() -> void:#Make a function so it'll work on parent and child nodes
 	currentHP = data.MaxHP
 	HPtext.text = str("HP: ", currentHP)
 	data.TempElement = data.element
@@ -53,7 +53,7 @@ func moreReady():#Make a function so it'll work on parent and child nodes
 func _process(_delta):
 	processer()
 
-func processer():
+func processer() -> void:
 	if currentHP <= 0:
 		currentHP = 0
 		HPtext.text = str("HP: ", currentHP)
@@ -84,7 +84,7 @@ func processer():
 #-----------------------------------------
 #MOVE PROPERTYS
 #-----------------------------------------
-func attack(move, receiver, user, property, currentAura):
+func attack(move, receiver, user, property, currentAura) -> int:
 	var attackStat: int
 	var defenseStat: int
 	var softMod: float = 0.0
@@ -169,7 +169,7 @@ func attack(move, receiver, user, property, currentAura):
 	feedback = str(damage, " Damage!", feedback)
 	return damage
 
-func BOMB(move,receiver):
+func BOMB(move,receiver) -> int:
 	feedback = ""
 	var softMod: float = 0
 	var prev = softMod
@@ -201,7 +201,7 @@ func BOMB(move,receiver):
 	feedback = str(damage, " BOMB Damage!", feedback)
 	return damage
 
-func healHP(move,receiver):
+func healHP(move,receiver) -> int:
 	var healAmmount = move.healing
 	if move.percentage:
 		healAmmount = int((float(move.healing)/100) * float(receiver.data.MaxHP))
@@ -210,7 +210,7 @@ func healHP(move,receiver):
 	
 	return healAmmount
 
-func healAilment(move, receiver):
+func healAilment(move, receiver) -> void:
 	var canHeal = true
 	if move.HealedAilment == "All":
 		receiver.data.AilmentNum -= move.HealAilAmmount
@@ -237,10 +237,10 @@ func healAilment(move, receiver):
 		
 		receiver.XSoftDisplay()
 
-func healKO(receiver):
+func healKO(receiver) -> void:
 	receiver.data.KO = false
 
-func applyNegativeAilment(move,receiver,user,preWin = false):
+func applyNegativeAilment(move,receiver,user,preWin = false) -> void:
 	if move.BaseAilment > 200:
 		preWin = true
 	
@@ -255,7 +255,7 @@ func applyNegativeAilment(move,receiver,user,preWin = false):
 		if move.Ailment != receiver.data.Ailment:
 			receiver.data.Ailment = move.Ailment
 
-func applyPositiveAilment(move,receiver):
+func applyPositiveAilment(move,receiver) -> void:
 	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Chemical":
 		ailmentSound.emit(move.Ailment)
 		if move.Ailment == "Protected":
@@ -265,7 +265,7 @@ func applyPositiveAilment(move,receiver):
 			receiver.data.AilmentNum += 1
 			receiver.data.Ailment = "Overdrive"
 
-func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
+func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 	var win = preWin
 	var times = move.AilmentAmmount
 	var ele
@@ -290,7 +290,7 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = ""):
 	
 	receiver.XSoftDisplay()
 
-func buffStat(receiver,boostType,boostAmmount = 1):#For actively buffing and debuffing moves
+func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:
 		receiver.data.attackBoost += (boostAmmount * .3)
 		buffStatManager(receiver.get_node("Buffs/Attack"),receiver.data.attackBoost)
@@ -304,13 +304,13 @@ func buffStat(receiver,boostType,boostAmmount = 1):#For actively buffing and deb
 		receiver.data.luckBoost += (boostAmmount * .3)
 		buffStatManager(receiver.get_node("Buffs/Luck"),receiver.data.luckBoost)
 
-func buffCondition(move,receiver):
+func buffCondition(move,receiver) -> void:
 	receiver.data.Condition |= move.Condition
 	receiver.buffConditionDisplay()
 	if checkCondition("Targetted", receiver):#Targetted will last until 
 		targetCount = 2
 
-func buffElementChange(move,receiver,user):
+func buffElementChange(move,receiver,user) -> void:
 	var prev = receiver.data.TempElement
 	match move.ElementChange:
 		"TWin":
@@ -332,7 +332,7 @@ func buffElementChange(move,receiver,user):
 #-----------------------------------------
 #MOVE HELPERS
 #-----------------------------------------
-func elementModCalc(userElement,receiverElement,PreMod = 0):
+func elementModCalc(userElement,receiverElement,PreMod = 0) -> float:
 	var ElementModifier: float = 1
 	
 	match userElement:
@@ -342,6 +342,8 @@ func elementModCalc(userElement,receiverElement,PreMod = 0):
 					ElementModifier = .75 - PreMod
 				"Elec":
 					ElementModifier = 1.25 + PreMod
+				"Fire":
+					ElementModifier = 1
 				_:
 					ElementModifier = 1
 		"Water":
@@ -350,6 +352,8 @@ func elementModCalc(userElement,receiverElement,PreMod = 0):
 					ElementModifier = 1.25 + PreMod
 				"Elec":
 					ElementModifier = .75 - PreMod
+				"Water":
+					ElementModifier = 1
 				_:
 					ElementModifier = 1
 		"Elec":
@@ -358,6 +362,8 @@ func elementModCalc(userElement,receiverElement,PreMod = 0):
 					ElementModifier = .75 - PreMod
 				"Water":
 					ElementModifier = 1.25 + PreMod
+				"Elec":
+					ElementModifier = 1
 				_:
 					ElementModifier = 1
 		"Light":
@@ -391,7 +397,7 @@ func elementModCalc(userElement,receiverElement,PreMod = 0):
 	
 	return ElementModifier
 
-func elementMatchup(matchup,targetElement):
+func elementMatchup(matchup,targetElement) -> String:
 	var returnElement
 	var elements = ["Fire","Water","Elec"]
 	
@@ -416,7 +422,7 @@ func elementMatchup(matchup,targetElement):
 	
 	return returnElement
 
-func phy_weakness(user,receiver,PreMod = 0):
+func phy_weakness(user,receiver,PreMod = 0) -> float:
 	var PhyMod = 0
 	
 	if user == "Neutral":
@@ -448,7 +454,7 @@ func phy_weakness(user,receiver,PreMod = 0):
 	
 	return PhyMod
 
-func crit_chance(move,user,receiver,currentAura):
+func crit_chance(move,user,receiver,currentAura) -> bool:
 	var crit = false
 	var auraMod = 1
 	if currentAura == "CritDouble":
@@ -474,7 +480,7 @@ func crit_chance(move,user,receiver,currentAura):
 	
 	return crit
 
-func ailment_calc(move,user,receiver):#Ailment chance is like crit chance except it also depends on element matchups
+func ailment_calc(move,user,receiver) -> bool:#Ailment chance is like crit chance except it also depends on element matchups
 	var ailment = false
 	var offenseElement = user.data.element
 	
@@ -496,7 +502,7 @@ func ailment_calc(move,user,receiver):#Ailment chance is like crit chance except
 	
 	return ailment
 
-func ailmentCategory(receiver):#Will check if an ailment fits under the boxes: Physical, Mental, Negative and/or Positive
+func ailmentCategory(receiver) -> String:#Will check if an ailment fits under the boxes: Physical, Mental, Negative and/or Positive
 	match receiver.data.Ailment:
 		"Healthy":
 			return "Healthy"
@@ -528,7 +534,7 @@ func determineXSoft(move,user):
 			else:
 				return user.data.phyElement
 
-func checkCondition(seeking,receiver):
+func checkCondition(seeking,receiver) -> bool:
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	var found = false
 	#Search every possible flag in condition
@@ -538,9 +544,10 @@ func checkCondition(seeking,receiver):
 		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
 			found = true
 			break
+	
 	return found
 
-func checkXSoft(seeking,receiver):
+func checkXSoft(seeking,receiver) -> float:
 	var softAmmount: float = 0.0
 	var k: int = 0
 	if seeking == "Neutral":
@@ -562,7 +569,7 @@ func checkXSoft(seeking,receiver):
 #-----------------------------------------
 #STATUS CONDITION HANDLDLING
 #-----------------------------------------
-func removeCondition(seeking,receiver):
+func removeCondition(seeking,receiver) -> void:
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	#Search every possible flag in condition
 	#Make sure to check if the receiver even has a weakness/resistance
@@ -573,7 +580,7 @@ func removeCondition(seeking,receiver):
 			receiver.data.Condition = receiver.data.Condition & ~seekingFlag
 			receiver.currentCondition.text = HelperFunctions.Flag_to_String(receiver.data.Condition, "Condition")
 
-func statBoostHandling():
+func statBoostHandling() -> void:
 	for boost in range(statBoostSlots.size()):
 		if statBoostSlots[boost] > 0:
 			statBoostSlots[boost] -= .05
@@ -586,7 +593,7 @@ func statBoostHandling():
 		if statBoostSlots[boost] == 0:
 			statBoostSprites[boost].hide()
 
-func midTurnAilments(Ailment, currentAura):
+func midTurnAilments(Ailment, currentAura) -> bool:
 	var stillAttack = true
 	match Ailment:
 		"Reckless":
@@ -611,7 +618,7 @@ func midTurnAilments(Ailment, currentAura):
 	
 	return stillAttack
 
-func reactionaryAilments(Ailment):
+func reactionaryAilments(Ailment) -> void:
 	match Ailment:
 		"Rust":
 			if data.AilmentNum >= 1:
@@ -624,7 +631,7 @@ func reactionaryAilments(Ailment):
 		"Miserable":
 			pass
 
-func endPhaseAilments(Ailment):
+func endPhaseAilments(Ailment) -> void:
 	match Ailment:
 		"Poison":
 			var damage = int(data.MaxHP * data.AilmentNum * .066)
@@ -635,16 +642,16 @@ func endPhaseAilments(Ailment):
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
-func hideDesc():
+func hideDesc() -> void:
 	InfoBox.hide()
 	Info.clear()
 
-func displayQuick(quick):
+func displayQuick(quick) -> void:
 	Info.text = quick
 	InfoBox.show()
 	$Timer.start()
 
-func tweenDamage(targetting,tweenTiming,infomation):
+func tweenDamage(targetting,tweenTiming,infomation) -> void:
 	var tween = targetting.HPBar.create_tween()
 	var prevValue = HPBar.value
 	targetting.displayQuick(infomation)
@@ -662,7 +669,7 @@ func tweenDamage(targetting,tweenTiming,infomation):
 	
 	infomation = ""
 
-func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
+func buffStatManager(type,ammount) -> void:#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
 	if ammount > .6:
 		ammount = .6
@@ -681,7 +688,7 @@ func buffStatManager(type,ammount):#Called whenever a buffed stat is changed
 	elif ammount < 0:
 		type.modulate = Color(0.58, 0.592, 0.541, 0.671)
 
-func buffConditionDisplay():
+func buffConditionDisplay() -> void:
 	var conditionString: String = ""
 	for i in range(10):
 		#Flag is the binary version of i
@@ -694,7 +701,7 @@ func buffConditionDisplay():
 	
 	currentCondition.text = conditionString
 
-func XSoftDisplay():
+func XSoftDisplay() -> void:
 	for soft in range(data.XSoft.size()): #Show any XSofts that are on the entity
 		var oneTrue = false
 		for i in range(6):
@@ -707,7 +714,7 @@ func XSoftDisplay():
 		if not oneTrue:
 			XSoftTabs[soft].hide()
 
-func reset():
+func reset() -> void:
 	for boost in range(statBoostSlots.size()): #Reset Stat boosts to 0
 		statBoostSlots[boost] = 0
 		buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
@@ -724,5 +731,5 @@ func reset():
 	data.AilmentNum = 0
 	targetCount = 0 #Reset target count
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	hideDesc()

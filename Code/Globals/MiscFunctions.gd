@@ -1,6 +1,6 @@
 extends Node
 
-func miscFunCrash(reciever,recieverMaxTP,recieverTP):
+func miscFunCrash(reciever,recieverMaxTP,recieverTP) -> int:
 	var count = 0
 	var totalLost = 0
 	for i in range(reciever.data.AilmentNum):
@@ -12,7 +12,7 @@ func miscFunCrash(reciever,recieverMaxTP,recieverTP):
 	recieverTP -= totalLost
 	return recieverTP
 
-func miscFunWhimBerry(reciever):
+func miscFunWhimBerry(reciever) -> void:
 	var healed = randi_range(10,60)
 	reciever.currentLP = healed
 	if reciever.currentLP > reciever.playerData.MaxLP:
@@ -22,5 +22,5 @@ func miscFunWhimBerry(reciever):
 	reciever.displayQuick(str("Healed ", healed, "LP!"))
 	
 	reciever.LPtext.text = str("LP: ",reciever.currentLP)
-	await tween.tween_property(reciever.HPBar, "value",
+	await tween.tween_property(reciever.LPBar, "value",
 	int(100 * float(reciever.currentLP) / float(reciever.playerData.MaxLP)),.4).set_trans(4).set_ease(1)

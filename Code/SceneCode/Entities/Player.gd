@@ -32,9 +32,6 @@ var displaying: bool = false
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
-#func _init(entity_data: entityData):
-#	data = entity_data
-
 func _ready():
 	moreReady()
 	currentLP = playerData.MaxLP
@@ -60,7 +57,7 @@ func _process(_delta):
 #-----------------------------------------
 	#targetting.HPBar, "value",
 #	int(100 * float(targetting.currentHP) / float(targetting.data.MaxHP)),tweenTiming).set_trans(Tween.TRANS_BOUNCE)
-func payCost(move):
+func payCost(move) -> int:
 	match move.CostType:
 		"HP":
 			currentHP -= (data.MaxHP * move.cost)
@@ -87,7 +84,7 @@ func payCost(move):
 		payTP = int(payTP/2)
 	return payTP
 
-func displayDesc(category,num):
+func displayDesc(category,num) -> void:
 	var TrueTPCost = int(TPArray[category][num] - (data.speed * (1 + data.speedBoost)))
 	if Globals.currentAura == "LowTicks":
 		TrueTPCost = int(TrueTPCost * .5)
@@ -107,34 +104,34 @@ func displayDesc(category,num):
 #-----------------------------------------
 #MENU SIGNALS
 #-----------------------------------------
-func _on_canvas_layer_attack(i):
+func _on_canvas_layer_attack(i) -> void:
 	if Globals.attacking:
 		moveSelected.emit(attacks[i])
 	else:
 		startSelect.emit(attacks[i])
 
-func _on_canvas_layer_skill(i):
+func _on_canvas_layer_skill(i) -> void:
 	if Globals.attacking:
 		moveSelected.emit(skills[i])
 	else:
 		startSelect.emit(skills[i])
 
-func _on_canvas_layer_item(i):
+func _on_canvas_layer_item(i) -> void:
 	if Globals.attacking:
 		moveSelected.emit(items[i].attackData)
 	else:
 		startSelect.emit(items[i].attackData)
 
-func _on_canvas_layer_tactic(i):
+func _on_canvas_layer_tactic(i) -> void:
 	if Globals.attacking:
 		moveSelected.emit(tactics[i])
 	else:
 		startSelect.emit(tactics[i])
 
-func _on_canvas_layer_cancel():
+func _on_canvas_layer_cancel() -> void:
 	cancel.emit()
 
-func _on_canvas_layer_focusing(focus,menuI,buttonI,newOne):
+func _on_canvas_layer_focusing(focus,menuI,buttonI,newOne) -> void:
 	if menuI == 0:
 		hideDesc()
 		displaying = false

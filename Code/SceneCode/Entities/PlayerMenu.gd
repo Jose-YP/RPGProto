@@ -43,7 +43,7 @@ func _process(_delta):
 		Focusing.emit(fullMenu[menuIndex][buttonIndex],menuIndex,buttonIndex,changed)
 		changed = false
 
-func menuMove():
+func menuMove() -> void:
 	if Input.is_action_just_pressed("Left"):
 		confirm.emit(false)
 		menuIndex = 0
@@ -73,7 +73,7 @@ func menuMove():
 				buttonIndex -= 1
 			changed = true
 
-func menuConfirm():
+func menuConfirm() -> void:
 	if Input.is_action_just_pressed("Accept"):
 		if menuIndex == 0: #get to the next item in the menu
 			Tab.visible = true
@@ -110,28 +110,28 @@ func menuConfirm():
 		confirm.emit(false)
 
 #Regular menu's buttons all have arguments to the index they should send to
-func _on_first_pressed(index):
+func _on_first_pressed(index) -> void:
 	Tab.visible = true
 	Tab.current_tab = index
 
-func _on_attack_pressed(index):
+func _on_attack_pressed(index) -> void:
 	Attack.emit(index)
 
-func _on_skill_pressed(index):
+func _on_skill_pressed(index) -> void:
 	Skill.emit(index)
 
-func _on_item_pressed(index):
+func _on_item_pressed(index) -> void:
 	Item.emit(index)
 
-func _on_tactic_pressed(index):
+func _on_tactic_pressed(index) -> void:
 	Tactic.emit(index)
 
-func _on_player_can_pay_for(menuI, buttonI, allowed):
+func _on_player_can_pay_for(menuI, buttonI, allowed) -> void:
 	if allowed:
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:
 		print(fullMenu[menuI+1][buttonI].name)
 		fullMenu[menuI+1][buttonI].disabled = true
 
-func _on_player_selected_again():
+func _on_player_selected_again() -> void:
 	selectingMenu = true

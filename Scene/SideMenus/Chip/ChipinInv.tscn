@@ -51,14 +51,22 @@ layout_mode = 2
 columns = 2
 
 [node name="DreamerStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
 modulate = Color(0.956863, 0.537255, 0.168627, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_nxxrm")
+expand_mode = 4
+stretch_mode = 5
+
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_nxxrm")
@@ -74,14 +82,22 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="LonnaStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
 modulate = Color(0.596078, 0, 0.862745, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_nxxrm")
+expand_mode = 4
+stretch_mode = 5
+
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_nxxrm")
@@ -97,14 +113,22 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="DamirStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
 modulate = Color(0.160784, 0.160784, 0.917647, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_nxxrm")
+expand_mode = 4
+stretch_mode = 5
+
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_nxxrm")
@@ -120,14 +144,22 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="PepperStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
 modulate = Color(0.882353, 0.156863, 0.156863, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_nxxrm")
+expand_mode = 4
+stretch_mode = 5
+
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_nxxrm")

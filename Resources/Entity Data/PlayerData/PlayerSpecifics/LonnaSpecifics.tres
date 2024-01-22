@@ -31,3 +31,4 @@ permanentElement = "Elec"
 permanentPhyEle = "Crush"
 permanentWeakness = 0
 permanentResist = 8
+defaultBoostStat = 1

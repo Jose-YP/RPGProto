@@ -36,6 +36,8 @@ var immunity: String = "None"
 @export var itemData: Dictionary = {}
 @export var waitData: Move
 @export_enum("None","Physical","Ballistic","Freebie") var ItemChange: String = "None"
+@export_enum("HP","LP","HP/LP","TP","None") var costBonus: String = "None"
+@export_range(0,100,.05) var costMod: float = 0
 @export_enum("None","Drain","AilmentHit","CritChance") var calcBonus: String = "None"
 @export_range(0,100,.05) var calcAmmount: float = 0
 

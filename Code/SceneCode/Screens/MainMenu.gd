@@ -53,13 +53,13 @@ func _ready():
 #-----------------------------------------
 #PLAYER SETUP
 #-----------------------------------------
-func playerDescriptions(description,i):
+func playerDescriptions(description,i) -> void:
 	var level = playerLevels[i].value
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
 	description.append_text(makePlayerDesc(i,playerChoices[i].selected,currentName,level))
 	players[i] = playerEntities[playerChoices[i].selected]
 
-func makePlayerDesc(index,playerNum,currentName,level):
+func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	var entity = Globals.getStats(playerEntities[playerNum],currentName,str(level))
 	var foundRes = false
 	var resist: String
@@ -110,7 +110,7 @@ func makePlayerDesc(index,playerNum,currentName,level):
 	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
 	return description
 
-func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames second is for playerChoices
+func playerChoiceChanged(playerIndex,infoIndex) -> void: #First is for playerNames second is for playerChoices
 	makeNoise.emit(0)
 	playerStats[infoIndex].clear()
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
@@ -120,7 +120,7 @@ func playerChoiceChanged(playerIndex,infoIndex): #First is for playerNames secon
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	playerLevels[infoIndex].value = level
 
-func levelChange(level,infoIndex):
+func levelChange(level,infoIndex) -> void:
 	makeNoise.emit(2)
 	playerStats[infoIndex].clear()
 	var playerIndex = playerChoices[infoIndex].selected
@@ -131,7 +131,7 @@ func levelChange(level,infoIndex):
 #-----------------------------------------
 #PLAYER HELPERS
 #-----------------------------------------
-func noRepeats(currentName, infoIndex):
+func noRepeats(currentName, infoIndex) -> void:
 	var result: bool = true
 	var hold = players[infoIndex]
 	var prevIndex: int = getOldIndex(hold.name)
@@ -152,22 +152,24 @@ func noRepeats(currentName, infoIndex):
 	if result:
 		setInactivePlayer(hold)
 
-func saveLevels(chara,level):
+func saveLevels(chara,level) -> void:
 	for playerIndex in range(playerNamesHold.size()):
 		if playerNamesHold[playerIndex] == chara:
 			playerLevelsHold[playerIndex] = int(level)
 
-func getLevel(chara):
+func getLevel(chara) -> int:
 	for playerIndex in range(playerNamesHold.size()):
 		if playerNamesHold[playerIndex] == chara:
 			return playerLevelsHold[playerIndex]
+	
+	return 5
 
-func setPlayerGlobals():
+func setPlayerGlobals() -> void:
 	Globals.current_player_entities = []
 	Globals.current_player_entities = players
 	Globals.every_player_entity = players + Globals.inactive_player_entities
 
-func setInactivePlayer(held):
+func setInactivePlayer(held) -> void:
 	Globals.inactive_player_entities[0] = held
 
 func getOldIndex(prevName) -> int:
@@ -187,7 +189,7 @@ func getOldIndex(prevName) -> int:
 #-----------------------------------------
 #ENEMY SETUP
 #-----------------------------------------
-func makeEnemyLineup():
+func makeEnemyLineup() -> void:
 	enemiesShown.clear()
 	var enLiString: String
 	for i in range(enemyChoices.size()):
@@ -204,20 +206,20 @@ func makeEnemyLineup():
 	
 	enemiesShown.append_text(enLiString)
 
-func setEnemyGlobals():
+func setEnemyGlobals() -> void:
 	Globals.current_enemy_entities = []
 	for i in range(3):
 		if enemyChoices[i].selected != 6:
 			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 
-func enemyChoiceChanged(_index):
+func enemyChoiceChanged(_index) -> void:
 	makeNoise.emit(0)
 	makeEnemyLineup()
 
 #-----------------------------------------
 #GENERAL SETUP
 #-----------------------------------------
-func getElements(entity,ElementTab,PhyEleTab):
+func getElements(entity,ElementTab,PhyEleTab) -> void:
 	for k in range(4):
 		if Globals.elementGroups[k] == entity.element:
 			ElementTab.current_tab = k
@@ -228,7 +230,7 @@ func getElements(entity,ElementTab,PhyEleTab):
 #-----------------------------------------
 #MISC TOGGLES
 #-----------------------------------------
-func _on_player_order_toggled(button_pressed):
+func _on_player_order_toggled(button_pressed) -> void:
 	Globals.playerFirst = button_pressed
 	if button_pressed:
 		$PlayerFirstToggle/HBoxContainer/Label.text = "ON"
@@ -237,7 +239,7 @@ func _on_player_order_toggled(button_pressed):
 		$PlayerFirstToggle/HBoxContainer/Label.text = "OFF"
 		makeNoise.emit(1)
 
-func _on_music_button_item_selected(index):
+func _on_music_button_item_selected(index) -> void:
 	if index == 0:
 		Globals.currentSong = ""
 	else:
@@ -247,39 +249,39 @@ func _on_music_button_item_selected(index):
 #-----------------------------------------
 #NAVIGATION BUTTONS
 #-----------------------------------------
-func _on_help_button_pressed():
+func _on_help_button_pressed() -> void:
 	makeNoise.emit(0)
 	$HelpMenu.show()
 
-func _on_exit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	makeNoise.emit(1)
 	$HelpMenu.hide()
 
-func _on_option_button_pressed():
+func _on_option_button_pressed() -> void:
 	makeNoise.emit(0)
 	$OptionsMenu.show()
 
-func _on_exit_option_pressed():
+func _on_exit_option_pressed() -> void:
 	makeNoise.emit(1)
 	$OptionsMenu.hide()
 
-func _on_fight_button_pressed():
+func _on_fight_button_pressed() -> void:
 	setEnemyGlobals()
 	setPlayerGlobals()
 	
 	battleStart.emit()
 
-func _on_menu_button_pressed():
+func _on_menu_button_pressed() -> void:
 	makeNoise.emit(1)
 
-func _on_chip_button_pressed():
+func _on_chip_button_pressed() -> void:
 	Globals.current_player_entities = players
 	chipMenu.emit()
 
-func _on_gear_button_pressed():
+func _on_gear_button_pressed() -> void:
 	Globals.current_player_entities = players
 	gearMenu.emit()
 
-func _on_item_button_pressed():
+func _on_item_button_pressed() -> void:
 	Globals.current_player_entities = players
 	itemMenu.emit()

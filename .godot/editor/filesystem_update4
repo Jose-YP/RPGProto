@@ -70,3 +70,9 @@ res://Resources/Chip Data/Spear.tres
 res://Resources/Chip Data/Water.tres
 res://Resources/Chip Data/Together.tres
 res://Code/ResourceMakers/ChipMaker.gd
+res://Code/SceneCode/Screens/MainMenu.gd
+res://Code/Globals/MiscFunctions.gd
+res://Code/SceneCode/Entities/Player.gd
+res://Code/SceneCode/Entities/PlayerMenu.gd
+res://Code/SceneCode/Entities/Entity.gd
+res://Code/SceneCode/Entities/enemy.gd

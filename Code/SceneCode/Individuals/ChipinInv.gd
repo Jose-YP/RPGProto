@@ -30,38 +30,39 @@ func _ready():
 	
 	update()
 
-func update():
+func update() -> void:
 	currentNum = 3
 	currentPlayers = ""
 	
 	if ChipData.equippedOn != null:
 		if ChipData.equippedOn & 1:
-			characterStatus[0].show()
+			characterStatus[0].current_tab = 1
 			updatePlayers("DREAMER")
 			currentNum -= 1
 		else:
-			characterStatus[0].hide()
+			print(ChipData.name, ChipData.equippedOn)
+			characterStatus[0].current_tab = 0
 		
 		if ChipData.equippedOn & 2:
-			characterStatus[1].show()
+			characterStatus[1].current_tab = 1
 			updatePlayers("Lonna")
 			currentNum -= 1
 		else:
-			characterStatus[1].hide()
+			characterStatus[1].current_tab = 0
 		
 		if ChipData.equippedOn & 4:
-			characterStatus[2].show()
+			characterStatus[2].current_tab = 1
 			updatePlayers("Damir")
 			currentNum -= 1
 		else:
-			characterStatus[2].hide()
+			characterStatus[2].current_tab = 0
 		
 		if ChipData.equippedOn & 8:
-			characterStatus[3].show()
+			characterStatus[3].current_tab = 1
 			updatePlayers("Pepper")
 			currentNum -= 1
 		else:
-			characterStatus[3].hide()
+			characterStatus[3].current_tab = 0
 	
 	if currentPlayers == "":
 		currentPlayers = "None"
@@ -73,11 +74,11 @@ func update():
 	
 	chipText.append_text(str(ChipData.name," Chip | [color=yellow]CPU: ",cost,"[/color] | ",currentNum,"/",maxNum))
 
-func updatePlayers(player):
+func updatePlayers(player) -> void:
 	if currentPlayers == "":
 		currentPlayers = str(player)
 	else:
 		currentPlayers = str(currentPlayers,", ",player)
 
-func _on_button_focus_entered():
+func _on_button_focus_entered() -> void:
 	getDesc.emit(self)

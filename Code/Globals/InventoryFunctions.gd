@@ -18,12 +18,12 @@ func chipHandler(inventory) -> void:
 				if viewingChip == chip:
 					chipHandlerResult(chip,player.name,true)
 
-func miniChipHandler(chara,playerChips,inventory) -> void:
+func miniChipHandler(chara,playerChips,inventory, removing = false) -> void:
 	for chip in playerChips:
 		for viewingChip in inventory:
 			if viewingChip == chip:
 				chipHandlerResult(viewingChip,chara,true)
-			else:
+			elif removing:
 				chipHandlerResult(viewingChip,chara,false)
 
 func chipHandlerResult(chip,chara,result) -> void:
@@ -33,7 +33,6 @@ func chipHandlerResult(chip,chara,result) -> void:
 	match chara:
 		"DREAMER":
 			if result:
-				print("Equipped", chip.name)
 				chip.equippedOn |= 1
 			else:
 				chip.equippedOn &= ~1

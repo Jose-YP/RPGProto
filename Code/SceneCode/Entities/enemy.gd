@@ -44,8 +44,8 @@ func _process(_delta):
 #-----------------------------------------
 #ENEMYAI
 #-----------------------------------------
-func chooseMove(TP,allies,opposing):
-	var move
+func chooseMove(TP,allies,opposing) -> Move:
+	var move: Resource
 	var allowed = allowedMoveset(TP)
 	
 	match enemyData.AIType:
@@ -62,6 +62,8 @@ func chooseMove(TP,allies,opposing):
 			move = aiInstance.ShouldDebuff(allowed,allies,opposing)
 		_:
 			pass
+	
+	return move
 
 #-----------------------------------------
 #TARGETTING TYPES
@@ -94,11 +96,11 @@ func GroupSelect(targetting,_move):
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
-func displayMove(move):
+func displayMove(move) -> void:
 	InfoBox.show()
 	Info.text = str(data.name, " used ", move.name)
 
-func makeDesc():
+func makeDesc() -> void:
 	var foundWeak: bool
 	var foundRes: bool
 	var weak: String = ""
@@ -152,15 +154,15 @@ func getScanned():
 #-----------------------------------------
 #PAYING ITEM&TP
 #-----------------------------------------
-func payCost(move):
+func payCost(move) -> int:
 	if move.CostType == "Item":
 		for item in data.itemData:
 			if item.name == move.name:
 				data.itemData[item] -= move.cost
 	
-	return move.TPCost - (data.speed * (1 + data.speedBoost))
+	return int(move.TPCost - (data.speed * (1 + data.speedBoost)))
 
-func allowedMoveset(TP):
+func allowedMoveset(TP) -> Array:
 	var allowed: Array = []
 	for move in moveset:
 		var use = move

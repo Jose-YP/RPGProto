@@ -13,12 +13,12 @@ class_name Player
 @export var currentCPU: int = 0
 
 @export_group("Basic Moves")
-@export_enum("Single","Group","Self","All","Random","KO","None") var attackTarget = "Single"
+@export_enum("Single","Group","Self","All","Random","KO","None") var attackTarget: String = "Single"
 @export var Basics: Array[Move]
 
 @export_group("Tactics")
-@export_enum("Single","Group","Self","All","Random","KO","None") var boostTarget = "Single"
-@export_flags("Attack","Defense","Speed","Luck") var boostStat
+@export_enum("Single","Group","Self","All","Random","KO","None") var boostTarget: String = "Single"
+@export_flags("Attack","Defense","Speed","Luck") var boostStat: int = 8
 @export var Tactics2: Move#For some reason it breaks when I make Tactics an Array[Move]
 @export var Tactics3: Move
 @export var Tactics4: Move
@@ -28,3 +28,4 @@ class_name Player
 @export_enum("Slash","Crush","Pierce") var permanentPhyEle: String = "Slash"
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentWeakness: int = 0
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentResist: int = 0
+@export_flags("Attack","Defense","Speed","Luck") var defaultBoostStat: int = 8

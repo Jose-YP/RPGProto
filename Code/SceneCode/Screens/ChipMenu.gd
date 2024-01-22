@@ -356,9 +356,11 @@ func addChip(chip) -> void:
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	if chip.CpuCost <= (entity.specificData.MaxCPU - entity.specificData.currentCPU):
+	if (chip.CpuCost <= (entity.specificData.MaxCPU - entity.specificData.currentCPU)
+	and not playerHitLimit(entity, chip)):
 		entity.specificData.ChipData.insert(markerIndex, chip)
-		update()
+	
+	update()
 
 func removeChip(chip) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
@@ -366,6 +368,7 @@ func removeChip(chip) -> void:
 		entity = Globals.every_player_entity[tempIndex]
 	
 	entity.specificData.ChipData.erase(chip)
+	InventoryFunctions.miniChipHandler(entity.name,entity.specificData.ChipData, currentInv, true)
 	update()
 
 func sortPlayerChip(chip) -> void:
@@ -472,3 +475,15 @@ func getButtonIndex(searching) -> Vector2:
 		found += 1
 	
 	return Vector2(dock, found)
+
+func playerHitLimit(player, chip) -> bool:
+	var times: int = 0
+	for playerChip in player.specificData.ChipData:
+		if playerChip.name == chip.name:
+			times += 1
+	
+	if times >= 2:
+		print("Hit limit")
+		return true
+	else:
+		return false

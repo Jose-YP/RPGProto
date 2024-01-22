@@ -30,5 +30,5 @@ func _ready():
 	
 	chipText.append_text(str(ChipData.name," Chip | [color=yellow]CPU: ",cost,"[/color]"))
 
-func _on_button_focus_entered():
+func _on_button_focus_entered() -> void:
 	getDesc.emit(self)

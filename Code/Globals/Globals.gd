@@ -57,6 +57,10 @@ func getStats(Entity,character,level) -> entityData:
 	
 	#Moves
 	Entity.specificData.Basics[1] = noMovePlaceholder
+	Entity.specificData.attackTarget = "Single"
+	Entity.specificData.boostTarget = "Single"
+	Entity.specificData.boostStat = Entity.specificData.defaultBoostStat
+	
 	preapplyChips(Entity)
 	
 	return Entity

@@ -30,3 +30,4 @@ permanentElement = "Fire"
 permanentPhyEle = "Pierce"
 permanentWeakness = 0
 permanentResist = 32
+defaultBoostStat = 8
