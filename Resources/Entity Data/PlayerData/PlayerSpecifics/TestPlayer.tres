@@ -14,7 +14,6 @@
 script = ExtResource("7_63w5u")
 MaxLP = 30
 MaxCPU = 38
-permanentElement = "Neutral"
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("5_f75ss")
@@ -25,3 +24,6 @@ boostStat = 8
 Tactics2 = ExtResource("4_e3fiq")
 Tactics3 = ExtResource("5_aihjb")
 Tactics4 = ExtResource("6_8333h")
+permanentElement = "Neutral"
+permanentWeakness = 0
+permanentResist = 16

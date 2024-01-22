@@ -24,7 +24,8 @@ class_name entityData
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Weakness: int = 0
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Resist: int = 0
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None","Protected",
-"Dumbfounded","Miserable","Worn Out", "Explosive","XSoft","Mental","Chemical","Debuff") var immunity = "None"
+"Dumbfounded","Miserable","Worn Out", "Explosive","XSoft","Mental","Chemical","Debuff") 
+var immunity: String = "None"
 @export_range(-1,1,.05) var elementMod: float = 0
 @export var sameElement: bool = false
 
@@ -34,9 +35,9 @@ class_name entityData
 @export var skillData: Array = [Move]
 @export var itemData: Dictionary = {}
 @export var waitData: Move
-@export_enum("Physical","Ballistic","Freebie") var ItemChange: String
-@export_enum("None","Drain","AilmentHit","CritChance") var calcBonus = "None"
-@export_range(0,100,.05) var calcAmmount: float
+@export_enum("None","Physical","Ballistic","Freebie") var ItemChange: String = "None"
+@export_enum("None","Drain","AilmentHit","CritChance") var calcBonus: String = "None"
+@export_range(0,100,.05) var calcAmmount: float = 0
 
 
 @export_group("Temp Property")
@@ -46,7 +47,7 @@ class_name entityData
 @export_enum("Fire","Water","Elec","Neutral") var TempElement = element
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive","Healthy") var Ailment: String = "Healthy"
-@export_range(0,3) var AilmentNum: int
+@export_range(0,3) var AilmentNum: int = 0
 @export_range(-.6,.6,.05) var attackBoost: float = 0
 @export_range(-.6,.6,.05) var defenseBoost: float = 0
 @export_range(-.6,.6,.05) var speedBoost: float = 0

@@ -9,6 +9,7 @@ description = "Changes the user's element to Fire"
 CpuCost = 4
 maxNum = 3
 ChipType = "Blue"
+ownerNum = 0
 equippedOn = 0
 other = ""
 AffectedMove = "None"

@@ -148,7 +148,7 @@ func _ready(): #Assign current team according to starting bool
 	$Timers/Timer.set_paused(false) 
 	$Timers/PostPhaseTimer.set_paused(false)
 
-func movesetDisplay(player): #Format every player's menu to include the name of their moveset
+func movesetDisplay(player) -> void: #Format every player's menu to include the name of their moveset
 	#get the player's complete moveset
 	player.moveset = [player.attacks,player.skills,player.items,player.tactics]
 	#Get the tab
@@ -167,7 +167,7 @@ func movesetDisplay(player): #Format every player's menu to include the name of 
 		player.descriptions.append(tabDescriptions)
 		player.TPArray.append(tabTPs)
 
-func movesetDescription(moveset,player,n):
+func movesetDescription(moveset,player,n) -> String:
 	var fullDesc
 	var move = moveset
 	var desc: String = ""
@@ -219,7 +219,7 @@ func movesetDescription(moveset,player,n):
 	
 	return fullDesc
 
-func SaveTPCosts(moveset):
+func SaveTPCosts(moveset) -> int:
 	var move = moveset
 	if move is Item:
 		move = moveset.attackData
@@ -258,7 +258,7 @@ func _process(_delta):#If player turn ever changes change current team to match 
 		PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
 		EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
 
-func initializeTP(players=false): #Make and remake max TPs when an entiy is gone or enters
+func initializeTP(players=false) -> void: #Make and remake max TPs when an entiy is gone or enters
 	if players:
 		playerMaxTP = 0
 		for player in playerOrder:
@@ -275,7 +275,7 @@ func initializeTP(players=false): #Make and remake max TPs when an entiy is gone
 #-----------------------------------------
 #TARGETTING MANAGERS
 #-----------------------------------------
-func findTarget(useMove):
+func findTarget(useMove) -> targetTypes:
 	var returnTarget
 	match useMove.Target:
 		"Single":
@@ -296,7 +296,7 @@ func findTarget(useMove):
 	print(returnTarget)
 	return returnTarget
 
-func findWhich(useMove):
+func findWhich(useMove) -> whichTypes:
 	var returnWhich
 	match useMove.Which:
 		"Enemy":
@@ -308,7 +308,7 @@ func findWhich(useMove):
 	
 	return returnWhich
 
-func checkForTargetted(targetting):
+func checkForTargetted(targetting) -> Array:
 	var trueTargetArray = []
 	
 	for entity in targetting:
@@ -321,7 +321,7 @@ func checkForTargetted(targetting):
 	else:
 		return trueTargetArray
 
-func nextTarget(TeamSide = team,OpposingSide = opposing):
+func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 	match which:
 		whichTypes.ENEMY:
 			targetArray = OpposingSide
@@ -405,7 +405,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing):
 				waiting = true
 				EfinishSelecting(enemyAction)
 
-func establishGroups(targetting):
+func establishGroups(targetting) -> Array:
 	var returnGroup: Array = []
 	
 	for element in Globals.elementGroups:
@@ -424,7 +424,7 @@ func establishGroups(targetting):
 #-----------------------------------------
 #PLAYERSELECTING // UI CONTROLS
 #-----------------------------------------
-func PSingleSelect(targetting):
+func PSingleSelect(targetting) -> void:
 	var playerSize = playerOrder.size()
 	var enemySize = enemyOrder.size()
 	if which != whichTypes.BOTH:#Simple line movement
@@ -485,7 +485,7 @@ func PSingleSelect(targetting):
 	
 	PConfirmSelect(targetArray[index])
 
-func PGroupSelect(targetting):
+func PGroupSelect(targetting) -> void:
 	#print(targetArrayGroup[groupIndex])
 	if Input.is_action_just_pressed("Left"):
 		makeNoise.emit(2)
@@ -509,14 +509,14 @@ func PGroupSelect(targetting):
 	for k in targetArrayGroup[groupIndex]:
 		PConfirmSelect(k)
 
-func PConfirmSelect(targetting):
+func PConfirmSelect(targetting) -> void:
 	targetting.selected.show()
 
-func PAllSelect(targetting):
+func PAllSelect(targetting) -> void:
 	for k in targetting:
 		k.selected.show()
 
-func stopScanning():
+func stopScanning() -> void:
 	if Input.is_action_just_pressed("Accept"):
 		makeNoise.emit(1)
 		var scanBoxTween
@@ -528,7 +528,7 @@ func stopScanning():
 				scanBoxTween.tween_property(enemy.ScanBox, "modulate", Color.TRANSPARENT,1)
 		next_entity()
 
-func _on_cancel_selected():
+func _on_cancel_selected() -> void:
 	makeNoise.emit(1)
 	Globals.attacking = false
 	index = 0
@@ -538,7 +538,7 @@ func _on_cancel_selected():
 #-----------------------------------------
 #ENEMY SELCTING
 #-----------------------------------------
-func EfinishSelecting(useMove):
+func EfinishSelecting(useMove) -> void:
 	enemyTP -= team[i].payCost(useMove)
 	TPChange(false)
 	waiting = true
@@ -550,12 +550,12 @@ func EfinishSelecting(useMove):
 #-----------------------------------------
 #UI BUTTONS
 #-----------------------------------------
-func _on_start_select(useMove):
+func _on_start_select(useMove) -> void:
 	Globals.attacking = true
 	target = findTarget(useMove)
 	which = findWhich(useMove)
 
-func _on_move_selected(useMove):
+func _on_move_selected(useMove) -> void:
 	playerTP -= team[i].payCost(useMove) #The function handles the player's other costs on it's own
 	TPChange()
 	
@@ -568,7 +568,7 @@ func _on_move_selected(useMove):
 #-----------------------------------------
 #USING MOVES
 #-----------------------------------------
-func action(useMove):
+func action(useMove) -> void:
 	var hits = useMove.HitNum
 	
 	match target:
@@ -620,7 +620,7 @@ func action(useMove):
 		team[i].removeCondition("Amp",team[i])
 		team[i].ampUsed = false
 
-func useAction(useMove, targetting, user, hits):
+func useAction(useMove, targetting, user, hits) -> void:
 	var times = 0
 	while times < hits:
 		if targetDied:
@@ -636,7 +636,7 @@ func useAction(useMove, targetting, user, hits):
 		times += 1
 		await get_tree().create_timer(.5).timeout
 
-func useActionRandom(useMove, targetting, user, hits):
+func useActionRandom(useMove, targetting, user, hits) -> void:
 	var times = 0
 	while times < hits:
 		if useMove.property & 1 and useMove.property & 2:
@@ -645,7 +645,7 @@ func useActionRandom(useMove, targetting, user, hits):
 		times += 1
 		await get_tree().create_timer(1).timeout
 
-func checkProperties(move,targetting,user,hitNum):
+func checkProperties(move,targetting,user,hitNum) -> void:
 	if move.property & 256: #Misc first allows cetain changes before attacks
 		determineFunction(move,targetting,user,hitNum)
 	if move.property & 1:
@@ -681,7 +681,7 @@ func checkProperties(move,targetting,user,hitNum):
 	checkHP()
 	critSFXEffect = false
 
-func TPChange(player = true):
+func TPChange(player = true) -> void:
 	var TPtween
 	if player:
 		TPtween = $PlayerTP.create_tween()#TP management must be handled here
@@ -695,7 +695,7 @@ func TPChange(player = true):
 #-----------------------------------------
 #CHECKPROPERTY FUNCTIONS
 #-----------------------------------------
-func offense(move,targetting,user):
+func offense(move,targetting,user) -> void:
 	targetting.selected.hide()
 	if move.property & 1:
 		targetting.currentHP -= user.attack(move, targetting, user,"Physical",Globals.currentAura)
@@ -707,7 +707,7 @@ func offense(move,targetting,user):
 	if targetting.currentHP <= 0:
 		targetting.currentHP = 0
 
-func healing(move,targetting,user):
+func healing(move,targetting,user) -> void:
 	targetting.selected.hide()
 	
 	if move.revive:
@@ -720,8 +720,6 @@ func healing(move,targetting,user):
 				actionNum += 1
 			else:
 				playerOrder.append(targetting)
-		else:
-			pass
 	
 	if move.healing != 0:
 		targetting.currentHP += user.healHP(move, targetting)
@@ -732,7 +730,7 @@ func healing(move,targetting,user):
 	if move.HealedAilment != "None":
 		user.healAilment(move, targetting)
 
-func buffing(move,targetting,user):
+func buffing(move,targetting,user) -> void:
 	if move.BoostType != 0 and move.BoostType != null:
 		user.buffStat(targetting,move.BoostType,move.BoostAmmount)
 		playBuffStat(move)
@@ -752,7 +750,7 @@ func buffing(move,targetting,user):
 	Globals.attacking = false
 	targetting.selected.hide()
 
-func aura(move):
+func aura(move) -> void:
 	if move.Aura != "None":
 		AuraFog.show()
 		AuraLabel.show()
@@ -779,10 +777,10 @@ func aura(move):
 			AuraLabel.text = "CritsChanceDoubled!"
 			Globals.currentAura = "CritDouble"
 
-func summon(_move,_user):
+func summon(_move,_user) -> void:
 	pass
 
-func ailment(move,targetting,user):
+func ailment(move,targetting,user) -> void:
 	if move.Ailment == "Overdrive" or move.Ailment == "Protected":
 		user.applyPositiveAilment(move,targetting)
 	elif move.Ailment != "PhySoft" and move.Ailment != "EleSoft":
@@ -790,7 +788,7 @@ func ailment(move,targetting,user):
 	else:
 		user.applyXSoft(move,targetting,user)
 
-func determineFunction(move,reciever,user,hitNum):
+func determineFunction(move,reciever,user,hitNum) -> void:
 	match move.name:
 		"Crash":
 			if playerTurn:
@@ -815,7 +813,7 @@ func determineFunction(move,reciever,user,hitNum):
 #-----------------------------------------
 #TURN END FUNCTIONS
 #-----------------------------------------
-func next_entity():
+func next_entity() -> void:
 	if overdriveTurn: #Return things to normal
 		if team[i].has_node("CanvasLayer"):
 			team[i].menu.hide()
@@ -857,7 +855,7 @@ func next_entity():
 		startSwitchPhase()
 		targetDied = false
 
-func overdriveTurnManager():
+func overdriveTurnManager() -> void:
 	for k in range(everyone.size()):
 		if everyone[k].checkCondition("AnotherTurn",everyone[k]):
 			overdriveTurn = true
@@ -881,14 +879,14 @@ func overdriveTurnManager():
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 
-func startSwitchPhase():
+func startSwitchPhase() -> void:
 	if actionNum <= 0:
 		waiting = true
 		$Timers/PostPhaseTimer.start()
 		playerTurn = not playerTurn
 		endPhaseCheck()
 
-func switchPhase():
+func switchPhase() -> void:
 	if playerTurn:
 		team = playerOrder
 		opposing = enemyOrder
@@ -918,7 +916,7 @@ func switchPhase():
 		actionNum = enemyOrder.size()
 
 #Check if the player can afford certain moves, if they can't disable those buttons
-func checkCosts(player): 
+func checkCosts(player) -> void: 
 	for category in player.moveset:
 		var menuIndex = player.moveset.find(category)
 		for move in category:
@@ -948,7 +946,7 @@ func checkCosts(player):
 					if move.name != "Wait": #Wait should always be availible
 						checkCostsMini(player, playerTP, "TP", move, menuIndex)
 
-func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
+func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false) -> bool:
 	var buttonIndex = player.moveset[menuIndex].find(move)
 	var use
 	var canpay = true
@@ -976,7 +974,7 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false):
 	
 	return canpay
 
-func endPhaseCheck():
+func endPhaseCheck() -> void:
 	for k in range(opposing.size()):
 		opposing[k].statBoostHandling()
 		var holdAilment = opposing[k].ailmentCategory(opposing[k])
@@ -1000,7 +998,7 @@ func endPhaseCheck():
 					enemy.removeCondition("Targetted",enemy)
 
 #Delete enemies, disable players and resize arrays as necessary also handles win and lose condition
-func checkHP():
+func checkHP() -> void:
 	var defeatedPlayers = []
 	var defeatedEnemies = []
 	var InitialPsize = playerOrder.size()
@@ -1078,7 +1076,7 @@ func checkHP():
 		j = 0
 		index = 0
 
-func endScreen(playerWin):
+func endScreen(playerWin) -> void:
 	var endScreenTween = $".".create_tween()
 	endScreenTween.set_parallel(true)
 	
@@ -1093,32 +1091,32 @@ func endScreen(playerWin):
 	endScreenTween.tween_property(music,"volume_db",-80,5)
 	$EndScreen/Button.show()
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	waiting = false
 	team[i].hideDesc()
 	if not fightOver:
 		next_entity()
 
-func _on_post_phase_timer_timeout():
+func _on_post_phase_timer_timeout() -> void:
 	waiting = false
 	switchPhase()
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	get_tree().change_scene_to_packed(mainMenuScene)
 
 #-----------------------------------------
 #AUDIO
 #-----------------------------------------
-func playButton(value):
+func playButton(value) -> void:
 	if value:
 		makeNoise.emit(0)
 	else:
 		makeNoise.emit(1)
 
-func playMenu():
+func playMenu() -> void:
 	makeNoise.emit(2)
 
-func playAttackMove(move,property):
+func playAttackMove(move,property) -> void:
 	var playEffect = null
 	var usePhy = move.phyElement
 	if move.name == "Attack":
@@ -1143,17 +1141,17 @@ func playAttackMove(move,property):
 	
 	playEffect.play()
 
-func playBuffStat(move):
+func playBuffStat(move) -> void:
 	if move.BoostAmmount > 0:
 		BuffSFX[0].play()
 	elif move.BoostAmmount < 0:
 		BuffSFX[1].play()
 
-func playAilment(type):
+func playAilment(type) -> void:
 	for k in range(Globals.AilmentTypes.size()):
 		if type == Globals.AilmentTypes[i]:
 			AilmentSFX[i].play()
 			break
 
-func setCrit():
+func setCrit() -> void:
 	critSFXEffect = true

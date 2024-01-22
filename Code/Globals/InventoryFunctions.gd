@@ -4,21 +4,21 @@ var effectiveChipInven
 var effectiveGearInven
 var effectiveItemInven
 
-func itemHandler(inventory):
+func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for chip in player.ItemData:
 			for viewingChip in inventory:
 				if viewingChip == chip:
 					chipHandlerResult(chip,player.name,true)
 
-func chipHandler(inventory):
+func chipHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for chip in player.specificData.ChipData:
 			for viewingChip in inventory:
 				if viewingChip == chip:
 					chipHandlerResult(chip,player.name,true)
 
-func miniChipHandler(chara,playerChips,inventory):
+func miniChipHandler(chara,playerChips,inventory) -> void:
 	for chip in playerChips:
 		for viewingChip in inventory:
 			if viewingChip == chip:
@@ -26,13 +26,14 @@ func miniChipHandler(chara,playerChips,inventory):
 			else:
 				chipHandlerResult(viewingChip,chara,false)
 
-func chipHandlerResult(chip,chara,result):
+func chipHandlerResult(chip,chara,result) -> void:
 	if chip.equippedOn == null: #Make sure the chip being operated on isn't null
 		chip.equippedOn = 0
 	
 	match chara:
 		"DREAMER":
 			if result:
+				print("Equipped", chip.name)
 				chip.equippedOn |= 1
 			else:
 				chip.equippedOn &= ~1
@@ -52,23 +53,27 @@ func chipHandlerResult(chip,chara,result):
 			else:
 				chip.equippedOn &= ~8
 
-func redChipFun(entity, chip):
+func redChipFun(entity, chip) -> void:
 	if chip.NewMove != null:
 		entity.specificData.Basics[1] = chip.NewMove
-	if chip.AffectedMove != "None":
-		pass
-	if chip.ItemChange != null:
-		pass
-	if chip.calcBonus != "None":
-		pass
-	if chip.costBonus != null:
-		pass
-
-func blueChipFun(entity, chip):
-	if chip.NewElement != "None" and chip.NewElement != "":
-		entity.element = chip.NewElement
 	if chip.newPhyElement != "None" and chip.newPhyElement != "":
 		entity.phyElement = chip.newPhyElement
+	if chip.AffectedMove == "Boost":
+		entity.specificData.boostTarget = chip.NewTarget
+	elif chip.AffectedMove == "Basic":
+		entity.specificData.basicTarget = chip.NewTarget
+	if chip.ItemChange != null:
+		entity.ItemChange = chip.ItemChange
+	if chip.calcBonus != "None":
+		entity.calcBonus = chip.calcBonus
+		entity.calcAmmount = chip.calcAmmount
+	if chip.costBonus != null:
+		entity.costBonus = chip.costBonus
+		entity.costMod = chip.costMod
+
+func blueChipFun(entity, chip) -> void:
+	if chip.NewElement != "None" and chip.NewElement != "":
+		entity.element = chip.NewElement
 	if chip.Condition != null:
 		entity.Condition |= chip.Condition
 	if chip.Immunity != "None":
@@ -80,7 +85,7 @@ func blueChipFun(entity, chip):
 	
 	entity.elementMod += chip.ElementModBoost
 
-func yellowChipFun(entity,chip):
+func yellowChipFun(entity,chip) -> void:
 	entity.MaxHP += chip.HP
 	entity.specificData.MaxLP += chip.LP
 	entity.MaxTP += chip.TP
@@ -97,7 +102,7 @@ func yellowChipFun(entity,chip):
 	if chip.StatSwap:
 		yellowStatSwap(entity, chip.FirstSwap, chip.SecondSwap)
 
-func yellowStatSwap(entity, firstStatType, secondStatType):
+func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 	var firstStat
 	
 	match firstStatType:
@@ -224,39 +229,5 @@ func yellowStatSwap(entity, firstStatType, secondStatType):
 		_:
 			print("Ah")
 
-func reverseRed(entity,chip):
-	if chip.NewMove != null:
-		entity.specificData.Basics[1] = chip.NewMove
-
-func reverseBlue(entity,chip):
-	if chip.NewElement != null:
-		entity.element = entity.specificData.permanentElement
-	if chip.Condition != null:
-		entity.Condition &= ~chip.Condition
-	if chip.Immunity != "None":
-		entity.Immunity &= ~chip.Immunity
-	if chip.Resist != null:
-		entity.resist &= ~chip.resist
-	if chip.SameElement:
-		entity.sameElement = false
-	entity.elementMod -= chip.ElementModBoost
-
-func reverseYellow(entity,chip):
-	entity.MaxHP -= chip.HP
-	entity.specificData.MaxLP -= chip.LP
-	entity.MaxTP -= chip.TP
-	if chip.CpuCost < 0:
-		entity.specificData.MaxCPU += chip.CpuCost
-	
-	entity.strength -= chip.Strength
-	entity.toughness -= chip.Toughness
-	entity.ballistics -= chip.Ballistics
-	entity.resistance -= chip.Resistance
-	entity.speed -= chip.Speed
-	entity.luck -= chip.Luck
-	
-	if chip.StatSwap:
-		yellowStatSwap(entity, chip.FirstSwap, chip.SceondSwap)
-
-func gearApply():
+func gearApply() -> void:
 	pass

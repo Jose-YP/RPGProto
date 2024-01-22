@@ -43,7 +43,7 @@ ExtResource("4_ld73l"): 1,
 ExtResource("5_mdyqu"): 2
 }
 waitData = ExtResource("11_dj6mo")
-ItemChange = ""
+ItemChange = "None"
 calcBonus = "None"
 calcAmmount = 0.0
 KO = false

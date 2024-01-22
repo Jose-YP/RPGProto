@@ -7,10 +7,12 @@
 script = ExtResource("1_c4fbv")
 MaxLP = 10
 MaxCPU = 10
-permanentElement = "Neutral"
 Skills = 1
 RechargeRate = 1.0
 ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("1_revfq")])
 currentCPU = 0
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([])
 boostStat = 4
+permanentElement = "Neutral"
+permanentWeakness = 0
+permanentResist = 16

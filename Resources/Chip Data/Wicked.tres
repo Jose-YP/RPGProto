@@ -9,6 +9,7 @@ description = "+4 Speed"
 CpuCost = 6
 maxNum = 3
 ChipType = "Yellow"
+ownerNum = 0
 equippedOn = 0
 other = ""
 AffectedMove = "None"

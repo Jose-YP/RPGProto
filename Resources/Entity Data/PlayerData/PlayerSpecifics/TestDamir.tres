@@ -15,7 +15,6 @@
 script = ExtResource("7_0xluh")
 MaxLP = 15
 MaxCPU = 28
-permanentElement = "Water"
 Skills = 3
 RechargeRate = 1.0
 GearData = ExtResource("6_8j780")
@@ -26,3 +25,6 @@ boostStat = 2
 Tactics2 = ExtResource("4_s6h8b")
 Tactics3 = ExtResource("5_ac7v6")
 Tactics4 = ExtResource("6_na5ha")
+permanentElement = "Water"
+permanentWeakness = 0
+permanentResist = 16

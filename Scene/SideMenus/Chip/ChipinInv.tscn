@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://p1gv2u05pahj"]
+[gd_scene load_steps=6 format=3 uid="uid://p1gv2u05pahj"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_7ak14"]
 [ext_resource type="Script" path="res://Code/SceneCode/Individuals/ChipinInv.gd" id="2_3jqea"]
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_oyvs3"]
 [ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_nxxrm"]
 [ext_resource type="Texture2D" uid="uid://p4702lq24xjg" path="res://Art/4Tb6Xje4c-3913742659.png" id="5_n1lsq"]
-[ext_resource type="Texture2D" uid="uid://di002mjuracya" path="res://Art/die.png" id="6_g1jyo"]
 
 [node name="MenuItem" type="PanelContainer"]
 custom_minimum_size = Vector2(330, 52)
@@ -148,10 +147,5 @@ position = Vector2(-9, 23)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
 position = Vector2(314, 23)
-
-[node name="Die" type="Sprite2D" parent="."]
-position = Vector2(314, 23)
-scale = Vector2(0.0686729, 0.0828982)
-texture = ExtResource("6_g1jyo")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

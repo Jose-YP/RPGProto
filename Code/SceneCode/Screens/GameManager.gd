@@ -105,7 +105,7 @@ func getItemSorts(items) -> Inven:
 #-----------------------------------------
 #SCENE CONNECTIONS
 #-----------------------------------------
-func changeScene(scene):
+func changeScene(scene) -> void:
 	currentScene.queue_free()
 	var newScene = scene.instantiate()
 	$".".add_child(newScene)
@@ -115,31 +115,31 @@ func changeScene(scene):
 #-----------------------------------------
 #SIGNALS
 #-----------------------------------------
-func _on_main_menu_options_menu():
+func _on_main_menu_options_menu() -> void:
 	changeScene(optionsMenu)
 
-func _back_to_main_menu():
+func _back_to_main_menu() -> void:
 	changeScene(mainMenu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
 
-func _on_change_to_battle():
+func _on_change_to_battle() -> void:
 	changeScene(battleScene)
 
-func _on_to_gear_menu():
+func _on_to_gear_menu() -> void:
 	$SFX/Confirm.play()
 	currentScene.connect("exitMenu",_back_to_main_menu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
 
-func _on_to_item_menu():
+func _on_to_item_menu() -> void:
 	$SFX/Confirm.play()
 	currentScene.connect("exitMenu",_back_to_main_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 
-func _on_to_chip_menu():
+func _on_to_chip_menu() -> void:
 	$SFX/Confirm.play()
 	changeScene(chipMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
@@ -149,9 +149,9 @@ func _on_to_chip_menu():
 #-----------------------------------------
 #AUDIO SIGNALS
 #-----------------------------------------
-func makeNoise(num):
+func makeNoise(num) -> void:
 	regSFX[num].play()
 
-func playMusic(song):
+func playMusic(song) -> void:
 	$Music.set_stream(load(song))
 	$Music.play()

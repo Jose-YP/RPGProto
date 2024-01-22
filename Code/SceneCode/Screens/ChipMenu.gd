@@ -256,10 +256,10 @@ func getChipInventory() -> void:
 		InvMarkers.append(chipPanel.inBetween)
 		side = swap(side)
 	
-	InvMarkers.append(InvMenu[side][-1].final)
 	side = 0
 
 func update() -> void:
+	print("UPDATE")
 	InvMenu = [[],[]]
 	InvMarkers = []
 	var prevKeep
@@ -290,7 +290,7 @@ func getPlayerStats(index) -> void:
 	var entity = Globals.getStats(Globals.every_player_entity[index], Globals.every_player_entity[index].name ,Globals.every_player_entity[index].level)
 	var CPUtween = CPUBar.create_tween()
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
-	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
+	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green] TP: ",
 	entity.MaxTP,"[/color]")
 	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
 	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
