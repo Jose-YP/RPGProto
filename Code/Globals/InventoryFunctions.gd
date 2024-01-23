@@ -80,6 +80,12 @@ func itemAutofill(item,chara,result) -> void:
 			else:
 				item.autoFill &= ~8
 
+func findItem(item, chara) -> bool:
+	for playerItem in chara:
+		if playerItem.name == item.name:
+			return true
+	return false
+
 func chipHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for chip in player.specificData.ChipData:

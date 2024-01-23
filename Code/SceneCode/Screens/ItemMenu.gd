@@ -2,6 +2,7 @@ extends Control
 
 @export var InvItemPanel: PackedScene
 @export var playerItemPanel: PackedScene
+@export var insertNumPanel: PackedScene
 @export var itemLimit: int = 8
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
@@ -42,6 +43,7 @@ var side: int = 0
 var num: int = 0
 var playerIndex: int = 0
 var tempIndex: int = 0
+var choosingNum: bool = false
 var movingItem: bool = false
 var acrossPlayers: bool = false
 var keepFocus
@@ -230,7 +232,6 @@ func getItemInventory() -> void:
 		var itemPanel = InvItemPanel.instantiate()
 		itemPanel.itemData = item
 		itemPanel.maxNum = item.maxCarry
-		print(item.ownerArray)
 		itemPanel.connect("getDesc",on_inv_focused)
 		itemInv.add_child(itemPanel)
 		itemPanel.focus.set_focus_mode(2)
@@ -274,8 +275,8 @@ func getPlayerStats(index) -> void:
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
 	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green] TP: ",
 	entity.MaxTP,"[/color][color=yellow] CPU: ",entity.specificData.MaxCPU,"[/color]")
-	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
-	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
+	var stats = str("STR: ",entity.strength," \tTGH: ",entity.toughness," \tSPD: ",entity.speed,
+	"\nBAL: ",entity.ballistics," \tRES: ",entity.resistance," \tLUK: ",entity.luck)
 	var curremtItemText = str("[center][color=gray]Items",entity.itemData.size(),"/",itemLimit,"[/color]")
 	
 	playerResource.clear()
@@ -404,9 +405,9 @@ func _on_option_button_item_selected(index) -> void:
 	match newSort:
 		"Sort Alpha":
 			currentInv = Globals.ItemInventory.inventory
-		"Sort Color":
+		"Sort Owners":
 			currentInv = Globals.ItemInventory.inventorySort1
-		"Sort Cost":
+		"Sort Leftover":
 			currentInv = Globals.ItemInventory.inventorySort2
 	
 	update()

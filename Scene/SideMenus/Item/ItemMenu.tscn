@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://br7ttb4nuqshi"]
+[gd_scene load_steps=17 format=3 uid="uid://br7ttb4nuqshi"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_fg0n7"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/ItemMenu.gd" id="2_tmbiy"]
 [ext_resource type="PackedScene" uid="uid://bniepn4mhvn2g" path="res://Scene/SideMenus/Item/IteminInv.tscn" id="3_tkvo7"]
 [ext_resource type="PackedScene" uid="uid://33e3m1sa4rwa" path="res://Scene/SideMenus/Item/IteminChar.tscn" id="4_p3rtt"]
 [ext_resource type="Material" uid="uid://g13xvkbcpfoj" path="res://Themes/ButtonStyle/Dock.tres" id="5_d1on3"]
+[ext_resource type="PackedScene" uid="uid://ds5nhcsd3vdcs" path="res://Scene/Constants/InsertNumber.tscn" id="5_nqupu"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="6_dibxn"]
 [ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="7_35fpj"]
 [ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="8_gbkaq"]
@@ -49,6 +50,7 @@ theme = ExtResource("1_fg0n7")
 script = ExtResource("2_tmbiy")
 InvItemPanel = ExtResource("3_tkvo7")
 playerItemPanel = ExtResource("4_p3rtt")
+insertNumPanel = ExtResource("5_nqupu")
 itemLimit = 4
 scrollDeadzone = Vector2(280, 420)
 metadata/_edit_pinned_properties_ = [&"scrollDeadzone"]
@@ -132,9 +134,9 @@ selected = 0
 allow_reselect = true
 popup/item_0/text = "Sort Alpha"
 popup/item_0/id = 1
-popup/item_1/text = "Sort Color"
+popup/item_1/text = "Sort Owners"
 popup/item_1/id = 2
-popup/item_2/text = "Sort Cost"
+popup/item_2/text = "Sort Leftover"
 popup/item_2/id = 3
 
 [node name="ChipSelection" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer"]
@@ -171,7 +173,7 @@ text = "[center]SELECTED CHIP[/center]"
 metadata/_edit_lock_ = true
 
 [node name="Details" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer"]
-custom_minimum_size = Vector2(420, 50)
+custom_minimum_size = Vector2(440, 50)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
@@ -294,7 +296,7 @@ layout_mode = 2
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
-BAL: 60:		RES: 60		LUK: 60[/center]"
+BAL: 60		RES: 60		LUK: 60[/center]"
 metadata/_edit_lock_ = true
 
 [node name="ItemBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]

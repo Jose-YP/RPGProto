@@ -71,3 +71,5 @@ res://Code/ResourceMakers/ItemMaker.gd
 res://Scene/SideMenus/Chip/ChipinChar.tscn
 res://Resources/Item Data/ItemMoves/WhimBerryMove.tres
 res://Code/Globals/Globals.gd
+res://Scene/Constants/InsertNumber.tscn
+res://Code/SceneCode/Individuals/InsertNumber.gd
