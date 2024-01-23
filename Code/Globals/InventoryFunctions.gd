@@ -192,8 +192,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Luck":
 					entity.strength = entity.luck
 					entity.luck = firstStat
-				_:
-					print("Ah")
 		"Toughness":
 			firstStat = entity.toughness
 			match secondStatType:
@@ -212,8 +210,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Luck":
 					entity.toughness = entity.luck
 					entity.luck = firstStat
-				_:
-					print("Ah")
 		"Ballistics":
 			firstStat = entity.ballistics
 			match secondStatType:
@@ -232,8 +228,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Luck":
 					entity.ballistics = entity.luck
 					entity.luck = firstStat
-				_:
-					print("Ah")
 		"Resistance":
 			firstStat = entity.resistance
 			match secondStatType:
@@ -252,8 +246,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Luck":
 					entity.resistance = entity.luck
 					entity.luck = firstStat
-				_:
-					print("Ah")
 		"Speed":
 			firstStat = entity.speed
 			match secondStatType:
@@ -272,8 +264,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Luck":
 					entity.speed = entity.luck
 					entity.luck = firstStat
-				_:
-					print("Ah")
 		"Luck":
 			firstStat = entity.luck
 			match secondStatType:
@@ -292,10 +282,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 				"Speed":
 					entity.luck = entity.speed
 					entity.speed = firstStat
-				_:
-					print("Ah")
-		_:
-			print("Ah")
 
 func gearApply() -> void:
 	pass

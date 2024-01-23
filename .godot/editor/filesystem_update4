@@ -69,3 +69,5 @@ res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
 res://Code/ResourceMakers/ChipMaker.gd
 res://Code/ResourceMakers/ItemMaker.gd
 res://Scene/SideMenus/Chip/ChipinChar.tscn
+res://Resources/Item Data/ItemMoves/WhimBerryMove.tres
+res://Code/Globals/Globals.gd

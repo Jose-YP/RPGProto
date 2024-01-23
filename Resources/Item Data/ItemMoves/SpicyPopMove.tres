@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_mb6fx")
 name = "Spicy Pop"
-description = "Changes an entity's element to "
+description = "Changes an entity's element to Fire"
 TPCost = 30
 Which = "Both"
 Target = "Single"

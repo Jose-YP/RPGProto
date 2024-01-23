@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_qjk74")
 name = "Idol"
-description = "Basic Attack"
+description = "Revives a fallen party member"
 TPCost = 60
 Which = "Ally"
 Target = "KO"

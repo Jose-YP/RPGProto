@@ -276,7 +276,7 @@ func getPlayerStats(index) -> void:
 	entity.MaxTP,"[/color][color=yellow] CPU: ",entity.specificData.MaxCPU,"[/color]")
 	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
 	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
-	var curremtItemText = str("[center][color=gray]Items",entity.itemData.size(),"/8[/color]")
+	var curremtItemText = str("[center][color=gray]Items",entity.itemData.size(),"/",itemLimit,"[/color]")
 	
 	playerResource.clear()
 	playerBattleStats.clear()
@@ -293,12 +293,13 @@ func getPlayerItems(index) -> void:
 	clearPlayerItems()
 	
 	var entity = Globals.every_player_entity[index]
+	var entityNum = Globals.charNum(entity)
 	
 	for item in entity.itemData:
 		var itemPannel = playerItemPanel.instantiate()
 		itemPannel.itemData = item
 		itemPannel.maxNum = item.maxItems
-		itemPannel.currentNum = item.ownerArray[index]
+		itemPannel.currentNum = item.ownerArray[entityNum]
 		itemPannel.connect("getDesc",on_play_focused)
 		playerItems.add_child(itemPannel)
 		
@@ -331,7 +332,7 @@ func getElements(entity) -> void:
 
 func setAutofill(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
-	if item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
+	if entity.itemData.size() < itemLimit:
 		entity.specificData.itemData.insert(markerIndex, item)
 		update()
 
@@ -340,7 +341,7 @@ func addItem(item) -> void:
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	if item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
+	if entity.itemData.size() < itemLimit:
 		entity.specificData.itemData.insert(markerIndex, item)
 		update()
 
@@ -385,14 +386,14 @@ func on_inv_focused(data) -> void:
 
 func on_play_focused(data) -> void:
 	makeNoise.emit(2)
-	grabbedItem = data
+	grabbedItem = data.itemData
 	
 	playerItemTitle.clear()
 	playerItemTitle.append_text(str("[center]",data.itemData.name,"[/center]"))
 	
 	playerItemDetails.clear()
 	playerItemDetails.append_text(str("[center]OWNING\n",
-	grabbedItem.currentNum,"/",grabbedItem.maxNum,"[/center]"))
+	data.currentNum,"/",data.maxNum,"[/center]"))
 	
 	playerItemDisc.clear()
 	playerItemDisc.append_text(data.itemData.attackData.description)

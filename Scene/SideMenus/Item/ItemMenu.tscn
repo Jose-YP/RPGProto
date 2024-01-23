@@ -49,6 +49,7 @@ theme = ExtResource("1_fg0n7")
 script = ExtResource("2_tmbiy")
 InvItemPanel = ExtResource("3_tkvo7")
 playerItemPanel = ExtResource("4_p3rtt")
+itemLimit = 4
 scrollDeadzone = Vector2(280, 420)
 metadata/_edit_pinned_properties_ = [&"scrollDeadzone"]
 

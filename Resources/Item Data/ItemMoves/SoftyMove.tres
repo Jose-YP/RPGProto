@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_f5nlx")
 name = "Softy!"
-description = "Applies full XSofts of "
+description = "Applies full XSofts of Crush"
 TPCost = 40
 Which = "Enemy"
 Target = "Single"

@@ -1,3 +1,4 @@
+res://Scene/SideMenus/Gear
 res://Code/SceneCode/Screens
 res://Code/SceneCode/Individuals
 res://Resources/Chip Data
@@ -19,5 +20,4 @@ res://Resources/Item Data/ItemSpecifics
 res://Resources/Move Data/Enemy Moves
 res://Resources/Entity Data/Enemy Data/EnemySpecific
 res://Resources/Move Data/Player Moves
-res://Resources/Entity Data/Enemy Data
 C:/Users/Jose/Desktop/Godots/Godot 4/Games/Godot-RPG-PRoject-main/Code/EnemyAI

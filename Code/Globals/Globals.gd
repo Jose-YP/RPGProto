@@ -73,7 +73,6 @@ func preapplyChips(Entity) -> void:
 			"Red":
 				InventoryFunctions.redChipFun(Entity,chip)
 			"Blue":
-				print("Found", chip.name)
 				InventoryFunctions.blueChipFun(Entity,chip)
 			"Yellow":
 				InventoryFunctions.yellowChipFun(Entity,chip)
@@ -97,3 +96,16 @@ func charColor(entity) -> String:
 			return str("[color=#e12828]",entity.name,"[/color]")
 		_:
 			return ""
+
+func charNum(entity) -> int:
+	match entity.name:
+		"DREAMER":
+			return 0
+		"Lonna":
+			return 1
+		"Damir":
+			return 2
+		"Pepper":
+			return 3
+		_:
+			return 0

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dng2g")
 name = "Whim Berry"
-description = "Heals a random ammount of LP(10-50)"
+description = "Heals a random ammount of LP (10-50)"
 TPCost = 50
 Which = "Ally"
 Target = "Single"

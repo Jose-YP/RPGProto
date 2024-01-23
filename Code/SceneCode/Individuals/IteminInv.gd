@@ -30,10 +30,9 @@ func update() -> void:
 	if itemData.equippedOn != null:
 		if itemData.equippedOn & 1:
 			characterStatus[0].current_tab = 1
-			updatePlayers("DREAMER",1)
+			updatePlayers("DREAMER",0)
 			currentNum -= itemData.ownerArray[0]
 		else:
-			print(itemData.name, itemData.equippedOn)
 			characterStatus[0].current_tab = 0
 		
 		if itemData.equippedOn & 2:
@@ -75,7 +74,6 @@ func update() -> void:
 
 func updatePlayers(player,num) -> void:
 	if currentPlayers == "":
-		print(itemData.ownerArray[num])
 		currentPlayers = str(player," ",itemData.ownerArray[num],"/",itemData.maxItems)
 	else:
 		currentPlayers = str(currentPlayers," | ",player," ",itemData.ownerArray[num],"/",itemData.maxItems)
