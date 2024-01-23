@@ -44,6 +44,8 @@ ExtResource("5_mdyqu"): 2
 }
 waitData = ExtResource("11_dj6mo")
 ItemChange = "None"
+costBonus = "None"
+costMod = 0.0
 calcBonus = "None"
 calcAmmount = 0.0
 KO = false

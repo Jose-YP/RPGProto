@@ -5,7 +5,7 @@ extends Control
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
-@onready var itemInv: GridContainer = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/ItemSelection/GridContainer
+@onready var itemInv: GridContainer = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/ChipSelection/GridContainer
 @onready var playerItems: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CurrentItems/PanelContainer
 @onready var InvMarkers: Array[Marker2D] = []
 @onready var PlayMarkers: Array[Marker2D] = []
@@ -29,6 +29,7 @@ extends Control
 
 signal gearMenu
 signal chipMenu
+signal itemMenu
 signal exitMenu
 signal makeNoise(num)
 
@@ -217,7 +218,7 @@ func buttons() -> void:
 	#[item,gear,item]
 	if not movingItem: #ZR and ZL
 		if Input.is_action_just_pressed("ZL"):
-			itemMenu.emit()
+			chipMenu.emit()
 		
 		if Input.is_action_just_pressed("ZR"):
 			gearMenu.emit()
@@ -228,8 +229,9 @@ func buttons() -> void:
 func getItemInventory() -> void:
 	for item in currentInv:
 		var itemPanel = InvItemPanel.instantiate()
-		itemPanel.ItemData = item
-		itemPanel.maxNum = item.maxNum
+		itemPanel.itemData = item
+		itemPanel.maxNum = item.maxCarry
+		print(item.icon)
 		itemPanel.connect("getDesc",on_inv_focused)
 		itemInv.add_child(itemPanel)
 		itemPanel.focus.set_focus_mode(2)
@@ -287,10 +289,7 @@ func getPlayerStats(index) -> void:
 	CPUText.append_text(currentCPUtext)
 	
 	getElements(entity)
-	
-	var newValue = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
-	CPUtween.tween_property(CPUBar, "value", newValue,.2).set_trans(Tween.TRANS_CIRC).from(entity.specificData.MaxCPU)
-	InventoryFunctions.miniItemHandler(entity.name,entity.specificData.ItemData, currentInv)
+	InventoryFunctions.miniItemHandler(entity.name,entity.itemData, currentInv)
 
 func getPlayerItems(index) -> void:
 	clearPlayerItems()
@@ -298,10 +297,9 @@ func getPlayerItems(index) -> void:
 	var entity = Globals.every_player_entity[index]
 	entity.specificData.currentCPU = 0
 	
-	for item in entity.specificData.ItemData:
+	for item in entity.itemData:
 		var itemPannel = playerItemPanel.instantiate()
-		entity.specificData.currentCPU += item.CpuCost
-		itemPannel.ItemData = item
+		itemPannel.itemData = item
 		itemPannel.maxNum = item.maxNum
 		itemPannel.connect("getDesc",on_play_focused)
 		playerItems.add_child(itemPannel)
@@ -332,6 +330,9 @@ func getElements(entity) -> void:
 	for k in range(3):
 		if Globals.XSoftTypes[k+3] == entity.phyElement:
 			playerPhyEle.current_tab = k
+
+func setAutofill(item) -> void:
+	pass
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]

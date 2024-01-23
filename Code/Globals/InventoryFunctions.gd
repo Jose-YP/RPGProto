@@ -6,10 +6,70 @@ var effectiveItemInven
 
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
-		for chip in player.ItemData:
-			for viewingChip in inventory:
-				if viewingChip == chip:
-					chipHandlerResult(chip,player.name,true)
+		for item in player.itemData:
+			for viewingItem in inventory:
+				if viewingItem == item:
+					chipHandlerResult(item,player.name,true)
+
+func miniItemHandler(chara,playerChips,inventory, removing = false) -> void:
+	for item in playerChips:
+		for viewingItem in inventory:
+			if viewingItem == item:
+				itemHandlerResult(viewingItem,chara,true)
+			elif removing:
+				itemHandlerResult(viewingItem,chara,false) 
+
+func itemHandlerResult(item,chara,result) -> void:
+	if item.equippedOn == null: #Make sure the chip being operated on isn't null
+		item.equippedOn = 0
+	
+	match chara:
+		"DREAMER":
+			if result:
+				item.equippedOn |= 1
+			else:
+				item.equippedOn &= ~1
+		"Lonna":
+			if result:
+				item.equippedOn |= 2
+			else:
+				item.equippedOn &= ~2
+		"Damir":
+			if result:
+				item.equippedOn |= 4
+			else:
+				item.equippedOn &= ~4
+		"Pepper":
+			if result:
+				item.equippedOn |= 8
+			else:
+				item.equippedOn &= ~8
+
+func itemAutofill(item,chara,result) -> void:
+	if item.equippedOn == null: #Make sure the chip being operated on isn't null
+		item.equippedOn = 0
+	
+	match chara:
+		"DREAMER":
+			if result:
+				item.autoFill |= 1
+			else:
+				item.autoFill &= ~1
+		"Lonna":
+			if result:
+				item.autoFill |= 2
+			else:
+				item.autoFill &= ~2
+		"Damir":
+			if result:
+				item.autoFill |= 4
+			else:
+				item.autoFill &= ~4
+		"Pepper":
+			if result:
+				item.autoFill |= 8
+			else:
+				item.autoFill &= ~8
 
 func chipHandler(inventory) -> void:
 	for player in Globals.every_player_entity:

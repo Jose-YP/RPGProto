@@ -23,49 +23,57 @@ layout_mode = 2
 offset_right = 330.0
 offset_bottom = 52.0
 
-[node name="Chip1" type="HBoxContainer" parent="Button/MarginContainer"]
+[node name="Item" type="HBoxContainer" parent="Button/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_pi0x2")
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Item"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("3_rj02c")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/Chip1"]
+[node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/Item"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Chip1/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Item/MarginContainer"]
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 theme = ExtResource("1_pi0x2")
 bbcode_enabled = true
-text = "[center]wordiest ever Chip [color=yellow]CPU: 24[/color] 6/6 [/center]"
+text = "[center] Woerdiest item ever 2 [color=gray] 100/100[/color] [/center]"
 
-[node name="Characters" type="GridContainer" parent="Button/MarginContainer/Chip1"]
+[node name="Characters" type="GridContainer" parent="Button/MarginContainer/Item"]
 custom_minimum_size = Vector2(42, 20)
 layout_mode = 2
 columns = 2
 
-[node name="DreamerStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
+[node name="DreamerStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
 modulate = Color(0.956863, 0.537255, 0.168627, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DreamerStatus"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DreamerStatus"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DreamerStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_g451y")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DreamerStatus"]
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
@@ -73,22 +81,30 @@ texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="LonnaStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
+[node name="LonnaStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
 modulate = Color(0.596078, 0, 0.862745, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Item/Characters/LonnaStatus"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/LonnaStatus"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Item/Characters/LonnaStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_g451y")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Item/Characters/LonnaStatus"]
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
@@ -96,22 +112,30 @@ texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="DamirStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
+[node name="DamirStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
 modulate = Color(0.160784, 0.160784, 0.917647, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DamirStatus"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/DamirStatus"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DamirStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_g451y")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Item/Characters/DamirStatus"]
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
@@ -119,22 +143,30 @@ texture = ExtResource("5_ad8mp")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="PepperStatus" type="TabContainer" parent="Button/MarginContainer/Chip1/Characters"]
-visible = false
+[node name="PepperStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
 modulate = Color(0.882353, 0.156863, 0.156863, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
-[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+[node name="TextureRect3" type="TextureRect" parent="Button/MarginContainer/Item/Characters/PepperStatus"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("4_g451y")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Chip1/Characters/PepperStatus"]
+[node name="TextureRect" type="TextureRect" parent="Button/MarginContainer/Item/Characters/PepperStatus"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_g451y")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Button/MarginContainer/Item/Characters/PepperStatus"]
 visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2

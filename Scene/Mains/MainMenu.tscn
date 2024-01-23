@@ -858,7 +858,7 @@ offset_right = -384.0
 offset_bottom = -335.0
 text = "SET CHIPS"
 
-[node name="GearButton" type="Button" parent="Navigation/Buttons"]
+[node name="ItemButton" type="Button" parent="Navigation/Buttons"]
 layout_mode = 0
 offset_left = -212.0
 offset_top = -369.0
@@ -866,7 +866,7 @@ offset_right = -57.0
 offset_bottom = -335.0
 text = "SET ITEMS"
 
-[node name="ItemButton" type="Button" parent="Navigation/Buttons"]
+[node name="GearButton" type="Button" parent="Navigation/Buttons"]
 layout_mode = 0
 offset_left = -376.0
 offset_top = -369.0
@@ -1064,8 +1064,8 @@ They will decay by 5% every turn"
 [connection signal="pressed" from="Navigation/Buttons/FightButton" to="." method="_on_fight_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/ChipButton" to="." method="_on_chip_button_pressed"]
-[connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]

@@ -3,11 +3,11 @@ extends PanelContainer
 @onready var focus: Button = $Button
 @onready var inBetween: Marker2D = $Marker2D
 @onready var final: Marker2D = $Marker2D2
-@onready var iconColor: TextureRect = $Button/MarginContainer/Chip1/TextureRect
-@onready var itemText: RichTextLabel = $Button/MarginContainer/Chip1/MarginContainer/RichTextLabel
-@onready var characterStatus: Array[TabContainer] = [$Button/MarginContainer/Chip1/Characters/DreamerStatus,
-$Button/MarginContainer/Chip1/Characters/LonnaStatus,$Button/MarginContainer/Chip1/Characters/DamirStatus,
-$Button/MarginContainer/Chip1/Characters/PepperStatus]
+@onready var icon: TextureRect = $Button/MarginContainer/Item/TextureRect
+@onready var itemText: RichTextLabel = $Button/MarginContainer/Item/MarginContainer/RichTextLabel
+@onready var characterStatus: Array[TabContainer] = [$Button/MarginContainer/Item/Characters/DreamerStatus,
+$Button/MarginContainer/Item/Characters/LonnaStatus,$Button/MarginContainer/Item/Characters/DamirStatus,
+$Button/MarginContainer/Item/Characters/PepperStatus]
 
 signal getDesc(data)
 signal startSelect(data)
@@ -20,6 +20,7 @@ var inChar: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	icon.texture = itemData.icon
 	update()
 
 func update():

@@ -184,7 +184,7 @@ func buttons() -> void:
 			exitMenu.emit()
 	
 	if Input.is_action_just_pressed("X"):
-		exitMenu.emit()
+		addChip(grabbedChip)
 	
 	if Input.is_action_just_pressed("Y"):
 		makeNoise.emit(1)

@@ -1,4 +1,4 @@
-res://Scene/SideMenus/Chip/ChipinChar.tscn
+res://Scene/Mains/GameManager.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -52,27 +52,15 @@ res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/SceneCode/Screens/ChipMenu.gd
-res://Scene/SideMenus/Chip/ChipMenu.tscn
-res://Scene/SideMenus/Chip/ChipinInv.tscn
-res://Scene/Mains/Main.tscn
-res://Scene/Mains/GameManager.tscn
-res://Code/SceneCode/Individuals/ChipinChar.gd
-res://Code/SceneCode/Individuals/ChipinInv.gd
 res://Code/SceneCode/Screens/GameManager.gd
-res://Code/SceneCode/Screens/Main.gd
-res://Code/Globals/Globals.gd
-res://Code/Globals/InventoryFunctions.gd
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/PlayerPlaceholder.tres
-res://Code/ResourceMakers/EntityMaker.gd
-res://Code/ResourceMakers/PlayerMaker.gd
-res://Resources/Chip Data/Spear.tres
-res://Resources/Chip Data/Water.tres
-res://Resources/Chip Data/Together.tres
-res://Code/ResourceMakers/ChipMaker.gd
+res://Scene/Mains/MainMenu.tscn
+res://Code/SceneCode/Screens/ItemMenu.gd
 res://Code/SceneCode/Screens/MainMenu.gd
-res://Code/Globals/MiscFunctions.gd
-res://Code/SceneCode/Entities/Player.gd
-res://Code/SceneCode/Entities/PlayerMenu.gd
-res://Code/SceneCode/Entities/Entity.gd
-res://Code/SceneCode/Entities/enemy.gd
+res://Code/SceneCode/Individuals/IteminChar.gd
+res://Scene/SideMenus/Item/ItemMenu.tscn
+res://Scene/SideMenus/Item/IteminInv.tscn
+res://Scene/SideMenus/Item/IteminChar.tscn
+res://Code/SceneCode/Individuals/IteminInv.gd
+res://Code/Globals/InventoryFunctions.gd
+res://Scene/SideMenus/Chip/ChipMenu.tscn
+res://Code/SceneCode/Screens/ChipMenu.gd

@@ -16,6 +16,7 @@ var itemFolder = "res://Resources/Item Data/ItemSpecifics/"
 var mainMenu: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
 var optionsMenu: PackedScene = preload("res://Scene/SideMenus/options_menu.tscn")
 var chipMenu: PackedScene = preload("res://Scene/SideMenus/Chip/ChipMenu.tscn")
+var itemMenu: PackedScene = preload("res://Scene/SideMenus/Item/ItemMenu.tscn")
 var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
 
 #-----------------------------------------
@@ -135,6 +136,7 @@ func _on_to_gear_menu() -> void:
 
 func _on_to_item_menu() -> void:
 	$SFX/Confirm.play()
+	changeScene(itemMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)

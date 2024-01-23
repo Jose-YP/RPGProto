@@ -36,6 +36,8 @@ ExtResource("2_luepq"): 1
 }
 waitData = ExtResource("7_g2pgv")
 ItemChange = ""
+costBonus = "None"
+costMod = 0.0
 calcBonus = "None"
 calcAmmount = 0.0
 KO = false
