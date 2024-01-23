@@ -2,6 +2,7 @@ extends Control
 
 @export var InvItemPanel: PackedScene
 @export var playerItemPanel: PackedScene
+@export var itemLimit: int = 8
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
@@ -24,8 +25,7 @@ extends Control
 @onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Player1Element
 @onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/PlayerPhyElement1
 @onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Stats/RichTextLabel
-@onready var CPUText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
-@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
+@onready var ItemText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer/RichTextLabel
 
 signal gearMenu
 signal chipMenu
@@ -42,7 +42,6 @@ var side: int = 0
 var num: int = 0
 var playerIndex: int = 0
 var tempIndex: int = 0
-var CPUusage: int = 0
 var movingItem: bool = false
 var acrossPlayers: bool = false
 var keepFocus
@@ -231,7 +230,7 @@ func getItemInventory() -> void:
 		var itemPanel = InvItemPanel.instantiate()
 		itemPanel.itemData = item
 		itemPanel.maxNum = item.maxCarry
-		print(item.icon)
+		print(item.ownerArray)
 		itemPanel.connect("getDesc",on_inv_focused)
 		itemInv.add_child(itemPanel)
 		itemPanel.focus.set_focus_mode(2)
@@ -249,7 +248,7 @@ func update() -> void:
 	var prevKeep
 	for thing in itemInv.get_children():
 		if movingItem and thing == keepFocus.get_parent():
-			prevKeep = thing.ItemData
+			prevKeep = thing.itemData
 		itemInv.remove_child(thing)
 		thing.queue_free()
 	
@@ -258,7 +257,7 @@ func update() -> void:
 	getPlayerItems(playerIndex)
 	
 	for thing in itemInv.get_children():
-		if thing.ItemData == prevKeep:
+		if thing.itemData == prevKeep:
 			keepFocus = thing.focus
 	
 	acrossPlayers = false
@@ -272,21 +271,20 @@ func update() -> void:
 #-----------------------------------------
 func getPlayerStats(index) -> void:
 	var entity = Globals.getStats(Globals.every_player_entity[index], Globals.every_player_entity[index].name ,Globals.every_player_entity[index].level)
-	var CPUtween = CPUBar.create_tween()
 	var resourceString = str(Globals.charColor(entity)," [color=red]HP: ",entity.MaxHP,"[/color]"
-	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green]",
-	entity.MaxTP,"[/color]")
+	,"\n [color=aqua]LP:",entity.specificData.MaxLP," [/color][color=green] TP: ",
+	entity.MaxTP,"[/color][color=yellow] CPU: ",entity.specificData.MaxCPU,"[/color]")
 	var stats = str("STR: ",entity.strength,"\tTGH: ",entity.toughness,"\tSPD: ",entity.speed,
 	"\nBAL: ",entity.ballistics,"\tRES: ",entity.resistance,"\tLUK: ",entity.luck)
-	var currentCPUtext = str((entity.specificData.MaxCPU - entity.specificData.currentCPU),"/",entity.specificData.MaxCPU,"\nCPU")
+	var curremtItemText = str("[center][color=gray]Items",entity.itemData.size(),"/8[/color]")
 	
 	playerResource.clear()
 	playerBattleStats.clear()
-	CPUText.clear()
+	ItemText.clear()
 	
 	playerResource.append_text(resourceString)
 	playerBattleStats.append_text(stats)
-	CPUText.append_text(currentCPUtext)
+	ItemText.append_text(curremtItemText)
 	
 	getElements(entity)
 	InventoryFunctions.miniItemHandler(entity.name,entity.itemData, currentInv)
@@ -295,12 +293,12 @@ func getPlayerItems(index) -> void:
 	clearPlayerItems()
 	
 	var entity = Globals.every_player_entity[index]
-	entity.specificData.currentCPU = 0
 	
 	for item in entity.itemData:
 		var itemPannel = playerItemPanel.instantiate()
 		itemPannel.itemData = item
-		itemPannel.maxNum = item.maxNum
+		itemPannel.maxNum = item.maxItems
+		itemPannel.currentNum = item.ownerArray[index]
 		itemPannel.connect("getDesc",on_play_focused)
 		playerItems.add_child(itemPannel)
 		
@@ -332,7 +330,10 @@ func getElements(entity) -> void:
 			playerPhyEle.current_tab = k
 
 func setAutofill(item) -> void:
-	pass
+	var entity = Globals.every_player_entity[playerIndex]
+	if item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
+		entity.specificData.itemData.insert(markerIndex, item)
+		update()
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
@@ -340,7 +341,7 @@ func addItem(item) -> void:
 		entity = Globals.every_player_entity[tempIndex]
 	
 	if item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
-		entity.specificData.ItemData.insert(markerIndex, item)
+		entity.specificData.itemData.insert(markerIndex, item)
 		update()
 
 func removeItem(item) -> void:
@@ -348,7 +349,7 @@ func removeItem(item) -> void:
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	entity.specificData.ItemData.erase(item)
+	entity.specificData.itemData.erase(item)
 	update()
 
 func sortPlayerItem(item) -> void:
@@ -356,12 +357,12 @@ func sortPlayerItem(item) -> void:
 	
 	if acrossPlayers and item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
 		var fromEntity = Globals.every_player_entity[tempIndex]
-		fromEntity.specificData.ItemData.erase(item)
-		entity.specificData.ItemData.insert(markerIndex, item)
+		fromEntity.specificData.itemData.erase(item)
+		entity.specificData.itemData.insert(markerIndex, item)
 		InventoryFunctions.itemHandler(currentInv) #Update item ownership from prev entity
 	else:
-		entity.specificData.ItemData.erase(item)
-		entity.specificData.ItemData.insert(markerIndex, item)
+		entity.specificData.itemData.erase(item)
+		entity.specificData.itemData.insert(markerIndex, item)
 	
 	update()
 
@@ -370,30 +371,31 @@ func sortPlayerItem(item) -> void:
 #-----------------------------------------
 func on_inv_focused(data) -> void:
 	makeNoise.emit(2)
-	grabbedItem = data.ItemData
+	grabbedItem = data.itemData
 	
 	invItemTitle.clear()
-	invItemTitle.append_text(str(data.ItemData.name, " Item"))
+	invItemTitle.append_text(str(data.itemData.name))
 	
 	invItemDetails.clear()
-	invItemDetails.append_text(str("[center]",data.ItemData.ItemType," Item\nOwners:",
+	invItemDetails.append_text(str("[center]OWNERS\n",
 	data.currentPlayers,"[/center]"))
 	
 	invItemDisc.clear()
-	invItemDisc.append_text(data.ItemData.description)
+	invItemDisc.append_text(data.itemData.attackData.description)
 
 func on_play_focused(data) -> void:
 	makeNoise.emit(2)
-	grabbedItem = data.ItemData
+	grabbedItem = data
 	
 	playerItemTitle.clear()
-	playerItemTitle.append_text(str(data.ItemData.name, " Item"))
+	playerItemTitle.append_text(str("[center]",data.itemData.name,"[/center]"))
 	
 	playerItemDetails.clear()
-	playerItemDetails.append_text(str("[center]",data.ItemData.ItemType," Item[/center]"))
+	playerItemDetails.append_text(str("[center]OWNING\n",
+	grabbedItem.currentNum,"/",grabbedItem.maxNum,"[/center]"))
 	
 	playerItemDisc.clear()
-	playerItemDisc.append_text(data.ItemData.description)
+	playerItemDisc.append_text(data.itemData.attackData.description)
 
 func _on_option_button_item_selected(index) -> void:
 	makeNoise.emit(0)

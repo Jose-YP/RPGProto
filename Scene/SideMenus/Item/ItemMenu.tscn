@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://br7ttb4nuqshi"]
+[gd_scene load_steps=16 format=3 uid="uid://br7ttb4nuqshi"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_fg0n7"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/ItemMenu.gd" id="2_tmbiy"]
@@ -12,8 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="10_j5qhf"]
 [ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="11_6o7u6"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="12_w4lix"]
-[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="13_ibj06"]
-[ext_resource type="Texture2D" uid="uid://dgoj57i606hsw" path="res://Art/yellow-ball-icon-6-3137490973.png" id="14_wat5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak5bq"]
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
@@ -178,8 +176,8 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[center]60/60 | YELLOW CHIP
-OWNERS: DREAMER,LONNA,DAMIR,PEPPER[/center]"
+text = "[center] 60/60 | OWNERS: 
+DREAMER 15/15 | LONNA 15/15 | DAMIR 15/15 | PEPPER 15/15[/center]"
 metadata/_edit_lock_ = true
 
 [node name="Description" type="PanelContainer" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info"]
@@ -212,14 +210,14 @@ custom_minimum_size = Vector2(600, 10)
 layout_mode = 2
 
 [node name="Character" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(140, 40)
+custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Character"]
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
-LP:99 TP: 100"
+LP:99 TP: 100 CPU: 100"
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
@@ -288,7 +286,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Stats" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(210, 40)
+custom_minimum_size = Vector2(235, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Stats"]
@@ -298,28 +296,19 @@ text = "[center]STR: 60		TGH: 60		SPD: 60
 BAL: 60:		RES: 60		LUK: 60[/center]"
 metadata/_edit_lock_ = true
 
-[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
+[node name="ItemBox" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/CPUBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox"]
 layout_mode = 2
 
-[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_under = ExtResource("13_ibj06")
-texture_over = ExtResource("9_tmpu2")
-texture_progress = ExtResource("14_wat5m")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-text = "100/100
-CPU"
+bbcode_enabled = true
+text = "[center][color=gray]Items 
+8/8 [/color]"
 
 [node name="CurrentItems" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer"]
 custom_minimum_size = Vector2(0, 460)

@@ -9,41 +9,50 @@ func itemHandler(inventory) -> void:
 		for item in player.itemData:
 			for viewingItem in inventory:
 				if viewingItem == item:
-					chipHandlerResult(item,player.name,true)
+					itemHandlerResult(item,player.itemData[item],player.name,true)
 
-func miniItemHandler(chara,playerChips,inventory, removing = false) -> void:
-	for item in playerChips:
+func miniItemHandler(chara,playerItems,inventory, removing = false) -> void:
+	for item in playerItems:
 		for viewingItem in inventory:
 			if viewingItem == item:
-				itemHandlerResult(viewingItem,chara,true)
+				itemHandlerResult(item,playerItems[item],chara,true)
 			elif removing:
-				itemHandlerResult(viewingItem,chara,false) 
+				itemHandlerResult(item,playerItems[item],chara,false) 
 
-func itemHandlerResult(item,chara,result) -> void:
+func itemHandlerResult(item,ammount,chara,result) -> void:
 	if item.equippedOn == null: #Make sure the chip being operated on isn't null
 		item.equippedOn = 0
 	
 	match chara:
 		"DREAMER":
 			if result:
+				print(item.name, ammount)
 				item.equippedOn |= 1
+				item.ownerArray[0] = ammount
 			else:
 				item.equippedOn &= ~1
+				item.ownerArray[0] = 0
 		"Lonna":
 			if result:
 				item.equippedOn |= 2
+				item.ownerArray[1] = ammount
 			else:
 				item.equippedOn &= ~2
+				item.ownerArray[1] = 0
 		"Damir":
 			if result:
 				item.equippedOn |= 4
+				item.ownerArray[2] = ammount
 			else:
 				item.equippedOn &= ~4
+				item.ownerArray[2] = 0
 		"Pepper":
 			if result:
 				item.equippedOn |= 8
+				item.ownerArray[3] = ammount
 			else:
 				item.equippedOn &= ~8
+				item.ownerArray[3] = 0
 
 func itemAutofill(item,chara,result) -> void:
 	if item.equippedOn == null: #Make sure the chip being operated on isn't null

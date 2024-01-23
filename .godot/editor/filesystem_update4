@@ -64,3 +64,8 @@ res://Code/SceneCode/Individuals/IteminInv.gd
 res://Code/Globals/InventoryFunctions.gd
 res://Scene/SideMenus/Chip/ChipMenu.tscn
 res://Code/SceneCode/Screens/ChipMenu.gd
+res://Scene/SideMenus/Chip/ChipinInv.tscn
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
+res://Code/ResourceMakers/ChipMaker.gd
+res://Code/ResourceMakers/ItemMaker.gd
+res://Scene/SideMenus/Chip/ChipinChar.tscn

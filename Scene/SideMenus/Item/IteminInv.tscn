@@ -36,14 +36,14 @@ stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="Button/MarginContainer/Item"]
 layout_mode = 2
-theme_override_constants/margin_top = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Button/MarginContainer/Item/MarginContainer"]
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 theme = ExtResource("1_pi0x2")
 bbcode_enabled = true
-text = "[center] Woerdiest item ever 2 [color=gray] 100/100[/color] [/center]"
+text = "[center] Woerdiest item ever 2[/center] [right][color=gray] 100/100[/color] [/right]"
+scroll_active = false
 
 [node name="Characters" type="GridContainer" parent="Button/MarginContainer/Item"]
 custom_minimum_size = Vector2(42, 20)
