@@ -1,4 +1,4 @@
-res://Scene/Mains/GameManager.tscn
+res://Scene/SideMenus/Item/ItemMenu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -20,11 +20,9 @@ res://Resources/Item Data/ItemMoves/TPItemMove.tres
 res://Resources/Item Data/ItemSpecifics/TPItem.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
-res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
 res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
 res://Resources/Item Data/ItemMoves/ElecBombMove.tres
-res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
 res://Resources/Chip Data/Chuck.tres
 res://Resources/Chip Data/Blood.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres
@@ -50,26 +48,19 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
+res://Themes/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/SceneCode/Screens/GameManager.gd
-res://Scene/Mains/MainMenu.tscn
+res://Code/Globals/InventoryFunctions.gd
 res://Code/SceneCode/Screens/ItemMenu.gd
-res://Code/SceneCode/Screens/MainMenu.gd
-res://Code/SceneCode/Individuals/IteminChar.gd
-res://Scene/SideMenus/Item/ItemMenu.tscn
+res://Scene/Mains/GameManager.tscn
+res://Code/SceneCode/Screens/GameManager.gd
 res://Scene/SideMenus/Item/IteminInv.tscn
 res://Scene/SideMenus/Item/IteminChar.tscn
-res://Code/SceneCode/Individuals/IteminInv.gd
-res://Code/Globals/InventoryFunctions.gd
-res://Scene/SideMenus/Chip/ChipMenu.tscn
-res://Code/SceneCode/Screens/ChipMenu.gd
-res://Scene/SideMenus/Chip/ChipinInv.tscn
-res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
-res://Code/ResourceMakers/ChipMaker.gd
-res://Code/ResourceMakers/ItemMaker.gd
-res://Scene/SideMenus/Chip/ChipinChar.tscn
-res://Resources/Item Data/ItemMoves/WhimBerryMove.tres
-res://Code/Globals/Globals.gd
 res://Scene/Constants/InsertNumber.tscn
 res://Code/SceneCode/Individuals/InsertNumber.gd
+res://Code/ResourceMakers/ItemMaker.gd
+res://Code/Globals/Globals.gd
+res://Resources/Inventory Data/ItemInventory.tres
+res://Code/SceneCode/Screens/ChipMenu.gd
+res://Scene/SideMenus/Chip/ChipMenu.tscn

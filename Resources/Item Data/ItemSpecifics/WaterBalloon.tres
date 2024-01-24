@@ -13,6 +13,6 @@ currentItems = 1
 centCost = 20
 icon = ExtResource("2_wpbvu")
 attackData = ExtResource("1_62i8p")
-ownerNum = 0
+ownerArray = [0, 0, 0, 0]
 equippedOn = 0
 autoFill = 0

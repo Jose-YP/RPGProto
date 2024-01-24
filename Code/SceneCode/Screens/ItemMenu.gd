@@ -32,6 +32,7 @@ signal gearMenu
 signal chipMenu
 signal itemMenu
 signal exitMenu
+signal sort
 signal makeNoise(num)
 
 var InvMenu: Array[Array] = [[],[]]
@@ -171,6 +172,7 @@ func buttons() -> void:
 		exitMenu.emit()
 	
 	if Input.is_action_just_pressed("Y"):
+		sort.emit()
 		makeNoise.emit(1)
 		var select = sortingOptions.selected
 		select += 1
@@ -228,6 +230,7 @@ func buttons() -> void:
 #INVENTORY DOCK
 #-----------------------------------------
 func getItemInventory() -> void:
+	print(currentInv)
 	for item in currentInv:
 		var itemPanel = InvItemPanel.instantiate()
 		itemPanel.itemData = item
@@ -240,7 +243,6 @@ func getItemInventory() -> void:
 		InvMarkers.append(itemPanel.inBetween)
 		side = swap(side)
 	
-	InvMarkers.append(InvMenu[side][-1].final)
 	side = 0
 
 func update() -> void:
@@ -339,10 +341,14 @@ func setAutofill(item) -> void:
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
+	var sameItemIndex =  InventoryFunctions.findItem(item, entity)
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	if entity.itemData.size() < itemLimit:
+	if sameItemIndex != 90:
+		entity.specificData.itemData.insert(sameItemIndex, item)
+		update()
+	elif entity.itemData.size() < itemLimit:
 		entity.specificData.itemData.insert(markerIndex, item)
 		update()
 

@@ -9,7 +9,6 @@ description = "Bomb attacks now use the user's Strength stat"
 CpuCost = 5
 maxNum = 3
 ChipType = "Red"
-ownerNum = 0
 equippedOn = 0
 other = ""
 newPhyElement = "None"

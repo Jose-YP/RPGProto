@@ -13,6 +13,6 @@ currentItems = 1
 centCost = 2000
 icon = ExtResource("2_nur7j")
 attackData = ExtResource("1_y46r1")
-ownerNum = 0
+ownerArray = [0, 0, 0, 0]
 equippedOn = 0
 autoFill = 0

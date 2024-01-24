@@ -1,8 +1,8 @@
 extends Node
 
-var ChipInventory: Inven
-var GearInventory: Inven
-var ItemInventory: Inven
+var ChipInventory: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
+var GearInventory: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
+var ItemInventory: Inven = load("res://Resources/Inventory Data/ItemInventory.tres")
 var noMovePlaceholder: Move = load("res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres")
 var playerStats: Dictionary
 var statTypes:Array[String] = ["Attack","Defense","Speed","Luck"]
@@ -62,7 +62,7 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.specificData.boostStat = Entity.specificData.defaultBoostStat
 	
 	preapplyChips(Entity)
-	
+	InventoryFunctions.miniItemHandler(Entity,Entity.itemData,ItemInventory.inventory)
 	return Entity
 
 func preapplyChips(Entity) -> void:

@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_yw34r")
 type = 1
-inventory = {}
+inventory = []
+inventorySort1 = []
+inventorySort2 = []
+inventorySort3 = []

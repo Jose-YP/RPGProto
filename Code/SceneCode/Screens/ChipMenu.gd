@@ -2,6 +2,7 @@ extends Control
 
 @export var InvChipPanel: PackedScene
 @export var playerChipPanel: PackedScene
+@export var inputButtonThreshold: float = 1.0
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
@@ -41,6 +42,7 @@ var markerArray: Array = []
 var markerIndex: int = 0
 var side: int = 0
 var num: int = 0
+var inputHoldTime: float = 0.0
 var playerIndex: int = 0
 var tempIndex: int = 0
 var CPUusage: int = 0
@@ -68,7 +70,7 @@ func _ready():
 #-----------------------------------------
 #PROCESSING
 #-----------------------------------------
-func _process(_delta):
+func _process(delta):
 	if movingChip:
 		movement()
 	buttons()
@@ -81,9 +83,17 @@ func _process(_delta):
 		elif Arrow.global_position.y > scrollDeadzone.y:
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
+	
+	if Input.is_anything_pressed():
+		inputHoldTime += delta
+	else:
+		inputHoldTime = 0.0
 
 func movement() -> void:
-	if Input.is_action_just_pressed("Left"):
+	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
+	print(held)
+	
+	if Input.is_action_pressed("Left") and held:
 		makeNoise.emit(2)
 		print(markerIndex)
 		if markerIndex%2 == 0 and markerIndex != 0:
@@ -104,7 +114,7 @@ func movement() -> void:
 		print(markerArray[side][markerIndex].global_position)
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.is_action_just_pressed("Right"):
+	if Input.is_action_pressed("Right") and held:
 		markerIndex += 1
 		print(markerIndex)
 		if markerIndex > (markerArray[side].size() - 1):
@@ -125,17 +135,16 @@ func movement() -> void:
 		print(markerArray[side][markerIndex].global_position)
 		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
-	if Input.is_action_just_pressed("Up"):
+	if Input.is_action_pressed("Up") and held:
 		markerIndex -= 2
 		if markerIndex < 0:
 			markerIndex = 0
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.is_action_just_pressed("Down"):
+	if Input.is_action_pressed("Down") and held:
 		markerIndex += 2
-		if markerArray[side][markerIndex].name == "Marker2D2":
-			markerIndex -= 2
+		
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		
