@@ -91,7 +91,6 @@ func _process(delta):
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
-	print(held)
 	
 	if Input.is_action_pressed("Left") and held:
 		makeNoise.emit(2)
@@ -144,7 +143,6 @@ func movement() -> void:
 	
 	if Input.is_action_pressed("Down") and held:
 		markerIndex += 2
-		
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		
