@@ -9,7 +9,6 @@ description = "-90 HP +12 CPU"
 CpuCost = -12
 maxNum = 3
 ChipType = "Yellow"
-ownerNum = 0
 equippedOn = 0
 other = ""
 newPhyElement = "None"

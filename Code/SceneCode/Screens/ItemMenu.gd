@@ -46,6 +46,7 @@ var tempIndex: int = 0
 var choosingNum: bool = false
 var movingItem: bool = false
 var acrossPlayers: bool = false
+var numBox
 var keepFocus
 var grabbedItem
 var wasChar
@@ -72,7 +73,7 @@ func _process(_delta):
 	if movingItem:
 		movement()
 	buttons()
-	if movingItem:
+	if movingItem or choosingNum:
 		if not acrossPlayers or (acrossPlayers and tempIndex == playerIndex):
 			keepFocus.grab_focus()
 		if Arrow.global_position.y < scrollDeadzone.x:
@@ -85,12 +86,14 @@ func _process(_delta):
 func movement() -> void:
 	if Input.is_action_just_pressed("Left"):
 		makeNoise.emit(2)
+		print(markerIndex)
 		if markerIndex%2 == 0 and markerIndex != 0:
 			side = swap(side)
 		else:
 			markerIndex -= 1
 		if markerIndex < 0:
 			if side == 1:
+				print("Swap")
 				side = swap(side)
 				markerIndex = 1
 			else:
@@ -98,17 +101,32 @@ func movement() -> void:
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		
+		print(side," | ", markerIndex)
+		print(markerArray[side][markerIndex].global_position)
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
 	if Input.is_action_just_pressed("Right"):
 		markerIndex += 1
-		if markerIndex%2 == 0:
-			side = swap(side)
-			markerIndex -= 1
+		print(markerIndex)
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
+		elif markerIndex%2 == 0 and markerArray[side][markerIndex].name != "Marker2D2":
+			print("Swap")
+			side = swap(side)
+			markerIndex -= 2
+			if markerIndex - 1 == 0:
+				markerIndex -= 1
+			if markerIndex > (markerArray[side].size() - 1):
+				markerIndex = markerArray[side].size() - 1
+		
+		print(side," | ", markerIndex)
+		if markerArray[side][markerIndex].name == "Marker2D2":
+			print("At End", markerArray[side][markerIndex].global_position)
+			print(markerArray[side][markerIndex],global_position, markerArray[side][markerIndex].position)
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
+		print(markerArray[side][markerIndex].global_position)
+		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
 	if Input.is_action_just_pressed("Up"):
 		markerIndex -= 2
@@ -119,6 +137,8 @@ func movement() -> void:
 	
 	if Input.is_action_just_pressed("Down"):
 		markerIndex += 2
+		if markerArray[side][markerIndex].name == "Marker2D2":
+			markerIndex -= 2
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		
@@ -145,30 +165,46 @@ func buttons() -> void:
 			movingItem = false
 			Arrow.hide()
 		
-		else:
+		elif choosingNum:
 			keepFocus = get_viewport().gui_get_focus_owner()
 			if keepFocus is OptionButton:
 				sortingOptions.press()
 			else:
 				movingItem = true
-				var adress = getButtonIndex(keepFocus)
-				side = adress.x
-				markerIndex = adress.y
-				wasChar = keepFocus.get_parent().inChar
+				choosingNum = numBox.ammount.value
+				numBox.queue_free()
 				
 				Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
 				Arrow.show()
+		
+		else:
+			keepFocus = get_viewport().gui_get_focus_owner()
+			choosingNum = true
+			
+			var adress = getButtonIndex(keepFocus)
+			side = adress.x
+			markerIndex = adress.y
+			
+			wasChar = keepFocus.get_parent().inChar
+			
+			numBox = insertNumPanel.instantiate()
+			numBox.global_position = keepFocus.global_position
+			numBox.maxNum = keepFocus.get_parent().itemData.maxItems
+			add_child(numBox)
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
 		if movingItem:
 			movingItem = false
 			Arrow.hide()
+		elif choosingNum:
+			choosingNum = false
+			numBox.queue_free()
 		else:
 			exitMenu.emit()
 	
 	if Input.is_action_just_pressed("X"):
-		exitMenu.emit()
+		setAutofill(grabbedItem)
 	
 	if Input.is_action_just_pressed("Y"):
 		makeNoise.emit(1)
@@ -216,13 +252,13 @@ func buttons() -> void:
 		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
 			PlayMenu[0][0].focus.grab_focus()
 	
-	#[item,gear,item]
+	#[chip,gear,item]
 	if not movingItem: #ZR and ZL
 		if Input.is_action_just_pressed("ZL"):
-			chipMenu.emit()
+			gearMenu.emit()
 		
 		if Input.is_action_just_pressed("ZR"):
-			gearMenu.emit()
+			chipMenu.emit()
 
 #-----------------------------------------
 #INVENTORY DOCK

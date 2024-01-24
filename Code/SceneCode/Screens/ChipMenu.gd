@@ -113,6 +113,8 @@ func movement() -> void:
 			print("Swap")
 			side = swap(side)
 			markerIndex -= 2
+			if markerIndex - 1 == 0:
+				markerIndex -= 1
 			if markerIndex > (markerArray[side].size() - 1):
 				markerIndex = markerArray[side].size() - 1
 		

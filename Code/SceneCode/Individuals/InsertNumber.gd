@@ -7,7 +7,7 @@ var maxNum: int = 50
 func _ready():
 	ammount.max_value = maxNum
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Down"):
 		ammount.value -= 1
 	if Input.is_action_pressed("Right") or Input.is_action_pressed("Up"):
