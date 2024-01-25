@@ -80,10 +80,52 @@ func itemAutofill(item,chara,result) -> void:
 			else:
 				item.autoFill &= ~8
 
-func findItem(item, chara) -> bool:
-	for playerItem in chara:
+func findItem(item, chara) -> int:
+	var index = 0
+	for playerItem in chara.itemData:
 		if playerItem.name == item.name:
-			return true
+			return index
+		else:
+			index += 1
+	return 90 #90 is the error value
+
+func findCurrentNum(item1, item2) -> bool:
+	var count1: int = 0
+	var count2: int = 0
+	
+	for i in range(4):
+		count1 += item1.ownerArray[i]
+		count2 += item2.ownerArray[i]
+	
+	if count1 > count2: return true
+	elif count1 == count2: return findOwnersNum(item1, item2)
+	return false #Only returns false if they are truly equal
+
+func findOwnersNum(item1, item2) -> bool:
+	var num1: int = 0
+	var num2: int = 0
+	var secondary1: int = 0 #Secondary only used when owner num is equal
+	var secondary2: int = 0
+	
+	for i in range(4):
+		if item1.ownerArray[i] != 0:
+			num1 += 1
+			match i: #Formatted to prioritize first character
+				0: secondary1 += 8
+				1: secondary1 += 4
+				2: secondary1 += 2
+				3: secondary1 += 1
+		if item2.ownerArray[i] != 0:
+			num2 += 1
+			match i:
+				0: secondary2 += 8
+				1: secondary2 += 4
+				2: secondary2 += 2
+				3: secondary2 += 1
+	
+	if num1 > num2: return true
+	elif num1 == num2:
+		if secondary1 > secondary2: return true
 	return false
 
 func chipHandler(inventory) -> void:

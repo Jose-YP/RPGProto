@@ -1,5 +1,4 @@
-res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/GameManager.tscn
+res://Scene/SideMenus/Item/ItemMenu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -52,11 +51,18 @@ res://Themes/ButtonStyle/Dock.tres
 res://Themes/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
-res://Code/SceneCode/Screens/ChipMenu.gd
-res://Scene/SideMenus/Item/ItemMenu.tscn
+res://Code/Globals/InventoryFunctions.gd
+res://Code/SceneCode/Screens/ItemMenu.gd
+res://Scene/Mains/GameManager.tscn
+res://Code/SceneCode/Screens/GameManager.gd
 res://Scene/SideMenus/Item/IteminInv.tscn
 res://Scene/SideMenus/Item/IteminChar.tscn
 res://Scene/Constants/InsertNumber.tscn
 res://Scene/SideMenus/Chip/ChipMenu.tscn
 res://Code/SceneCode/Screens/ItemMenu.gd
 res://Code/SceneCode/Individuals/InsertNumber.gd
+res://Code/ResourceMakers/ItemMaker.gd
+res://Code/Globals/Globals.gd
+res://Resources/Inventory Data/ItemInventory.tres
+res://Code/SceneCode/Screens/ChipMenu.gd
+res://Scene/SideMenus/Chip/ChipMenu.tscn

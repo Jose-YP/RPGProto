@@ -10,6 +10,6 @@ class_name Item
 @export var icon: Texture2D
 @export var attackData: Move = load("res://BasicAttack.tres")
 @export_category("Owners")
-@export var ownerArray: Array = [0,0,0,0]
-@export_flags("DREAMER","Lonna","Damir","Pepper") var equippedOn = 0
-@export_flags("DREAMER","Lonna","Damir","Pepper") var autoFill = 0
+@export var ownerArray: Array[int] = [0,0,0,0]
+@export_flags("DREAMER","Lonna","Damir","Pepper") var equippedOn: int = 0
+@export_flags("DREAMER","Lonna","Damir","Pepper") var autoFill: int = 0

@@ -9,10 +9,9 @@ extends Node2D
 @onready var regSFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 @onready var currentScene = $MainMenu
 
-var gearFolder = "res://Resources/Gear Data/"
-var chipFolder = "res://Resources/Chip Data/"
-var itemFolder = "res://Resources/Item Data/ItemSpecifics/"
-
+var gearFolder: String = "res://Resources/Gear Data/"
+var chipFolder: String = "res://Resources/Chip Data/"
+var itemFolder: String = "res://Resources/Item Data/ItemSpecifics/"
 var mainMenu: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
 var optionsMenu: PackedScene = preload("res://Scene/SideMenus/options_menu.tscn")
 var chipMenu: PackedScene = preload("res://Scene/SideMenus/Chip/ChipMenu.tscn")
@@ -27,8 +26,7 @@ func _ready(): #Make every inventory
 	#MAKE CHIP INVENTORY
 	chipInv.type = "Chip"
 	chipInv.inventory = getInventoryArray(chipFolder)
-	chipInv = getChipSorts(chipInv)
-	Globals.ChipInventory = chipInv
+	Globals.ChipInventory = getChipSorts(chipInv)
 	
 	#MAKE GEAR INVENTORY
 	gearInv.type = "Gear"
@@ -102,6 +100,20 @@ func getChipSorts(chips) -> Inven:
 	return chips
 
 func getItemSorts(items) -> Inven:
+	var itemSort: Array = items.inventory
+	var ownerSort: Array = items.inventory
+	
+	
+	ownerSort.sort_custom(InventoryFunctions.findOwnersNum)
+	itemSort.sort_custom(InventoryFunctions.findCurrentNum)
+	
+	items.inventorySort1 = ownerSort
+	items.inventorySort2 = itemSort
+	for i in range(items.inventory.size()):
+		print(items.inventorySort1[i].name)
+		
+	for i in range(items.inventory.size()):
+		print(items.inventorySort2[i].name)
 	return items
 
 #-----------------------------------------
@@ -141,6 +153,7 @@ func _on_to_item_menu() -> void:
 	currentScene.connect("exitMenu",_back_to_main_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)
+	currentScene.connect("sort", getNewSort)
 
 func _on_to_chip_menu() -> void:
 	$SFX/Confirm.play()
@@ -149,6 +162,11 @@ func _on_to_chip_menu() -> void:
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
 
+func getNewSort(type) -> void:
+	if type == "Chip":
+		Globals.ChipInventory = getChipSorts(Globals.ChipInventory)
+	else:
+		Globals.ItemInventory = getItemSorts(Globals.ItemInventory)
 #-----------------------------------------
 #AUDIO SIGNALS
 #-----------------------------------------

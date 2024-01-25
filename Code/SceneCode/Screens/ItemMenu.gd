@@ -4,6 +4,7 @@ extends Control
 @export var playerItemPanel: PackedScene
 @export var insertNumPanel: PackedScene
 @export var itemLimit: int = 8
+@export var inputButtonThreshold: float = 0.5
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
@@ -32,6 +33,7 @@ signal gearMenu
 signal chipMenu
 signal itemMenu
 signal exitMenu
+signal sort
 signal makeNoise(num)
 
 var InvMenu: Array[Array] = [[],[]]
@@ -43,6 +45,7 @@ var side: int = 0
 var num: int = 0
 var playerIndex: int = 0
 var tempIndex: int = 0
+var inputHoldTime: float = 0.0
 var choosingNum: bool = false
 var movingItem: bool = false
 var acrossPlayers: bool = false
@@ -69,7 +72,7 @@ func _ready():
 #-----------------------------------------
 #PROCESSING
 #-----------------------------------------
-func _process(_delta):
+func _process(delta):
 	if movingItem:
 		movement()
 	buttons()
@@ -82,9 +85,16 @@ func _process(_delta):
 		elif Arrow.global_position.y > scrollDeadzone.y:
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
+	
+	if Input.is_anything_pressed():
+		inputHoldTime += delta
+	else:
+		inputHoldTime = 0.0
 
 func movement() -> void:
-	if Input.is_action_just_pressed("Left"):
+	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
+	
+	if Input.is_action_pressed("Left") and held:
 		makeNoise.emit(2)
 		print(markerIndex)
 		if markerIndex%2 == 0 and markerIndex != 0:
@@ -105,7 +115,7 @@ func movement() -> void:
 		print(markerArray[side][markerIndex].global_position)
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.is_action_just_pressed("Right"):
+	if Input.is_action_pressed("Right") and held:
 		markerIndex += 1
 		print(markerIndex)
 		if markerIndex > (markerArray[side].size() - 1):
@@ -114,8 +124,6 @@ func movement() -> void:
 			print("Swap")
 			side = swap(side)
 			markerIndex -= 2
-			if markerIndex - 1 == 0:
-				markerIndex -= 1
 			if markerIndex > (markerArray[side].size() - 1):
 				markerIndex = markerArray[side].size() - 1
 		
@@ -128,14 +136,14 @@ func movement() -> void:
 		print(markerArray[side][markerIndex].global_position)
 		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
-	if Input.is_action_just_pressed("Up"):
+	if Input.is_action_pressed("Up") and held:
 		markerIndex -= 2
 		if markerIndex < 0:
 			markerIndex = 0
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.is_action_just_pressed("Down"):
+	if Input.is_action_pressed("Down") and held:
 		markerIndex += 2
 		if markerArray[side][markerIndex].name == "Marker2D2":
 			markerIndex -= 2
@@ -207,6 +215,7 @@ func buttons() -> void:
 		setAutofill(grabbedItem)
 	
 	if Input.is_action_just_pressed("Y"):
+		sort.emit()
 		makeNoise.emit(1)
 		var select = sortingOptions.selected
 		select += 1
@@ -264,6 +273,7 @@ func buttons() -> void:
 #INVENTORY DOCK
 #-----------------------------------------
 func getItemInventory() -> void:
+	print(currentInv)
 	for item in currentInv:
 		var itemPanel = InvItemPanel.instantiate()
 		itemPanel.itemData = item
@@ -276,7 +286,6 @@ func getItemInventory() -> void:
 		InvMarkers.append(itemPanel.inBetween)
 		side = swap(side)
 	
-	InvMarkers.append(InvMenu[side][-1].final)
 	side = 0
 
 func update() -> void:
@@ -375,10 +384,14 @@ func setAutofill(item) -> void:
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
+	var sameItemIndex =  InventoryFunctions.findItem(item, entity)
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	if entity.itemData.size() < itemLimit:
+	if sameItemIndex != 90:
+		entity.specificData.itemData.insert(sameItemIndex, item)
+		update()
+	elif entity.itemData.size() < itemLimit:
 		entity.specificData.itemData.insert(markerIndex, item)
 		update()
 
