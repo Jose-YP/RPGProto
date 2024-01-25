@@ -293,7 +293,6 @@ func findTarget(useMove) -> targetTypes:
 		"None":
 			returnTarget = targetTypes.NONE
 	
-	print(returnTarget)
 	return returnTarget
 
 func findWhich(useMove) -> whichTypes:

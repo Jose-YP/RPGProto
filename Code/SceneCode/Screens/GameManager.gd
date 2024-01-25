@@ -100,20 +100,14 @@ func getChipSorts(chips) -> Inven:
 	return chips
 
 func getItemSorts(items) -> Inven:
-	var itemSort: Array = items.inventory
-	var ownerSort: Array = items.inventory
-	
+	var itemSort: Array = items.inventory.duplicate()
+	var ownerSort: Array = items.inventory.duplicate()
 	
 	ownerSort.sort_custom(InventoryFunctions.findOwnersNum)
-	itemSort.sort_custom(InventoryFunctions.findCurrentNum)
-	
 	items.inventorySort1 = ownerSort
+	
+	itemSort.sort_custom(InventoryFunctions.findCurrentNum)
 	items.inventorySort2 = itemSort
-	for i in range(items.inventory.size()):
-		print(items.inventorySort1[i].name)
-		
-	for i in range(items.inventory.size()):
-		print(items.inventorySort2[i].name)
 	return items
 
 #-----------------------------------------

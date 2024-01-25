@@ -137,6 +137,7 @@ func movement() -> void:
 		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
 	if Input.is_action_pressed("Up") and held:
+		makeNoise.emit(2)
 		markerIndex -= 2
 		if markerIndex < 0:
 			markerIndex = 0
@@ -156,6 +157,9 @@ func buttons() -> void:
 		
 		if movingChip:
 			movingChip = false
+			setFocus(true)
+			Arrow.hide()
+			
 			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
 				if wasChar:
 					sortPlayerChip(grabbedChip)
@@ -167,8 +171,6 @@ func buttons() -> void:
 			else:
 				if wasChar:
 					removeChip(grabbedChip)
-			
-			Arrow.hide()
 		
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
@@ -176,6 +178,7 @@ func buttons() -> void:
 				sortingOptions.press()
 			else:
 				movingChip = true
+				setFocus(false)
 				var adress = getButtonIndex(keepFocus)
 				side = adress.x
 				markerIndex = adress.y
@@ -188,6 +191,7 @@ func buttons() -> void:
 		makeNoise.emit(1)
 		if movingChip:
 			movingChip = false
+			setFocus(true)
 			Arrow.hide()
 		else:
 			exitMenu.emit()
@@ -268,7 +272,6 @@ func getChipInventory() -> void:
 	side = 0
 
 func update() -> void:
-	print("UPDATE")
 	InvMenu = [[],[]]
 	InvMarkers = []
 	var prevKeep
@@ -458,6 +461,12 @@ func scrollDown() -> void:
 		chipInv.get_parent().scroll_vertical += scrollAmmount
 	else:
 		playerChips.get_parent().scroll_vertical += scrollAmmount
+
+func setFocus(value: bool) -> void:
+	if side == 0:
+		chipInv.get_parent().set_follow_focus(value)
+	else:
+		playerChips.get_parent().set_follow_focus(value)
 
 func getButtonIndex(searching) -> Vector2:
 	var menu: Array

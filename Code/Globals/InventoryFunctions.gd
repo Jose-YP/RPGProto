@@ -92,13 +92,19 @@ func findItem(item, chara) -> int:
 func findCurrentNum(item1, item2) -> bool:
 	var count1: int = 0
 	var count2: int = 0
+	var num1: int  = 0
+	var num2: int = 0
 	
 	for i in range(4):
 		count1 += item1.ownerArray[i]
 		count2 += item2.ownerArray[i]
 	
-	if count1 > count2: return true
-	elif count1 == count2: return findOwnersNum(item1, item2)
+	num1 = item1.maxCarry - count1
+	num2 = item2.maxCarry - count2
+	
+	#print("Current:", item1.name, num1, "vs", item2.name, num2)
+	if num1 > num2: return true
+	elif num1 == num2: return findOwnersNum(item1, item2)
 	return false #Only returns false if they are truly equal
 
 func findOwnersNum(item1, item2) -> bool:
@@ -123,8 +129,10 @@ func findOwnersNum(item1, item2) -> bool:
 				2: secondary2 += 2
 				3: secondary2 += 1
 	
+	print("Owner: ", item1.name, num1, "vs", item2.name, num2)
 	if num1 > num2: return true
 	elif num1 == num2:
+		print("Secondary: ", item1.name, secondary1, "vs", item2.name, secondary2)
 		if secondary1 > secondary2: return true
 	return false
 

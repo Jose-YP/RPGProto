@@ -40,7 +40,6 @@ func update() -> void:
 			updatePlayers("DREAMER")
 			currentNum -= 1
 		else:
-			print(ChipData.name, ChipData.equippedOn)
 			characterStatus[0].current_tab = 0
 		
 		if ChipData.equippedOn & 2:

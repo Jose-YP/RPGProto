@@ -3,7 +3,7 @@ extends Control
 @export var InvItemPanel: PackedScene
 @export var playerItemPanel: PackedScene
 @export var insertNumPanel: PackedScene
-@export var itemLimit: int = 8
+@export var itemLimit: int = 8 #Might formally be 8 if I can implement 8 moves in a menu option
 @export var inputButtonThreshold: float = 0.5
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
@@ -33,7 +33,7 @@ signal gearMenu
 signal chipMenu
 signal itemMenu
 signal exitMenu
-signal sort
+signal sort(type)
 signal makeNoise(num)
 
 var InvMenu: Array[Array] = [[],[]]
@@ -171,6 +171,7 @@ func buttons() -> void:
 			
 			
 			movingItem = false
+			setFocus(true)
 			Arrow.hide()
 		
 		elif choosingNum:
@@ -179,6 +180,7 @@ func buttons() -> void:
 				sortingOptions.press()
 			else:
 				movingItem = true
+				setFocus(false)
 				choosingNum = numBox.ammount.value
 				numBox.queue_free()
 				
@@ -204,6 +206,7 @@ func buttons() -> void:
 		makeNoise.emit(1)
 		if movingItem:
 			movingItem = false
+			setFocus(true)
 			Arrow.hide()
 		elif choosingNum:
 			choosingNum = false
@@ -215,9 +218,10 @@ func buttons() -> void:
 		setAutofill(grabbedItem)
 	
 	if Input.is_action_just_pressed("Y"):
-		sort.emit()
+		sort.emit("Item")
 		makeNoise.emit(1)
 		var select = sortingOptions.selected
+		print(select)
 		select += 1
 		if select >= 3:
 			select = 0
@@ -273,7 +277,6 @@ func buttons() -> void:
 #INVENTORY DOCK
 #-----------------------------------------
 func getItemInventory() -> void:
-	print(currentInv)
 	for item in currentInv:
 		var itemPanel = InvItemPanel.instantiate()
 		itemPanel.itemData = item
@@ -451,9 +454,12 @@ func on_play_focused(data) -> void:
 func _on_option_button_item_selected(index) -> void:
 	makeNoise.emit(0)
 	var newSort = sortingOptions.get_item_text(index)
+	print(newSort)
 	match newSort:
 		"Sort Alpha":
 			currentInv = Globals.ItemInventory.inventory
+			for item in currentInv:
+				print(item.name)
 		"Sort Owners":
 			currentInv = Globals.ItemInventory.inventorySort1
 		"Sort Leftover":
@@ -482,6 +488,12 @@ func scrollDown() -> void:
 		itemInv.get_parent().scroll_vertical += scrollAmmount
 	else:
 		playerItems.get_parent().scroll_vertical += scrollAmmount
+
+func setFocus(value: bool) -> void:
+	if side == 0:
+		itemInv.get_parent().set_follow_focus(value)
+	else:
+		playerItems.get_parent().set_follow_focus(value)
 
 func getButtonIndex(searching) -> Vector2:
 	var menu: Array

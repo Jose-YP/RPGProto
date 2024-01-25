@@ -13,6 +13,6 @@ currentItems = 1
 centCost = 120
 icon = ExtResource("2_fuaba")
 attackData = ExtResource("1_s3sxc")
-ownerArray = [0, 0, 0, 0]
+ownerArray = Array[int]([0, 0, 0, 0])
 equippedOn = 0
 autoFill = 0

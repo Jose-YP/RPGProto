@@ -182,9 +182,8 @@ func getOldIndex(prevName) -> int:
 			return 2
 		"Pepper":
 			return 3
-		_:
-			print("Oh no")
-			return 10
+	
+	return 10
 
 #-----------------------------------------
 #ENEMY SETUP
