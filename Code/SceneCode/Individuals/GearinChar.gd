@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var char: String
+@export var chara: String
 @export var gearData: Gear
 
 @onready var focus: Button = $Button
@@ -16,7 +16,7 @@ var charColor: Color
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	match char:
+	match chara:
 		"DREAMER":
 			charColor = Color(0.957, 0.537, 0.169)
 		"Lonna":

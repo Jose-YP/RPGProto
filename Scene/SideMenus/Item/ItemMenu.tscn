@@ -38,7 +38,7 @@ border_width_bottom = 10
 border_color = Color(0.8, 0.8, 0.121569, 1)
 border_blend = true
 
-[node name="Control" type="Control"]
+[node name="ItemMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,7 +50,6 @@ theme = ExtResource("1_fg0n7")
 script = ExtResource("2_tmbiy")
 InvItemPanel = ExtResource("3_tkvo7")
 playerItemPanel = ExtResource("4_p3rtt")
-insertNumPanel = ExtResource("5_nqupu")
 itemLimit = 4
 scrollDeadzone = Vector2(280, 420)
 metadata/_edit_pinned_properties_ = [&"scrollDeadzone"]
@@ -386,4 +385,13 @@ offset = Vector2(-38, 245.462)
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(699, 136)
 
+[node name="InsertNumber" parent="." instance=ExtResource("5_nqupu")]
+visible = false
+layout_mode = 1
+offset_left = -93.0
+offset_top = -54.0
+offset_right = -1286.0
+offset_bottom = -766.0
+
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="makeNoise" from="InsertNumber" to="." method="_on_insert_number_make_noise"]

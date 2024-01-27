@@ -4,27 +4,6 @@ Here's how things are supposed to functions
 I'm going to keep updating this until the GameJam starts so maybe it'll look better tommorow
 
 ______
-ISSUES
-______
-*In general STABILITY
-
-______
-TODO
-______
-*Make functioning menu for chips, gear and items
-*Implement Chips, gear and item selection
-*Fix/Balance other enemies
-*Implement other EnemyAI types(So far only random)
-
-______
-LOFTY TODOS
-______
-*Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
-*Better Damage displays
-*Visuals of any kind
-*Save system
-
-______
 CREDITS - THINGS I DON'T OWN
 ______
 ART)
@@ -43,10 +22,34 @@ fspecial.ogg used with Condition Buffs - unsure
 heavy1.ogg used with NeutralPhysical attacks - unsure
 
 ______
+ISSUES
+______
+*In general STABILITY
+
+______
+TODO
+______
+*Make functioning menu for gear and items
+*Implement gear and item selection
+*Save system
+*Implement other EnemyAI types(So far only random)
+
+______
+LOFTY TODOS
+______
+*Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
+*Better Damage displays
+*Visuals of any kind
+*Fix/Balance other enemies
+
+______
 STATS
 _____
 *HP:    Health Points, when 0 you die
 *LP:    Mana, they're only called LP because I played Okage: Shadow King lol
+*TP:    Added up with the rest of the team's TP to form a total TP Pool
+*CPU:   Determines how many Chips you can equip
+
 *strength:  Physical Attack
 *toughness:  Physical Defense
 *ballistics:  Ballistic Attack (aka magic)
@@ -150,3 +153,30 @@ Despite the decently high HP Cost it's a super strong move
 but being on the main character who not only game overs upon death but is the only healer for half the game
 it's super fun and risky to use and I love it
 So here it is in the prototype
+
+______
+CHIPS
+______
+Chips are equipabbles that will give the user different effects
+You can only equip as many as your CPU count can hold
+
+
+
+*Red: Affects aspects like moveset, move costs, and move properties
+*Blue: Affects a character's properties from element, immunities, resistances, and conditions
+*Yellow: Affects base stats
+
+______
+ITEMS
+______
+
+
+______
+GEAR
+______
+Character Exlusive Equipabbles
+
+Generally characters will have two types of gear that have different types of buffs
+There will be stronger versions of those two types
+
+The exception is with the DREAMER whose gear varies wildly

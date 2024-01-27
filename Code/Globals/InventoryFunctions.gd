@@ -1,9 +1,5 @@
 extends Node
 
-var effectiveChipInven
-var effectiveGearInven
-var effectiveItemInven
-
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for item in player.itemData:
@@ -26,7 +22,6 @@ func itemHandlerResult(item,ammount,chara,result) -> void:
 	match chara:
 		"DREAMER":
 			if result:
-				print(item.name, ammount)
 				item.equippedOn |= 1
 				item.ownerArray[0] = ammount
 			else:
@@ -102,7 +97,6 @@ func findCurrentNum(item1, item2) -> bool:
 	num1 = item1.maxCarry - count1
 	num2 = item2.maxCarry - count2
 	
-	#print("Current:", item1.name, num1, "vs", item2.name, num2)
 	if num1 > num2: return true
 	elif num1 == num2: return findOwnersNum(item1, item2)
 	return false #Only returns false if they are truly equal
@@ -129,10 +123,8 @@ func findOwnersNum(item1, item2) -> bool:
 				2: secondary2 += 2
 				3: secondary2 += 1
 	
-	print("Owner: ", item1.name, num1, "vs", item2.name, num2)
 	if num1 > num2: return true
 	elif num1 == num2:
-		print("Secondary: ", item1.name, secondary1, "vs", item2.name, secondary2)
 		if secondary1 > secondary2: return true
 	return false
 

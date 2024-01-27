@@ -1,9 +1,287 @@
-[gd_scene format=3 uid="uid://di4l56sa801t4"]
+[gd_scene load_steps=15 format=3 uid="uid://di4l56sa801t4"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_abep7"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/GearMenu.gd" id="2_0e8n0"]
+[ext_resource type="PackedScene" uid="uid://darsoarlvp0i8" path="res://Scene/SideMenus/Gear/GearinInv.tscn" id="3_1e5gk"]
+[ext_resource type="Material" uid="uid://g13xvkbcpfoj" path="res://Themes/ButtonStyle/Dock.tres" id="3_4cmyb"]
+[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="4_8xh1t"]
+[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="5_k8rsr"]
+[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="6_v7e01"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="7_o13u7"]
+[ext_resource type="Texture2D" uid="uid://bvl2silysy33m" path="res://Icons/keyboard-icons-_0000s_0023__Group_.png" id="8_vl65m"]
+[ext_resource type="Texture2D" uid="uid://1k8pas0ikvxp" path="res://Icons/Crush.png" id="9_4sppd"]
+[ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="10_ai470"]
+[ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="11_p8am1"]
+[ext_resource type="Texture2D" uid="uid://dgoj57i606hsw" path="res://Art/yellow-ball-icon-6-3137490973.png" id="12_v2gnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flxfa"]
+bg_color = Color(0.231373, 0.329412, 0.431373, 1)
+border_width_left = 5
+corner_detail = 12
+
+[node name="GearMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_abep7")
+script = ExtResource("2_0e8n0")
+gearPanel = ExtResource("3_1e5gk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 779.0
+
+[node name="Title" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Title"]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "
+<- Chip Menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(1048, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]GEAR SELECTION MENU[/center]
+[center]Accept: A			Cancel: B			Sort: Y		Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "
+[right]Item Menu -->[/right]"
+
+[node name="MainDock" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CurrentCharGear" type="PanelContainer" parent="VBoxContainer/MainDock"]
+material = ExtResource("3_4cmyb")
+use_parent_material = true
+custom_minimum_size = Vector2(800, 725)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_flxfa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear"]
+layout_mode = 2
+
+[node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+
+[node name="Character" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+custom_minimum_size = Vector2(260, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Character"]
+layout_mode = 2
+bbcode_enabled = true
+text = "CHARACTER HP: 100
+LP:99 TP: 100"
+metadata/_edit_lock_ = true
+
+[node name="Elements" type="VBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+
+[node name="Player1Element" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements"]
+self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
+custom_minimum_size = Vector2(45, 40)
+layout_mode = 2
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("4_8xh1t")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("5_k8rsr")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("6_v7e01")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_o13u7")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements"]
+self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
+custom_minimum_size = Vector2(45, 40)
+layout_mode = 2
+tabs_visible = false
+
+[node name="Slash" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+modulate = Color(0, 0.615686, 0.192157, 0.682353)
+layout_mode = 2
+texture = ExtResource("8_vl65m")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Crush" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+visible = false
+modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
+layout_mode = 2
+texture = ExtResource("9_4sppd")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Pierce" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+visible = false
+modulate = Color(1, 0.588235, 0.12549, 0.682353)
+layout_mode = 2
+texture = ExtResource("10_ai470")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Stats" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+custom_minimum_size = Vector2(380, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Stats"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]STR: 60		TGH: 60		SPD: 60
+BAL: 60:		RES: 60		LUK: 60[/center]"
+metadata/_edit_lock_ = true
+
+[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox"]
+layout_mode = 2
+
+[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("11_p8am1")
+texture_over = ExtResource("7_o13u7")
+texture_progress = ExtResource("12_v2gnj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "100/100
+CPU"
+
+[node name="ItemBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/ItemBox"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][color=gray]Items 
+8/8 [/color]"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+layout_mode = 2
+
+[node name="CurrentGear" type="ScrollContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
+custom_minimum_size = Vector2(0, 635)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CurrentGear"]
+layout_mode = 2
+columns = 2
+
+[node name="Info" type="HBoxContainer" parent="VBoxContainer/MainDock"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MainDock/Info"]
+layout_mode = 2
+
+[node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo"]
+layout_mode = 2
+columns = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="OldGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2/OldGear"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][u]OLD GEAR[/u]
+THIS THING[/center]"
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="NewGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3/NewGear"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][u]NEW GEAR[/u]
+NEW SUPER GREATSWORD[/center]"
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="OldDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="NewDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc"]
+layout_mode = 2
+metadata/_edit_lock_ = true

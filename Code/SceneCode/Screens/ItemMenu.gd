@@ -2,7 +2,6 @@ extends Control
 
 @export var InvItemPanel: PackedScene
 @export var playerItemPanel: PackedScene
-@export var insertNumPanel: PackedScene
 @export var itemLimit: int = 8 #Might formally be 8 if I can implement 8 moves in a menu option
 @export var inputButtonThreshold: float = 0.5
 @export var scrollAmmount: int = 55
@@ -15,6 +14,7 @@ extends Control
 @onready var Arrow: Sprite2D = $Arrow
 @onready var placeholderPos: Marker2D = $Marker2D
 @onready var sortingOptions: OptionButton = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton
+@onready var insertNumPanel = $InsertNumber
 #Descriptions
 @onready var invItemTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
 @onready var invItemDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
@@ -49,7 +49,6 @@ var inputHoldTime: float = 0.0
 var choosingNum: bool = false
 var movingItem: bool = false
 var acrossPlayers: bool = false
-var numBox
 var keepFocus
 var grabbedItem
 var wasChar
@@ -85,11 +84,16 @@ func _process(delta):
 		elif Arrow.global_position.y > scrollDeadzone.y:
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
+		
+		if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
+			inputHoldTime = 0.0
+		else:
+			inputHoldTime += delta
+		insertNumPanel.holding = inputHoldTime
 	
-	if Input.is_anything_pressed():
-		inputHoldTime += delta
-	else:
-		inputHoldTime = 0.0
+	#if choosingNum:
+		#print(inputHoldTime)
+		#print(insertNumPanel.holding)
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
@@ -176,20 +180,20 @@ func buttons() -> void:
 		
 		elif choosingNum:
 			keepFocus = get_viewport().gui_get_focus_owner()
-			if keepFocus is OptionButton:
-				sortingOptions.press()
-			else:
-				movingItem = true
-				setFocus(false)
-				choosingNum = numBox.ammount.value
-				numBox.queue_free()
-				
-				Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
-				Arrow.show()
+			movingItem = true
+			setFocus(false)
+			insertNumPanel.using = false
+			choosingNum = false
+			num = insertNumPanel.ammount.value
+			insertNumPanel.hide()
+			
+			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
+			Arrow.show()
 		
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
 			choosingNum = true
+			insertNumPanel.using = true
 			
 			var adress = getButtonIndex(keepFocus)
 			side = adress.x
@@ -197,10 +201,9 @@ func buttons() -> void:
 			
 			wasChar = keepFocus.get_parent().inChar
 			
-			numBox = insertNumPanel.instantiate()
-			numBox.global_position = keepFocus.global_position
-			numBox.maxNum = keepFocus.get_parent().itemData.maxItems
-			add_child(numBox)
+			insertNumPanel.show()
+			insertNumPanel.global_position = keepFocus.global_position + Vector2(150,0)
+			insertNumPanel.maxNum = keepFocus.get_parent().itemData.maxItems
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
@@ -209,8 +212,9 @@ func buttons() -> void:
 			setFocus(true)
 			Arrow.hide()
 		elif choosingNum:
+			insertNumPanel.using = false
 			choosingNum = false
-			numBox.queue_free()
+			insertNumPanel.hide()
 		else:
 			exitMenu.emit()
 	
@@ -454,18 +458,19 @@ func on_play_focused(data) -> void:
 func _on_option_button_item_selected(index) -> void:
 	makeNoise.emit(0)
 	var newSort = sortingOptions.get_item_text(index)
-	print(newSort)
 	match newSort:
 		"Sort Alpha":
 			currentInv = Globals.ItemInventory.inventory
-			for item in currentInv:
-				print(item.name)
 		"Sort Owners":
 			currentInv = Globals.ItemInventory.inventorySort1
 		"Sort Leftover":
 			currentInv = Globals.ItemInventory.inventorySort2
 	
 	update()
+
+func _on_insert_number_make_noise() -> void:
+	print("AA")
+	makeNoise.emit(2)
 
 #-----------------------------------------
 #HELPER FUNCTIONS
