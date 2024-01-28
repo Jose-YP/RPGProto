@@ -84,10 +84,10 @@ func _process(delta):
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.is_anything_pressed():
-		inputHoldTime += delta
-	else:
+	if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
 		inputHoldTime = 0.0
+	else:
+		inputHoldTime += delta
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
@@ -224,7 +224,7 @@ func buttons() -> void:
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
 		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
+		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
 			PlayMenu[0][0].focus.grab_focus()
 	
 	if Input.is_action_just_pressed("R"):
@@ -294,7 +294,6 @@ func update() -> void:
 	if movingChip:
 		keepFocus.grab_focus()
 	else:
-		print("AAA")
 		InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------

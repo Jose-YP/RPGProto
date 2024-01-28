@@ -414,19 +414,16 @@ func removeItem(item) -> void:
 	
 	if entity.itemData[item] == 0:
 		entity.itemData.erase(item)
+		InventoryFunctions.itemAutofill(item, entity.name, false)
+		InventoryFunctions.itemHandlerResult(item,0,entity.name,false)
 	update()
 
 func sortPlayerItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
 	
-	if acrossPlayers and item.CpuCost < (entity.specificData.MaxCPU - entity.specificData.currentCPU):
-		var fromEntity = Globals.every_player_entity[tempIndex]
-		fromEntity.specificData.itemData.erase(item)
-		entity.specificData.itemData.insert(markerIndex, item)
-		InventoryFunctions.itemHandler(currentInv) #Update item ownership from prev entity
-	else:
-		entity.specificData.itemData.erase(item)
-		entity.specificData.itemData.insert(markerIndex, item)
+	if acrossPlayers and entity.itemData.size() < itemLimit:
+		removeItem(item)
+		addItem(item)
 	
 	update()
 
@@ -438,7 +435,7 @@ func on_inv_focused(data) -> void:
 	grabbedItem = data.itemData
 	
 	invItemTitle.clear()
-	invItemTitle.append_text(str(data.itemData.name))
+	invItemTitle.append_text(str("[center]",data.itemData.name,"\nCurrent Total: ", data.itemData.currentItems,"[/center]"))
 	
 	invItemDetails.clear()
 	invItemDetails.append_text(str("[center]OWNERS\n",
@@ -452,7 +449,7 @@ func on_play_focused(data) -> void:
 	grabbedItem = data.itemData
 	
 	playerItemTitle.clear()
-	playerItemTitle.append_text(str("[center]",data.itemData.name,"[/center]"))
+	playerItemTitle.append_text(str("[center]",data.itemData.name, "\nCurrent Total: ", data.itemData.currentItems,"[/center]"))
 	
 	playerItemDetails.clear()
 	playerItemDetails.append_text(str("[center]OWNING\n",
