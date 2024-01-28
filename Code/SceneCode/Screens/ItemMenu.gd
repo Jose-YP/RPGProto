@@ -71,6 +71,7 @@ func _ready():
 #PROCESSING
 #-----------------------------------------
 func _process(delta):
+	if get_viewport().gui_get_focus_owner() == null: InvMenu[0][0].focus.grab_focus()
 	if movingItem: movement()
 	buttons()
 	
@@ -135,9 +136,8 @@ func buttons() -> void:
 		if movingItem:
 			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
 				if wasChar: sortPlayerItem(grabbedItem)
-				else:
-					if acrossPlayers: sortPlayerItem(grabbedItem)
-					else: addItem(grabbedItem)
+				elif acrossPlayers: sortPlayerItem(grabbedItem)
+				else: addItem(grabbedItem)
 					
 			elif wasChar: removeItem(grabbedItem)
 			
@@ -259,8 +259,14 @@ func update() -> void:
 	InvMenu = [[],[]]
 	InvMarkers = []
 	var prevKeep
-	for thing in itemInv.get_children():
-		if movingItem and thing == keepFocus.get_parent(): prevKeep = thing.itemData
+	
+	if keepFocus == null:
+		print("CCC")
+		prevKeep = get_viewport().gui_get_focus_owner().get_parent().itemData
+	
+	for thing in itemInv.get_children(): #Delete previous inventory display
+		if movingItem and thing == keepFocus.get_parent():
+			prevKeep = thing.itemData
 		itemInv.remove_child(thing)
 		thing.queue_free()
 	
@@ -269,11 +275,17 @@ func update() -> void:
 	getItemInventory()
 	
 	for thing in itemInv.get_children():
-		if thing.itemData == prevKeep: keepFocus = thing.focus
+		if thing.itemData == prevKeep: 
+			print(thing.itemData.name)
+			keepFocus = thing.focus
 	
 	acrossPlayers = false
-	if movingItem: keepFocus.grab_focus()
-	else: InvMenu[0][0].focus.grab_focus()
+	if movingItem and keepFocus != null:
+		print("BBB")
+		keepFocus.grab_focus()
+	else:
+		print("AAA")
+		InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
