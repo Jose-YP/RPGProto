@@ -242,7 +242,7 @@ func buttons() -> void:
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
 		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
+		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
 			PlayMenu[0][0].focus.grab_focus()
 	
 	#[chip,gear,item]

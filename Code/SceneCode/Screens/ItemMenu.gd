@@ -71,12 +71,11 @@ func _ready():
 #PROCESSING
 #-----------------------------------------
 func _process(delta):
-	if movingItem:
-		movement()
+	if movingItem: movement()
 	buttons()
+	
 	if movingItem or choosingNum:
-		if not acrossPlayers or (acrossPlayers and tempIndex == playerIndex):
-			keepFocus.grab_focus()
+		if not acrossPlayers or (acrossPlayers and tempIndex == playerIndex): keepFocus.grab_focus()
 		if Arrow.global_position.y < scrollDeadzone.x:
 			scrollUp()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
@@ -84,10 +83,8 @@ func _process(delta):
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 		
-		if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
-			inputHoldTime = 0.0
-		else:
-			inputHoldTime += delta
+		if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0): inputHoldTime = 0.0
+		else: inputHoldTime += delta
 		insertNumPanel.holding = inputHoldTime
 
 func movement() -> void:
@@ -95,59 +92,39 @@ func movement() -> void:
 	
 	if Input.is_action_pressed("Left") and held:
 		makeNoise.emit(2)
-		print(markerIndex)
-		if markerIndex%2 == 0 and markerIndex != 0:
-			side = swap(side)
-		else:
-			markerIndex -= 1
+		if markerIndex%2 == 0 and markerIndex != 0: side = swap(side)
+		else: markerIndex -= 1
+		
 		if markerIndex < 0:
 			if side == 1:
-				print("Swap")
 				side = swap(side)
 				markerIndex = 1
-			else:
-				markerIndex = 0
-		if markerIndex > (markerArray[side].size() - 1):
-			markerIndex = markerArray[side].size() - 1
+			else: markerIndex = 0
+			
+		if markerIndex > (markerArray[side].size() - 1): markerIndex = markerArray[side].size() - 1
 		
-		print(side," | ", markerIndex)
-		print(markerArray[side][markerIndex].global_position)
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
 	if Input.is_action_pressed("Right") and held:
 		markerIndex += 1
-		print(markerIndex)
-		if markerIndex > (markerArray[side].size() - 1):
-			markerIndex = markerArray[side].size() - 1
+		if markerIndex > (markerArray[side].size() - 1): markerIndex = markerArray[side].size() - 1
 		elif markerIndex%2 == 0 and markerArray[side][markerIndex].name != "Marker2D2":
-			print("Swap")
 			side = swap(side)
 			markerIndex -= 2
-			if markerIndex > (markerArray[side].size() - 1):
-				markerIndex = markerArray[side].size() - 1
-		
-		print(side," | ", markerIndex)
-		if markerArray[side][markerIndex].name == "Marker2D2":
-			print("At End", markerArray[side][markerIndex].global_position)
-			print(markerArray[side][markerIndex],global_position, markerArray[side][markerIndex].position)
+			if markerIndex > (markerArray[side].size() - 1): markerIndex = markerArray[side].size() - 1
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
-		print(markerArray[side][markerIndex].global_position)
-		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
 	if Input.is_action_pressed("Up") and held:
 		markerIndex -= 2
-		if markerIndex < 0:
-			markerIndex = 0
+		if markerIndex < 0: markerIndex = 0
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
 	if Input.is_action_pressed("Down") and held:
 		markerIndex += 2
-		if markerArray[side][markerIndex].name == "Marker2D2":
-			markerIndex -= 2
-		if markerIndex > (markerArray[side].size() - 1):
-			markerIndex = markerArray[side].size() - 1
+		if markerArray[side][markerIndex].name == "Marker2D2": markerIndex -= 2
+		if markerIndex > (markerArray[side].size() - 1): markerIndex = markerArray[side].size() - 1
 		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 
@@ -157,16 +134,12 @@ func buttons() -> void:
 		
 		if movingItem:
 			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
-				if wasChar:
-					sortPlayerItem(grabbedItem)
+				if wasChar: sortPlayerItem(grabbedItem)
 				else:
-					if acrossPlayers:
-						sortPlayerItem(grabbedItem)
-					else:
-						addItem(grabbedItem)
-			else:
-				if wasChar:
-					removeItem(grabbedItem)
+					if acrossPlayers: sortPlayerItem(grabbedItem)
+					else: addItem(grabbedItem)
+					
+			elif wasChar: removeItem(grabbedItem)
 			
 			
 			movingItem = false
@@ -210,11 +183,10 @@ func buttons() -> void:
 			insertNumPanel.using = false
 			choosingNum = false
 			insertNumPanel.hide()
-		else:
-			exitMenu.emit()
+			
+		else: exitMenu.emit()
 	
-	if Input.is_action_just_pressed("X"):
-		setAutofill(grabbedItem)
+	if Input.is_action_just_pressed("X"): setAutofill(grabbedItem)
 	
 	if Input.is_action_just_pressed("Y"):
 		sort.emit("Item")
@@ -222,55 +194,48 @@ func buttons() -> void:
 		var select = sortingOptions.selected
 		print(select)
 		select += 1
-		if select >= 3:
-			select = 0
+		if select >= 3: select = 0
 		sortingOptions.select(select)
 		sortingOptions.item_selected.emit(select)
-		
-	if Input.is_action_just_pressed("L"):
-		makeNoise.emit(2)
-		if movingItem:
-			tempIndex = playerIndex
-			acrossPlayers = true
-			keepFocus.release_focus()
-			if side == 1:
-				markerIndex = 0
-		
-		playerIndex -= 1
-		if playerIndex < 0:
-			playerIndex = Globals.every_player_entity.size() - 1
-		
-		getPlayerStats(playerIndex)
-		getPlayerItems(playerIndex)
-		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
-			PlayMenu[0][0].focus.grab_focus()
 	
-	if Input.is_action_just_pressed("R"):
-		makeNoise.emit(2)
-		if movingItem:
-			tempIndex = playerIndex
-			acrossPlayers = true
-			if side == 1:
-				markerIndex = 0
+	if not choosingNum:
+		if Input.is_action_just_pressed("L"):
+			makeNoise.emit(2)
+			if movingItem:
+				tempIndex = playerIndex
+				acrossPlayers = true
+				keepFocus.release_focus()
+				if side == 1: markerIndex = 0
+			
+			playerIndex -= 1
+			if playerIndex < 0: playerIndex = Globals.every_player_entity.size() - 1
+			
+			getPlayerStats(playerIndex)
+			getPlayerItems(playerIndex)
+			
+			if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
+				PlayMenu[0][0].focus.grab_focus()
 		
-		playerIndex += 1
-		if playerIndex > (Globals.every_player_entity.size() - 1):
-			playerIndex = 0
-		
-		getPlayerStats(playerIndex)
-		getPlayerItems(playerIndex)
-		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
-			PlayMenu[0][0].focus.grab_focus()
+		if Input.is_action_just_pressed("R"):
+			makeNoise.emit(2)
+			if movingItem:
+				tempIndex = playerIndex
+				acrossPlayers = true
+				if side == 1: markerIndex = 0
+			
+			playerIndex += 1
+			if playerIndex > (Globals.every_player_entity.size() - 1): playerIndex = 0
+			
+			getPlayerStats(playerIndex)
+			getPlayerItems(playerIndex)
+			
+			if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
+				PlayMenu[0][0].focus.grab_focus()
 	
 	#[chip,gear,item]
 	if not movingItem: #ZR and ZL
-		if Input.is_action_just_pressed("ZL"):
-			gearMenu.emit()
-		
-		if Input.is_action_just_pressed("ZR"):
-			chipMenu.emit()
+		if Input.is_action_just_pressed("ZL"): gearMenu.emit()
+		if Input.is_action_just_pressed("ZR"): chipMenu.emit()
 
 #-----------------------------------------
 #INVENTORY DOCK
@@ -295,8 +260,7 @@ func update() -> void:
 	InvMarkers = []
 	var prevKeep
 	for thing in itemInv.get_children():
-		if movingItem and thing == keepFocus.get_parent():
-			prevKeep = thing.itemData
+		if movingItem and thing == keepFocus.get_parent(): prevKeep = thing.itemData
 		itemInv.remove_child(thing)
 		thing.queue_free()
 	
@@ -305,14 +269,11 @@ func update() -> void:
 	getItemInventory()
 	
 	for thing in itemInv.get_children():
-		if thing.itemData == prevKeep:
-			keepFocus = thing.focus
+		if thing.itemData == prevKeep: keepFocus = thing.focus
 	
 	acrossPlayers = false
-	if movingItem:
-		keepFocus.grab_focus()
-	else:
-		InvMenu[0][0].focus.grab_focus()
+	if movingItem: keepFocus.grab_focus()
+	else: InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -348,6 +309,8 @@ func getPlayerItems(index) -> void:
 		itemPannel.itemData = item
 		itemPannel.maxNum = item.maxItems
 		itemPannel.currentNum = item.ownerArray[entityNum]
+		if item.autofill & Globals.charFlag(entity): itemPannel.autofillOn = true
+		
 		itemPannel.connect("getDesc",on_play_focused)
 		playerItems.add_child(itemPannel)
 		
@@ -355,7 +318,6 @@ func getPlayerItems(index) -> void:
 		PlayMarkers.append(itemPannel.inBetween)
 		
 		side = swap(side)
-		print(item.name, entity.itemData[item])
 	
 	if PlayMenu[0].size() == 0:
 		PlayMarkers.append(placeholderPos)
@@ -373,11 +335,9 @@ func clearPlayerItems() -> void:
 
 func getElements(entity) -> void:
 	for k in range(4):
-		if Globals.elementGroups[k] == entity.element:
-			playerElement.current_tab = k
+		if Globals.elementGroups[k] == entity.element: playerElement.current_tab = k
 	for k in range(3):
-		if Globals.XSoftTypes[k+3] == entity.phyElement:
-			playerPhyEle.current_tab = k
+		if Globals.XSoftTypes[k+3] == entity.phyElement: playerPhyEle.current_tab = k
 
 func setAutofill(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
@@ -395,8 +355,7 @@ func setAutofill(item) -> void:
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
 	var sameItemIndex = InventoryFunctions.findItem(item, entity)
-	if acrossPlayers:
-		entity = Globals.every_player_entity[tempIndex]
+	if acrossPlayers: entity = Globals.every_player_entity[tempIndex]
 	
 	if sameItemIndex != 90:
 		entity.itemData[item] += num
@@ -407,8 +366,7 @@ func addItem(item) -> void:
 
 func removeItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
-	if acrossPlayers:
-		entity = Globals.every_player_entity[tempIndex]
+	if acrossPlayers: entity = Globals.every_player_entity[tempIndex]
 	
 	entity.itemData[item] -= num
 	
@@ -462,12 +420,9 @@ func _on_option_button_item_selected(index) -> void:
 	makeNoise.emit(0)
 	var newSort = sortingOptions.get_item_text(index)
 	match newSort:
-		"Sort Alpha":
-			currentInv = Globals.ItemInventory.inventory
-		"Sort Owners":
-			currentInv = Globals.ItemInventory.inventorySort1
-		"Sort Leftover":
-			currentInv = Globals.ItemInventory.inventorySort2
+		"Sort Alpha": currentInv = Globals.ItemInventory.inventory
+		"Sort Owners": currentInv = Globals.ItemInventory.inventorySort1
+		"Sort Leftover": currentInv = Globals.ItemInventory.inventorySort2
 	
 	update()
 
@@ -478,29 +433,21 @@ func _on_insert_number_make_noise() -> void:
 #HELPER FUNCTIONS
 #-----------------------------------------
 func swap(value) -> int:
-	if value == 0:
-		value += 1
-	else:
-		value -= 1
+	if value == 0: value += 1
+	else: value -= 1
 	return value
 
 func scrollUp() -> void:
-	if side == 0:
-		itemInv.get_parent().scroll_vertical -= scrollAmmount
-	else:
-		playerItems.get_parent().scroll_vertical -= scrollAmmount
+	if side == 0: itemInv.get_parent().scroll_vertical -= scrollAmmount
+	else: playerItems.get_parent().scroll_vertical -= scrollAmmount
 
 func scrollDown() -> void:
-	if side == 0:
-		itemInv.get_parent().scroll_vertical += scrollAmmount
-	else:
-		playerItems.get_parent().scroll_vertical += scrollAmmount
+	if side == 0: itemInv.get_parent().scroll_vertical += scrollAmmount
+	else: playerItems.get_parent().scroll_vertical += scrollAmmount
 
 func setFocus(value: bool) -> void:
-	if side == 0:
-		itemInv.get_parent().set_follow_focus(value)
-	else:
-		playerItems.get_parent().set_follow_focus(value)
+	if side == 0: itemInv.get_parent().set_follow_focus(value)
+	else: playerItems.get_parent().set_follow_focus(value)
 
 func getButtonIndex(searching) -> Vector2:
 	var menu: Array
@@ -523,7 +470,6 @@ func getButtonIndex(searching) -> Vector2:
 				locSide = adress
 				break
 	
-	if locSide == 1:
-		found += 1
+	if locSide == 1: found += 1
 	
 	return Vector2(dock, found)

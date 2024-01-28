@@ -76,3 +76,5 @@ res://Code/ResourceMakers/ItemMaker.gd
 res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres
 res://Code/SceneCode/Screens/MainMenu.gd
 res://Code/SceneCode/Screens/ChipMenu.gd
+res://Code/SceneCode/Individuals/IteminChar.gd
+res://Scene/SideMenus/Item/IteminChar.tscn
