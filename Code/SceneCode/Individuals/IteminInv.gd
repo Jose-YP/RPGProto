@@ -51,14 +51,13 @@ func update() -> void:
 			
 		else: characterStatus[3].current_tab = 0
 		
-	if itemData.autoFill != null:
-		if itemData.autoFill & 1: characterStatus[0].current_tab = 2
-		if itemData.autoFill & 2: characterStatus[1].current_tab = 2
-		if itemData.autoFill & 4: characterStatus[2].current_tab = 2
-		if itemData.autoFill & 8: characterStatus[3].current_tab = 2
+	if itemData.autofill != null:
+		if itemData.autofill & 1: characterStatus[0].current_tab = 2
+		if itemData.autofill & 2: characterStatus[1].current_tab = 2
+		if itemData.autofill & 4: characterStatus[2].current_tab = 2
+		if itemData.autofill & 8: characterStatus[3].current_tab = 2
 	
 	if currentPlayers == "": currentPlayers = "None"
-	print(itemData.name, itemData.ownerArray[0] + itemData.ownerArray[1] + itemData.ownerArray[2] + itemData.ownerArray[3])
 	itemData.currentInInv = (itemData.currentItems
 	- (itemData.ownerArray[0] + itemData.ownerArray[1] + itemData.ownerArray[2] + itemData.ownerArray[3]))
 	

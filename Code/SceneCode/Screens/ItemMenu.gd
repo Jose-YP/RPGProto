@@ -381,13 +381,23 @@ func getElements(entity) -> void:
 
 func setAutofill(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
-	if entity.itemData.size() < itemLimit:
-		entity.specificData.itemData.insert(markerIndex, item)
+	var charaFlag = Globals.charFlag(entity)
+	var autofilled = item.autofill & charaFlag
+	
+	if entity.itemData.size() < itemLimit and not autofilled:
+		InventoryFunctions.itemAutofill(item, entity.name, true)
+		InventoryFunctions.applyAutofill(entity, item)
 		update()
+	elif autofilled or InventoryFunctions.findItem(item, entity) != 90:
+		print("A")
+		InventoryFunctions.itemAutofill(item, entity.name, not autofilled)
+		update()
+	else:
+		print(autofilled, InventoryFunctions.findItem(item, entity) != 90)
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
-	var sameItemIndex =  InventoryFunctions.findItem(item, entity)
+	var sameItemIndex = InventoryFunctions.findItem(item, entity)
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	

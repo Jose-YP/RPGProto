@@ -1,7 +1,5 @@
 extends Node
 
-var applied: int = 0
-
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for item in player.itemData:
@@ -52,62 +50,55 @@ func itemHandlerResult(item,ammount,chara,result) -> void:
 				item.ownerArray[3] = 0
 
 func itemAutofill(item,chara,result) -> void:
-	if item.equippedOn == null: #Make sure the chip being operated on isn't null
-		item.equippedOn = 0
+	if item.autofill == null: #Make sure the chip being operated on isn't null
+		item.autofill = 0
 	
 	match chara:
 		"DREAMER":
 			if result:
-				item.autoFill |= 1
+				print(item.name)
+				item.autofill |= 1
 			else:
-				item.autoFill &= ~1
+				item.autofill &= ~1
 		"Lonna":
 			if result:
-				item.autoFill |= 2
+				item.autofill |= 2
 			else:
-				item.autoFill &= ~2
+				item.autofill &= ~2
 		"Damir":
 			if result:
-				item.autoFill |= 4
+				item.autofill |= 4
 			else:
-				item.autoFill &= ~4
+				item.autofill &= ~4
 		"Pepper":
 			if result:
-				item.autoFill |= 8
+				item.autofill |= 8
 			else:
-				item.autoFill &= ~8
+				item.autofill &= ~8
 
 func applyItems(chara, inventory) -> void:
 	for item in chara.itemData:
-		if applied == 4:
-			break
 		for invItem in inventory:
 			if invItem.name == item.name:
-				print(item.name, invItem == item)
-				if invItem.autoFill & Globals.charFlag(chara):
+				if invItem.autofill & Globals.charFlag(chara):
 					applyAutofill(chara,invItem,item)
 				else:
-					print(invItem.autoFill)
 					applyItem(item,invItem, chara)
-				print(invItem, invItem.name, invItem.currentItems)
-	
-	applied += 1
 
 func applyItem(item,invItem, chara) -> void: invItem.ownerArray[Globals.charNum(chara)] = chara.itemData[item]
 
-func applyAutofill(chara,invItem, item) -> void:
-	print("Autofill found")
+func applyAutofill(chara,invItem, item = null) -> void:
+	if item == null: item = invItem
+	
 	if invItem.currentItems >= invItem.maxItems:
-		print("Autofill full", chara.name, " | ", item.name)
 		chara.itemData[item] = invItem.maxItems
 		invItem.ownerArray[Globals.charNum(chara)] = invItem.maxItems
 	elif invItem.currentItems != 0:
-		print("Autofill partial", chara.name, " | ", item.name)
 		chara.itemData[item] = invItem.currentItems
 		invItem.ownerArray[Globals.charNum(chara)] = invItem.currentItems
 
-func addItemintoInven(item, ammount):
-	item.currentItems += ammount
+func addItemintoInven(item, ammount, chara):
+	item.ownerArray[Globals.charNum(chara)] += ammount
 	clamp(item.currentItems, 0, item.maxCarry)
 
 func findItem(item, chara) -> int:

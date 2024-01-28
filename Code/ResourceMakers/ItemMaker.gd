@@ -14,4 +14,4 @@ class_name Item
 @export_category("Owners")
 @export var ownerArray: Array[int] = [0,0,0,0]
 @export_flags("DREAMER","Lonna","Damir","Pepper") var equippedOn: int = 0
-@export_flags("DREAMER","Lonna","Damir","Pepper") var autoFill: int = 0
+@export_flags("DREAMER","Lonna","Damir","Pepper") var autofill: int = 0
