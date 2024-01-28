@@ -281,9 +281,10 @@ func update() -> void:
 		chipInv.remove_child(thing)
 		thing.queue_free()
 	
-	getPlayerStats(playerIndex)
 	getChipInventory()
+	getPlayerStats(playerIndex)
 	getPlayerChips(playerIndex)
+	
 	
 	for thing in chipInv.get_children():
 		if thing.ChipData == prevKeep:
@@ -293,6 +294,7 @@ func update() -> void:
 	if movingChip:
 		keepFocus.grab_focus()
 	else:
+		print("AAA")
 		InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
@@ -372,6 +374,7 @@ func addChip(chip) -> void:
 	and not playerHitLimit(entity, chip)):
 		entity.specificData.ChipData.insert(markerIndex, chip)
 	
+	InventoryFunctions.chipHandlerResult(chip,entity.name,true)
 	update()
 
 func removeChip(chip) -> void:
@@ -380,7 +383,7 @@ func removeChip(chip) -> void:
 		entity = Globals.every_player_entity[tempIndex]
 	
 	entity.specificData.ChipData.erase(chip)
-	InventoryFunctions.miniChipHandler(entity.name,entity.specificData.ChipData, currentInv, true)
+	InventoryFunctions.chipHandlerResult(chip,entity.name,false)
 	update()
 
 func sortPlayerChip(chip) -> void:

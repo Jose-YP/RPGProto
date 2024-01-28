@@ -36,7 +36,8 @@ theme_override_constants/margin_top = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Insert How much?"
+bbcode_enabled = true
+text = "[center] How much? [/center]"
 
 [node name="SpinBox" type="SpinBox" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

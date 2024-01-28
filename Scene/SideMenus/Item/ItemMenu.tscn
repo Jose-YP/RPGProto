@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://br7ttb4nuqshi"]
+[gd_scene load_steps=16 format=3 uid="uid://br7ttb4nuqshi"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_fg0n7"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/ItemMenu.gd" id="2_tmbiy"]
@@ -28,15 +28,6 @@ corner_detail = 12
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
 border_width_left = 5
 corner_detail = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxis2"]
-bg_color = Color(1, 1, 1, 0.505882)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.8, 0.8, 0.121569, 1)
-border_blend = true
 
 [node name="ItemMenu" type="Control"]
 layout_mode = 3
@@ -192,10 +183,6 @@ layout_mode = 2
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ItemSelection"]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../../CurrentCharItems/Button")
-focus_neighbor_right = NodePath("../../CurrentCharItems/Button")
-focus_next = NodePath("../../CurrentCharItems/Button")
-focus_previous = NodePath("../../CurrentCharItems/Button")
 
 [node name="CurrentCharItems" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 material = ExtResource("5_d1on3")
@@ -364,15 +351,6 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/MarginContainer/Description"]
 layout_mode = 2
 metadata/_edit_lock_ = true
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/CurrentCharItems"]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../../ItemSelection/Button")
-focus_neighbor_right = NodePath("../../ItemSelection/Button")
-focus_next = NodePath("../../ItemSelection/Button")
-focus_previous = NodePath("../../ItemSelection/Button")
-theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 visible = false

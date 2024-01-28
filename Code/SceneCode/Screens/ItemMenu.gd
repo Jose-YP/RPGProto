@@ -389,11 +389,8 @@ func setAutofill(item) -> void:
 		InventoryFunctions.applyAutofill(entity, item)
 		update()
 	elif autofilled or InventoryFunctions.findItem(item, entity) != 90:
-		print("A")
 		InventoryFunctions.itemAutofill(item, entity.name, not autofilled)
 		update()
-	else:
-		print(autofilled, InventoryFunctions.findItem(item, entity) != 90)
 
 func addItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
@@ -413,7 +410,10 @@ func removeItem(item) -> void:
 	if acrossPlayers:
 		entity = Globals.every_player_entity[tempIndex]
 	
-	entity.specificData.itemData.erase(item)
+	entity.itemData[item] -= num
+	
+	if entity.itemData[item] == 0:
+		entity.itemData.erase(item)
 	update()
 
 func sortPlayerItem(item) -> void:

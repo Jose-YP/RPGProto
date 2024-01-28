@@ -75,3 +75,4 @@ res://Code/SceneCode/Individuals/IteminInv.gd
 res://Code/ResourceMakers/ItemMaker.gd
 res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres
 res://Code/SceneCode/Screens/MainMenu.gd
+res://Code/SceneCode/Screens/ChipMenu.gd
