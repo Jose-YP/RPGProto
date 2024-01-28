@@ -63,6 +63,7 @@ func getStats(Entity,character,level) -> entityData:
 	
 	preapplyChips(Entity)
 	InventoryFunctions.miniItemHandler(Entity,Entity.itemData,ItemInventory.inventory)
+	InventoryFunctions.applyItems(Entity,ItemInventory.inventory)
 	return Entity
 
 func preapplyChips(Entity) -> void:
@@ -70,42 +71,37 @@ func preapplyChips(Entity) -> void:
 	for chip in Entity.specificData.ChipData:
 		Entity.specificData.currentCPU += chip.CpuCost
 		match chip.ChipType:
-			"Red":
-				InventoryFunctions.redChipFun(Entity,chip)
-			"Blue":
-				InventoryFunctions.blueChipFun(Entity,chip)
-			"Yellow":
-				InventoryFunctions.yellowChipFun(Entity,chip)
+			"Red": InventoryFunctions.redChipFun(Entity,chip)
+			"Blue": InventoryFunctions.blueChipFun(Entity,chip)
+			"Yellow": InventoryFunctions.yellowChipFun(Entity,chip)
 
 func getTPCost(move,entity,aura) -> int:
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))
-	if aura == "LowTicks":
-		TPCost = TPCost / 2
+	if aura == "LowTicks": TPCost = TPCost / 2
 	
 	return int(TPCost)
 
 func charColor(entity) -> String:
 	match entity.name:
-		"DREAMER":
-			return str("[color=#f4892b]",entity.name,"[/color]")
-		"Lonna":
-			return str("[color=#9800dc]",entity.name,"[/color]")
-		"Damir":
-			return str("[color=#2929ea]",entity.name,"[/color]")
-		"Pepper":
-			return str("[color=#e12828]",entity.name,"[/color]")
-		_:
-			return ""
+		"DREAMER": return str("[color=#f4892b]",entity.name,"[/color]")
+		"Lonna": return str("[color=#9800dc]",entity.name,"[/color]")
+		"Damir": return str("[color=#2929ea]",entity.name,"[/color]")
+		"Pepper": return str("[color=#e12828]",entity.name,"[/color]")
+	
+	return ""
 
 func charNum(entity) -> int:
 	match entity.name:
-		"DREAMER":
-			return 0
-		"Lonna":
-			return 1
-		"Damir":
-			return 2
-		"Pepper":
-			return 3
-		_:
-			return 0
+		"DREAMER": return 0
+		"Lonna": return 1
+		"Damir": return 2
+		"Pepper": return 3
+	return 0
+
+func charFlag(entity) -> int:
+	match entity.name:
+		"DREAMER": return 1
+		"Lonna": return 2
+		"Damir": return 4
+		"Pepper": return 8
+	return 0

@@ -59,3 +59,19 @@ res://Scene/SideMenus/Chip/ChipMenu.tscn
 res://Scene/SideMenus/Gear/GearMenu.tscn
 res://Code/SceneCode/Screens/ItemMenu.gd
 res://Code/SceneCode/Individuals/InsertNumber.gd
+res://Scene/SideMenus/Item/IteminInv.tscn
+res://Resources/Item Data/ItemSpecifics/Idol.tres
+res://Resources/Item Data/ItemSpecifics/Endurian.tres
+res://Resources/Item Data/ItemSpecifics/SpicyPop.tres
+res://Resources/Item Data/ItemSpecifics/Nut.tres
+res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres
+res://Resources/Item Data/ItemSpecifics/ElecBomb.tres
+res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
+res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres
+res://Code/Globals/Globals.gd
+res://Code/Globals/InventoryFunctions.gd
+res://Code/SceneCode/Individuals/IteminInv.gd
+res://Code/ResourceMakers/ItemMaker.gd
+res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres
+res://Code/SceneCode/Screens/MainMenu.gd

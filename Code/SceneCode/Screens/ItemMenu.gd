@@ -61,10 +61,9 @@ func _ready():
 	
 	currentInv = Globals.ItemInventory.inventory
 	InventoryFunctions.itemHandler(currentInv)
-	getItemInventory()
-	
 	getPlayerStats(playerIndex)
 	getPlayerItems(playerIndex)
+	getItemInventory()
 	
 	InvMenu[0][0].focus.grab_focus()
 
@@ -90,10 +89,6 @@ func _process(delta):
 		else:
 			inputHoldTime += delta
 		insertNumPanel.holding = inputHoldTime
-	
-	#if choosingNum:
-		#print(inputHoldTime)
-		#print(insertNumPanel.holding)
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
@@ -306,8 +301,8 @@ func update() -> void:
 		thing.queue_free()
 	
 	getPlayerStats(playerIndex)
-	getItemInventory()
 	getPlayerItems(playerIndex)
+	getItemInventory()
 	
 	for thing in itemInv.get_children():
 		if thing.itemData == prevKeep:
@@ -360,6 +355,7 @@ func getPlayerItems(index) -> void:
 		PlayMarkers.append(itemPannel.inBetween)
 		
 		side = swap(side)
+		print(item.name, entity.itemData[item])
 	
 	if PlayMenu[0].size() == 0:
 		PlayMarkers.append(placeholderPos)
@@ -396,10 +392,10 @@ func addItem(item) -> void:
 		entity = Globals.every_player_entity[tempIndex]
 	
 	if sameItemIndex != 90:
-		entity.specificData.itemData.insert(sameItemIndex, item)
+		entity.itemData[item] += num
 		update()
 	elif entity.itemData.size() < itemLimit:
-		entity.specificData.itemData.insert(markerIndex, item)
+		entity.itemData[item] = num
 		update()
 
 func removeItem(item) -> void:
@@ -469,7 +465,6 @@ func _on_option_button_item_selected(index) -> void:
 	update()
 
 func _on_insert_number_make_noise() -> void:
-	print("AA")
 	makeNoise.emit(2)
 
 #-----------------------------------------

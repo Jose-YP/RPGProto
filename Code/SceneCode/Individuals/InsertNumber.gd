@@ -9,8 +9,7 @@ var holding: float = 0.0
 var using: bool = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	ammount.max_value = maxNum
+func _ready(): ammount.max_value = maxNum
 
 func _process(_delta):
 	if (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Down")) and ammount.value != 0:

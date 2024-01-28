@@ -1,5 +1,7 @@
 extends Node
 
+var applied: int = 0
+
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for item in player.itemData:
@@ -74,6 +76,39 @@ func itemAutofill(item,chara,result) -> void:
 				item.autoFill |= 8
 			else:
 				item.autoFill &= ~8
+
+func applyItems(chara, inventory) -> void:
+	for item in chara.itemData:
+		if applied == 4:
+			break
+		for invItem in inventory:
+			if invItem.name == item.name:
+				print(item.name, invItem == item)
+				if invItem.autoFill & Globals.charFlag(chara):
+					applyAutofill(chara,invItem,item)
+				else:
+					print(invItem.autoFill)
+					applyItem(item,invItem, chara)
+				print(invItem, invItem.name, invItem.currentItems)
+	
+	applied += 1
+
+func applyItem(item,invItem, chara) -> void: invItem.ownerArray[Globals.charNum(chara)] = chara.itemData[item]
+
+func applyAutofill(chara,invItem, item) -> void:
+	print("Autofill found")
+	if invItem.currentItems >= invItem.maxItems:
+		print("Autofill full", chara.name, " | ", item.name)
+		chara.itemData[item] = invItem.maxItems
+		invItem.ownerArray[Globals.charNum(chara)] = invItem.maxItems
+	elif invItem.currentItems != 0:
+		print("Autofill partial", chara.name, " | ", item.name)
+		chara.itemData[item] = invItem.currentItems
+		invItem.ownerArray[Globals.charNum(chara)] = invItem.currentItems
+
+func addItemintoInven(item, ammount):
+	item.currentItems += ammount
+	clamp(item.currentItems, 0, item.maxCarry)
 
 func findItem(item, chara) -> int:
 	var index = 0

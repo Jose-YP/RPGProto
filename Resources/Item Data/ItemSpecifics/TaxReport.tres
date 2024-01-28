@@ -10,6 +10,7 @@ name = "Tax Report"
 maxCarry = 1
 maxItems = 1
 currentItems = 1
+currentInInv = 1
 centCost = 2000
 icon = ExtResource("2_bjytd")
 attackData = ExtResource("1_dhwr8")

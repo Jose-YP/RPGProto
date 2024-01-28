@@ -24,59 +24,51 @@ func _ready():
 	update()
 
 func update() -> void:
-	currentNum = maxNum
 	currentPlayers = ""
 	
 	if itemData.equippedOn != null:
 		if itemData.equippedOn & 1:
 			characterStatus[0].current_tab = 1
 			updatePlayers("DREAMER",0)
-			currentNum -= itemData.ownerArray[0]
-		else:
-			characterStatus[0].current_tab = 0
+			
+		else: characterStatus[0].current_tab = 0
 		
 		if itemData.equippedOn & 2:
 			characterStatus[1].current_tab = 1
 			updatePlayers("Lonna",1)
-			currentNum -= itemData.ownerArray[1]
-		else:
-			characterStatus[1].current_tab = 0
+			
+		else: characterStatus[1].current_tab = 0
 		
 		if itemData.equippedOn & 4:
 			characterStatus[2].current_tab = 1
 			updatePlayers("Damir",2)
-			currentNum -= itemData.ownerArray[2]
-		else:
-			characterStatus[2].current_tab = 0
+			
+		else: characterStatus[2].current_tab = 0
 		
 		if itemData.equippedOn & 8:
 			characterStatus[3].current_tab = 1
 			updatePlayers("Pepper",3)
-			currentNum -= itemData.ownerArray[3]
-		else:
-			characterStatus[3].current_tab = 0
+			
+		else: characterStatus[3].current_tab = 0
 		
 	if itemData.autoFill != null:
-		if itemData.autoFill & 1:
-			characterStatus[0].current_tab = 2
-		if itemData.autoFill & 2:
-			characterStatus[1].current_tab = 2
-		if itemData.autoFill & 4:
-			characterStatus[2].current_tab = 2
-		if itemData.autoFill & 8:
-			characterStatus[3].current_tab = 2
+		if itemData.autoFill & 1: characterStatus[0].current_tab = 2
+		if itemData.autoFill & 2: characterStatus[1].current_tab = 2
+		if itemData.autoFill & 4: characterStatus[2].current_tab = 2
+		if itemData.autoFill & 8: characterStatus[3].current_tab = 2
 	
-	if currentPlayers == "":
-		currentPlayers = "None"
+	if currentPlayers == "": currentPlayers = "None"
+	print(itemData.name, itemData.ownerArray[0] + itemData.ownerArray[1] + itemData.ownerArray[2] + itemData.ownerArray[3])
+	itemData.currentInInv = (itemData.currentItems
+	- (itemData.ownerArray[0] + itemData.ownerArray[1] + itemData.ownerArray[2] + itemData.ownerArray[3]))
 	
 	itemText.clear()
-	itemText.append_text(str(itemData.name," | [right][color=gray]",currentNum,"/",itemData.maxCarry,"[/color]"))
+	itemText.append_text(str(itemData.name," | [right][color=gray]",itemData.currentInInv,"/",itemData.maxCarry,"[/color]"))
 
 func updatePlayers(player,num) -> void:
-	if currentPlayers == "":
-		currentPlayers = str(player," ",itemData.ownerArray[num],"/",itemData.maxItems)
-	else:
-		currentPlayers = str(currentPlayers," | ",player," ",itemData.ownerArray[num],"/",itemData.maxItems)
+	if currentPlayers == "": currentPlayers = str(player," ",itemData.ownerArray[num],"/",itemData.maxItems)
+	
+	else: currentPlayers = str(currentPlayers," | ",player," ",itemData.ownerArray[num],"/",itemData.maxItems)
 
 func _on_button_focus_entered() -> void:
 	getDesc.emit(self)

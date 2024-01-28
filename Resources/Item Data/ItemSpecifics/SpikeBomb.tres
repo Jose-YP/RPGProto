@@ -2,14 +2,18 @@
 
 [ext_resource type="Resource" uid="uid://bjrkugjoysreo" path="res://Resources/Item Data/ItemMoves/SpikeBombMove.tres" id="1_78ev6"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_n2moo"]
-[ext_resource type="Texture2D" uid="uid://cn3k0waq127p6" path="res://Art/Icons/Bomb.png" id="2_0pe2d"]
+[ext_resource type="Texture2D" uid="uid://cn3k0waq127p6" path="res://Icons/AilmentIcons/Bomb.png" id="2_0pe2d"]
 
 [resource]
 script = ExtResource("1_n2moo")
 name = "Spike Bomb"
 maxCarry = 100
 maxItems = 8
-currentItems = 1
+currentItems = 100
+currentInInv = 100
 centCost = 150
 icon = ExtResource("2_0pe2d")
 attackData = ExtResource("1_78ev6")
+ownerArray = Array[int]([0, 0, 0, 0])
+equippedOn = 0
+autoFill = 0

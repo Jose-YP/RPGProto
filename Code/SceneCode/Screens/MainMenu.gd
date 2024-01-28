@@ -174,14 +174,10 @@ func setInactivePlayer(held) -> void:
 
 func getOldIndex(prevName) -> int:
 	match prevName:
-		"DREAMER":
-			return 0
-		"Lonna":
-			return 1
-		"Damir":
-			return 2
-		"Pepper":
-			return 3
+		"DREAMER": return 0
+		"Lonna": return 1
+		"Damir": return 2
+		"Pepper": return 3
 	
 	return 10
 
