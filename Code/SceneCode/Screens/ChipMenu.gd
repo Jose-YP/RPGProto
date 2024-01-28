@@ -71,8 +71,8 @@ func _ready():
 #PROCESSING
 #-----------------------------------------
 func _process(delta):
-	if movingChip:
-		movement()
+	print(keepFocus)
+	if movingChip: movement()
 	buttons()
 	if movingChip:
 		if not acrossPlayers or (acrossPlayers and tempIndex == playerIndex):
@@ -84,10 +84,8 @@ func _process(delta):
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
-		inputHoldTime = 0.0
-	else:
-		inputHoldTime += delta
+	if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0): inputHoldTime = 0.0
+	else: inputHoldTime += delta
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
@@ -161,31 +159,23 @@ func buttons() -> void:
 			Arrow.hide()
 			
 			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
-				if wasChar:
-					sortPlayerChip(grabbedChip)
-				else:
-					if acrossPlayers:
-						sortPlayerChip(grabbedChip)
-					else:
-						addChip(grabbedChip)
-			else:
-				if wasChar:
-					removeChip(grabbedChip)
+				if wasChar: sortPlayerChip(grabbedChip)
+				elif acrossPlayers: sortPlayerChip(grabbedChip)
+				else: addChip(grabbedChip)
+			
+			elif wasChar: removeChip(grabbedChip)
 		
 		else:
 			keepFocus = get_viewport().gui_get_focus_owner()
-			if keepFocus is OptionButton:
-				sortingOptions.press()
-			else:
-				movingChip = true
-				setFocus(false)
-				var adress = getButtonIndex(keepFocus)
-				side = adress.x
-				markerIndex = adress.y
-				wasChar = keepFocus.get_parent().inChar
-				
-				Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
-				Arrow.show()
+			movingChip = true
+			setFocus(false)
+			var adress = getButtonIndex(keepFocus)
+			side = adress.x
+			markerIndex = adress.y
+			wasChar = keepFocus.get_parent().inChar
+			
+			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
+			Arrow.show()
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
@@ -193,8 +183,8 @@ func buttons() -> void:
 			movingChip = false
 			setFocus(true)
 			Arrow.hide()
-		else:
-			exitMenu.emit()
+		
+		else: exitMenu.emit()
 	
 	if Input.is_action_just_pressed("X"):
 		addChip(grabbedChip)
@@ -287,14 +277,11 @@ func update() -> void:
 	
 	
 	for thing in chipInv.get_children():
-		if thing.ChipData == prevKeep:
-			keepFocus = thing.focus
+		if thing.ChipData == prevKeep: keepFocus = thing.focus
 	
 	acrossPlayers = false
-	if movingChip:
-		keepFocus.grab_focus()
-	else:
-		InvMenu[0][0].focus.grab_focus()
+	if movingChip: keepFocus.grab_focus()
+	else: InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -372,8 +359,8 @@ func addChip(chip) -> void:
 	if (chip.CpuCost <= (entity.specificData.MaxCPU - entity.specificData.currentCPU)
 	and not playerHitLimit(entity, chip)):
 		entity.specificData.ChipData.insert(markerIndex, chip)
+		InventoryFunctions.chipHandlerResult(chip,entity.name,true)
 	
-	InventoryFunctions.chipHandlerResult(chip,entity.name,true)
 	update()
 
 func removeChip(chip) -> void:
@@ -433,12 +420,9 @@ func _on_option_button_item_selected(index) -> void:
 	makeNoise.emit(0)
 	var newSort = sortingOptions.get_item_text(index)
 	match newSort:
-		"Sort Alpha":
-			currentInv = Globals.ChipInventory.inventory
-		"Sort Color":
-			currentInv = Globals.ChipInventory.inventorySort1
-		"Sort Cost":
-			currentInv = Globals.ChipInventory.inventorySort2
+		"Sort Alpha": currentInv = Globals.ChipInventory.inventory
+		"Sort Color": currentInv = Globals.ChipInventory.inventorySort1
+		"Sort Cost": currentInv = Globals.ChipInventory.inventorySort2
 	
 	update()
 
