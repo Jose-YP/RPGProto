@@ -71,7 +71,9 @@ func _ready():
 #PROCESSING
 #-----------------------------------------
 func _process(delta):
-	if get_viewport().gui_get_focus_owner() == null: InvMenu[0][0].focus.grab_focus()
+	if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
+		InvMenu[0][0].focus.grab_focus()
+	
 	if movingItem: movement()
 	buttons()
 	
@@ -164,14 +166,18 @@ func buttons() -> void:
 			insertNumPanel.using = true
 			
 			var adress = getButtonIndex(keepFocus)
+			var data = keepFocus.get_parent().itemData
 			side = adress.x
 			markerIndex = adress.y
 			
 			wasChar = keepFocus.get_parent().inChar
 			
 			insertNumPanel.show()
-			insertNumPanel.global_position = keepFocus.global_position + Vector2(150,0)
-			insertNumPanel.maxNum = keepFocus.get_parent().itemData.maxItems
+			insertNumPanel.global_position = keepFocus.global_position + Vector2(150,30)
+			
+			if wasChar: insertNumPanel.maxNum = data.ownerArray[Globals.charNum(Globals.every_player_entity[playerIndex])]
+			elif data.currentInInv > data.maxItems: insertNumPanel.maxNum = data.maxItems
+			else: insertNumPanel.maxNum = data.currentInInv
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
@@ -260,12 +266,8 @@ func update() -> void:
 	InvMarkers = []
 	var prevKeep
 	
-	if keepFocus == null:
-		print("CCC")
-		prevKeep = get_viewport().gui_get_focus_owner().get_parent().itemData
-	
 	for thing in itemInv.get_children(): #Delete previous inventory display
-		if movingItem and thing == keepFocus.get_parent():
+		if keepFocus != null and movingItem and thing == keepFocus.get_parent():
 			prevKeep = thing.itemData
 		itemInv.remove_child(thing)
 		thing.queue_free()
@@ -280,12 +282,8 @@ func update() -> void:
 			keepFocus = thing.focus
 	
 	acrossPlayers = false
-	if movingItem and keepFocus != null:
-		print("BBB")
-		keepFocus.grab_focus()
-	else:
-		print("AAA")
-		InvMenu[0][0].focus.grab_focus()
+	if movingItem and keepFocus != null: keepFocus.grab_focus()
+	else: InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -390,8 +388,13 @@ func removeItem(item) -> void:
 
 func sortPlayerItem(item) -> void:
 	var entity = Globals.every_player_entity[playerIndex]
+	var sameItemIndex = InventoryFunctions.findItem(item, entity)
 	
-	if acrossPlayers and entity.itemData.size() < itemLimit:
+	if acrossPlayers and (entity.itemData.size() < itemLimit or sameItemIndex != 90):
+		if sameItemIndex != 90:
+			var total = item.maxItems - entity.itemData[item]
+			num = clamp(num, 0, total)
+			print(num, "vs", total)
 		removeItem(item)
 		addItem(item)
 	
@@ -438,8 +441,7 @@ func _on_option_button_item_selected(index) -> void:
 	
 	update()
 
-func _on_insert_number_make_noise() -> void:
-	makeNoise.emit(2)
+func _on_insert_number_make_noise() -> void: makeNoise.emit(2)
 
 #-----------------------------------------
 #HELPER FUNCTIONS

@@ -12,6 +12,8 @@ var using: bool = false
 func _ready(): ammount.max_value = maxNum
 
 func _process(_delta):
+	ammount.value = clamp(ammount.value, 0, maxNum)
+	
 	if (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Down")) and ammount.value != 0:
 		ammount.value -= 1
 		makeNoise.emit()
