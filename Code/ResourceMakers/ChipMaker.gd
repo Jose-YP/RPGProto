@@ -18,10 +18,11 @@ class_name Chip
 @export_enum("Single","Group","All","Random") var NewTarget: String
 @export_enum("Physical","Ballistic","Freebie") var ItemChange: String
 @export_subgroup("Calc Bonuses")
-@export_enum("None","Drain","AilmentHit","CritChance") var calcBonus: String = "None"
+@export_flags("Drain","AilmentHit","CritChance") var calcBonus: int = 0
 @export_range(0,100,.05) var calcAmmount: float = 0.0
-@export_enum("HP","LP","HP/LP","TP","None") var costBonus: String = "None"
-@export_range(0,2,.01) var costMod: float = 0.0
+@export_flags("HP","LP","TP") var costBonus: int = 0
+@export_range(0,1,.01) var costMod: float = 0.0
+@export_range(0,2,.01) var TpCostMod: float = 0.0
 
 @export_group("Blue Properties") #If it has defensive uses
 @export_subgroup("Properties")

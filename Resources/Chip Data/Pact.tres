@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dvl0a")
 name = "Pact"
-description = "+60% Base Crit Rate, but all HP/LP skills have a X1.3 Cost"
+description = "+60% Base Crit Rate, but all HP/LP skills have a +30% Cost"
 CpuCost = 10
 maxNum = 3
 ChipType = "Red"
@@ -15,10 +15,11 @@ newPhyElement = "None"
 AffectedMove = "None"
 NewTarget = ""
 ItemChange = ""
-calcBonus = "CritChance"
+calcBonus = 4
 calcAmmount = 60.0
-costBonus = "HP/LP"
-costMod = 1.3
+costBonus = 3
+costMod = 0.3
+TpCostMod = 0.0
 NewElement = ""
 Condition = null
 ElementModBoost = 0.0

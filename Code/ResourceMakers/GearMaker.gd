@@ -6,6 +6,7 @@ class_name Gear
 @export_multiline var description: String = "Does something"
 @export var icon = Texture2D
 @export_enum("DREAMER","Lonna","Damir","Pepper") var Char = "DREAMER"
+@export var equipped: bool = false
 
 @export_group("Stat Bonuses")
 @export var Strength: int = 0
@@ -16,6 +17,6 @@ class_name Gear
 @export var Luck: int = 0
 
 @export_group("Calcs")
-@export_enum("None","Drain","ElementAdv","AilmentHit","LPCost") var calcBonus = "None"
+@export_flags("Drain","Ailment Hit","Crit Chance","Element Mod") var calcBonus: int = 0
 @export_range(0,1,.01) var calcAmmount: float
 @export_enum("None","Explode","LPDrain","DumbfoundedCrit") var miscCalc = "None"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://di4l56sa801t4"]
+[gd_scene load_steps=16 format=3 uid="uid://di4l56sa801t4"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_abep7"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/GearMenu.gd" id="2_0e8n0"]
@@ -19,6 +19,13 @@ bg_color = Color(0.231373, 0.329412, 0.431373, 1)
 border_width_left = 5
 corner_detail = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjvxr"]
+bg_color = Color(0.32549, 0.305882, 0.588235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
 [node name="GearMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -34,6 +41,7 @@ gearPanel = ExtResource("3_1e5gk")
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 779.0
+theme_override_constants/separation = 0
 
 [node name="Title" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -76,31 +84,35 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_flxfa")
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear"]
 layout_mode = 2
 
-[node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 
-[node name="Character" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+[node name="Character" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
 custom_minimum_size = Vector2(260, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Character"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Character"]
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
 LP:99 TP: 100"
-metadata/_edit_lock_ = true
 
-[node name="Elements" type="VBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+[node name="Elements" type="VBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
 layout_mode = 2
 
-[node name="Player1Element" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements"]
+[node name="Player1Element" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
 tabs_visible = false
 
-[node name="Fire" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+[node name="Fire" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/Player1Element"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("4_8xh1t")
@@ -108,7 +120,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+[node name="Water" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/Player1Element"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -116,7 +128,7 @@ texture = ExtResource("5_k8rsr")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+[node name="Elec" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/Player1Element"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -124,27 +136,27 @@ texture = ExtResource("6_v7e01")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/Player1Element"]
+[node name="Neutral" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/Player1Element"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_o13u7")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements"]
+[node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements"]
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
 tabs_visible = false
 
-[node name="Slash" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+[node name="Slash" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/PlayerPhyElement1"]
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
 texture = ExtResource("8_vl65m")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+[node name="Crush" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/PlayerPhyElement1"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -152,7 +164,7 @@ texture = ExtResource("9_4sppd")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Elements/PlayerPhyElement1"]
+[node name="Pierce" type="TextureRect" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/PlayerPhyElement1"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -160,25 +172,24 @@ texture = ExtResource("10_ai470")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Stats" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
-custom_minimum_size = Vector2(380, 40)
+[node name="Stats" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
+custom_minimum_size = Vector2(360, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/Stats"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Stats"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
 BAL: 60:		RES: 60		LUK: 60[/center]"
-metadata/_edit_lock_ = true
 
-[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+[node name="CPUBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox"]
 layout_mode = 2
 
-[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 value = 100.0
@@ -188,27 +199,24 @@ texture_under = ExtResource("11_p8am1")
 texture_over = ExtResource("7_o13u7")
 texture_progress = ExtResource("12_v2gnj")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "100/100
 CPU"
 
-[node name="ItemBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
+[node name="ItemBox" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/ItemBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center][color=gray]Items 
 8/8 [/color]"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CharacterInfo"]
-layout_mode = 2
 
 [node name="CurrentGear" type="ScrollContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
 custom_minimum_size = Vector2(0, 635)
@@ -227,6 +235,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MainDock/Info"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjvxr")
 
 [node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer"]
 layout_mode = 2
@@ -240,7 +249,7 @@ columns = 2
 layout_mode = 2
 
 [node name="OldGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(150, 80)
+custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2/OldGear"]
@@ -254,7 +263,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="NewGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3"]
-custom_minimum_size = Vector2(150, 75)
+custom_minimum_size = Vector2(160, 75)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3/NewGear"]
@@ -268,7 +277,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="OldDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 600)
+custom_minimum_size = Vector2(150, 600)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]
@@ -279,7 +288,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="NewDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4"]
-custom_minimum_size = Vector2(0, 600)
+custom_minimum_size = Vector2(150, 600)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc"]

@@ -71,7 +71,6 @@ func _ready():
 #PROCESSING
 #-----------------------------------------
 func _process(delta):
-	print(keepFocus)
 	if movingChip: movement()
 	buttons()
 	if movingChip:

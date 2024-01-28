@@ -1118,6 +1118,6 @@ They will decay by 5% every turn"
 [connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
+[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Navigation/HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]

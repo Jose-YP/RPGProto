@@ -44,16 +44,26 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.speed = int(stats["Speed"])
 	Entity.luck = int(stats["Luck"])
 	
+	print(Entity.name,": Base Resistance", Entity.resistance)
 	#Properties
 	Entity.element = Entity.specificData.permanentElement
 	Entity.Weakness = Entity.specificData.permanentWeakness
 	Entity.Resist = Entity.specificData.permanentResist
 	Entity.immunity = "None"
-	Entity.elementMod = 0
+	Entity.soloElementMod = 0.0
+	Entity.groupElementMod = 0.0
+	Entity.phyElementMod = 0
 	Entity.sameElement = false
 	Entity.ItemChange = "None"
-	Entity.calcBonus = "None"
-	Entity.calcAmmount = 0
+	#Bonuses
+	Entity.costBonus = 0
+	Entity.HpCostMod = 0.0
+	Entity.LpCostMod = 0.0
+	Entity.TpCostMod = 0.0
+	Entity.calcBonus = 0
+	Entity.drainCalcAmmount = 0
+	Entity.ailmentCalcAmmount = 0
+	Entity.critCalcAmmount = 0
 	
 	#Moves
 	Entity.specificData.Basics[1] = noMovePlaceholder
@@ -61,10 +71,31 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.specificData.boostTarget = "Single"
 	Entity.specificData.boostStat = Entity.specificData.defaultBoostStat
 	
+	
 	preapplyChips(Entity)
+	InventoryFunctions.gearApply(Entity, Entity.specificData.GearData)
 	InventoryFunctions.miniItemHandler(Entity,Entity.itemData,ItemInventory.inventory)
 	InventoryFunctions.applyItems(Entity,ItemInventory.inventory)
 	return Entity
+
+func getBaseStats(character,level,stat) -> int:
+	var stats = playerStats[character][str(level)]
+	print(character, level)
+	print(stats)
+	
+	match stat:
+		"HP": return int(stats["HP"])
+		"LP":return int(stats["LP"])
+		"TP": return int(level)*2 + 80
+		"CPU": return int(stats["CPU"])
+		"Strength": return int(stats["Strength"])
+		"Toughness": return int(stats["Toughness"])
+		"Ballistics": return int(stats["Ballistics"])
+		"Resistance": return int(stats["Resistance"])
+		"Speed": return int(stats["Speed"])
+		"Luck": return int(stats["Luck"])
+	
+	return 0
 
 func preapplyChips(Entity) -> void:
 	Entity.specificData.currentCPU = 0

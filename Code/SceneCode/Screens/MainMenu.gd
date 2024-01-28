@@ -49,6 +49,8 @@ func _ready():
 	Globals.inactive_player_entities.append(playerEntities[1])
 	setPlayerGlobals()
 	makeEnemyLineup()
+	
+	$Navigation/Buttons/ItemButton.grab_focus()
 
 #-----------------------------------------
 #PLAYER SETUP

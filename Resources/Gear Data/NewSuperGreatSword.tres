@@ -15,6 +15,6 @@ Ballistics = 0
 Resistance = 0
 Speed = 0
 Luck = 0
-calcBonus = "None"
+calcBonus = 0
 calcAmmount = 0.0
 miscCalc = "None"

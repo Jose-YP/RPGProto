@@ -394,7 +394,6 @@ func sortPlayerItem(item) -> void:
 		if sameItemIndex != 90:
 			var total = item.maxItems - entity.itemData[item]
 			num = clamp(num, 0, total)
-			print(num, "vs", total)
 		removeItem(item)
 		addItem(item)
 	

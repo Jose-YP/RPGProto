@@ -3,8 +3,8 @@
 [ext_resource type="Resource" uid="uid://bhm5xjryx4rpx" path="res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres" id="1_5xe4j"]
 [ext_resource type="Resource" uid="uid://dn0uugdcutkno" path="res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres" id="2_erwxx"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="3_o47xs"]
+[ext_resource type="Resource" uid="uid://60wcuok8bjor" path="res://Resources/Chip Data/Pact.tres" id="4_6gsbt"]
 [ext_resource type="Resource" uid="uid://dnwglp1s48nar" path="res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres" id="4_e3fiq"]
-[ext_resource type="Resource" uid="uid://j510cp656e33" path="res://Resources/Chip Data/Tick.tres" id="4_etr4v"]
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres" id="5_aihjb"]
 [ext_resource type="Resource" uid="uid://cxhgqeutsws7y" path="res://Resources/Gear Data/WitchSword.tres" id="5_f75ss"]
 [ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres" id="6_8333h"]
@@ -17,7 +17,7 @@ MaxCPU = 38
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("5_f75ss")
-ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("4_etr4v")])
+ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResource("4_6gsbt")])
 currentCPU = 0
 attackTarget = "Single"
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_5xe4j"), ExtResource("2_erwxx"), ExtResource("3_o47xs")])

@@ -5,16 +5,17 @@
 
 [resource]
 script = ExtResource("1_iyjtq")
-name = "Witch's Sword"
-description = "+4 Bal, +4 Res"
+name = "Witch's Sword?"
+description = "+5 Bal, +5 Res"
 icon = ExtResource("1_fxcp7")
 Char = "DREAMER"
+equipped = false
 Strength = 0
 Toughness = 0
 Ballistics = 5
 Resistance = 5
 Speed = 0
 Luck = 0
-calcBonus = "None"
+calcBonus = 0
 calcAmmount = 0.0
-miscCalc = "None"
+miscCalc = "Explode"

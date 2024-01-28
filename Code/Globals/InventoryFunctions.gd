@@ -91,7 +91,6 @@ func applyAutofill(chara,invItem, item = null) -> void:
 	if item == null: item = invItem
 	
 	if invItem.currentItems >= invItem.maxItems:
-		print("applied")
 		chara.itemData[item] = invItem.maxItems
 		invItem.ownerArray[Globals.charNum(chara)] = invItem.maxItems
 	elif invItem.currentItems != 0:
@@ -207,12 +206,22 @@ func redChipFun(entity, chip) -> void:
 		entity.specificData.basicTarget = chip.NewTarget
 	if chip.ItemChange != null:
 		entity.ItemChange = chip.ItemChange
-	if chip.calcBonus != "None":
-		entity.calcBonus = chip.calcBonus
-		entity.calcAmmount = chip.calcAmmount
+	if chip.calcBonus != 0 or chip.calcBonus != null:
+		entity.calcBonus |= chip.calcBonus
+		if chip.calcBonus & 1:
+			entity.drainCalcAmmount += chip.calcAmmount
+		if chip.calcBonus & 2:
+			entity.ailmentCalcAmmount += chip.calcAmmount
+		if chip.calcBonus & 4:
+			entity.critCalcAmmount += chip.calcAmmount
 	if chip.costBonus != null:
-		entity.costBonus = chip.costBonus
-		entity.costMod = chip.costMod
+		entity.costBonus |= chip.costBonus
+		if chip.costBonus & 1:
+			entity.HpCostMod += chip.costMod
+		if chip.costBonus & 2:
+			entity.LpCostMod += chip.costMod
+		if chip.costBonus & 4:
+			entity.TpCostMod += chip.TpCostMod
 
 func blueChipFun(entity, chip) -> void:
 	if chip.NewElement != "None" and chip.NewElement != "":
@@ -226,7 +235,7 @@ func blueChipFun(entity, chip) -> void:
 	if chip.SameElement:
 		entity.sameElement = true
 	
-	entity.elementMod += chip.ElementModBoost
+	entity.elementMod += chip.soloElementModBoost
 
 func yellowChipFun(entity,chip) -> void:
 	entity.MaxHP += chip.HP
@@ -358,5 +367,28 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 					entity.luck = entity.speed
 					entity.speed = firstStat
 
-func gearApply() -> void:
+func gearHandler() -> void:
 	pass
+
+func gearApply(entity, gear) -> void:
+	entity.specificData.GearData = gear
+	gear.equipped = true
+	
+	entity.strength += gear.Strength
+	entity.toughness += gear.Toughness
+	entity.ballistics += gear.Ballistics
+	entity.resistance += gear.Resistance
+	entity.speed += gear.Speed
+	entity.luck += gear.Luck
+	
+	if gear.calcBonus & 1:
+		entity.calcBonus = "Drain"
+		entity.calcBonus = gear.calcAmmount
+	if gear.calcBonus & 2:
+		entity.groupElementMod = gear.calcAmmount
+	if gear.calcBonus & 4:
+		entity.calcBonus = "AilmentHit"
+		entity.calcBonus = gear.calcAmmount
+	if gear.calcBonus & 8:
+		entity.costBonus = "LP"
+		entity.costMod = gear.calcAmmount

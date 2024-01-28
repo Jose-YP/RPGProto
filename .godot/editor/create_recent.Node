@@ -1,9 +1,9 @@
+RichTextLabel
+PanelContainer
 MarginContainer
 VBoxContainer
 GridContainer
-PanelContainer
 HBoxContainer
-RichTextLabel
 SpinBox
 Marker2D
 AudioStreamPlayer

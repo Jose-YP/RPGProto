@@ -5,16 +5,17 @@
 
 [resource]
 script = ExtResource("1_y0mgh")
-name = "Basic Gear"
-description = "Does something"
+name = "Solid Sword"
+description = "+4 Strength"
 icon = ExtResource("1_c4bv3")
 Char = "DREAMER"
-Strength = 0
+equipped = false
+Strength = 4
 Toughness = 0
 Ballistics = 0
 Resistance = 0
 Speed = 0
 Luck = 0
-calcBonus = "None"
+calcBonus = 0
 calcAmmount = 0.0
 miscCalc = "None"

@@ -16,4 +16,4 @@ icon = ExtResource("2_oxx8b")
 attackData = ExtResource("1_0afju")
 ownerArray = Array[int]([0, 0, 0, 0])
 equippedOn = 0
-autoFill = 0
+autofill = 0

@@ -109,7 +109,6 @@ func getItemSorts(items) -> Inven:
 	itemSort.sort_custom(InventoryFunctions.findCurrentNum)
 	items.inventorySort2 = itemSort
 	return items
-
 #-----------------------------------------
 #SCENE CONNECTIONS
 #-----------------------------------------
@@ -137,6 +136,7 @@ func _on_change_to_battle() -> void:
 
 func _on_to_gear_menu() -> void:
 	$SFX/Confirm.play()
+	changeScene(gearMenu)
 	currentScene.connect("exitMenu",_back_to_main_menu)
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
