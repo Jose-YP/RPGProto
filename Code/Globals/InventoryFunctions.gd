@@ -91,6 +91,7 @@ func applyAutofill(chara,invItem, item = null) -> void:
 	if item == null: item = invItem
 	
 	if invItem.currentItems >= invItem.maxItems:
+		print("applied")
 		chara.itemData[item] = invItem.maxItems
 		invItem.ownerArray[Globals.charNum(chara)] = invItem.maxItems
 	elif invItem.currentItems != 0:

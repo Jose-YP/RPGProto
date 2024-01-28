@@ -265,7 +265,7 @@ func update() -> void:
 	InvMenu = [[],[]]
 	InvMarkers = []
 	var prevKeep
-	for thing in chipInv.get_children():
+	for thing in chipInv.get_children():  #Delete previous inventory display
 		if movingChip and thing == keepFocus.get_parent():
 			prevKeep = thing.ChipData
 		chipInv.remove_child(thing)

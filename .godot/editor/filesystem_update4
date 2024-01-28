@@ -78,3 +78,5 @@ res://Code/SceneCode/Screens/MainMenu.gd
 res://Code/SceneCode/Screens/ChipMenu.gd
 res://Code/SceneCode/Individuals/IteminChar.gd
 res://Scene/SideMenus/Item/IteminChar.tscn
+res://Scene/Mains/MainMenu.tscn
+res://Scene/SideMenus/Chip/ChipinInv.tscn
