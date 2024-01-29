@@ -10,7 +10,7 @@ ART)
 Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
 
 Music)
-Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
+Blair Dame's Theme - [Takayuki Aihara] Fighting Layer\n
 ...Delve!! - [John "Joy" Tay] https://youtu.be/d7ZqYAlUlAU
 Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
 
