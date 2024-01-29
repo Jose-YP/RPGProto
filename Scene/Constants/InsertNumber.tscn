@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_3bi31"]
 [ext_resource type="Script" path="res://Code/SceneCode/Individuals/InsertNumber.gd" id="2_ax0xm"]
-[ext_resource type="Texture2D" uid="uid://dsroaf62m5if" path="res://Themes/Nothing.tres" id="3_eh7pl"]
+[ext_resource type="Texture2D" uid="uid://dsroaf62m5if" path="res://Themes/Gradients/Nothing.tres" id="3_eh7pl"]
 
 [node name="InsertNumber" type="Control"]
 layout_mode = 3

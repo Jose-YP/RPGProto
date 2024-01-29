@@ -1,12 +1,12 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/GameManager.tscn
+res://Scene/SideMenus/options_menu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
 res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
-res://Resources/Chip Data/Tick.tres
+res://Resources/Chip Data/Pact.tres
 res://Resources/Gear Data/WitchSword.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
@@ -23,6 +23,7 @@ res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
 res://Resources/Item Data/ItemMoves/ElecBombMove.tres
 res://Resources/Chip Data/Chuck.tres
 res://Resources/Chip Data/Blood.tres
+res://Resources/Gear Data/NewSuperGreatSword.tres
 res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres
 res://Resources/Item Data/ItemMoves/SoftyMove.tres
@@ -30,7 +31,6 @@ res://Resources/Item Data/ItemSpecifics/Softy!.tres
 res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Item Data/ItemMoves/IdolMove.tres
-res://Resources/Chip Data/Pact.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
@@ -46,45 +46,11 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
-res://Resources/Gear Data/PoolNoodle.tres
+res://Themes/ButtonStyle/Focused.tres
 res://Themes/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Blue.tres
+res://Scene/Mains/GameManager.tscn
+res://README.md
+res://Code/ResourceMakers/SaveMaker.gd
 res://Scene/Mains/MainMenu.tscn
-res://Scene/SideMenus/Gear/GearMenu.tscn
-res://Scene/SideMenus/Item/ItemMenu.tscn
-res://Scene/SideMenus/Gear/GearinInv.tscn
-res://Code/SceneCode/Screens/GameManager.gd
-res://Code/SceneCode/Screens/GearMenu.gd
-res://Code/SceneCode/Screens/ChipMenu.gd
-res://Scene/SideMenus/Chip/ChipMenu.tscn
-res://Resources/Gear Data/RefurbishedEngine.tres
-res://Code/Globals/Globals.gd
-res://Code/Globals/InventoryFunctions.gd
-res://Resources/Gear Data/NewSuperGreatSword.tres
-res://Resources/Chip Data/AllIn.tres
-res://Resources/Chip Data/Together.tres
-res://Resources/Chip Data/Water.tres
-res://Resources/Chip Data/Spear.tres
-res://Resources/Chip Data/SelfFullfilling.tres
-res://Resources/Chip Data/Paradox.tres
-res://Resources/Chip Data/Murphys.tres
-res://Resources/Chip Data/Mind.tres
-res://Resources/Chip Data/Fold.tres
-res://Resources/Chip Data/Fire.tres
-res://Resources/Chip Data/Electric.tres
-res://Resources/Chip Data/Boss.tres
-res://Resources/Chip Data/Body.tres
-res://Resources/Chip Data/Blast.tres
-res://Resources/Chip Data/Awkward.tres
-res://Resources/Gear Data/Betelgeuse Axe.tres
-res://Resources/Gear Data/DevilishMittens.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/PlayerPlaceholder.tres
-res://Code/ResourceMakers/ChipMaker.gd
-res://Code/ResourceMakers/EntityMaker.gd
-res://Code/ResourceMakers/GearMaker.gd
-res://Code/SceneCode/Individuals/GearinChar.gd
-res://Resources/Gear Data/SolidSword.tres
-res://Resources/Gear Data/ShadowGloves.tres
-res://Scene/SideMenus/Item/IteminInv.tscn
-res://Resources/Gear Data/StoreboughtMotor.tres

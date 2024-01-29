@@ -29,8 +29,9 @@ ______
 ______
 TODO
 ______
-*Make functioning menu for gear and items
-*Implement gear and item selection
+*Options Menu | Audio mixing
+*Options Menu | Controller Mapping
+*Implement gear and chips into battles
 *Save system
 *Implement other EnemyAI types(So far only random)
 

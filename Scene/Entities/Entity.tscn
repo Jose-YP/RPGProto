@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Code/SceneCode/Entities/Entity.gd" id="1_d4tmd"]
 [ext_resource type="Resource" uid="uid://seilwthpp2l1" path="res://Resources/Entity Data/placeholder.tres" id="2_w83ur"]
 [ext_resource type="Texture2D" uid="uid://b7jc4yykvnhq" path="res://Art/icon.svg" id="2_xtla5"]
-[ext_resource type="Texture2D" uid="uid://bfrgfh0hu465y" path="res://Themes/Red2D.tres" id="3_8a2qv"]
+[ext_resource type="Texture2D" uid="uid://bfrgfh0hu465y" path="res://Themes/Gradients/Red2D.tres" id="3_8a2qv"]
 [ext_resource type="Texture2D" uid="uid://icdg55qighh1" path="res://Art/arrow.png" id="3_lyg4j"]
 [ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="5_3twtj"]
 [ext_resource type="StyleBox" uid="uid://ciyya85ww81pf" path="res://Themes/HasSingle/SubtleCircle.tres" id="5_wvjmv"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dym3sjt3b7bda" path="res://Icons/Toughness.png" id="28_j8yva"]
 [ext_resource type="Texture2D" uid="uid://c51stapggxm0i" path="res://Icons/Speed.png" id="29_cylqo"]
 [ext_resource type="Texture2D" uid="uid://um5ahdqwyaub" path="res://Icons/Luck.png" id="30_xueah"]
+
 
 
 [sub_resource type="Gradient" id="Gradient_q4qby"]

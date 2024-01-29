@@ -9,6 +9,7 @@ name = "New Super Greatsword"
 description = "+6 Strength"
 icon = ExtResource("1_0h28q")
 Char = "Damir"
+equipped = false
 Strength = 6
 Toughness = 0
 Ballistics = 0

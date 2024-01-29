@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://twouvei3cmnp" path="res://Scene/Entities/Entity.tscn" id="1_ij2m7"]
 [ext_resource type="Script" path="res://Code/SceneCode/Entities/Player.gd" id="2_0rcg8"]
 [ext_resource type="PackedScene" uid="uid://cpmeoneud23qm" path="res://Scene/Entities/PlayerMenu.tscn" id="3_1kcwe"]
-[ext_resource type="Texture2D" uid="uid://bkxsl0ggqtckk" path="res://Themes/Black.tres" id="3_geygg"]
-[ext_resource type="Texture2D" uid="uid://b2jmmrkt8ei3e" path="res://Themes/Blue.tres" id="4_avs2c"]
+[ext_resource type="Texture2D" uid="uid://bkxsl0ggqtckk" path="res://Themes/Gradients/Black.tres" id="3_geygg"]
+[ext_resource type="Texture2D" uid="uid://b2jmmrkt8ei3e" path="res://Themes/Gradients/Blue.tres" id="4_avs2c"]
+
 
 
 [node name="Player" groups=["Players"] instance=ExtResource("1_ij2m7")]
