@@ -258,6 +258,10 @@ func _on_option_button_pressed() -> void:
 	makeNoise.emit(0)
 	$OptionsMenu.show()
 
+func _on_options_menu_main() -> void:
+	makeNoise.emit(1)
+	$OptionsMenu.hide()
+
 func _on_exit_option_pressed() -> void:
 	makeNoise.emit(1)
 	$OptionsMenu.hide()

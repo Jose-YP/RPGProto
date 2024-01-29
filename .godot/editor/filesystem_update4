@@ -1,4 +1,5 @@
-res://Audio/Buses/default_bus_layout.tres
+res://Code/SceneCode/Screens/optionsMenu.gd
+res://Code/SceneCode/Screens/MainMenu.gd
 res://Scene/SideMenus/options_menu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
@@ -46,11 +47,8 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
-res://Themes/ButtonStyle/Focused.tres
-res://Themes/Nothing.tres
+res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
-res://Themes/Blue.tres
+res://Themes/Gradients/Blue.tres
 res://Scene/Mains/GameManager.tscn
-res://README.md
-res://Code/ResourceMakers/SaveMaker.gd
 res://Scene/Mains/MainMenu.tscn

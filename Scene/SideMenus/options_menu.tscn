@@ -10,161 +10,328 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = 0.5
+offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rvycu")
 script = ExtResource("2_vrnb5")
-metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -555.0
-offset_top = -353.0
-offset_right = 555.0
-offset_bottom = 353.0
+offset_left = -388.5
+offset_top = -371.0
+offset_right = 388.5
+offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(1100, 700)
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Title" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Title"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Title"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Title/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[center]OPTIONS"
 scroll_active = false
 
-[node name="Audio" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Title/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center][i]Use Keyboard to navigate Menu[/i]"
+scroll_active = false
+
+[node name="Audio" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 10
 
-[node name="IndvOptions" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio"]
+[node name="IndvOptions" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Audio"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions"]
+[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Title"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]AUDIO MIXING"
 
-[node name="AudioOptions" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions"]
+[node name="AudioOptions" type="MarginContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions"]
 layout_mode = 2
 columns = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Master Volume"
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Music
 Volume"
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2"]
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "SFX
 Volume"
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3"]
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="Controls" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Controls" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Controls"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Controls"]
-layout_mode = 2
-
-[node name="Title" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Controls/VBoxContainer/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/Title"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]CONTROL REMAPPING"
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+[node name="InputType" type="MarginContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+item_count = 2
+selected = 0
+popup/item_0/text = "Keyboard"
+popup/item_0/id = 0
+popup/item_1/text = "GamePad"
+popup/item_1/id = 1
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 80
+theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="A Remap" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="A" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A Remap"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
+size_flags_vertical = 4
 text = "A Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+
+[node name="ZL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "ZL Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="B" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "B Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="L" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "L Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="X" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "X Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="R" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "R Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="Y" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Y Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="ZR" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "ZR Button"
+scroll_active = false
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+toggle_mode = true
+text = "Current Input"
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 text = "Exit
 "
+
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer/HSlider" to="." method="audioSet" binds= [0]]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2/HSlider" to="." method="audioSet" unbinds=1]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3/HSlider" to="." method="audioSet" binds= [2]]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType/OptionButton" to="." method="_on_new_input_type_selected"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A/Button" to="." method="controllerMapStart" binds= [0]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL/Button" to="." method="controllerMapStart" binds= [1]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B/Button" to="." method="controllerMapStart" binds= [2]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L/Button" to="." method="controllerMapStart" binds= [3]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X/Button" to="." method="controllerMapStart" binds= [4]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R/Button" to="." method="controllerMapStart" binds= [5]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y/Button" to="." method="controllerMapStart" binds= [6]]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR/Button" to="." method="controllerMapStart" binds= [7]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Exit" to="." method="_on_button_pressed"]
