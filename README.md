@@ -10,15 +10,21 @@ ART)
 Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
 
 Music)
-Blair Dame's Theme - [Takayuki Aihara] Fighting Layer\n
+Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
+
 ...Delve!! - [John "Joy" Tay] https://youtu.be/d7ZqYAlUlAU
+
 Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
 
 SFX)
 beam.ogg used with Neutral Ballistic attacks- took from Power Bomberman
+
 clear_02_ab2Db_low.ogg used with Healing - took from Mixolumia
+
 fssmash_1.ogg used with slash attacks - stock sword sfx
+
 fspecial.ogg used with Condition Buffs - unsure
+
 heavy1.ogg used with NeutralPhysical attacks - unsure
 
 ______
@@ -30,9 +36,13 @@ ______
 TODO
 ______
 *Options Menu | Audio mixing
+
 *Options Menu | Controller Mapping
+
 *Implement gear and chips into battles
+
 *Save system
+
 *Implement other EnemyAI types(So far only random)
 
 ______
