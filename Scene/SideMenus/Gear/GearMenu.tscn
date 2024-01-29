@@ -61,7 +61,7 @@ custom_minimum_size = Vector2(1048, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]GEAR SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Sort: Y		Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
+[center]Accept: A			Cancel: B			Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -219,7 +219,7 @@ text = "[center][color=gray]Items
 8/8 [/color]"
 
 [node name="CurrentGear" type="ScrollContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
-custom_minimum_size = Vector2(0, 635)
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -228,6 +228,15 @@ vertical_scroll_mode = 3
 [node name="PanelContainer" type="GridContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CurrentGear"]
 layout_mode = 2
 columns = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Note: Gear is [u]ALWAYS[/u] applied before chips"
 
 [node name="Info" type="HBoxContainer" parent="VBoxContainer/MainDock"]
 custom_minimum_size = Vector2(0, 200)
@@ -277,7 +286,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="OldDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(150, 600)
+custom_minimum_size = Vector2(150, 620)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]

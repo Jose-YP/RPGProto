@@ -44,7 +44,6 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.speed = int(stats["Speed"])
 	Entity.luck = int(stats["Luck"])
 	
-	print(Entity.name,": Base Resistance", Entity.resistance)
 	#Properties
 	Entity.element = Entity.specificData.permanentElement
 	Entity.Weakness = Entity.specificData.permanentWeakness
@@ -71,17 +70,14 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.specificData.boostTarget = "Single"
 	Entity.specificData.boostStat = Entity.specificData.defaultBoostStat
 	
-	
-	preapplyChips(Entity)
 	InventoryFunctions.gearApply(Entity, Entity.specificData.GearData)
+	preapplyChips(Entity)
 	InventoryFunctions.miniItemHandler(Entity,Entity.itemData,ItemInventory.inventory)
 	InventoryFunctions.applyItems(Entity,ItemInventory.inventory)
 	return Entity
 
 func getBaseStats(character,level,stat) -> int:
 	var stats = playerStats[character][str(level)]
-	print(character, level)
-	print(stats)
 	
 	match stat:
 		"HP": return int(stats["HP"])

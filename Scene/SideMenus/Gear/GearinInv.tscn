@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://darsoarlvp0i8"]
+[gd_scene load_steps=6 format=3 uid="uid://darsoarlvp0i8"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_f4abs"]
 [ext_resource type="Script" path="res://Code/SceneCode/Individuals/GearinChar.gd" id="2_jwox3"]
 [ext_resource type="Texture2D" uid="uid://ddjnp1e1pss0g" path="res://Icons/MenuIcons/icons-set-2_0000s_0029__Group_.png" id="3_ctc55"]
+[ext_resource type="StyleBox" uid="uid://57im7twwo0e0" path="res://Themes/ButtonStyle/Focused.tres" id="3_rhuaj"]
 [ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_4l5kg"]
 
 [node name="MenuItem" type="MarginContainer"]
 offset_right = 330.0
 offset_bottom = 80.0
+theme = ExtResource("1_f4abs")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -23,6 +25,7 @@ theme = ExtResource("1_f4abs")
 
 [node name="Button" type="Button" parent="MenuItem"]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("3_rhuaj")
 flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuItem/Button"]
@@ -64,5 +67,5 @@ layout_mode = 2
 texture = ExtResource("4_4l5kg")
 expand_mode = 3
 
-[connection signal="focus_entered" from="MenuItem/Button" to="MenuItem" method="_on_button_focus_entered"]
 [connection signal="focus_entered" from="MenuItem/Button" to="." method="_on_button_focus_entered"]
+[connection signal="focus_entered" from="MenuItem/Button" to="MenuItem" method="_on_button_focus_entered"]

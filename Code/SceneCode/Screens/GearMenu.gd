@@ -32,6 +32,7 @@ var currentInv: Array[Array] = [[],[]]
 var inputHoldTime: float = 0.0
 var playerIndex: int = 0
 var side: int = 0
+var currentFocus
 
 #-----------------------------------------
 #INITALIZATION
@@ -45,44 +46,41 @@ func _ready():
 			"Pepper": allGear[3].append(gear)
 	
 	update()
-	print(allGear)
 
 #-----------------------------------------
 #PROCESSING
 #-----------------------------------------
 func _process(_delta):
+	if (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Right") 
+	or Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("Down")):
+		makeNoise.emit(2)
+	
 	if Input.is_action_just_pressed("Accept"):
 		makeNoise.emit(0)
+		swapGear()
 		get_viewport().gui_get_focus_owner()
 	
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
 		exitMenu.emit()
 	
-	if Input.is_action_just_pressed("Y"):
-		makeNoise.emit(0)
-	
 	if Input.is_action_just_pressed("L"):
 		makeNoise.emit(2)
-		
 		playerIndex -= 1
-		if playerIndex < 0: playerIndex = Globals.every_player_entity.size() - 1
+		if playerIndex < 0:
+			playerIndex = Globals.every_player_entity.size() - 1
 		
-		getPlayerStats(playerIndex)
-		getPlayerGear(playerIndex)
-		
+		update()
 		if get_viewport().gui_get_focus_owner() == null:
 			currentInv[0][0].focus.grab_focus()
 	
 	if Input.is_action_just_pressed("R"):
 		makeNoise.emit(2)
-		
 		playerIndex += 1
-		if playerIndex > (Globals.every_player_entity.size() - 1): playerIndex = 0
+		if playerIndex > Globals.every_player_entity.size() - 1:
+			playerIndex = 0
 		
-		getPlayerStats(playerIndex)
-		getPlayerGear(playerIndex)
-		
+		update()
 		if get_viewport().gui_get_focus_owner() == null:
 			currentInv[0][0].focus.grab_focus()
 	
@@ -116,6 +114,8 @@ func getPlayerStats(index) -> void:
 	CPUText.append_text(currentCPUtext)
 	ItemText.append_text(currentItemText)
 	
+	CPUBar.value = int(100*(float(entity.specificData.MaxCPU - entity.specificData.currentCPU) / float(entity.specificData.MaxCPU)))
+	
 	getElements(entity)
 
 func getPlayerGear(index) -> void:
@@ -123,7 +123,7 @@ func getPlayerGear(index) -> void:
 	
 	var entity = Globals.every_player_entity[index]
 	
-	for gear in allGear[playerIndex]:
+	for gear in allGear[Globals.charNum(entity)]:
 		print(gear.name)
 		var pannel = gearPanel.instantiate()
 		pannel.gearData = gear
@@ -147,7 +147,6 @@ func getGearDesc(gear) -> String:
 	if gear.Toughness != 0:
 		gearString = statString(Globals.getBaseStats(entity.name,entity.level,"Toughness"), gear.Toughness, gearString, "Toughness:\t")
 	if gear.Ballistics != 0:
-		print(gear.name, "||",Globals.getBaseStats(entity.name,entity.level,"Ballistics"))
 		gearString = statString(Globals.getBaseStats(entity.name,entity.level,"Ballistics"), gear.Ballistics, gearString, "Ballistics:\t")
 	if gear.Resistance != 0:
 		gearString = statString(Globals.getBaseStats(entity.name,entity.level,"Resistance"), gear.Resistance, gearString, "Resistance:\t")
@@ -158,16 +157,16 @@ func getGearDesc(gear) -> String:
 	
 	if gear.calcBonus & 1:
 		gearString = str(ifStringEmpty(gearString),"\n[center]Drain HP by", gear.calcAmmount * 100,
-		"% of your offensive damage\nTOTAL:",entity.drainCalcAmmount,"[/center]")
+		"% of your offensive damage\n CURRENT TOTAL:",entity.drainCalcAmmount * 100,"%[/center]")
 	if gear.calcBonus & 2:
 		gearString = str(ifStringEmpty(gearString),"\n[center]Raise chance to hit Ailments by", gear.calcAmmount * 100,
-		"%\nTOTAL:",entity.ailmentCalcAmmount,"[/center]")
+		"%\n CURRENT TOTAL: ",entity.ailmentCalcAmmount * 100,"%[/center]")
 	if gear.calcBonus & 4:
 		gearString = str(ifStringEmpty(gearString),"\n[center]Crit Chance Raised by", gear.calcAmmount * 100,
-		"%\nTOTAL:",entity.critCalcAmmount,"[/center]")
+		"%\n CURRENT TOTAL: ",entity.critCalcAmmount * 100,"%[/center]")
 	if gear.calcBonus & 8:
 		gearString = str(ifStringEmpty(gearString),"\n[center]Everyone's Element modifier raised by", gear.calcAmmount * 100,
-		"%\nTOTAL:",entity.groupElementMod,"[/center]")
+		"%\n CURRENT TOTAL: ",entity.groupElementMod * 100,"%[/center]")
 	
 	match gear.miscCalc:
 		"Explode":
@@ -191,6 +190,7 @@ func getElements(entity) -> void:
 		if Globals.XSoftTypes[k+3] == entity.phyElement: playerPhyEle.current_tab = k
 
 func update() -> void:
+	currentInv = [[],[]]
 	for thing in gearInv.get_children(): #Delete previous inventory display
 		gearInv.remove_child(thing)
 		thing.queue_free()
@@ -201,9 +201,19 @@ func update() -> void:
 	currentInv[0][0].focus.grab_focus()
 
 #-----------------------------------------
+#MANAGING GEAR
+#-----------------------------------------
+func swapGear():
+	var entity = Globals.every_player_entity[playerIndex]
+	entity.specificData.GearData.equipped = false
+	InventoryFunctions.gearApply(entity, currentFocus.gearData)
+	update()
+
+#-----------------------------------------
 #SIGNALS
 #-----------------------------------------
 func on_panel_focused(data) -> void:
+	currentFocus = data
 	newGearTitle.clear()
 	newGearDisc.clear()
 	

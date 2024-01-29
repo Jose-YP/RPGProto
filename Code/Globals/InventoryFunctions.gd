@@ -235,7 +235,7 @@ func blueChipFun(entity, chip) -> void:
 	if chip.SameElement:
 		entity.sameElement = true
 	
-	entity.elementMod += chip.soloElementModBoost
+	entity.soloElementMod += chip.ElementModBoost
 
 func yellowChipFun(entity,chip) -> void:
 	entity.MaxHP += chip.HP
@@ -367,9 +367,6 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 					entity.luck = entity.speed
 					entity.speed = firstStat
 
-func gearHandler() -> void:
-	pass
-
 func gearApply(entity, gear) -> void:
 	entity.specificData.GearData = gear
 	gear.equipped = true
@@ -382,13 +379,13 @@ func gearApply(entity, gear) -> void:
 	entity.luck += gear.Luck
 	
 	if gear.calcBonus & 1:
-		entity.calcBonus = "Drain"
-		entity.calcBonus = gear.calcAmmount
+		entity.calcBonus |= 1
+		entity.drainCalcAmmount = gear.calcAmmount
 	if gear.calcBonus & 2:
-		entity.groupElementMod = gear.calcAmmount
+		entity.calcBonus |= 2
+		entity.ailmentCalcAmmount = gear.calcAmmount
 	if gear.calcBonus & 4:
-		entity.calcBonus = "AilmentHit"
-		entity.calcBonus = gear.calcAmmount
+		entity.calcBonus |= 4
+		entity.critCalcAmmount = gear.calcAmmount
 	if gear.calcBonus & 8:
-		entity.costBonus = "LP"
-		entity.costMod = gear.calcAmmount
+		entity.groupElementMod = gear.calcAmmount
