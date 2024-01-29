@@ -22,6 +22,8 @@ $EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemySide/EnemyMenu/EnemyMenu
 $EnemySide/EnemyDisplay/EnemyElements/EnemyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyElement3]
 @onready var enemyPhyEle: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement,
 $EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3]
+#OTHER VAR
+@onready var orderButton: CheckButton = $PlayerFirstToggle/HBoxContainer/PlayerOrder
 
 signal battleStart
 signal chipMenu
@@ -36,6 +38,8 @@ var playerNamesHold: Array[String] = ["DREAMER","Lonna","Damir","Pepper"]
 var playerLevelsHold: Array[int] = [5,5,5,5]
 var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]
+var optionsOpen: bool = false
+var helpOpen: bool = false
 
 #-----------------------------------------
 #INITALIZATION
@@ -51,6 +55,18 @@ func _ready():
 	makeEnemyLineup()
 	
 	$Navigation/Buttons/ItemButton.grab_focus()
+
+func _input(event):
+	if not optionsOpen and not helpOpen:
+		match event:
+			"Accept":
+				pass
+			"Cancel": _on_help_button_pressed()
+			"Y":
+				pass
+			"X": orderButton.toggled.emit()
+			"Start": _on_fight_button_pressed()
+			"Select": _on_option_button_pressed()
 
 #-----------------------------------------
 #PLAYER SETUP
@@ -243,37 +259,40 @@ func _on_music_button_item_selected(index) -> void:
 		Globals.currentSong = songList[index - 1]
 	makeNoise.emit(0)
 
+func _on_menu_button_pressed() -> void:
+	makeNoise.emit(1)
+
 #-----------------------------------------
-#NAVIGATION BUTTONS
+#POPUPS
 #-----------------------------------------
 func _on_help_button_pressed() -> void:
 	makeNoise.emit(0)
-	$HelpMenu.show()
+	helpOpen = true
+	$Navigation/HelpMenu.show()
 
 func _on_exit_button_pressed() -> void:
 	makeNoise.emit(1)
+	helpOpen = false
 	$HelpMenu.hide()
 
 func _on_option_button_pressed() -> void:
 	makeNoise.emit(0)
+	optionsOpen = true
 	$OptionsMenu.show()
 
 func _on_options_menu_main() -> void:
 	makeNoise.emit(1)
+	optionsOpen = false
 	$OptionsMenu.hide()
 
-func _on_exit_option_pressed() -> void:
-	makeNoise.emit(1)
-	$OptionsMenu.hide()
-
+#-----------------------------------------
+#NAVIGATION BUTTONS
+#-----------------------------------------
 func _on_fight_button_pressed() -> void:
 	setEnemyGlobals()
 	setPlayerGlobals()
 	
 	battleStart.emit()
-
-func _on_menu_button_pressed() -> void:
-	makeNoise.emit(1)
 
 func _on_chip_button_pressed() -> void:
 	Globals.current_player_entities = players

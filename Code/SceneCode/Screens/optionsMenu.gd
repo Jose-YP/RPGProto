@@ -19,14 +19,30 @@ $PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR/Button]
 signal main
 
 var audioLevels: Array[int] = [100,100,100]
-var inputs: Array[InputEvent] = []
+var inputs: Array[Array] = [[],[]]
 var inputType: int = 0
 var currentToggle: Button
+var toggleOn: bool = false
 
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
 func _ready():
+	for action in InputMap.get_actions(): #Get every input in InputMap that can be edited
+		var check = (action == "Left" or action == "Right" 
+		or action == "Up" or action == "Down" 
+		or action == "Start" or action == "Select")
+		
+		if not action.contains("ui_") and not check:
+			var events = InputMap.action_get_events(action)
+			inputs[0].append(events[0])
+			inputs[1].append(events[-1])
+			print(action,events[0], events[-1])
+	
+	for type in inputs:
+		for event in type:
+			print(event.as_text())
+	
 	updateInputDisplay(inputType)
 
 #-----------------------------------------
@@ -45,8 +61,9 @@ func updateInputDisplay(num):
 func controllerMapStart(_toggled,index):
 	if currentToggle != null:
 		currentToggle.button_pressed = false
+		
 	currentToggle = controllerChange[index]
-	print(currentToggle)
+	currentToggle.text = str("...Awaiting Input...")
 
 func _on_new_input_type_selected(index):
 	pass

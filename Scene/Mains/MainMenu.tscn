@@ -53,10 +53,15 @@ metadata/_edit_lock_ = true
 
 [node name="ElementTriangle" parent="ColorRect" instance=ExtResource("13_n6ucx")]
 layout_mode = 1
-offset_left = 1140.0
-offset_top = 181.0
-offset_right = 1140.0
-offset_bottom = 181.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -163.0
+offset_top = 163.0
+offset_right = -34.0
+offset_bottom = 276.0
+grow_horizontal = 0
+grow_vertical = 1
 
 [node name="EnemySide" type="Control" parent="."]
 anchors_preset = 0
@@ -326,8 +331,8 @@ metadata/_edit_lock_ = true
 
 [node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy1"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../Navigation/MusicMenu/MenuButton")
-focus_neighbor_top = NodePath("../../../../../PlayerFirstToggle/HBoxContainer/PlayerOrder")
+focus_neighbor_left = NodePath("../../../../../PlayerSide/PlayerMenu/Player3/MenuButton")
+focus_neighbor_right = NodePath("../../Enemy2/MenuButton")
 item_count = 6
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
@@ -377,6 +382,7 @@ metadata/_edit_lock_ = true
 [node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy3"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../Enemy2/MenuButton")
+focus_neighbor_right = NodePath("../../../../../PlayerSide/PlayerMenu/Player1/MenuButton")
 item_count = 7
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
@@ -412,6 +418,8 @@ columns = 3
 [node name="Player1Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
+focus_neighbor_top = NodePath("../../../Navigation/Buttons/ChipButton")
 focus_neighbor_right = NodePath("../Player2Level")
 focus_neighbor_bottom = NodePath("../Player1/MenuButton")
 min_value = 1.0
@@ -431,6 +439,7 @@ text = "Level"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Player1Level")
+focus_neighbor_top = NodePath("../../../Navigation/Buttons/GearButton")
 focus_neighbor_right = NodePath("../Player3Level")
 focus_neighbor_bottom = NodePath("../Player2/MenuButton")
 min_value = 1.0
@@ -449,6 +458,8 @@ text = "Level"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Player2Level")
+focus_neighbor_top = NodePath("../../../Navigation/Buttons/ItemButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
 focus_neighbor_bottom = NodePath("../Player3/MenuButton")
 min_value = 1.0
 max_value = 30.0
@@ -465,6 +476,7 @@ text = "Level"
 [node name="Player1" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
 focus_neighbor_top = NodePath("../Player1Level")
 focus_neighbor_right = NodePath("../Player2/MenuButton")
 focus_neighbor_bottom = NodePath("../../../Navigation/Buttons/ChipButton")
@@ -472,6 +484,10 @@ metadata/_edit_group_ = true
 
 [node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player1"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
+focus_neighbor_top = NodePath("../../Player1Level")
+focus_neighbor_right = NodePath("../../Player2/MenuButton")
+focus_neighbor_bottom = NodePath("../../../../Navigation/Buttons/ChipButton")
 item_count = 4
 selected = 0
 allow_reselect = true
@@ -514,11 +530,15 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Player2/MenuButton")
 focus_neighbor_top = NodePath("../Player3Level")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
 focus_neighbor_bottom = NodePath("../../../Navigation/Buttons/ItemButton")
 metadata/_edit_group_ = true
 
 [node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player3"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Player3Level")
+focus_neighbor_right = NodePath("../../Player1/MenuButton")
+focus_neighbor_bottom = NodePath("../../../../Navigation/Buttons/ItemButton")
 item_count = 4
 selected = 3
 allow_reselect = true
@@ -823,32 +843,26 @@ metadata/_edit_lock_ = true
 layout_mode = 0
 offset_left = 771.0
 offset_top = 208.0
-offset_right = 928.0
+offset_right = 946.0
 offset_bottom = 232.0
 theme = ExtResource("12_c1ybm")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerFirstToggle"]
 layout_mode = 2
-metadata/_edit_lock_ = true
+size_flags_horizontal = 0
 
 [node name="PlayerOrder" type="CheckButton" parent="PlayerFirstToggle/HBoxContainer"]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton")
 focus_neighbor_bottom = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
 button_pressed = true
-text = "                      "
-metadata/_edit_lock_ = true
-
-[node name="Label2" type="Label" parent="PlayerFirstToggle/HBoxContainer/PlayerOrder"]
-layout_mode = 2
-offset_right = 87.0
-offset_bottom = 24.0
-text = "Player First"
+text = " Player First [X]"
 
 [node name="Label" type="Label" parent="PlayerFirstToggle/HBoxContainer"]
 layout_mode = 2
 text = "ON"
-metadata/_edit_lock_ = true
 
 [node name="Navigation" type="Control" parent="."]
 anchors_preset = 0
@@ -864,31 +878,34 @@ offset_right = 599.0
 offset_bottom = 736.0
 
 [node name="HelpButton" type="Button" parent="Navigation/Buttons"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 4.0
+anchor_bottom = 1.125
 offset_top = -9.0
-offset_right = 160.0
-offset_bottom = 45.0
 focus_neighbor_top = NodePath("../FightButton")
 theme = ExtResource("12_c1ybm")
-text = "What is this?"
+text = "What is this? [B]"
 
 [node name="FightButton" type="Button" parent="Navigation/Buttons"]
-layout_mode = 0
-offset_top = -66.0
-offset_right = 160.0
-offset_bottom = -26.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.325
+anchor_top = -1.65
+anchor_right = 4.375
+anchor_bottom = -0.65
 focus_neighbor_top = NodePath("../../MusicMenu/MenuButton")
 focus_neighbor_bottom = NodePath("../HelpButton")
-text = "START FIGHTING"
+text = "START FIGHTING [Start]"
 
 [node name="OptionButton" type="Button" parent="Navigation/Buttons"]
-visible = false
-layout_mode = 0
-offset_left = 26.0
-offset_top = -106.0
-offset_right = 131.0
-offset_bottom = -66.0
-text = "Options"
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = -3.125
+anchor_right = 3.65
+anchor_bottom = -2.125
+text = "Options [Select]"
 
 [node name="ChipButton" type="Button" parent="Navigation/Buttons"]
 layout_mode = 0
@@ -896,8 +913,10 @@ offset_left = -539.0
 offset_top = -369.0
 offset_right = -384.0
 offset_bottom = -335.0
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
 focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player1/MenuButton")
 focus_neighbor_right = NodePath("../GearButton")
+focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player1Level")
 text = "SET CHIPS"
 
 [node name="ItemButton" type="Button" parent="Navigation/Buttons"]
@@ -908,7 +927,8 @@ offset_right = -57.0
 offset_bottom = -335.0
 focus_neighbor_left = NodePath("../GearButton")
 focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player3/MenuButton")
-focus_neighbor_right = NodePath("../../MusicMenu/MenuButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
+focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player3Level")
 text = "SET ITEMS"
 
 [node name="GearButton" type="Button" parent="Navigation/Buttons"]
@@ -920,13 +940,14 @@ offset_bottom = -335.0
 focus_neighbor_left = NodePath("../ChipButton")
 focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player2/MenuButton")
 focus_neighbor_right = NodePath("../ItemButton")
+focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player2Level")
 text = "SET GEAR"
 
 [node name="MusicMenu" type="PanelContainer" parent="Navigation"]
 layout_mode = 0
-offset_left = 585.0
+offset_left = 575.0
 offset_top = 408.0
-offset_right = 692.0
+offset_right = 704.0
 offset_bottom = 437.0
 theme = ExtResource("12_c1ybm")
 
@@ -937,7 +958,7 @@ focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/
 focus_neighbor_bottom = NodePath("../../Buttons/FightButton")
 item_count = 4
 selected = 0
-popup/item_0/text = "None"
+popup/item_0/text = "None [Change Y]"
 popup/item_0/id = 0
 popup/item_1/text = "Blair Dame"
 popup/item_1/id = 1
@@ -1087,10 +1108,11 @@ layout_mode = 0
 offset_left = 396.0
 offset_top = 147.0
 offset_right = 798.0
-offset_bottom = 444.0
+offset_bottom = 506.0
 text = "HP: When it hits 0 you die
 LP: Spent whenever using certain skills
 TP: Both parties have a collective TP gauge. It's spent whenever taking any action.
+CPU: Determines the ammount of Chips a character can equip. Different chips have different costs.
 
 Strength: Physical Attack | Toughness: Physical Defense
 Ballistics: Ballistic Attack | Resistance: Ballistic Defense
