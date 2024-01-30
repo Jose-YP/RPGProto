@@ -56,16 +56,14 @@ func _ready():
 	updateInputDisplay()
 
 func _input(event):
-	print(event)
-	print(event is InputEventKey)
 	if toggleOn:
 		if inputType == 0:
-			if event.is_match(InputEventKey, true):
+			if event is InputEventKey:
 				print(event)
 		else:
-			if event.is_match(InputEventJoypadButton, true):
+			if event is InputEventJoypadButton:
 				print(event)
-			elif event.is_match(InputEventJoypadMotion, true):
+			elif event is InputEventJoypadMotion:
 				var eventText = event.as_text()
 				if eventText.contains("Axis 4") or eventText.contains("Axis 5"):
 					print(event)
