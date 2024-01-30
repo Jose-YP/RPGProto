@@ -24,10 +24,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -388.5
-offset_top = -371.0
-offset_right = 388.5
-offset_bottom = 371.0
+offset_left = -388.0
+offset_top = -380.0
+offset_right = 389.0
+offset_bottom = 373.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -36,9 +36,13 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Title"]
 layout_mode = 2
@@ -63,7 +67,7 @@ scroll_active = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
 [node name="IndvOptions" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Audio"]
@@ -71,14 +75,30 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(600, 40)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Title"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]AUDIO MIXING"
+
+[node name="Tests" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
+layout_mode = 2
+alignment = 1
+
+[node name="Music" type="Button" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+toggle_mode = true
+text = "Test Music"
+
+[node name="SFX" type="Button" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests"]
+layout_mode = 2
+text = "Test SFX"
 
 [node name="AudioOptions" type="MarginContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
 layout_mode = 2
@@ -93,11 +113,7 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Master Volume"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 value = 100.0
@@ -113,11 +129,7 @@ layout_mode = 2
 text = "Music
 Volume"
 
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2"]
+[node name="HSlider2" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 value = 100.0
 
@@ -132,11 +144,7 @@ layout_mode = 2
 text = "SFX
 Volume"
 
-[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3"]
+[node name="HSlider3" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 value = 100.0
 
@@ -198,8 +206,9 @@ text = "A Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_vertical = 4
 toggle_mode = true
 
 [node name="ZL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
@@ -213,8 +222,9 @@ text = "ZL Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_vertical = 4
 toggle_mode = true
 text = "Current Input"
 
@@ -229,7 +239,7 @@ text = "B Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -245,7 +255,7 @@ text = "L Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -261,7 +271,7 @@ text = "X Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -277,7 +287,7 @@ text = "R Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -293,7 +303,7 @@ text = "Y Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -309,7 +319,7 @@ text = "ZR Button"
 scroll_active = false
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
@@ -322,9 +332,14 @@ size_flags_stretch_ratio = 0.0
 text = "Exit
 "
 
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer/HSlider" to="." method="audioSet" binds= [0]]
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2/HSlider" to="." method="audioSet" unbinds=1]
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3/HSlider" to="." method="audioSet" binds= [2]]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests/Music" to="." method="_on_music_toggled"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests/SFX" to="." method="_on_sfx_pressed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider" to="." method="audioSet" binds= [0]]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2" to="." method="audioSet" binds= [1]]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3" to="." method="audioSet" binds= [2]]
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType/OptionButton" to="." method="_on_new_input_type_selected"]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A/Button" to="." method="controllerMapStart" binds= [0]]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL/Button" to="." method="controllerMapStart" binds= [1]]

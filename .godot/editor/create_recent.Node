@@ -1,10 +1,10 @@
-VBoxContainer
 MarginContainer
+Button
+HBoxContainer
+VBoxContainer
 OptionButton
 PanelContainer
-Button
 RichTextLabel
-HBoxContainer
 GridContainer
 HSlider
 SpinBox

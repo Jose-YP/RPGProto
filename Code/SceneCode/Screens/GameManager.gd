@@ -130,6 +130,7 @@ func _back_to_main_menu() -> void:
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
+	currentScene.connect("playTest",playMusic)
 
 func _on_change_to_battle() -> void:
 	changeScene(battleScene)
@@ -161,6 +162,7 @@ func getNewSort(type) -> void:
 		Globals.ChipInventory = getChipSorts(Globals.ChipInventory)
 	else:
 		Globals.ItemInventory = getItemSorts(Globals.ItemInventory)
+
 #-----------------------------------------
 #AUDIO SIGNALS
 #-----------------------------------------
@@ -168,5 +170,8 @@ func makeNoise(num) -> void:
 	regSFX[num].play()
 
 func playMusic(song) -> void:
-	$Music.set_stream(load(song))
-	$Music.play()
+	if song != "stop":
+		$Music.set_stream(load(song))
+		$Music.play()
+	else:
+		$Music.stop()

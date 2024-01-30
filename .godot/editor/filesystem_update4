@@ -1,7 +1,5 @@
-res://Code/SceneCode/Screens/optionsMenu.gd
-res://Code/SceneCode/Screens/MainMenu.gd
+res://Audio/Buses/default_bus_layout.tres
 res://Scene/SideMenus/options_menu.tscn
-res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
@@ -33,6 +31,7 @@ res://Resources/Item Data/ItemMoves/TaxReportMove.tres
 res://Resources/Item Data/ItemSpecifics/TaxReport.tres
 res://Resources/Item Data/ItemMoves/IdolMove.tres
 res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
+res://Code/ResourceMakers/EnemyMaker.gd
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
@@ -47,8 +46,16 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
+res://Themes/ButtonStyle/Focused.tres
 res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
-res://Scene/Mains/GameManager.tscn
+res://Code/SceneCode/Screens/optionsMenu.gd
+res://Scene/SideMenus/Chip/ChipMenu.tscn
+res://Resources/Inventory Data/ItemInventory.tres
+res://Resources/Inventory Data/GearInventory.tres
 res://Scene/Mains/MainMenu.tscn
+res://Code/SceneCode/Screens/MainMenu.gd
+res://README.md
+res://Code/SceneCode/Screens/GameManager.gd
+res://Scene/Mains/GameManager.tscn

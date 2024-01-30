@@ -16,6 +16,8 @@ Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
 
 Event Battle - [Toshiyuki Sudo, Shinji Ushiroda, Yumi Takahashi, Megumi Inoue] Miitopia
 
+WiFi Menu - [Shinobu Tanaka] Mario Kart DS
+
 SFX)
 beam.ogg used with Neutral Ballistic attacks- took from Power Bomberman
 

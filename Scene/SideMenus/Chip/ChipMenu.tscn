@@ -217,6 +217,8 @@ custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character"]
+clip_contents = false
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100

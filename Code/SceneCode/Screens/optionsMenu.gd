@@ -1,8 +1,8 @@
 extends Control
 
-@onready var VolumeValues: Array[HSlider] = [$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer/HSlider,
-$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer2/HSlider,
-$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/PanelContainer3/HSlider]
+@onready var VolumeValues: Array[HSlider] = [$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider,
+$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2,
+$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3]
 @onready var VolumeTexts: Array[RichTextLabel] = [$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel2,
 $PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel4,
 $PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel6]
@@ -15,11 +15,16 @@ $PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R/Button,
 $PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y/Button,
 $PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR/Button]
 @onready var controllerType: OptionButton = $PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType/OptionButton
+@onready var MasterBus = AudioServer.get_bus_index("Master")
+@onready var MusicBus = AudioServer.get_bus_index("Music")
+@onready var SFXBus = AudioServer.get_bus_index("SFX")
 
 signal main
+signal makeNoise
+signal testMusic(toggled_on)
 
-var audioLevels: Array[int] = [100,100,100]
 var inputs: Array[Array] = [[],[]]
+var Buses: Array = []
 var inputType: int = 0
 var currentToggle: Button
 var toggleOn: bool = false
@@ -28,6 +33,8 @@ var toggleOn: bool = false
 #INITALIZATION
 #-----------------------------------------
 func _ready():
+	Buses = [MasterBus, MusicBus, SFXBus]
+	
 	for action in InputMap.get_actions(): #Get every input in InputMap that can be edited
 		var check = (action == "Left" or action == "Right" 
 		or action == "Up" or action == "Down" 
@@ -49,8 +56,16 @@ func _ready():
 #AUDIO
 #-----------------------------------------
 func audioSet(value, index):
-	VolumeTexts[index].text = str("		",VolumeValues[index].int(value),"%")
-	audioLevels[index] = VolumeValues[index].int(value)
+	print(AudioServer.get_bus_index("Music"))
+	VolumeValues[index].value = value
+	VolumeTexts[index].text = str("		",VolumeValues[index].value,"%")
+	AudioServer.set_bus_volume_db(Buses[index], linear_to_db(value * 0.01))
+
+func _on_music_toggled(toggled_on):
+	testMusic.emit(toggled_on)
+
+func _on_sfx_pressed():
+	makeNoise.emit()
 
 #-----------------------------------------
 #CONTROLLER REMAPPING
@@ -73,3 +88,4 @@ func _on_new_input_type_selected(index):
 #-----------------------------------------
 func _on_button_pressed():
 	main.emit()
+

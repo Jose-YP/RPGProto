@@ -30,10 +30,12 @@ signal chipMenu
 signal gearMenu
 signal itemMenu
 signal makeNoise(num)
+signal playTest(song)
 
 var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
 var songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
+var testSong = "res://Audio/Music/005 - WIFI Menu.mp3"
 var playerNamesHold: Array[String] = ["DREAMER","Lonna","Damir","Pepper"]
 var playerLevelsHold: Array[int] = [5,5,5,5]
 var players: Array[entityData] = [null, null, null]
@@ -261,6 +263,12 @@ func _on_music_button_item_selected(index) -> void:
 
 func _on_menu_button_pressed() -> void:
 	makeNoise.emit(1)
+
+func _on_options_menu_test_music(toggled_on):
+	if toggled_on:
+		playTest.emit(testSong)
+	else:
+		playTest.emit("stop")
 
 #-----------------------------------------
 #POPUPS
