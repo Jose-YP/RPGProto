@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var VolumeValues: Array[HSlider] = [$PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider,
 $PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2,
@@ -23,9 +23,12 @@ signal main
 signal makeNoise
 signal testMusic(toggled_on)
 
+var awaitingColor = Color(0.455, 0.455, 0.455)
 var inputs: Array[Array] = [[],[]]
+var inputTexts: Array[String] = []
 var Buses: Array = []
 var inputType: int = 0
+var currentToggleIndex: int
 var currentToggle: Button
 var toggleOn: bool = false
 
@@ -50,16 +53,32 @@ func _ready():
 		for event in type:
 			print(event.as_text())
 	
-	updateInputDisplay(inputType)
+	updateInputDisplay()
+
+func _input(event):
+	print(event)
+	print(event is InputEventKey)
+	if toggleOn:
+		if inputType == 0:
+			if event.is_match(InputEventKey, true):
+				print(event)
+		else:
+			if event.is_match(InputEventJoypadButton, true):
+				print(event)
+			elif event.is_match(InputEventJoypadMotion, true):
+				var eventText = event.as_text()
+				if eventText.contains("Axis 4") or eventText.contains("Axis 5"):
+					print(event)
+		
+		toggleOn = false
 
 #-----------------------------------------
 #AUDIO
 #-----------------------------------------
 func audioSet(value, index):
-	print(AudioServer.get_bus_index("Music"))
 	VolumeValues[index].value = value
 	VolumeTexts[index].text = str("		",VolumeValues[index].value,"%")
-	AudioServer.set_bus_volume_db(Buses[index], linear_to_db(value * 0.01))
+	AudioServer.set_bus_volume_db(Buses[index], linear_to_db(value * 0.01)) #0.01 so it doesn't get too loud
 
 func _on_music_toggled(toggled_on):
 	testMusic.emit(toggled_on)
@@ -70,18 +89,33 @@ func _on_sfx_pressed():
 #-----------------------------------------
 #CONTROLLER REMAPPING
 #-----------------------------------------
-func updateInputDisplay(num):
-	pass
-
-func controllerMapStart(_toggled,index):
-	if currentToggle != null:
-		currentToggle.button_pressed = false
+func updateInputDisplay():
+	inputTexts.clear()
+	
+	for event in range(controllerChange.size()):
+		var keyText: String
+		if inputType == 0:
+			keyText = inputs[inputType][event].as_text().trim_suffix(" (Physical)")
+		elif inputs[inputType][event].as_text().contains("Button"):
+			keyText = inputs[inputType][event].as_text().left(15)
+		else:
+			keyText = inputs[inputType][event].as_text().left(23)
 		
+		inputTexts.append(keyText)
+		controllerChange[event].text = keyText
+
+func controllerMapStart(toggled,index):
+	if currentToggle != null:
+		currentToggle.button_pressed = toggled
+		currentToggle.text = inputTexts[currentToggleIndex]
+	
+	currentToggleIndex = index
 	currentToggle = controllerChange[index]
 	currentToggle.text = str("...Awaiting Input...")
 
 func _on_new_input_type_selected(index):
-	pass
+	inputType = index
+	updateInputDisplay()
 
 #-----------------------------------------
 #NAVIGATION BUTTONS

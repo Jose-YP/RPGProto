@@ -1125,18 +1125,6 @@ They will decay by 5% every turn"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("22_oq3rd")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 643.0
-offset_top = 384.0
-offset_right = 643.0
-offset_bottom = 384.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
 [connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]
@@ -1156,8 +1144,8 @@ grow_vertical = 1
 [connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
 [connection signal="pressed" from="Navigation/HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="main" from="OptionsMenu" to="." method="_on_options_menu_main"]
 [connection signal="makeNoise" from="OptionsMenu" to="." method="_on_menu_button_pressed"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwxmguyqfllht"]
+
+[ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_fiq5y"]
+[ext_resource type="Texture2D" uid="uid://chplq5f7ce8u8" path="res://Icons/Controller/A.png" id="2_63t4w"]
+[ext_resource type="Texture2D" uid="uid://bh5a46hbonmk5" path="res://Icons/Controller/B.png" id="3_1xk20"]
+[ext_resource type="Texture2D" uid="uid://dbqpdqjohthfm" path="res://Icons/Controller/X.png" id="4_jy66y"]
+[ext_resource type="Texture2D" uid="uid://46o8t6njv6vr" path="res://Icons/Controller/Y.png" id="5_wt8iw"]
+[ext_resource type="Texture2D" uid="uid://b2gad57vkv8f4" path="res://Icons/Controller/ZL.png" id="6_xlw6y"]
+[ext_resource type="Texture2D" uid="uid://ib74cnqivbpu" path="res://Icons/Controller/L.png" id="7_ftbav"]
+[ext_resource type="Texture2D" uid="uid://dubps4v2wf8up" path="res://Icons/Controller/R.png" id="8_fhrn0"]
+[ext_resource type="Texture2D" uid="uid://spu0nmp00nxx" path="res://Icons/Controller/ZR.png" id="9_c2itr"]
+[ext_resource type="Texture2D" uid="uid://d0xfiqh4q7vf3" path="res://Icons/Controller/Plus.png" id="10_jjqn2"]
+[ext_resource type="Texture2D" uid="uid://by6ets6fqne3j" path="res://Icons/Controller/Minus.png" id="11_vi586"]
+
+[node name="ControllerIcon" type="TabContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.164
+offset_right = -95.5
+offset_bottom = -95.92
+theme = ExtResource("1_fiq5y")
+tabs_visible = false
+
+[node name="A" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_63t4w")
+expand_mode = 5
+
+[node name="ZL" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("6_xlw6y")
+expand_mode = 5
+
+[node name="B" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_1xk20")
+expand_mode = 5
+
+[node name="L" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("7_ftbav")
+expand_mode = 5
+
+[node name="X" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_jy66y")
+expand_mode = 3
+
+[node name="R" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_fhrn0")
+expand_mode = 5
+
+[node name="Y" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_wt8iw")
+expand_mode = 5
+
+[node name="ZR" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("9_c2itr")
+expand_mode = 5
+
+[node name="Plus" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("10_jjqn2")
+expand_mode = 5
+
+[node name="Minus" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("11_vi586")
+expand_mode = 5

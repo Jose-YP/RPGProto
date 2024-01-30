@@ -1,3 +1,4 @@
+res://
 res://Code/SceneCode/Screens
 res://Themes/ButtonStyle
 res://Code/SceneCode/Individuals
@@ -9,7 +10,6 @@ res://Code/SceneCode
 res://Resources/Inventory Data
 res://Scene
 res://Themes/HasSingle
-res://
 res://Resources/Entity Data/Enemy Data/EnemyEntity
 res://Resources/Gear Data
 res://Code/EnemyAI

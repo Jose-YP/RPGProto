@@ -9,6 +9,8 @@ ______
 ART)
 Ailment Icons, Element Icons, Crush Icon and Stat Icons - [SunGraphica] 450 clean and minimal game Icon ultimate pack
 
+Switch Controler Button Icons - [Zacksly] Switch Button and Controls
+
 Music)
 Blair Dame's Theme - [Takayuki Aihara] Fighting Layer
 
