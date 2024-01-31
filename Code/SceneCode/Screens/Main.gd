@@ -78,13 +78,11 @@ enum targetTypes {
 	TARGETTED,
 	REVIVE,
 	KO,
-	NONE
-}
+	NONE}
 enum whichTypes {
 	ENEMY,
 	ALLY,
-	BOTH
-}
+	BOTH}
 
 #-----------------------------------------
 #INTIALIZATION & PROCESS
@@ -129,6 +127,7 @@ func _ready(): #Assign current team according to starting bool
 	for entity in everyone:
 		entity.connect("ailmentSound",playAilment)
 		entity.connect("critical", setCrit)
+		entity.connect("explode", blowUp)
 	
 	actionNum = 3
 	playerTP = playerMaxTP
@@ -145,6 +144,8 @@ func _ready(): #Assign current team according to starting bool
 		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 	
 	everyone = playerOrder + enemyOrder
+	setGroupEleMod()
+	
 	$Timers/Timer.set_paused(false) 
 	$Timers/PostPhaseTimer.set_paused(false)
 
@@ -153,6 +154,9 @@ func movesetDisplay(player) -> void: #Format every player's menu to include the 
 	player.moveset = [player.attacks,player.skills,player.items,player.tactics]
 	#Get the tab
 	var tabs = player.get_node("CanvasLayer/TabContainer").get_children()
+	var tpMod: float = 0.0
+	
+	if player.costBonus & 4: tpMod = player.TpCostMod
 	
 	for tab in range(tabs.size()):
 		#Get the buttons in the specific tab
@@ -163,7 +167,8 @@ func movesetDisplay(player) -> void: #Format every player's menu to include the 
 		for n in range(player.moveset[tab].size()):
 			currentMenu[n].text = player.moveset[tab][n].name
 			tabDescriptions.append(movesetDescription(player.moveset[tab][n],player,tab))
-			tabTPs.append(SaveTPCosts(player.moveset[tab][n]))
+			tabTPs.append(SaveTPCosts(player.moveset[tab][n],tpMod))
+		
 		player.descriptions.append(tabDescriptions)
 		player.TPArray.append(tabTPs)
 
@@ -199,11 +204,19 @@ func movesetDescription(moveset,player,n) -> String:
 			
 		1: #Skills should show the specific cost and their ammount
 			desc = str(move.description)
-			var costText
+			var costText: String
+			var modifier: float = 0.0
+			var baseCost: int = 0
 			if move.CostType == "HP" or move.CostType == "MaxHP":
-				costText = str("[color=red]"+ "HP: ",int(move.cost * player.data.MaxHP), "[/color]")
+				if player.costBonus & 1:
+					modifier += player.HpCostMod
+				baseCost = int(move.cost * player.data.MaxHP)
+				costText = str("[color=red]"+ "HP: ",int(baseCost + baseCost*modifier), "[/color]")
+			
 			if move.CostType == "LP":
-				costText = str("[color=aqua]"+"LP: ",int(move.cost), "[/color]")
+				if player.costBonus & 2:
+					modifier += player.LpCostMod
+				costText = str("[color=aqua]"+"LP: ",int(move.cost + move.cost*modifier), "[/color]")
 			
 			fullDesc = str(costText, desc, Elements, PhyElement, Power,)
 			
@@ -219,12 +232,31 @@ func movesetDescription(moveset,player,n) -> String:
 	
 	return fullDesc
 
-func SaveTPCosts(moveset) -> int:
+func SaveTPCosts(moveset, preMod) -> int:
 	var move = moveset
 	if move is Item:
 		move = moveset.attackData
-	var TPCost = move.TPCost
+	var TPCost = move.TPCost + (preMod * move.TPCost)
 	return TPCost
+
+func initializeTP(players=false) -> void: #Make and remake max TPs when an entiy is gone or enters
+	if players:
+		playerMaxTP = 0
+		for player in playerOrder:
+			playerMaxTP += player.data.MaxTP
+		if playerTP > playerMaxTP:
+			playerTP = playerMaxTP
+	else:
+		enemyMaxTP = 0
+		for enemy in enemyOrder:
+			enemyMaxTP += enemy.data.MaxTP
+		if enemyTP > enemyMaxTP:
+			enemyTP = enemyMaxTP
+
+func setGroupEleMod() -> void:
+	Globals.groupEleMod = 0.0
+	for entity in everyone:
+		Globals.groupEleMod += entity.groupElementMod
 
 func _process(_delta):#If player turn ever changes change current team to match the bool
 	if not fightOver:
@@ -257,20 +289,6 @@ func _process(_delta):#If player turn ever changes change current team to match 
 		everyone = playerOrder + enemyOrder
 		PlayerTPText.text = str("TP: ",playerTP,"/",playerMaxTP)
 		EnemyTPText.text = str("TP: ",enemyTP, "/", enemyMaxTP)
-
-func initializeTP(players=false) -> void: #Make and remake max TPs when an entiy is gone or enters
-	if players:
-		playerMaxTP = 0
-		for player in playerOrder:
-			playerMaxTP += player.data.MaxTP
-		if playerTP > playerMaxTP:
-			playerTP = playerMaxTP
-	else:
-		enemyMaxTP = 0
-		for enemy in enemyOrder:
-			enemyMaxTP += enemy.data.MaxTP
-		if enemyTP > enemyMaxTP:
-			enemyTP = enemyMaxTP
 
 #-----------------------------------------
 #TARGETTING MANAGERS
@@ -691,17 +709,36 @@ func TPChange(player = true) -> void:
 		var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
 		TPtween.tween_property(EnemyTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 
+func blowUp() -> void:
+	pass
+
 #-----------------------------------------
-#CHECKPROPERTY FUNCTIONS
+#CHECK PROPERTY FUNCTIONS
 #-----------------------------------------
 func offense(move,targetting,user) -> void:
 	targetting.selected.hide()
+	var damage
 	if move.property & 1:
-		targetting.currentHP -= user.attack(move, targetting, user,"Physical",Globals.currentAura)
+		damage = user.attack(move, targetting, user,"Physical")
 	if move.property & 2:
-		targetting.currentHP -= user.attack(move, targetting, user,"Ballistic",Globals.currentAura)
+		damage = user.attack(move, targetting, user,"Ballistic")
 	elif move.property & 4:
-		targetting.currentHP -= user.BOMB(move, targetting)
+		damage = user.BOMB(move, targetting, user)
+	targetting.currentHP -= damage
+	
+	if user.calcBonus & 1:
+		var drain = user.drain(damage, user.data.drainCalcAmmount)
+		user.currentHP += drain
+		user.currentHP = clamp(user.currentHP, 0, user.data.MaxHP)
+		user.HPtext.text = str("HP: ",user.currentHP)
+		user.tweenDamage(user,tweenTiming,str("Drained ", drain,"HP"))
+	if user.miscCalc == "LPDrain":
+		var drain = user.drain(damage, .15)
+		user.currentLP += drain
+		user.currentLP = clamp(user.currentLP, 0, user.data.specificData.MaxLP)
+		user.LPtext.text = str("HP: ",user.currentLP)
+		user.tweenDamage(user,tweenTiming,str("Drained ", drain,"LP"))
+	
 	
 	if targetting.currentHP <= 0:
 		targetting.currentHP = 0
@@ -722,8 +759,7 @@ func healing(move,targetting,user) -> void:
 	
 	if move.healing != 0:
 		targetting.currentHP += user.healHP(move, targetting)
-		if targetting.currentHP >= targetting.data.MaxHP:
-			targetting.currentHP = targetting.data.MaxHP
+		targetting.currentHP = clamp(targetting.currentHP, 0, targetting.data.MaxHP)
 		targetting.HPtext.text = str("HP: ",targetting.currentHP)
 	
 	if move.HealedAilment != "None":
@@ -914,8 +950,7 @@ func switchPhase() -> void:
 		Globals.attacking = false
 		actionNum = enemyOrder.size()
 
-#Check if the player can afford certain moves, if they can't disable those buttons
-func checkCosts(player) -> void: 
+func checkCosts(player) -> void: #Check if the player can afford certain moves, if they can't disable those buttons
 	for category in player.moveset:
 		var menuIndex = player.moveset.find(category)
 		for move in category:

@@ -265,11 +265,6 @@ bus = &"MoveSFX"
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
-autoplay = true
-bus = &"Music"
-
 [connection signal="pressed" from="EndScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timers/PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]

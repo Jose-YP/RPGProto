@@ -60,13 +60,20 @@ func _process(_delta):
 func payCost(move) -> int:
 	match move.CostType:
 		"HP":
-			currentHP -= (data.MaxHP * move.cost)
+			var baseCost = int(data.MaxHP * move.cost)
+			var modifier: float = 0.0
+			if data.costBonus & 1:
+				modifier += data.HpCostMod
+			currentHP -= int(baseCost + baseCost * modifier)
 			var CostTween = $HPBar.create_tween()
 			CostTween.tween_property(HPBar, "value", int(100 * float(currentHP) / float(data.MaxHP)),.1).set_trans(CostTween.TRANS_CIRC)
 			HPtext.text = str("HP: ",currentHP)
 		
 		"LP":
-			currentLP -= int(move.cost)
+			var modifier: float = 0.0
+			if data.costBonus & 2:
+				modifier += data.LpCostMod
+			currentLP -= int(move.cost + move.cost * modifier)
 			var CostTween = $LPBar.create_tween()
 			CostTween.tween_property(LPBar, "value", int(100 * float(currentLP) / float(playerData.MaxLP)),.1).set_trans(CostTween.TRANS_CIRC)
 			LPtext.text = str("LP: ",currentLP)

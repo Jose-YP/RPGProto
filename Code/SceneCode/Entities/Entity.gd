@@ -17,6 +17,7 @@ extends Node2D
 @onready var items: Array = []
 
 signal ailmentSound(type)
+signal explode(user)
 signal critical
 
 var currentHP: int = 0
@@ -84,23 +85,28 @@ func processer() -> void:
 #-----------------------------------------
 #MOVE PROPERTYS
 #-----------------------------------------
-func attack(move, receiver, user, property, currentAura) -> int:
+func attack(move, receiver, user, property) -> int:
 	var attackStat: int
 	var defenseStat: int
 	var softMod: float = 0.0
 	var overdriveMod: float = 0.0
 	var offenseElement = user.data.TempElement
 	var offensePhyEle = move.phyElement
+	var currentAura = Globals.currentAura
+	var EleMod = Globals.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
 	var critMod = 0
 	var phyMod = 0
 	var chargeMod = 1
 	var auraMod = 1
+	var elementMod
+	var sameEle = user.data.sameElement or receiver.data.sameElement
 	feedback = ""
 	
 	#If a move has Neutral Element it will copy the user's element instead
 	if move.element == "Neutral":
-		offenseElement = user.data.element
-	var elementMod = elementModCalc(offenseElement, receiver.data.element)
+		elementMod = elementModCalc(user.data.TempElement, receiver.data.TempElement, EleMod, sameEle)
+	else:
+		elementMod = elementModCalc(offenseElement, receiver.data.TempElement, EleMod, sameEle)
 	
 	#Basic Attacks will use the user's PhyElement instead of the move's
 	#Every other attack uses the move's PhyElement
@@ -169,14 +175,16 @@ func attack(move, receiver, user, property, currentAura) -> int:
 	feedback = str(damage, " Damage!", feedback)
 	return damage
 
-func BOMB(move,receiver) -> int:
+func BOMB(move,receiver, user) -> int:
 	feedback = ""
-	var softMod: float = 0
-	var prev = softMod
-	var phyMod: float = 0
-	var elementMod = elementModCalc(move.element, receiver.data.element)
+	var sameEle = user.data.sameElement or receiver.data.sameElement
+	var softMod: float = 0.0
+	var prev: float = softMod
+	var phyMod: float = phy_weakness(move.phyElement, receiver.data)
+	var EleMod: float = Globals.data.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
+	var elementMod: float = elementModCalc(move.element, receiver.data.TempElement, EleMod, sameEle)
+	var attackStat: int = 0
 	
-	phyMod = phy_weakness(move.phyElement, receiver.data)
 	if phyMod > .25:
 		feedback = str("{",move.phyElement," Weak}", feedback)
 	elif phyMod < 0:
@@ -195,8 +203,13 @@ func BOMB(move,receiver) -> int:
 	if prev < softMod:
 		feedback = str("{",move.phyElement," Soft}", feedback)
 	
+	if user.data.ItemChange & 1:
+		attackStat += int(user.data.strength * .75)
+	if user.data.ItemChange & 2:
+		attackStat += int(user.data.ballistics * .75)
+	
 	#Bomb attack don't use attack or defense
-	var damage = elementMod * (move.Power * (1 + phyMod + softMod))
+	var damage = elementMod * ((move.Power + attackStat) * (1 + phyMod + softMod))
 	
 	feedback = str(damage, " BOMB Damage!", feedback)
 	return damage
@@ -240,20 +253,25 @@ func healAilment(move, receiver) -> void:
 func healKO(receiver) -> void:
 	receiver.data.KO = false
 
-func applyNegativeAilment(move,receiver,user,preWin = false) -> void:
+func applyNegativeAilment(move,receiver,user,preWin = false, override = "") -> void:
+	var ailment = move.Ailment
+	var ailmentNum = move.AilmentAmmount
 	if move.BaseAilment > 200:
 		preWin = true
+	if override != "":
+		ailment = override
+		ailmentNum = 1
 	
 	#If the ailment calc returns true then apply ailment to receiver
-	if ailment_calc(move,receiver,user) or preWin:
+	if preWin or ailment_calc(move,receiver,user):
 		#Raise number first so Ailment doesn't instantly become Healthy from process
-		ailmentSound.emit(move.Ailment)
+		ailmentSound.emit(ailment)
 		
 		if receiver.data.AilmentNum < 3:
-			receiver.data.AilmentNum += move.AilmentAmmount
+			receiver.data.AilmentNum += ailmentNum
 		
-		if move.Ailment != receiver.data.Ailment:
-			receiver.data.Ailment = move.Ailment
+		if ailment != receiver.data.Ailment:
+			receiver.data.Ailment = ailment
 
 func applyPositiveAilment(move,receiver) -> void:
 	if ailmentCategory(receiver) != "Mental" or  ailmentCategory(receiver) != "Chemical":
@@ -329,11 +347,18 @@ func buffElementChange(move,receiver,user) -> void:
 	else:
 		feedback = str(prev," changed to ",receiver.data.TempElement)
 
+func drain(damage, ammount) -> int:
+	var healAmmount = int(damage * ammount)
+	return healAmmount
+
 #-----------------------------------------
 #MOVE HELPERS
 #-----------------------------------------
-func elementModCalc(userElement,receiverElement,PreMod = 0) -> float:
+func elementModCalc(userElement,receiverElement,PreMod,sameEle) -> float:
 	var ElementModifier: float = 1
+	var sameEleMod: float = 1
+	if sameEle:
+		sameEle = .75 - PreMod
 	
 	match userElement:
 		"Fire":
@@ -343,9 +368,7 @@ func elementModCalc(userElement,receiverElement,PreMod = 0) -> float:
 				"Elec":
 					ElementModifier = 1.25 + PreMod
 				"Fire":
-					ElementModifier = 1
-				_:
-					ElementModifier = 1
+					ElementModifier = sameEleMod
 		"Water":
 			match receiverElement:
 				"Fire":
@@ -353,9 +376,7 @@ func elementModCalc(userElement,receiverElement,PreMod = 0) -> float:
 				"Elec":
 					ElementModifier = .75 - PreMod
 				"Water":
-					ElementModifier = 1
-				_:
-					ElementModifier = 1
+					ElementModifier = sameEleMod
 		"Elec":
 			match receiverElement:
 				"Fire":
@@ -363,37 +384,27 @@ func elementModCalc(userElement,receiverElement,PreMod = 0) -> float:
 				"Water":
 					ElementModifier = 1.25 + PreMod
 				"Elec":
-					ElementModifier = 1
-				_:
-					ElementModifier = 1
+					ElementModifier = sameEleMod
 		"Light":
 			match receiverElement:
 				"Fire":
 					ElementModifier = .75 - PreMod
 				"Elec":
 					ElementModifier = 1.25 + PreMod
-				_:
-					ElementModifier = 1
 		"Comet":
 			match receiverElement:
 				"Fire":
 					ElementModifier = 1.25 + PreMod
 				"Water":
 					ElementModifier = .75 - PreMod
-				_:
-					ElementModifier = 1
 		"Aurora":
 			match receiverElement:
 				"Water":
 					ElementModifier = 1.25 + PreMod
 				"Elec":
 					ElementModifier = .75 - PreMod
-				_:
-					ElementModifier = 1
 		"Aether":
 			ElementModifier = 1.25 + PreMod
-		_:
-			ElementModifier = 1
 	
 	return ElementModifier
 
@@ -465,38 +476,34 @@ func crit_chance(move,user,receiver,currentAura) -> bool:
 	chance *= auraMod
 	
 	#evil tracia rng lol
-	if chance > 100:
-		chance = 99
-	if chance <= 0:
-		chance = 1
-	
+	chance = clamp(chance, 1, 99)
 	if randi() % 100 <= chance:
 		crit = true
 		critical.emit()
 		if move.Ailment != "None":
 			applyNegativeAilment(move,receiver,user,true)
+		elif user.miscCalc == "DumbfoundedCrit":
+			applyNegativeAilment(move,receiver,user,true,"Dumbfounded")
 		else:
 			applyXSoft(move,receiver,user,true,determineXSoft(move,user))
 	
 	return crit
 
 func ailment_calc(move,user,receiver) -> bool:#Ailment chance is like crit chance except it also depends on element matchups
-	var ailment = false
+	var sameEle: bool = user.data.sameElement or receiver.data.sameElement
+	var ailment: bool = false
+	var EleMod: float = Globals.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
 	var offenseElement = user.data.element
 	
-	if move.element != "neutral":
+	if move.element != "Neutral":
 		offenseElement = move.element
-	var elementMod = elementModCalc(offenseElement, receiver.data.element)
+	var elementMod = elementModCalc(offenseElement, receiver.data.element, EleMod, sameEle)
 	
 	var chance = (move.BaseAilment + (elementMod * (1 + user.data.luckBoost) * user.data.luck * sqrt(user.data.luck))
 	- (receiver.data.luck * sqrt(receiver.data.luck) * (1 + receiver.data.luckBoost)))
 	
 	#Not evil for this
-	if chance > 100:
-		chance = 100
-	if chance <= 0:
-		chance = 0
-	
+	chance = clamp(chance, 0, 100)
 	if randi() % 100 <= chance:
 		ailment = true
 	
@@ -517,7 +524,7 @@ func ailmentCategory(receiver) -> String:#Will check if an ailment fits under th
 			else:
 				return "Chemical"
 
-func determineXSoft(move,user):
+func determineXSoft(move,user) -> String:
 	if move.name == "Attack" or move.name == "Burst": #XSoft
 		return user.data.phyElement
 	
@@ -533,19 +540,6 @@ func determineXSoft(move,user):
 				return move.element
 			else:
 				return user.data.phyElement
-
-func checkCondition(seeking,receiver) -> bool:
-	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
-	var found = false
-	#Search every possible flag in condition
-	for i in range(10):
-		#Flag is the binary version of i
-		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
-		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
-			found = true
-			break
-	
-	return found
 
 func checkXSoft(seeking,receiver) -> float:
 	var softAmmount: float = 0.0
@@ -569,6 +563,19 @@ func checkXSoft(seeking,receiver) -> float:
 #-----------------------------------------
 #STATUS CONDITION HANDLDLING
 #-----------------------------------------
+func checkCondition(seeking,receiver) -> bool:
+	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
+	var found = false
+	#Search every possible flag in condition
+	for i in range(10):
+		#Flag is the binary version of i
+		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+		if receiver.data.Condition != null and receiver.data.Condition & flag != 0 and receiver.data.Condition & seekingFlag != 0:
+			found = true
+			break
+	
+	return found
+
 func removeCondition(seeking,receiver) -> void:
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	#Search every possible flag in condition
@@ -593,7 +600,7 @@ func statBoostHandling() -> void:
 		if statBoostSlots[boost] == 0:
 			statBoostSprites[boost].hide()
 
-func midTurnAilments(Ailment, currentAura) -> bool:
+func midTurnAilments(Ailment) -> bool:
 	var stillAttack = true
 	match Ailment:
 		"Reckless":
@@ -603,11 +610,11 @@ func midTurnAilments(Ailment, currentAura) -> bool:
 				chance *= 2
 			
 			if randi() % 100 <= chance:
-				damage = attack(data.attackData, self, self, "Physical", currentAura)
+				damage = attack(data.attackData, self, self, "Physical")
 				tweenDamage(self, .6, str("Couldn't attack, took ",damage," Self-inflicted Damage"))
 				stillAttack = false
 			elif data.AilmentNum == 3:
-				damage = attack(data.attackData, self, self, "Physical", currentAura)
+				damage = attack(data.attackData, self, self, "Physical")
 				tweenDamage(self, .6, str("Took ",damage," Self-inflicted Damage"))
 				
 			feedback = ""
@@ -630,6 +637,9 @@ func reactionaryAilments(Ailment) -> void:
 			statBoostHandling()
 		"Miserable":
 			pass
+	
+	if data.miscCalc == "Explode" and randi_range(0,100) < 5:
+		explode.emit()
 
 func endPhaseAilments(Ailment) -> void:
 	match Ailment:

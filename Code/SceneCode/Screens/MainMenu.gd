@@ -192,7 +192,7 @@ func setPlayerGlobals() -> void:
 func setInactivePlayer(held) -> void:
 	Globals.inactive_player_entities[0] = held
 
-func getOldIndex(prevName) -> int:
+func getOldIndex(prevName: String) -> int:
 	match prevName:
 		"DREAMER": return 0
 		"Lonna": return 1
@@ -245,7 +245,7 @@ func getElements(entity,ElementTab,PhyEleTab) -> void:
 #-----------------------------------------
 #MISC TOGGLES
 #-----------------------------------------
-func _on_player_order_toggled(button_pressed) -> void:
+func _on_player_order_toggled(button_pressed: bool) -> void:
 	Globals.playerFirst = button_pressed
 	if button_pressed:
 		$PlayerFirstToggle/HBoxContainer/Label.text = "ON"
@@ -254,7 +254,7 @@ func _on_player_order_toggled(button_pressed) -> void:
 		$PlayerFirstToggle/HBoxContainer/Label.text = "OFF"
 		makeNoise.emit(1)
 
-func _on_music_button_item_selected(index) -> void:
+func _on_music_button_item_selected(index: int) -> void:
 	if index == 0:
 		Globals.currentSong = ""
 	else:
@@ -264,7 +264,7 @@ func _on_music_button_item_selected(index) -> void:
 func _on_menu_button_pressed() -> void:
 	makeNoise.emit(1)
 
-func _on_options_menu_test_music(toggled_on):
+func _on_options_menu_test_music(toggled_on: bool):
 	if toggled_on:
 		playTest.emit(testSong)
 	else:

@@ -31,8 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://c51stapggxm0i" path="res://Icons/Speed.png" id="29_cylqo"]
 [ext_resource type="Texture2D" uid="uid://um5ahdqwyaub" path="res://Icons/Luck.png" id="30_xueah"]
 
-
-
 [sub_resource type="Gradient" id="Gradient_q4qby"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0uydm"]

@@ -17,7 +17,8 @@ var current_enemy_entities: Array[entityData] = []
 var currentAura: String = ""
 var currentSong: String = ""
 var playerFirst: bool = true
-var attacking: bool
+var attacking: bool = false
+var groupEleMod: float = 0.0
 
 func _ready(): #Uselike this: Dict[Character][Level][Stat]
 	playerStats = readJSON("res://JSONS/PlayerDatabase.json")
