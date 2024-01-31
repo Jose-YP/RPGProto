@@ -6,7 +6,7 @@
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("2_vrnb5")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Main" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -21,22 +21,22 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_rvycu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/VBox"]
 layout_mode = 2
 
-[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Title" type="PanelContainer" parent="Main/VBox"]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Title"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/VBox/Title"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Title/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Title/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 48
@@ -44,7 +44,7 @@ bbcode_enabled = true
 text = "[center]OPTIONS"
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Title/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Main/VBox/Title/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
@@ -52,122 +52,128 @@ bbcode_enabled = true
 text = "[center][i]Use Keyboard to navigate Menu[/i]"
 scroll_active = false
 
-[node name="Audio" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Audio" type="MarginContainer" parent="Main/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="IndvOptions" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Audio"]
+[node name="IndvOptions" type="VBoxContainer" parent="Main/VBox/Audio"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
+[node name="Title" type="PanelContainer" parent="Main/VBox/Audio/IndvOptions"]
 custom_minimum_size = Vector2(600, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/Title"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]AUDIO MIXING"
 
-[node name="Tests" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
+[node name="Tests" type="HBoxContainer" parent="Main/VBox/Audio/IndvOptions"]
 layout_mode = 2
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Music" type="Button" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests"]
+[node name="Music" type="Button" parent="Main/VBox/Audio/IndvOptions/Tests"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 toggle_mode = true
 text = "Test Music"
 
-[node name="SFX" type="Button" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests"]
+[node name="SFX" type="Button" parent="Main/VBox/Audio/IndvOptions/Tests"]
 layout_mode = 2
 text = "Test SFX"
 
-[node name="AudioOptions" type="MarginContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions"]
+[node name="AudioOptions" type="MarginContainer" parent="Main/VBox/Audio/IndvOptions"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions"]
+[node name="GridContainer" type="GridContainer" parent="Main/VBox/Audio/IndvOptions/AudioOptions"]
 layout_mode = 2
 columns = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="HSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Music
 Volume"
 
-[node name="HSlider2" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="HSlider2" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "SFX
 Volume"
 
-[node name="HSlider3" type="HSlider" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="HSlider3" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
 
-[node name="Controls" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Controls" type="MarginContainer" parent="Main/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Controls"]
+[node name="VBox" type="VBoxContainer" parent="Main/VBox/Controls"]
 layout_mode = 2
 
-[node name="Title" type="PanelContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+[node name="Title" type="PanelContainer" parent="Main/VBox/Controls/VBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Title"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]CONTROL REMAPPING"
 
-[node name="InputType" type="MarginContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+[node name="InputType" type="MarginContainer" parent="Main/VBox/Controls/VBox"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/VBox/Controls/VBox/InputType"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Main/VBox/Controls/VBox/InputType/HBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -178,143 +184,147 @@ popup/item_0/id = 0
 popup/item_1/text = "GamePad"
 popup/item_1/id = 1
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer"]
+[node name="Reset" type="Button" parent="Main/VBox/Controls/VBox/InputType/HBoxContainer"]
+layout_mode = 2
+text = "Reset Buttons"
+
+[node name="Buttons" type="GridContainer" parent="Main/VBox/Controls/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="A" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="A" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/A"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "A Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/A"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
 
-[node name="ZL" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="ZL" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZL"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "ZL Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/ZL"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
 text = "Current Input"
 
-[node name="B" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="B" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/B"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "B Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/B"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="L" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="L" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/L"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "L Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/L"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="X" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="X" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/X"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "X Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/X"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="R" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="R" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/R"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "R Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/R"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="Y" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="Y" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Y"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Y Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Y"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="ZR" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer"]
+[node name="ZR" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZR"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "ZR Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/ZR"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
-[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="Main/VBox"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -322,7 +332,7 @@ size_flags_stretch_ratio = 0.0
 text = "Exit
 "
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Main/VBox"]
 layout_mode = 2
 
 [node name="Awaiting" type="PanelContainer" parent="."]
@@ -344,18 +354,19 @@ size_flags_vertical = 4
 bbcode_enabled = true
 text = "[center]...Awaiting Input...[/center]"
 
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests/Music" to="." method="_on_music_toggled"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/Tests/SFX" to="." method="_on_sfx_pressed"]
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider" to="." method="audioSet"]
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2" to="." method="audioSet"]
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3" to="." method="audioSet"]
-[connection signal="item_selected" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/InputType/OptionButton" to="." method="_on_new_input_type_selected"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/A/Button" to="." method="controllerMapStart" binds= [0]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZL/Button" to="." method="controllerMapStart" binds= [1]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/B/Button" to="." method="controllerMapStart" binds= [2]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/L/Button" to="." method="controllerMapStart" binds= [3]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/X/Button" to="." method="controllerMapStart" binds= [4]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/R/Button" to="." method="controllerMapStart" binds= [5]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/Y/Button" to="." method="controllerMapStart" binds= [6]]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Controls/VBoxContainer/GridContainer/ZR/Button" to="." method="controllerMapStart" binds= [7]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Exit" to="." method="_on_button_pressed"]
+[connection signal="toggled" from="Main/VBox/Audio/IndvOptions/Tests/Music" to="." method="_on_music_toggled"]
+[connection signal="pressed" from="Main/VBox/Audio/IndvOptions/Tests/SFX" to="." method="_on_sfx_pressed"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3" to="." method="audioSet"]
+[connection signal="item_selected" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/OptionButton" to="." method="_on_new_input_type_selected"]
+[connection signal="pressed" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/A/Button" to="." method="controllerMapStart" binds= [0]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZL/Button" to="." method="controllerMapStart" binds= [1]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/B/Button" to="." method="controllerMapStart" binds= [2]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/L/Button" to="." method="controllerMapStart" binds= [3]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/X/Button" to="." method="controllerMapStart" binds= [4]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/R/Button" to="." method="controllerMapStart" binds= [5]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Y/Button" to="." method="controllerMapStart" binds= [6]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZR/Button" to="." method="controllerMapStart" binds= [7]]
+[connection signal="pressed" from="Main/VBox/Exit" to="." method="_on_button_pressed"]

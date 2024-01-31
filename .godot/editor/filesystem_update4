@@ -1,5 +1,4 @@
-res://Audio/Buses/default_bus_layout.tres
-res://Scene/SideMenus/options_menu.tscn
+res://Scene/Mains/GameManager.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -51,6 +50,6 @@ res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
 res://Code/SceneCode/Screens/optionsMenu.gd
-res://Scene/Mains/GameManager.tscn
+res://Scene/SideMenus/options_menu.tscn
 res://Scene/Mains/MainMenu.tscn
 res://Scene/Constants/ControlIcon.tscn
