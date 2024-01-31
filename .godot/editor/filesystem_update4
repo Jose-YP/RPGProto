@@ -54,3 +54,4 @@ res://Code/SceneCode/Entities/Player.gd
 res://Scene/Entities/Player.tscn
 res://Scene/Mains/Main.tscn
 res://Code/ResourceMakers/SaveMaker.gd
+res://README.md

@@ -36,15 +36,11 @@ ISSUES
 ______
 *In general STABILITY
 
+*Manage chips after levelling down
+
 ______
 TODO
 ______
-*Options Menu | Audio mixing
-
-*Options Menu | Controller Mapping
-
-*Implement gear and chips into battles
-
 *Save system
 
 *Implement other EnemyAI types(So far only random)
@@ -53,8 +49,11 @@ ______
 LOFTY TODOS
 ______
 *Implement Summon moves for players and enemies (Players: Swap, Enemies actually add in new entities) ||
+
 *Better Damage displays
+
 *Visuals of any kind
+
 *Fix/Balance other enemies
 
 ______

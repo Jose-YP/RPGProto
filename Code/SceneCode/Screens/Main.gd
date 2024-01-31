@@ -709,8 +709,10 @@ func TPChange(player = true) -> void:
 		var newValue = int(100*(float(enemyTP) / float(enemyMaxTP)))
 		TPtween.tween_property(EnemyTPDisplay, "value", newValue,.2).set_trans(Tween.TRANS_CIRC)
 
-func blowUp() -> void:
-	pass
+func blowUp(user) -> void:
+	user.currentHP -= user.data.MaxHP * .5
+	user.HPtext.text = str("HP: ",user.currentHP)
+	user.tweenDamage(user,tweenTiming,str(user.name,"'s weapon blew up?!"))
 
 #-----------------------------------------
 #CHECK PROPERTY FUNCTIONS
