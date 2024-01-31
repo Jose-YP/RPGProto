@@ -39,9 +39,7 @@ func _ready():
 func _input(event):
 	if toggleOn:
 		if inputType == 0:
-			print("BBB", event)
 			if event is InputEventKey:
-				print("AAA")
 				changeInput(event)
 		else:
 			if event is InputEventJoypadButton:
