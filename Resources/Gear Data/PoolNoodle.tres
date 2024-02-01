@@ -9,6 +9,7 @@ name = "Pool Noodle"
 description = "-5 Str/Bal, +5 Luck, Crits now apply Dumbfounded"
 icon = ExtResource("1_lm4rc")
 Char = "DREAMER"
+equipped = false
 Strength = -5
 Toughness = 0
 Ballistics = -5

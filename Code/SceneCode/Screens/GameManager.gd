@@ -3,12 +3,13 @@ extends Node2D
 @export var maxGear: int = 1
 @export var maxChips: int = 3
 
-@onready var chipInv: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
-@onready var gearInv: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
-@onready var itemInv: Inven = load("res://Resources/Inventory Data/ItemInventory.tres")
+@onready var chipInv: Inven = Inven.new()
+@onready var gearInv: Inven = Inven.new()
+@onready var itemInv: Inven = Inven.new()
 @onready var regSFX: Array[AudioStreamPlayer] = [$SFX/Confirm,$SFX/Back,$SFX/Menu]
 @onready var currentScene = $MainMenu
 
+var setUp: bool = false
 var gearFolder: String = "res://Resources/Gear Data/"
 var chipFolder: String = "res://Resources/Chip Data/"
 var itemFolder: String = "res://Resources/Item Data/ItemSpecifics/"
@@ -27,16 +28,21 @@ func _ready(): #Make every inventory
 	chipInv.type = "Chip"
 	chipInv.inventory = getInventoryArray(chipFolder)
 	Globals.ChipInventory = getChipSorts(chipInv)
+	Globals.currentSave.ChipInventory = Globals.ChipInventory
 	
 	#MAKE GEAR INVENTORY
 	gearInv.type = "Gear"
 	gearInv.inventory = getInventoryArray(gearFolder)
 	Globals.GearInventory = gearInv
+	Globals.currentSave.GearInventory = Globals.GearInventory
 	
 	#MAKE ITEM INVENTORY
 	itemInv.type = "Item"
 	itemInv.inventory = getInventoryArray(itemFolder)
 	Globals.ItemInventory = getItemSorts(itemInv)
+	Globals.currentSave.ItemInventory = Globals.ItemInventory
+	
+	setUp = true
 
 func getInventoryArray(Folder) -> Array:
 	var localArray: Array = []
@@ -108,12 +114,16 @@ func getItemSorts(items) -> Inven:
 	
 	itemSort.sort_custom(InventoryFunctions.findCurrentNum)
 	items.inventorySort2 = itemSort
+	
 	return items
+
 #-----------------------------------------
 #SCENE CONNECTIONS
 #-----------------------------------------
 func changeScene(scene) -> void:
+	Globals.currentSave.save()
 	currentScene.queue_free()
+	
 	var newScene = scene.instantiate()
 	$".".add_child(newScene)
 	currentScene = newScene
@@ -167,7 +177,8 @@ func getNewSort(type) -> void:
 #AUDIO SIGNALS
 #-----------------------------------------
 func makeNoise(num) -> void:
-	regSFX[num].play()
+	if setUp:
+		regSFX[num].play()
 
 func playMusic(song) -> void:
 	if song != "stop":

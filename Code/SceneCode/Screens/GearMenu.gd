@@ -62,6 +62,7 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
+		Globals.currentSave.GearInventory = Globals.gearInventory
 		exitMenu.emit()
 	
 	if Input.is_action_just_pressed("L"):

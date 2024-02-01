@@ -183,7 +183,9 @@ func buttons() -> void:
 			setFocus(true)
 			Arrow.hide()
 		
-		else: exitMenu.emit()
+		else:
+			Globals.currentSave.ChipInventory = Globals.ChipInventory
+			exitMenu.emit()
 	
 	if Input.is_action_just_pressed("X"):
 		addChip(grabbedChip)

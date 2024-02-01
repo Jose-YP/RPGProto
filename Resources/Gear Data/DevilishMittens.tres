@@ -9,6 +9,7 @@ name = "Devilish Mittens"
 description = "Adds 10% to Base Ailment Hit"
 icon = ExtResource("1_astr4")
 Char = "Pepper"
+equipped = false
 Strength = 0
 Toughness = 0
 Ballistics = 0

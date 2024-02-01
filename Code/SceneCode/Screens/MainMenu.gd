@@ -1,6 +1,5 @@
 extends Control
 
-@export var playerEntities: Array[entityData]
 @export var enemyEntities: Array[entityData]
 
 #PLAYER VARIABLES
@@ -25,10 +24,11 @@ signal makeNoise(num)
 signal playTest(song)
 
 var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
-var songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
+const songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
-var testSong = "res://Audio/Music/005 - WIFI Menu.mp3"
-var playerNamesHold: Array[String] = ["DREAMER","Lonna","Damir","Pepper"]
+const testSong = "res://Audio/Music/005 - WIFI Menu.mp3"
+const playerNamesHold: Array[String] = ["DREAMER","Lonna","Damir","Pepper"]
+var playerEntities: Array[entityData]
 var playerLevelsHold: Array[int] = [5,5,5,5]
 var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]
@@ -39,12 +39,24 @@ var helpOpen: bool = false
 #INITALIZATION
 #-----------------------------------------
 func _ready():
+	playerEntities = Globals.currentSave.every_player_entity
+	
 	for i in range(3):
+		playerLevels[i].value = Globals.currentSave.current_party[i].level
 		playerDescriptions(playerStats[i],i)
 	for menu in (playerChoices + enemyChoices):
 		menu.connect("pressed",_on_menu_button_pressed)
 	
-	Globals.inactive_player_entities.append(playerEntities[1])
+	for player in range(playerEntities.size()):
+		var atLeatOne: bool = false
+		playerLevelsHold[player] = playerEntities[player].level
+		for check in Globals.currentSave.current_party:
+			if playerEntities[player].name == check.name:
+				atLeatOne = true
+				break
+		if not atLeatOne:
+			Globals.inactive_player_entities.append(playerEntities[player])
+	
 	setPlayerGlobals()
 	makeEnemyLineup()
 	
@@ -119,6 +131,7 @@ func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	getElements(entity,playerElements[index],playerPhyEle[index])
 	
 	playerEntities[playerNum] = entity
+	Globals.currentSave.every_player_entity[playerNum] = entity
 	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
 	return description
 
@@ -128,7 +141,7 @@ func playerChoiceChanged(playerIndex,infoIndex) -> void: #First is for playerNam
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = getLevel(currentName)
 	noRepeats(currentName, infoIndex)
-	setPlayerGlobals()
+	print(currentName)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	playerLevels[infoIndex].value = level
 
@@ -179,6 +192,7 @@ func getLevel(chara) -> int:
 func setPlayerGlobals() -> void:
 	Globals.current_player_entities = []
 	Globals.current_player_entities = players
+	Globals.currentSave.current_party = players
 	Globals.every_player_entity = players + Globals.inactive_player_entities
 
 func setInactivePlayer(held) -> void:
@@ -281,6 +295,7 @@ func _on_option_button_pressed() -> void:
 	$OptionsMenu.show()
 
 func _on_options_menu_main() -> void:
+	playTest.emit("stop")
 	makeNoise.emit(1)
 	optionsOpen = false
 	$OptionsMenu.hide()
@@ -295,13 +310,13 @@ func _on_fight_button_pressed() -> void:
 	battleStart.emit()
 
 func _on_chip_button_pressed() -> void:
-	Globals.current_player_entities = players
+	setPlayerGlobals()
 	chipMenu.emit()
 
 func _on_gear_button_pressed() -> void:
-	Globals.current_player_entities = players
+	setPlayerGlobals()
 	gearMenu.emit()
 
 func _on_item_button_pressed() -> void:
-	Globals.current_player_entities = players
+	setPlayerGlobals()
 	itemMenu.emit()

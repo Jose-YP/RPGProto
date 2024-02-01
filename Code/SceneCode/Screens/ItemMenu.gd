@@ -194,7 +194,9 @@ func buttons() -> void:
 			choosingNum = false
 			insertNumPanel.hide()
 			
-		else: exitMenu.emit()
+		else:
+			Globals.currentSave.ItemInventory = Globals.ItemInventory
+			exitMenu.emit()
 	
 	if Input.is_action_just_pressed("X"): setAutofill(grabbedItem)
 	

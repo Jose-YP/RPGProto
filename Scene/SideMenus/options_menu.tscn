@@ -17,13 +17,6 @@ offset_top = -302.14
 offset_right = 243.9
 offset_bottom = 214.72
 
-[node name="RichTextLabel" type="RichTextLabel" parent="background"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-size_flags_vertical = 4
-bbcode_enabled = true
-text = "[center]...Awaiting Input...[/center]"
-
 [node name="Main" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5

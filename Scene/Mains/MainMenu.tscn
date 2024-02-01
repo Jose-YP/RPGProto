@@ -1,10 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://4gou4dfa1ija"]
+[gd_scene load_steps=19 format=3 uid="uid://4gou4dfa1ija"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/MainMenu.gd" id="1_xp3rd"]
-[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="2_06l5v"]
-[ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="3_xexs8"]
-[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="4_y276q"]
-[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="5_b5f14"]
 [ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_eryj0"]
 [ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_e8ky1"]
 [ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_2bbwp"]
@@ -28,7 +24,6 @@ layout_mode = 3
 anchors_preset = 0
 focus_mode = 2
 script = ExtResource("1_xp3rd")
-playerEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("2_06l5v"), ExtResource("3_xexs8"), ExtResource("4_y276q"), ExtResource("5_b5f14")])
 enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("11_57rpg")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -992,29 +987,6 @@ popup/item_3/text = "Miitopia Boss"
 popup/item_3/id = 3
 metadata/_edit_lock_ = true
 
-[node name="OptionsMenu" type="Control" parent="Navigation"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 585.0
-offset_top = 590.0
-offset_right = 625.0
-offset_bottom = 630.0
-
-[node name="ExitPanel2" type="PanelContainer" parent="Navigation/OptionsMenu"]
-layout_mode = 0
-offset_left = -26.0
-offset_top = 57.0
-offset_right = 123.0
-offset_bottom = 97.0
-theme = ExtResource("12_c1ybm")
-metadata/_edit_lock_ = true
-
-[node name="ExitButton" type="Button" parent="Navigation/OptionsMenu/ExitPanel2"]
-layout_mode = 2
-text = "Exit"
-metadata/_edit_lock_ = true
-
 [node name="HelpMenu" type="Control" parent="Navigation"]
 visible = false
 layout_mode = 3
@@ -1168,8 +1140,6 @@ visible = false
 [connection signal="pressed" from="Navigation/Buttons/GearButton" to="." method="_on_gear_button_pressed"]
 [connection signal="item_selected" from="Navigation/MusicMenu/MenuButton" to="." method="_on_music_button_item_selected"]
 [connection signal="pressed" from="Navigation/MusicMenu/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_option_pressed"]
-[connection signal="pressed" from="Navigation/OptionsMenu/ExitPanel2/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Navigation/HelpMenu/ExitPanel/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="main" from="OptionsMenu" to="." method="_on_options_menu_main"]
 [connection signal="makeNoise" from="OptionsMenu" to="." method="_on_menu_button_pressed"]

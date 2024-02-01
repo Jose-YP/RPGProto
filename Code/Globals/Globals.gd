@@ -1,8 +1,8 @@
 extends Node
 
-var ChipInventory: Inven = load("res://Resources/Inventory Data/ChipInventory.tres")
-var GearInventory: Inven = load("res://Resources/Inventory Data/GearInventory.tres")
-var ItemInventory: Inven = load("res://Resources/Inventory Data/ItemInventory.tres")
+var ChipInventory: Inven = load("res://Resources/Inventory Data/ChipInventory.tres") as Inven
+var GearInventory: Inven = load("res://Resources/Inventory Data/GearInventory.tres") as Inven
+var ItemInventory: Inven = load("res://Resources/Inventory Data/ItemInventory.tres") as Inven
 var noMovePlaceholder: Move = load("res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres")
 var playerStats: Dictionary
 var statTypes:Array[String] = ["Attack","Defense","Speed","Luck"]
@@ -19,8 +19,12 @@ var currentSong: String = ""
 var playerFirst: bool = true
 var attacking: bool = false
 var groupEleMod: float = 0.0
+var currentSave: SaveFile
+var userPrefs: UserPreferences
 
 func _ready(): #Uselike this: Dict[Character][Level][Stat]
+	currentSave = SaveFile.load_or_create()
+	userPrefs = UserPreferences.load_or_create()
 	playerStats = readJSON("res://JSONS&Saves/JSONS/PlayerDatabase.json")
 
 func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
@@ -32,6 +36,7 @@ func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
 func getStats(Entity,character,level) -> entityData:
 	var stats = playerStats[character][str(level)]
 	#Resource Stats
+	Entity.level = level
 	Entity.MaxHP = int(stats["HP"])
 	Entity.specificData.MaxLP = int(stats["LP"])
 	Entity.MaxTP = int(level)*2 + 80

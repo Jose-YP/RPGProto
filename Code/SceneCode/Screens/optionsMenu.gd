@@ -24,26 +24,24 @@ var currentAction: String
 var currentToggle: Button
 var toggleOn: bool = false
 var currentInput: InputEvent
-var userPrefs: UserPreferences
 
 #-----------------------------------------
 #INITALIZATION & PROCESSING
 #-----------------------------------------
 func _ready():
-	userPrefs = UserPreferences.load_or_create()
 	Buses = [MasterBus, MusicBus, SFXBus]
-	userAudios = [userPrefs.masterAudioLeve, userPrefs.musicAudioLeve, userPrefs.sfxAudioLeve]
+	userAudios = [Globals.userPrefs.masterAudioLeve, Globals.userPrefs.musicAudioLeve, Globals.userPrefs.sfxAudioLeve]
 	
 	for i in range(VolumeValues.size()):
 		audioSet(userAudios[i], i)
 	
-	inputType = userPrefs.input_type
-	for action in userPrefs.keyboard_action_events:
+	inputType = Globals.userPrefs.input_type
+	for action in Globals.userPrefs.keyboard_action_events:
 		InputMap.action_erase_events(action)
-		InputMap.action_add_event(action, userPrefs.keyboard_action_events[action])
+		InputMap.action_add_event(action, Globals.userPrefs.keyboard_action_events[action])
 	
-	for action in userPrefs.joy_action_events:
-		InputMap.action_add_event(action, userPrefs.keyboard_action_events[action])
+	for action in Globals.userPrefs.joy_action_events:
+		InputMap.action_add_event(action, Globals.userPrefs.keyboard_action_events[action])
 	
 	getNewInputs()
 
@@ -72,12 +70,12 @@ func audioSet(value, index) -> void:
 	userAudios[index] = value * 0.01
 	match index: #Has to be saved directly
 		0:
-			userPrefs.masterAudioLeve = value
+			Globals.userPrefs.masterAudioLeve = value
 		1:
-			userPrefs.musicAudioLeve = value
+			Globals.userPrefs.musicAudioLeve = value
 		2:
-			userPrefs.sfxAudioLeve = value
-	userPrefs.save()
+			Globals.userPrefs.sfxAudioLeve = value
+	Globals.userPrefs.save()
 
 func _on_music_toggled(toggled_on) -> void:
 	testMusic.emit(toggled_on)
@@ -96,9 +94,9 @@ func getNewInputs() -> void:
 	
 	match inputType:
 		0:
-			loopActions = userPrefs.keyboard_action_events.keys()
+			loopActions = Globals.userPrefs.keyboard_action_events.keys()
 		1:
-			loopActions = userPrefs.joy_action_events.keys()
+			loopActions = Globals.userPrefs.joy_action_events.keys()
 	
 	for i in range(controllerChange.size()):#Controller change's parents have the right names
 		for j in range(loopActions.size()):
@@ -114,12 +112,12 @@ func getNewInputs() -> void:
 		for event in events:
 			if event is InputEventKey:
 				inputs[0].append(event)
-				userPrefs.keyboard_action_events[action] = event
+				Globals.userPrefs.keyboard_action_events[action] = event
 			elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 				inputs[1].append(event)
-				userPrefs.joy_action_events[action] = event
+				Globals.userPrefs.joy_action_events[action] = event
 	
-	userPrefs.save()
+	Globals.userPrefs.save()
 	updateInputDisplay()
 
 func updateInputDisplay() -> void:
@@ -151,8 +149,8 @@ func controllerMapStart(toggled,index) -> void:
 
 func _on_new_input_type_selected(index) -> void:
 	inputType = index
-	userPrefs.input_type = index
-	userPrefs.save()
+	Globals.userPrefs.input_type = index
+	Globals.userPrefs.save()
 	updateInputDisplay()
 
 func _on_reset_pressed() -> void:
