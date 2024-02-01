@@ -61,7 +61,7 @@ custom_minimum_size = Vector2(1048, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]GEAR SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
+[center]Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

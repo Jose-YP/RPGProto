@@ -55,3 +55,10 @@ res://Scene/SideMenus/options_menu.tscn
 res://Scene/Mains/MainMenu.tscn
 res://Code/SceneCode/Screens/optionsMenu.gd
 res://JSONS&Saves/Saves/user_prefs.tres
+res://Scene/SideMenus/Item/ItemMenu.tscn
+res://Scene/SideMenus/Gear/GearMenu.tscn
+res://Scene/SideMenus/Chip/ChipMenu.tscn
+res://JSONS&Saves/Saves/save_file.tres
+res://Resources/Inventory Data/GearInventory.tres
+res://Resources/Inventory Data/ItemInventory.tres
+res://Code/ResourceMakers/SaveMaker.gd

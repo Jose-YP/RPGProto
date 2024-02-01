@@ -20,13 +20,11 @@ var Buses: Array = []
 var userAudios: Array = []
 var inputType: int = 0
 var currentToggleIndex: int
+var currentAction: String
 var currentToggle: Button
 var toggleOn: bool = false
 var currentInput: InputEvent
 var userPrefs: UserPreferences
-var oldMap
-var currentAction
-
 
 #-----------------------------------------
 #INITALIZATION & PROCESSING
@@ -174,19 +172,15 @@ func checkRepeats(oldEvent, event) -> void:
 	var repeat: String
 	
 	for action in Actions:
-		if action == currentAction:
-			print("Skipping ", action)
-			continue
+		if action == currentAction: continue
 		
 		if InputMap.event_is_action(event, action, true):
 			found = true
-			print(event, " Repeat found in ", action, " Found num", found)
 			repeat = action
 	
 	if found:
 		InputMap.action_erase_event(repeat, event)
 		InputMap.action_add_event(repeat, oldEvent)
-		print(oldEvent)
 
 #-----------------------------------------
 #NAVIGATION BUTTONS

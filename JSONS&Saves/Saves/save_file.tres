@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SaveFile" load_steps=9 format=3 uid="uid://c1n64slpp5eqd"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/SaveMaker.gd" id="1_au31d"]
+[ext_resource type="Resource" uid="uid://o3m0uspetw28" path="res://Resources/Inventory Data/ChipInventory.tres" id="1_ua458"]
+[ext_resource type="Resource" uid="uid://c3l8ldtgkglnv" path="res://Resources/Inventory Data/GearInventory.tres" id="2_ffqj1"]
+[ext_resource type="Resource" uid="uid://c4s0ph3ckda1a" path="res://Resources/Inventory Data/ItemInventory.tres" id="3_dqbkf"]
+[ext_resource type="Resource" uid="uid://dayy6sakl1jwx" path="res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres" id="4_vgjqx"]
+[ext_resource type="Resource" uid="uid://dkk0yyfyygrch" path="res://Resources/Entity Data/PlayerData/PlayerEntity/LonnaEntity.tres" id="5_jgkl2"]
+[ext_resource type="Resource" uid="uid://2imequ6g5pi0" path="res://Resources/Entity Data/PlayerData/PlayerEntity/DamirEntity.tres" id="6_gk4v1"]
+[ext_resource type="Resource" uid="uid://27w6xpavu67e" path="res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres" id="7_0fhyp"]
+
+[resource]
+script = ExtResource("1_au31d")
+every_player_entity = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("4_vgjqx"), ExtResource("5_jgkl2"), ExtResource("6_gk4v1"), ExtResource("7_0fhyp")])
+player_levels = Array[int]([5, 5, 5, 5])
+ChipInventory = ExtResource("1_ua458")
+GearInventory = ExtResource("2_ffqj1")
+ItemInventory = ExtResource("3_dqbkf")

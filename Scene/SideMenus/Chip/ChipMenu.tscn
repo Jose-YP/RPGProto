@@ -69,7 +69,7 @@ custom_minimum_size = Vector2(1050, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]CHIP SELECTION MENU[/center]
-[center]Accept: A			Cancel: B			Sort: Y			Add First: X		Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
+[center]Sort: Y			Add First: X		Prev Char: L		Next Char: R	 		Prev Menu: ZL		Next Menu: ZR	[/center]"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/Title/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
