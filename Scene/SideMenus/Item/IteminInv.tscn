@@ -51,6 +51,7 @@ layout_mode = 2
 columns = 2
 
 [node name="DreamerStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
+unique_name_in_owner = true
 modulate = Color(0.956863, 0.537255, 0.168627, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -82,6 +83,7 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="LonnaStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
+unique_name_in_owner = true
 modulate = Color(0.596078, 0, 0.862745, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -113,6 +115,7 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="DamirStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
+unique_name_in_owner = true
 modulate = Color(0.160784, 0.160784, 0.917647, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
@@ -144,6 +147,7 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="PepperStatus" type="TabContainer" parent="Button/MarginContainer/Item/Characters"]
+unique_name_in_owner = true
 modulate = Color(0.882353, 0.156863, 0.156863, 1)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2

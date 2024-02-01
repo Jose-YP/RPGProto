@@ -6,27 +6,27 @@ extends Control
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
-@onready var chipInv: GridContainer = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection/GridContainer
-@onready var playerChips: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips/PanelContainer
+@onready var chipInv: GridContainer = %InvChip
+@onready var playerChips: GridContainer = %PlayerChips
 @onready var InvMarkers: Array[Marker2D] = []
 @onready var PlayMarkers: Array[Marker2D] = []
 @onready var Arrow: Sprite2D = $Arrow
 @onready var placeholderPos: Marker2D = $Marker2D
-@onready var sortingOptions: OptionButton = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton
+@onready var sortingOptions: OptionButton = %Sorts
 #Descriptions
-@onready var invChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var invChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var invChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/Description/RichTextLabel
-@onready var playerChipTitle: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var playerChipDetails: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var playerChipDisc: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/MarginContainer/Description/RichTextLabel
+@onready var invChipTitle: RichTextLabel = %InvTitle
+@onready var invChipDetails: RichTextLabel = %InvDetails
+@onready var invChipDisc: RichTextLabel = %InvDesc
+@onready var playerChipTitle: RichTextLabel = %PlayTitle
+@onready var playerChipDetails: RichTextLabel = %PlayDetials
+@onready var playerChipDisc: RichTextLabel = %PlayDesc
 #Current Player Info
-@onready var playerResource: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character/RichTextLabel
-@onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Player1Element
-@onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/PlayerPhyElement1
-@onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats/RichTextLabel
-@onready var CPUText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
-@onready var CPUBar: TextureProgressBar = $VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
+@onready var playerResource: RichTextLabel = %NameNRsource
+@onready var playerElement: TabContainer = %Player1Element
+@onready var playerPhyEle: TabContainer = %PlayerPhyElement1
+@onready var playerBattleStats: RichTextLabel = %"BattleStats]"
+@onready var CPUText: RichTextLabel = %CPUText
+@onready var CPUBar: TextureProgressBar = %EnemyTP
 
 signal chipMenu
 signal gearMenu

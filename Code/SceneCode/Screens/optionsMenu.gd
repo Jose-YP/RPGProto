@@ -1,16 +1,12 @@
 extends CanvasLayer
 
-@onready var VolumeValues: Array[HSlider] = [$Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider,
-$Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2, $Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3]
-@onready var VolumeTexts: Array[RichTextLabel] = [$Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel2,
-$Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel4, $Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/RichTextLabel6]
-@onready var controllerChange: Array[Button] = [$Main/VBox/Controls/VBox/Buttons/A/Button, $Main/VBox/Controls/VBox/Buttons/ZL/Button, 
-$Main/VBox/Controls/VBox/Buttons/B/Button, $Main/VBox/Controls/VBox/Buttons/L/Button, $Main/VBox/Controls/VBox/Buttons/X/Button,
-$Main/VBox/Controls/VBox/Buttons/R/Button, $Main/VBox/Controls/VBox/Buttons/Y/Button, $Main/VBox/Controls/VBox/Buttons/ZR/Button]
+@onready var VolumeValues: Array[HSlider] = [%MasterSlider, %MusicSlider, %SFXSlider]
+@onready var VolumeTexts: Array[RichTextLabel] = [%MasterText, %MusicText, %SFXText]
+@onready var controllerChange: Array[Button] = [%A/Button, %ZL/Button, %B/Button, %L/Button,
+ %X/Button, %R/Button, %Y/Button, %ZR/Button, %Y/Button, %ZR/Button]
 @onready var MasterBus = AudioServer.get_bus_index("Master")
 @onready var MusicBus = AudioServer.get_bus_index("Music")
 @onready var SFXBus = AudioServer.get_bus_index("SFX")
-
 signal main
 signal makeNoise
 signal testMusic(toggled_on)

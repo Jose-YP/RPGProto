@@ -1,4 +1,4 @@
-res://Scene/Entities/Entity.tscn
+res://Scene/SideMenus/options_menu.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -43,15 +43,27 @@ res://Themes/HasSingle/Pannel.tres
 res://Themes/HasSingle/Scrollbar.tres
 res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
-res://Resources/Entity Data/placeholder.tres
-res://Themes/Gradients/Blue.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
+res://Themes/ButtonStyle/Focused.tres
 res://Themes/Gradients/Nothing.tres
-res://Code/SceneCode/Entities/Entity.gd
-res://Code/SceneCode/Screens/Main.gd
-res://Code/SceneCode/Entities/Player.gd
-res://Scene/Entities/Player.tscn
+res://Resources/Entity Data/placeholder.tres
+res://Themes/Gradients/Blue.tres
+res://Scene/Mains/GameManager.tscn
+res://Code/ResourceMakers/OptionsMaker.gd
+res://Code/SceneCode/Screens/optionsMenu.gd
+res://Scene/Mains/MainMenu.tscn
 res://Scene/Mains/Main.tscn
-res://Code/ResourceMakers/SaveMaker.gd
-res://README.md
+res://Scene/Entities/Entity.tscn
+res://Code/Globals/Globals.gd
+res://Scene/SideMenus/Item/ItemMenu.tscn
+res://Code/SceneCode/Screens/ItemMenu.gd
+res://Code/SceneCode/Screens/MainMenu.gd
+res://Scene/SideMenus/Item/IteminInv.tscn
+res://Code/SceneCode/Individuals/IteminInv.gd
+res://Scene/SideMenus/Gear/GearMenu.tscn
+res://Code/SceneCode/Screens/GearMenu.gd
+res://Scene/SideMenus/Chip/ChipinInv.tscn
+res://Code/SceneCode/Individuals/ChipinInv.gd
+res://Scene/SideMenus/Chip/ChipMenu.tscn
+res://Code/SceneCode/Screens/ChipMenu.gd

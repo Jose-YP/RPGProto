@@ -6,6 +6,24 @@
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("2_vrnb5")
 
+[node name="background" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.153
+anchor_top = 0.363
+anchor_right = 0.844
+anchor_bottom = 0.776
+offset_left = -219.075
+offset_top = -302.14
+offset_right = 243.9
+offset_bottom = 214.72
+
+[node name="RichTextLabel" type="RichTextLabel" parent="background"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]...Awaiting Input...[/center]"
+
 [node name="Main" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,12 +121,14 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MasterSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MasterText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -119,11 +139,13 @@ layout_mode = 2
 text = "Music
 Volume"
 
-[node name="HSlider2" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MusicSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MusicText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -134,11 +156,13 @@ layout_mode = 2
 text = "SFX
 Volume"
 
-[node name="HSlider3" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="SFXSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="SFXText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -196,6 +220,7 @@ theme_override_constants/v_separation = 20
 columns = 2
 
 [node name="A" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/A"]
@@ -212,6 +237,7 @@ size_flags_vertical = 4
 toggle_mode = true
 
 [node name="ZL" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZL"]
@@ -229,6 +255,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="B" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/B"]
@@ -245,6 +272,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="L" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/L"]
@@ -261,6 +289,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="X" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/X"]
@@ -277,6 +306,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="R" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/R"]
@@ -293,6 +323,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="Y" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Y"]
@@ -309,6 +340,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="ZR" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZR"]
@@ -335,30 +367,11 @@ text = "Exit
 [node name="MarginContainer2" type="MarginContainer" parent="Main/VBox"]
 layout_mode = 2
 
-[node name="Awaiting" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = -1
-anchor_left = 0.153
-anchor_top = 0.363
-anchor_right = 0.844
-anchor_bottom = 0.776
-offset_left = -0.0750122
-offset_top = -0.140015
-offset_right = -0.100098
-offset_bottom = -0.280029
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Awaiting"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-size_flags_vertical = 4
-bbcode_enabled = true
-text = "[center]...Awaiting Input...[/center]"
-
 [connection signal="toggled" from="Main/VBox/Audio/IndvOptions/Tests/Music" to="." method="_on_music_toggled"]
 [connection signal="pressed" from="Main/VBox/Audio/IndvOptions/Tests/SFX" to="." method="_on_sfx_pressed"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider" to="." method="audioSet"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2" to="." method="audioSet"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/MasterSlider" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/MusicSlider" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/SFXSlider" to="." method="audioSet"]
 [connection signal="item_selected" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/OptionButton" to="." method="_on_new_input_type_selected"]
 [connection signal="pressed" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/A/Button" to="." method="controllerMapStart" binds= [0]]

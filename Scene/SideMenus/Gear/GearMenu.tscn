@@ -97,7 +97,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(260, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Character"]
+[node name="NamenResource" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Character"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
@@ -107,6 +108,7 @@ LP:99 TP: 100"
 layout_mode = 2
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
@@ -144,6 +146,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
@@ -176,7 +179,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(360, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Stats"]
+[node name="BattleStats" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
@@ -190,6 +194,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 value = 100.0
@@ -199,7 +204,8 @@ texture_under = ExtResource("11_p8am1")
 texture_over = ExtResource("7_o13u7")
 texture_progress = ExtResource("12_v2gnj")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="CPUTEXT" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "100/100
@@ -211,7 +217,8 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox/HBoxContainer"]
+[node name="ItemNum" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -225,7 +232,8 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CurrentGear"]
+[node name="Inventoryu" type="GridContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CurrentGear"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
@@ -261,7 +269,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2/OldGear"]
+[node name="OldTitle" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2/OldGear"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center][u]OLD GEAR[/u]
@@ -275,7 +283,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(160, 75)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3/NewGear"]
+[node name="NewTitle" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3/NewGear"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center][u]NEW GEAR[/u]
@@ -289,7 +298,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 620)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]
+[node name="OldDec" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
@@ -300,6 +310,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 600)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc"]
+[node name="NewDesc" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc"]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true

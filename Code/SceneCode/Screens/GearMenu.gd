@@ -6,20 +6,20 @@ extends Control
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 
 #Menu
-@onready var gearInv: GridContainer = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/CurrentGear/PanelContainer
-#Descriptions
-@onready var oldGearTitle: RichTextLabel = $VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2/OldGear/RichTextLabel
-@onready var oldGearDisc: RichTextLabel = $VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc/RichTextLabel
-@onready var newGearTitle: RichTextLabel =$VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3/NewGear/RichTextLabel
-@onready var newGearDisc: RichTextLabel = $VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc/RichTextLabel
+@onready var gearInv: GridContainer = %Inventoryu
+#Descriptions 
+@onready var oldGearTitle: RichTextLabel = %OldTitle
+@onready var oldGearDisc: RichTextLabel = %OldDec
+@onready var newGearTitle: RichTextLabel = %NewTitle
+@onready var newGearDisc: RichTextLabel = %NewDesc
 #Current Player Info
-@onready var playerResource: RichTextLabel = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Character/RichTextLabel
-@onready var playerElement: TabContainer = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/Player1Element
-@onready var playerPhyEle: TabContainer = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Elements/PlayerPhyElement1
-@onready var playerBattleStats: RichTextLabel = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Stats/RichTextLabel
-@onready var CPUText: RichTextLabel = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer/RichTextLabel
-@onready var CPUBar: TextureProgressBar = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/CPUBox/HBoxContainer/EnemyTP
-@onready var ItemText: RichTextLabel = $VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/ItemBox/HBoxContainer/RichTextLabel
+@onready var playerResource: RichTextLabel = %NamenResource
+@onready var playerElement: TabContainer = %Player1Element
+@onready var playerPhyEle: TabContainer = %PlayerPhyElement1
+@onready var playerBattleStats: RichTextLabel = %BattleStats
+@onready var CPUText: RichTextLabel = %EnemyTP
+@onready var CPUBar: TextureProgressBar = %CPUTEXT
+@onready var ItemText: RichTextLabel = %ItemNum
 
 signal chipMenu
 signal gearMenu

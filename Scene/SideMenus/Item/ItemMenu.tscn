@@ -114,7 +114,8 @@ theme_override_constants/margin_bottom = 5
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel"]
+[node name="Sorts" type="OptionButton" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 101.0
 offset_bottom = 32.0
@@ -137,7 +138,8 @@ scroll_vertical_custom_step = 100.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/ChipSelection"]
+[node name="InvGrid" type="GridContainer" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/ChipSelection"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
@@ -156,7 +158,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="ItemTitle" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
@@ -166,7 +169,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(440, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="ItemDetails" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center] 60/60 | OWNERS: 
@@ -177,7 +181,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/Description"]
+[node name="ItemDesc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/Description"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ItemSelection"]
@@ -202,13 +207,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Character"]
+[node name="Name&Resource" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Character"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "CHARACTER HP: 100
 LP:99 TP: 100 CPU: 100"
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
@@ -246,6 +253,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
@@ -278,7 +286,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(235, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Stats"]
+[node name="PlayerStats" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
@@ -292,7 +301,8 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer"]
+[node name="ItemCount" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -306,7 +316,8 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CurrentItems"]
+[node name="PlayerGrid" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CurrentItems"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
@@ -325,7 +336,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="PlayerTitle" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
@@ -335,7 +347,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(370, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="PlayerDetails" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]60/60 | YELLOW CHIP[/center]"
@@ -348,7 +361,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/MarginContainer/Description"]
+[node name="PLayerDesc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/MarginContainer/Description"]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
@@ -371,5 +385,5 @@ offset_top = -54.0
 offset_right = -1286.0
 offset_bottom = -766.0
 
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/Sorts" to="." method="_on_option_button_item_selected"]
 [connection signal="makeNoise" from="InsertNumber" to="." method="_on_insert_number_make_noise"]

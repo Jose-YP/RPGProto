@@ -4,24 +4,16 @@ extends Control
 @export var enemyEntities: Array[entityData]
 
 #PLAYER VARIABLES
-@onready var playerChoices: Array[OptionButton] = [$PlayerSide/PlayerMenu/Player1/MenuButton,
-$PlayerSide/PlayerMenu/Player2/MenuButton,$PlayerSide/PlayerMenu/Player3/MenuButton]
-@onready var playerLevels: Array[SpinBox] = [$PlayerSide/PlayerMenu/Player1Level,
-$PlayerSide/PlayerMenu/Player2Level,$PlayerSide/PlayerMenu/Player3Level]
-@onready var playerStats: Array[RichTextLabel] = [$PlayerSide/PlayerDisplay/PlayerStats/Player1Stats/RichTextLabel,
-$PlayerSide/PlayerDisplay/PlayerStats/Player2Stats/RichTextLabel,$PlayerSide/PlayerDisplay/PlayerStats/Player3Stats/RichTextLabel2]
-@onready var playerElements: Array[TabContainer] = [$PlayerSide/PlayerDisplay/PlayerElements/Player1Element,
-$PlayerSide/PlayerDisplay/PlayerElements/Player2Element,$PlayerSide/PlayerDisplay/PlayerElements/Player3Element]
-@onready var playerPhyEle: Array[TabContainer] = [$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement1,
-$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement2,$PlayerSide/PlayerDisplay/PlayerPhyElements/PlayerPhyElement3]
+@onready var playerChoices: Array[OptionButton] = [%Playermenu1, %Playermenu2, %Playermenu3]
+@onready var playerLevels: Array[SpinBox] = [%Player1Level, %Player2Level, %Player3Level]
+@onready var playerStats: Array[RichTextLabel] = [%Stats1, %Stats2, %Stats3]
+@onready var playerElements: Array[TabContainer] = [%Player1Element, %Player2Element, %Player3Element]
+@onready var playerPhyEle: Array[TabContainer] = [%PlayerPhyElement1, %PlayerPhyElement2, %PlayerPhyElement3]
 #ENEMY VARIABLES
-@onready var enemyChoices: Array[OptionButton] = [$EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton,
-$EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton,$EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton]
+@onready var enemyChoices: Array[OptionButton] = [%EnemyChoice1, %EnemyChoice2, %EnemyChoice3]
 @onready var enemiesShown: RichTextLabel = $EnemySide/EnemyDisplay/EnemyLineup/RichTextLabel
-@onready var enemyElements: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyElement,
-$EnemySide/EnemyDisplay/EnemyElements/EnemyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyElement3]
-@onready var enemyPhyEle: Array[TabContainer] = [$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement,
-$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement2,$EnemySide/EnemyDisplay/EnemyElements/EnemyPhyElement3]
+@onready var enemyElements: Array[TabContainer] = [%EnemyElement, %EnemyElement2, %EnemyElement3]
+@onready var enemyPhyEle: Array[TabContainer] = [%EnemyPhyElement, %EnemyPhyElement2, %EnemyPhyElement3]
 #OTHER VAR
 @onready var orderButton: CheckButton = $PlayerFirstToggle/HBoxContainer/PlayerOrder
 

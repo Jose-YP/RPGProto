@@ -5,9 +5,7 @@ extends PanelContainer
 @onready var final: Marker2D = $Marker2D2
 @onready var iconColor: TextureRect = $Button/MarginContainer/Chip1/TextureRect
 @onready var chipText: RichTextLabel = $Button/MarginContainer/Chip1/MarginContainer/RichTextLabel
-@onready var characterStatus: Array[TabContainer] = [$Button/MarginContainer/Chip1/Characters/DreamerStatus,
-$Button/MarginContainer/Chip1/Characters/LonnaStatus,$Button/MarginContainer/Chip1/Characters/DamirStatus,
-$Button/MarginContainer/Chip1/Characters/PepperStatus]
+@onready var characterStatus: Array[TabContainer] = [%DreamerStatus, %LonnaStatus, %DamirStatus, %PepperStatus]
 
 signal getDesc(data)
 signal startSelect(data)

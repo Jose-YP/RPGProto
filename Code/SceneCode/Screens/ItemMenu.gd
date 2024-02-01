@@ -7,27 +7,27 @@ extends Control
 @export var scrollAmmount: int = 55
 @export var scrollDeadzone: Vector2 = Vector2(280,420) #x is top value, y is bottom value
 #Menus
-@onready var itemInv: GridContainer = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/ChipSelection/GridContainer
-@onready var playerItems: GridContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CurrentItems/PanelContainer
+@onready var itemInv: GridContainer = %InvGrid
+@onready var playerItems: GridContainer = %PlayerGrid
 @onready var InvMarkers: Array[Marker2D] = []
 @onready var PlayMarkers: Array[Marker2D] = []
 @onready var Arrow: Sprite2D = $Arrow
 @onready var placeholderPos: Marker2D = $Marker2D
-@onready var sortingOptions: OptionButton = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton
+@onready var sortingOptions: OptionButton = %Sorts
 @onready var insertNumPanel = $InsertNumber
 #Descriptions
-@onready var invItemTitle: RichTextLabel = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var invItemDetails: RichTextLabel = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var invItemDisc: RichTextLabel = $VBoxContainer/HBoxContainer/ItemSelection/VBoxContainer/Info/Description/RichTextLabel
-@onready var playerItemTitle: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Title/RichTextLabel
-@onready var playerItemDetails: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/QuickInfo/HBoxContainer/Details/RichTextLabel
-@onready var playerItemDisc: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/Info/MarginContainer/Description/RichTextLabel
+@onready var invItemTitle: RichTextLabel = %ItemTitle
+@onready var invItemDetails: RichTextLabel = %ItemDetails
+@onready var invItemDisc: RichTextLabel = %ItemDesc
+@onready var playerItemTitle: RichTextLabel = %PlayerTitle
+@onready var playerItemDetails: RichTextLabel = %PlayerDetails
+@onready var playerItemDisc: RichTextLabel = %PLayerDesc
 #Current Player Info
-@onready var playerResource: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Character/RichTextLabel
-@onready var playerElement: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Player1Element
-@onready var playerPhyEle: TabContainer = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/PlayerPhyElement1
-@onready var playerBattleStats: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/Stats/RichTextLabel
-@onready var ItemText: RichTextLabel = $VBoxContainer/HBoxContainer/CurrentCharItems/VBoxContainer/CharacterInfo/ItemBox/HBoxContainer/RichTextLabel
+@onready var playerResource: RichTextLabel = %"Name&Resource"
+@onready var playerElement: TabContainer = %Player1Element
+@onready var playerPhyEle: TabContainer = %PlayerPhyElement1
+@onready var playerBattleStats: RichTextLabel = %PlayerStats
+@onready var ItemText: RichTextLabel = %ItemCount
 
 signal gearMenu
 signal chipMenu
@@ -136,7 +136,8 @@ func buttons() -> void:
 		makeNoise.emit(0)
 		
 		if movingItem:
-			if markerArray[side][markerIndex] == placeholderPos or markerArray[side][markerIndex].get_parent().inChar:
+			if (markerArray[side][markerIndex] == placeholderPos or 
+			markerArray[side][markerIndex].get_parent().inChar):
 				if wasChar: sortPlayerItem(grabbedItem)
 				elif acrossPlayers: sortPlayerItem(grabbedItem)
 				else: addItem(grabbedItem)
@@ -157,7 +158,7 @@ func buttons() -> void:
 			num = insertNumPanel.ammount.value
 			insertNumPanel.hide()
 			
-			Arrow.global_position = get_viewport().gui_get_focus_owner().get_parent().inBetween.global_position
+			Arrow.global_position = keepFocus.get_parent().inBetween.global_position
 			Arrow.show()
 		
 		else:
@@ -175,9 +176,12 @@ func buttons() -> void:
 			insertNumPanel.show()
 			insertNumPanel.global_position = keepFocus.global_position + Vector2(150,30)
 			
-			if wasChar: insertNumPanel.maxNum = data.ownerArray[Globals.charNum(Globals.every_player_entity[playerIndex])]
-			elif data.currentInInv > data.maxItems: insertNumPanel.maxNum = data.maxItems
-			else: insertNumPanel.maxNum = data.currentInInv
+			if wasChar: 
+				insertNumPanel.maxNum = data.ownerArray[Globals.charNum(Globals.every_player_entity[playerIndex])]
+			elif data.currentInInv > data.maxItems: 
+				insertNumPanel.maxNum = data.maxItems
+			else: 
+				insertNumPanel.maxNum = data.currentInInv
 		
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)

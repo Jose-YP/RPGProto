@@ -21,7 +21,7 @@ var attacking: bool = false
 var groupEleMod: float = 0.0
 
 func _ready(): #Uselike this: Dict[Character][Level][Stat]
-	playerStats = readJSON("res://JSONS/PlayerDatabase.json")
+	playerStats = readJSON("res://JSONS&Saves/JSONS/PlayerDatabase.json")
 
 func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
 	var file = FileAccess.open(filePath, FileAccess.READ)

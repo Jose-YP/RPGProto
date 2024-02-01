@@ -100,6 +100,7 @@ offset_right = 117.816
 offset_bottom = 79.908
 
 [node name="EnemyPhyElement" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 19.0
 offset_top = -38.0
@@ -131,6 +132,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="EnemyElement" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -35.0
 offset_top = -38.0
@@ -170,6 +172,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="EnemyPhyElement2" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 19.0
 offset_top = 26.0
@@ -201,6 +204,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="EnemyElement2" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -35.0
 offset_top = 26.0
@@ -240,6 +244,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="EnemyPhyElement3" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 19.0
 offset_top = 88.0
@@ -271,6 +276,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="EnemyElement3" type="TabContainer" parent="EnemySide/EnemyDisplay/EnemyElements"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -35.0
 offset_top = 88.0
@@ -329,10 +335,11 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy1"]
+[node name="EnemyChoice1" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy1"]
+unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../PlayerSide/PlayerMenu/Player3/MenuButton")
-focus_neighbor_right = NodePath("../../Enemy2/MenuButton")
+focus_neighbor_left = NodePath("../../../../../PlayerSide/PlayerMenu/Player3/Playermenu3")
+focus_neighbor_right = NodePath("../../Enemy2/EnemyChoice2")
 item_count = 6
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
@@ -353,10 +360,11 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy2"]
+[node name="EnemyChoice2" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy2"]
+unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../Enemy1/MenuButton")
-focus_neighbor_right = NodePath("../../Enemy3/MenuButton")
+focus_neighbor_left = NodePath("../../Enemy1/EnemyChoice1")
+focus_neighbor_right = NodePath("../../Enemy3/EnemyChoice3")
 item_count = 7
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
@@ -379,10 +387,11 @@ layout_mode = 2
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MenuButton" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy3"]
+[node name="EnemyChoice3" type="OptionButton" parent="EnemySide/EnemyMenu/EnemyMenu1/Enemy3"]
+unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../Enemy2/MenuButton")
-focus_neighbor_right = NodePath("../../../../../PlayerSide/PlayerMenu/Player1/MenuButton")
+focus_neighbor_left = NodePath("../../Enemy2/EnemyChoice2")
+focus_neighbor_right = NodePath("../../../../../PlayerSide/PlayerMenu/Player1/Playermenu1")
 item_count = 7
 selected = 0
 popup/item_0/text = "lv1 Amebozo"
@@ -416,12 +425,13 @@ theme_override_constants/h_separation = 70
 columns = 3
 
 [node name="Player1Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/EnemyChoice3")
 focus_neighbor_top = NodePath("../../../Navigation/Buttons/ChipButton")
 focus_neighbor_right = NodePath("../Player2Level")
-focus_neighbor_bottom = NodePath("../Player1/MenuButton")
+focus_neighbor_bottom = NodePath("../Player1/Playermenu1")
 min_value = 1.0
 max_value = 30.0
 value = 5.0
@@ -436,12 +446,13 @@ offset_bottom = -4.0
 text = "Level"
 
 [node name="Player2Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Player1Level")
 focus_neighbor_top = NodePath("../../../Navigation/Buttons/GearButton")
 focus_neighbor_right = NodePath("../Player3Level")
-focus_neighbor_bottom = NodePath("../Player2/MenuButton")
+focus_neighbor_bottom = NodePath("../Player2/Playermenu2")
 min_value = 1.0
 max_value = 30.0
 value = 5.0
@@ -455,12 +466,13 @@ offset_bottom = -4.0
 text = "Level"
 
 [node name="Player3Level" type="SpinBox" parent="PlayerSide/PlayerMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../Player2Level")
 focus_neighbor_top = NodePath("../../../Navigation/Buttons/ItemButton")
-focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
-focus_neighbor_bottom = NodePath("../Player3/MenuButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1")
+focus_neighbor_bottom = NodePath("../Player3/Playermenu3")
 min_value = 1.0
 max_value = 30.0
 value = 5.0
@@ -476,17 +488,18 @@ text = "Level"
 [node name="Player1" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/EnemyChoice3")
 focus_neighbor_top = NodePath("../Player1Level")
-focus_neighbor_right = NodePath("../Player2/MenuButton")
+focus_neighbor_right = NodePath("../Player2/Playermenu2")
 focus_neighbor_bottom = NodePath("../../../Navigation/Buttons/ChipButton")
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player1"]
+[node name="Playermenu1" type="OptionButton" parent="PlayerSide/PlayerMenu/Player1"]
+unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
+focus_neighbor_left = NodePath("../../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/EnemyChoice3")
 focus_neighbor_top = NodePath("../../Player1Level")
-focus_neighbor_right = NodePath("../../Player2/MenuButton")
+focus_neighbor_right = NodePath("../../Player2/Playermenu2")
 focus_neighbor_bottom = NodePath("../../../../Navigation/Buttons/ChipButton")
 item_count = 4
 selected = 0
@@ -504,13 +517,14 @@ metadata/_edit_lock_ = true
 [node name="Player2" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../Player1/MenuButton")
+focus_neighbor_left = NodePath("../Player1/Playermenu1")
 focus_neighbor_top = NodePath("../Player2Level")
-focus_neighbor_right = NodePath("../Player3/MenuButton")
+focus_neighbor_right = NodePath("../Player3/Playermenu3")
 focus_neighbor_bottom = NodePath("../../../Navigation/Buttons/GearButton")
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player2"]
+[node name="Playermenu2" type="OptionButton" parent="PlayerSide/PlayerMenu/Player2"]
+unique_name_in_owner = true
 layout_mode = 2
 item_count = 4
 selected = 2
@@ -528,16 +542,17 @@ metadata/_edit_lock_ = true
 [node name="Player3" type="PanelContainer" parent="PlayerSide/PlayerMenu"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../Player2/MenuButton")
+focus_neighbor_left = NodePath("../Player2/Playermenu2")
 focus_neighbor_top = NodePath("../Player3Level")
-focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1")
 focus_neighbor_bottom = NodePath("../../../Navigation/Buttons/ItemButton")
 metadata/_edit_group_ = true
 
-[node name="MenuButton" type="OptionButton" parent="PlayerSide/PlayerMenu/Player3"]
+[node name="Playermenu3" type="OptionButton" parent="PlayerSide/PlayerMenu/Player3"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../Player3Level")
-focus_neighbor_right = NodePath("../../Player1/MenuButton")
+focus_neighbor_right = NodePath("../../Player1/Playermenu1")
 focus_neighbor_bottom = NodePath("../../../../Navigation/Buttons/ItemButton")
 item_count = 4
 selected = 3
@@ -577,7 +592,8 @@ offset_bottom = 370.0
 theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player1Stats"]
+[node name="Stats1" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player1Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Player2Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
@@ -588,7 +604,8 @@ offset_bottom = 368.0
 theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player2Stats"]
+[node name="Stats2" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player2Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Player3Stats" type="PanelContainer" parent="PlayerSide/PlayerDisplay/PlayerStats"]
@@ -599,7 +616,8 @@ offset_bottom = 368.0
 theme = ExtResource("12_c1ybm")
 metadata/_edit_group_ = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player3Stats"]
+[node name="Stats3" type="RichTextLabel" parent="PlayerSide/PlayerDisplay/PlayerStats/Player3Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PlayerElements" type="Control" parent="PlayerSide/PlayerDisplay"]
@@ -614,6 +632,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Player1Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 29.0
@@ -654,6 +673,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player2Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 197.0
@@ -694,6 +714,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="Player3Element" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 360.0
@@ -744,6 +765,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 125.0
@@ -776,6 +798,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement2" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 293.0
@@ -808,6 +831,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement3" type="TabContainer" parent="PlayerSide/PlayerDisplay/PlayerPhyElements"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 456.0
@@ -855,8 +879,8 @@ size_flags_horizontal = 0
 
 [node name="PlayerOrder" type="CheckButton" parent="PlayerFirstToggle/HBoxContainer"]
 layout_mode = 2
-focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton")
-focus_neighbor_bottom = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy2/EnemyChoice2")
+focus_neighbor_bottom = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1")
 button_pressed = true
 text = " Player First [X]"
 
@@ -913,8 +937,8 @@ offset_left = -539.0
 offset_top = -369.0
 offset_right = -384.0
 offset_bottom = -335.0
-focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton")
-focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player1/MenuButton")
+focus_neighbor_left = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy3/EnemyChoice3")
+focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player1/Playermenu1")
 focus_neighbor_right = NodePath("../GearButton")
 focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player1Level")
 text = "SET CHIPS"
@@ -926,8 +950,8 @@ offset_top = -369.0
 offset_right = -57.0
 offset_bottom = -335.0
 focus_neighbor_left = NodePath("../GearButton")
-focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player3/MenuButton")
-focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
+focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player3/Playermenu3")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1")
 focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player3Level")
 text = "SET ITEMS"
 
@@ -938,7 +962,7 @@ offset_top = -369.0
 offset_right = -221.0
 offset_bottom = -335.0
 focus_neighbor_left = NodePath("../ChipButton")
-focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player2/MenuButton")
+focus_neighbor_top = NodePath("../../../PlayerSide/PlayerMenu/Player2/Playermenu2")
 focus_neighbor_right = NodePath("../ItemButton")
 focus_neighbor_bottom = NodePath("../../../PlayerSide/PlayerMenu/Player2Level")
 text = "SET GEAR"
@@ -954,7 +978,7 @@ theme = ExtResource("12_c1ybm")
 [node name="MenuButton" type="OptionButton" parent="Navigation/MusicMenu"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../Buttons/ItemButton")
-focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton")
+focus_neighbor_right = NodePath("../../../EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1")
 focus_neighbor_bottom = NodePath("../../Buttons/FightButton")
 item_count = 4
 selected = 0
@@ -1126,15 +1150,15 @@ They will decay by 5% every turn"
 [node name="OptionsMenu" parent="." instance=ExtResource("22_oq3rd")]
 visible = false
 
-[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/MenuButton" to="." method="enemyChoiceChanged"]
-[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy2/MenuButton" to="." method="enemyChoiceChanged"]
-[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy3/MenuButton" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy1/EnemyChoice1" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy2/EnemyChoice2" to="." method="enemyChoiceChanged"]
+[connection signal="item_selected" from="EnemySide/EnemyMenu/EnemyMenu1/Enemy3/EnemyChoice3" to="." method="enemyChoiceChanged"]
 [connection signal="value_changed" from="PlayerSide/PlayerMenu/Player1Level" to="." method="levelChange" binds= [0]]
 [connection signal="value_changed" from="PlayerSide/PlayerMenu/Player2Level" to="." method="levelChange" binds= [1]]
 [connection signal="value_changed" from="PlayerSide/PlayerMenu/Player3Level" to="." method="levelChange" binds= [2]]
-[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player1/MenuButton" to="." method="playerChoiceChanged" binds= [0]]
-[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player2/MenuButton" to="." method="playerChoiceChanged" binds= [1]]
-[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player3/MenuButton" to="." method="playerChoiceChanged" binds= [2]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player1/Playermenu1" to="." method="playerChoiceChanged" binds= [0]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player2/Playermenu2" to="." method="playerChoiceChanged" binds= [1]]
+[connection signal="item_selected" from="PlayerSide/PlayerMenu/Player3/Playermenu3" to="." method="playerChoiceChanged" binds= [2]]
 [connection signal="toggled" from="PlayerFirstToggle/HBoxContainer/PlayerOrder" to="." method="_on_player_order_toggled"]
 [connection signal="pressed" from="Navigation/Buttons/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="Navigation/Buttons/FightButton" to="." method="_on_fight_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://e86h6ygu2yew"]
+[gd_scene load_steps=17 format=3 uid="uid://e86h6ygu2yew"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_4087y"]
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/ChipMenu.gd" id="2_j4e5n"]
@@ -29,15 +29,6 @@ corner_detail = 12
 bg_color = Color(0.231373, 0.329412, 0.431373, 1)
 border_width_left = 5
 corner_detail = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxis2"]
-bg_color = Color(1, 1, 1, 0.505882)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.8, 0.8, 0.121569, 1)
-border_blend = true
 
 [node name="ChipMenu" type="Control"]
 layout_mode = 3
@@ -124,7 +115,8 @@ theme_override_constants/margin_bottom = 5
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel"]
+[node name="Sorts" type="OptionButton" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 101.0
 offset_bottom = 32.0
@@ -147,7 +139,8 @@ scroll_vertical_custom_step = 100.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection"]
+[node name="InvChip" type="GridContainer" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/ChipSelection"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
@@ -166,7 +159,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="InvTitle" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
@@ -176,7 +170,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(420, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="InvDetails" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]60/60 | YELLOW CHIP
@@ -187,16 +182,9 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/Description"]
+[node name="InvDesc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/Info/Description"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/ChipSelection"]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../../CurrentCharChips/Button")
-focus_neighbor_right = NodePath("../../CurrentCharChips/Button")
-focus_next = NodePath("../../CurrentCharChips/Button")
-focus_previous = NodePath("../../CurrentCharChips/Button")
 
 [node name="CurrentCharChips" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 material = ExtResource("5_jua7r")
@@ -216,7 +204,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character"]
+[node name="NameNRsource" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Character"]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -225,6 +214,7 @@ text = "CHARACTER HP: 100
 LP:99 TP: 100"
 
 [node name="Player1Element" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
@@ -262,6 +252,7 @@ expand_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="PlayerPhyElement1" type="TabContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo"]
+unique_name_in_owner = true
 self_modulate = Color(0.0313726, 0.0588235, 0.254902, 1)
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
@@ -294,7 +285,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(210, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats"]
+[node name="BattleStats]" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]STR: 60		TGH: 60		SPD: 60
@@ -309,6 +301,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EnemyTP" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 value = 100.0
@@ -318,7 +311,8 @@ texture_under = ExtResource("13_wqtrl")
 texture_over = ExtResource("9_4lfn1")
 texture_progress = ExtResource("14_1oas2")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+[node name="CPUText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CharacterInfo/CPUBox/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "100/100
@@ -331,7 +325,8 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="PanelContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips"]
+[node name="PlayerChips" type="GridContainer" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/CurrentChips"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
@@ -350,7 +345,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+[node name="PlayTitle" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Title"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]SELECTED CHIP[/center]"
@@ -360,7 +356,8 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(370, 50)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+[node name="PlayDetials" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/QuickInfo/HBoxContainer/Details"]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]60/60 | YELLOW CHIP[/center]"
@@ -373,18 +370,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/MarginContainer/Description"]
+[node name="PlayDesc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CurrentCharChips/VBoxContainer/Info/MarginContainer/Description"]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/CurrentCharChips"]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../../ChipSelection/Button")
-focus_neighbor_right = NodePath("../../ChipSelection/Button")
-focus_next = NodePath("../../ChipSelection/Button")
-focus_previous = NodePath("../../ChipSelection/Button")
-theme_override_styles/focus = SubResource("StyleBoxFlat_xxis2")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 position = Vector2(5, -15)
@@ -396,4 +385,4 @@ offset = Vector2(-38, 245.462)
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(699, 136)
 
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/ChipSelection/VBoxContainer/INVENTORYTEXT/HBoxContainer/MarginContainer/Panel/Sorts" to="." method="_on_option_button_item_selected"]
