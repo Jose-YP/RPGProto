@@ -2,11 +2,12 @@ extends CanvasLayer
 
 @onready var VolumeValues: Array[HSlider] = [%MasterSlider, %MusicSlider, %SFXSlider]
 @onready var VolumeTexts: Array[RichTextLabel] = [%MasterText, %MusicText, %SFXText]
-@onready var controllerChange: Array[Button] = [%A/Button, %ZL/Button, %B/Button, %L/Button,
- %X/Button, %R/Button, %Y/Button, %ZR/Button, %Y/Button, %ZR/Button]
+@onready var controllerChange: Array[Button] = [%Up/Button, %Accept/Button, %ZL/Button, %Left/Button,
+%Cancel/Button, %L/Button, %Down/Button, %X/Button, %R/Button, %Right/Button, %Y/Button, %ZR/Button]
 @onready var MasterBus = AudioServer.get_bus_index("Master")
 @onready var MusicBus = AudioServer.get_bus_index("Music")
 @onready var SFXBus = AudioServer.get_bus_index("SFX")
+
 signal main
 signal makeNoise
 signal testMusic(toggled_on)
@@ -16,20 +17,36 @@ var inputs: Array[Array] = [[],[]]
 var inputTexts: Array[String] = []
 var Actions: Array = []
 var Buses: Array = []
+var userAudios: Array = []
 var inputType: int = 0
 var currentToggleIndex: int
 var currentToggle: Button
-var currentInput: InputEvent
 var toggleOn: bool = false
+var currentInput: InputEvent
+var userPrefs: UserPreferences
 var oldMap
 var currentAction
 
 
 #-----------------------------------------
-#INITALIZATION
+#INITALIZATION & PROCESSING
 #-----------------------------------------
 func _ready():
+	userPrefs = UserPreferences.load_or_create()
 	Buses = [MasterBus, MusicBus, SFXBus]
+	userAudios = [userPrefs.masterAudioLeve, userPrefs.musicAudioLeve, userPrefs.sfxAudioLeve]
+	
+	for i in range(VolumeValues.size()):
+		audioSet(userAudios[i], i)
+	
+	inputType = userPrefs.input_type
+	for action in userPrefs.keyboard_action_events:
+		InputMap.action_erase_events(action)
+		InputMap.action_add_event(action, userPrefs.keyboard_action_events[action])
+	
+	for action in userPrefs.joy_action_events:
+		InputMap.action_add_event(action, userPrefs.keyboard_action_events[action])
+	
 	getNewInputs()
 
 func _input(event):
@@ -53,6 +70,16 @@ func audioSet(value, index) -> void:
 	VolumeValues[index].value = value
 	VolumeTexts[index].text = str("		",VolumeValues[index].value,"%")
 	AudioServer.set_bus_volume_db(Buses[index], linear_to_db(value * 0.01)) #0.01 so it doesn't get too loud
+	
+	userAudios[index] = value * 0.01
+	match index: #Has to be saved directly
+		0:
+			userPrefs.masterAudioLeve = value
+		1:
+			userPrefs.musicAudioLeve = value
+		2:
+			userPrefs.sfxAudioLeve = value
+	userPrefs.save()
 
 func _on_music_toggled(toggled_on) -> void:
 	testMusic.emit(toggled_on)
@@ -67,21 +94,34 @@ func getNewInputs() -> void:
 	Actions = []
 	inputs = [[],[]]
 	var loopActions = InputMap.get_actions()
+	var sortedLoop: Array = []
+	
+	match inputType:
+		0:
+			loopActions = userPrefs.keyboard_action_events.keys()
+		1:
+			loopActions = userPrefs.joy_action_events.keys()
+	
+	for i in range(controllerChange.size()):#Controller change's parents have the right names
+		for j in range(loopActions.size()):
+			if controllerChange[i].get_parent().name == loopActions[j]:
+				sortedLoop.append(loopActions[j])
+				break
+	
+	loopActions = sortedLoop
 	
 	for action in loopActions: #Get every input in InputMap that can be edited
-		var check = (action == "Left" or action == "Right" 
-		or action == "Up" or action == "Down" 
-		or action == "Start" or action == "Select")
-		
-		if not action.contains("ui_") and not check:
-			var events = InputMap.action_get_events(action)
-			Actions.append(action)
-			for event in events:
-				if event is InputEventKey:
-					inputs[0].append(event)
-				elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-					inputs[1].append(event)
+		var events = InputMap.action_get_events(action)
+		Actions.append(action)
+		for event in events:
+			if event is InputEventKey:
+				inputs[0].append(event)
+				userPrefs.keyboard_action_events[action] = event
+			elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+				inputs[1].append(event)
+				userPrefs.joy_action_events[action] = event
 	
+	userPrefs.save()
 	updateInputDisplay()
 
 func updateInputDisplay() -> void:
@@ -113,9 +153,11 @@ func controllerMapStart(toggled,index) -> void:
 
 func _on_new_input_type_selected(index) -> void:
 	inputType = index
+	userPrefs.input_type = index
+	userPrefs.save()
 	updateInputDisplay()
 
-func _on_reset_pressed():
+func _on_reset_pressed() -> void:
 	InputMap.load_from_project_settings()
 	getNewInputs()
 
@@ -124,7 +166,27 @@ func changeInput(event) -> void:
 	InputMap.action_erase_event(currentAction, currentInput)
 	InputMap.action_add_event(currentAction, event)
 	toggleOn = false
+	checkRepeats(currentInput, event)
 	getNewInputs()
+
+func checkRepeats(oldEvent, event) -> void:
+	var found: bool = false
+	var repeat: String
+	
+	for action in Actions:
+		if action == currentAction:
+			print("Skipping ", action)
+			continue
+		
+		if InputMap.event_is_action(event, action, true):
+			found = true
+			print(event, " Repeat found in ", action, " Found num", found)
+			repeat = action
+	
+	if found:
+		InputMap.action_erase_event(repeat, event)
+		InputMap.action_add_event(repeat, oldEvent)
+		print(oldEvent)
 
 #-----------------------------------------
 #NAVIGATION BUTTONS

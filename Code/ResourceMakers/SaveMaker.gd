@@ -1,7 +1,5 @@
 extends Resource
-class_name  Save
-
-@export_category("Options")
+class_name  SaveFile
 
 @export_category("Characters")
 

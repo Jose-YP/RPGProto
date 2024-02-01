@@ -1,4 +1,5 @@
-res://Scene/SideMenus/options_menu.tscn
+res://Audio/Buses/default_bus_layout.tres
+res://Scene/Mains/GameManager.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/MintyPopMove.tres
@@ -49,21 +50,8 @@ res://Themes/ButtonStyle/Focused.tres
 res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
-res://Scene/Mains/GameManager.tscn
 res://Code/ResourceMakers/OptionsMaker.gd
-res://Code/SceneCode/Screens/optionsMenu.gd
+res://Scene/SideMenus/options_menu.tscn
 res://Scene/Mains/MainMenu.tscn
-res://Scene/Mains/Main.tscn
-res://Scene/Entities/Entity.tscn
-res://Code/Globals/Globals.gd
-res://Scene/SideMenus/Item/ItemMenu.tscn
-res://Code/SceneCode/Screens/ItemMenu.gd
-res://Code/SceneCode/Screens/MainMenu.gd
-res://Scene/SideMenus/Item/IteminInv.tscn
-res://Code/SceneCode/Individuals/IteminInv.gd
-res://Scene/SideMenus/Gear/GearMenu.tscn
-res://Code/SceneCode/Screens/GearMenu.gd
-res://Scene/SideMenus/Chip/ChipinInv.tscn
-res://Code/SceneCode/Individuals/ChipinInv.gd
-res://Scene/SideMenus/Chip/ChipMenu.tscn
-res://Code/SceneCode/Screens/ChipMenu.gd
+res://Code/SceneCode/Screens/optionsMenu.gd
+res://JSONS&Saves/Saves/user_prefs.tres

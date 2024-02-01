@@ -1,0 +1,172 @@
+[gd_resource type="Resource" script_class="UserPreferences" load_steps=26 format=3]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/OptionsMaker.gd" id="1_xa5eu"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_85r5u"]
+device = -1
+button_index = 1
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qy2sw"]
+device = -1
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_flygf"]
+device = -1
+axis = 1
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_5gjk2"]
+device = -1
+button_index = 9
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_bxclg"]
+device = -1
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_oo6pd"]
+device = -1
+button_index = 10
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_wogfs"]
+device = -1
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_cgnt7"]
+device = -1
+axis = 1
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_c3frn"]
+device = -1
+button_index = 3
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_kh6ce"]
+device = -1
+button_index = 2
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_81yhg"]
+device = -1
+axis = 4
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_i3qby"]
+device = -1
+axis = 5
+axis_value = 1.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_ne5bt"]
+pressed = true
+keycode = 79
+physical_keycode = 79
+key_label = 79
+unicode = 111
+
+[sub_resource type="InputEventKey" id="InputEventKey_qcky5"]
+pressed = true
+keycode = 75
+physical_keycode = 75
+key_label = 75
+unicode = 107
+
+[sub_resource type="InputEventKey" id="InputEventKey_bge4o"]
+pressed = true
+keycode = 83
+physical_keycode = 83
+key_label = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_hi2vx"]
+pressed = true
+keycode = 81
+physical_keycode = 81
+key_label = 81
+unicode = 113
+
+[sub_resource type="InputEventKey" id="InputEventKey_t68bp"]
+pressed = true
+keycode = 65
+physical_keycode = 65
+key_label = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_f76ta"]
+pressed = true
+keycode = 69
+physical_keycode = 69
+key_label = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_tnwj6"]
+pressed = true
+keycode = 68
+physical_keycode = 68
+key_label = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_tm26h"]
+pressed = true
+keycode = 87
+physical_keycode = 87
+key_label = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_xmvpg"]
+pressed = true
+keycode = 73
+physical_keycode = 73
+key_label = 73
+unicode = 105
+
+[sub_resource type="InputEventKey" id="InputEventKey_dhtub"]
+pressed = true
+keycode = 74
+physical_keycode = 74
+key_label = 74
+unicode = 106
+
+[sub_resource type="InputEventKey" id="InputEventKey_gsfq7"]
+pressed = true
+keycode = 4194306
+physical_keycode = 4194306
+key_label = 4194306
+
+[sub_resource type="InputEventKey" id="InputEventKey_x5y5u"]
+pressed = true
+keycode = 82
+physical_keycode = 82
+key_label = 82
+unicode = 114
+
+[resource]
+script = ExtResource("1_xa5eu")
+masterAudioLeve = 100.0
+musicAudioLeve = 100.0
+sfxAudioLeve = 98.0
+input_type = 0
+keyboard_action_events = {
+"Accept": SubResource("InputEventKey_ne5bt"),
+"Cancel": SubResource("InputEventKey_qcky5"),
+"Down": SubResource("InputEventKey_bge4o"),
+"L": SubResource("InputEventKey_hi2vx"),
+"Left": SubResource("InputEventKey_t68bp"),
+"R": SubResource("InputEventKey_f76ta"),
+"Right": SubResource("InputEventKey_tnwj6"),
+"Up": SubResource("InputEventKey_tm26h"),
+"X": SubResource("InputEventKey_xmvpg"),
+"Y": SubResource("InputEventKey_dhtub"),
+"ZL": SubResource("InputEventKey_gsfq7"),
+"ZR": SubResource("InputEventKey_x5y5u")
+}
+joy_action_events = {
+"Accept": SubResource("InputEventJoypadButton_85r5u"),
+"Cancel": SubResource("InputEventJoypadButton_qy2sw"),
+"Down": SubResource("InputEventJoypadMotion_flygf"),
+"L": SubResource("InputEventJoypadButton_5gjk2"),
+"Left": SubResource("InputEventJoypadMotion_bxclg"),
+"R": SubResource("InputEventJoypadButton_oo6pd"),
+"Right": SubResource("InputEventJoypadMotion_wogfs"),
+"Up": SubResource("InputEventJoypadMotion_cgnt7"),
+"X": SubResource("InputEventJoypadButton_c3frn"),
+"Y": SubResource("InputEventJoypadButton_kh6ce"),
+"ZL": SubResource("InputEventJoypadMotion_81yhg"),
+"ZR": SubResource("InputEventJoypadMotion_i3qby")
+}

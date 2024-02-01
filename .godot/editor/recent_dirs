@@ -1,3 +1,5 @@
+res://JSONS&Saves/Saves
+res://Code/Globals
 C:/Godots/Godot_v4.2.1-stable_win64.exe/Games/Godot-RPG-PRoject/JSONS&Saves/Saves
 res://
 res://Code/SceneCode/Screens
@@ -6,7 +8,6 @@ res://Code/SceneCode/Individuals
 res://Themes
 res://Scene/SideMenus/Gear
 res://Resources/Chip Data
-res://Code/Globals
 res://Code/SceneCode
 res://Resources/Inventory Data
 res://Scene
