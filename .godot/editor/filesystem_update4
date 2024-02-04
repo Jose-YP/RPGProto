@@ -75,3 +75,5 @@ res://Code/ResourceMakers/SaveMaker.gd
 res://Scene/Mains/Main.tscn
 res://Code/SceneCode/Screens/Main.gd
 res://Scene/Mains/MainMenu.tscn
+res://Scene/Mains/GameManager.tscn
+res://JSONS&Saves/Saves/user_prefs.tres
