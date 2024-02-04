@@ -44,6 +44,20 @@ func _ready(): #Make every inventory
 	
 	setUp = true
 
+#-----------------------------------------
+#CONFIGURATION
+#-----------------------------------------
+func configureFileManager():
+	pass
+
+#-----------------------------------------
+#SAVE MANAGER
+#-----------------------------------------
+
+
+#-----------------------------------------
+#INVENTORY MANAGING
+#-----------------------------------------
 func getInventoryArray(Folder) -> Array:
 	var localArray: Array = []
 	var resources: Array = getFilesinFolder(Folder)

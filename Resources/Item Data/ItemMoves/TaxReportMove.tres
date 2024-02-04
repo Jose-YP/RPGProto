@@ -32,3 +32,4 @@ Condition = 0
 Aura = "CritDouble"
 ElementChange = "None"
 Summon = []
+SwapSummon = false

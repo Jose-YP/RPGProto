@@ -6,7 +6,7 @@ class_name Move
 @export_multiline var description: String = "Basic Attack"
 @export var TPCost: int = 50
 @export_enum("Enemy","Ally","Both") var Which = "Enemy"
-@export_enum("Single","Group","Self","All","Random","KO","None") var Target = "Single"
+@export_enum("Single","Group","Self","All","Random","RandomGroup","KO","None") var Target = "Single"
 @export_enum("Fire","Water","Elec","Light","Aurora","Comet","Neutral","Aether") var element: String = "Neutral"
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement = "Neutral"
 @export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property = 1
@@ -38,7 +38,8 @@ class_name Move
 @export var BoostAmmount: int = 0
 @export_flags("Attack","Defense","Speed","Luck") var BoostType = 0
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition = 0
-@export_enum("BodyBroken","WillWrecked","LowTicks","CritDouble") var Aura: String
+@export_enum("None","BodyBroken","WillWrecked","LowTicks","CritDouble") var Aura: String = "None"
 @export_enum("Fire","Water","Elec","Neutral","TWin","TLose","UWin","ULose","None") var ElementChange: String = "None"
-@export var Summon: Array
+@export var Summon: Array = []
+@export var SwapSummon: bool = false
 @export var Misc: Script

@@ -75,6 +75,7 @@ enum targetTypes {
 	SELF,
 	ALL,
 	RANDOM,
+	RANDOMGROUP,
 	TARGETTED,
 	REVIVE,
 	KO,
@@ -306,6 +307,8 @@ func findTarget(useMove) -> targetTypes:
 			returnTarget = targetTypes.ALL
 		"Random":
 			returnTarget = targetTypes.RANDOM
+		"RandomGroup":
+			returnTarget = targetTypes.RANDOMGROUP
 		"KO":
 			returnTarget = targetTypes.KO
 		"None":
@@ -388,22 +391,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 				waiting = true
 				EfinishSelecting(enemyAction)
 		
-		targetTypes.ALL:
-			if playerTurn:
-				if Globals.attacking:
-					PAllSelect(targetArray)
-			else:
-				waiting = true
-				EfinishSelecting(enemyAction)
-		
-		targetTypes.RANDOM:
-			if playerTurn:
-				if Globals.attacking:
-					PAllSelect(targetArray)
-			else:
-				waiting = true
-				EfinishSelecting(enemyAction)
-		
 		targetTypes.KO:
 			if playerTurn:
 				if Globals.attacking:
@@ -414,13 +401,28 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 				targetArray = deadEnemies
 				EfinishSelecting(enemyAction)
 		
-		targetTypes.TARGETTED:
+		(targetTypes.ALL or targetTypes.RANDOM or targetTypes.TARGETTED):
 			if playerTurn:
 				if Globals.attacking:
 					PAllSelect(targetArray)
 			else:
 				waiting = true
 				EfinishSelecting(enemyAction)
+		
+		targetTypes.RANDOMGROUP:
+			targetArrayGroup = []
+			if which == whichTypes.BOTH:
+				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
+			else:
+				targetArrayGroup = establishGroups(targetArray)
+			if playerTurn:
+				if Globals.attacking:
+					PAllSelect(targetArray)
+			else:
+				waiting = true
+				EfinishSelecting(enemyAction)
+			
+		
 
 func establishGroups(targetting) -> Array:
 	var returnGroup: Array = []
@@ -624,6 +626,30 @@ func action(useMove) -> void:
 				if targetArray.size() != 0:
 					await useAction(useMove,targetArray[randi()%targetArray.size()],team[i],1)
 		
+		targetTypes.RANDOMGROUP:
+			for m in range(hits):
+				print(targetArray)
+				print(targetArrayGroup)
+				var randomIndex = randi()%targetArrayGroup.size()
+				var groupSize = targetArrayGroup[randomIndex].size()
+				var offset = 0
+				var groupHit = 1
+				
+				if groupSize == 1 and useMove.name != "Switch Gear":
+					print("RANDOM TARGET GROUP ON 1",targetArrayGroup[randomIndex])
+					groupHit = 2
+				
+				for k in range(groupSize):
+					if targetDied: #Array goes 1by1 so lower k and size by 1 to get back on track
+						targetArrayGroup = establishGroups(targetArray) #Resestablish Groups
+						offset += 1
+						print(targetArray)
+						print(k - offset)
+						print(targetArrayGroup[randomIndex][k - offset])
+						targetDied = false
+					
+					await useAction(useMove,targetArrayGroup[randomIndex][k - offset],team[i],groupHit)
+		
 		_:
 			await useAction(useMove,targetArray[index],team[i],hits)
 	
@@ -652,15 +678,6 @@ func useAction(useMove, targetting, user, hits) -> void:
 		
 		times += 1
 		await get_tree().create_timer(.5).timeout
-
-func useActionRandom(useMove, targetting, user, hits) -> void:
-	var times = 0
-	while times < hits:
-		if useMove.property & 1 and useMove.property & 2:
-			times += 1
-		checkProperties(useMove,targetting,user,times)
-		times += 1
-		await get_tree().create_timer(1).timeout
 
 func checkProperties(move,targetting,user,hitNum) -> void:
 	if move.property & 256: #Misc first allows cetain changes before attacks
@@ -738,7 +755,7 @@ func offense(move,targetting,user) -> void:
 		var drain = user.drain(damage, .15)
 		user.currentLP += drain
 		user.currentLP = clamp(user.currentLP, 0, user.data.specificData.MaxLP)
-		user.LPtext.text = str("HP: ",user.currentLP)
+		user.LPtext.text = str("LP: ",user.currentLP)
 		user.tweenDamage(user,tweenTiming,str("Drained ", drain,"LP"))
 	
 	

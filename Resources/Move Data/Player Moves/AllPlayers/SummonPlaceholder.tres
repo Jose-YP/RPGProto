@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_fgy6p")
 name = "Summon"
-description = "Placeholder that has the Summon property"
+description = "Placeholder that has the Summon property.
+Planned to swap inactive party members with active party members."
 TPCost = 60
 Which = "Ally"
 Target = "Self"
@@ -29,6 +30,7 @@ HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
 Condition = 0
-Aura = ""
+Aura = "None"
 ElementChange = "None"
 Summon = []
+SwapSummon = true

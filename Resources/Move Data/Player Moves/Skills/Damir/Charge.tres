@@ -32,3 +32,4 @@ Condition = 1
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false

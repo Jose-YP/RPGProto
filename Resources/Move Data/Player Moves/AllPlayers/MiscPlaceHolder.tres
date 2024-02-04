@@ -4,9 +4,10 @@
 
 [resource]
 script = ExtResource("1_ilhx1")
-name = "Misc"
-description = "PlaceHolder that uses Misc Property"
-TPCost = 60
+name = "None"
+description = "PlaceHolder that uses Misc Property.
+Should not be selectable, here to be an empty placeholder"
+TPCost = 50
 Which = "Ally"
 Target = "Self"
 element = "Neutral"
@@ -29,6 +30,7 @@ HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
 Condition = 0
-Aura = ""
+Aura = "None"
 ElementChange = "None"
 Summon = []
+SwapSummon = false

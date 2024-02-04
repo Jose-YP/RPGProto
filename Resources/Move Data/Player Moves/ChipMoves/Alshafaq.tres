@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ludnisaxi0lt"]
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cwtp5hj33pp7o"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_585l8"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_w66bp"]
 
 [resource]
-script = ExtResource("1_585l8")
-name = "Attack"
+script = ExtResource("1_w66bp")
+name = "Almudhanib"
 description = "Basic Attack"
 TPCost = 50
 Which = "Enemy"
@@ -29,7 +29,7 @@ HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
 Condition = 0
-Aura = "None"
+Aura = ""
 ElementChange = "None"
 Summon = []
 SwapSummon = false

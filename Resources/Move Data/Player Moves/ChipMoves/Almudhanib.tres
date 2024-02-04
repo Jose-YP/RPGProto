@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ludnisaxi0lt"]
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://c3gkqtuljonuj"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_585l8"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_gallr"]
 
 [resource]
-script = ExtResource("1_585l8")
+script = ExtResource("1_gallr")
 name = "Attack"
 description = "Basic Attack"
 TPCost = 50
@@ -29,7 +29,7 @@ HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
 Condition = 0
-Aura = "None"
+Aura = ""
 ElementChange = "None"
 Summon = []
 SwapSummon = false
