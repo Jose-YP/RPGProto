@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://2rhs8p7a1wo"]
+
+[ext_resource type="Texture2D" uid="uid://dl471fyo3f1ka" path="res://Icons/Fire.png" id="1_xgpxq"]
+[ext_resource type="Texture2D" uid="uid://vanfvr734cq5" path="res://Icons/Water.png" id="2_hslps"]
+[ext_resource type="Texture2D" uid="uid://ccs1i0vinm0bf" path="res://Icons/Elec.png" id="3_3ca6g"]
+[ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="4_mc7a0"]
+
+[node name="EnemyElement" type="TabContainer"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -35.0
+offset_top = -38.0
+offset_right = 5.0
+offset_bottom = 2.0
+tabs_visible = false
+
+[node name="Fire" type="TextureRect" parent="."]
+modulate = Color(1, 0.160784, 0.223529, 1)
+layout_mode = 2
+texture = ExtResource("1_xgpxq")
+expand_mode = 4
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0.298039, 0.384314, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_hslps")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Elec" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 0.333333, 0.682353)
+layout_mode = 2
+texture = ExtResource("3_3ca6g")
+expand_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Neutral" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_mc7a0")
+expand_mode = 4
+metadata/_edit_lock_ = true

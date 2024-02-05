@@ -83,8 +83,16 @@ func _process(delta):
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 	
-	if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0): inputHoldTime = 0.0
-	else: inputHoldTime += delta
+	if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
+		inputHoldTime = 0.0
+	else:
+		inputHoldTime += delta
+		if not movingChip:
+			if get_viewport().gui_get_focus_owner().global_position.y < scrollDeadzone.x:
+				scrollUp()
+			elif get_viewport().gui_get_focus_owner().global_position.y > scrollDeadzone.y:
+				scrollDown()
+			
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)
@@ -239,9 +247,11 @@ func buttons() -> void:
 	#[chip,gear,item]
 	if not movingChip: #ZR and ZL
 		if Input.is_action_just_pressed("ZL"):
+			Globals.currentSave.ChipInventory = Globals.ChipInventory
 			itemMenu.emit()
 		
 		if Input.is_action_just_pressed("ZR"):
+			Globals.currentSave.ChipInventory = Globals.ChipInventory
 			gearMenu.emit()
 
 #-----------------------------------------

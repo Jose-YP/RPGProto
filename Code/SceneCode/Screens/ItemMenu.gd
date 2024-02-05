@@ -246,8 +246,12 @@ func buttons() -> void:
 	
 	#[chip,gear,item]
 	if not movingItem: #ZR and ZL
-		if Input.is_action_just_pressed("ZL"): gearMenu.emit()
-		if Input.is_action_just_pressed("ZR"): chipMenu.emit()
+		if Input.is_action_just_pressed("ZL"):
+			Globals.currentSave.ItemInventory = Globals.ItemInventory
+			gearMenu.emit()
+		if Input.is_action_just_pressed("ZR"):
+			Globals.currentSave.ItemInventory = Globals.ItemInventory
+			chipMenu.emit()
 
 #-----------------------------------------
 #INVENTORY DOCK

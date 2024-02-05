@@ -103,12 +103,14 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MasterSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MasterText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -119,11 +121,13 @@ layout_mode = 2
 text = "Music
 Volume"
 
-[node name="HSlider2" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MusicSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="MusicText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -134,11 +138,13 @@ layout_mode = 2
 text = "SFX
 Volume"
 
-[node name="HSlider3" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="SFXSlider" type="HSlider" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+[node name="SFXText" type="RichTextLabel" parent="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "		100%"
@@ -193,25 +199,44 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 20
-columns = 2
+columns = 3
 
-[node name="A" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+[node name="Up" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/A"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Up"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Up"
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Up"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+
+[node name="Accept" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Accept"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "A Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/A"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Accept"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
 
 [node name="ZL" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZL"]
@@ -228,23 +253,42 @@ size_flags_vertical = 4
 toggle_mode = true
 text = "Current Input"
 
-[node name="B" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+[node name="Left" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/B"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Left"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Left"
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Left"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+
+[node name="Cancel" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Cancel"]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 2
 size_flags_vertical = 4
 text = "B Button"
 scroll_active = false
 
-[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/B"]
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Cancel"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
 [node name="L" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/L"]
@@ -260,7 +304,25 @@ layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
+[node name="Down" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Down"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Down"
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Down"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+
 [node name="X" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/X"]
@@ -277,6 +339,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="R" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/R"]
@@ -292,7 +355,26 @@ layout_mode = 2
 toggle_mode = true
 text = "Current Input"
 
+[node name="Right" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Right"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Right
+"
+scroll_active = false
+
+[node name="Button" type="Button" parent="Main/VBox/Controls/VBox/Buttons/Right"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+
 [node name="Y" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/Y"]
@@ -309,6 +391,7 @@ toggle_mode = true
 text = "Current Input"
 
 [node name="ZR" type="HBoxContainer" parent="Main/VBox/Controls/VBox/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main/VBox/Controls/VBox/Buttons/ZR"]
@@ -356,17 +439,21 @@ text = "[center]...Awaiting Input...[/center]"
 
 [connection signal="toggled" from="Main/VBox/Audio/IndvOptions/Tests/Music" to="." method="_on_music_toggled"]
 [connection signal="pressed" from="Main/VBox/Audio/IndvOptions/Tests/SFX" to="." method="_on_sfx_pressed"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider" to="." method="audioSet"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider2" to="." method="audioSet"]
-[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/HSlider3" to="." method="audioSet"]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/MasterSlider" to="." method="audioSet" binds= [0]]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/MusicSlider" to="." method="audioSet" binds= [1]]
+[connection signal="value_changed" from="Main/VBox/Audio/IndvOptions/AudioOptions/GridContainer/SFXSlider" to="." method="audioSet" binds= [2]]
 [connection signal="item_selected" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/OptionButton" to="." method="_on_new_input_type_selected"]
 [connection signal="pressed" from="Main/VBox/Controls/VBox/InputType/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/A/Button" to="." method="controllerMapStart" binds= [0]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZL/Button" to="." method="controllerMapStart" binds= [1]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/B/Button" to="." method="controllerMapStart" binds= [2]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/L/Button" to="." method="controllerMapStart" binds= [3]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/X/Button" to="." method="controllerMapStart" binds= [4]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/R/Button" to="." method="controllerMapStart" binds= [5]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Y/Button" to="." method="controllerMapStart" binds= [6]]
-[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZR/Button" to="." method="controllerMapStart" binds= [7]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Up/Button" to="." method="controllerMapStart" binds= [0]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Accept/Button" to="." method="controllerMapStart" binds= [1]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZL/Button" to="." method="controllerMapStart" binds= [2]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Left/Button" to="." method="controllerMapStart" binds= [3]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Cancel/Button" to="." method="controllerMapStart" binds= [4]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/L/Button" to="." method="controllerMapStart" binds= [5]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Down/Button" to="." method="controllerMapStart" binds= [6]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/X/Button" to="." method="controllerMapStart" binds= [7]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/R/Button" to="." method="controllerMapStart" binds= [8]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Right/Button" to="." method="controllerMapStart" binds= [9]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/Y/Button" to="." method="controllerMapStart" binds= [10]]
+[connection signal="toggled" from="Main/VBox/Controls/VBox/Buttons/ZR/Button" to="." method="controllerMapStart" binds= [11]]
 [connection signal="pressed" from="Main/VBox/Exit" to="." method="_on_button_pressed"]

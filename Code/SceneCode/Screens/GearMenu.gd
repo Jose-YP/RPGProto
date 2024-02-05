@@ -17,8 +17,8 @@ extends Control
 @onready var playerElement: TabContainer = %Player1Element
 @onready var playerPhyEle: TabContainer = %PlayerPhyElement1
 @onready var playerBattleStats: RichTextLabel = %BattleStats
-@onready var CPUText: RichTextLabel = %EnemyTP
-@onready var CPUBar: TextureProgressBar = %CPUTEXT
+@onready var CPUText: RichTextLabel = %CPUTEXT
+@onready var CPUBar: TextureProgressBar = %EnemyTP
 @onready var ItemText: RichTextLabel = %ItemNum
 
 signal chipMenu
@@ -62,7 +62,7 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("Cancel"):
 		makeNoise.emit(1)
-		Globals.currentSave.GearInventory = Globals.gearInventory
+		Globals.currentSave.GearInventory = Globals.GearInventory
 		exitMenu.emit()
 	
 	if Input.is_action_just_pressed("L"):
@@ -87,9 +87,11 @@ func _process(_delta):
 	
 	#[chip,gear,item]
 	if Input.is_action_just_pressed("ZL"):
+		Globals.currentSave.GearInventory = Globals.GearInventory
 		chipMenu.emit()
 		
 	if Input.is_action_just_pressed("ZR"):
+		Globals.currentSave.GearInventory = Globals.GearInventory
 		itemMenu.emit()
 
 #-----------------------------------------
@@ -125,7 +127,6 @@ func getPlayerGear(index) -> void:
 	var entity = Globals.every_player_entity[index]
 	
 	for gear in allGear[Globals.charNum(entity)]:
-		print(gear.name)
 		var pannel = gearPanel.instantiate()
 		pannel.gearData = gear
 		pannel.chara = entity.name

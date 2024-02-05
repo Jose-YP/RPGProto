@@ -1,5 +1,6 @@
-Button
 HBoxContainer
+GridContainer
+Button
 RichTextLabel
 PanelContainer
 ColorRect
@@ -9,6 +10,5 @@ TabContainer
 MarginContainer
 VBoxContainer
 OptionButton
-GridContainer
 HSlider
 SpinBox

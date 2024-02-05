@@ -142,6 +142,8 @@ func changeScene(scene) -> void:
 	$".".add_child(newScene)
 	currentScene = newScene
 	currentScene.connect("makeNoise",makeNoise)
+	
+	Globals.currentSave.save()
 
 #-----------------------------------------
 #SIGNALS

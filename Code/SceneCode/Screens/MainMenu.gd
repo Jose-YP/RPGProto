@@ -3,14 +3,14 @@ extends Control
 @export var enemyEntities: Array[entityData]
 
 #PLAYER VARIABLES
-@onready var playerChoices: Array[OptionButton] = [%Playermenu1, %Playermenu2, %Playermenu3]
+@onready var playerChoices: Array[OptionButton] = [%PlayerMenu1, %PlayerMenu2, %PlayerMenu3]
 @onready var playerLevels: Array[SpinBox] = [%Player1Level, %Player2Level, %Player3Level]
 @onready var playerStats: Array[RichTextLabel] = [%Stats1, %Stats2, %Stats3]
-@onready var playerElements: Array[TabContainer] = [%Player1Element, %Player2Element, %Player3Element]
+@onready var playerElements: Array[TabContainer] = [%PlayerElement1, %PlayerElement2, %PlayerElement3]
 @onready var playerPhyEle: Array[TabContainer] = [%PlayerPhyElement1, %PlayerPhyElement2, %PlayerPhyElement3]
 #ENEMY VARIABLES
 @onready var enemyChoices: Array[OptionButton] = [%EnemyChoice1, %EnemyChoice2, %EnemyChoice3]
-@onready var enemiesShown: RichTextLabel = $EnemySide/EnemyDisplay/EnemyLineup/RichTextLabel
+@onready var enemiesShown: RichTextLabel = $EnemySide/EnemyLineup/RichTextLabel
 @onready var enemyElements: Array[TabContainer] = [%EnemyElement, %EnemyElement2, %EnemyElement3]
 @onready var enemyPhyEle: Array[TabContainer] = [%EnemyPhyElement, %EnemyPhyElement2, %EnemyPhyElement3]
 #OTHER VAR
@@ -80,6 +80,7 @@ func _input(event):
 func playerDescriptions(description,i) -> void:
 	var level = playerLevels[i].value
 	var currentName = playerChoices[i].get_item_text(playerChoices[i].selected)
+	description.clear()
 	description.append_text(makePlayerDesc(i,playerChoices[i].selected,currentName,level))
 	players[i] = playerEntities[playerChoices[i].selected]
 

@@ -1,79 +1,79 @@
-[gd_resource type="Resource" script_class="SaveFile" load_steps=83 format=3 uid="uid://c1n64slpp5eqd"]
+[gd_resource type="Resource" script_class="SaveFile" load_steps=80 format=3]
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/SaveMaker.gd" id="1_au31d"]
-[ext_resource type="Resource" uid="uid://dapyuch6t1i7e" path="res://Resources/Chip Data/AllIn.tres" id="1_yh88o"]
-[ext_resource type="Resource" uid="uid://43atp7yyoob5" path="res://Resources/Chip Data/Awkward.tres" id="2_cnvl7"]
-[ext_resource type="Resource" uid="uid://0v1ufecm6g5s" path="res://Resources/Chip Data/Blast.tres" id="3_akf78"]
-[ext_resource type="Resource" uid="uid://hq7hd3pd2y2r" path="res://Resources/Chip Data/Blood.tres" id="4_r5jqd"]
-[ext_resource type="Resource" uid="uid://cx4hfxuyplmfn" path="res://Resources/Chip Data/Body.tres" id="5_pe1g0"]
-[ext_resource type="Resource" uid="uid://v3ufo0myblsd" path="res://Resources/Chip Data/Boss.tres" id="6_m0iag"]
-[ext_resource type="Resource" uid="uid://cxjjcerpigyb6" path="res://Resources/Chip Data/Chuck.tres" id="7_rujxo"]
-[ext_resource type="Resource" uid="uid://cm78hd27sc8np" path="res://Resources/Chip Data/Electric.tres" id="8_ign6m"]
-[ext_resource type="Resource" uid="uid://dwtxak65nbs8q" path="res://Resources/Chip Data/Fire.tres" id="9_5qcum"]
-[ext_resource type="Resource" uid="uid://ctyq62rykb8wt" path="res://Resources/Chip Data/Fold.tres" id="10_q7qmg"]
-[ext_resource type="Resource" uid="uid://dorpxvegmno34" path="res://Resources/Chip Data/Mind.tres" id="11_bt3wu"]
-[ext_resource type="Resource" uid="uid://cwtf4pemecuv8" path="res://Resources/Chip Data/Murphys.tres" id="12_02xss"]
-[ext_resource type="Resource" uid="uid://60wcuok8bjor" path="res://Resources/Chip Data/Pact.tres" id="13_22shq"]
-[ext_resource type="Resource" uid="uid://ddard1fbvi8d5" path="res://Resources/Chip Data/Paradox.tres" id="14_ki016"]
-[ext_resource type="Resource" uid="uid://brkqca17wwc6k" path="res://Resources/Chip Data/SelfFullfilling.tres" id="15_2iw0k"]
-[ext_resource type="Resource" uid="uid://b6xe0obautoce" path="res://Resources/Chip Data/Soul.tres" id="16_s1id7"]
-[ext_resource type="Resource" uid="uid://cottnb5kligla" path="res://Resources/Chip Data/Spear.tres" id="17_gx7rx"]
-[ext_resource type="Resource" uid="uid://j510cp656e33" path="res://Resources/Chip Data/Tick.tres" id="18_v2sdl"]
-[ext_resource type="Resource" uid="uid://beejdr0trx438" path="res://Resources/Chip Data/Together.tres" id="19_tlida"]
-[ext_resource type="Resource" uid="uid://dtgluxta5eqok" path="res://Resources/Chip Data/Water.tres" id="20_ki87f"]
-[ext_resource type="Resource" uid="uid://cufen2nyialel" path="res://Resources/Chip Data/Wicked.tres" id="21_a0f4s"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/AllIn.tres" id="1_yh88o"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Awkward.tres" id="2_cnvl7"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Blast.tres" id="3_akf78"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Blood.tres" id="4_r5jqd"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Body.tres" id="5_pe1g0"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Boss.tres" id="6_m0iag"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Chuck.tres" id="7_rujxo"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Electric.tres" id="8_ign6m"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Fire.tres" id="9_5qcum"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Fold.tres" id="10_q7qmg"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Mind.tres" id="11_bt3wu"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Murphys.tres" id="12_02xss"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Pact.tres" id="13_22shq"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Paradox.tres" id="14_ki016"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/SelfFullfilling.tres" id="15_2iw0k"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Soul.tres" id="16_s1id7"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Spear.tres" id="17_gx7rx"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Tick.tres" id="18_v2sdl"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Together.tres" id="19_tlida"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Water.tres" id="20_ki87f"]
+[ext_resource type="Resource" path="res://Resources/Chip Data/Wicked.tres" id="21_a0f4s"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/InventoryMaker.gd" id="22_uiavo"]
-[ext_resource type="Resource" uid="uid://c8lqick44axlk" path="res://Resources/Gear Data/Betelgeuse Axe.tres" id="23_lq6dh"]
-[ext_resource type="Resource" uid="uid://0tf2axtfcetw" path="res://Resources/Gear Data/DevilishMittens.tres" id="24_iq750"]
-[ext_resource type="Resource" uid="uid://bn1f71pv8j7qo" path="res://Resources/Gear Data/NewSuperGreatSword.tres" id="25_q1apf"]
-[ext_resource type="Resource" uid="uid://ljunc8hoyajg" path="res://Resources/Gear Data/PoolNoodle.tres" id="26_07iyw"]
-[ext_resource type="Resource" uid="uid://cin6fhle3g8yy" path="res://Resources/Gear Data/RefurbishedEngine.tres" id="27_3mvhq"]
-[ext_resource type="Resource" uid="uid://dukvl236lt7qb" path="res://Resources/Gear Data/ShadowGloves.tres" id="28_pjfni"]
-[ext_resource type="Resource" uid="uid://ddb1bxsdk77eo" path="res://Resources/Gear Data/SolidSword.tres" id="29_7yicu"]
-[ext_resource type="Resource" uid="uid://dnm50seajcvmk" path="res://Resources/Gear Data/StoreboughtMotor.tres" id="30_d6y0y"]
-[ext_resource type="Resource" uid="uid://cxhgqeutsws7y" path="res://Resources/Gear Data/WitchSword.tres" id="31_3783k"]
-[ext_resource type="Resource" uid="uid://b6efw4occoe6v" path="res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres" id="32_swbnr"]
-[ext_resource type="Resource" uid="uid://dt8ucmph1nrix" path="res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres" id="33_2w2yt"]
-[ext_resource type="Resource" uid="uid://d3kx4skcjkrso" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="34_pu20w"]
-[ext_resource type="Resource" uid="uid://dlo38q7g0vh5w" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="35_ltcd5"]
-[ext_resource type="Resource" uid="uid://b87gkmkaqxfdl" path="res://Resources/Item Data/ItemSpecifics/ElecBomb.tres" id="36_dio4g"]
-[ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="37_rnix7"]
-[ext_resource type="Resource" uid="uid://cm7guxbx8nbyw" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="38_7gmc0"]
-[ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="39_3vy5r"]
-[ext_resource type="Resource" uid="uid://b6ban0ahb1a3a" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="40_7es6c"]
-[ext_resource type="Resource" uid="uid://bp3hni787i2io" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="41_5l8ff"]
-[ext_resource type="Resource" uid="uid://pe2yh2hq4sdm" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="42_ii5ax"]
-[ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="43_jlr62"]
-[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="44_fd6wn"]
-[ext_resource type="Resource" uid="uid://bvnx1sip88ck7" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="45_ab3tn"]
-[ext_resource type="Resource" uid="uid://c874usgm1v4dt" path="res://Resources/Item Data/ItemSpecifics/TPItem.tres" id="46_lrl2b"]
-[ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="47_uqs04"]
-[ext_resource type="Resource" uid="uid://yh443rnyasqw" path="res://Resources/Item Data/ItemSpecifics/WhimBerry.tres" id="48_ew13e"]
-[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="49_31tb7"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/Betelgeuse Axe.tres" id="23_lq6dh"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/DevilishMittens.tres" id="24_iq750"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/NewSuperGreatSword.tres" id="25_q1apf"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/PoolNoodle.tres" id="26_07iyw"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/RefurbishedEngine.tres" id="27_3mvhq"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/ShadowGloves.tres" id="28_pjfni"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/SolidSword.tres" id="29_7yicu"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/StoreboughtMotor.tres" id="30_d6y0y"]
+[ext_resource type="Resource" path="res://Resources/Gear Data/WitchSword.tres" id="31_3783k"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres" id="32_swbnr"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres" id="33_2w2yt"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="34_pu20w"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="35_ltcd5"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/ElecBomb.tres" id="36_dio4g"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="37_rnix7"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/Idol.tres" id="38_7gmc0"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="39_3vy5r"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/Nut.tres" id="40_7es6c"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/Softy!.tres" id="41_5l8ff"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres" id="42_ii5ax"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="43_jlr62"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="44_fd6wn"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/TaxReport.tres" id="45_ab3tn"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/TPItem.tres" id="46_lrl2b"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="47_uqs04"]
+[ext_resource type="Resource" path="res://Resources/Item Data/ItemSpecifics/WhimBerry.tres" id="48_ew13e"]
+[ext_resource type="Resource" path="res://BasicAttack.tres" id="49_31tb7"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="50_qw0lt"]
-[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Entity Moves/MostPlayer/Overdrive.tres" id="51_gm5pc"]
-[ext_resource type="Resource" uid="uid://cqh3v7dbr71j8" path="res://Resources/Move Data/Player Moves/Skills/Refresh.tres" id="52_teshh"]
-[ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/Skills/HalfMoon.tres" id="53_y652t"]
-[ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/Skills/StarMissiles.tres" id="54_o5o15"]
-[ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="55_bpks6"]
-[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="56_yusdr"]
-[ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="57_bbfnj"]
-[ext_resource type="Resource" uid="uid://cms6yhioy6q35" path="res://Resources/Move Data/Player Moves/Skills/RendingArm.tres" id="58_qkqba"]
-[ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres" id="59_58ejq"]
-[ext_resource type="Resource" uid="uid://h22asvgknsyy" path="res://Resources/Move Data/Entity Moves/MostEnemy/Charge.tres" id="60_a0qhl"]
-[ext_resource type="Resource" uid="uid://c50jb0vd5pl13" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres" id="61_11i3f"]
-[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="62_aascd"]
-[ext_resource type="Resource" uid="uid://thjky3n7j4up" path="res://Resources/Move Data/Player Moves/Skills/SwitchGear.tres" id="62_b4bl7"]
-[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="63_t6rja"]
-[ext_resource type="Resource" uid="uid://bu26ysf3sttpc" path="res://Resources/Move Data/Player Moves/Skills/FullStream.tres" id="63_yxjw0"]
-[ext_resource type="Resource" uid="uid://rgdfbbmp5gfg" path="res://Resources/Move Data/Player Moves/Skills/Scapegoat.tres" id="64_qem6r"]
-[ext_resource type="Resource" uid="uid://cgnjxe1278mhx" path="res://Resources/Move Data/Player Moves/Skills/GatlingVolley.tres" id="64_ym8cx"]
-[ext_resource type="Resource" uid="uid://2ksnt4xg31w4" path="res://Resources/Move Data/Player Moves/Skills/DragonScrew.tres" id="65_hfldj"]
-[ext_resource type="Resource" uid="uid://ci0uggvjoovhn" path="res://Resources/Move Data/Player Moves/Skills/Veritate.tres" id="65_y4xpq"]
-[ext_resource type="Resource" uid="uid://bjxxa7n1ednd5" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres" id="66_mp4c5"]
-[ext_resource type="Resource" uid="uid://del6wldfbl02t" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres" id="66_rghrg"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/Overdrive.tres" id="51_gm5pc"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/Refresh.tres" id="52_teshh"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/HalfMoon.tres" id="53_y652t"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/StarMissiles.tres" id="54_o5o15"]
+[ext_resource type="Resource" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="55_bpks6"]
+[ext_resource type="Resource" path="res://Wait.tres" id="56_yusdr"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="57_bbfnj"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Damir/RendingArm.tres" id="58_qkqba"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres" id="59_58ejq"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Damir/Charge.tres" id="60_a0qhl"]
+[ext_resource type="Resource" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres" id="61_11i3f"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="62_aascd"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Lonna/SwitchGear.tres" id="62_b4bl7"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="63_t6rja"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Lonna/FullStream.tres" id="63_yxjw0"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Pepper/Scapegoat.tres" id="64_qem6r"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres" id="64_ym8cx"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Lonna/DragonScrew.tres" id="65_hfldj"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Pepper/Veritate.tres" id="65_y4xpq"]
+[ext_resource type="Resource" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres" id="66_mp4c5"]
+[ext_resource type="Resource" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres" id="66_rghrg"]
 
-[sub_resource type="Resource" id="Resource_u5gn2"]
+[sub_resource type="Resource" id="Resource_ggtj8"]
 script = ExtResource("22_uiavo")
 type = "Chip"
 inventory = [ExtResource("1_yh88o"), ExtResource("2_cnvl7"), ExtResource("3_akf78"), ExtResource("4_r5jqd"), ExtResource("5_pe1g0"), ExtResource("6_m0iag"), ExtResource("7_rujxo"), ExtResource("8_ign6m"), ExtResource("9_5qcum"), ExtResource("10_q7qmg"), ExtResource("11_bt3wu"), ExtResource("12_02xss"), ExtResource("13_22shq"), ExtResource("14_ki016"), ExtResource("15_2iw0k"), ExtResource("16_s1id7"), ExtResource("17_gx7rx"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("20_ki87f"), ExtResource("21_a0f4s")]
@@ -81,7 +81,7 @@ inventorySort1 = [ExtResource("3_akf78"), ExtResource("7_rujxo"), ExtResource("8
 inventorySort2 = [ExtResource("4_r5jqd"), ExtResource("17_gx7rx"), ExtResource("8_ign6m"), ExtResource("2_cnvl7"), ExtResource("5_pe1g0"), ExtResource("11_bt3wu"), ExtResource("16_s1id7"), ExtResource("20_ki87f"), ExtResource("3_akf78"), ExtResource("7_rujxo"), ExtResource("9_5qcum"), ExtResource("1_yh88o"), ExtResource("10_q7qmg"), ExtResource("21_a0f4s"), ExtResource("12_02xss"), ExtResource("14_ki016"), ExtResource("15_2iw0k"), ExtResource("13_22shq"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("6_m0iag")]
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_j2so6"]
+[sub_resource type="Resource" id="Resource_mfqk5"]
 script = ExtResource("22_uiavo")
 type = "Gear"
 inventory = [ExtResource("23_lq6dh"), ExtResource("24_iq750"), ExtResource("25_q1apf"), ExtResource("26_07iyw"), ExtResource("27_3mvhq"), ExtResource("28_pjfni"), ExtResource("29_7yicu"), ExtResource("30_d6y0y"), ExtResource("31_3783k")]
@@ -89,7 +89,7 @@ inventorySort1 = []
 inventorySort2 = []
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_5kddp"]
+[sub_resource type="Resource" id="Resource_68flr"]
 script = ExtResource("22_uiavo")
 type = "Item"
 inventory = [ExtResource("32_swbnr"), ExtResource("33_2w2yt"), ExtResource("34_pu20w"), ExtResource("35_ltcd5"), ExtResource("36_dio4g"), ExtResource("37_rnix7"), ExtResource("38_7gmc0"), ExtResource("39_3vy5r"), ExtResource("40_7es6c"), ExtResource("41_5l8ff"), ExtResource("42_ii5ax"), ExtResource("43_jlr62"), ExtResource("44_fd6wn"), ExtResource("45_ab3tn"), ExtResource("46_lrl2b"), ExtResource("47_uqs04"), ExtResource("48_ew13e")]
@@ -97,185 +97,27 @@ inventorySort1 = [ExtResource("40_7es6c"), ExtResource("47_uqs04"), ExtResource(
 inventorySort2 = [ExtResource("35_ltcd5"), ExtResource("40_7es6c"), ExtResource("44_fd6wn"), ExtResource("36_dio4g"), ExtResource("32_swbnr"), ExtResource("48_ew13e"), ExtResource("42_ii5ax"), ExtResource("39_3vy5r"), ExtResource("43_jlr62"), ExtResource("47_uqs04"), ExtResource("38_7gmc0"), ExtResource("37_rnix7"), ExtResource("41_5l8ff"), ExtResource("33_2w2yt"), ExtResource("46_lrl2b"), ExtResource("34_pu20w"), ExtResource("45_ab3tn")]
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_hsle3"]
+[sub_resource type="Resource" id="Resource_4lp7j"]
 script = ExtResource("50_qw0lt")
-level = 9
+level = 6
 name = "DREAMER"
 species = "Derivative"
 specificData = ExtResource("55_bpks6")
-MaxHP = 184
-MaxTP = 98
-strength = 10
-toughness = 8
-ballistics = 15
-resistance = 12
-speed = 9
-luck = 7
-element = "Neutral"
-phyElement = "Slash"
-soloElementMod = 0.0
-groupElementMod = 0.0
-phyElementMod = 0.0
-sameElement = false
-Weakness = 0
-Resist = 16
-immunity = "None"
-attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("51_gm5pc"), ExtResource("52_teshh"), ExtResource("53_y652t"), ExtResource("54_o5o15")]
-itemData = {
-ExtResource("39_3vy5r"): 3,
-ExtResource("47_uqs04"): 2,
-ExtResource("42_ii5ax"): 2
-}
-waitData = ExtResource("56_yusdr")
-ItemChange = 0
-costBonus = 3
-HpCostMod = 0.3
-LpCostMod = 0.3
-TpCostMod = 0.0
-calcBonus = 4
-drainCalcAmmount = 0.0
-ailmentCalcAmmount = 0.0
-critCalcAmmount = 60.0
-KO = false
-XSoft = Array[String](["", "", ""])
-Condition = 0
-TempElement = null
-miscCalc = "None"
-Ailment = "Healthy"
-AilmentNum = 0
-attackBoost = 0.0
-defenseBoost = 0.0
-speedBoost = 0.0
-luckBoost = 0.0
-
-[sub_resource type="Resource" id="Resource_vid74"]
-script = ExtResource("50_qw0lt")
-level = 5
-name = "Damir"
-species = "Derivative"
-specificData = ExtResource("61_11i3f")
-MaxHP = 46
-MaxTP = 90
-strength = 19
-toughness = 5
-ballistics = 2
+MaxHP = 151
+MaxTP = 92
+strength = 9
+toughness = 7
+ballistics = 13
 resistance = 10
-speed = 6
-luck = 6
-element = "Water"
-phyElement = "Slash"
-soloElementMod = 0.0
-groupElementMod = 0.0
-phyElementMod = 0.0
-sameElement = false
-Weakness = 0
-Resist = 16
-immunity = "None"
-attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("57_bbfnj"), ExtResource("58_qkqba"), ExtResource("59_58ejq"), ExtResource("60_a0qhl")]
-itemData = {
-ExtResource("43_jlr62"): 3,
-ExtResource("40_7es6c"): 7,
-ExtResource("34_pu20w"): 1,
-ExtResource("36_dio4g"): 2
-}
-waitData = ExtResource("56_yusdr")
-ItemChange = 0
-costBonus = 0
-HpCostMod = 0.0
-LpCostMod = 0.0
-TpCostMod = 0.0
-calcBonus = 0
-drainCalcAmmount = 0.0
-ailmentCalcAmmount = 0.0
-critCalcAmmount = 0.0
-KO = false
-XSoft = Array[String](["", "", ""])
-Condition = 0
-TempElement = null
-miscCalc = "None"
-Ailment = "Healthy"
-AilmentNum = 0
-attackBoost = 0.0
-defenseBoost = 0.0
-speedBoost = 0.0
-luckBoost = 0.0
-
-[sub_resource type="Resource" id="Resource_j8doh"]
-script = ExtResource("50_qw0lt")
-level = 5
-name = "Pepper"
-species = "Andromeda"
-specificData = ExtResource("66_rghrg")
-MaxHP = 78
-MaxTP = 90
-strength = 4
-toughness = 6
-ballistics = 16
-resistance = 3
 speed = 8
-luck = 9
-element = "Fire"
+luck = 5
+element = "Neutral"
 phyElement = "Pierce"
 soloElementMod = 0.0
 groupElementMod = 0.0
 phyElementMod = 0.0
 sameElement = false
 Weakness = 0
-Resist = 32
-immunity = "None"
-attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("62_aascd"), ExtResource("63_t6rja"), ExtResource("64_qem6r"), ExtResource("65_y4xpq")]
-itemData = {
-ExtResource("41_5l8ff"): 1,
-ExtResource("40_7es6c"): 10,
-ExtResource("45_ab3tn"): 1,
-ExtResource("38_7gmc0"): 2
-}
-waitData = ExtResource("56_yusdr")
-ItemChange = 0
-costBonus = 3
-HpCostMod = 0.3
-LpCostMod = 0.3
-TpCostMod = 0.0
-calcBonus = 4
-drainCalcAmmount = 0.0
-ailmentCalcAmmount = 0.0
-critCalcAmmount = 60.0
-KO = false
-XSoft = Array[String](["", "", ""])
-Condition = 0
-TempElement = null
-miscCalc = "None"
-Ailment = "Healthy"
-AilmentNum = 0
-attackBoost = 0.0
-defenseBoost = 0.0
-speedBoost = 0.0
-luckBoost = 0.0
-
-[sub_resource type="Resource" id="Resource_4lp7j"]
-script = ExtResource("50_qw0lt")
-level = 9
-name = "DREAMER"
-species = "Derivative"
-specificData = ExtResource("55_bpks6")
-MaxHP = 184
-MaxTP = 98
-strength = 10
-toughness = 8
-ballistics = 15
-resistance = 12
-speed = 9
-luck = 7
-element = "Neutral"
-phyElement = "Slash"
-soloElementMod = 0.0
-groupElementMod = 0.0
-phyElementMod = 0.0
-sameElement = false
-Weakness = 0
 Resist = 16
 immunity = "None"
 attackData = ExtResource("49_31tb7")
@@ -295,59 +137,6 @@ calcBonus = 4
 drainCalcAmmount = 0.0
 ailmentCalcAmmount = 0.0
 critCalcAmmount = 60.0
-KO = false
-XSoft = Array[String](["", "", ""])
-Condition = 0
-TempElement = null
-miscCalc = "None"
-Ailment = "Healthy"
-AilmentNum = 0
-attackBoost = 0.0
-defenseBoost = 0.0
-speedBoost = 0.0
-luckBoost = 0.0
-
-[sub_resource type="Resource" id="Resource_uyxhu"]
-script = ExtResource("50_qw0lt")
-level = 6
-name = "Lonna"
-species = "Derivative"
-specificData = ExtResource("66_mp4c5")
-MaxHP = 119
-MaxTP = 92
-strength = 7
-toughness = 11
-ballistics = 6
-resistance = 9
-speed = 8
-luck = 12
-element = "Fire"
-phyElement = "Crush"
-soloElementMod = 0.0
-groupElementMod = 0.0
-phyElementMod = 0.0
-sameElement = false
-Weakness = 0
-Resist = 8
-immunity = "None"
-attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("62_b4bl7"), ExtResource("63_yxjw0"), ExtResource("64_ym8cx"), ExtResource("65_hfldj")]
-itemData = {
-ExtResource("48_ew13e"): 3,
-ExtResource("32_swbnr"): 1,
-ExtResource("46_lrl2b"): 1,
-ExtResource("37_rnix7"): 2
-}
-waitData = ExtResource("56_yusdr")
-ItemChange = 0
-costBonus = 0
-HpCostMod = 0.0
-LpCostMod = 0.0
-TpCostMod = 0.0
-calcBonus = 0
-drainCalcAmmount = 0.0
-ailmentCalcAmmount = 0.0
-critCalcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
@@ -466,10 +255,63 @@ defenseBoost = 0.0
 speedBoost = 0.0
 luckBoost = 0.0
 
+[sub_resource type="Resource" id="Resource_uyxhu"]
+script = ExtResource("50_qw0lt")
+level = 6
+name = "Lonna"
+species = "Derivative"
+specificData = ExtResource("66_mp4c5")
+MaxHP = 119
+MaxTP = 92
+strength = 7
+toughness = 7
+ballistics = 6
+resistance = 9
+speed = 4
+luck = 12
+element = "Elec"
+phyElement = "Crush"
+soloElementMod = 0.26
+groupElementMod = 0.15
+phyElementMod = 0.0
+sameElement = false
+Weakness = 0
+Resist = 8
+immunity = "None"
+attackData = ExtResource("49_31tb7")
+skillData = [ExtResource("62_b4bl7"), ExtResource("63_yxjw0"), ExtResource("64_ym8cx"), ExtResource("65_hfldj")]
+itemData = {
+ExtResource("48_ew13e"): 3,
+ExtResource("32_swbnr"): 1,
+ExtResource("46_lrl2b"): 1,
+ExtResource("37_rnix7"): 2
+}
+waitData = ExtResource("56_yusdr")
+ItemChange = 0
+costBonus = 0
+HpCostMod = 0.0
+LpCostMod = 0.0
+TpCostMod = 0.0
+calcBonus = 0
+drainCalcAmmount = 0.0
+ailmentCalcAmmount = 0.0
+critCalcAmmount = 0.0
+KO = false
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+miscCalc = "None"
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0
+
 [resource]
 script = ExtResource("1_au31d")
 every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_4lp7j"), SubResource("Resource_uyxhu"), SubResource("Resource_shlbl"), SubResource("Resource_0cbp3")])
-current_party = Array[ExtResource("50_qw0lt")]([SubResource("Resource_hsle3"), SubResource("Resource_vid74"), SubResource("Resource_j8doh")])
-ChipInventory = SubResource("Resource_u5gn2")
-GearInventory = SubResource("Resource_j2so6")
-ItemInventory = SubResource("Resource_5kddp")
+current_party = Array[ExtResource("50_qw0lt")]([SubResource("Resource_4lp7j"), SubResource("Resource_shlbl"), SubResource("Resource_0cbp3")])
+ChipInventory = SubResource("Resource_ggtj8")
+GearInventory = SubResource("Resource_mfqk5")
+ItemInventory = SubResource("Resource_68flr")

@@ -33,6 +33,7 @@ func _ready():
 	userAudios = [Globals.userPrefs.masterAudioLeve, Globals.userPrefs.musicAudioLeve, Globals.userPrefs.sfxAudioLeve]
 	
 	for i in range(VolumeValues.size()):
+		print(userAudios[i])
 		audioSet(userAudios[i], i)
 	
 	inputType = Globals.userPrefs.input_type
