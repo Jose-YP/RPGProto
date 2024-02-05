@@ -2,8 +2,10 @@ extends Resource
 class_name  SaveFile
 
 @export_category("Characters")
-@export var every_player_entity: Array[entityData] = []
-@export var current_party: Array[entityData] = []
+#DREAMER 0 | LONNA 1 | DAMIR 2 | PEPPER 3
+@export var every_player_entity: Array[entityData] = [entityData.new(),entityData.new(),entityData.new(),entityData.new()]
+@export var every_specific_data: Array[Player] = [Player.new(),Player.new(),Player.new(),Player.new()]
+@export var current_party: Array[int] = [0,2,3]
 
 @export_category("Inventories")
 @export var ChipInventory: Inven = Inven.new()

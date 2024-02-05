@@ -8,8 +8,8 @@
 [ext_resource type="Resource" uid="uid://cx4hfxuyplmfn" path="res://Resources/Chip Data/Body.tres" id="5_668uq"]
 [ext_resource type="Resource" uid="uid://v3ufo0myblsd" path="res://Resources/Chip Data/Boss.tres" id="6_yeae7"]
 [ext_resource type="Resource" uid="uid://cxjjcerpigyb6" path="res://Resources/Chip Data/Chuck.tres" id="7_pbgk8"]
-[ext_resource type="Resource" uid="uid://cm78hd27sc8np" path="res://Resources/Chip Data/Electric.tres" id="8_hrg36"]
-[ext_resource type="Resource" uid="uid://dwtxak65nbs8q" path="res://Resources/Chip Data/Fire.tres" id="9_l1jcw"]
+[ext_resource type="Resource" uid="uid://cm78hd27sc8np" path="res://Resources/Chip Data/Saeiqa.tres" id="8_hrg36"]
+[ext_resource type="Resource" uid="uid://dwtxak65nbs8q" path="res://Resources/Chip Data/Hariq.tres" id="9_l1jcw"]
 [ext_resource type="Resource" uid="uid://ctyq62rykb8wt" path="res://Resources/Chip Data/Fold.tres" id="10_x68xj"]
 [ext_resource type="Resource" uid="uid://dorpxvegmno34" path="res://Resources/Chip Data/Mind.tres" id="11_4rjmb"]
 [ext_resource type="Resource" uid="uid://cwtf4pemecuv8" path="res://Resources/Chip Data/Murphys.tres" id="12_ooq3n"]
@@ -20,8 +20,9 @@
 [ext_resource type="Resource" uid="uid://cottnb5kligla" path="res://Resources/Chip Data/Spear.tres" id="17_o788m"]
 [ext_resource type="Resource" uid="uid://j510cp656e33" path="res://Resources/Chip Data/Tick.tres" id="18_d6yo0"]
 [ext_resource type="Resource" uid="uid://beejdr0trx438" path="res://Resources/Chip Data/Together.tres" id="19_j1ll7"]
-[ext_resource type="Resource" uid="uid://dtgluxta5eqok" path="res://Resources/Chip Data/Water.tres" id="20_458wm"]
+[ext_resource type="Resource" uid="uid://dtgluxta5eqok" path="res://Resources/Chip Data/Bahr.tres" id="20_458wm"]
 [ext_resource type="Resource" uid="uid://cufen2nyialel" path="res://Resources/Chip Data/Wicked.tres" id="21_vnxt0"]
+
 
 [resource]
 script = ExtResource("1_kyfla")

@@ -21,6 +21,7 @@ ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([ExtResourc
 currentCPU = 0
 attackTarget = "Single"
 Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([ExtResource("1_5xe4j"), ExtResource("2_erwxx"), ExtResource("3_o47xs")])
+ThirdMoveElement = 0
 boostTarget = "Single"
 boostStat = 8
 Tactics2 = ExtResource("4_e3fiq")

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=3 format=3 uid="uid://cm78hd27sc8np"]
+
+[ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Entity Moves/Seiqa.tres" id="1_22y2u"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="2_towca"]
+
+[resource]
+script = ExtResource("2_towca")
+name = "Saeiqa"
+description = "The user's third basic move becomes Saeiqa. Can combine with other 3rd move chips"
+CpuCost = 3
+maxNum = 3
+ChipType = "Red"
+equippedOn = 0
+other = ""
+NewMove = ExtResource("1_22y2u")
+ThirdMoveElement = 4
+newPhyElement = "None"
+AffectedMove = "None"
+NewTarget = ""
+ItemChange = ""
+calcBonus = 0
+calcAmmount = 0.0
+costBonus = 0
+costMod = 0.0
+TpCostMod = 0.0
+NewElement = "None"
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+Immunity = "None"
+Resist = null
+HP = 0
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+StatSwap = false
+FirstSwap = ""
+SecondSwap = ""

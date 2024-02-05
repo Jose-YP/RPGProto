@@ -53,7 +53,11 @@ func configureFileManager():
 #-----------------------------------------
 #SAVE MANAGER
 #-----------------------------------------
-
+func SceneSwapSave() -> void:
+	Globals.currentSave.every_player_entity = Globals.every_player_entity
+	Globals.readyPlayerDataSave()
+	Globals.currentSave.save()
+	print("SAVE")
 
 #-----------------------------------------
 #INVENTORY MANAGING
@@ -143,7 +147,7 @@ func changeScene(scene) -> void:
 	currentScene = newScene
 	currentScene.connect("makeNoise",makeNoise)
 	
-	Globals.currentSave.save()
+	SceneSwapSave()
 
 #-----------------------------------------
 #SIGNALS

@@ -14,7 +14,9 @@ class_name Player
 
 @export_group("Basic Moves")
 @export_enum("Single","Group","Self","All","Random","KO","None") var attackTarget: String = "Single"
-@export var Basics: Array[Move]
+@export var Basics: Array[Move] = []
+@export_subgroup("3rdMove Flags")
+@export_flags("Fire","Water","Elec") var ThirdMoveElement: int = 0
 
 @export_group("Tactics")
 @export_enum("Single","Group","Self","All","Random","KO","None") var boostTarget: String = "Single"
@@ -29,3 +31,11 @@ class_name Player
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentWeakness: int = 0
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentResist: int = 0
 @export_flags("Attack","Defense","Speed","Luck") var defaultBoostStat: int = 8
+
+func setUp():
+	Basics = [load("res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres"),
+	load("res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres"),
+	load("res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres")]
+	Tactics2 = load("res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres")
+	Tactics3 = load("res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres")
+	Tactics4 = load("res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres")

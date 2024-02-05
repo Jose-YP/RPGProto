@@ -34,33 +34,43 @@ var players: Array[entityData] = [null, null, null]
 var enemies: Array[entityData] = [null, null, null]
 var optionsOpen: bool = false
 var helpOpen: bool = false
+var trueReady: bool = false
 
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
 func _ready():
 	playerEntities = Globals.currentSave.every_player_entity
+	var inactiveFound: int = 0
 	
 	for i in range(3):
-		playerLevels[i].value = Globals.currentSave.current_party[i].level
+		var playerNum = Globals.currentSave.current_party[i]
+		playerChoices[i].selected = playerNum
+		playerLevels[i].value = Globals.currentSave.every_player_entity[playerNum].level
 		playerDescriptions(playerStats[i],i)
 	for menu in (playerChoices + enemyChoices):
 		menu.connect("pressed",_on_menu_button_pressed)
 	
 	for player in range(playerEntities.size()):
+		print(playerEntities)
 		var atLeatOne: bool = false
 		playerLevelsHold[player] = playerEntities[player].level
 		for check in Globals.currentSave.current_party:
-			if playerEntities[player].name == check.name:
+			if playerEntities[player].name == Globals.currentSave.every_player_entity[check].name:
 				atLeatOne = true
 				break
 		if not atLeatOne:
-			Globals.inactive_player_entities.append(playerEntities[player])
+			if Globals.inactive_player_entities.size() < inactiveFound + 1:
+				Globals.inactive_player_entities.append(playerEntities[player])
+			else:
+				Globals.inactive_player_entities[inactiveFound] = playerEntities[player]
+			inactiveFound += 1
 	
 	setPlayerGlobals()
 	makeEnemyLineup()
 	
 	$Navigation/Buttons/ItemButton.grab_focus()
+	trueReady = true
 
 func _input(event):
 	if not optionsOpen and not helpOpen:
@@ -142,17 +152,17 @@ func playerChoiceChanged(playerIndex,infoIndex) -> void: #First is for playerNam
 	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
 	var level = getLevel(currentName)
 	noRepeats(currentName, infoIndex)
-	print(currentName)
 	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
 	playerLevels[infoIndex].value = level
 
 func levelChange(level,infoIndex) -> void:
-	makeNoise.emit(2)
-	playerStats[infoIndex].clear()
-	var playerIndex = playerChoices[infoIndex].selected
-	var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
-	playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
-	saveLevels(currentName,level)
+	if trueReady:
+		makeNoise.emit(2)
+		playerStats[infoIndex].clear()
+		var playerIndex = playerChoices[infoIndex].selected
+		var currentName = playerChoices[infoIndex].get_item_text(playerIndex)
+		playerStats[infoIndex].append_text(makePlayerDesc(infoIndex,playerIndex,currentName,level))
+		saveLevels(currentName,level)
 
 #-----------------------------------------
 #PLAYER HELPERS
@@ -193,7 +203,13 @@ func getLevel(chara) -> int:
 func setPlayerGlobals() -> void:
 	Globals.current_player_entities = []
 	Globals.current_player_entities = players
-	Globals.currentSave.current_party = players
+	
+	for player in range(players.size()):
+		print(Globals.currentSave.current_party, Globals.charNum(players[player]))
+		Globals.currentSave.current_party[player] = Globals.charNum(players[player])
+	
+	print("")
+	
 	Globals.every_player_entity = players + Globals.inactive_player_entities
 
 func setInactivePlayer(held) -> void:

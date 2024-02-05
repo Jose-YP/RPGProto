@@ -11,6 +11,7 @@ maxNum = 3
 ChipType = "Red"
 equippedOn = 0
 other = ""
+ThirdMoveElement = 0
 newPhyElement = "None"
 AffectedMove = "Boost"
 NewTarget = "Group"

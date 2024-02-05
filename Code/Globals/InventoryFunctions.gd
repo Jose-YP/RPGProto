@@ -1,5 +1,13 @@
 extends Node
 
+var HariqMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerHariq.tres")
+var BahrMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres")
+var SaeiqaMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerSeiqa.tres")
+var AlmudhanibMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres")
+var AlshafaqMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres")
+var AlqamarMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres")
+var DawMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres")
+
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
 		for item in player.itemData:
@@ -198,6 +206,9 @@ func chipHandlerResult(chip,chara,result) -> void:
 func redChipFun(entity, chip) -> void:
 	if chip.NewMove != null:
 		entity.specificData.Basics[1] = chip.NewMove
+		entity.specificData.ThirdMoveElement |= chip.ThirdMoveElement
+		print(entity.specificData.ThirdMoveElement)
+		ThirdMoveDetermine(entity, entity.specificData.ThirdMoveElement)
 	if chip.newPhyElement != "None" and chip.newPhyElement != "":
 		entity.phyElement = chip.newPhyElement
 	if chip.AffectedMove == "Boost":
@@ -222,6 +233,24 @@ func redChipFun(entity, chip) -> void:
 			entity.LpCostMod += chip.costMod
 		if chip.costBonus & 4:
 			entity.TpCostMod += chip.TpCostMod
+
+func ThirdMoveDetermine(entity, elementMix) -> void:
+	print(entity.name, elementMix)
+	match elementMix: #FIRE = 1 | WATER = 2 | ELEC = 4
+		1:
+			pass
+		2:
+			pass
+		4:
+			pass
+		3:
+			pass
+		5:
+			pass
+		6:
+			pass
+		7:
+			pass
 
 func blueChipFun(entity, chip) -> void:
 	if chip.NewElement != "None" and chip.NewElement != "":
@@ -369,23 +398,24 @@ func yellowStatSwap(entity, firstStatType, secondStatType) -> void:
 
 func gearApply(entity, gear) -> void:
 	entity.specificData.GearData = gear
-	gear.equipped = true
-	
-	entity.strength += gear.Strength
-	entity.toughness += gear.Toughness
-	entity.ballistics += gear.Ballistics
-	entity.resistance += gear.Resistance
-	entity.speed += gear.Speed
-	entity.luck += gear.Luck
-	
-	if gear.calcBonus & 1:
-		entity.calcBonus |= 1
-		entity.drainCalcAmmount = gear.calcAmmount
-	if gear.calcBonus & 2:
-		entity.calcBonus |= 2
-		entity.ailmentCalcAmmount = gear.calcAmmount
-	if gear.calcBonus & 4:
-		entity.calcBonus |= 4
-		entity.critCalcAmmount = gear.calcAmmount
-	if gear.calcBonus & 8:
-		entity.groupElementMod = gear.calcAmmount
+	if gear != null:
+		gear.equipped = true
+		
+		entity.strength += gear.Strength
+		entity.toughness += gear.Toughness
+		entity.ballistics += gear.Ballistics
+		entity.resistance += gear.Resistance
+		entity.speed += gear.Speed
+		entity.luck += gear.Luck
+		
+		if gear.calcBonus & 1:
+			entity.calcBonus |= 1
+			entity.drainCalcAmmount = gear.calcAmmount
+		if gear.calcBonus & 2:
+			entity.calcBonus |= 2
+			entity.ailmentCalcAmmount = gear.calcAmmount
+		if gear.calcBonus & 4:
+			entity.calcBonus |= 4
+			entity.critCalcAmmount = gear.calcAmmount
+		if gear.calcBonus & 8:
+			entity.groupElementMod = gear.calcAmmount

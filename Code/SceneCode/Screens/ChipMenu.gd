@@ -223,7 +223,7 @@ func buttons() -> void:
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
 		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
+		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu.size() == 0:
 			PlayMenu[0][0].focus.grab_focus()
 	
 	if Input.is_action_just_pressed("R"):
@@ -241,7 +241,7 @@ func buttons() -> void:
 		getPlayerStats(playerIndex)
 		getPlayerChips(playerIndex)
 		
-		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu[0][0] == null:
+		if get_viewport().gui_get_focus_owner() == null and not acrossPlayers and not PlayMenu.size() == 0:
 			PlayMenu[0][0].focus.grab_focus()
 	
 	#[chip,gear,item]
@@ -448,16 +448,28 @@ func swap(value) -> int:
 	return value
 
 func scrollUp() -> void:
-	if side == 0:
-		chipInv.get_parent().scroll_vertical -= scrollAmmount
+	if acrossPlayers:
+		if side == 0:
+			chipInv.get_parent().scroll_vertical -= scrollAmmount
+		else:
+			playerChips.get_parent().scroll_vertical -= scrollAmmount
 	else:
-		playerChips.get_parent().scroll_vertical -= scrollAmmount
+		if get_viewport().gui_get_focus_owner().get_parent().inChar:
+			playerChips.get_parent().scroll_vertical -= scrollAmmount
+		else:
+			chipInv.get_parent().scroll_vertical -= scrollAmmount
 
 func scrollDown() -> void:
-	if side == 0:
-		chipInv.get_parent().scroll_vertical += scrollAmmount
+	if acrossPlayers:
+		if side == 0:
+			chipInv.get_parent().scroll_vertical += scrollAmmount
+		else:
+			playerChips.get_parent().scroll_vertical += scrollAmmount
 	else:
-		playerChips.get_parent().scroll_vertical += scrollAmmount
+		if get_viewport().gui_get_focus_owner().get_parent().inChar:
+			playerChips.get_parent().scroll_vertical += scrollAmmount
+		else:
+			chipInv.get_parent().scroll_vertical += scrollAmmount
 
 func setFocus(value: bool) -> void:
 	if side == 0:

@@ -207,7 +207,8 @@ func update() -> void:
 #-----------------------------------------
 func swapGear():
 	var entity = Globals.every_player_entity[playerIndex]
-	entity.specificData.GearData.equipped = false
+	if entity.specificData.GearData != null:
+		entity.specificData.GearData.equipped = false
 	InventoryFunctions.gearApply(entity, currentFocus.gearData)
 	update()
 

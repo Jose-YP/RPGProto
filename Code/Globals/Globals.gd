@@ -4,6 +4,7 @@ var ChipInventory: Inven = load("res://Resources/Inventory Data/ChipInventory.tr
 var GearInventory: Inven = load("res://Resources/Inventory Data/GearInventory.tres") as Inven
 var ItemInventory: Inven = load("res://Resources/Inventory Data/ItemInventory.tres") as Inven
 var noMovePlaceholder: Move = load("res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres")
+
 var playerStats: Dictionary
 var statTypes:Array[String] = ["Attack","Defense","Speed","Luck"]
 var elementGroups: Array[String] = ["Fire","Water","Elec","Neutral"]
@@ -35,6 +36,11 @@ func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
 
 func getStats(Entity,character,level) -> entityData:
 	var stats = playerStats[character][str(level)]
+	print(Entity.name, Entity.specificData.ChipData, " SAVE:",currentSave.every_specific_data[charNum(Entity)])
+	if currentSave.every_specific_data[charNum(Entity)].Tactics2 == null:
+		currentSave.every_specific_data[charNum(Entity)].setUp()
+	Entity.specificData = currentSave.every_specific_data[charNum(Entity)]
+	
 	#Resource Stats
 	Entity.level = level
 	Entity.MaxHP = int(stats["HP"])
@@ -52,6 +58,7 @@ func getStats(Entity,character,level) -> entityData:
 	
 	#Properties
 	Entity.element = Entity.specificData.permanentElement
+	Entity.phyElement = Entity.specificData.permanentPhyEle
 	Entity.Weakness = Entity.specificData.permanentWeakness
 	Entity.Resist = Entity.specificData.permanentResist
 	Entity.immunity = "None"
@@ -77,9 +84,9 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.specificData.boostStat = Entity.specificData.defaultBoostStat
 	
 	InventoryFunctions.gearApply(Entity, Entity.specificData.GearData)
-	preapplyChips(Entity)
 	InventoryFunctions.miniItemHandler(Entity,Entity.itemData,ItemInventory.inventory)
 	InventoryFunctions.applyItems(Entity,ItemInventory.inventory)
+	ApplyChips(Entity)
 	return Entity
 
 func getBaseStats(character,level,stat) -> int:
@@ -99,7 +106,7 @@ func getBaseStats(character,level,stat) -> int:
 	
 	return 0
 
-func preapplyChips(Entity) -> void:
+func ApplyChips(Entity) -> void:
 	Entity.specificData.currentCPU = 0
 	for chip in Entity.specificData.ChipData:
 		Entity.specificData.currentCPU += chip.CpuCost
@@ -107,6 +114,11 @@ func preapplyChips(Entity) -> void:
 			"Red": InventoryFunctions.redChipFun(Entity,chip)
 			"Blue": InventoryFunctions.blueChipFun(Entity,chip)
 			"Yellow": InventoryFunctions.yellowChipFun(Entity,chip)
+
+func readyPlayerDataSave() -> void:
+	for player in range(every_player_entity.size()):
+		currentSave.every_specific_data[player] = every_player_entity[player].specificData
+		print(every_player_entity[player].name,currentSave.every_specific_data[player].ChipData)
 
 func getTPCost(move,entity,aura) -> int:
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_gallr")
-name = "Attack"
+name = "Almudhanib"
 description = "Basic Attack"
 TPCost = 50
 Which = "Enemy"

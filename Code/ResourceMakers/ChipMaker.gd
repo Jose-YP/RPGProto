@@ -13,6 +13,7 @@ class_name Chip
 @export_group("Red Properties") #Directly affects moves
 @export_subgroup("Move Changes")
 @export var NewMove: Move
+@export_flags("Fire","Water","Elec") var ThirdMoveElement: int = 0
 @export_enum("Slash","Crush","Pierce","None") var newPhyElement: String = "None"
 @export_enum("None","Basic","Boost") var AffectedMove: String = "None"
 @export_enum("Single","Group","All","Random") var NewTarget: String

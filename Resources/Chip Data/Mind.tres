@@ -11,6 +11,7 @@ maxNum = 3
 ChipType = "Blue"
 equippedOn = null
 other = ""
+ThirdMoveElement = 0
 newPhyElement = "None"
 AffectedMove = null
 NewTarget = null

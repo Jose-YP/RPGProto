@@ -1,18 +1,19 @@
 [gd_resource type="Resource" script_class="Chip" load_steps=3 format=3 uid="uid://dwtxak65nbs8q"]
 
-[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="1_ni0ph"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_xv0iv"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="1_3dslr"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="2_jqoui"]
 
 [resource]
-script = ExtResource("1_xv0iv")
-name = "Fire"
-description = "The user's third basic move becomes Hariq"
+script = ExtResource("2_jqoui")
+name = "Hariq"
+description = "The user's third basic move becomes Hariq. Can combine with other 3rd move chips"
 CpuCost = 5
 maxNum = 3
 ChipType = "Red"
 equippedOn = 0
 other = ""
-NewMove = ExtResource("1_ni0ph")
+NewMove = ExtResource("1_3dslr")
+ThirdMoveElement = 1
 newPhyElement = "None"
 AffectedMove = "None"
 NewTarget = ""

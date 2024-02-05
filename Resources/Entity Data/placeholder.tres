@@ -1,14 +1,35 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=4 format=3 uid="uid://seilwthpp2l1"]
+[gd_resource type="Resource" script_class="entityData" load_steps=6 format=3 uid="uid://seilwthpp2l1"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_l4s34"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="2_rrmmm"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="3_5xdqx"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="3_bj4fs"]
+
+[sub_resource type="Resource" id="Resource_3eiic"]
+script = ExtResource("3_bj4fs")
+MaxLP = 10
+MaxCPU = 10
+Skills = 1
+RechargeRate = 1.0
+ChipData = Array[Resource("res://Code/ResourceMakers/ChipMaker.gd")]([])
+currentCPU = 0
+attackTarget = "Single"
+Basics = Array[Resource("res://Code/ResourceMakers/MoveMaker.gd")]([])
+ThirdMoveElement = 0
+boostTarget = "Single"
+boostStat = 8
+permanentElement = "Fire"
+permanentPhyEle = "Slash"
+permanentWeakness = 0
+permanentResist = 0
+defaultBoostStat = 8
 
 [resource]
 script = ExtResource("2_rrmmm")
 level = 0
 name = ""
 species = ""
+specificData = SubResource("Resource_3eiic")
 MaxHP = 100
 MaxTP = 80
 strength = 0
