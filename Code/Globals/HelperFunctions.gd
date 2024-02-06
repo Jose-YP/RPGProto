@@ -69,18 +69,18 @@ var boostFlags = {
 	1: "Attack",
 	2: "Defense",
 	4: "Speed",
-	8: "Luck" }
+	8: "Luck"}
 var boostStrings = {
 	"Attack": 1,
 	"Defense": 2,
 	"Speed": 4,
 	"Luck": 8}
 
-func inCaseNone(property):
+func inCaseNone(property) -> void:
 	if property == null:
 		property = 0
 
-func String_to_Flag(property,type):
+func String_to_Flag(property,type)  -> int:
 	var string_translate
 	match type:
 		"Element":
@@ -96,7 +96,7 @@ func String_to_Flag(property,type):
 		return string_translate[property]
 	return false
 
-func Flag_to_String(flag,type):
+func Flag_to_String(flag,type)  -> String:
 	var flag_translate
 	match type:
 		"Element":
@@ -113,7 +113,19 @@ func Flag_to_String(flag,type):
 	
 	return ""
 
-func NullorAppend(list,value,XSoft=true,maxSize=3):
+func BoostTranslation(entityBoosts) -> String:
+	var BoostString: String
+	if entityBoosts & 1:
+		BoostString = str(boostFlags[1])
+	if entityBoosts & 2:
+		BoostString = ifNotEmpty(BoostString,str("+",boostFlags[2]))
+	if entityBoosts & 4:
+		BoostString = ifNotEmpty(BoostString,str("+",boostFlags[4]))
+	if entityBoosts & 8:
+		BoostString = ifNotEmpty(BoostString,str("+",boostFlags[8]))
+	return BoostString
+
+func NullorAppend(list,value,XSoft=true,maxSize=3) -> Array:
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
 			list[i] = value
@@ -126,7 +138,7 @@ func NullorAppend(list,value,XSoft=true,maxSize=3):
 	
 	return list
 
-func emptyXSoftSlots(list):
+func emptyXSoftSlots(list) -> int:
 	var nulls: int = 0
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
@@ -134,7 +146,7 @@ func emptyXSoftSlots(list):
 	
 	return nulls
 
-func colorElements(element,inbetween = ""):
+func colorElements(element,inbetween = "") -> String:
 	var Elements = ""
 	if inbetween == "":
 		inbetween = str(element)
@@ -153,3 +165,9 @@ func colorElements(element,inbetween = ""):
 		"Pierce":
 			Elements = str("[color=orange]",inbetween,"[/color]")
 	return Elements
+
+func ifNotEmpty(string, added) -> String:
+	if string != null:
+		return str(string, added)
+	else:
+		return str(added)

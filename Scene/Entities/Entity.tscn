@@ -166,6 +166,13 @@ layout_mode = 2
 texture = ExtResource("13_my62f")
 expand_mode = 2
 
+[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+visible = false
+modulate = Color(1, 0.486275, 1, 1)
+layout_mode = 2
+texture = ExtResource("17_tkjcl")
+expand_mode = 3
+
 [node name="Stun" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.556863, 0.556863, 0, 0.858824)
@@ -187,13 +194,6 @@ layout_mode = 2
 texture = ExtResource("16_pmafn")
 expand_mode = 3
 stretch_mode = 4
-
-[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
-visible = false
-modulate = Color(1, 0.486275, 1, 1)
-layout_mode = 2
-texture = ExtResource("17_tkjcl")
-expand_mode = 3
 
 [node name="Miserable" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
@@ -245,6 +245,7 @@ metadata/_edit_lock_ = true
 
 [node name="XSoft1" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 tabs_visible = false
 all_tabs_in_front = true
@@ -301,6 +302,7 @@ metadata/_edit_lock_ = true
 
 [node name="XSoft2" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 clip_tabs = false
 tabs_visible = false
@@ -358,6 +360,7 @@ metadata/_edit_lock_ = true
 
 [node name="XSoft3" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 clip_tabs = false
 tabs_visible = false
@@ -410,11 +413,6 @@ modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
 texture = ExtResource("3_lyg4j")
 expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="HoldTogether" type="Label" parent="XSoftDisplay/HBoxContainer"]
-layout_mode = 2
-autowrap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="CurrentInfo" type="PanelContainer" parent="."]

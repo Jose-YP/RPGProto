@@ -39,7 +39,9 @@ func _ready():
 	
 	for basic in playerData.Basics:
 		attacks.append(basic)
+		print(basic.name)
 		if basic.name == "None":
+			print(data.name, "Disable", basic.name)
 			disable.emit(1,3)
 	
 	for skill in data.skillData:

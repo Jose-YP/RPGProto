@@ -1,5 +1,4 @@
-res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/GameManager.tscn
+res://Scene/Mains/Main.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://BasicAttack.tres
@@ -16,92 +15,10 @@ res://Themes/HasSingle/Pannel.tres
 res://Themes/HasSingle/Scrollbar.tres
 res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
+res://Resources/Entity Data/placeholder.tres
+res://Themes/Gradients/Blue.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
-res://Resources/Entity Data/placeholder.tres
-res://Themes/Gradients/Blue.tres
-res://Scene/SideMenus/Chip/ChipMenu.tscn
-res://Scene/SideMenus/Gear/GearMenu.tscn
-res://Scene/SideMenus/Item/ItemMenu.tscn
-res://Scene/Mains/MainMenu.tscn
-res://Resources/Chip Data/AllIn.tres
-res://Resources/Chip Data/Awkward.tres
-res://Resources/Chip Data/Blast.tres
-res://Resources/Chip Data/Blood.tres
-res://Resources/Chip Data/Body.tres
-res://Resources/Chip Data/Boss.tres
-res://Resources/Chip Data/Chuck.tres
-res://Resources/Chip Data/Saeiqa.tres
-res://Resources/Chip Data/Hariq.tres
-res://Resources/Chip Data/Fold.tres
-res://Resources/Chip Data/Mind.tres
-res://Resources/Chip Data/Murphys.tres
-res://Resources/Chip Data/Pact.tres
-res://Resources/Chip Data/Paradox.tres
-res://Resources/Chip Data/SelfFullfilling.tres
-res://Resources/Chip Data/Soul.tres
-res://Resources/Chip Data/Spear.tres
-res://Resources/Chip Data/Tick.tres
-res://Resources/Chip Data/Together.tres
-res://Resources/Chip Data/Bahr.tres
-res://Resources/Chip Data/Wicked.tres
-res://Resources/Gear Data/Betelgeuse Axe.tres
-res://Resources/Gear Data/DevilishMittens.tres
-res://Resources/Gear Data/NewSuperGreatSword.tres
-res://Resources/Gear Data/PoolNoodle.tres
-res://Resources/Gear Data/SolidSword.tres
-res://Resources/Gear Data/StoreboughtMotor.tres
-res://Resources/Gear Data/WitchSword.tres
-res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
-res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
-res://Resources/Item Data/ItemMoves/ElecBombMove.tres
-res://Resources/Item Data/ItemMoves/IdolMove.tres
-res://Resources/Item Data/ItemMoves/MintyPopMove.tres
-res://Resources/Item Data/ItemMoves/SoftyMove.tres
-res://Resources/Item Data/ItemSpecifics/Softy!.tres
-res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
-res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
-res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
-res://Resources/Item Data/ItemMoves/TaxReportMove.tres
-res://Resources/Item Data/ItemSpecifics/TaxReport.tres
-res://Resources/Item Data/ItemMoves/TPItemMove.tres
-res://Resources/Item Data/ItemSpecifics/TPItem.tres
-res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
-res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestDamir.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres
-res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPepper.tres
-res://JSONS&Saves/Saves/save_file.tres
-res://JSONS&Saves/Saves/user_prefs.tres
-res://Code/ResourceMakers/SaveMaker.gd
-res://Resources/Entity Data/PlayerData/PlayerEntity/NeutralEntity.tres
-res://Code/ResourceMakers/PlayerMaker.gd
 res://Code/Globals/Globals.gd
-res://Code/Globals/SaveManager.gd
-res://Code/Globals/InventoryFunctions.gd
-res://Code/SceneCode/Screens/GearMenu.gd
-res://Code/SceneCode/Screens/ChipMenu.gd
-res://Scene/SideMenus/Chip/ChipinInv.tscn
-res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
-res://Code/SceneCode/Screens/MainMenu.gd
-res://Code/SceneCode/Screens/GameManager.gd
-res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres
-res://Resources/Chip Data/Infared.tres
-res://Code/ResourceMakers/ChipMaker.gd
-res://Code/SceneCode/Screens/ItemMenu.gd
-res://Scene/SideMenus/Gear/GearinInv.tscn
-res://Code/SceneCode/Individuals/GearinChar.gd
-res://Scene/SideMenus/Item/IteminInv.tscn
-res://Scene/Entities/PlayerMenu.tscn
 res://Code/SceneCode/Screens/Main.gd
-res://Code/SceneCode/Entities/Player.gd
-res://Code/SceneCode/Entities/PlayerMenu.gd
-res://Scene/Entities/Player.tscn
-res://Scene/Mains/Main.tscn
-res://Scene/Entities/Entity.tscn
-res://Code/SceneCode/Entities/Entity.gd

@@ -91,6 +91,7 @@ func _process(_delta):
 				musicButton.selected = 0
 			else:
 				musicButton.selected += 1
+			_on_music_button_item_selected(musicButton.selected )
 		
 		if Input.is_action_just_pressed("X"):
 			print(not orderButton.button_pressed)

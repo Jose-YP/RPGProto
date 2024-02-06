@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://v3nffaaihyp3"]
+[gd_scene load_steps=28 format=3 uid="uid://v3nffaaihyp3"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_680s0"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_tc2to"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="12_lcaqv"]
 [ext_resource type="AudioStream" uid="uid://dyf0jixnhljlo" path="res://Audio/SFX/basicAction.wav" id="12_y7mf4"]
 [ext_resource type="AudioStream" uid="uid://ccu14eobkjjpa" path="res://Audio/SFX/Bahr.wav" id="12_yb80k"]
+[ext_resource type="AudioStream" uid="uid://bwnp6pk6674ph" path="res://Audio/SFX/Comet.wav" id="13_axeu1"]
 [ext_resource type="AudioStream" uid="uid://csee58lac65lh" path="res://Audio/SFX/Lower.wav" id="13_u5fxv"]
 [ext_resource type="AudioStream" uid="uid://dbn6jal5lr7gg" path="res://Audio/SFX/Buff.wav" id="14_5b6c3"]
 [ext_resource type="AudioStream" uid="uid://hai5c0y6wxla" path="res://Audio/SFX/fsmash_1.ogg" id="14_phdx7"]
@@ -19,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://dsr8dtipxinm1" path="res://Audio/SFX/fspecial.ogg" id="17_ti1a4"]
 [ext_resource type="AudioStream" uid="uid://eaev1hj8wghu" path="res://Audio/SFX/beam.ogg" id="18_rfs7m"]
 [ext_resource type="AudioStream" uid="uid://cx0csltfuqpng" path="res://Audio/SFX/overdrive.wav" id="22_7idfh"]
+[ext_resource type="AudioStream" uid="uid://cdycu86jg653a" path="res://Audio/SFX/Dumbfounded.wav" id="23_jb67g"]
 [ext_resource type="AudioStream" uid="uid://dn36iyl1mxrg1" path="res://Audio/SFX/Ailment.wav" id="23_wvrq4"]
 [ext_resource type="AudioStream" uid="uid://2n11d6lo8ktw" path="res://Audio/SFX/Reckless.wav" id="24_8in0y"]
 [ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="25_s5dkk"]
@@ -161,42 +163,71 @@ one_shot = true
 editor_description = "Doesn't have bomb"
 
 [node name="Fire" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("10_al6ab")
 bus = &"MoveSFX"
 
 [node name="Water" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("12_yb80k")
 bus = &"MoveSFX"
 
 [node name="Elec" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("11_r3qse")
 bus = &"MoveSFX"
 
 [node name="Slash" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("14_phdx7")
 bus = &"MoveSFX"
 
 [node name="Crush" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("15_1spfb")
 bus = &"MoveSFX"
 
 [node name="Pierce" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
+stream = ExtResource("15_5i4pm")
+bus = &"MoveSFX"
+
+[node name="Comet" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
+stream = ExtResource("13_axeu1")
+bus = &"MoveSFX"
+
+[node name="Light" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
+stream = ExtResource("15_5i4pm")
+bus = &"MoveSFX"
+
+[node name="Aurora" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
+stream = ExtResource("15_5i4pm")
+bus = &"MoveSFX"
+
+[node name="Aether" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("15_5i4pm")
 bus = &"MoveSFX"
 
 [node name="NeutralPhy" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("16_f48jo")
 volume_db = -6.0
 pitch_scale = 0.82
 bus = &"MoveSFX"
 
 [node name="NeutralBal" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("17_ti1a4")
 volume_db = -2.0
 pitch_scale = 1.05
 bus = &"MoveSFX"
 
 [node name="NeutralBOMB" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
+unique_name_in_owner = true
 stream = ExtResource("17_ti1a4")
 volume_db = -2.0
 pitch_scale = 0.9
@@ -205,20 +236,24 @@ bus = &"MoveSFX"
 [node name="Buff" type="Node" parent="MoveSFX"]
 
 [node name="BuffStat" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+unique_name_in_owner = true
 stream = ExtResource("14_5b6c3")
 volume_db = -10.0
 bus = &"MoveSFX"
 
 [node name="DebuffStat" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+unique_name_in_owner = true
 stream = ExtResource("13_u5fxv")
 bus = &"MoveSFX"
 
 [node name="Condition" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+unique_name_in_owner = true
 stream = ExtResource("18_rfs7m")
 volume_db = -10.0
 bus = &"MoveSFX"
 
 [node name="EleChange" type="AudioStreamPlayer" parent="MoveSFX/Buff"]
+unique_name_in_owner = true
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
 
@@ -226,47 +261,63 @@ bus = &"MoveSFX"
 editor_description = "Add future Ailments if necessary"
 
 [node name="Overdrive" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
 stream = ExtResource("22_7idfh")
 pitch_scale = 1.05
 bus = &"MoveSFX"
 
 [node name="Poison" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
 stream = ExtResource("23_wvrq4")
 volume_db = -2.0
 pitch_scale = 0.8
 bus = &"MoveSFX"
 
 [node name="Reckless" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
 stream = ExtResource("24_8in0y")
 pitch_scale = 0.92
 bus = &"MoveSFX"
 
 [node name="Exhausted" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
 
 [node name="Rust" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
 stream = ExtResource("25_s5dkk")
 volume_db = 10.0
 pitch_scale = 0.94
+bus = &"MoveSFX"
+
+[node name="Dumbfounded" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
+stream = ExtResource("23_jb67g")
+volume_db = 1.0
+pitch_scale = 0.8
 bus = &"MoveSFX"
 
 [node name="ETC" type="Node" parent="MoveSFX"]
 editor_description = "Don't have ETC"
 
 [node name="Heal" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+unique_name_in_owner = true
 stream = ExtResource("26_whajc")
 bus = &"MoveSFX"
 
 [node name="Aura" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+unique_name_in_owner = true
 stream = ExtResource("27_oy0k6")
 bus = &"MoveSFX"
 
 [node name="Summon" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+unique_name_in_owner = true
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
 
 [node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+unique_name_in_owner = true
 stream = ExtResource("25_y6h0v")
 
 [connection signal="pressed" from="EndScreen/Button" to="." method="_on_button_pressed"]

@@ -10,16 +10,13 @@ extends Node2D
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
 #AUDIO DESIGN
-@onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,
-$MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
-@onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,
-$MoveSFX/Elements/NeutralBal,$MoveSFX/Elements/NeutralBOMB]
-@onready var BuffSFX: Array[AudioStreamPlayer] = [$MoveSFX/Buff/BuffStat,
-$MoveSFX/Buff/DebuffStat,$MoveSFX/Buff/Condition,$MoveSFX/Buff/EleChange]
-@onready var AilmentSFX: Array[AudioStreamPlayer] = [$MoveSFX/Ailment/Overdrive,
-$MoveSFX/Ailment/Poison,$MoveSFX/Ailment/Reckless,$MoveSFX/Ailment/Exhausted,$MoveSFX/Ailment/Rust]
-@onready var ETCSFX: Array[AudioStreamPlayer] = [$MoveSFX/ETC/Heal,$MoveSFX/ETC/Aura,$MoveSFX/ETC/Summon]
-@onready var DieSFX: AudioStreamPlayer = $MoveSFX/ETC/Die
+@onready var ElementSFX: Array[AudioStreamPlayer] = [%Fire, %Water, %Elec, %Slash, %Crush, %Pierce,
+%Comet, %Light, %Aurora, %Aether]
+@onready var NeutralSFX: Array[AudioStreamPlayer] = [%NeutralPhy, %NeutralBal, %NeutralBOMB]
+@onready var BuffSFX: Array[AudioStreamPlayer] = [%BuffStat, %DebuffStat, %Condition, %EleChange]
+@onready var AilmentSFX: Array[AudioStreamPlayer] = [%Overdrive, %Poison, %Reckless, %Exhausted, %Rust, %Dumbfounded]
+@onready var ETCSFX: Array[AudioStreamPlayer] = [%Heal, %Aura, %Summon]
+@onready var DieSFX: AudioStreamPlayer = %Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
 #TURN MANAGERS
 @onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
@@ -228,7 +225,7 @@ func movesetDescription(moveset,player,n) -> String:
 		_:
 			fullDesc = str(move.description)
 			if move.name == "Boost":
-				fullDesc = str(fullDesc, HelperFunctions.Flag_to_String(player.playerData.boostStat, "Boost"))
+				fullDesc = str(fullDesc, HelperFunctions.BoostTranslation(player.playerData.boostStat))
 	
 	return fullDesc
 

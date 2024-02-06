@@ -8,9 +8,10 @@ var noMovePlaceholder: Move = load("res://Resources/Move Data/Player Moves/AllPl
 var playerStats: Dictionary
 var statTypes:Array[String] = ["Attack","Defense","Speed","Luck"]
 var elementGroups: Array[String] = ["Fire","Water","Elec","Neutral"]
-var XSoftTypes: Array[String] = ["Fire","Water","Elec","Slash","Crush","Pierce"]
-var AilmentTypes: Array[String] = ["Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
-"Protected","Dumbfounded","Miserable","Worn Out", "Explosive",]
+var XSoftTypes: Array[String] = ["Fire","Water","Elec","Slash","Crush","Pierce","Comet","Light",
+"Aurora","Aether"]
+var AilmentTypes: Array[String] = ["Overdrive","Poison","Reckless","Exhausted","Rust","Dumbfounded",
+"Stun","Curse","Protected","Miserable","Worn Out", "Explosive"]
 var every_player_entity: Array[entityData] = [null]
 var inactive_player_entities: Array[entityData] = []
 var current_player_entities: Array[entityData] = []

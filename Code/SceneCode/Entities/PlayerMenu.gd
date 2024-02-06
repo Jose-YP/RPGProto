@@ -151,3 +151,4 @@ func _on_player_selected_again() -> void:
 #-----------------------------------------
 func disable(menuI, buttonI):
 	fullMenu[menuI][buttonI].disabled = true
+	print(fullMenu[menuI][buttonI].text, fullMenu[menuI][buttonI].disabled)
