@@ -29,8 +29,8 @@ class_name entityData
 @export_range(-1,1,.05) var phyElementMod: float = 0.0
 @export var sameElement: bool = false
 @export_subgroup("Reactions")
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Weakness: int = 0
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var Resist: int = 0
+@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","Comet","Light","Aurora","All") var Weakness: int = 0
+@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","Comet","Light","Aurora","All") var Resist: int = 0
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None","Protected",
 "Dumbfounded","Miserable","Worn Out", "Explosive","XSoft","Mental","Chemical","Debuff") 
 var immunity: String = "None"

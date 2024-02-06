@@ -140,7 +140,6 @@ func _on_player_can_pay_for(menuI, buttonI, allowed) -> void:
 	if allowed:
 		fullMenu[menuI+1][buttonI].disabled = false
 	else:
-		print(fullMenu[menuI+1][buttonI].name)
 		fullMenu[menuI+1][buttonI].disabled = true
 
 func _on_player_selected_again() -> void:
@@ -151,4 +150,3 @@ func _on_player_selected_again() -> void:
 #-----------------------------------------
 func disable(menuI, buttonI):
 	fullMenu[menuI][buttonI].disabled = true
-	print(fullMenu[menuI][buttonI].text, fullMenu[menuI][buttonI].disabled)

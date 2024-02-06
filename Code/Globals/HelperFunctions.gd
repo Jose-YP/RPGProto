@@ -1,25 +1,27 @@
 extends Node
 
 var elementFlags = {
-	1:"Fire",
-	2:"Water",
-	4:"Elec",
-	8:"Slash",
-	16:"Crush",
-	32:"Pierce",
-	64:"Light",
-	128:"Comet",
-	256:"Aurora"}
+	1: "Fire",
+	2: "Water",
+	4: "Elec",
+	8: "Slash",
+	16: "Crush",
+	32: "Pierce",
+	64: "Comet",
+	128: "Light",
+	256: "Aurora",
+	512: "All"}
 var elementStrings = {
-	"Fire":1, 
-	"Water":2, 
-	"Elec":4, 
-	"Slash":8,
-	"Crush":16,
-	"Pierce":32,
-	"Light":64,
-	"Comet":128,
-	"Aurora":256}
+	"Fire": 1, 
+	"Water": 2, 
+	"Elec": 4, 
+	"Slash": 8,
+	"Crush": 16,
+	"Pierce": 32,
+	"Comet": 64,
+	"Light": 128,
+	"Aurora": 256,
+	"All": 512}
 
 var propertyFlags = {
 	1:"Physical",
@@ -147,7 +149,7 @@ func emptyXSoftSlots(list) -> int:
 	return nulls
 
 func colorElements(element,inbetween = "") -> String:
-	var Elements = ""
+	var Elements = element
 	if inbetween == "":
 		inbetween = str(element)
 	
@@ -164,6 +166,14 @@ func colorElements(element,inbetween = "") -> String:
 			Elements = str("[color=olive]",inbetween,"[/color]")
 		"Pierce":
 			Elements = str("[color=orange]",inbetween,"[/color]")
+		"Comet":
+			Elements = str("[color=blue_violet]",inbetween,"[/color]")
+		"Light":
+			Elements = str("[color=navajo_white]",inbetween,"[/color]")
+		"Aurora":
+			Elements = str("[color=spring_green]",inbetween,"[/color]")
+		_:
+			Elements = str("[color=white]",inbetween,"[/color]")
 	return Elements
 
 func ifNotEmpty(string, added) -> String:

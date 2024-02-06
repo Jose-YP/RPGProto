@@ -39,9 +39,7 @@ func _ready():
 	
 	for basic in playerData.Basics:
 		attacks.append(basic)
-		print(basic.name)
 		if basic.name == "None":
-			print(data.name, "Disable", basic.name)
 			disable.emit(1,3)
 	
 	for skill in data.skillData:
@@ -55,7 +53,6 @@ func _ready():
 	
 	if itemNum < 4:
 		for i in range(4 - itemNum):
-			print("Disable")
 			disable.emit(3,-1 * (i + 1))
 	
 	LPtext.text = str("LP: ",currentLP)

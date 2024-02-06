@@ -26,3 +26,10 @@ res://README.md
 res://Scene/Entities/enemy.tscn
 res://Code/SceneCode/Entities/Entity.gd
 res://Code/SceneCode/Screens/Main.gd
+res://Scene/Mains/MainMenu.tscn
+res://Scene/Entities/Player.tscn
+res://Scene/Entities/Entity.tscn
+res://Code/SceneCode/Entities/Player.gd
+res://Code/SceneCode/Entities/PlayerMenu.gd
+res://Code/ResourceMakers/EntityMaker.gd
+res://Code/Globals/HelperFunctions.gd

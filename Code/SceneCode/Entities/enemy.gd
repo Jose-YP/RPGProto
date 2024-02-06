@@ -59,6 +59,8 @@ func chooseMove(TP,allies,opposing) -> Move:
 	allOpposing = opposing
 	var allowed = allowedMoveset(TP)
 	
+	debugAIPerceive()
+	
 	match enemyData.AIType:
 		"Random":
 			move = aiInstance.RandomMove(allowed)
@@ -90,7 +92,7 @@ func selfElement(desiredElement = ""): #Returns if element is what the user want
 		return true
 
 func selfBuffStatus() -> Array: #Return what conditions is in self
-	var buffs = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luck]
+	var buffs = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
 	return buffs
 
 func selfCondition() -> Array: #Every condition the self has
@@ -104,57 +106,80 @@ func selfCondition() -> Array: #Every condition the self has
 	
 	return ConditionArray
 
-func selfAilments() -> Dictionary: #Return how ailment stack and current Ailment of self
-	var ailment = {data.Ailment : data.AilmentNum}
+func selfAilments() -> Array: #Return how ailment stack and current Ailment of self
+	var ailment = [data.Ailment , data.AilmentNum]
 	return ailment
 
 #-----------------------------------------
-#ENEMY PERCIEVE ALLIES
+#ENEMY PERCIEVE GROUP
 #-----------------------------------------
-func allyLeastHealth(): #Returns ally with least health and by how much
-	pass
+func groupLeastHealth(group, limit: float): #Returns ally with least health if they're below a threshold
+	var leastHealth
+	var currentLeftover: float = 1
+	
+	for entity in group:
+		var leftover: float = float(entity.currentHP) / data.MaxHP
+		if leftover < currentLeftover:
+			leastHealth = entity
+			currentLeftover = leftover
+	
+	if currentLeftover >= limit:
+		print(leastHealth, type_string(typeof(leastHealth)))
+		return leastHealth 
+	else:
+		return null
 
-func alliesLowHealth(): #How many allies are at custom defined low health
-	pass
+func groupLowHealth(group, limit: float) -> Array: #How many allies are at custom defined low health
+	var lowHealthGroup: Array[bool] = []
+	
+	for entity in group:
+		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
+		lowHealthGroup.append(leftover >= limit)
+	
+	return lowHealthGroup
 
-func alliesElements(): #Return ally elements
-	pass
+func groupElements(group, desiredElement = "") -> Array: #Return ally elements or if they all meet Desired Element
+	var groupElementsArray: Array = []
+	
+	for entity in group:
+		if desiredElement == "":
+			groupElementsArray.append(entity.data.TempElement)
+		else:
+			groupElementsArray.append(entity.data.TempElement == desiredElement)
+	
+	return groupElementsArray
 
-func alliesBuffStatus(): #Return every ally buffs
-	pass
+func groupBuffStatus(group) -> Array: #Return every ally buffs
+	var groupBuffs: Array[Array] = []
+	
+	for entity in group:
+		var buffs = [entity.data.attackBoost, entity.data.defenseBoost, entity.data.speedBoost, entity.data.luckBoost]
+		groupBuffs.append(buffs)
+	
+	return groupBuffs
 
-func alliesCondition(): #Return what conditions is in every ally
-	pass
+func groupCondition(group) -> Array: #Return what conditions is in every ally
+	var groupConditions: Array[Array] = []
+	
+	for entity in group:
+		var conditionArray: Array
+		for i in range(10):
+			#Flag is the binary version of i
+			var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+			if entity.data.Condition != null and entity.data.Condition & flag:
+				conditionArray.append(HelperFunctions.Flag_to_String(flag,"Condition"))
+		groupConditions.append(conditionArray)
+	
+	return groupConditions
 
-func alliesAilments(): #Return how ailment stack and current Ailment of allies
-	pass
-
-func alliesAmmount(): #How many allies left
-	pass
-
-#-----------------------------------------
-#ENEMY PERCIEVE PLAYER
-#-----------------------------------------
-func opposingLeastHealth(): #Return player with least health and by how much
-	pass
-
-func opposingLowHealth(): #How many players are at custom defined low health
-	pass
-
-func opposingElements(): #Return player elements
-	pass
-
-func opposingBuffStatus(): #Return every player buffs
-	pass
-
-func opposingCondition(): #Return what conditions is in every player
-	pass
-
-func opposingAilments(): #Return how ailment stack and current Ailment of players
-	pass
-
-func opposingAmmount(): #How many players left
-	pass
+func groupAilments(group) -> Array: #Return how ailment stack and current Ailment of allies
+	var groupAilmentsArray: Array[Array] = []
+	
+	for entity in group:
+		var ailment = [entity.data.Ailment , entity.data.AilmentNum]
+		groupAilmentsArray.append(ailment)
+	
+	return groupAilmentsArray
 
 func learnOpposing(): #REACTIONARY: Learn any other wierd tricks the players are using
 	pass
@@ -211,18 +236,24 @@ func makeDesc() -> void:
 	var resist: String = ""
 	var moveString: String = ""
 	var itemString: String = ""
-	var stats = str("str:",data.strength,"|tgh:",data.toughness,"|bal:",data.ballistics
-	,"\nres:",data.resistance,"|spd:",data.speed,"|luk:",data.luck)
+	var stats = str("str:",data.strength,"| tgh:",data.toughness," | bal:",data.ballistics
+	,"\nres:",data.resistance," | spd:",data.speed," | luk:",data.luck)
 	
-	for i in range(6):
+	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i
 		if flag & data.Weakness:
 			foundWeak = true
-			weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
+			if flag & 512: #Override all else if All is present
+				weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")))
+			else:
+				weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
 		if flag & data.Resist:
 			foundRes = true
-			resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
+			if flag & 512:
+				resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")))
+			else:
+				resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),", ",resist)
 	
 	if foundWeak:
 		weak = str("Weak: ", weak)
@@ -250,10 +281,16 @@ func makeDesc() -> void:
 	if itemString != "":
 		itemString = str("Items:", itemString)
 	
+	if weak == "":
+		weak = str("No Weaknesses")
+	if resist == "":
+		resist = str("No Resistances")
+	if moveString == "":
+		moveString = str("Only Attacks")
+	if itemString == "":
+		itemString = str("No Items")
+	
 	description = str(weak,"\n",resist,"\n",stats,"\n",moveString,"\n",itemString)
-
-func getScanned():
-	pass
 
 #-----------------------------------------
 #PAYING ITEM&TP
@@ -288,24 +325,40 @@ func allowedMoveset(TP) -> Array:
 #-----------------------------------------
 #DEBUG
 #-----------------------------------------
-func displayPreception() -> void:
-	pass
-
-#-----------------------------------------
-#DEBUG
-#-----------------------------------------
 func debugAIPerceive() -> void:
+	print("-------------------------------------")
 	print("SELF PERCEPTION")
+	print("-------------------------------------")
 	print("LESS THAN HALF HP: ", selfLeastHealth(.5))
 	print("IS ELEMENT FIRE: ", selfElement("Fire"))
 	print("BUFFS: ", selfBuffStatus())
 	print("CONDITIONS: ", selfCondition())
 	print("AILMENTS: ", selfAilments())
+	
+	print("-------------------------------------")
 	print("\nALLY PERCEPTION")
+	print("-------------------------------------")
 	print("ALLIES: ", allAllies)
+	print("LESS THAN HALF HP: ", groupLeastHealth(allAllies, .5))
+	print("ELEMENT: ", groupElements(allOpposing))
+	print("IS ELEMENT FIRE: ", groupElements(allAllies, "Fire"))
+	print("BUFFS: ", groupBuffStatus(allAllies))
+	print("CONDITIONS: ", groupCondition(allAllies))
+	print("AILMENTS: ", groupAilments(allAllies))
+	
+	print("-------------------------------------")
 	print("\nOPPOSING PERCEPTION")
+	print("-------------------------------------")
 	print("OPPOSING", allOpposing)
+	print("LESS THAN HALF HP: ", groupLeastHealth(allOpposing, .5))
+	print("ELEMENT: ", groupElements(allOpposing))
+	print("IS ELEMENT FIRE: ", groupElements(allOpposing, "Fire"))
+	print("BUFFS: ", groupBuffStatus(allOpposing))
+	print("CONDITIONS: ", groupCondition(allOpposing))
+	print("AILMENTS: ", groupAilments(allOpposing))
+	
+	print("-------------------------------------")
 	print("\nOTHER PERCEPTION")
-	print("TPS: ALLY:", allyCurrentTP, allyMaxTP, "OPPOSING: ", opposingCurrentTP, opposingMaxTP)
-	
-	
+	print("-------------------------------------")
+	print("TPS: ALLY:", allyCurrentTP, allyMaxTP)
+	print("OPPOSING: ", opposingCurrentTP, opposingMaxTP)

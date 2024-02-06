@@ -144,7 +144,7 @@ func _ready(): #Assign current team according to starting bool
 		team[i].opposingCurrentTP = playerTP
 		team[i].allyMaxTP = playerMaxTP
 		team[i].opposingMaxTP = enemyMaxTP
-		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
+		enemyAction = team[i].chooseMove(enemyTP, enemyOrder, playerOrder)
 	
 	everyone = playerOrder + enemyOrder
 	setGroupEleMod()
@@ -904,7 +904,7 @@ func next_entity() -> void:
 				team[i].opposingCurrentTP = playerTP
 				team[i].allyMaxTP = playerMaxTP
 				team[i].opposingMaxTP = enemyMaxTP
-				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
+				enemyAction = team[i].chooseMove(enemyTP,enemyOrder, playerOrder)
 				target = findTarget(enemyAction)
 				print(target)
 				which = findWhich(enemyAction)
@@ -932,7 +932,7 @@ func overdriveTurnManager() -> void:
 				team[i].menu.show()
 				team[i].firstButton.grab_focus()
 			else:
-				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
+				enemyAction = team[i].chooseMove(enemyTP,enemyOrder, playerOrder)
 				target = findTarget(enemyAction)
 				which = findWhich(enemyAction)
 
@@ -963,7 +963,7 @@ func switchPhase() -> void:
 	else:
 		team = enemyOrder
 		opposing = playerOrder
-		enemyAction = enemyOrder[0].chooseMove(enemyTP,playerOrder,enemyOrder)
+		enemyAction = enemyOrder[0].chooseMove(enemyTP,enemyOrder, playerOrder)
 		
 		enemyTP += int(float(enemyMaxTP) *.5)
 		var TPtween = $EnemyTP.create_tween()#TP management must be handled here

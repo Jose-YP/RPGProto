@@ -89,6 +89,7 @@ func processer() -> void:
 func attack(move, receiver, user, property) -> int:
 	var attackStat: int
 	var defenseStat: int
+	var weakRes: float = 0.0
 	var lightMod: float = 1
 	var softMod: float = 0.0
 	var overdriveMod: float = 0.0
@@ -106,9 +107,11 @@ func attack(move, receiver, user, property) -> int:
 	
 	#If a move has Neutral Element it will copy the user's element instead
 	if move.element == "Neutral":
-		elementMod = elementModCalc(user.data.TempElement, receiver.data.TempElement, EleMod, sameEle)
+		weakRes = element_weak_resist(user.data.TempElement, receiver)
+		elementMod = elementModCalc(user.data.TempElement, receiver.data.TempElement,EleMod, sameEle)
 	else:
-		elementMod = elementModCalc(offenseElement, receiver.data.TempElement, EleMod, sameEle)
+		weakRes = element_weak_resist(offenseElement, receiver)
+		elementMod = elementModCalc(offenseElement, receiver.data.TempElement,EleMod, sameEle)
 	
 	if move.element == "Light" and receiver.data.stellar == "Stellar":
 		lightMod = 2
@@ -126,9 +129,9 @@ func attack(move, receiver, user, property) -> int:
 	elif phyMod < 0:
 		feedback = str("{",offensePhyEle," Resist}", feedback)
 	
-	if elementMod >= 1.25:
+	if elementMod >= 1.25 or weakRes >= .25:
 		feedback = str("{",offenseElement," Weak}", feedback)
-	if elementMod <= .75:
+	if elementMod <= .75 or weakRes <= -.5:
 		feedback = str("{",offenseElement," Resist}", feedback)
 	
 	var prev = softMod
@@ -169,8 +172,9 @@ func attack(move, receiver, user, property) -> int:
 	if user.data.Ailment == "Overdrive":
 		overdriveMod = .25
 	
-	var totalFirstMod = 1 + user.data.attackBoost + phyMod + softMod + critMod + overdriveMod
-	var totalSecondMod = chargeMod*auraMod*elementMod*lightMod
+	var totalFirstMod: float = 1 + user.data.attackBoost + phyMod + softMod + critMod + overdriveMod + weakRes
+	totalFirstMod = clamp(totalFirstMod, .001, 6)
+	var totalSecondMod: float = chargeMod*auraMod*elementMod*lightMod
 	#Get total attack power, subtract it by total defense then multiply by element mod*AuraMod
 	var damage = ((randi_range(0,user.data.level) + move.Power + attackStat) * totalFirstMod)
 	damage =  damage - ((1.25 * defenseStat) * (1 + receiver.data.defenseBoost))
@@ -186,6 +190,7 @@ func BOMB(move,receiver, user) -> int:
 	var sameEle = user.data.sameElement or receiver.data.sameElement
 	var lightMod: float = 1.0
 	var softMod: float = 0.0
+	var weakRes: float = element_weak_resist(move.element, receiver)
 	var prev: float = softMod
 	var phyMod: float = phy_weakness(move.phyElement, receiver.data)
 	var EleMod: float = Globals.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
@@ -221,7 +226,8 @@ func BOMB(move,receiver, user) -> int:
 		attackStat += int(user.data.ballistics * .75)
 	
 	#Bomb attack don't use attack or defense
-	var damage = lightMod * elementMod * ((move.Power + attackStat) * (1 + phyMod + softMod))
+	var firstMod = clamp(1 + phyMod + softMod + weakRes, .01, 6)
+	var damage = lightMod * elementMod * ((move.Power + attackStat) * firstMod)
 	
 	feedback = str(damage, " BOMB Damage!", feedback)
 	return damage
@@ -370,6 +376,7 @@ func drain(damage, ammount) -> int:
 func elementModCalc(userElement,receiverElement,PreMod,sameEle) -> float:
 	var ElementModifier: float = 1
 	var sameEleMod: float = 1
+	
 	if sameEle:
 		sameEle = .75 - PreMod
 	
@@ -419,7 +426,8 @@ func elementModCalc(userElement,receiverElement,PreMod,sameEle) -> float:
 		"Aether":
 			ElementModifier = 1.25 + PreMod
 	
-	return ElementModifier
+	#So negative values don't make negative damage
+	return clamp(ElementModifier, .01, 6)
 
 func elementMatchup(matchup,targetElement) -> String:
 	var returnElement
@@ -446,6 +454,20 @@ func elementMatchup(matchup,targetElement) -> String:
 	
 	return returnElement
 
+func element_weak_resist(userElement,reciever) -> float:
+	var weakResMod: float = 0.0
+	var userFlag = HelperFunctions.String_to_Flag(userElement, "Element")
+	
+	for i in range(10):
+		var flag = 1 << i
+		if userFlag & flag or flag & 512: #512 is for All Resist
+			if flag & reciever.data.Weakness:
+				weakResMod += .1
+			if flag & reciever.data.Resist:
+				weakResMod -= .25
+	
+	return weakResMod
+
 func phy_weakness(user,receiver,PreMod = 0) -> float:
 	var PhyMod = 0
 	
@@ -464,7 +486,7 @@ func phy_weakness(user,receiver,PreMod = 0) -> float:
 	
 	#Search every possible flag in Weakness and resist
 	#Make sure to check if the receiver even has a weakness/resistance
-	for i in range(6):
+	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i
 		#Check if it has a weakness if it does don't check resistance
@@ -744,8 +766,6 @@ func reset() -> void:
 	
 	for i in range(10): #Reset conditions to nothing
 		var flag = 1 << i
-		print(HelperFunctions.Flag_to_String(data.Condition, "Condition"))
-		print(HelperFunctions.Flag_to_String(flag, "Condition"))
 		if data.Condition != null and data.Condition & flag != 0:
 			data.Condition = data.Condition & ~flag
 			currentCondition.text = HelperFunctions.Flag_to_String(data.Condition, "Condition")
