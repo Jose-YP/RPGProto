@@ -98,14 +98,12 @@ func movement() -> void:
 	
 	if Input.is_action_pressed("Left") and held:
 		makeNoise.emit(2)
-		print(markerIndex)
 		if markerIndex%2 == 0 and markerIndex != 0:
 			side = swap(side)
 		else:
 			markerIndex -= 1
 		if markerIndex < 0:
 			if side == 1:
-				print("Swap")
 				side = swap(side)
 				markerIndex = 1
 			else:
@@ -113,17 +111,13 @@ func movement() -> void:
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		
-		print(side," | ", markerIndex)
-		print(markerArray[side][markerIndex].global_position)
 		Arrow.global_position = markerArray[side][markerIndex].global_position
 	
 	if Input.is_action_pressed("Right") and held:
 		markerIndex += 1
-		print(markerIndex)
 		if markerIndex > (markerArray[side].size() - 1):
 			markerIndex = markerArray[side].size() - 1
 		elif markerIndex%2 == 0 and markerArray[side][markerIndex].name != "Marker2D2":
-			print("Swap")
 			side = swap(side)
 			markerIndex -= 2
 			if markerIndex - 1 == 0:
@@ -131,14 +125,7 @@ func movement() -> void:
 			if markerIndex > (markerArray[side].size() - 1):
 				markerIndex = markerArray[side].size() - 1
 		
-		print(side," | ", markerIndex)
-		if markerArray[side][markerIndex].name == "Marker2D2":
-			print("At End", markerArray[side][markerIndex].global_position)
-			print(markerArray[side][markerIndex],global_position, markerArray[side][markerIndex].position)
-		
 		Arrow.global_position = markerArray[side][markerIndex].global_position
-		print(markerArray[side][markerIndex].global_position)
-		print(Arrow.global_position == markerArray[side][markerIndex].global_position)
 	
 	if Input.is_action_pressed("Up") and held:
 		makeNoise.emit(2)
@@ -509,7 +496,6 @@ func playerHitLimit(player, chip) -> bool:
 			times += 1
 	
 	if times >= 2:
-		print("Hit limit")
 		return true
 	else:
 		return false

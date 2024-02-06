@@ -64,7 +64,6 @@ func itemAutofill(item,chara,result) -> void:
 	match chara:
 		"DREAMER":
 			if result:
-				print(item.name)
 				item.autofill |= 1
 			else:
 				item.autofill &= ~1

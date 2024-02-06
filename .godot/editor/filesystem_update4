@@ -94,3 +94,14 @@ res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres
 res://Resources/Chip Data/Infared.tres
 res://Code/ResourceMakers/ChipMaker.gd
 res://Code/SceneCode/Screens/ItemMenu.gd
+res://Scene/SideMenus/Gear/GearinInv.tscn
+res://Code/SceneCode/Individuals/GearinChar.gd
+res://Scene/SideMenus/Item/IteminInv.tscn
+res://Scene/Entities/PlayerMenu.tscn
+res://Code/SceneCode/Screens/Main.gd
+res://Code/SceneCode/Entities/Player.gd
+res://Code/SceneCode/Entities/PlayerMenu.gd
+res://Scene/Entities/Player.tscn
+res://Scene/Mains/Main.tscn
+res://Scene/Entities/Entity.tscn
+res://Code/SceneCode/Entities/Entity.gd

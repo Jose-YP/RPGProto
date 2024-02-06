@@ -87,6 +87,7 @@ layout_mode = 2
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 
 [node name="CharacterInfo" type="HBoxContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2"]
@@ -94,7 +95,7 @@ custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 
 [node name="Character" type="PanelContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo"]
-custom_minimum_size = Vector2(260, 40)
+custom_minimum_size = Vector2(260, 30)
 layout_mode = 2
 
 [node name="NamenResource" type="RichTextLabel" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer/MarginContainer2/CharacterInfo/Character"]
@@ -226,7 +227,7 @@ text = "[center][color=gray]Items
 8/8 [/color]"
 
 [node name="CurrentGear" type="ScrollContainer" parent="VBoxContainer/MainDock/CurrentCharGear/VBoxContainer"]
-custom_minimum_size = Vector2(0, 600)
+custom_minimum_size = Vector2(0, 590)
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -257,6 +258,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bjvxr")
 [node name="QuickInfo" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
 
 [node name="HBoxContainer" type="GridContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo"]
 layout_mode = 2
@@ -264,6 +266,8 @@ columns = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="OldGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(160, 80)
@@ -279,6 +283,7 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 5
 
 [node name="NewGear" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(160, 75)
@@ -294,9 +299,10 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_right = 5
 
 [node name="OldDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(150, 620)
+custom_minimum_size = Vector2(130, 620)
 layout_mode = 2
 
 [node name="OldDec" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer/OldDesc"]
@@ -308,7 +314,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 
 [node name="NewDesc" type="PanelContainer" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4"]
-custom_minimum_size = Vector2(150, 600)
+custom_minimum_size = Vector2(130, 600)
 layout_mode = 2
 
 [node name="NewDesc" type="RichTextLabel" parent="VBoxContainer/MainDock/Info/PanelContainer/QuickInfo/HBoxContainer/MarginContainer4/NewDesc"]

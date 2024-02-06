@@ -116,11 +116,12 @@ func ApplyChips(Entity) -> void:
 
 func readyPlayerDataSave() -> void:
 	for player in every_player_entity:
+		print(player.name)
 		currentSave.every_specific_data[charNum(player)] = player.specificData
 
-func getTPCost(move,entity,aura) -> int:
+func getTPCost(move,entity) -> int:
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))
-	if aura == "LowTicks": TPCost = TPCost / 2
+	if Globals.currentAura == "LowTicks": TPCost = TPCost / 2
 	
 	return int(TPCost)
 

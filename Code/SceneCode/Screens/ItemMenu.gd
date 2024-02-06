@@ -213,7 +213,6 @@ func buttons() -> void:
 		sort.emit("Item")
 		makeNoise.emit(1)
 		var select = sortingOptions.selected
-		print(select)
 		select += 1
 		if select >= 3: select = 0
 		sortingOptions.select(select)
@@ -296,13 +295,14 @@ func update() -> void:
 	getItemInventory()
 	
 	for thing in itemInv.get_children():
-		if thing.itemData == prevKeep: 
-			print(thing.itemData.name)
+		if thing.itemData == prevKeep:
 			keepFocus = thing.focus
 	
 	acrossPlayers = false
-	if movingItem and keepFocus != null: keepFocus.grab_focus()
-	else: InvMenu[0][0].focus.grab_focus()
+	if movingItem and keepFocus != null:
+		keepFocus.grab_focus()
+	else:
+		InvMenu[0][0].focus.grab_focus()
 
 #-----------------------------------------
 #PLAYER DOCK
@@ -403,6 +403,7 @@ func removeItem(item) -> void:
 		entity.itemData.erase(item)
 		InventoryFunctions.itemAutofill(item, entity.name, false)
 		InventoryFunctions.itemHandlerResult(item,0,entity.name,false)
+	
 	update()
 
 func sortPlayerItem(item) -> void:

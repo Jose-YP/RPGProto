@@ -21,8 +21,11 @@ var changed: bool = false
 var menuIndex: int = 0
 var buttonIndex: int = 0
 var menuDictionary: Dictionary = {}
-var fullMenu: Array = []
+var fullMenu: Array[Array] = []
 
+#-----------------------------------------
+#INITALIZATION
+#-----------------------------------------
 func _ready():
 	$TextEdit.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$TextEdit.focus_mode = Control.FOCUS_NONE
@@ -34,13 +37,17 @@ func _ready():
 		fullMenu.append(Menu.get_node("MarginContainer/GridContainer").get_children())
 		menuDictionary[Menu.name] = i
 
+#-----------------------------------------
+#CONTROLS
+#-----------------------------------------
 func _process(_delta):
 	if $".".visible:
 		if menuIndex == 0 or selectingMenu:
 			menuMove()
 		
 		menuConfirm()
-		Focusing.emit(fullMenu[menuIndex][buttonIndex],menuIndex,buttonIndex,changed)
+		if fullMenu[menuIndex][buttonIndex].disabled == false:
+			Focusing.emit(fullMenu[menuIndex][buttonIndex],menuIndex,buttonIndex,changed)
 		changed = false
 
 func menuMove() -> void:
@@ -109,6 +116,9 @@ func menuConfirm() -> void:
 		
 		confirm.emit(false)
 
+#-----------------------------------------
+#SIGNALS
+#-----------------------------------------
 #Regular menu's buttons all have arguments to the index they should send to
 func _on_first_pressed(index) -> void:
 	Tab.visible = true
@@ -135,3 +145,9 @@ func _on_player_can_pay_for(menuI, buttonI, allowed) -> void:
 
 func _on_player_selected_again() -> void:
 	selectingMenu = true
+
+#-----------------------------------------
+#HELPERS
+#-----------------------------------------
+func disable(menuI, buttonI):
+	fullMenu[menuI][buttonI].disabled = true

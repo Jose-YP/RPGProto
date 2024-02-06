@@ -12,6 +12,7 @@ extends "res://Code/SceneCode/Entities/Entity.gd"
 signal canPayFor(menuIndex, buttonIndex, yes)
 signal startSelect(useMove)
 signal moveSelected(useMove)
+signal disable(MenuI, ButtonI)
 signal wait
 signal boost
 signal scan
@@ -38,12 +39,22 @@ func _ready():
 	
 	for basic in playerData.Basics:
 		attacks.append(basic)
+		if basic.name == "None":
+			disable.emit(1,3)
 	
 	for skill in data.skillData:
 		skills.append(skill)
 	
 	tactics = [data.waitData,playerData.Tactics2,playerData.Tactics3,playerData.Tactics4]
 	
+	var itemNum = 0
+	for item in data.itemData:
+		itemNum += 1
+	
+	if itemNum < 4:
+		for i in range(4 - itemNum):
+			print("Disable")
+			disable.emit(3,-1 * (i + 1))
 	
 	LPtext.text = str("LP: ",currentLP)
 	HPtext.text = str("HP: ", currentHP)

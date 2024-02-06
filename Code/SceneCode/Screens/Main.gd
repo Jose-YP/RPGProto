@@ -10,7 +10,6 @@ extends Node2D
 @onready var AuraFog = $Aura
 @onready var AuraLabel = $Label
 #AUDIO DESIGN
-@onready var music: AudioStreamPlayer = $Music
 @onready var ElementSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/Fire,$MoveSFX/Elements/Water,
 $MoveSFX/Elements/Elec,$MoveSFX/Elements/Slash,$MoveSFX/Elements/Crush,$MoveSFX/Elements/Pierce]
 @onready var NeutralSFX: Array[AudioStreamPlayer] = [$MoveSFX/Elements/NeutralPhy,
@@ -157,7 +156,7 @@ func movesetDisplay(player) -> void: #Format every player's menu to include the 
 	var tabs = player.get_node("CanvasLayer/TabContainer").get_children()
 	var tpMod: float = 0.0
 	
-	if player.costBonus & 4: tpMod = player.TpCostMod
+	if player.data.costBonus & 4: tpMod = player.data.TpCostMod
 	
 	for tab in range(tabs.size()):
 		#Get the buttons in the specific tab
@@ -209,14 +208,14 @@ func movesetDescription(moveset,player,n) -> String:
 			var modifier: float = 0.0
 			var baseCost: int = 0
 			if move.CostType == "HP" or move.CostType == "MaxHP":
-				if player.costBonus & 1:
-					modifier += player.HpCostMod
+				if player.data.costBonus & 1:
+					modifier += player.data.HpCostMod
 				baseCost = int(move.cost * player.data.MaxHP)
 				costText = str("[color=red]"+ "HP: ",int(baseCost + baseCost*modifier), "[/color]")
 			
 			if move.CostType == "LP":
-				if player.costBonus & 2:
-					modifier += player.LpCostMod
+				if player.data.costBonus & 2:
+					modifier += player.data.LpCostMod
 				costText = str("[color=aqua]"+"LP: ",int(move.cost + move.cost*modifier), "[/color]")
 			
 			fullDesc = str(costText, desc, Elements, PhyElement, Power,)
@@ -257,7 +256,7 @@ func initializeTP(players=false) -> void: #Make and remake max TPs when an entiy
 func setGroupEleMod() -> void:
 	Globals.groupEleMod = 0.0
 	for entity in everyone:
-		Globals.groupEleMod += entity.groupElementMod
+		Globals.groupEleMod += entity.data.groupElementMod
 
 func _process(_delta):#If player turn ever changes change current team to match the bool
 	if not fightOver:
@@ -673,7 +672,7 @@ func useAction(useMove, targetting, user, hits) -> void:
 		if useMove.property & 1 and useMove.property & 2:
 			times += 1
 		
-		if user.midTurnAilments(user.data.Ailment, Globals.currentAura):
+		if user.midTurnAilments(user.data.Ailment):
 			checkProperties(useMove,targetting,user,times)
 		
 		times += 1
@@ -745,13 +744,13 @@ func offense(move,targetting,user) -> void:
 		damage = user.BOMB(move, targetting, user)
 	targetting.currentHP -= damage
 	
-	if user.calcBonus & 1:
+	if user.data.calcBonus & 1:
 		var drain = user.drain(damage, user.data.drainCalcAmmount)
 		user.currentHP += drain
 		user.currentHP = clamp(user.currentHP, 0, user.data.MaxHP)
 		user.HPtext.text = str("HP: ",user.currentHP)
 		user.tweenDamage(user,tweenTiming,str("Drained ", drain,"HP"))
-	if user.miscCalc == "LPDrain":
+	if user.data.miscCalc == "LPDrain":
 		var drain = user.drain(damage, .15)
 		user.currentLP += drain
 		user.currentLP = clamp(user.currentLP, 0, user.data.specificData.MaxLP)
@@ -1006,9 +1005,9 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false) -
 	match cost:
 		"TP":
 			if searchingItem:
-				use = Globals.getTPCost(move.attackData,player,Globals.currentAura)
+				use = Globals.getTPCost(move.attackData,player)
 			else:
-				use = Globals.getTPCost(move,player,Globals.currentAura)
+				use = Globals.getTPCost(move,player)
 		"Overdrive":
 			use = 1
 		"HP":
@@ -1141,7 +1140,7 @@ func endScreen(playerWin) -> void:
 	
 	endScreenTween.tween_property($EndScreen/RichTextLabel, "modulate", Color("000000"),1.5)
 	endScreenTween.tween_property($EndScreen/Button, "modulate", Color("ffffff"),1.5)
-	endScreenTween.tween_property(music,"volume_db",-80,5)
+	playMusic.emit("stop")
 	$EndScreen/Button.show()
 
 func _on_timer_timeout() -> void:

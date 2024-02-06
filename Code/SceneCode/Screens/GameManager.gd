@@ -56,7 +56,6 @@ func configureFileManager():
 func SceneSwapSave() -> void:
 	Globals.readyPlayerDataSave()
 	Globals.currentSave.save()
-	print("SAVE")
 
 #-----------------------------------------
 #INVENTORY MANAGING
@@ -163,6 +162,7 @@ func _back_to_main_menu() -> void:
 
 func _on_change_to_battle() -> void:
 	changeScene(battleScene)
+	currentScene.connect("playMusic",playMusic)
 
 func _on_to_gear_menu() -> void:
 	$SFX/Confirm.play()
@@ -200,6 +200,7 @@ func makeNoise(num) -> void:
 		regSFX[num].play()
 
 func playMusic(song) -> void:
+	print(song)
 	if song != "stop":
 		$Music.set_stream(load(song))
 		$Music.play()

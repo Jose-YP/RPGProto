@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://darsoarlvp0i8"]
+[gd_scene load_steps=7 format=3 uid="uid://darsoarlvp0i8"]
 
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="1_f4abs"]
 [ext_resource type="Script" path="res://Code/SceneCode/Individuals/GearinChar.gd" id="2_jwox3"]
@@ -6,53 +6,69 @@
 [ext_resource type="StyleBox" uid="uid://57im7twwo0e0" path="res://Themes/ButtonStyle/Focused.tres" id="3_rhuaj"]
 [ext_resource type="Texture2D" uid="uid://bqks45w4cuv2n" path="res://Art/857-8579317_ftestickers-effect-overlay-glow-white-universe-2663166295.png" id="4_4l5kg"]
 
-[node name="MenuItem" type="MarginContainer"]
-offset_right = 330.0
-offset_bottom = 80.0
-theme = ExtResource("1_f4abs")
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-script = ExtResource("2_jwox3")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1q3x"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.0235294, 0.223529, 0.858824)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
 
-[node name="MenuItem" type="PanelContainer" parent="."]
+[node name="MenuItem" type="PanelContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(430, 100)
-layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 435.0
+offset_bottom = 105.0
 size_flags_vertical = 4
 theme = ExtResource("1_f4abs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1q3x")
+script = ExtResource("2_jwox3")
 
-[node name="Button" type="Button" parent="MenuItem"]
+[node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("3_rhuaj")
 flat = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuItem/Button"]
+[node name="margin" type="MarginContainer" parent="Button"]
+clip_contents = true
 layout_mode = 2
-offset_right = 330.0
-offset_bottom = 52.0
+offset_right = 430.0
+offset_bottom = 100.0
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Gear" type="HBoxContainer" parent="MenuItem/Button/MarginContainer"]
+[node name="Gear" type="HBoxContainer" parent="Button/margin"]
+clip_contents = true
 layout_mode = 2
 theme = ExtResource("1_f4abs")
 
-[node name="GearIcon" type="TextureRect" parent="MenuItem/Button/MarginContainer/Gear"]
-custom_minimum_size = Vector2(40, 0)
+[node name="GearIcon" type="TextureRect" parent="Button/margin/Gear"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("3_ctc55")
-expand_mode = 5
-stretch_mode = 6
+expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuItem/Button/MarginContainer/Gear"]
+[node name="MarginContainer" type="MarginContainer" parent="Button/margin/Gear"]
+clip_contents = true
 layout_mode = 2
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuItem/Button/MarginContainer/Gear/MarginContainer"]
+[node name="Text" type="RichTextLabel" parent="Button/margin/Gear/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 theme = ExtResource("1_f4abs")
@@ -61,11 +77,15 @@ bbcode_enabled = true
 text = "[center] The wordiest ever Gear [/center]"
 scroll_active = false
 
-[node name="Equipped" type="TextureRect" parent="MenuItem/Button/MarginContainer/Gear"]
-custom_minimum_size = Vector2(45, 0)
+[node name="Equipped" type="TextureRect" parent="Button/margin/Gear"]
+clip_contents = true
+custom_minimum_size = Vector2(60, 60)
+layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
 texture = ExtResource("4_4l5kg")
-expand_mode = 3
+expand_mode = 1
 
-[connection signal="focus_entered" from="MenuItem/Button" to="." method="_on_button_focus_entered"]
-[connection signal="focus_entered" from="MenuItem/Button" to="MenuItem" method="_on_button_focus_entered"]
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]

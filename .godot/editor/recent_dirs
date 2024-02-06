@@ -1,3 +1,4 @@
+res://Themes/HasSingle
 res://Resources/Chip Data
 res://Scene/Constants
 <<<<<<< Updated upstream
@@ -16,7 +17,6 @@ res://Themes
 res://Scene/SideMenus/Gear
 res://Code/SceneCode
 res://Scene
-res://Themes/HasSingle
 res://Resources/Entity Data/Enemy Data/EnemyEntity
 res://Resources/Gear Data
 res://Code/EnemyAI

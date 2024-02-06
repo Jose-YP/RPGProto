@@ -15,6 +15,7 @@ extends Control
 @onready var enemyPhyEle: Array[TabContainer] = [%EnemyPhyElement, %EnemyPhyElement2, %EnemyPhyElement3]
 #OTHER VAR
 @onready var orderButton: CheckButton = $PlayerFirstToggle/HBoxContainer/PlayerOrder
+@onready var musicButton: OptionButton = $Navigation/MusicMenu/MenuButton
 
 signal battleStart
 signal chipMenu
@@ -71,17 +72,43 @@ func _ready():
 	$Navigation/Buttons/ItemButton.grab_focus()
 	trueReady = true
 
-func _input(event):
+func _process(_delta):
 	if not optionsOpen and not helpOpen:
-		match event:
-			"Accept":
-				pass
-			"Cancel": _on_help_button_pressed()
-			"Y":
-				pass
-			"X": orderButton.toggled.emit()
-			"Start": _on_fight_button_pressed()
-			"Select": _on_option_button_pressed()
+		if Input.is_action_just_pressed("Accept"):
+			if get_viewport().gui_get_focus_owner() is OptionButton:
+				get_viewport().gui_get_focus_owner().show_popup()
+			else:
+				print("AA")
+				print(get_viewport().gui_get_focus_owner())
+				get_viewport().gui_get_focus_owner().emit_signal("pressed")
+		
+		if Input.is_action_just_pressed("Cancel"):
+			_on_help_button_pressed()
+		
+		if Input.is_action_just_pressed("Y"):
+			var currentSelect = musicButton.selected
+			if currentSelect + 1 > musicButton.item_count - 1:
+				musicButton.selected = 0
+			else:
+				musicButton.selected += 1
+		
+		if Input.is_action_just_pressed("X"):
+			print(not orderButton.button_pressed)
+			orderButton.toggled.emit(not orderButton.button_pressed)
+			orderButton.button_pressed = not orderButton.button_pressed
+			
+		if Input.is_action_just_pressed("Start"):
+			_on_fight_button_pressed()
+		
+		if Input.is_action_just_pressed("Select"):
+			_on_option_button_pressed()
+	else:
+		if Input.is_action_just_pressed("Accept"):
+			print("AFUEUIEU")
+	
+	if helpOpen:
+		if Input.is_anything_pressed():
+			_on_exit_button_pressed()
 
 #-----------------------------------------
 #PLAYER SETUP
@@ -144,7 +171,6 @@ func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	Globals.currentSave.every_player_entity[playerNum] = entity
 	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
 	
-	print(playerNum, entity.name)
 	return description
 
 func playerChoiceChanged(playerIndex,infoIndex) -> void: #First is for playerNames second is for playerChoices
@@ -308,7 +334,7 @@ func _on_help_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	makeNoise.emit(1)
 	helpOpen = false
-	$HelpMenu.hide()
+	$Navigation/HelpMenu.hide()
 
 func _on_option_button_pressed() -> void:
 	makeNoise.emit(0)

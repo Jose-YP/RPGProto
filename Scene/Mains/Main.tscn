@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://v3nffaaihyp3"]
+[gd_scene load_steps=26 format=3 uid="uid://v3nffaaihyp3"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_680s0"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_tc2to"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://dn36iyl1mxrg1" path="res://Audio/SFX/Ailment.wav" id="23_wvrq4"]
 [ext_resource type="AudioStream" uid="uid://2n11d6lo8ktw" path="res://Audio/SFX/Reckless.wav" id="24_8in0y"]
 [ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="25_s5dkk"]
+[ext_resource type="AudioStream" uid="uid://bc41v187fp0wf" path="res://Audio/SFX/Bass.wav" id="25_y6h0v"]
 [ext_resource type="AudioStream" uid="uid://csrxt7jammqf" path="res://Audio/SFX/clear_02_Ab2Db_low.ogg" id="26_whajc"]
 [ext_resource type="AudioStream" uid="uid://2n741f4ivddi" path="res://Audio/SFX/Aura.wav" id="27_oy0k6"]
 
@@ -264,6 +265,9 @@ bus = &"MoveSFX"
 [node name="Summon" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
+
+[node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+stream = ExtResource("25_y6h0v")
 
 [connection signal="pressed" from="EndScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timers/PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]

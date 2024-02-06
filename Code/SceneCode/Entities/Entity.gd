@@ -181,7 +181,7 @@ func BOMB(move,receiver, user) -> int:
 	var softMod: float = 0.0
 	var prev: float = softMod
 	var phyMod: float = phy_weakness(move.phyElement, receiver.data)
-	var EleMod: float = Globals.data.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
+	var EleMod: float = Globals.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
 	var elementMod: float = elementModCalc(move.element, receiver.data.TempElement, EleMod, sameEle)
 	var attackStat: int = 0
 	
@@ -482,7 +482,7 @@ func crit_chance(move,user,receiver,currentAura) -> bool:
 		critical.emit()
 		if move.Ailment != "None":
 			applyNegativeAilment(move,receiver,user,true)
-		elif user.miscCalc == "DumbfoundedCrit":
+		elif user.data.miscCalc == "DumbfoundedCrit":
 			applyNegativeAilment(move,receiver,user,true,"Dumbfounded")
 		else:
 			applyXSoft(move,receiver,user,true,determineXSoft(move,user))

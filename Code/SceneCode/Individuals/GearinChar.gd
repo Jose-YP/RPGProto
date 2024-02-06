@@ -1,12 +1,12 @@
-extends MarginContainer
+extends PanelContainer
 
 @export var chara: String
 @export var gearData: Gear
 
-@onready var focus: Button = $MenuItem/Button
-@onready var icon: TextureRect = $MenuItem/Button/MarginContainer/Gear/GearIcon
-@onready var gearText: RichTextLabel = $MenuItem/Button/MarginContainer/Gear/MarginContainer/RichTextLabel
-@onready var equippedStatus: TextureRect = $MenuItem/Button/MarginContainer/Gear/Equipped
+@onready var focus: Button = $Button
+@onready var icon: TextureRect = $Button/margin/Gear/GearIcon
+@onready var gearText: RichTextLabel = %Text
+@onready var equippedStatus: TextureRect = $Button/margin/Gear/Equipped
 
 signal getDesc(data)
 signal getEquipped(data)
