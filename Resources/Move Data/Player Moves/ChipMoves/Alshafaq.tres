@@ -5,17 +5,17 @@
 [resource]
 script = ExtResource("1_w66bp")
 name = "Alshafaq"
-description = "Basic Attack"
-TPCost = 50
+description = "Ballistic Comet attack that hits 2 random groups"
+TPCost = 225
 Which = "Enemy"
-Target = "Single"
-element = "Neutral"
-phyElement = "Neutral"
-property = 1
+Target = "RandomGroup"
+element = "Comet"
+phyElement = "Crush"
+property = 2
 CostType = "Free"
 cost = 0.0
-Power = 30
-HitNum = 1
+Power = 70
+HitNum = 2
 BaseCrit = 0
 BaseAilment = -200
 Ailment = "None"

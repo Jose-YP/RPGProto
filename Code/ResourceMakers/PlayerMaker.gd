@@ -32,10 +32,24 @@ class_name Player
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentResist: int = 0
 @export_flags("Attack","Defense","Speed","Luck") var defaultBoostStat: int = 8
 
-func setUp():
+func setUp(element, phy, weak, res, name):
 	Basics = [load("res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres"),
 	load("res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres"),
 	load("res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres")]
 	Tactics2 = load("res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres")
 	Tactics3 = load("res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres")
 	Tactics4 = load("res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres")
+	
+	permanentElement = element
+	permanentPhyEle = phy
+	permanentWeakness = weak
+	permanentResist = res
+	match name:
+		"DREAMER":
+			defaultBoostStat = 8
+		"Lonna":
+			defaultBoostStat = 1
+		"Damir":
+			defaultBoostStat = 2
+		"Pepper":
+			defaultBoostStat = 8

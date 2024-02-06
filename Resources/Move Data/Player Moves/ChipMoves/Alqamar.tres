@@ -5,16 +5,16 @@
 [resource]
 script = ExtResource("1_sk4ju")
 name = "Alqamar"
-description = "Basic Attack"
-TPCost = 50
+description = "All targetting Ballistic Aether move that always hits for weakness"
+TPCost = 350
 Which = "Enemy"
-Target = "Single"
-element = "Neutral"
+Target = "All"
+element = "Aether"
 phyElement = "Neutral"
-property = 1
+property = 2
 CostType = "Free"
 cost = 0.0
-Power = 30
+Power = 100
 HitNum = 1
 BaseCrit = 0
 BaseAilment = -200

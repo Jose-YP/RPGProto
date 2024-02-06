@@ -92,7 +92,6 @@ func _process(delta):
 				scrollUp()
 			elif get_viewport().gui_get_focus_owner().global_position.y > scrollDeadzone.y:
 				scrollDown()
-			
 
 func movement() -> void:
 	var held: bool = (inputHoldTime == 0.0 or inputHoldTime > inputButtonThreshold)

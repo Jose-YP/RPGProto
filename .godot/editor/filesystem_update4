@@ -84,3 +84,13 @@ res://Code/Globals/InventoryFunctions.gd
 res://Code/SceneCode/Screens/GearMenu.gd
 res://Code/SceneCode/Screens/ChipMenu.gd
 res://Scene/SideMenus/Chip/ChipinInv.tscn
+res://Resources/Entity Data/PlayerData/PlayerEntity/PepperEntity.tres
+res://Code/SceneCode/Screens/MainMenu.gd
+res://Code/SceneCode/Screens/GameManager.gd
+res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres
+res://Resources/Chip Data/Infared.tres
+res://Code/ResourceMakers/ChipMaker.gd
+res://Code/SceneCode/Screens/ItemMenu.gd

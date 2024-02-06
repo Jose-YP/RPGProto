@@ -4,19 +4,19 @@
 
 [resource]
 script = ExtResource("1_i6huk")
-name = "Attack"
-description = "Basic Attack"
-TPCost = 50
+name = "Daw'"
+description = "3 Hit Ballistic Light attack that does x2 damage to Stellars"
+TPCost = 275
 Which = "Enemy"
 Target = "Single"
-element = "Neutral"
-phyElement = "Neutral"
-property = 1
+element = "Light"
+phyElement = "Pierce"
+property = 2
 CostType = "Free"
 cost = 0.0
 Power = 30
-HitNum = 1
-BaseCrit = 0
+HitNum = 3
+BaseCrit = 20
 BaseAilment = -200
 Ailment = "None"
 AilmentAmmount = 1

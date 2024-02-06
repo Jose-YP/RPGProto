@@ -30,5 +30,5 @@ Tactics4 = ExtResource("6_ye4k3")
 permanentElement = "Fire"
 permanentPhyEle = "Pierce"
 permanentWeakness = 0
-permanentResist = 32
-defaultBoostStat = 8
+permanentResist = 16
+permanentBoost = 8

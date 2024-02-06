@@ -52,7 +52,6 @@ func _ready():
 		menu.connect("pressed",_on_menu_button_pressed)
 	
 	for player in range(playerEntities.size()):
-		print(playerEntities)
 		var atLeatOne: bool = false
 		playerLevelsHold[player] = playerEntities[player].level
 		for check in Globals.currentSave.current_party:
@@ -144,6 +143,8 @@ func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	playerEntities[playerNum] = entity
 	Globals.currentSave.every_player_entity[playerNum] = entity
 	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
+	
+	print(playerNum, entity.name)
 	return description
 
 func playerChoiceChanged(playerIndex,infoIndex) -> void: #First is for playerNames second is for playerChoices
@@ -202,13 +203,16 @@ func getLevel(chara) -> int:
 
 func setPlayerGlobals() -> void:
 	Globals.current_player_entities = []
-	Globals.current_player_entities = players
+	Globals.current_player_entities = players #This has order for battles
 	
-	for player in range(players.size()):
-		print(Globals.currentSave.current_party, Globals.charNum(players[player]))
-		Globals.currentSave.current_party[player] = Globals.charNum(players[player])
+	for player in range(players.size()): #Make sure players are updated into their correct positions
+		var charNum =  Globals.charNum(players[player])
+		Globals.currentSave.current_party[player] = charNum
+		Globals.currentSave.every_player_entity[charNum] = players[player]
 	
-	print("")
+	for player in range(Globals.inactive_player_entities.size()):
+		var charNum =  Globals.charNum(Globals.inactive_player_entities[player])
+		Globals.currentSave.every_player_entity[charNum] = Globals.inactive_player_entities[player]
 	
 	Globals.every_player_entity = players + Globals.inactive_player_entities
 

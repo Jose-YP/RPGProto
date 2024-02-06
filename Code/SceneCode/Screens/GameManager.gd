@@ -54,7 +54,6 @@ func configureFileManager():
 #SAVE MANAGER
 #-----------------------------------------
 func SceneSwapSave() -> void:
-	Globals.currentSave.every_player_entity = Globals.every_player_entity
 	Globals.readyPlayerDataSave()
 	Globals.currentSave.save()
 	print("SAVE")

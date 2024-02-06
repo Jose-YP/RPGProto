@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://wk011fceg2no"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_ck2kh"]
+
+[resource]
+script = ExtResource("1_ck2kh")
+name = "Infared"
+description = "Boost now increases Attack as well"
+CpuCost = 4
+maxNum = 3
+ChipType = "Red"
+equippedOn = 0
+other = ""
+ThirdMoveElement = 0
+newPhyElement = "None"
+addedBoost = 1
+AffectedMove = "None"
+NewTarget = ""
+ItemChange = ""
+calcBonus = 0
+calcAmmount = 0.0
+costBonus = 0
+costMod = 0.0
+TpCostMod = 0.0
+NewElement = "None"
+Condition = null
+ElementModBoost = 0.0
+SameElement = false
+Immunity = "None"
+Resist = null
+HP = 0
+LP = 0
+TP = 0
+Strength = 0
+Toughness = 0
+Ballistics = 0
+Resistance = 0
+Speed = 0
+Luck = 0
+StatSwap = false
+FirstSwap = ""
+SecondSwap = ""

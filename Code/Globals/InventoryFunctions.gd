@@ -3,10 +3,10 @@ extends Node
 var HariqMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerHariq.tres")
 var BahrMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres")
 var SaeiqaMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/PlayerSeiqa.tres")
+var DawMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres")
 var AlmudhanibMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres")
 var AlshafaqMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres")
 var AlqamarMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres")
-var DawMove: Move = preload("res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres")
 
 func itemHandler(inventory) -> void:
 	for player in Globals.every_player_entity:
@@ -93,7 +93,8 @@ func applyItems(chara, inventory) -> void:
 				else:
 					applyItem(item,invItem, chara)
 
-func applyItem(item,invItem, chara) -> void: invItem.ownerArray[Globals.charNum(chara)] = chara.itemData[item]
+func applyItem(item,invItem, chara) -> void: 
+	invItem.ownerArray[Globals.charNum(chara)] = chara.itemData[item]
 
 func applyAutofill(chara,invItem, item = null) -> void:
 	if item == null: item = invItem
@@ -205,9 +206,7 @@ func chipHandlerResult(chip,chara,result) -> void:
 
 func redChipFun(entity, chip) -> void:
 	if chip.NewMove != null:
-		entity.specificData.Basics[1] = chip.NewMove
 		entity.specificData.ThirdMoveElement |= chip.ThirdMoveElement
-		print(entity.specificData.ThirdMoveElement)
 		ThirdMoveDetermine(entity, entity.specificData.ThirdMoveElement)
 	if chip.newPhyElement != "None" and chip.newPhyElement != "":
 		entity.phyElement = chip.newPhyElement
@@ -215,9 +214,11 @@ func redChipFun(entity, chip) -> void:
 		entity.specificData.boostTarget = chip.NewTarget
 	elif chip.AffectedMove == "Basic":
 		entity.specificData.basicTarget = chip.NewTarget
+	if chip.addedBoost != 0 and chip.addedBoost != null:
+		entity.specificData.boostStat |= chip.addedBoost
 	if chip.ItemChange != null:
 		entity.ItemChange = chip.ItemChange
-	if chip.calcBonus != 0 or chip.calcBonus != null:
+	if chip.calcBonus != 0 and chip.calcBonus != null:
 		entity.calcBonus |= chip.calcBonus
 		if chip.calcBonus & 1:
 			entity.drainCalcAmmount += chip.calcAmmount
@@ -235,22 +236,21 @@ func redChipFun(entity, chip) -> void:
 			entity.TpCostMod += chip.TpCostMod
 
 func ThirdMoveDetermine(entity, elementMix) -> void:
-	print(entity.name, elementMix)
 	match elementMix: #FIRE = 1 | WATER = 2 | ELEC = 4
 		1:
-			pass
+			entity.specificData.Basics[1] = HariqMove
 		2:
-			pass
+			entity.specificData.Basics[1] = BahrMove
 		4:
-			pass
+			entity.specificData.Basics[1] = SaeiqaMove
 		3:
-			pass
+			entity.specificData.Basics[1] = AlshafaqMove
 		5:
-			pass
+			entity.specificData.Basics[1] = DawMove
 		6:
-			pass
+			entity.specificData.Basics[1] = AlmudhanibMove
 		7:
-			pass
+			entity.specificData.Basics[1] = AlqamarMove
 
 func blueChipFun(entity, chip) -> void:
 	if chip.NewElement != "None" and chip.NewElement != "":

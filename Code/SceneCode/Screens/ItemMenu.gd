@@ -74,7 +74,8 @@ func _process(delta):
 	if get_viewport().gui_get_focus_owner() == null and not acrossPlayers:
 		InvMenu[0][0].focus.grab_focus()
 	
-	if movingItem: movement()
+	if movingItem:
+		movement()
 	buttons()
 	
 	if movingItem or choosingNum:
@@ -86,8 +87,16 @@ func _process(delta):
 			scrollDown()
 			Arrow.global_position = markerArray[side][markerIndex].global_position
 		
-		if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0): inputHoldTime = 0.0
-		else: inputHoldTime += delta
+		if Input.get_vector("Left", "Right", "Up", "Down") == Vector2(0.0,0.0):
+			inputHoldTime = 0.0
+		else: 
+			inputHoldTime += delta
+			if not movingItem:
+				if get_viewport().gui_get_focus_owner().global_position.y < scrollDeadzone.x:
+					scrollUp()
+				elif get_viewport().gui_get_focus_owner().global_position.y > scrollDeadzone.y:
+					scrollDown()
+		
 		insertNumPanel.holding = inputHoldTime
 
 func movement() -> void:
@@ -450,7 +459,8 @@ func _on_option_button_item_selected(index) -> void:
 	
 	update()
 
-func _on_insert_number_make_noise() -> void: makeNoise.emit(2)
+func _on_insert_number_make_noise() -> void:
+	makeNoise.emit(2)
 
 #-----------------------------------------
 #HELPER FUNCTIONS
@@ -461,12 +471,29 @@ func swap(value) -> int:
 	return value
 
 func scrollUp() -> void:
-	if side == 0: itemInv.get_parent().scroll_vertical -= scrollAmmount
-	else: playerItems.get_parent().scroll_vertical -= scrollAmmount
+	if acrossPlayers:
+		if side == 0: 
+			itemInv.get_parent().scroll_vertical -= scrollAmmount
+		else: 
+			playerItems.get_parent().scroll_vertical -= scrollAmmount
+	else:
+		if get_viewport().gui_get_focus_owner().get_parent().inChar:
+			playerItems.get_parent().scroll_vertical -= scrollAmmount
+		else:
+			itemInv.get_parent().scroll_vertical -= scrollAmmount
 
 func scrollDown() -> void:
-	if side == 0: itemInv.get_parent().scroll_vertical += scrollAmmount
-	else: playerItems.get_parent().scroll_vertical += scrollAmmount
+	if acrossPlayers:
+		if side == 0: 
+			itemInv.get_parent().scroll_vertical += scrollAmmount
+		else: 
+			playerItems.get_parent().scroll_vertical += scrollAmmount
+	else:
+		if get_viewport().gui_get_focus_owner().get_parent().inChar:
+			playerItems.get_parent().scroll_vertical -= scrollAmmount
+		else:
+			itemInv.get_parent().scroll_vertical -= scrollAmmount
+	
 
 func setFocus(value: bool) -> void:
 	if side == 0: itemInv.get_parent().set_follow_focus(value)

@@ -36,9 +36,8 @@ func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
 
 func getStats(Entity,character,level) -> entityData:
 	var stats = playerStats[character][str(level)]
-	print(Entity.name, Entity.specificData.ChipData, " SAVE:",currentSave.every_specific_data[charNum(Entity)])
 	if currentSave.every_specific_data[charNum(Entity)].Tactics2 == null:
-		currentSave.every_specific_data[charNum(Entity)].setUp()
+		currentSave.every_specific_data[charNum(Entity)].setUp(Entity.element, Entity.phyElement, Entity.Weakness, Entity.Resist, Entity.name)
 	Entity.specificData = currentSave.every_specific_data[charNum(Entity)]
 	
 	#Resource Stats
@@ -116,9 +115,8 @@ func ApplyChips(Entity) -> void:
 			"Yellow": InventoryFunctions.yellowChipFun(Entity,chip)
 
 func readyPlayerDataSave() -> void:
-	for player in range(every_player_entity.size()):
-		currentSave.every_specific_data[player] = every_player_entity[player].specificData
-		print(every_player_entity[player].name,currentSave.every_specific_data[player].ChipData)
+	for player in every_player_entity:
+		currentSave.every_specific_data[charNum(player)] = player.specificData
 
 func getTPCost(move,entity,aura) -> int:
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))

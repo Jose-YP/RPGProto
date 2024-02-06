@@ -15,6 +15,7 @@ class_name Chip
 @export var NewMove: Move
 @export_flags("Fire","Water","Elec") var ThirdMoveElement: int = 0
 @export_enum("Slash","Crush","Pierce","None") var newPhyElement: String = "None"
+@export_flags("Attack","Defense","Speed","Luck") var addedBoost: int = 0
 @export_enum("None","Basic","Boost") var AffectedMove: String = "None"
 @export_enum("Single","Group","All","Random") var NewTarget: String
 @export_enum("Physical","Ballistic","Freebie") var ItemChange: String
