@@ -11,8 +11,8 @@ var aiInstance
 var description: String
 var moveset: Array = []
 #PERCEPTION VARIABLES
-var allies: Array
-var opposing: Array
+var allAllies: Array = []
+var allOpposing: Array = []
 var allyCurrentTP: int
 var allyMaxTP: int
 var opposingCurrentTP: int
@@ -54,6 +54,9 @@ func _process(_delta):
 #-----------------------------------------
 func chooseMove(TP,allies,opposing) -> Move:
 	var move: Resource
+	allyCurrentTP = TP
+	allAllies = allies
+	allOpposing = opposing
 	var allowed = allowedMoveset(TP)
 	
 	match enemyData.AIType:
@@ -76,25 +79,39 @@ func chooseMove(TP,allies,opposing) -> Move:
 #-----------------------------------------
 #ENEMY PERCIEVE SELF
 #-----------------------------------------
-func selfLeastHealth(): #Return how low health of self is
-	pass
+func selfLeastHealth(limit: float) -> bool: #Returns if low health of self is lower than limit
+	var leftover: float = float(currentHP)/data.MaxHP
+	return leftover >= limit
 
-func selfElement(): #Return element
-	pass
+func selfElement(desiredElement = ""): #Returns if element is what the user wants
+	if desiredElement == "":
+		return data.TempElement == desiredElement
+	else:
+		return true
 
-func selfBuffStatus(): #Return what conditions is in self
-	pass
+func selfBuffStatus() -> Array: #Return what conditions is in self
+	var buffs = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luck]
+	return buffs
 
-func selfCondition(): #Every condition the self has
-	pass
+func selfCondition() -> Array: #Every condition the self has
+	var ConditionArray: Array =[]
+	
+	for i in range(10):
+		#Flag is the binary version of i
+		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+		if data.Condition != null and data.Condition & flag != 0:
+			ConditionArray.append(HelperFunctions.Flag_to_String(flag,"Condition"))
+	
+	return ConditionArray
 
-func selfAilments(): #Return how ailment stack and current Ailment of self
-	pass
+func selfAilments() -> Dictionary: #Return how ailment stack and current Ailment of self
+	var ailment = {data.Ailment : data.AilmentNum}
+	return ailment
 
 #-----------------------------------------
 #ENEMY PERCIEVE ALLIES
 #-----------------------------------------
-func allyLeastHealth(): #Return ally with least health and by how much
+func allyLeastHealth(): #Returns ally with least health and by how much
 	pass
 
 func alliesLowHealth(): #How many allies are at custom defined low health
@@ -273,3 +290,22 @@ func allowedMoveset(TP) -> Array:
 #-----------------------------------------
 func displayPreception() -> void:
 	pass
+
+#-----------------------------------------
+#DEBUG
+#-----------------------------------------
+func debugAIPerceive() -> void:
+	print("SELF PERCEPTION")
+	print("LESS THAN HALF HP: ", selfLeastHealth(.5))
+	print("IS ELEMENT FIRE: ", selfElement("Fire"))
+	print("BUFFS: ", selfBuffStatus())
+	print("CONDITIONS: ", selfCondition())
+	print("AILMENTS: ", selfAilments())
+	print("\nALLY PERCEPTION")
+	print("ALLIES: ", allAllies)
+	print("\nOPPOSING PERCEPTION")
+	print("OPPOSING", allOpposing)
+	print("\nOTHER PERCEPTION")
+	print("TPS: ALLY:", allyCurrentTP, allyMaxTP, "OPPOSING: ", opposingCurrentTP, opposingMaxTP)
+	
+	

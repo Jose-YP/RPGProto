@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://v3nffaaihyp3"]
+[gd_scene load_steps=31 format=3 uid="uid://v3nffaaihyp3"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_680s0"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_tc2to"]
@@ -24,9 +24,12 @@
 [ext_resource type="AudioStream" uid="uid://dn36iyl1mxrg1" path="res://Audio/SFX/Ailment.wav" id="23_wvrq4"]
 [ext_resource type="AudioStream" uid="uid://2n11d6lo8ktw" path="res://Audio/SFX/Reckless.wav" id="24_8in0y"]
 [ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="25_s5dkk"]
+[ext_resource type="AudioStream" uid="uid://7ymkjufgtrmk" path="res://Audio/SFX/weaken.ogg" id="25_sjwrc"]
 [ext_resource type="AudioStream" uid="uid://bc41v187fp0wf" path="res://Audio/SFX/Bass.wav" id="25_y6h0v"]
+[ext_resource type="AudioStream" uid="uid://dlfu07ndv63fm" path="res://Audio/SFX/TelekinesisMonkGrunt1.wav" id="26_cqkm0"]
 [ext_resource type="AudioStream" uid="uid://csrxt7jammqf" path="res://Audio/SFX/clear_02_Ab2Db_low.ogg" id="26_whajc"]
 [ext_resource type="AudioStream" uid="uid://2n741f4ivddi" path="res://Audio/SFX/Aura.wav" id="27_oy0k6"]
+[ext_resource type="AudioStream" uid="uid://v5buhx1xytkp" path="res://Audio/SFX/snd_saber3.wav" id="29_axa02"]
 
 [node name="MainBattle" type="Node2D"]
 script = ExtResource("1_680s0")
@@ -298,6 +301,17 @@ volume_db = 1.0
 pitch_scale = 0.8
 bus = &"MoveSFX"
 
+[node name="Stun" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
+stream = ExtResource("25_sjwrc")
+bus = &"MoveSFX"
+
+[node name="Curse" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
+unique_name_in_owner = true
+stream = ExtResource("26_cqkm0")
+pitch_scale = 0.85
+bus = &"MoveSFX"
+
 [node name="ETC" type="Node" parent="MoveSFX"]
 editor_description = "Don't have ETC"
 
@@ -315,6 +329,10 @@ bus = &"MoveSFX"
 unique_name_in_owner = true
 stream = ExtResource("12_y7mf4")
 bus = &"MoveSFX"
+
+[node name="XSoft" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
+unique_name_in_owner = true
+stream = ExtResource("29_axa02")
 
 [node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 unique_name_in_owner = true

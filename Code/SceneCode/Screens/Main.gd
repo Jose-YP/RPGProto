@@ -16,6 +16,7 @@ extends Node2D
 @onready var BuffSFX: Array[AudioStreamPlayer] = [%BuffStat, %DebuffStat, %Condition, %EleChange]
 @onready var AilmentSFX: Array[AudioStreamPlayer] = [%Overdrive, %Poison, %Reckless, %Exhausted, %Rust, %Dumbfounded]
 @onready var ETCSFX: Array[AudioStreamPlayer] = [%Heal, %Aura, %Summon]
+@onready var XSoftSFX: AudioStreamPlayer = %XSoft
 @onready var DieSFX: AudioStreamPlayer = %Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
 #TURN MANAGERS
@@ -123,6 +124,7 @@ func _ready(): #Assign current team according to starting bool
 	
 	for entity in everyone:
 		entity.connect("ailmentSound",playAilment)
+		entity.connect("xsoftSound", playXSoft)
 		entity.connect("critical", setCrit)
 		entity.connect("explode", blowUp)
 	
@@ -138,6 +140,10 @@ func _ready(): #Assign current team according to starting bool
 	else:
 		team = enemyOrder
 		opposing = playerOrder
+		
+		team[i].opposingCurrentTP = playerTP
+		team[i].allyMaxTP = playerMaxTP
+		team[i].opposingMaxTP = enemyMaxTP
 		enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 	
 	everyone = playerOrder + enemyOrder
@@ -417,8 +423,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 			else:
 				waiting = true
 				EfinishSelecting(enemyAction)
-			
-		
 
 func establishGroups(targetting) -> Array:
 	var returnGroup: Array = []
@@ -897,6 +901,9 @@ func next_entity() -> void:
 				team[i].firstButton.grab_focus()
 				team[i].selectedAgain.emit()
 			else:
+				team[i].opposingCurrentTP = playerTP
+				team[i].allyMaxTP = playerMaxTP
+				team[i].opposingMaxTP = enemyMaxTP
 				enemyAction = team[i].chooseMove(enemyTP,playerOrder,enemyOrder)
 				target = findTarget(enemyAction)
 				print(target)
@@ -1201,6 +1208,9 @@ func playAilment(type) -> void:
 		if type == Globals.AilmentTypes[i]:
 			AilmentSFX[i].play()
 			break
+
+func playXSoft() -> void:
+	XSoftSFX.play()
 
 func setCrit() -> void:
 	critSFXEffect = true

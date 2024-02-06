@@ -10,6 +10,7 @@ script = ExtResource("1_npcim")
 level = 0
 name = "Amebozo"
 species = "Microscopium"
+stellar = "Stellar"
 specificData = ExtResource("3_xxosb")
 MaxHP = 3
 MaxTP = 80

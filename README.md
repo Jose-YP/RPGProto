@@ -31,6 +31,11 @@ fspecial.ogg used with Condition Buffs - unsure
 
 heavy1.ogg used with NeutralPhysical attacks - unsure
 
+Stun Sound Effect - Weaken SFX in Dicey Dungeons 
+
+Curse Sound Effect taken from Telekenisis- The Monk
+
+XSoft Sound Effect - snd_saber3 from Undertale
 ______
 ISSUES
 ______

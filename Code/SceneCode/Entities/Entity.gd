@@ -17,6 +17,7 @@ extends Node2D
 @onready var items: Array = []
 
 signal ailmentSound(type)
+signal xsoftSound
 signal explode(user)
 signal critical
 
@@ -318,6 +319,7 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 		receiver.data.XSoft = HelperFunctions.NullorAppend(receiver.data.XSoft,ele)
 	
 	receiver.XSoftDisplay()
+	xsoftSound.emit()
 
 func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:

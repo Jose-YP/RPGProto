@@ -29,6 +29,7 @@ script = ExtResource("2_rrmmm")
 level = 0
 name = ""
 species = ""
+stellar = "Stellar"
 specificData = SubResource("Resource_3eiic")
 MaxHP = 100
 MaxTP = 80

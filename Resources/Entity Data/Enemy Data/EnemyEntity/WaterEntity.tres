@@ -13,6 +13,7 @@ script = ExtResource("3_2r2vh")
 level = 8
 name = "Polkan"
 species = "Centaurus"
+stellar = "Stellar"
 specificData = ExtResource("6_j8mqt")
 MaxHP = 500
 MaxTP = 120

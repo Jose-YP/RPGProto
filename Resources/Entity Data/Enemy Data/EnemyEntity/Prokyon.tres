@@ -13,6 +13,7 @@ script = ExtResource("3_8p231")
 level = 4
 name = "Prokyon"
 species = "Canis Minor"
+stellar = "Stellar"
 specificData = ExtResource("6_doiot")
 MaxHP = 350
 MaxTP = 80

@@ -10,6 +10,7 @@ script = ExtResource("2_3g4il")
 level = 12
 name = "Healer"
 species = "Corvus"
+stellar = "Stellar"
 specificData = ExtResource("3_viwcf")
 MaxHP = 400
 MaxTP = 80
