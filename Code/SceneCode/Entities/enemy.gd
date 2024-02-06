@@ -113,7 +113,7 @@ func selfAilments() -> Array: #Return how ailment stack and current Ailment of s
 #-----------------------------------------
 #ENEMY PERCIEVE GROUP
 #-----------------------------------------
-func groupLeastHealth(group, limit: float): #Returns ally with least health if they're below a threshold
+func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least health if they're below a threshold
 	var leastHealth
 	var currentLeftover: float = 1
 	
@@ -127,7 +127,7 @@ func groupLeastHealth(group, limit: float): #Returns ally with least health if t
 		print(leastHealth, type_string(typeof(leastHealth)))
 		return leastHealth 
 	else:
-		return null
+		return false
 
 func groupLowHealth(group, limit: float) -> Array: #How many allies are at custom defined low health
 	var lowHealthGroup: Array[bool] = []
@@ -162,7 +162,7 @@ func groupCondition(group) -> Array: #Return what conditions is in every ally
 	var groupConditions: Array[Array] = []
 	
 	for entity in group:
-		var conditionArray: Array
+		var conditionArray: Array = []
 		for i in range(10):
 			#Flag is the binary version of i
 			var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
@@ -339,7 +339,9 @@ func debugAIPerceive() -> void:
 	print("\nALLY PERCEPTION")
 	print("-------------------------------------")
 	print("ALLIES: ", allAllies)
-	print("LESS THAN HALF HP: ", groupLeastHealth(allAllies, .5))
+	print("LEAST HEALTH ", groupLeastHealth(allAllies))
+	print("LESS THAN 50% THOUGH? ", groupLeastHealth(allAllies, .5))
+	print("LESS THAN 90% HP: ", groupLowHealth(allAllies, .9))
 	print("ELEMENT: ", groupElements(allOpposing))
 	print("IS ELEMENT FIRE: ", groupElements(allAllies, "Fire"))
 	print("BUFFS: ", groupBuffStatus(allAllies))
@@ -350,7 +352,9 @@ func debugAIPerceive() -> void:
 	print("\nOPPOSING PERCEPTION")
 	print("-------------------------------------")
 	print("OPPOSING", allOpposing)
-	print("LESS THAN HALF HP: ", groupLeastHealth(allOpposing, .5))
+	print("LEAST HEALTH ", groupLeastHealth(allOpposing))
+	print("LESS THAN 50% THOUGH? ", groupLeastHealth(allOpposing, .5))
+	print("LESS THAN 90% HP: ", groupLowHealth(allOpposing, .9))
 	print("ELEMENT: ", groupElements(allOpposing))
 	print("IS ELEMENT FIRE: ", groupElements(allOpposing, "Fire"))
 	print("BUFFS: ", groupBuffStatus(allOpposing))
