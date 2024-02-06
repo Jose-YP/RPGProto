@@ -36,12 +36,14 @@ ISSUES
 ______
 *In general STABILITY
 
+*Make sure everything works under the battle system
+
 *Manage chips after levelling down
 
 ______
 TODO
 ______
-*Save system
+*Implement Dumbfounded
 
 *Implement other EnemyAI types(So far only random)
 

@@ -5,10 +5,18 @@ extends "res://Code/SceneCode/Entities/Entity.gd"
 @onready var ScanBox = $ScanBox
 @onready var gettingScanned: bool = false
 
+#SELF VARIABLES
 var enemyAI
 var aiInstance
 var description: String
 var moveset: Array = []
+#PERCEPTION VARIABLES
+var allies: Array
+var opposing: Array
+var allyCurrentTP: int
+var allyMaxTP: int
+var opposingCurrentTP: int
+var opposingMaxTP: int
 
 #-----------------------------------------
 #INITALIZATION
@@ -66,6 +74,84 @@ func chooseMove(TP,allies,opposing) -> Move:
 	return move
 
 #-----------------------------------------
+#ENEMY PERCIEVE SELF
+#-----------------------------------------
+func selfLeastHealth(): #Return how low health of self is
+	pass
+
+func selfElement(): #Return element
+	pass
+
+func selfBuffStatus(): #Return what conditions is in self
+	pass
+
+func selfCondition(): #Every condition the self has
+	pass
+
+func selfAilments(): #Return how ailment stack and current Ailment of self
+	pass
+
+#-----------------------------------------
+#ENEMY PERCIEVE ALLIES
+#-----------------------------------------
+func allyLeastHealth(): #Return ally with least health and by how much
+	pass
+
+func alliesLowHealth(): #How many allies are at custom defined low health
+	pass
+
+func alliesElements(): #Return ally elements
+	pass
+
+func alliesBuffStatus(): #Return every ally buffs
+	pass
+
+func alliesCondition(): #Return what conditions is in every ally
+	pass
+
+func alliesAilments(): #Return how ailment stack and current Ailment of allies
+	pass
+
+func alliesAmmount(): #How many allies left
+	pass
+
+#-----------------------------------------
+#ENEMY PERCIEVE PLAYER
+#-----------------------------------------
+func opposingLeastHealth(): #Return player with least health and by how much
+	pass
+
+func opposingLowHealth(): #How many players are at custom defined low health
+	pass
+
+func opposingElements(): #Return player elements
+	pass
+
+func opposingBuffStatus(): #Return every player buffs
+	pass
+
+func opposingCondition(): #Return what conditions is in every player
+	pass
+
+func opposingAilments(): #Return how ailment stack and current Ailment of players
+	pass
+
+func opposingAmmount(): #How many players left
+	pass
+
+func learnOpposing(): #REACTIONARY: Learn any other wierd tricks the players are using
+	pass
+
+#-----------------------------------------
+#ENEMY PERCIEVE OTHER
+#-----------------------------------------
+func internalizeAura():
+	pass
+
+func internalizeTP():
+	pass
+
+#-----------------------------------------
 #TARGETTING TYPES
 #-----------------------------------------
 func SingleSelect(targetting,_move):
@@ -93,6 +179,7 @@ func GroupSelect(targetting,_move):
 			pass
 		"Debuff":
 			pass
+
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
@@ -180,3 +267,9 @@ func allowedMoveset(TP) -> Array:
 		allowed.append(data.waitData)
 	
 	return allowed
+
+#-----------------------------------------
+#DEBUG
+#-----------------------------------------
+func displayPreception() -> void:
+	pass

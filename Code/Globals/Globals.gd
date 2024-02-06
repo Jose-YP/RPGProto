@@ -39,6 +39,8 @@ func getStats(Entity,character,level) -> entityData:
 	var stats = playerStats[character][str(level)]
 	if currentSave.every_specific_data[charNum(Entity)].Tactics2 == null:
 		currentSave.every_specific_data[charNum(Entity)].setUp(Entity.element, Entity.phyElement, Entity.Weakness, Entity.Resist, Entity.name)
+		initalizePlyaerSpecies(currentSave.every_player_entity[charNum(Entity)])
+		
 	Entity.specificData = currentSave.every_specific_data[charNum(Entity)]
 	
 	#Resource Stats
@@ -117,8 +119,17 @@ func ApplyChips(Entity) -> void:
 
 func readyPlayerDataSave() -> void:
 	for player in every_player_entity:
-		print(player.name)
 		currentSave.every_specific_data[charNum(player)] = player.specificData
+
+func initalizePlyaerSpecies(entity) -> void:
+	match entity.name:
+		"DREAMER":
+			entity.stellar = "Hybrid"
+			return
+		"Pepper":
+			return
+		_:
+			entity.stellar = "Non-Stellar"
 
 func getTPCost(move,entity) -> int:
 	var TPCost = move.TPCost - (entity.data.speed*(1 + entity.data.speedBoost))

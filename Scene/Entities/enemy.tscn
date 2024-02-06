@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/SceneCode/Entities/enemy.gd" id="2_i0hmc"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="3_sw75k"]
 
-
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
 

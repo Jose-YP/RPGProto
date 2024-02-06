@@ -13,6 +13,7 @@ equippedOn = 0
 other = ""
 ThirdMoveElement = 0
 newPhyElement = "None"
+addedBoost = 0
 AffectedMove = "Boost"
 NewTarget = "Group"
 ItemChange = ""

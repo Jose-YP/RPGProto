@@ -5,6 +5,7 @@ class_name entityData
 @export_range(1,60) var level: int
 @export var name: String
 @export var species: String
+@export_enum("Stellar","Hybrid","Non-Stellar") var stellar: String = "Stellar"
 @export var specificData: Resource
 
 @export_group("Stats")

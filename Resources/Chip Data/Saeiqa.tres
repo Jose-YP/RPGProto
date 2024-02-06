@@ -15,6 +15,7 @@ other = ""
 NewMove = ExtResource("1_22y2u")
 ThirdMoveElement = 4
 newPhyElement = "None"
+addedBoost = 0
 AffectedMove = "None"
 NewTarget = ""
 ItemChange = ""

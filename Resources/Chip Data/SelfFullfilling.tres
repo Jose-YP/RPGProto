@@ -13,6 +13,7 @@ equippedOn = null
 other = ""
 ThirdMoveElement = 0
 newPhyElement = "None"
+addedBoost = 0
 AffectedMove = null
 NewTarget = null
 ItemChange = null

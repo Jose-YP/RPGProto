@@ -88,6 +88,7 @@ func processer() -> void:
 func attack(move, receiver, user, property) -> int:
 	var attackStat: int
 	var defenseStat: int
+	var lightMod: float = 1
 	var softMod: float = 0.0
 	var overdriveMod: float = 0.0
 	var offenseElement = user.data.TempElement
@@ -107,6 +108,11 @@ func attack(move, receiver, user, property) -> int:
 		elementMod = elementModCalc(user.data.TempElement, receiver.data.TempElement, EleMod, sameEle)
 	else:
 		elementMod = elementModCalc(offenseElement, receiver.data.TempElement, EleMod, sameEle)
+	
+	if move.element == "Light" and receiver.data.stellar == "Stellar":
+		lightMod = 2
+	elif move.element == "Light" and receiver.data.stellar == "Hybrid":
+		lightMod = 1.5
 	
 	#Basic Attacks will use the user's PhyElement instead of the move's
 	#Every other attack uses the move's PhyElement
@@ -163,14 +169,13 @@ func attack(move, receiver, user, property) -> int:
 		overdriveMod = .25
 	
 	var totalFirstMod = 1 + user.data.attackBoost + phyMod + softMod + critMod + overdriveMod
-	var totalSecondMod = chargeMod*auraMod*elementMod
+	var totalSecondMod = chargeMod*auraMod*elementMod*lightMod
 	#Get total attack power, subtract it by total defense then multiply by element mod*AuraMod
 	var damage = ((randi_range(0,user.data.level) + move.Power + attackStat) * totalFirstMod)
 	damage =  damage - ((1.25 * defenseStat) * (1 + receiver.data.defenseBoost))
-	damage = int(totalSecondMod*(damage))
+	damage = int(totalSecondMod * (damage))
 	
-	if damage <= 0:
-		damage = 1
+	damage = clamp(damage, 1, 1000)
 	
 	feedback = str(damage, " Damage!", feedback)
 	return damage
@@ -178,6 +183,7 @@ func attack(move, receiver, user, property) -> int:
 func BOMB(move,receiver, user) -> int:
 	feedback = ""
 	var sameEle = user.data.sameElement or receiver.data.sameElement
+	var lightMod: float = 1.0
 	var softMod: float = 0.0
 	var prev: float = softMod
 	var phyMod: float = phy_weakness(move.phyElement, receiver.data)
@@ -195,6 +201,11 @@ func BOMB(move,receiver, user) -> int:
 	elif elementMod <= .75:
 		feedback = str("{",move.element," Resist}", feedback)
 	
+	if move.element == "Light" and receiver.data.stellar == "Stellar":
+		lightMod = 2
+	elif move.element == "Light" and receiver.data.stellar == "Hybrid":
+		lightMod = 1.5
+	
 	softMod += checkXSoft(move.element, receiver)
 	if prev < softMod:
 		feedback = str("{",move.element," Soft}", feedback)
@@ -209,7 +220,7 @@ func BOMB(move,receiver, user) -> int:
 		attackStat += int(user.data.ballistics * .75)
 	
 	#Bomb attack don't use attack or defense
-	var damage = elementMod * ((move.Power + attackStat) * (1 + phyMod + softMod))
+	var damage = lightMod * elementMod * ((move.Power + attackStat) * (1 + phyMod + softMod))
 	
 	feedback = str(damage, " BOMB Damage!", feedback)
 	return damage
