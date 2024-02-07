@@ -9,9 +9,6 @@
 [node name="Player" groups=["Players"] instance=ExtResource("1_ij2m7")]
 script = ExtResource("2_0rcg8")
 
-[node name="HPBar" parent="." index="2"]
-offset_bottom = 106.0
-
 [node name="LPBar" type="TextureProgressBar" parent="." index="3"]
 offset_left = -125.0
 offset_top = 176.0
@@ -40,9 +37,6 @@ offset_left = 112.0
 offset_top = 28.0
 offset_right = 112.0
 offset_bottom = 28.0
-
-[node name="CurrentInfo" parent="." index="8"]
-offset_right = 224.0
 
 [connection signal="canPayFor" from="." to="CanvasLayer" method="_on_player_can_pay_for"]
 [connection signal="disable" from="." to="CanvasLayer" method="disable"]

@@ -2,16 +2,16 @@ extends Node2D
 
 @export var data: entityData
 
-@onready var InfoBox: PanelContainer = $CurrentInfo
-@onready var Info: RichTextLabel = $CurrentInfo/RichTextLabel
-@onready var selected: Sprite2D = $Arrow
-@onready var HPBar: TextureProgressBar = $HPBar
-@onready var HPtext: RichTextLabel = $HPBar/RichTextLabel
-@onready var currentCondition: RichTextLabel = $ConditionDisplay
-@onready var AilmentImages = $AilmentDisplay/HBoxContainer/AilmentType.get_children()
-@onready var XSoftTabs = $XSoftDisplay/HBoxContainer.get_children()
+@onready var InfoBox: PanelContainer = $BackUI/CurrentInfo
+@onready var Info: RichTextLabel = $BackUI/CurrentInfo/RichTextLabel
+@onready var selected: Sprite2D = $FrontUI/Arrow
+@onready var HPBar: TextureProgressBar = $BackUI/HPBar
+@onready var HPtext: RichTextLabel = $BackUI/HPBar/RichTextLabel
+@onready var currentCondition: RichTextLabel = $FrontUI/ConditionDisplay
+@onready var AilmentImages = $BackUI/AilmentDisplay/HBoxContainer/AilmentType.get_children()
+@onready var XSoftTabs = $BackUI/XSoftDisplay/HBoxContainer.get_children()
 @onready var XSoftSlots: Array = []
-@onready var statBoostSprites: Array = [$Buffs/Attack,$Buffs/Defense,$Buffs/Speed,$Buffs/Luck]
+@onready var statBoostSprites: Array = [%Attack, %Defense, %Speed, %Luck]
 @onready var statBoostSlots: Array = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
 @onready var attacks: Array = [data.attackData]
 @onready var items: Array = []
@@ -49,7 +49,7 @@ func moreReady() -> void:#Make a function so it'll work on parent and child node
 	data.TempElement = data.element
 	items = data.itemData.keys()
 	
-	for tab in $XSoftDisplay/HBoxContainer.get_children():
+	for tab in $BackUI/XSoftDisplay/HBoxContainer.get_children():
 		XSoftSlots.append(tab.get_children())
 
 func _process(_delta):
@@ -62,20 +62,20 @@ func processer() -> void:
 	
 	for k in range(4):
 		if Globals.elementGroups[k] == data.TempElement:
-			$CurrentElement.current_tab = k
+			$BackUI/CurrentElement.current_tab = k
 	
 	if data.XSoft.size() == 0: #If there are none, hide display
-		$XSoftDisplay.hide()
+		$BackUI/XSoftDisplay.hide()
 	
 	for i in range(AilmentImages.size()): #If the entity has any Ailments show them
 		if data.Ailment == AilmentImages[i].name:
-			$AilmentDisplay.show()
-			$AilmentDisplay/HBoxContainer/AilmentType.current_tab = i
-			$AilmentDisplay/HBoxContainer/AilmentNum.text = str(data.AilmentNum)
+			$BackUI/AilmentDisplay.show()
+			$BackUI/AilmentDisplay/HBoxContainer/AilmentType.current_tab = i
+			$BackUI/AilmentDisplay/HBoxContainer/AilmentNum.text = str(data.AilmentNum)
 		
 	if data.AilmentNum <= 0: #Otherwise hide the display
 		data.Ailment = "Healthy"
-		$AilmentDisplay.hide()
+		$BackUI/AilmentDisplay.hide()
 	if data.AilmentNum > 3:
 		data.AilmentNum = 3
 	if data.Ailment == "Overdrive": #Overdrive can only have an Ailment Num of 1
@@ -751,7 +751,7 @@ func XSoftDisplay() -> void:
 		var oneTrue = false
 		for i in range(6):
 			if data.XSoft[soft] == XSoftSlots[soft][i].name:
-				$XSoftDisplay.show()
+				$BackUI/XSoftDisplay.show()
 				XSoftTabs[soft].current_tab = i
 				XSoftTabs[soft].show()
 				oneTrue = true

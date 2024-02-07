@@ -1,14 +1,19 @@
-res://Scene/Mains/Main.tscn
+res://Scene/Entities/enemy.tscn
 res://Code/ResourceMakers/EnemyMaker.gd
+res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres
+res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres
 res://Themes/ButtonStyle/Disabled.tres
 res://Themes/ButtonStyle/Normal.tres
 res://Themes/HasSingle/Pannel.tres
@@ -17,19 +22,16 @@ res://Themes/HasSingle/TabContainer.tres
 res://Themes/Theme.tres
 res://Shaders/OutlineInline.gdshader
 res://Themes/ButtonStyle/Dock.tres
-res://Themes/ButtonStyle/Focused.tres
 res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres
 res://Code/SceneCode/Entities/enemy.gd
-res://README.md
-res://Scene/Entities/enemy.tscn
-res://Code/SceneCode/Entities/Entity.gd
-res://Code/SceneCode/Screens/Main.gd
-res://Scene/Mains/MainMenu.tscn
-res://Scene/Entities/Player.tscn
+res://Code/EnemyAI/EnemyAIGlobal.gd
 res://Scene/Entities/Entity.tscn
-res://Code/SceneCode/Entities/Player.gd
-res://Code/SceneCode/Entities/PlayerMenu.gd
-res://Code/ResourceMakers/EntityMaker.gd
-res://Code/Globals/HelperFunctions.gd
+res://Code/SceneCode/Entities/Entity.gd
+res://Scene/Mains/MainMenu.tscn
+res://Code/EnemyAI/EnemyRandom.gd
+res://Scene/Entities/Player.tscn
+res://Scene/Mains/Main.tscn
+res://Code/SceneCode/Screens/Main.gd

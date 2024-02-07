@@ -93,14 +93,14 @@ func _ready(): #Assign current team according to starting bool
 	for k in range(Globals.current_player_entities.size()): #Add player scenes as necessary
 		var pNew = playerScene.instantiate()
 		pNew.data = Globals.current_player_entities[k].duplicate()
-		pNew.position = playerPositions[k].position
+		pNew.global_position = playerPositions[k].global_position
 		pNew.playerNum = k
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
 		var eNew = enemyScene.instantiate()
 		eNew.data = Globals.current_enemy_entities[k].duplicate()
-		eNew.position = enemyPosition[k].position
+		eNew.global_position = enemyPosition[k].global_position
 		$Enemies.add_child(eNew)
 	
 	for player in get_tree().get_nodes_in_group("Players"):

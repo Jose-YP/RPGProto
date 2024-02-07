@@ -1,8 +1,8 @@
 extends "res://Code/SceneCode/Entities/Entity.gd"
 
-@onready var EnemyLabel = $NameContainer/RichTextLabel
-@onready var enemyData = data.specificData
-@onready var ScanBox = $ScanBox
+@onready var EnemyLabel: RichTextLabel = $NameContainer/RichTextLabel
+@onready var enemyData: Enemy = data.specificData
+@onready var ScanBox: PanelContainer = $ScanBox
 @onready var gettingScanned: bool = false
 
 #SELF VARIABLES
@@ -26,6 +26,8 @@ func _ready():
 	EnemyLabel.append_text(str("[b][",data.species,"][/b]",data.name))
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
+	
+	enemyData.AICode.reload()
 	
 	match enemyData.AIType:#Determine which AI to use
 		"Random":
@@ -116,8 +118,9 @@ func selfAilments() -> Array: #Return how ailment stack and current Ailment of s
 func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least health if they're below a threshold
 	var leastHealth
 	var currentLeftover: float = 1
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		var leftover: float = float(entity.currentHP) / data.MaxHP
 		if leftover < currentLeftover:
 			leastHealth = entity
@@ -131,8 +134,9 @@ func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least healt
 
 func groupLowHealth(group, limit: float) -> Array: #How many allies are at custom defined low health
 	var lowHealthGroup: Array[bool] = []
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
 		lowHealthGroup.append(leftover >= limit)
 	
@@ -140,8 +144,9 @@ func groupLowHealth(group, limit: float) -> Array: #How many allies are at custo
 
 func groupElements(group, desiredElement = "") -> Array: #Return ally elements or if they all meet Desired Element
 	var groupElementsArray: Array = []
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		if desiredElement == "":
 			groupElementsArray.append(entity.data.TempElement)
 		else:
@@ -151,8 +156,9 @@ func groupElements(group, desiredElement = "") -> Array: #Return ally elements o
 
 func groupBuffStatus(group) -> Array: #Return every ally buffs
 	var groupBuffs: Array[Array] = []
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		var buffs = [entity.data.attackBoost, entity.data.defenseBoost, entity.data.speedBoost, entity.data.luckBoost]
 		groupBuffs.append(buffs)
 	
@@ -160,8 +166,9 @@ func groupBuffStatus(group) -> Array: #Return every ally buffs
 
 func groupCondition(group) -> Array: #Return what conditions is in every ally
 	var groupConditions: Array[Array] = []
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		var conditionArray: Array = []
 		for i in range(10):
 			#Flag is the binary version of i
@@ -174,8 +181,9 @@ func groupCondition(group) -> Array: #Return what conditions is in every ally
 
 func groupAilments(group) -> Array: #Return how ailment stack and current Ailment of allies
 	var groupAilmentsArray: Array[Array] = []
+	var effectiveGroup = getGroup(group)
 	
-	for entity in group:
+	for entity in effectiveGroup:
 		var ailment = [entity.data.Ailment , entity.data.AilmentNum]
 		groupAilmentsArray.append(ailment)
 	
@@ -190,8 +198,16 @@ func learnOpposing(): #REACTIONARY: Learn any other wierd tricks the players are
 func internalizeAura():
 	pass
 
-func internalizeTP():
-	pass
+func internalizeTP(type):
+	match type:
+		"Current":
+			return allyCurrentTP > opposingCurrentTP
+		"Max":
+			return allyMaxTP > opposingMaxTP
+		"Predict":
+			return allyCurrentTP + allyMaxTP * .5
+		"Hedge":
+			return opposingCurrentTP + opposingMaxTP * .5
 
 #-----------------------------------------
 #TARGETTING TYPES
@@ -322,6 +338,12 @@ func allowedMoveset(TP) -> Array:
 	
 	return allowed
 
+func getGroup(group: String) -> Array:
+	if group == "Ally":
+		return allAllies
+	else:
+		return allOpposing
+
 #-----------------------------------------
 #DEBUG
 #-----------------------------------------
@@ -339,27 +361,27 @@ func debugAIPerceive() -> void:
 	print("\nALLY PERCEPTION")
 	print("-------------------------------------")
 	print("ALLIES: ", allAllies)
-	print("LEAST HEALTH ", groupLeastHealth(allAllies))
-	print("LESS THAN 50% THOUGH? ", groupLeastHealth(allAllies, .5))
-	print("LESS THAN 90% HP: ", groupLowHealth(allAllies, .9))
-	print("ELEMENT: ", groupElements(allOpposing))
-	print("IS ELEMENT FIRE: ", groupElements(allAllies, "Fire"))
-	print("BUFFS: ", groupBuffStatus(allAllies))
-	print("CONDITIONS: ", groupCondition(allAllies))
-	print("AILMENTS: ", groupAilments(allAllies))
+	print("LEAST HEALTH ", groupLeastHealth("Ally"))
+	print("LESS THAN 50% THOUGH? ", groupLeastHealth("Ally", .5))
+	print("LESS THAN 90% HP: ", groupLowHealth("Ally", .9))
+	print("ELEMENT: ", groupElements("Ally"))
+	print("IS ELEMENT FIRE: ", groupElements("Ally", "Fire"))
+	print("BUFFS: ", groupBuffStatus("Ally"))
+	print("CONDITIONS: ", groupCondition("Ally"))
+	print("AILMENTS: ", groupAilments("Ally"))
 	
 	print("-------------------------------------")
 	print("\nOPPOSING PERCEPTION")
 	print("-------------------------------------")
 	print("OPPOSING", allOpposing)
-	print("LEAST HEALTH ", groupLeastHealth(allOpposing))
-	print("LESS THAN 50% THOUGH? ", groupLeastHealth(allOpposing, .5))
-	print("LESS THAN 90% HP: ", groupLowHealth(allOpposing, .9))
-	print("ELEMENT: ", groupElements(allOpposing))
-	print("IS ELEMENT FIRE: ", groupElements(allOpposing, "Fire"))
-	print("BUFFS: ", groupBuffStatus(allOpposing))
-	print("CONDITIONS: ", groupCondition(allOpposing))
-	print("AILMENTS: ", groupAilments(allOpposing))
+	print("LEAST HEALTH ", groupLeastHealth("Opposing"))
+	print("LESS THAN 50% THOUGH? ", groupLeastHealth("Opposing", .5))
+	print("LESS THAN 90% HP: ", groupLowHealth("Opposing", .9))
+	print("ELEMENT: ", groupElements("Opposing"))
+	print("IS ELEMENT FIRE: ", groupElements("Opposing", "Fire"))
+	print("BUFFS: ", groupBuffStatus("Opposing"))
+	print("CONDITIONS: ", groupCondition("Opposing"))
+	print("AILMENTS: ", groupAilments("Opposing"))
 	
 	print("-------------------------------------")
 	print("\nOTHER PERCEPTION")

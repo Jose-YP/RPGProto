@@ -7,14 +7,10 @@
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
 
-[node name="HPBar" parent="." index="2"]
-visible = false
-offset_bottom = 105.0
+[node name="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("../Icon")
 
-[node name="Icon" parent="." index="7"]
-modulate = Color(1, 0.0392157, 0, 1)
-
-[node name="NameContainer" type="PanelContainer" parent="." index="11"]
+[node name="NameContainer" type="PanelContainer" parent="." index="5"]
 offset_left = -125.0
 offset_top = 166.0
 offset_right = 131.0
@@ -25,7 +21,7 @@ layout_mode = 2
 bbcode_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="ScanBox" type="PanelContainer" parent="." index="12"]
+[node name="ScanBox" type="PanelContainer" parent="." index="6"]
 visible = false
 offset_left = 64.0
 offset_top = -113.0

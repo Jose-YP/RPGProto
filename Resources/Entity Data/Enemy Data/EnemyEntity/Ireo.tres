@@ -15,6 +15,7 @@ script = ExtResource("1_ntahk")
 level = 20
 name = "Ireo"
 species = "Cygnus"
+stellar = "Stellar"
 specificData = ExtResource("7_iwcrg")
 MaxHP = 1000
 MaxTP = 240

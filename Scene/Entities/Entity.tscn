@@ -43,13 +43,12 @@ fill_from = Vector2(1, 0)
 script = ExtResource("1_d4tmd")
 data = ExtResource("2_w83ur")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Buffs/Defense/RichTextLabel")
+root_node = NodePath("../Icons/Icon")
 
-[node name="HPBar" type="TextureProgressBar" parent="."]
+[node name="BackUI" type="Node" parent="."]
+
+[node name="HPBar" type="TextureProgressBar" parent="BackUI"]
 offset_left = -125.0
 offset_top = 134.0
 offset_right = 131.0
@@ -58,13 +57,13 @@ value = 100.0
 texture_under = SubResource("GradientTexture2D_0uydm")
 texture_progress = ExtResource("3_8a2qv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HPBar"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BackUI/HPBar"]
 layout_mode = 0
 offset_right = 68.0
 offset_bottom = 30.0
 text = "HP: "
 
-[node name="CurrentElement" type="TabContainer" parent="."]
+[node name="CurrentElement" type="TabContainer" parent="BackUI"]
 offset_left = -140.0
 offset_top = -96.0
 offset_right = -100.0
@@ -74,7 +73,7 @@ tabs_visible = false
 all_tabs_in_front = true
 metadata/_edit_lock_ = true
 
-[node name="Fire" type="TextureRect" parent="CurrentElement"]
+[node name="Fire" type="TextureRect" parent="BackUI/CurrentElement"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("5_3twtj")
@@ -82,7 +81,7 @@ expand_mode = 4
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="CurrentElement"]
+[node name="Water" type="TextureRect" parent="BackUI/CurrentElement"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -90,7 +89,7 @@ texture = ExtResource("6_sobfj")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="CurrentElement"]
+[node name="Elec" type="TextureRect" parent="BackUI/CurrentElement"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -98,14 +97,14 @@ texture = ExtResource("7_i010g")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="Neutral" type="TextureRect" parent="CurrentElement"]
+[node name="Neutral" type="TextureRect" parent="BackUI/CurrentElement"]
 visible = false
 layout_mode = 2
 texture = ExtResource("8_t4c4q")
 expand_mode = 4
 metadata/_edit_lock_ = true
 
-[node name="AilmentDisplay" type="VBoxContainer" parent="."]
+[node name="AilmentDisplay" type="VBoxContainer" parent="BackUI"]
 visible = false
 offset_left = -156.0
 offset_top = -50.0
@@ -114,17 +113,17 @@ offset_bottom = 4.0
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="RichTextLabel" parent="AilmentDisplay"]
+[node name="Label" type="RichTextLabel" parent="BackUI/AilmentDisplay"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[u]Ailment[/u]"
 fit_content = true
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AilmentDisplay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BackUI/AilmentDisplay"]
 layout_mode = 2
 
-[node name="AilmentType" type="TabContainer" parent="AilmentDisplay/HBoxContainer"]
+[node name="AilmentType" type="TabContainer" parent="BackUI/AilmentDisplay/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_wvjmv")
 tabs_visible = false
@@ -132,48 +131,48 @@ all_tabs_in_front = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Overdrive" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Overdrive" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 layout_mode = 2
 texture = ExtResource("9_bw670")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Poison" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Poison" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.572549, 0, 0.572549, 1)
 layout_mode = 2
 texture = ExtResource("10_xldur")
 expand_mode = 2
 
-[node name="Reckless" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Reckless" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.937255, 0.435294, 0, 0.780392)
 layout_mode = 2
 texture = ExtResource("11_gc2xj")
 expand_mode = 2
 
-[node name="Exhausted" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Exhausted" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.517647, 0.776471, 0.235294, 0.827451)
 layout_mode = 2
 texture = ExtResource("12_sel68")
 expand_mode = 2
 
-[node name="Rust" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Rust" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.431373, 0.243137, 0, 1)
 layout_mode = 2
 texture = ExtResource("13_my62f")
 expand_mode = 2
 
-[node name="Dumbfounded" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Dumbfounded" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(1, 0.486275, 1, 1)
 layout_mode = 2
 texture = ExtResource("17_tkjcl")
 expand_mode = 3
 
-[node name="Stun" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Stun" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.556863, 0.556863, 0, 0.858824)
 layout_mode = 2
@@ -181,47 +180,47 @@ texture = ExtResource("14_0tik4")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Curse" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Curse" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.545098, 0.0901961, 0.521569, 0.8)
 layout_mode = 2
 texture = ExtResource("15_28iob")
 expand_mode = 2
 
-[node name="Protected" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Protected" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 layout_mode = 2
 texture = ExtResource("16_pmafn")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Miserable" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Miserable" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.105882, 0.14902, 0.631373, 0.768627)
 layout_mode = 2
 texture = ExtResource("18_4w2ar")
 expand_mode = 3
 
-[node name="Worn Out" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Worn Out" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.552941, 0.552941, 0.552941, 1)
 layout_mode = 2
 texture = ExtResource("19_mtend")
 expand_mode = 3
 
-[node name="Explosive" type="TextureRect" parent="AilmentDisplay/HBoxContainer/AilmentType"]
+[node name="Explosive" type="TextureRect" parent="BackUI/AilmentDisplay/HBoxContainer/AilmentType"]
 visible = false
 modulate = Color(0.0470588, 0.0470588, 0.0470588, 0.858824)
 layout_mode = 2
 texture = ExtResource("20_kp66m")
 expand_mode = 2
 
-[node name="AilmentNum" type="Label" parent="AilmentDisplay/HBoxContainer"]
+[node name="AilmentNum" type="Label" parent="BackUI/AilmentDisplay/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("21_ey481")
 text = "1"
 
-[node name="XSoftDisplay" type="VBoxContainer" parent="."]
+[node name="XSoftDisplay" type="VBoxContainer" parent="BackUI"]
 visible = false
 offset_left = -157.0
 offset_top = 7.0
@@ -229,7 +228,7 @@ offset_right = -63.0
 offset_bottom = 86.0
 metadata/_edit_group_ = true
 
-[node name="Label2" type="RichTextLabel" parent="XSoftDisplay"]
+[node name="Label2" type="RichTextLabel" parent="BackUI/XSoftDisplay"]
 layout_mode = 2
 theme = ExtResource("21_ey481")
 bbcode_enabled = true
@@ -239,11 +238,11 @@ fit_content = true
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="XSoftDisplay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BackUI/XSoftDisplay"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="XSoft1" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+[node name="XSoft1" type="TabContainer" parent="BackUI/XSoftDisplay/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
@@ -252,7 +251,7 @@ all_tabs_in_front = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Fire" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("5_3twtj")
@@ -260,7 +259,7 @@ expand_mode = 3
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Water" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -268,7 +267,7 @@ texture = ExtResource("6_sobfj")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Elec" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -276,7 +275,7 @@ texture = ExtResource("7_i010g")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Slash" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 visible = false
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
@@ -284,7 +283,7 @@ texture = ExtResource("22_3jfo7")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Crush" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -292,7 +291,7 @@ texture = ExtResource("23_64vtl")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft1"]
+[node name="Pierce" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft1"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -300,7 +299,7 @@ texture = ExtResource("3_lyg4j")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="XSoft2" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+[node name="XSoft2" type="TabContainer" parent="BackUI/XSoftDisplay/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
@@ -310,7 +309,7 @@ all_tabs_in_front = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Fire" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("5_3twtj")
@@ -318,7 +317,7 @@ expand_mode = 3
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Water" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -326,7 +325,7 @@ texture = ExtResource("6_sobfj")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Elec" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -334,7 +333,7 @@ texture = ExtResource("7_i010g")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Slash" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 visible = false
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
@@ -342,7 +341,7 @@ texture = ExtResource("22_3jfo7")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Crush" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -350,7 +349,7 @@ texture = ExtResource("23_64vtl")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft2"]
+[node name="Pierce" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft2"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -358,7 +357,7 @@ texture = ExtResource("3_lyg4j")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="XSoft3" type="TabContainer" parent="XSoftDisplay/HBoxContainer"]
+[node name="XSoft3" type="TabContainer" parent="BackUI/XSoftDisplay/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
@@ -368,14 +367,14 @@ all_tabs_in_front = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Fire" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Fire" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 modulate = Color(1, 0.160784, 0.223529, 1)
 layout_mode = 2
 texture = ExtResource("5_3twtj")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Water" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 visible = false
 modulate = Color(0.298039, 0.384314, 1, 1)
 layout_mode = 2
@@ -383,7 +382,7 @@ texture = ExtResource("6_sobfj")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Elec" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Elec" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 visible = false
 modulate = Color(1, 1, 0.333333, 0.682353)
 layout_mode = 2
@@ -391,7 +390,7 @@ texture = ExtResource("7_i010g")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Slash" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Slash" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 visible = false
 modulate = Color(0, 0.615686, 0.192157, 0.682353)
 layout_mode = 2
@@ -399,7 +398,7 @@ texture = ExtResource("22_3jfo7")
 expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Crush" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Crush" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 visible = false
 modulate = Color(0.627451, 0.364706, 0.0470588, 0.682353)
 layout_mode = 2
@@ -407,7 +406,7 @@ texture = ExtResource("23_64vtl")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Pierce" type="TextureRect" parent="XSoftDisplay/HBoxContainer/XSoft3"]
+[node name="Pierce" type="TextureRect" parent="BackUI/XSoftDisplay/HBoxContainer/XSoft3"]
 visible = false
 modulate = Color(1, 0.588235, 0.12549, 0.682353)
 layout_mode = 2
@@ -415,14 +414,14 @@ texture = ExtResource("3_lyg4j")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="CurrentInfo" type="PanelContainer" parent="."]
+[node name="CurrentInfo" type="PanelContainer" parent="BackUI"]
 visible = false
 offset_left = -140.0
 offset_top = 64.0
 offset_right = 138.0
 offset_bottom = 133.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CurrentInfo"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BackUI/CurrentInfo"]
 layout_mode = 2
 theme = ExtResource("21_ey481")
 theme_override_fonts/normal_font = ExtResource("25_0egng")
@@ -430,11 +429,15 @@ theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "[color=Green]TP: 80 [/color]Pow: 100 Hit every enemy. Remove Overdrive"
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icons" type="Node" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="Icons"]
 texture = ExtResource("2_xtla5")
 metadata/_edit_lock_ = true
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="FrontUI" type="Node" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="FrontUI"]
 visible = false
 position = Vector2(0, -80)
 rotation = 3.14159
@@ -442,16 +445,17 @@ scale = Vector2(1, 0.25)
 texture = ExtResource("3_lyg4j")
 metadata/_edit_lock_ = true
 
-[node name="Buffs" type="Node2D" parent="."]
+[node name="Buffs" type="Node2D" parent="FrontUI"]
 
-[node name="Attack" type="Sprite2D" parent="Buffs"]
+[node name="Attack" type="Sprite2D" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 position = Vector2(-55.035, -74.675)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("27_6hheg")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Attack"]
+[node name="Attack" type="RichTextLabel" parent="FrontUI/Buffs/Attack"]
+unique_name_in_owner = true
 offset_left = 166.667
 offset_top = -93.3334
 offset_right = 426.667
@@ -459,14 +463,15 @@ offset_bottom = 82.6666
 theme_override_font_sizes/normal_font_size = 100
 text = "+%"
 
-[node name="Defense" type="Sprite2D" parent="Buffs"]
+[node name="Defense" type="Sprite2D" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 position = Vector2(-58.035, -32.675)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("28_j8yva")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Defense"]
+[node name="Defense" type="RichTextLabel" parent="FrontUI/Buffs/Defense"]
+unique_name_in_owner = true
 offset_left = 215.385
 offset_top = -169.231
 offset_right = 505.385
@@ -474,14 +479,15 @@ offset_bottom = 17.7693
 theme_override_font_sizes/normal_font_size = 110
 text = "+%"
 
-[node name="Speed" type="Sprite2D" parent="Buffs"]
+[node name="Speed" type="Sprite2D" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 position = Vector2(-54.035, 4.325)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("29_cylqo")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Speed"]
+[node name="Speed" type="RichTextLabel" parent="FrontUI/Buffs/Speed"]
+unique_name_in_owner = true
 offset_left = 240.0
 offset_top = -140.0
 offset_right = 556.0
@@ -489,14 +495,15 @@ offset_bottom = 56.0
 theme_override_font_sizes/normal_font_size = 140
 text = "+%"
 
-[node name="Luck" type="Sprite2D" parent="Buffs"]
+[node name="Luck" type="Sprite2D" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 position = Vector2(-54.035, 43.325)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("30_xueah")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Buffs/Luck"]
+[node name="Luck" type="RichTextLabel" parent="FrontUI/Buffs/Luck"]
+unique_name_in_owner = true
 offset_left = 96.0
 offset_top = -44.0
 offset_right = 220.0
@@ -504,11 +511,14 @@ offset_bottom = 56.0
 theme_override_font_sizes/normal_font_size = 55
 text = "+%"
 
-[node name="ConditionDisplay" type="RichTextLabel" parent="."]
+[node name="ConditionDisplay" type="RichTextLabel" parent="FrontUI"]
 offset_left = -3.0
 offset_top = -62.0
 offset_right = 64.0
 offset_bottom = 61.0
 theme_override_font_sizes/normal_font_size = 10
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

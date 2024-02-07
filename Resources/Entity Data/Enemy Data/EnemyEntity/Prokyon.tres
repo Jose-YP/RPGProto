@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="3_8p231"]
 [ext_resource type="Resource" uid="uid://csbixl0adm68x" path="res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres" id="4_6mqpn"]
 [ext_resource type="Resource" uid="uid://cp2d0ronoqfi3" path="res://Resources/Move Data/Enemy Moves/RedShift.tres" id="5_flyvk"]
-[ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres" id="6_doiot"]
+[ext_resource type="Resource" uid="uid://ckpejmm17w4v3" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/new_resource.tres" id="6_40pj6"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_q7d6y"]
 
 [resource]
@@ -14,7 +14,7 @@ level = 4
 name = "Prokyon"
 species = "Canis Minor"
 stellar = "Stellar"
-specificData = ExtResource("6_doiot")
+specificData = ExtResource("6_40pj6")
 MaxHP = 350
 MaxTP = 80
 strength = 1

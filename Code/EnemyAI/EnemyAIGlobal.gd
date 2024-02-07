@@ -1,5 +1,8 @@
 extends Node
 
+func basicDecide():
+	pass
+
 func verifyMove(move,opposing,allies,PrioitizeAttack = true): #Attacks don't need to be verified unless checking for side effects
 	var should = true
 	
@@ -24,7 +27,6 @@ func verifyMove(move,opposing,allies,PrioitizeAttack = true): #Attacks don't nee
 				should = verifyAilment(target.data,move)
 	
 	return should
-
 
 func verifyBuff(target,move): #Check if target already has high buffs
 	var should = true

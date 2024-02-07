@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://raxx13ahatc5"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://raxx13ahatc5"]
 
+[ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_5udhv"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/EnemyMaker.gd" id="1_jbhjl"]
 
 [resource]
@@ -8,4 +9,10 @@ xp = 140
 cents = 20
 Boss = false
 Revivable = false
+AICode = ExtResource("1_5udhv")
+Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
+PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+favoredAuras = 15
+favoredAlly = ""
+hatedOpponent = "None"
 AIType = "Random"
