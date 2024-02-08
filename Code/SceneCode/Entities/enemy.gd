@@ -27,18 +27,7 @@ func _ready():
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
 	
-	enemyData.AICode.reload()
-	
-	match enemyData.AIType:#Determine which AI to use
-		"Random":
-			enemyAI = preload("res://Code/EnemyAI/EnemyRandom.gd")
-		"Pick Off":
-			enemyAI = preload("res://Code/EnemyAI/EnemyPickOff.gd")
-		"Support":
-			pass
-			#enemyAI = preload("res://Code/EnemyAI/Test.gd")
-		"Debuff":
-			enemyAI = preload("res://Code/EnemyAI/EnemyDebuff.gd")
+	enemyAI = load(str(enemyData.AICodePath))
 	
 	aiInstance = enemyAI.new()
 	makeDesc()
@@ -62,21 +51,9 @@ func chooseMove(TP,allies,opposing) -> Move:
 	var allowed = allowedMoveset(TP)
 	
 	debugAIPerceive()
-	
-	match enemyData.AIType:
-		"Random":
-			move = aiInstance.RandomMove(allowed)
-			if move is Item:
-				move = move.attackData
-			return move
-		"Pick Off": #This Ai should KILL
-			pass
-		"Support": #This Ai should prioritize healing
-			pass
-		"Debuff": #This Ai should prioritize buffing moves
-			move = aiInstance.ShouldDebuff(allowed,allies,opposing)
-		_:
-			pass
+	move = aiInstance.basicSelect(allowed)
+	if move is Item:
+		move = move.attackData
 	
 	return move
 

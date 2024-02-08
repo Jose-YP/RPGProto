@@ -11,6 +11,7 @@ class_name Enemy
 
 @export_category("AI")
 @export var AICode: Script #Code that determines what the user will perceive, when and what after
+@export var AICodePath: String
 @export var Priorities: Array = ["Attack","Buff","Debuff","Element",
 "Condition","Heal","Aura","Summon","Ailment","Misc"] #Reordered depending on user
 @export var PriorityChance: Array = [50,50,50,50,

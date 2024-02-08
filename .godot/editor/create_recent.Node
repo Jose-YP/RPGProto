@@ -1,4 +1,5 @@
 Node
+Node2D
 AudioStreamPlayer
 HBoxContainer
 GridContainer
@@ -11,5 +12,3 @@ TextureRect
 TabContainer
 MarginContainer
 VBoxContainer
-OptionButton
-HSlider

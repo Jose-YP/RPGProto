@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb78265xyckm8"]
+
+[ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_dhy25"]
+[ext_resource type="Script" path="res://Code/EnemyAI/EnemyAIGlobal.gd" id="2_gf5h2"]
+
+[node name="Random" type="Node"]
+editor_description = "JUST HERE TO HOLD ENEMY AIS FOR EASY ACCESS"
+script = ExtResource("1_dhy25")
+
+[node name="Globals" type="Node" parent="."]
+script = ExtResource("2_gf5h2")

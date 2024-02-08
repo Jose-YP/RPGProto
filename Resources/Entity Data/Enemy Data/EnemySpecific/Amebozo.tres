@@ -10,6 +10,7 @@ cents = 20
 Boss = false
 Revivable = false
 AICode = ExtResource("1_5udhv")
+AICodePath = "res://Code/EnemyAI/EnemyRandom.gd"
 Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
 PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
 favoredAuras = 15

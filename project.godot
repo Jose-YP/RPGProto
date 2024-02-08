@@ -33,6 +33,7 @@ SaveManager="*res://Code/Globals/SaveManager.gd"
 
 window/size/viewport_width=1275
 window/size/viewport_height=780
+window/size/always_on_top=true
 
 [input]
 

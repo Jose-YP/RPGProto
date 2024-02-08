@@ -1,9 +1,7 @@
-extends Node
+extends "res://Code/SceneCode/Entities/enemy.gd"
 
-func _ready():
-	print("AAAAA")
-
-func RandomMove(moveset):
+func basicSelect(moveset):
+	print("AAAA")
 	var index = randi()%moveset.size()
 	return moveset[index]
 
