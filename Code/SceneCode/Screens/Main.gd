@@ -25,11 +25,11 @@ extends Node2D
 @onready var enemyOrder: Array = []
 @onready var playerOrder: Array = []
 
+signal mainMenu
 signal makeNoise(num)
 signal playMusic(song)
 
 #Make every player's menu
-var mainMenuScene: PackedScene = preload("res://Scene/Mains/MainMenu.tscn")
 var playerScene: PackedScene = preload("res://Scene/Entities/Player.tscn")
 var enemyScene: PackedScene = preload("res://Scene/Entities/enemy.tscn")
 var groups = ["Attack","Skills","Items","Tactics"]
@@ -1158,7 +1158,7 @@ func _on_post_phase_timer_timeout() -> void:
 	switchPhase()
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(mainMenuScene)
+	mainMenu.emit()
 
 #-----------------------------------------
 #AUDIO
@@ -1178,12 +1178,16 @@ func playAttackMove(move,property) -> void:
 	if move.name == "Attack":
 		usePhy = team[i].data.phyElement
 	
+	#PRIORITY: Special Element, Phy Element, Regular Element, Property
+	for k in range(6,10):
+		if Globals.elementTypes[k] == usePhy:
+			playEffect = ElementSFX[k]
 	for k in range(3,6):
-		if Globals.XSoftTypes[k] == usePhy:
+		if Globals.elementTypes[k] == usePhy:
 			playEffect = ElementSFX[k]
 	if playEffect == null:
 		for k in range(0,3):
-			if Globals.XSoftTypes[k] == move.element:
+			if Globals.elementTypes[k] == move.element:
 				playEffect = ElementSFX[k]
 	
 	if playEffect == null:

@@ -8,6 +8,7 @@ xp = 1234
 cents = 4321
 Boss = true
 Revivable = false
+AICodePath = ""
 Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
 PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
 favoredAuras = 15

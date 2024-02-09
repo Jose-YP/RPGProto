@@ -445,6 +445,10 @@ metadata/_edit_lock_ = true
 
 [node name="Buffs" type="Node2D" parent="FrontUI"]
 
+[node name="GridContainer" type="GridContainer" parent="FrontUI/Buffs"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Attack" type="Sprite2D" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
