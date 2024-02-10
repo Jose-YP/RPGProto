@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://yh443rnyasqw"]
 
 [ext_resource type="Resource" uid="uid://f4aj1kpn37ke" path="res://Resources/Item Data/ItemMoves/WhimBerryMove.tres" id="1_exim0"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="2_ivu41"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="2_ivu41"]
 [ext_resource type="Texture2D" uid="uid://5ipa7gvaf43i" path="res://Icons/MenuIcons/Food-icon-collection_0000s_0012_Layer-16.png" id="2_th2uq"]
+
 
 [resource]
 script = ExtResource("2_ivu41")

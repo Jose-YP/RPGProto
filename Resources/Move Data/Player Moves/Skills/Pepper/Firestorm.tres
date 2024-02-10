@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://3qun8dbwfaly"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_ar2hm"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_ar2hm"]
+
 
 [resource]
 script = ExtResource("1_ar2hm")

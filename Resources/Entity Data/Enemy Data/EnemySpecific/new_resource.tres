@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://ckpejmm17w4v3"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/EnemyMaker.gd" id="1_ianeg"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_ianeg"]
+
 
 [resource]
 script = ExtResource("1_ianeg")

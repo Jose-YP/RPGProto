@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Inven" load_steps=11 format=3 uid="uid://5q626hk8akvl"]
 
 [ext_resource type="Resource" uid="uid://c8lqick44axlk" path="res://Resources/Gear Data/Betelgeuse Axe.tres" id="1_b3i18"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/InventoryMaker.gd" id="1_hvy1w"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/InventoryMaker.gd" id="1_hvy1w"]
 [ext_resource type="Resource" uid="uid://0tf2axtfcetw" path="res://Resources/Gear Data/DevilishMittens.tres" id="2_q1rur"]
 [ext_resource type="Resource" uid="uid://bn1f71pv8j7qo" path="res://Resources/Gear Data/NewSuperGreatSword.tres" id="3_2t136"]
 [ext_resource type="Resource" uid="uid://ljunc8hoyajg" path="res://Resources/Gear Data/PoolNoodle.tres" id="4_5esg6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://ddb1bxsdk77eo" path="res://Resources/Gear Data/SolidSword.tres" id="7_cyrsm"]
 [ext_resource type="Resource" uid="uid://dnm50seajcvmk" path="res://Resources/Gear Data/StoreboughtMotor.tres" id="8_fr7dd"]
 [ext_resource type="Resource" uid="uid://cxhgqeutsws7y" path="res://Resources/Gear Data/WitchSword.tres" id="9_y18h3"]
+
 
 [resource]
 script = ExtResource("1_hvy1w")

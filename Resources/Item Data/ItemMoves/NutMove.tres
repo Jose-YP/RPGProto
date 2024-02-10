@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://ctd3u2es6ugap"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_8plfy"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_wmhxd"]
 
 [resource]
-script = ExtResource("1_8plfy")
+script = ExtResource("1_wmhxd")
 name = "Nut"
 description = "+70 HP, Salty Copper Taste"
 TPCost = 40

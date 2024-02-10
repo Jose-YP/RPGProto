@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://raxx13ahatc5"]
 
 [ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_5udhv"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/EnemyMaker.gd" id="1_jbhjl"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="2_daidn"]
 
 [resource]
-script = ExtResource("1_jbhjl")
+script = ExtResource("2_daidn")
 xp = 140
 cents = 20
 Boss = false

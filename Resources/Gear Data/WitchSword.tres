@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://cxhgqeutsws7y"]
 
 [ext_resource type="Texture2D" uid="uid://cn5rrkbq8phi3" path="res://Icons/MenuIcons/icons-set-2_0000s_0045__Group_.png" id="1_fxcp7"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/GearMaker.gd" id="1_iyjtq"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/GearMaker.gd" id="1_iyjtq"]
+
 
 [resource]
 script = ExtResource("1_iyjtq")

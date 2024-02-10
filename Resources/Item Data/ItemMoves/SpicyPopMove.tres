@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dupxrbmokishf"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/MoveMaker.gd" id="1_mb6fx"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_65bb4"]
 
 [resource]
-script = ExtResource("1_mb6fx")
+script = ExtResource("1_65bb4")
 name = "Spicy Pop"
 description = "Changes an entity's element to Fire"
 TPCost = 30

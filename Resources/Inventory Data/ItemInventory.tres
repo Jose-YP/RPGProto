@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Inven" load_steps=19 format=3 uid="uid://b5hbfoby2g3j4"]
 
 [ext_resource type="Resource" uid="uid://b6efw4occoe6v" path="res://Resources/Item Data/ItemSpecifics/AmpaAnta.tres" id="1_gis65"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/InventoryMaker.gd" id="1_yw34r"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/InventoryMaker.gd" id="1_yw34r"]
 [ext_resource type="Resource" uid="uid://dt8ucmph1nrix" path="res://Resources/Item Data/ItemSpecifics/BlackCatJewel.tres" id="2_lb0op"]
 [ext_resource type="Resource" uid="uid://d3kx4skcjkrso" path="res://Resources/Item Data/ItemSpecifics/BodyBreaker.tres" id="3_3hvbj"]
 [ext_resource type="Resource" uid="uid://dlo38q7g0vh5w" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="4_gqr86"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://c874usgm1v4dt" path="res://Resources/Item Data/ItemSpecifics/TPItem.tres" id="15_hrj1h"]
 [ext_resource type="Resource" uid="uid://c5xmg2solg142" path="res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres" id="16_5ksia"]
 [ext_resource type="Resource" uid="uid://yh443rnyasqw" path="res://Resources/Item Data/ItemSpecifics/WhimBerry.tres" id="17_2lkkx"]
+
 
 [resource]
 script = ExtResource("1_yw34r")

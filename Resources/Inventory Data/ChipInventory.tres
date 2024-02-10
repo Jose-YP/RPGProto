@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Inven" load_steps=23 format=3 uid="uid://dxqcvhx154mpq"]
 
 [ext_resource type="Resource" uid="uid://dapyuch6t1i7e" path="res://Resources/Chip Data/AllIn.tres" id="1_0f4ot"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/InventoryMaker.gd" id="1_kyfla"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/InventoryMaker.gd" id="1_kyfla"]
 [ext_resource type="Resource" uid="uid://43atp7yyoob5" path="res://Resources/Chip Data/Awkward.tres" id="2_8peym"]
 [ext_resource type="Resource" uid="uid://0v1ufecm6g5s" path="res://Resources/Chip Data/Blast.tres" id="3_aurki"]
 [ext_resource type="Resource" uid="uid://hq7hd3pd2y2r" path="res://Resources/Chip Data/Blood.tres" id="4_ny4er"]
@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://beejdr0trx438" path="res://Resources/Chip Data/Together.tres" id="19_j1ll7"]
 [ext_resource type="Resource" uid="uid://dtgluxta5eqok" path="res://Resources/Chip Data/Bahr.tres" id="20_458wm"]
 [ext_resource type="Resource" uid="uid://cufen2nyialel" path="res://Resources/Chip Data/Wicked.tres" id="21_vnxt0"]
+
 
 
 [resource]

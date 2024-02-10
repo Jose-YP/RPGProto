@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://cy3co5wko705g"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_3hkbs"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_3ynnf"]
 [ext_resource type="Resource" uid="uid://dlo38q7g0vh5w" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="2_nijm8"]
 [ext_resource type="Resource" uid="uid://kwgbpij34p52" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres" id="2_rprem"]
 [ext_resource type="Resource" uid="uid://cdy8ivnm8kgsm" path="res://Resources/Move Data/Enemy Moves/FiringSquad.tres" id="3_mevwe"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="3_pb1ns"]
 [ext_resource type="Resource" uid="uid://dvo6surflcpc6" path="res://Resources/Move Data/Enemy Moves/Insult.tres" id="4_eh5if"]
 [ext_resource type="Resource" uid="uid://bh62qfgi0esk7" path="res://Resources/Move Data/Enemy Moves/WishingStar.tres" id="5_l3egg"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_o0dve"]
 
 [resource]
-script = ExtResource("1_3ynnf")
+script = ExtResource("3_pb1ns")
 level = 17
 name = "Jishi Recruit"
 species = "Reticulum"

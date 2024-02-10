@@ -18,7 +18,7 @@ var optionsMenu: PackedScene = preload("res://Scene/SideMenus/options_menu.tscn"
 var chipMenu: PackedScene = preload("res://Scene/SideMenus/Chip/ChipMenu.tscn")
 var gearMenu: PackedScene = preload("res://Scene/SideMenus/Gear/GearMenu.tscn")
 var itemMenu: PackedScene = preload("res://Scene/SideMenus/Item/ItemMenu.tscn")
-var battleScene: PackedScene = preload("res://Scene/Mains/Main.tscn")
+var battleScene: PackedScene = preload("res://Scene/Mains/Battle.tscn")
 
 #-----------------------------------------
 #INITALIZATION

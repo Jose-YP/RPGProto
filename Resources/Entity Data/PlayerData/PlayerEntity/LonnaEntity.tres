@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=13 format=3 uid="uid://dkk0yyfyygrch"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_0pg0s"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="1_0pg0s"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_n2r4l"]
 [ext_resource type="Resource" uid="uid://bjxxa7n1ednd5" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/LonnaSpecifics.tres" id="2_kdh5r"]
 [ext_resource type="Resource" uid="uid://yh443rnyasqw" path="res://Resources/Item Data/ItemSpecifics/WhimBerry.tres" id="2_w5leb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://cgnjxe1278mhx" path="res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres" id="8_d6b22"]
 [ext_resource type="Resource" uid="uid://2ksnt4xg31w4" path="res://Resources/Move Data/Player Moves/Skills/Lonna/DragonScrew.tres" id="9_l8yu0"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="11_dj6mo"]
+
 
 [resource]
 script = ExtResource("1_0pg0s")

@@ -19,7 +19,7 @@ layout_mode = 3
 anchors_preset = 0
 focus_mode = 2
 script = ExtResource("1_xp3rd")
-enemyEntities = Array[Resource("res://Code/ResourceMakers/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("11_57rpg")])
+enemyEntities = Array[Resource("res://Code/ResourceMakers/Entity/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("11_57rpg")])
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

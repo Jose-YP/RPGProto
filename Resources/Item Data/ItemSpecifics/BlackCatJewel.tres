@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dt8ucmph1nrix"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_6b2s8"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_6b2s8"]
 [ext_resource type="Resource" uid="uid://crcc2wclxky4" path="res://Resources/Item Data/ItemMoves/BlackCatJewelMove.tres" id="1_to1rx"]
 [ext_resource type="Texture2D" uid="uid://bu1iudacj3rft" path="res://Icons/MenuIcons/icons-set-2_0000s_0069__Group_.png" id="2_db6yr"]
+
 
 [resource]
 script = ExtResource("1_6b2s8")

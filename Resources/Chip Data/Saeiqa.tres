@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="Chip" load_steps=3 format=3 uid="uid://cm78hd27sc8np"]
 
 [ext_resource type="Resource" uid="uid://dufx00mkinchl" path="res://Resources/Move Data/Entity Moves/Seiqa.tres" id="1_22y2u"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="2_towca"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ChipMaker.gd" id="2_towca"]
+
 
 [resource]
 script = ExtResource("2_towca")

@@ -1,6 +1,5 @@
 res://Audio/Buses/default_bus_layout.tres
-res://Scene/Mains/GameManager.tscn
-res://Code/ResourceMakers/EnemyMaker.gd
+res://Scene/Entities/Entity.tscn
 res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://BasicAttack.tres
@@ -24,7 +23,11 @@ res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
-res://Scene/Mains/Main.tscn
-res://Code/Globals/Globals.gd
-res://Code/SceneCode/Screens/Main.gd
-res://Scene/Entities/Entity.tscn
+res://Scene/Mains/GameManager.tscn
+res://Code/SceneCode/Screens/GameManager.gd
+res://Scene/Mains/MainMenu.tscn
+res://Scene/Mains/Battle.tscn
+res://Scene/Entities/Player.tscn
+res://Scene/Entities/enemy.tscn
+res://Code/SceneCode/Screens/MainMenu.gd
+res://Code/ResourceMakers/ETC/SaveMaker.gd

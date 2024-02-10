@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c5xmg2solg142"]
 
 [ext_resource type="Resource" uid="uid://dsa318xu84qep" path="res://Resources/Item Data/ItemMoves/WaterBalloonMove.tres" id="1_62i8p"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="1_bcq0t"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_bcq0t"]
 [ext_resource type="Texture2D" uid="uid://cn3k0waq127p6" path="res://Icons/AilmentIcons/Bomb.png" id="2_wpbvu"]
+
 
 [resource]
 script = ExtResource("1_bcq0t")

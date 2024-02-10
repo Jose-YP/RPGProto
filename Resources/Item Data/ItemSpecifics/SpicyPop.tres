@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cwyspmieeb6gk"]
 
 [ext_resource type="Resource" uid="uid://dupxrbmokishf" path="res://Resources/Item Data/ItemMoves/SpicyPopMove.tres" id="1_8vwqi"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/ItemMaker.gd" id="2_8f0qy"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="2_8f0qy"]
 [ext_resource type="Texture2D" uid="uid://cafgr1nlcedpk" path="res://Icons/MenuIcons/Food-icon-collection_0000s_0007_Layer-11.png" id="2_328kw"]
+
 
 [resource]
 script = ExtResource("2_8f0qy")

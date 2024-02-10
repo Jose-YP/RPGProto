@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="entityData" load_steps=12 format=3 uid="uid://dayy6sakl1jwx"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/EntityMaker.gd" id="1_axch6"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="1_axch6"]
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_rr6oq"]
 [ext_resource type="Resource" uid="uid://c440gmqox5ngk" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/StarMissiles.tres" id="4_5dvqg"]
 [ext_resource type="Resource" uid="uid://8u4bq1rvuxfq" path="res://Resources/Item Data/ItemSpecifics/MintyPop.tres" id="4_52qji"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bjudw4yxs7qj2" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/HalfMoon.tres" id="10_b0nti"]
 [ext_resource type="Resource" uid="uid://bskxjufoosdga" path="res://Resources/Entity Data/PlayerData/PlayerSpecifics/TestPlayer.tres" id="11_40s1d"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="12_3x2es"]
+
 
 [resource]
 script = ExtResource("1_axch6")

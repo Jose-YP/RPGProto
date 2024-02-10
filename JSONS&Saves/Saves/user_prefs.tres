@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UserPreferences" load_steps=26 format=3]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/OptionsMaker.gd" id="1_xa5eu"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/ETC/OptionsMaker.gd" id="1_xa5eu"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_85r5u"]
 device = -1

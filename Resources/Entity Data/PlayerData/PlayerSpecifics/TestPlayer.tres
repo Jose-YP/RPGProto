@@ -8,7 +8,8 @@
 [ext_resource type="Resource" uid="uid://cx3p4fgj5kidk" path="res://Resources/Move Data/Player Moves/AllPlayers/Scan.tres" id="5_aihjb"]
 [ext_resource type="Resource" uid="uid://cxhgqeutsws7y" path="res://Resources/Gear Data/WitchSword.tres" id="5_f75ss"]
 [ext_resource type="Resource" uid="uid://dww74njams2pt" path="res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres" id="6_8333h"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/PlayerMaker.gd" id="7_63w5u"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/PlayerMaker.gd" id="7_63w5u"]
+
 
 [resource]
 script = ExtResource("7_63w5u")

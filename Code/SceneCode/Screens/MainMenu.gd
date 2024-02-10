@@ -24,7 +24,6 @@ signal itemMenu
 signal makeNoise(num)
 signal playTest(song)
 
-var Battle: PackedScene = load("res://Scene/Mains/Main.tscn")
 const songList: Array[String] = ["res://Audio/Music/15-Blaire-Dame.wav","res://Audio/Music/Delve!!!.wav",
 "res://Audio/Music/178.-Boss-Battle.wav"]
 const testSong = "res://Audio/Music/005 - WIFI Menu.mp3"

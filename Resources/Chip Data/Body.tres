@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Chip" load_steps=2 format=3 uid="uid://cx4hfxuyplmfn"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/ChipMaker.gd" id="1_8xe6w"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ChipMaker.gd" id="1_8xe6w"]
+
 
 [resource]
 script = ExtResource("1_8xe6w")

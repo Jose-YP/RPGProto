@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://kwgbpij34p52"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/EnemyMaker.gd" id="1_c6kio"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_nlmcw"]
 
 [resource]
-script = ExtResource("1_c6kio")
+script = ExtResource("1_nlmcw")
 xp = 0
 cents = 0
 Boss = false
