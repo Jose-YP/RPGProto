@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_ar2hm"]
 
-
 [resource]
 script = ExtResource("1_ar2hm")
 name = "Firestorm"
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = ""
 Summon = []
+SwapSummon = false

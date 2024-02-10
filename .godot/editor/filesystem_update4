@@ -31,3 +31,45 @@ res://Scene/Entities/Entity.tscn
 res://Code/EnemyAI/EnemyRandom.gd
 res://Code/SceneCode/Entities/Entity.gd
 res://Resources/Move Data/Player Moves/Skills/Damir/Blizzard.tres
+res://Resources/Chip Data/AllIn.tres
+res://Resources/Chip Data/Awkward.tres
+res://Resources/Chip Data/Blast.tres
+res://Resources/Chip Data/Blood.tres
+res://Resources/Chip Data/Body.tres
+res://Resources/Chip Data/Boss.tres
+res://Resources/Chip Data/Chuck.tres
+res://Resources/Chip Data/Fold.tres
+res://Resources/Chip Data/Mind.tres
+res://Resources/Chip Data/Murphys.tres
+res://Resources/Chip Data/Pact.tres
+res://Resources/Chip Data/Paradox.tres
+res://Resources/Chip Data/SelfFullfilling.tres
+res://Resources/Chip Data/Soul.tres
+res://Resources/Chip Data/Spear.tres
+res://Resources/Chip Data/Tick.tres
+res://Resources/Chip Data/Together.tres
+res://Resources/Chip Data/Wicked.tres
+res://Resources/Gear Data/Betelgeuse Axe.tres
+res://Resources/Gear Data/DevilishMittens.tres
+res://Resources/Gear Data/NewSuperGreatSword.tres
+res://Resources/Gear Data/PoolNoodle.tres
+res://Resources/Gear Data/SolidSword.tres
+res://Resources/Gear Data/StoreboughtMotor.tres
+res://Resources/Gear Data/WitchSword.tres
+res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
+res://Resources/Item Data/ItemMoves/BobyBreakerMove.tres
+res://Resources/Item Data/ItemMoves/ElecBombMove.tres
+res://Resources/Item Data/ItemMoves/IdolMove.tres
+res://Resources/Item Data/ItemMoves/MintyPopMove.tres
+res://Resources/Item Data/ItemMoves/SoftyMove.tres
+res://Resources/Item Data/ItemSpecifics/Softy!.tres
+res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
+res://Resources/Item Data/ItemSpecifics/SpeedScrew.tres
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
+res://Resources/Item Data/ItemMoves/TaxReportMove.tres
+res://Resources/Item Data/ItemSpecifics/TaxReport.tres
+res://Resources/Item Data/ItemMoves/TPItemMove.tres
+res://Resources/Item Data/ItemSpecifics/TPItem.tres
+res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
+res://JSONS&Saves/Saves/save_file.tres
+res://Resources/Move Data/Player Moves/Skills/Pepper/Firestorm.tres

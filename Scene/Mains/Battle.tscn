@@ -198,21 +198,23 @@ bus = &"MoveSFX"
 [node name="Comet" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
 unique_name_in_owner = true
 stream = ExtResource("13_ulk8c")
+pitch_scale = 0.9
 bus = &"MoveSFX"
 
 [node name="Light" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
 unique_name_in_owner = true
-stream = ExtResource("12_8ol3b")
+stream = ExtResource("29_00hlh")
 bus = &"MoveSFX"
 
 [node name="Aurora" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
 unique_name_in_owner = true
-stream = ExtResource("12_8ol3b")
+stream = ExtResource("28_wyu15")
+pitch_scale = 0.8
 bus = &"MoveSFX"
 
 [node name="Aether" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
 unique_name_in_owner = true
-stream = ExtResource("12_8ol3b")
+stream = ExtResource("15_3cnpa")
 bus = &"MoveSFX"
 
 [node name="NeutralPhy" type="AudioStreamPlayer" parent="MoveSFX/Elements"]
