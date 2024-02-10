@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ChipMaker.gd" id="1_a56nw"]
 
-
 [resource]
 script = ExtResource("1_a56nw")
 name = "Paradox"

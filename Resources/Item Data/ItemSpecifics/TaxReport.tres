@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_x2uko"]
 [ext_resource type="Texture2D" uid="uid://ba37x4rs07dyg" path="res://Icons/MenuIcons/icons-set-2_0000s_0031__Group_.png" id="2_bjytd"]
 
-
 [resource]
 script = ExtResource("1_x2uko")
 name = "Tax Report"

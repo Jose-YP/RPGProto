@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_8x4gp"]
 [ext_resource type="Texture2D" uid="uid://rg1v81r4c6rr" path="res://Icons/MenuIcons/icons-set-2_0000s_0065__Group_.png" id="2_oxx8b"]
 
-
 [resource]
 script = ExtResource("1_8x4gp")
 name = "Softy!"

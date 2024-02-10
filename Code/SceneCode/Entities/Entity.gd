@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var InfoBox: PanelContainer = $BackUI/CurrentInfo
 @onready var Info: RichTextLabel = $BackUI/CurrentInfo/RichTextLabel
-@onready var selected: Sprite2D = $FrontUI/Arrow
+@onready var selected: TextureRect = $FrontUI/Arrow
 @onready var HPBar: TextureProgressBar = $BackUI/HPBar
 @onready var HPtext: RichTextLabel = $BackUI/HPBar/RichTextLabel
 @onready var currentCondition: RichTextLabel = $FrontUI/ConditionDisplay
@@ -330,16 +330,17 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:
 		receiver.data.attackBoost += (boostAmmount * .3)
-		buffStatManager(receiver.get_node("Buffs/Attack"),receiver.data.attackBoost)
+		print("AAA")
+		buffStatManager(receiver.get_node("FrontUI/Buffs/Attack"),receiver.data.attackBoost)
 	if boostType & 2:
 		receiver.data.defenseBoost += (boostAmmount * .3)
-		buffStatManager(receiver.get_node("Buffs/Defense"),receiver.data.defenseBoost)
+		buffStatManager(receiver.get_node("FrontUI/Buffs/Defense"),receiver.data.defenseBoost)
 	if boostType & 4:
 		receiver.data.speedBoost += (boostAmmount * .3)
-		buffStatManager(receiver.get_node("Buffs/Speed"),receiver.data.speedBoost)
+		buffStatManager(receiver.get_node("FrontUI/Buffs/Speed"),receiver.data.speedBoost)
 	if boostType & 8:
 		receiver.data.luckBoost += (boostAmmount * .3)
-		buffStatManager(receiver.get_node("Buffs/Luck"),receiver.data.luckBoost)
+		buffStatManager(receiver.get_node("FrontUI/Buffs/Luck"),receiver.data.luckBoost)
 
 func buffCondition(move,receiver) -> void:
 	receiver.data.Condition |= move.Condition

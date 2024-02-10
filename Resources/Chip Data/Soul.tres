@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ChipMaker.gd" id="1_y60ib"]
 
-
 [resource]
 script = ExtResource("1_y60ib")
 name = "Soul"

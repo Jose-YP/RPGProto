@@ -2,17 +2,16 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_j8b0p"]
 
-
 [resource]
 script = ExtResource("1_j8b0p")
 name = "RendingArm"
-description = "High Damage Physical Attack, lowers enemy attack by 30%"
+description = "High Damage Physical Attack"
 TPCost = 70
 Which = "Enemy"
 Target = "Single"
 element = "Neutral"
 phyElement = "Slash"
-property = 9
+property = 1
 CostType = "HP"
 cost = 0.2
 Power = 100
@@ -27,8 +26,8 @@ reset = false
 healing = 0
 HealedAilment = "None"
 HealAilAmmount = 0
-BoostAmmount = -1
-BoostType = 1
+BoostAmmount = 0
+BoostType = 0
 Condition = 0
 Aura = ""
 ElementChange = "None"

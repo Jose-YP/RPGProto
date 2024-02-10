@@ -7,6 +7,24 @@
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
 
+[node name="Attack" parent="FrontUI/Buffs/Attack" index="0"]
+offset_left = 20.0
+offset_top = 0.0
+offset_right = 52.0
+offset_bottom = 23.0
+
+[node name="Defense" parent="FrontUI/Buffs/Defense" index="0"]
+offset_left = 20.0
+offset_right = 52.0
+
+[node name="Speed" parent="FrontUI/Buffs/Speed" index="0"]
+offset_left = 20.0
+offset_right = 56.0
+
+[node name="Luck" parent="FrontUI/Buffs/Luck" index="0"]
+offset_left = 20.0
+offset_right = 52.0
+
 [node name="NameContainer" type="PanelContainer" parent="." index="5"]
 offset_left = -125.0
 offset_top = 166.0

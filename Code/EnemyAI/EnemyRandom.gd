@@ -1,9 +1,9 @@
 extends "res://Code/SceneCode/Entities/enemy.gd"
 
-func basicSelect(moveset):
+func basicSelect(allowed):
 	print("AAAA")
-	var index = randi()%moveset.size()
-	return moveset[index]
+	var index = randi()%allowed.size()
+	return allowed[index]
 
 #-----------------------------------------
 #TARGETTING

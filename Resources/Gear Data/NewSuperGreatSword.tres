@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d2e38wrpun3ls" path="res://Icons/MenuIcons/Strength.png" id="1_0h28q"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/GearMaker.gd" id="1_v6vpp"]
 
-
 [resource]
 script = ExtResource("1_v6vpp")
 name = "New Super Greatsword"

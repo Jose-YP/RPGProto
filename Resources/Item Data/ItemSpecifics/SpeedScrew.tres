@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://cxres0jkcemt1" path="res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres" id="1_s3sxc"]
 [ext_resource type="Texture2D" uid="uid://bleyoogfvft08" path="res://Icons/MenuIcons/Controller_0032__Group_.png" id="2_fuaba"]
 
-
 [resource]
 script = ExtResource("1_7c28b")
 name = "Speed Screw"

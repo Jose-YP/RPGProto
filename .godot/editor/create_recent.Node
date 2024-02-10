@@ -1,3 +1,4 @@
+TextureRect
 GridContainer
 Node
 Node2D
@@ -8,7 +9,6 @@ RichTextLabel
 PanelContainer
 ColorRect
 CanvasLayer
-TextureRect
 TabContainer
 MarginContainer
 VBoxContainer

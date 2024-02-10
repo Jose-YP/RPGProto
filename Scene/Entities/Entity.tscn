@@ -435,83 +435,103 @@ metadata/_edit_lock_ = true
 
 [node name="FrontUI" type="Node2D" parent="."]
 
-[node name="Arrow" type="Sprite2D" parent="FrontUI"]
+[node name="Arrow" type="TextureRect" parent="FrontUI"]
 visible = false
-position = Vector2(0, -80)
+offset_left = 40.0
+offset_top = -50.0
+offset_right = 116.0
+offset_bottom = 255.0
 rotation = 3.14159
 scale = Vector2(1, 0.25)
 texture = ExtResource("3_lyg4j")
-metadata/_edit_lock_ = true
 
-[node name="Buffs" type="Node2D" parent="FrontUI"]
+[node name="Buffs" type="GridContainer" parent="FrontUI"]
+offset_left = -64.0
+offset_top = -56.0
+offset_right = -15.0
+offset_bottom = 64.0
 
-[node name="GridContainer" type="GridContainer" parent="FrontUI/Buffs"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Attack" type="Sprite2D" parent="FrontUI/Buffs"]
+[node name="Attack" type="TextureRect" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-55.035, -74.675)
-scale = Vector2(0.15, 0.15)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 texture = ExtResource("27_6hheg")
+expand_mode = 2
 
 [node name="Attack" type="RichTextLabel" parent="FrontUI/Buffs/Attack"]
 unique_name_in_owner = true
-offset_left = 166.667
-offset_top = -93.3334
-offset_right = 426.667
-offset_bottom = 82.6666
-theme_override_font_sizes/normal_font_size = 100
+custom_minimum_size = Vector2(47, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = -2.0
+offset_right = 72.0
+offset_bottom = 21.0
+theme_override_font_sizes/normal_font_size = 16
 text = "+%"
+fit_content = true
+scroll_active = false
 
-[node name="Defense" type="Sprite2D" parent="FrontUI/Buffs"]
+[node name="Defense" type="TextureRect" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-58.035, -32.675)
-scale = Vector2(0.13, 0.13)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 texture = ExtResource("28_j8yva")
+expand_mode = 2
 
 [node name="Defense" type="RichTextLabel" parent="FrontUI/Buffs/Defense"]
 unique_name_in_owner = true
-offset_left = 215.385
-offset_top = -169.231
-offset_right = 505.385
-offset_bottom = 17.7693
-theme_override_font_sizes/normal_font_size = 110
+custom_minimum_size = Vector2(47, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_right = 72.0
+offset_bottom = 24.0
+theme_override_font_sizes/normal_font_size = 16
 text = "+%"
+fit_content = true
+scroll_active = false
 
-[node name="Speed" type="Sprite2D" parent="FrontUI/Buffs"]
+[node name="Speed" type="TextureRect" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-54.035, 4.325)
-scale = Vector2(0.1, 0.1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 texture = ExtResource("29_cylqo")
+expand_mode = 2
 
 [node name="Speed" type="RichTextLabel" parent="FrontUI/Buffs/Speed"]
 unique_name_in_owner = true
-offset_left = 240.0
-offset_top = -140.0
-offset_right = 556.0
-offset_bottom = 56.0
-theme_override_font_sizes/normal_font_size = 140
+custom_minimum_size = Vector2(47, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_right = 72.0
+offset_bottom = 23.0
+theme_override_font_sizes/normal_font_size = 16
 text = "+%"
+fit_content = true
+scroll_active = false
 
-[node name="Luck" type="Sprite2D" parent="FrontUI/Buffs"]
+[node name="Luck" type="TextureRect" parent="FrontUI/Buffs"]
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
-position = Vector2(-54.035, 43.325)
-scale = Vector2(0.25, 0.25)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 texture = ExtResource("30_xueah")
+expand_mode = 2
 
 [node name="Luck" type="RichTextLabel" parent="FrontUI/Buffs/Luck"]
 unique_name_in_owner = true
-offset_left = 96.0
-offset_top = -44.0
-offset_right = 220.0
-offset_bottom = 56.0
-theme_override_font_sizes/normal_font_size = 55
+custom_minimum_size = Vector2(47, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 72.0
+offset_bottom = 27.0
+theme_override_font_sizes/normal_font_size = 16
 text = "+%"
+fit_content = true
+scroll_active = false
 
 [node name="ConditionDisplay" type="RichTextLabel" parent="FrontUI"]
 offset_left = -3.0
@@ -519,6 +539,7 @@ offset_top = -62.0
 offset_right = 64.0
 offset_bottom = 61.0
 theme_override_font_sizes/normal_font_size = 10
+metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

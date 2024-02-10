@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ChipMaker.gd" id="1_dvl0a"]
 
-
 [resource]
 script = ExtResource("1_dvl0a")
 name = "Pact"

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_iktua"]
 
-
 [resource]
 script = ExtResource("1_iktua")
 name = "TPItem"

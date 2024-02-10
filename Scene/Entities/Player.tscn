@@ -38,6 +38,26 @@ offset_top = 28.0
 offset_right = 112.0
 offset_bottom = 28.0
 
+[node name="Attack" parent="FrontUI/Buffs/Attack" index="0"]
+offset_left = 23.0
+offset_top = 0.0
+offset_right = 55.0
+offset_bottom = 23.0
+
+[node name="Defense" parent="FrontUI/Buffs/Defense" index="0"]
+offset_left = 23.0
+offset_top = -1.0
+offset_right = 55.0
+offset_bottom = 22.0
+
+[node name="Speed" parent="FrontUI/Buffs/Speed" index="0"]
+offset_left = 23.0
+offset_right = 59.0
+
+[node name="Luck" parent="FrontUI/Buffs/Luck" index="0"]
+offset_left = 23.0
+offset_right = 55.0
+
 [connection signal="canPayFor" from="." to="CanvasLayer" method="_on_player_can_pay_for"]
 [connection signal="disable" from="." to="CanvasLayer" method="disable"]
 [connection signal="selectedAgain" from="." to="CanvasLayer" method="_on_player_selected_again"]

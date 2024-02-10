@@ -60,7 +60,6 @@
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/AllPlayers/MiscPlaceHolder.tres" id="56_oe1wx"]
 [ext_resource type="Resource" path="res://Wait.tres" id="56_yusdr"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="57_1cmdj"]
-[ext_resource type="Resource" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="57_bbfnj"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres" id="57_hwtwi"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/AllPlayers/Boost.tres" id="58_7psnn"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Damir/RendingArm.tres" id="58_qkqba"]
@@ -77,9 +76,10 @@
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Lonna/DragonScrew.tres" id="65_hfldj"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Pepper/Veritate.tres" id="65_y4xpq"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/ChipMoves/PlayerBahr.tres" id="68_j62uw"]
+[ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Damir/Blizzard.tres" id="69_qa7gd"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/PlayerMaker.gd" id="72_hgeb1"]
 
-[sub_resource type="Resource" id="Resource_o54mc"]
+[sub_resource type="Resource" id="Resource_qvdjb"]
 script = ExtResource("22_uiavo")
 type = "Chip"
 inventory = [ExtResource("1_yh88o"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("4_r5jqd"), ExtResource("5_pe1g0"), ExtResource("6_m0iag"), ExtResource("7_rujxo"), ExtResource("10_q7qmg"), ExtResource("9_ph4gl"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("12_02xss"), ExtResource("13_22shq"), ExtResource("14_ki016"), ExtResource("8_6wabl"), ExtResource("15_2iw0k"), ExtResource("16_s1id7"), ExtResource("17_gx7rx"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("21_a0f4s")]
@@ -87,7 +87,7 @@ inventorySort1 = [ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("
 inventorySort2 = [ExtResource("4_r5jqd"), ExtResource("17_gx7rx"), ExtResource("8_6wabl"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("5_pe1g0"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("16_s1id7"), ExtResource("3_akf78"), ExtResource("7_rujxo"), ExtResource("9_ph4gl"), ExtResource("1_yh88o"), ExtResource("10_q7qmg"), ExtResource("21_a0f4s"), ExtResource("12_02xss"), ExtResource("14_ki016"), ExtResource("15_2iw0k"), ExtResource("13_22shq"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("6_m0iag")]
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_5tfa2"]
+[sub_resource type="Resource" id="Resource_yg5cj"]
 script = ExtResource("22_uiavo")
 type = "Gear"
 inventory = [ExtResource("23_lq6dh"), ExtResource("24_iq750"), ExtResource("25_q1apf"), ExtResource("26_07iyw"), ExtResource("27_3mvhq"), ExtResource("28_pjfni"), ExtResource("29_7yicu"), ExtResource("30_d6y0y"), ExtResource("31_3783k")]
@@ -95,12 +95,12 @@ inventorySort1 = []
 inventorySort2 = []
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_hbmai"]
+[sub_resource type="Resource" id="Resource_mi7xs"]
 script = ExtResource("22_uiavo")
 type = "Item"
 inventory = [ExtResource("32_swbnr"), ExtResource("33_2w2yt"), ExtResource("34_pu20w"), ExtResource("35_ltcd5"), ExtResource("36_dio4g"), ExtResource("37_rnix7"), ExtResource("38_7gmc0"), ExtResource("39_3vy5r"), ExtResource("40_7es6c"), ExtResource("41_5l8ff"), ExtResource("42_ii5ax"), ExtResource("43_jlr62"), ExtResource("44_fd6wn"), ExtResource("45_ab3tn"), ExtResource("46_lrl2b"), ExtResource("47_uqs04"), ExtResource("48_ew13e")]
-inventorySort1 = [ExtResource("47_uqs04"), ExtResource("42_ii5ax"), ExtResource("39_3vy5r"), ExtResource("48_ew13e"), ExtResource("37_rnix7"), ExtResource("32_swbnr"), ExtResource("38_7gmc0"), ExtResource("40_7es6c"), ExtResource("41_5l8ff"), ExtResource("45_ab3tn"), ExtResource("36_dio4g"), ExtResource("35_ltcd5"), ExtResource("34_pu20w"), ExtResource("43_jlr62"), ExtResource("44_fd6wn"), ExtResource("46_lrl2b"), ExtResource("33_2w2yt")]
-inventorySort2 = [ExtResource("35_ltcd5"), ExtResource("40_7es6c"), ExtResource("44_fd6wn"), ExtResource("36_dio4g"), ExtResource("32_swbnr"), ExtResource("43_jlr62"), ExtResource("42_ii5ax"), ExtResource("39_3vy5r"), ExtResource("48_ew13e"), ExtResource("47_uqs04"), ExtResource("38_7gmc0"), ExtResource("37_rnix7"), ExtResource("41_5l8ff"), ExtResource("34_pu20w"), ExtResource("33_2w2yt"), ExtResource("46_lrl2b"), ExtResource("45_ab3tn")]
+inventorySort1 = [ExtResource("40_7es6c"), ExtResource("48_ew13e"), ExtResource("37_rnix7"), ExtResource("32_swbnr"), ExtResource("36_dio4g"), ExtResource("34_pu20w"), ExtResource("43_jlr62"), ExtResource("38_7gmc0"), ExtResource("41_5l8ff"), ExtResource("45_ab3tn"), ExtResource("35_ltcd5"), ExtResource("39_3vy5r"), ExtResource("33_2w2yt"), ExtResource("42_ii5ax"), ExtResource("44_fd6wn"), ExtResource("46_lrl2b"), ExtResource("47_uqs04")]
+inventorySort2 = [ExtResource("35_ltcd5"), ExtResource("40_7es6c"), ExtResource("44_fd6wn"), ExtResource("36_dio4g"), ExtResource("32_swbnr"), ExtResource("39_3vy5r"), ExtResource("42_ii5ax"), ExtResource("48_ew13e"), ExtResource("43_jlr62"), ExtResource("47_uqs04"), ExtResource("38_7gmc0"), ExtResource("37_rnix7"), ExtResource("41_5l8ff"), ExtResource("33_2w2yt"), ExtResource("46_lrl2b"), ExtResource("34_pu20w"), ExtResource("45_ab3tn")]
 inventorySort3 = []
 
 [sub_resource type="Resource" id="Resource_scj1a"]
@@ -278,7 +278,7 @@ permanentWeakness = 0
 permanentResist = 32
 defaultBoostStat = 2
 
-[sub_resource type="Resource" id="Resource_v8f2t"]
+[sub_resource type="Resource" id="Resource_2ivc6"]
 script = ExtResource("50_qw0lt")
 level = 6
 name = "Damir"
@@ -303,7 +303,7 @@ Weakness = 0
 Resist = 32
 immunity = "None"
 attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("57_bbfnj"), ExtResource("58_qkqba"), ExtResource("59_58ejq"), ExtResource("60_a0qhl")]
+skillData = [ExtResource("69_qa7gd"), ExtResource("58_qkqba"), ExtResource("59_58ejq"), ExtResource("60_a0qhl")]
 itemData = {
 ExtResource("43_jlr62"): 3,
 ExtResource("40_7es6c"): 7,
@@ -411,9 +411,9 @@ luckBoost = 0.0
 
 [resource]
 script = ExtResource("1_au31d")
-every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_kh11u"), SubResource("Resource_niom6"), SubResource("Resource_v8f2t"), SubResource("Resource_5y8sq")])
+every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_kh11u"), SubResource("Resource_niom6"), SubResource("Resource_2ivc6"), SubResource("Resource_5y8sq")])
 every_specific_data = Array[ExtResource("72_hgeb1")]([SubResource("Resource_scj1a"), SubResource("Resource_3de7e"), SubResource("Resource_74xgw"), SubResource("Resource_0b6nh")])
-current_party = Array[int]([0, 3, 1])
-ChipInventory = SubResource("Resource_o54mc")
-GearInventory = SubResource("Resource_5tfa2")
-ItemInventory = SubResource("Resource_hbmai")
+current_party = Array[int]([2, 3, 1])
+ChipInventory = SubResource("Resource_qvdjb")
+GearInventory = SubResource("Resource_yg5cj")
+ItemInventory = SubResource("Resource_mi7xs")

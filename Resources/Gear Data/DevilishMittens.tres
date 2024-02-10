@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ceff5oid2lrhu" path="res://Icons/MenuIcons/icons-set-2_0000s_0013__Group_.png" id="1_astr4"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/GearMaker.gd" id="1_t0j28"]
 
-
 [resource]
 script = ExtResource("1_t0j28")
 name = "Devilish Mittens"

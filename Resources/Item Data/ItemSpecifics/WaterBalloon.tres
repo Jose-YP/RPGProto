@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_bcq0t"]
 [ext_resource type="Texture2D" uid="uid://cn3k0waq127p6" path="res://Icons/AilmentIcons/Bomb.png" id="2_wpbvu"]
 
-
 [resource]
 script = ExtResource("1_bcq0t")
 name = "Water Balloon"

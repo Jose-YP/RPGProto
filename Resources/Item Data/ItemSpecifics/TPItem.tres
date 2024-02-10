@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://dueovhnatv1dh" path="res://Resources/Item Data/ItemMoves/TPItemMove.tres" id="1_y46r1"]
 [ext_resource type="Texture2D" uid="uid://rg1v81r4c6rr" path="res://Icons/MenuIcons/icons-set-2_0000s_0065__Group_.png" id="2_nur7j"]
 
-
 [resource]
 script = ExtResource("1_8i7u6")
 name = "TPItem"

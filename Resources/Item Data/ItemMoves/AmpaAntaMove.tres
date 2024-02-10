@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_lkl8c"]
 
-
 [resource]
 script = ExtResource("1_lkl8c")
 name = "Ampa Anta"

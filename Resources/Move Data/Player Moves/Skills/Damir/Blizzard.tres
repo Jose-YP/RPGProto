@@ -2,17 +2,16 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_ybdrp"]
 
-
 [resource]
 script = ExtResource("1_ybdrp")
-name = "Bahr"
-description = "Ballistic Water Attack that hits an opposing enity group of the same element and lowers attack by 1 stage"
+name = "Blizzard"
+description = "Ballistic Attack that hits an opposing enity group of the same element and lowers attack by 1 stage"
 TPCost = 50
 Which = "Enemy"
 Target = "Group"
 element = "Water"
 phyElement = "Neutral"
-property = 2
+property = 10
 CostType = "LP"
 cost = 7.0
 Power = 40
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false
