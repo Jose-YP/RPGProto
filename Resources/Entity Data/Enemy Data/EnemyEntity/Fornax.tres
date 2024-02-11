@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://b6jbgarv46a4q"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_tlgvo"]
+[ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_pv1fa"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="3_g5um8"]
+[ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="4_git2g"]
+[ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="5_uqb72"]
+[ext_resource type="Resource" uid="uid://f3dwsaxhmuoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/FornaxSpecific.tres" id="6_qh2jh"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_6x48c"]
+
+[resource]
+script = ExtResource("3_g5um8")
+level = 10
+name = "Debugger"
+species = "Fornax"
+stellar = "Stellar"
+specificData = ExtResource("6_qh2jh")
+MaxHP = 100
+MaxTP = 40
+strength = 7
+toughness = 9
+ballistics = 10
+resistance = 4
+speed = 1
+luck = 15
+element = "Fire"
+phyElement = "Slash"
+soloElementMod = 0.0
+groupElementMod = 0.0
+phyElementMod = 0.0
+sameElement = false
+Weakness = 16
+Resist = 8
+immunity = "None"
+attackData = ExtResource("1_tlgvo")
+skillData = [ExtResource("4_git2g"), ExtResource("5_uqb72")]
+itemData = {
+ExtResource("2_pv1fa"): 1
+}
+waitData = ExtResource("7_6x48c")
+ItemChange = 0
+costBonus = 0
+HpCostMod = 0.0
+LpCostMod = 0.0
+TpCostMod = 0.0
+calcBonus = 0
+drainCalcAmmount = 0.0
+ailmentCalcAmmount = 0.0
+critCalcAmmount = 0.0
+KO = false
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+miscCalc = "None"
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

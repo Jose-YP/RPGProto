@@ -1,19 +1,19 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://kwgbpij34p52"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://ckpejmm17w4v3"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_nlmcw"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_1yyau"]
 
 [resource]
-script = ExtResource("1_nlmcw")
-xp = 0
-cents = 0
+script = ExtResource("1_1yyau")
+xp = 230
+cents = 23
 Boss = false
 Revivable = false
 AICodePath = ""
 Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
-PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+PriorityChance = [10, 50, 50, 50, 50, 50, 50, 50, 50, 50]
 selfHPPreference = 0.9
 allyHPPreference = 0.9
-oppHPPreference = 0.9
+oppHPPreference = 0.5
 selfAilmentPreference = 0
 allyAilmentPreference = 0
 oppAilmentPreference = 0
@@ -23,9 +23,9 @@ allyXSoftPreference = 0
 oppXSoftPreference = 0
 favoredXSoftTypes = 0
 selfBuffNumPreference = 1
-selfBuffAmmountPreference = 0.5
-allyBuffNumPreference = 1
-allyBuffAmmountPreference = 0.5
+selfBuffAmmountPreference = 0.2
+allyBuffNumPreference = 2
+allyBuffAmmountPreference = 0.1
 oppBuffNumPreference = 1
 oppBuffAmmountPreference = 0.5
 favoredCondition = 763
@@ -33,5 +33,5 @@ selfFavoredElement = "Neutral"
 allyFavoredElement = "Neutral"
 oppFavoredElement = "Neutral"
 favoredAuras = 15
-favoredAlly = ""
+favoredAlly = "Prokyon"
 hatedOpponent = "None"

@@ -1,7 +1,7 @@
 extends "res://Code/SceneCode/Entities/enemy.gd"
 
 func basicSelect(allowed):
-	print("AAAAAA")
+	print("AAAA")
 	var index = randi()%allowed.size()
 	return allowed[index]
 

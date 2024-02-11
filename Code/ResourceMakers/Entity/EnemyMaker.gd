@@ -33,15 +33,16 @@ class_name Enemy
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce") var favoredXSoftTypes: int
 
 @export_subgroup("Stat Buff Preferences")
-@export_range(0,.6,.05) var selfBuffAmmountPreference: float = .5
-@export_range(0,.6,.05) var allyBuffAmmountPreference: float = .5
-@export_range(0,.6,.05) var oppBuffAmmountPreference: float = .5
-@export_range(-.6,0,.05) var selfDebuffAmmountPreference: float = -.5
-@export_range(-.6,0.05) var allyDebuffAmmountPreference: float = -.5
-@export_range(-.6,0,.05) var oppDebuffAmmountPreference: float = -.5
+@export_range(0,4) var selfBuffNumPreference: int = 1
+@export_range(-.6,.6,.05) var selfBuffAmmountPreference: float = .5
+@export_range(0,4) var allyBuffNumPreference: int = 1
+@export_range(-.6,.6,.05) var allyBuffAmmountPreference: float = .5
+@export_range(0,4) var oppBuffNumPreference: int = 1
+@export_range(-.6,.6,.05) var oppBuffAmmountPreference: float = .5
 
 @export_subgroup("Other Buff Preferences")
-@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var favoredCondition: int = 763
+@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky",
+"Reflect","Absorb","Devoid","AnotherTurn") var favoredCondition: int = 763
 @export_enum("Fire","Water","Elec","Neutral") var selfFavoredElement = "Neutral"
 @export_enum("Fire","Water","Elec","Neutral") var allyFavoredElement = "Neutral"
 @export_enum("Fire","Water","Elec","Neutral") var oppFavoredElement = "Neutral"

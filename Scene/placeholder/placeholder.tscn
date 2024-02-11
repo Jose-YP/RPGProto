@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb78265xyckm8"]
+[gd_scene load_steps=5 format=3 uid="uid://bb78265xyckm8"]
 
 [ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_dhy25"]
 [ext_resource type="Script" path="res://Code/EnemyAI/EnemyAIGlobal.gd" id="2_gf5h2"]
+[ext_resource type="Script" path="res://Code/EnemyAI/BasicBuffAI.gd" id="3_knesp"]
+[ext_resource type="Script" path="res://Code/EnemyAI/PolkanAI.gd" id="4_a81vq"]
 
 [node name="Random" type="Node"]
 editor_description = "JUST HERE TO HOLD ENEMY AIS FOR EASY ACCESS"
@@ -9,3 +11,11 @@ script = ExtResource("1_dhy25")
 
 [node name="Globals" type="Node" parent="."]
 script = ExtResource("2_gf5h2")
+
+[node name="AI1_Buff" type="Node" parent="."]
+editor_description = "Basic Buff"
+script = ExtResource("3_knesp")
+
+[node name="AI2" type="Node" parent="."]
+editor_description = "Polkan"
+script = ExtResource("4_a81vq")

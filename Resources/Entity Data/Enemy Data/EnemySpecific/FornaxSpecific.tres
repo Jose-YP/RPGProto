@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://kwgbpij34p52"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://f3dwsaxhmuoc"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_nlmcw"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="1_pga78"]
 
 [resource]
-script = ExtResource("1_nlmcw")
-xp = 0
-cents = 0
+script = ExtResource("1_pga78")
+xp = 230
+cents = 23
 Boss = false
 Revivable = false
 AICodePath = ""
@@ -22,16 +22,16 @@ selfXSoftPreference = 0
 allyXSoftPreference = 0
 oppXSoftPreference = 0
 favoredXSoftTypes = 0
-selfBuffNumPreference = 1
 selfBuffAmmountPreference = 0.5
-allyBuffNumPreference = 1
 allyBuffAmmountPreference = 0.5
-oppBuffNumPreference = 1
 oppBuffAmmountPreference = 0.5
+selfDebuffAmmountPreference = -0.5
+allyDebuffAmmountPreference = -0.5
+oppDebuffAmmountPreference = -0.5
 favoredCondition = 763
 selfFavoredElement = "Neutral"
 allyFavoredElement = "Neutral"
 oppFavoredElement = "Neutral"
 favoredAuras = 15
-favoredAlly = ""
+favoredAlly = "Prokyon"
 hatedOpponent = "None"

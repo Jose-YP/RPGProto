@@ -2,11 +2,36 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="2_m7obm"]
 
-
 [resource]
 script = ExtResource("2_m7obm")
 xp = 500
 cents = 600
 Boss = true
 Revivable = false
-AIType = "Random"
+AICodePath = ""
+Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
+PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+selfHPPreference = 0.9
+allyHPPreference = 0.9
+oppHPPreference = 0.9
+selfAilmentPreference = 0
+allyAilmentPreference = 0
+oppAilmentPreference = 0
+favoredAilments = 0
+selfXSoftPreference = 0
+allyXSoftPreference = 0
+oppXSoftPreference = 0
+favoredXSoftTypes = 0
+selfBuffNumPreference = 1
+selfBuffAmmountPreference = 0.2
+allyBuffNumPreference = 1
+allyBuffAmmountPreference = 0.5
+oppBuffNumPreference = 1
+oppBuffAmmountPreference = 0.5
+favoredCondition = 763
+selfFavoredElement = "Neutral"
+allyFavoredElement = "Neutral"
+oppFavoredElement = "Neutral"
+favoredAuras = 15
+favoredAlly = ""
+hatedOpponent = "None"

@@ -41,7 +41,7 @@ func _process(_delta):
 			moveset.erase(thing)
 
 #-----------------------------------------
-#ENEMYAI
+#BASIC STRUCTURE ENEMYAI
 #-----------------------------------------
 func chooseMove(TP,allies,opposing) -> Move:
 	var move: Resource
@@ -56,6 +56,131 @@ func chooseMove(TP,allies,opposing) -> Move:
 		move = move.attackData
 	
 	return move
+
+func SingleSelect(targetting,_move):
+	var trgt = aiInstance.Single(targetting)
+	return trgt
+
+func GroupSelect(targetting,_move):
+	var trgt = aiInstance.Single(targetting)
+	return trgt
+
+#-----------------------------------------
+#GET MOVE
+#-----------------------------------------
+func getHighDamage(allowed) -> Move:
+	var damageMove: Move
+	
+	for move in allowed:
+		if damageMove == null:
+			damageMove = move
+			print(move.name, " Damage ", damageMove.Power)
+		elif move.Power > damageMove.Power:
+			damageMove = move
+			print(move.name, " Damage ", damageMove.Power)
+	
+	return damageMove
+
+#For Phy, Bal and BOMB moves
+func getElementMoves(allowed,elementType = "") -> Array:
+	var elementMoves: Array = []
+	var phyBool: bool = false
+	
+	if elementType in ["Fire", "Water", "Elec"]:
+		print("Checking Elements")
+		phyBool = false
+	elif elementType in ["Slash", "Crush", "Pierce"]:
+		print("Checking Phy Elements")
+		phyBool = true
+	
+	for move in allowed:
+		var moveProperty = move.property & 1 or move.property & 2 or move.property & 4
+		var checkingEle = move.element
+		if phyBool:
+			checkingEle = move.phyElement
+		
+		if (moveProperty and ((elementType == "" and checkingEle != "Neutral")
+		or checkingEle == elementType)):
+			print("Found element move ", move.name)
+			elementMoves.append(move)
+	
+	return elementMoves
+
+func getHealMoves(allowed) -> Array:
+	var healMoves: Array = []
+	
+	for move in allowed:
+		if move.property & 16:
+			print("Found heal move ", move.name)
+			healMoves.append(move)
+	
+	return healMoves
+
+#Works for buffs[stat,conditon,eleChange], ailments and aura moves
+func getFlagMoves(allowed, property, specificType = "") -> Array: 
+	var moveArray: Array = []
+	var propertyFlag: int
+	match property:
+		"Stats":
+			propertyFlag = 8
+			specificType = int(specificType)
+		"Condition":
+			propertyFlag = 8
+			specificType = int(specificType)
+		"EleChange":
+			propertyFlag = 8
+		"Aura":
+			propertyFlag = 128
+		"Ailment":
+			propertyFlag = 256
+	
+	for move in allowed:
+		var checking
+		var boolAny
+		var boolSpecific
+		match property:
+			"Stats":
+				checking = move.BoostType
+				boolAny = specificType == 0 and checking != 0
+				boolSpecific = checking & specificType
+			"Condition":
+				checking = move.Condition
+				boolAny = specificType == 0 and checking != 0
+				boolSpecific = checking & specificType
+			"EleChange":
+				checking = move.ElementChange
+				boolAny = specificType == "" and checking != "None"
+				boolSpecific = checking == specificType
+			"Aura":
+				checking = move.Aura
+				boolAny = specificType == "" and checking != "None"
+				boolSpecific = checking == specificType
+			"Ailment":
+				checking = move.Ailment
+				boolAny = specificType == "" and checking != "None"
+				boolSpecific = checking == specificType
+		
+		if (move.property & propertyFlag and (boolAny or boolSpecific)):
+			print("Found move ", move.name)
+			moveArray.append(move)
+		else:
+			print(move.property & propertyFlag and (boolAny or boolSpecific))
+	
+	return moveArray
+
+func getSummonMove(allowed) -> Move:
+	for move in allowed:
+		if move.property & 128:
+			return move
+	
+	return null
+
+func getSpecificMove(allowed, moveName) -> Move:
+	for move in allowed:
+		if move.name == moveName:
+			return move
+	
+	return null
 
 #-----------------------------------------
 #ENEMY PERCIEVE SELF
@@ -185,35 +310,6 @@ func internalizeTP(type):
 			return allyCurrentTP + allyMaxTP * .5
 		"Hedge":
 			return opposingCurrentTP + opposingMaxTP * .5
-
-#-----------------------------------------
-#TARGETTING TYPES
-#-----------------------------------------
-func SingleSelect(targetting,_move):
-	var trgt
-	match enemyData.AIType:
-		"Random":
-			trgt = aiInstance.Single(targetting)
-			return trgt
-		"Pick Off":
-			pass
-		"Support":
-			pass
-		"Debuff":
-			pass
-
-func GroupSelect(targetting,_move):
-	var trgt
-	match enemyData.AIType:
-		"Random":
-			trgt = aiInstance.Single(targetting)
-			return trgt
-		"Pick Off":
-			pass
-		"Support":
-			pass
-		"Debuff":
-			pass
 
 #-----------------------------------------
 #UI CHANGES
