@@ -18,6 +18,10 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 
+enum action{KILL, BUFF, ETC}
+
+var actionMode: action = action.ETC
+
 #-----------------------------------------
 #INITALIZATION
 #-----------------------------------------
@@ -30,6 +34,8 @@ func _ready():
 	enemyAI = load(str(enemyData.AICodePath))
 	
 	aiInstance = enemyAI.new()
+	
+	print(enemyAI, aiInstance)
 	makeDesc()
 	$ScanBox/ScanDescription.append_text(description)
 
@@ -62,7 +68,7 @@ func SingleSelect(targetting,_move):
 	return trgt
 
 func GroupSelect(targetting,_move):
-	var trgt = aiInstance.Single(targetting)
+	var trgt = aiInstance.Group(targetting)
 	return trgt
 
 #-----------------------------------------
@@ -189,15 +195,14 @@ func selfLeastHealth(limit: float) -> bool: #Returns if low health of self is lo
 	var leftover: float = float(currentHP)/data.MaxHP
 	return leftover >= limit
 
-func selfElement(desiredElement = ""): #Returns if element is what the user wants
+func selfElement(desiredElement = "") -> bool: #Returns if element is what the user wants
 	if desiredElement == "":
 		return data.TempElement == desiredElement
 	else:
 		return true
 
 func selfBuffStatus() -> Array: #Return what conditions is in self
-	var buffs = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
-	return buffs
+	return statBoostSlots
 
 func selfCondition() -> Array: #Every condition the self has
 	var ConditionArray: Array =[]
@@ -229,10 +234,10 @@ func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least healt
 			currentLeftover = leftover
 	
 	if currentLeftover >= limit:
-		print(leastHealth, type_string(typeof(leastHealth)))
+		print(leastHealth, leastHealth.data.name, type_string(typeof(leastHealth)))
 		return leastHealth 
 	else:
-		return false
+		return
 
 func groupLowHealth(group, limit: float) -> Array: #How many allies are at custom defined low health
 	var lowHealthGroup: Array[bool] = []

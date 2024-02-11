@@ -11,3 +11,7 @@ func basicSelect(allowed):
 func Single(targetting):
 	var defenderIndex = randi() % targetting.size()
 	return defenderIndex
+
+func Group(targetting):
+	var defenderIndex = randi() % targetting.size()
+	return defenderIndex

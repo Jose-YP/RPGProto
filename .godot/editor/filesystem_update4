@@ -33,3 +33,10 @@ res://Code/EnemyAI/PolkanAI.gd
 res://Scene/Entities/enemy.tscn
 res://Resources/Move Data/Enemy Moves/Bahr.tres
 res://Code/SceneCode/Entities/enemy.gd
+res://Scene/Mains/Battle.tscn
+res://Code/SceneCode/Screens/Main.gd
+res://Scene/Mains/GameManager.tscn
+res://Scene/Mains/MainMenu.tscn
+res://Scene/Entities/Player.tscn
+res://Scene/Entities/Entity.tscn
+res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres

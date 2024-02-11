@@ -35,7 +35,7 @@ var enemyScene: PackedScene = preload("res://Scene/Entities/enemy.tscn")
 var groups = ["Attack","Skills","Items","Tactics"]
 var currentMenu
 #Hold current enemy's action
-var enemyAction
+var enemyAction: Move
 var actionNum: int = 0
 #Holds current team and temmate's turn
 var i: int = 0

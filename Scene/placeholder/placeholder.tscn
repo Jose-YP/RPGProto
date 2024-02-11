@@ -16,6 +16,6 @@ script = ExtResource("2_gf5h2")
 editor_description = "Basic Buff"
 script = ExtResource("3_knesp")
 
-[node name="AI2" type="Node" parent="."]
+[node name="AI2_Polkan" type="Node" parent="."]
 editor_description = "Polkan"
 script = ExtResource("4_a81vq")

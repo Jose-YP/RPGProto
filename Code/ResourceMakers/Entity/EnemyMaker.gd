@@ -10,7 +10,7 @@ class_name Enemy
 @export var Revivable: bool
 
 @export_group("AI")
-@export var AICodePath: String
+@export var AICodePath: String = "res://Code/EnemyAI/EnemyRandom.gd"
 @export var Priorities: Array = ["Attack","Buff","Debuff","Element",
 "Condition","Heal","Aura","Summon","Ailment","Misc"] #Reordered depending on user
 @export var PriorityChance: Array = [50,50,50,50,
