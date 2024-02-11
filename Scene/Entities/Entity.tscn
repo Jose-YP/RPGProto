@@ -50,9 +50,9 @@ root_node = NodePath("../Icon")
 
 [node name="HPBar" type="TextureProgressBar" parent="BackUI"]
 offset_left = -125.0
-offset_top = 134.0
+offset_top = 86.0
 offset_right = 131.0
-offset_bottom = 166.0
+offset_bottom = 118.0
 value = 100.0
 texture_under = SubResource("GradientTexture2D_0uydm")
 texture_progress = ExtResource("3_8a2qv")
@@ -415,11 +415,10 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="CurrentInfo" type="PanelContainer" parent="BackUI"]
-visible = false
-offset_left = -140.0
-offset_top = 64.0
-offset_right = 138.0
-offset_bottom = 133.0
+offset_left = -138.0
+offset_top = 124.0
+offset_right = 140.0
+offset_bottom = 193.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BackUI/CurrentInfo"]
 layout_mode = 2
@@ -428,6 +427,7 @@ theme_override_fonts/normal_font = ExtResource("25_0egng")
 theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "[color=Green]TP: 80 [/color]Pow: 100 Hit every enemy. Remove Overdrive"
+metadata/_edit_lock_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_xtla5")

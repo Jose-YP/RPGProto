@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://raxx13ahatc5"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://raxx13ahatc5"]
 
-[ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_5udhv"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EnemyMaker.gd" id="2_daidn"]
 
 [resource]
@@ -9,11 +8,30 @@ xp = 140
 cents = 20
 Boss = false
 Revivable = false
-AICode = ExtResource("1_5udhv")
 AICodePath = "res://Code/EnemyAI/EnemyRandom.gd"
 Priorities = ["Attack", "Buff", "Debuff", "Element", "Condition", "Heal", "Aura", "Summon", "Ailment", "Misc"]
 PriorityChance = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+selfHPPreference = 0.9
+allyHPPreference = 0.9
+oppHPPreference = 0.9
+selfAilmentPreference = 0
+allyAilmentPreference = 0
+oppAilmentPreference = 0
+favoredAilments = 0
+selfXSoftPreference = 0
+allyXSoftPreference = 0
+oppXSoftPreference = 0
+favoredXSoftTypes = 0
+selfBuffAmmountPreference = 0.5
+allyBuffAmmountPreference = 0.5
+oppBuffAmmountPreference = 0.5
+selfDebuffAmmountPreference = -0.5
+allyDebuffAmmountPreference = -0.5
+oppDebuffAmmountPreference = -0.5
+favoredCondition = 763
+selfFavoredElement = "Neutral"
+allyFavoredElement = "Neutral"
+oppFavoredElement = "Neutral"
 favoredAuras = 15
 favoredAlly = ""
 hatedOpponent = "None"
-AIType = "Random"

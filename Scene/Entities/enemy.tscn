@@ -7,6 +7,15 @@
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
 
+[node name="HPBar" parent="BackUI" index="0"]
+offset_top = 106.0
+offset_bottom = 138.0
+
+[node name="CurrentInfo" parent="BackUI" index="4"]
+visible = false
+offset_top = 145.0
+offset_bottom = 214.0
+
 [node name="Attack" parent="FrontUI/Buffs/Attack" index="0"]
 offset_left = 20.0
 offset_top = 0.0
@@ -27,9 +36,9 @@ offset_right = 52.0
 
 [node name="NameContainer" type="PanelContainer" parent="." index="5"]
 offset_left = -125.0
-offset_top = 166.0
+offset_top = 72.0
 offset_right = 131.0
-offset_bottom = 194.0
+offset_bottom = 100.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NameContainer" index="0"]
 layout_mode = 2

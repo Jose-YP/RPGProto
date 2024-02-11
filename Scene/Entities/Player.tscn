@@ -9,11 +9,20 @@
 [node name="Player" groups=["Players"] instance=ExtResource("1_ij2m7")]
 script = ExtResource("2_0rcg8")
 
+[node name="HPBar" parent="BackUI" index="0"]
+offset_top = 69.0
+offset_bottom = 101.0
+
+[node name="CurrentInfo" parent="BackUI" index="4"]
+visible = false
+offset_top = 148.0
+offset_bottom = 217.0
+
 [node name="LPBar" type="TextureProgressBar" parent="." index="3"]
 offset_left = -125.0
-offset_top = 176.0
+offset_top = 107.0
 offset_right = 132.0
-offset_bottom = 210.0
+offset_bottom = 141.0
 value = 100.0
 texture_under = ExtResource("3_geygg")
 texture_progress = ExtResource("4_avs2c")

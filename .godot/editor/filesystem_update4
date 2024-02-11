@@ -73,3 +73,4 @@ res://Resources/Item Data/ItemSpecifics/TPItem.tres
 res://Resources/Item Data/ItemSpecifics/WaterBalloon.tres
 res://JSONS&Saves/Saves/save_file.tres
 res://Resources/Move Data/Player Moves/Skills/Pepper/Firestorm.tres
+res://Code/ResourceMakers/Entity/EnemyMaker.gd
