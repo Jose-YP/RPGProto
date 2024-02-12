@@ -18,7 +18,7 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 
-enum action{KILL, BUFF, ETC}
+enum action{KILL, BUFF, ELECHANGE, ETC}
 
 var actionMode: action = action.ETC
 
@@ -56,7 +56,8 @@ func chooseMove(TP,allies,opposing) -> Move:
 	allOpposing = opposing
 	var allowed = allowedMoveset(TP)
 	
-	debugAIPerceive()
+	#debugAIPerceive()
+	print(enemyData)
 	move = aiInstance.basicSelect(allowed)
 	if move is Item:
 		move = move.attackData
@@ -127,7 +128,10 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 	var moveArray: Array = []
 	var propertyFlag: int
 	match property:
-		"Stats":
+		"Buff":
+			propertyFlag = 8
+			specificType = int(specificType)
+		"Debuff":
 			propertyFlag = 8
 			specificType = int(specificType)
 		"Condition":
@@ -145,9 +149,15 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 		var boolAny
 		var boolSpecific
 		match property:
-			"Stats":
+			"Buff":
+				var boostAmmount: bool = move.BoostAmmount > 0
 				checking = move.BoostType
-				boolAny = specificType == 0 and checking != 0
+				boolAny = specificType == 0 and checking != 0 and boostAmmount
+				boolSpecific = checking & specificType
+			"Debuff":
+				var boostAmmount: bool = move.BoostAmmount < 0
+				checking = move.BoostType
+				boolAny = specificType == 0 and checking != 0 and boostAmmount
 				boolSpecific = checking & specificType
 			"Condition":
 				checking = move.Condition
@@ -170,7 +180,7 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 			print("Found move ", move.name)
 			moveArray.append(move)
 		else:
-			print(move.property & propertyFlag and (boolAny or boolSpecific))
+			print(move.property & propertyFlag, boolAny, boolSpecific)
 	
 	return moveArray
 

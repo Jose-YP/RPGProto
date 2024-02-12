@@ -1,18 +1,36 @@
 extends "res://Code/SceneCode/Entities/enemy.gd"
 
+var usedPop: bool = false
+var usedScrew: bool = false
+
 func basicSelect(allowed):
 	var buffed: bool = false
 	
-	for buff in selfBuffStatus():
+	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
 		if buff >= enemyData.selfBuffAmmountPreference:
 			print(buff, enemyData.selfBuffAmmountPreference)
 			buffed = true
 	
-	if not buffed and randi_range(0,100) <= 10:
+	if not usedScrew and not buffed and randi_range(0,100) <= 10:
 		actionMode = action.BUFF
-		return getFlagMoves(allowed, "Stats")
+		var buffs = getFlagMoves(allowed, "Buff")
+		usedScrew = true
+		return buffs[0]
+	
+	elif not usedPop:
+		var foundWeak: bool = false
+		for entity in groupElements("Opposing", "Elec"):
+			if entity:
+				foundWeak = true
+		
+		if foundWeak and randi_range(0,100) <= 10:
+			var eleChange = getFlagMoves(allowed, "EleChange")
+			actionMode = action.ELECHANGE
+			usedPop = true
+			return eleChange[0]
 	
 	else:
+		print(enemyData.oppHPPreference)
 		var lowHPArray = groupLowHealth("Opposing", enemyData.oppHPPreference)
 		var elementMoves = getElementMoves(allowed)
 		var foundLow: int = 0
@@ -37,7 +55,8 @@ func basicSelect(allowed):
 #TARGETTING
 #-----------------------------------------
 func Single(targetting):
-	var defenderIndex: int
+	#incase it doesn't work
+	var defenderIndex: int = randi() % targetting.size()
 	print(targetting)
 	match actionMode:
 		action.KILL:
@@ -50,6 +69,11 @@ func Single(targetting):
 		action.BUFF:
 			for entity in range(targetting.size()):
 				if targetting[entity] == self:
+					defenderIndex = entity
+					break
+		action.ELECHANGE:
+			for entity in range(targetting.size()):
+				if targetting[entity].tempElement == "Elec":
 					defenderIndex = entity
 					break
 		action.ETC:
@@ -73,6 +97,12 @@ func Group(targetting):
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
 					if targetting[entityGroup][entity] == self:
+						defenderIndex = entityGroup
+						break
+		action.ELECHANGE:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity].tempElement == "Elec":
 						defenderIndex = entityGroup
 						break
 		action.ETC:

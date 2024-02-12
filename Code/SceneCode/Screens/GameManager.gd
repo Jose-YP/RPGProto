@@ -45,12 +45,6 @@ func _ready(): #Make every inventory
 	setUp = true
 
 #-----------------------------------------
-#CONFIGURATION
-#-----------------------------------------
-func configureFileManager():
-	pass
-
-#-----------------------------------------
 #SAVE MANAGER
 #-----------------------------------------
 func SceneSwapSave() -> void:

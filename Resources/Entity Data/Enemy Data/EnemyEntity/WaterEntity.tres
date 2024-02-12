@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://dmm6qvo3byjgc"]
+[gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://dmm6qvo3byjgc"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_fbih2"]
 [ext_resource type="Resource" uid="uid://cwyspmieeb6gk" path="res://Resources/Item Data/ItemSpecifics/SpicyPop.tres" id="2_luepq"]
+[ext_resource type="Resource" uid="uid://cxres0jkcemt1" path="res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres" id="3_8na3c"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="3_wjrt8"]
 [ext_resource type="Resource" uid="uid://sjm6hcqloohb" path="res://Resources/Move Data/Enemy Moves/Bahr.tres" id="4_6oohn"]
 [ext_resource type="Resource" uid="uid://d2hopjlup3igp" path="res://Resources/Move Data/Enemy Moves/dielol.tres" id="5_v6sea"]
@@ -35,7 +36,8 @@ immunity = "None"
 attackData = ExtResource("1_fbih2")
 skillData = [ExtResource("4_6oohn"), ExtResource("5_v6sea")]
 itemData = {
-ExtResource("2_luepq"): 1
+ExtResource("2_luepq"): 1,
+ExtResource("3_8na3c"): 1
 }
 waitData = ExtResource("7_g2pgv")
 ItemChange = 0
