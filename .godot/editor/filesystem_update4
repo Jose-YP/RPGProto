@@ -3,9 +3,15 @@ res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/ProkyonSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
+res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
+res://Resources/Move Data/Enemy Moves/Bahr.tres
+res://Resources/Move Data/Enemy Moves/dielol.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres
@@ -22,7 +28,6 @@ res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
 res://Resources/Entity Data/placeholder.tres
 res://Themes/Gradients/Blue.tres
-res://Code/SceneCode/Screens/GameManager.gd
 res://Scene/Mains/MainMenu.tscn
 res://Scene/Mains/Battle.tscn
 res://Scene/Entities/Player.tscn
@@ -30,6 +35,8 @@ res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/placeholder.tscn
 res://Code/EnemyAI/PolkanAI.gd
+res://Code/EnemyAI/EnemyRandom.gd
 res://Code/SceneCode/Entities/enemy.gd
-res://Resources/Move Data/Enemy Moves/dielol.tres
-res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
+res://Code/SceneCode/Screens/Main.gd
+res://Code/SceneCode/Entities/Entity.gd
+res://Code/EnemyAI/BasicBuffAI.gd

@@ -11,8 +11,8 @@ extends Node2D
 @onready var AilmentImages = $BackUI/AilmentDisplay/HBoxContainer/AilmentType.get_children()
 @onready var XSoftTabs = $BackUI/XSoftDisplay/HBoxContainer.get_children()
 @onready var XSoftSlots: Array = []
-@onready var statBoostSprites: Array = [%Attack, %Defense, %Speed, %Luck]
-@onready var statBoostSlots: Array = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
+@onready var statBoostSprites: Array[TextureRect] = [%Attack, %Defense, %Speed, %Luck]
+@onready var statBoostSlots: Array[float] = [data.attackBoost, data.defenseBoost, data.speedBoost, data.luckBoost]
 @onready var attacks: Array = [data.attackData]
 @onready var items: Array = []
 
@@ -330,7 +330,6 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:
 		receiver.data.attackBoost += (boostAmmount * .3)
-		print("AAA")
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Attack"),receiver.data.attackBoost)
 	if boostType & 2:
 		receiver.data.defenseBoost += (boostAmmount * .3)

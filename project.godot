@@ -25,7 +25,6 @@ buses/default_bus_layout="res://Audio/Buses/default_bus_layout.tres"
 Globals="*res://Code/Globals/Globals.gd"
 HelperFunctions="*res://Code/Globals/HelperFunctions.gd"
 MiscFunctions="*res://Code/Globals/MiscFunctions.gd"
-EnemyAiGlobal="*res://Code/EnemyAI/EnemyAIGlobal.gd"
 InventoryFunctions="*res://Code/Globals/InventoryFunctions.gd"
 SaveManager="*res://Code/Globals/SaveManager.gd"
 

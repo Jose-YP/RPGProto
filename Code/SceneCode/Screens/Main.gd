@@ -128,16 +128,17 @@ func _ready(): #Assign current team according to starting bool
 		entity.connect("critical", setCrit)
 		entity.connect("explode", blowUp)
 	
-	actionNum = 3
 	playerTP = playerMaxTP
 	enemyTP = enemyMaxTP
 	
 	if playerTurn:
+		actionNum =  playerOrder.size()
 		team = playerOrder
 		opposing = enemyOrder
 		checkCosts(playerOrder[0])
 		team[i].menu.show()
 	else:
+		actionNum =  enemyOrder.size()
 		team = enemyOrder
 		opposing = playerOrder
 		

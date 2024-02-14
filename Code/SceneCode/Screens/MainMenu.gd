@@ -77,8 +77,6 @@ func _process(_delta):
 			if get_viewport().gui_get_focus_owner() is OptionButton:
 				get_viewport().gui_get_focus_owner().show_popup()
 			else:
-				print("AA")
-				print(get_viewport().gui_get_focus_owner())
 				get_viewport().gui_get_focus_owner().emit_signal("pressed")
 		
 		if Input.is_action_just_pressed("Cancel"):

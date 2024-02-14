@@ -1,20 +1,24 @@
 extends "res://Code/SceneCode/Entities/enemy.gd"
 
+#It needs to have these redefined from enemy, to here
+var eData: Enemy
 var usedPop: bool = false
 var usedScrew: bool = false
+var allies: Array = []
+var opp: Array = []
 
-func basicSelect(allowed):
+func basicSelect(allowed) -> Move:
 	var buffed: bool = false
-	
 	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
-		if buff >= enemyData.selfBuffAmmountPreference:
-			print(buff, enemyData.selfBuffAmmountPreference)
+		if buff >= eData.selfBuffAmmountPreference:
+			print(buff, eData.selfBuffAmmountPreference)
 			buffed = true
 	
 	if not usedScrew and not buffed and randi_range(0,100) <= 10:
 		actionMode = action.BUFF
 		var buffs = getFlagMoves(allowed, "Buff")
 		usedScrew = true
+		print(buffs)
 		return buffs[0]
 	
 	elif not usedPop:
@@ -27,29 +31,34 @@ func basicSelect(allowed):
 			var eleChange = getFlagMoves(allowed, "EleChange")
 			actionMode = action.ELECHANGE
 			usedPop = true
+			print(eleChange)
 			return eleChange[0]
 	
-	else:
-		print(enemyData.oppHPPreference)
-		var lowHPArray = groupLowHealth("Opposing", enemyData.oppHPPreference)
-		var elementMoves = getElementMoves(allowed)
-		var foundLow: int = 0
-		print(lowHPArray)
-		for entityLow in lowHPArray:
-			if entityLow:
-				foundLow += 1
-		
-		match foundLow:
-			0:
-				if randi_range(0,100) <= 65:
-					return getHighDamage(allowed)
-				else:
-					return elementMoves[0]
-			1:
-				actionMode = action.KILL
+	print(eData.oppHPPreference)
+	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
+	var elementMoves = getElementMoves(allowed)
+	var foundLow: int = 0
+	print(lowHPArray)
+	for entityLow in lowHPArray:
+		if entityLow:
+			foundLow += 1
+	
+	match foundLow:
+		0:
+			if randi_range(0,100) <= 65:
+				
+				print(getDamagingMoves(allowed))
 				return getHighDamage(allowed)
-			_:
+			else:
+				print(elementMoves)
 				return elementMoves[0]
+		1:
+			actionMode = action.KILL
+			print(getHighDamage(allowed))
+			return getHighDamage(allowed)
+		_:
+			print(elementMoves)
+			return elementMoves[0]
 
 #-----------------------------------------
 #TARGETTING

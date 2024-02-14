@@ -452,6 +452,7 @@ offset_right = -15.0
 offset_bottom = 64.0
 
 [node name="Attack" type="TextureRect" parent="FrontUI/Buffs"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 custom_minimum_size = Vector2(20, 20)
@@ -460,7 +461,6 @@ texture = ExtResource("27_6hheg")
 expand_mode = 2
 
 [node name="Attack" type="RichTextLabel" parent="FrontUI/Buffs/Attack"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(47, 0)
 layout_mode = 0
 offset_left = 25.0
@@ -473,6 +473,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Defense" type="TextureRect" parent="FrontUI/Buffs"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 custom_minimum_size = Vector2(20, 20)
@@ -481,7 +482,6 @@ texture = ExtResource("28_j8yva")
 expand_mode = 2
 
 [node name="Defense" type="RichTextLabel" parent="FrontUI/Buffs/Defense"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(47, 0)
 layout_mode = 0
 offset_left = 25.0
@@ -493,6 +493,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Speed" type="TextureRect" parent="FrontUI/Buffs"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 custom_minimum_size = Vector2(20, 20)
@@ -501,7 +502,6 @@ texture = ExtResource("29_cylqo")
 expand_mode = 2
 
 [node name="Speed" type="RichTextLabel" parent="FrontUI/Buffs/Speed"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(47, 0)
 layout_mode = 0
 offset_left = 25.0
@@ -513,6 +513,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Luck" type="TextureRect" parent="FrontUI/Buffs"]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.278431, 0.356863, 0.670588)
 custom_minimum_size = Vector2(20, 20)
@@ -521,7 +522,6 @@ texture = ExtResource("30_xueah")
 expand_mode = 2
 
 [node name="Luck" type="RichTextLabel" parent="FrontUI/Buffs/Luck"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(47, 0)
 layout_mode = 0
 offset_left = 25.0

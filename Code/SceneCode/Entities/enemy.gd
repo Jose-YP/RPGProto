@@ -34,8 +34,8 @@ func _ready():
 	enemyAI = load(str(enemyData.AICodePath))
 	
 	aiInstance = enemyAI.new()
+	aiInstance.eData = enemyData
 	
-	print(enemyAI, aiInstance)
 	makeDesc()
 	$ScanBox/ScanDescription.append_text(description)
 
@@ -53,28 +53,42 @@ func chooseMove(TP,allies,opposing) -> Move:
 	var move: Resource
 	allyCurrentTP = TP
 	allAllies = allies
+	aiInstance.allies = allies
 	allOpposing = opposing
+	aiInstance.opp = allies
 	var allowed = allowedMoveset(TP)
+	for debug in allowed:
+		print(debug.name)
 	
 	#debugAIPerceive()
-	print(enemyData)
 	move = aiInstance.basicSelect(allowed)
+	print(move)
 	if move is Item:
 		move = move.attackData
 	
+	print(move.name)
 	return move
 
-func SingleSelect(targetting,_move):
+func SingleSelect(targetting, _move):
 	var trgt = aiInstance.Single(targetting)
 	return trgt
 
-func GroupSelect(targetting,_move):
+func GroupSelect(targetting, _move):
 	var trgt = aiInstance.Group(targetting)
 	return trgt
 
 #-----------------------------------------
 #GET MOVE
 #-----------------------------------------
+func getDamagingMoves(allowed) -> Array:
+	var damagingMoves: Array[Move] = []
+	
+	for move in allowed:
+		if move.property & 1 or move.property & 2 or move.property & 4:
+			damagingMoves.append(move)
+	
+	return damagingMoves
+
 func getHighDamage(allowed) -> Move:
 	var damageMove: Move
 	
