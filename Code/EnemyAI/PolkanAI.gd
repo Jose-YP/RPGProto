@@ -45,10 +45,10 @@ func basicSelect(allowed) -> Move:
 	
 	match foundLow:
 		0:
-			if randi_range(0,100) <= 65:
-				
-				print(getDamagingMoves(allowed))
-				return getHighDamage(allowed)
+			if randi_range(0,100) <= 55:
+				var damaging = getDamagingMoves(allowed)
+				print("Print damaging moves", damaging)
+				return damaging.pick_random()
 			else:
 				print(elementMoves)
 				return elementMoves[0]
