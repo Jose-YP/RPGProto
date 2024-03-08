@@ -57,16 +57,12 @@ func chooseMove(TP,allies,opposing) -> Move:
 	allOpposing = opposing
 	aiInstance.opp = allies
 	var allowed = allowedMoveset(TP)
-	for debug in allowed:
-		print(debug.name)
 	
 	#debugAIPerceive()
 	move = aiInstance.basicSelect(allowed)
-	print(move)
 	if move is Item:
 		move = move.attackData
 	
-	print(move.name)
 	return move
 
 func SingleSelect(targetting, _move):
@@ -226,6 +222,7 @@ func selfElement(desiredElement = "") -> bool: #Returns if element is what the u
 		return true
 
 func selfBuffStatus() -> Array: #Return what conditions is in self
+	print(statBoostSlots)
 	return statBoostSlots
 
 func selfCondition() -> Array: #Every condition the self has
@@ -278,6 +275,7 @@ func groupElements(group, desiredElement = "") -> Array: #Return ally elements o
 	var effectiveGroup = getGroup(group)
 	
 	for entity in effectiveGroup:
+		print(entity.data.TempElement)
 		if desiredElement == "":
 			groupElementsArray.append(entity.data.TempElement)
 		else:

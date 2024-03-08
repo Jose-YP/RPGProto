@@ -10,9 +10,11 @@ var opp: Array = []
 func basicSelect(allowed) -> Move:
 	var buffed: bool = false
 	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
+		print("Buff", buff)
 		if buff >= eData.selfBuffAmmountPreference:
 			print(buff, eData.selfBuffAmmountPreference)
 			buffed = true
+		else:print("Buffed")
 	
 	if not usedScrew and not buffed and randi_range(0,100) <= 10:
 		actionMode = action.BUFF
@@ -25,7 +27,9 @@ func basicSelect(allowed) -> Move:
 		var foundWeak: bool = false
 		for entity in groupElements("Opposing", "Elec"):
 			if entity:
+				print("Elec found")
 				foundWeak = true
+				break
 		
 		if foundWeak and randi_range(0,100) <= 10:
 			var eleChange = getFlagMoves(allowed, "EleChange")
@@ -50,14 +54,14 @@ func basicSelect(allowed) -> Move:
 				print("Print damaging moves", damaging)
 				return damaging.pick_random()
 			else:
-				print(elementMoves)
+				print("Element moves", elementMoves)
 				return elementMoves[0]
 		1:
 			actionMode = action.KILL
-			print(getHighDamage(allowed))
+			print("High Damage", getHighDamage(allowed))
 			return getHighDamage(allowed)
 		_:
-			print(elementMoves)
+			print("Element default", elementMoves)
 			return elementMoves[0]
 
 #-----------------------------------------
