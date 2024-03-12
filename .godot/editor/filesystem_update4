@@ -1,23 +1,12 @@
 res://Scene/Mains/GameManager.tscn
-res://BasicAttack.tres
-res://Resources/Entity Data/placeholder.tres
-res://Themes/ButtonStyle/Disabled.tres
-res://Themes/ButtonStyle/Normal.tres
-res://Themes/HasSingle/Pannel.tres
-res://Themes/HasSingle/Scrollbar.tres
-res://Themes/HasSingle/TabContainer.tres
-res://Themes/Theme.tres
-res://Themes/Gradients/Blue.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
+res://BasicAttack.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
-res://Resources/Entity Data/Enemy Data/EnemySpecific/ProkyonSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
-res://Resources/Move Data/Enemy Moves/Bahr.tres
 res://Resources/Move Data/Enemy Moves/dielol.tres
-res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
@@ -25,14 +14,22 @@ res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres
+res://Themes/ButtonStyle/Disabled.tres
+res://Themes/ButtonStyle/Normal.tres
+res://Themes/HasSingle/Pannel.tres
+res://Themes/HasSingle/Scrollbar.tres
+res://Themes/HasSingle/TabContainer.tres
+res://Themes/Theme.tres
 res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
+res://Resources/Entity Data/placeholder.tres
+res://Themes/Gradients/Blue.tres
 res://Scene/Mains/MainMenu.tscn
 res://Scene/Mains/Battle.tscn
 res://Scene/Entities/Player.tscn
 res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/placeholder.tscn
-res://Code/EnemyAI/PolkanAI.gd
 res://Code/SceneCode/Entities/enemy.gd
-res://Code/SceneCode/Entities/Player.gd
+res://Code/EnemyAI/PolkanAI.gd
+res://Code/SceneCode/Screens/Main.gd

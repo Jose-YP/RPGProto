@@ -1,8 +1,8 @@
+AudioStreamPlayer
 Node
 TextureRect
 GridContainer
 Node2D
-AudioStreamPlayer
 HBoxContainer
 Button
 RichTextLabel

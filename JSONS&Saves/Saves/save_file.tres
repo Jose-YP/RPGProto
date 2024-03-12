@@ -79,7 +79,7 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/PlayerMaker.gd" id="72_hgeb1"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Pepper/Firestorm.tres" id="74_subx1"]
 
-[sub_resource type="Resource" id="Resource_83hag"]
+[sub_resource type="Resource" id="Resource_ciwv4"]
 script = ExtResource("22_uiavo")
 type = "Chip"
 inventory = [ExtResource("1_yh88o"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("4_r5jqd"), ExtResource("5_pe1g0"), ExtResource("6_m0iag"), ExtResource("7_rujxo"), ExtResource("10_q7qmg"), ExtResource("9_ph4gl"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("12_02xss"), ExtResource("13_22shq"), ExtResource("14_ki016"), ExtResource("8_6wabl"), ExtResource("15_2iw0k"), ExtResource("16_s1id7"), ExtResource("17_gx7rx"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("21_a0f4s")]
@@ -87,7 +87,7 @@ inventorySort1 = [ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("
 inventorySort2 = [ExtResource("4_r5jqd"), ExtResource("17_gx7rx"), ExtResource("8_6wabl"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("5_pe1g0"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("16_s1id7"), ExtResource("3_akf78"), ExtResource("7_rujxo"), ExtResource("9_ph4gl"), ExtResource("1_yh88o"), ExtResource("10_q7qmg"), ExtResource("21_a0f4s"), ExtResource("12_02xss"), ExtResource("14_ki016"), ExtResource("15_2iw0k"), ExtResource("13_22shq"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("6_m0iag")]
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_bpige"]
+[sub_resource type="Resource" id="Resource_706nj"]
 script = ExtResource("22_uiavo")
 type = "Gear"
 inventory = [ExtResource("23_lq6dh"), ExtResource("24_iq750"), ExtResource("25_q1apf"), ExtResource("26_07iyw"), ExtResource("27_3mvhq"), ExtResource("28_pjfni"), ExtResource("29_7yicu"), ExtResource("30_d6y0y"), ExtResource("31_3783k")]
@@ -95,7 +95,7 @@ inventorySort1 = []
 inventorySort2 = []
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_pl0o0"]
+[sub_resource type="Resource" id="Resource_xe8r7"]
 script = ExtResource("22_uiavo")
 type = "Item"
 inventory = [ExtResource("32_swbnr"), ExtResource("33_2w2yt"), ExtResource("34_pu20w"), ExtResource("35_ltcd5"), ExtResource("36_dio4g"), ExtResource("37_rnix7"), ExtResource("38_7gmc0"), ExtResource("39_3vy5r"), ExtResource("40_7es6c"), ExtResource("41_5l8ff"), ExtResource("42_ii5ax"), ExtResource("43_jlr62"), ExtResource("44_fd6wn"), ExtResource("45_ab3tn"), ExtResource("46_lrl2b"), ExtResource("47_uqs04"), ExtResource("48_ew13e")]
@@ -414,6 +414,6 @@ script = ExtResource("1_au31d")
 every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_kh11u"), SubResource("Resource_niom6"), SubResource("Resource_2ivc6"), SubResource("Resource_5y8sq")])
 every_specific_data = Array[ExtResource("72_hgeb1")]([SubResource("Resource_scj1a"), SubResource("Resource_3de7e"), SubResource("Resource_74xgw"), SubResource("Resource_0b6nh")])
 current_party = Array[int]([2, 3, 1])
-ChipInventory = SubResource("Resource_83hag")
-GearInventory = SubResource("Resource_bpige")
-ItemInventory = SubResource("Resource_pl0o0")
+ChipInventory = SubResource("Resource_ciwv4")
+GearInventory = SubResource("Resource_706nj")
+ItemInventory = SubResource("Resource_xe8r7")

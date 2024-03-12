@@ -352,6 +352,8 @@ func _on_fight_button_pressed() -> void:
 	setEnemyGlobals()
 	setPlayerGlobals()
 	
+	Globals.playerFirst = orderButton.button_pressed
+	
 	battleStart.emit()
 
 func _on_chip_button_pressed() -> void:

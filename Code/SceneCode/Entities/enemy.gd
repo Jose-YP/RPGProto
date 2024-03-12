@@ -55,7 +55,7 @@ func chooseMove(TP,allies,opposing) -> Move:
 	allAllies = allies
 	aiInstance.allies = allies
 	allOpposing = opposing
-	aiInstance.opp = allies
+	aiInstance.opp = opposing
 	var allowed = allowedMoveset(TP)
 	
 	#debugAIPerceive()
@@ -275,12 +275,12 @@ func groupElements(group, desiredElement = "") -> Array: #Return ally elements o
 	var effectiveGroup = getGroup(group)
 	
 	for entity in effectiveGroup:
-		print(entity.data.TempElement)
 		if desiredElement == "":
 			groupElementsArray.append(entity.data.TempElement)
 		else:
 			groupElementsArray.append(entity.data.TempElement == desiredElement)
 	
+	print(groupElementsArray)
 	return groupElementsArray
 
 func groupBuffStatus(group) -> Array: #Return every ally buffs
@@ -442,6 +442,8 @@ func getGroup(group: String) -> Array:
 	if group == "Ally":
 		return allAllies
 	else:
+		
+		print("All Opposing", allOpposing)
 		return allOpposing
 
 #-----------------------------------------

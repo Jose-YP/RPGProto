@@ -145,6 +145,7 @@ func _ready(): #Assign current team according to starting bool
 		team[i].opposingCurrentTP = playerTP
 		team[i].allyMaxTP = playerMaxTP
 		team[i].opposingMaxTP = enemyMaxTP
+		print("Player: " ,playerOrder, "Enemy:", enemyOrder)
 		enemyAction = team[i].chooseMove(enemyTP, enemyOrder, playerOrder)
 	
 	everyone = playerOrder + enemyOrder
@@ -361,6 +362,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 					PSingleSelect(targetArray)
 			else:
 				waiting = true
+				print(index,team,targetArray, enemyAction)
 				index = team[i].SingleSelect(targetArray,enemyAction)
 				EfinishSelecting(enemyAction)
 		
@@ -404,7 +406,12 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 				targetArray = deadEnemies
 				EfinishSelecting(enemyAction)
 		
-		(targetTypes.ALL or targetTypes.RANDOM or targetTypes.TARGETTED):
+		targetTypes.RANDOMGROUP:
+			targetArrayGroup = []
+			if which == whichTypes.BOTH:
+				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
+			else:
+				targetArrayGroup = establishGroups(targetArray)
 			if playerTurn:
 				if Globals.attacking:
 					PAllSelect(targetArray)
@@ -412,12 +419,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 				waiting = true
 				EfinishSelecting(enemyAction)
 		
-		targetTypes.RANDOMGROUP:
-			targetArrayGroup = []
-			if which == whichTypes.BOTH:
-				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
-			else:
-				targetArrayGroup = establishGroups(targetArray)
+		_:
 			if playerTurn:
 				if Globals.attacking:
 					PAllSelect(targetArray)

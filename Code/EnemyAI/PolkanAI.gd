@@ -6,32 +6,31 @@ var usedPop: bool = false
 var usedScrew: bool = false
 var allies: Array = []
 var opp: Array = []
+var debug: bool = true
 
 func basicSelect(allowed) -> Move:
+	allOpposing = opp
 	var buffed: bool = false
 	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
-		print("Buff", buff)
-		if buff >= eData.selfBuffAmmountPreference:
-			print(buff, eData.selfBuffAmmountPreference)
+		if buff >= eData.selfBuffAmmountPreference or buff == null:
 			buffed = true
-		else:print("Buffed")
 	
 	if not usedScrew and not buffed and randi_range(0,100) <= 10:
 		actionMode = action.BUFF
 		var buffs = getFlagMoves(allowed, "Buff")
 		usedScrew = true
-		print(buffs)
 		return buffs[0]
 	
 	elif not usedPop:
 		var foundWeak: bool = false
+		
 		for entity in groupElements("Opposing", "Elec"):
 			if entity:
 				print("Elec found")
 				foundWeak = true
 				break
 		
-		if foundWeak and randi_range(0,100) <= 10:
+		if foundWeak and (randi_range(0,100) <= 10 or debug):
 			var eleChange = getFlagMoves(allowed, "EleChange")
 			actionMode = action.ELECHANGE
 			usedPop = true
@@ -81,12 +80,15 @@ func Single(targetting):
 					break
 		action.BUFF:
 			for entity in range(targetting.size()):
+				print("Looking for", self)
 				if targetting[entity] == self:
 					defenderIndex = entity
 					break
 		action.ELECHANGE:
 			for entity in range(targetting.size()):
-				if targetting[entity].tempElement == "Elec":
+				print(targetting[entity].data.name)
+				if (targetting[entity].data.TempElement == "Elec"
+				 and targetting[entity].has_node("CanvasLayer")):
 					defenderIndex = entity
 					break
 		action.ETC:
@@ -96,7 +98,6 @@ func Single(targetting):
 
 func Group(targetting):
 	var defenderIndex: int
-	print(targetting)
 	match actionMode:
 		action.KILL:
 			var seeking = groupLeastHealth("Opposing")
@@ -109,13 +110,15 @@ func Group(targetting):
 		action.BUFF:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
+					print("looking for", self)
 					if targetting[entityGroup][entity] == self:
 						defenderIndex = entityGroup
 						break
 		action.ELECHANGE:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity].tempElement == "Elec":
+					if (targetting[entityGroup][entity].data.TempElement == "Elec" 
+					and targetting[entityGroup][entity].has_node("CanvasLayer")):
 						defenderIndex = entityGroup
 						break
 		action.ETC:
