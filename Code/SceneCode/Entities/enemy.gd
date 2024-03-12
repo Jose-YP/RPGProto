@@ -89,12 +89,13 @@ func getHighDamage(allowed) -> Move:
 	var damageMove: Move
 	
 	for move in allowed:
-		if damageMove == null:
-			damageMove = move
-			print(move.name, " Damage ", damageMove.Power)
-		elif move.Power > damageMove.Power:
-			damageMove = move
-			print(move.name, " Damage ", damageMove.Power)
+		if move.property & 1 or move.property & 2 or move.property & 4:
+			if damageMove == null:
+				damageMove = move
+				print(move.name, " Damage ", damageMove.Power)
+			elif move.Power > damageMove.Power:
+				damageMove = move
+				print(move.name, " Damage ", damageMove.Power)
 	
 	return damageMove
 
@@ -164,10 +165,6 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 				checking = move.BoostType
 				boolAny = specificType == 0 and checking != 0 and boostAmmount
 				boolSpecific = checking & specificType
-				if checking & 1:
-					print(move.name, " Boosts attack")
-				elif checking & 2:
-					print(move.name, " Boosts defense")
 			"Debuff":
 				var boostAmmount: bool = move.BoostAmmount < 0
 				checking = move.BoostType
@@ -253,12 +250,12 @@ func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least healt
 	var effectiveGroup = getGroup(group)
 	
 	for entity in effectiveGroup:
-		var leftover: float = float(entity.currentHP) / data.MaxHP
+		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
 		if leftover < currentLeftover:
 			leastHealth = entity
 			currentLeftover = leftover
 	
-	if currentLeftover >= limit:
+	if currentLeftover < limit:
 		print(leastHealth, leastHealth.data.name, type_string(typeof(leastHealth)))
 		return leastHealth 
 	else:

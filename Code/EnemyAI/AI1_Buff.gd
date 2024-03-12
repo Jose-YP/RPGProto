@@ -3,7 +3,8 @@ extends "res://Code/SceneCode/Entities/enemy.gd"
 #It needs to have these redefined from enemy, to here
 var eData: Enemy
 var canBuff: bool = false
-var usedNut: bool = false
+var usedItem: bool = false
+var debug: bool = true
 var allies: Array = []
 var opp: Array = []
 var buffedNum: Array[int] = []
@@ -18,31 +19,31 @@ func basicSelect(allowed) -> Move:
 	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
 		buffedNum.append(0)
 		buffedFlags.append(0)
-		print(groupBuffStatus("Ally"))
 		for buff in range(entity.size()):
 			if entity[buff] > eData.allyBuffAmmountPreference:
 				buffedFlags[-1] += 2^buff #1 for atk, 2, for def, 4 for spd, and 8 for luk
 				buffedNum[-1] += 1
 		
-		print(buffedNum[-1]) #Check if they have proper ammount of buffs
+		print(buffedNum[-1], buffedNum[-1] < eData.allyBuffNumPreference) #Check if they have proper ammount of buffs
 		if buffedNum[-1] < eData.allyBuffNumPreference:
+			print(entity, buffedFlags[-1], buffedNum[-1], "CAN BUFF")
 			canBuff = true
 	
 	if canBuff and randi_range(0,100) <= 60:
+		canBuff = false
 		actionMode = action.BUFF
-		print(buffedFlags)
-		print(getFlagMoves(allowed, "Buff", 1))
+		
 		for entity in buffedFlags: #Must have buff moves of that type to be viable
-			if entity & 1 and getFlagMoves(allowed, "Buff", 1).size() != 0:
+			if entity | 1 and getFlagMoves(allowed, "Buff", 1).size() != 0:
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
-			elif entity & 2 and getFlagMoves(allowed, "Buff", 2).size() != 0:
+			elif entity | 2 and getFlagMoves(allowed, "Buff", 2).size() != 0:
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
-			elif entity & 4 and getFlagMoves(allowed, "Buff", 4).size() != 0:
+			elif entity | 4 and getFlagMoves(allowed, "Buff", 4).size() != 0:
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
-			elif entity & 8 and getFlagMoves(allowed, "Buff", 8).size() != 0:
+			elif entity | 8 and getFlagMoves(allowed, "Buff", 8).size() != 0:
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
@@ -66,7 +67,7 @@ func Single(targetting):
 	var defenderIndex: int = randi() % targetting.size()
 	match actionMode:
 		action.KILL:
-			var seeking = groupLeastHealth("Opposing")
+			var seeking = groupLeastHealth("Opposing",eData.oppHPPreference)
 			
 			for entity in range(targetting.size()):
 				if targetting[entity] == seeking:
@@ -86,7 +87,7 @@ func Group(targetting):
 	var defenderIndex: int
 	match actionMode:
 		action.KILL:
-			var seeking = groupLeastHealth("Opposing")
+			var seeking = groupLeastHealth("Opposing",eData.oppHPPreference)
 			
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
