@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb78265xyckm8"]
+[gd_scene load_steps=9 format=3 uid="uid://bb78265xyckm8"]
 
-[ext_resource type="Script" path="res://Code/EnemyAI/EnemyRandom.gd" id="1_dhy25"]
-[ext_resource type="Script" path="res://Code/EnemyAI/BasicBuffAI.gd" id="3_knesp"]
-[ext_resource type="Script" path="res://Code/EnemyAI/PolkanAI.gd" id="4_a81vq"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI0_Random.gd" id="1_w5t66"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI1_Buff.gd" id="2_r276m"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI2_Polkan.gd" id="3_3hew2"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI3_Debuff.gd" id="4_lpfcv"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI4_Healer.gd" id="5_5s61r"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI5_Ailment.gd" id="6_3ftgd"]
+[ext_resource type="Script" path="res://Code/EnemyAI/AI6_Ireo.gd" id="7_5yef2"]
 
 [sub_resource type="GDScript" id="GDScript_xdlen"]
 script/source = "extends Node
@@ -97,15 +101,27 @@ func verifyAilment(targetData,_move): #Check if target doesn't already have max 
 
 [node name="Random" type="Node"]
 editor_description = "JUST HERE TO HOLD ENEMY AIS FOR EASY ACCESS"
-script = ExtResource("1_dhy25")
+script = ExtResource("1_w5t66")
 
 [node name="Globals" type="Node" parent="."]
 script = SubResource("GDScript_xdlen")
 
 [node name="AI1_Buff" type="Node" parent="."]
 editor_description = "Basic Buff"
-script = ExtResource("3_knesp")
+script = ExtResource("2_r276m")
 
 [node name="AI2_Polkan" type="Node" parent="."]
 editor_description = "Polkan"
-script = ExtResource("4_a81vq")
+script = ExtResource("3_3hew2")
+
+[node name="AI3_Debuff" type="Node" parent="."]
+script = ExtResource("4_lpfcv")
+
+[node name="AI4_Healer" type="Node" parent="."]
+script = ExtResource("5_5s61r")
+
+[node name="AI5_Ailment" type="Node" parent="."]
+script = ExtResource("6_3ftgd")
+
+[node name="AI6_Ireo" type="Node" parent="."]
+script = ExtResource("7_5yef2")

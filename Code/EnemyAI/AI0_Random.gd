@@ -19,3 +19,4 @@ func Single(targetting):
 func Group(targetting):
 	var defenderIndex = randi() % targetting.size()
 	return defenderIndex
+			   

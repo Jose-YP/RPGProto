@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://v3nffaaihyp3"]
 
-[ext_resource type="Script" path="res://Code/SceneCode/Screens/Main.gd" id="1_i5pv2"]
+[ext_resource type="Script" path="res://Code/SceneCode/Screens/Battle.gd" id="1_qpa6x"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_dm6xx"]
 [ext_resource type="Texture2D" uid="uid://ca5svcpu5gu86" path="res://Art/white-circle-icon-7-1397688648.png" id="3_8ignd"]
 [ext_resource type="Texture2D" uid="uid://bq4hbuqlbbiu0" path="res://Art/GreenCircle.png" id="4_y8dlu"]
@@ -32,7 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://bc41v187fp0wf" path="res://Audio/SFX/Bass.wav" id="30_8d17p"]
 
 [node name="MainBattle" type="Node2D"]
-script = ExtResource("1_i5pv2")
+script = ExtResource("1_qpa6x")
 tweenTiming = 0.5
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -339,6 +339,12 @@ stream = ExtResource("29_00hlh")
 [node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 unique_name_in_owner = true
 stream = ExtResource("30_8d17p")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="EndScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timers/PostPhaseTimer" to="." method="_on_post_phase_timer_timeout"]

@@ -35,3 +35,11 @@ res://Code/EnemyAI/PolkanAI.gd
 res://Code/SceneCode/Screens/Main.gd
 res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
 res://Code/EnemyAI/BasicBuffAI.gd
+res://Scene/placeholder/AICodeTab.tscn
+res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/ProkyonSpecific.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres
+res://Code/EnemyAI/EnemyRandom.gd
+res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres
+res://Resources/Entity Data/Enemy Data/EnemySpecific/FornaxSpecific.tres
+res://Code/EnemyAI/AI1_Buff.gd

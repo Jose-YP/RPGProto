@@ -164,6 +164,10 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 				checking = move.BoostType
 				boolAny = specificType == 0 and checking != 0 and boostAmmount
 				boolSpecific = checking & specificType
+				if checking & 1:
+					print(move.name, " Boosts attack")
+				elif checking & 2:
+					print(move.name, " Boosts defense")
 			"Debuff":
 				var boostAmmount: bool = move.BoostAmmount < 0
 				checking = move.BoostType
