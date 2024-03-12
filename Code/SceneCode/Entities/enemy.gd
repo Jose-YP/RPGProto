@@ -92,10 +92,8 @@ func getHighDamage(allowed) -> Move:
 		if move.property & 1 or move.property & 2 or move.property & 4:
 			if damageMove == null:
 				damageMove = move
-				print(move.name, " Damage ", damageMove.Power)
 			elif move.Power > damageMove.Power:
 				damageMove = move
-				print(move.name, " Damage ", damageMove.Power)
 	
 	return damageMove
 
@@ -190,8 +188,6 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 		if (move.property & propertyFlag and (boolAny or boolSpecific)):
 			print("Found move ", move.name)
 			moveArray.append(move)
-		else:
-			print(move.property & propertyFlag, boolAny, boolSpecific)
 	
 	return moveArray
 
@@ -223,7 +219,6 @@ func selfElement(desiredElement = "") -> bool: #Returns if element is what the u
 		return true
 
 func selfBuffStatus() -> Array: #Return what conditions is in self
-	print(statBoostSlots)
 	return statBoostSlots
 
 func selfCondition() -> Array: #Every condition the self has
@@ -267,7 +262,7 @@ func groupLowHealth(group, limit: float) -> Array: #How many allies are at custo
 	
 	for entity in effectiveGroup:
 		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
-		lowHealthGroup.append(leftover >= limit)
+		lowHealthGroup.append(leftover <= limit)
 	
 	return lowHealthGroup
 
@@ -443,8 +438,6 @@ func getGroup(group: String) -> Array:
 	if group == "Ally":
 		return allAllies
 	else:
-		
-		print("All Opposing", allOpposing)
 		return allOpposing
 
 #-----------------------------------------

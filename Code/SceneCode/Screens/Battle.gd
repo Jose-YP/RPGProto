@@ -145,7 +145,6 @@ func _ready(): #Assign current team according to starting bool
 		team[i].opposingCurrentTP = playerTP
 		team[i].allyMaxTP = playerMaxTP
 		team[i].opposingMaxTP = enemyMaxTP
-		print("Player: " ,playerOrder, "Enemy:", enemyOrder)
 		enemyAction = team[i].chooseMove(enemyTP, enemyOrder, playerOrder)
 	
 	everyone = playerOrder + enemyOrder
@@ -362,7 +361,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 					PSingleSelect(targetArray)
 			else:
 				waiting = true
-				print(index,team,targetArray, enemyAction)
 				index = team[i].SingleSelect(targetArray,enemyAction)
 				EfinishSelecting(enemyAction)
 		
@@ -429,8 +427,25 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 
 func establishGroups(targetting) -> Array:
 	var returnGroup: Array = []
+	var elementOrder: Array = []
+	var playerArray: Array = []
+	#GET ORDER OF ELEMENTS
+	for entity in targetting:
+		var canAdd: bool = true
+		print(entity.data.name)
+		print(entity.data.TempElement)
+		for element in range(elementOrder.size()):
+			if (elementOrder[element] == entity.data.TempElement and 
+			playerArray[element] == entity.has_node("CanvasLayer")):
+				#Can only add an element once for each side
+				canAdd = false
+		
+		if canAdd:
+			#Save element and whether it was a player or enemy version
+			elementOrder.append(entity.data.TempElement)
+			playerArray.append(entity.has_node("CanvasLayer"))
 	
-	for element in Globals.elementGroups:
+	for element in elementOrder:
 		var tempChecking: Array = []
 		for k in range(targetting.size()):
 			
@@ -595,8 +610,6 @@ func action(useMove) -> void:
 	
 	match target:
 		targetTypes.GROUP:
-			print(targetArray)
-			print(targetArrayGroup)
 			
 			var groupSize = targetArrayGroup[groupIndex].size()
 			var offset = 0
@@ -631,8 +644,6 @@ func action(useMove) -> void:
 		
 		targetTypes.RANDOMGROUP:
 			for m in range(hits):
-				print(targetArray)
-				print(targetArrayGroup)
 				var randomIndex = randi()%targetArrayGroup.size()
 				var groupSize = targetArrayGroup[randomIndex].size()
 				var offset = 0

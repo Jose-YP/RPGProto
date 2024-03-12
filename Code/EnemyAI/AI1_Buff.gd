@@ -24,9 +24,8 @@ func basicSelect(allowed) -> Move:
 				buffedFlags[-1] += 2^buff #1 for atk, 2, for def, 4 for spd, and 8 for luk
 				buffedNum[-1] += 1
 		
-		print(buffedNum[-1], buffedNum[-1] < eData.allyBuffNumPreference) #Check if they have proper ammount of buffs
+		#Check if they have proper ammount of buffs
 		if buffedNum[-1] < eData.allyBuffNumPreference:
-			print(entity, buffedFlags[-1], buffedNum[-1], "CAN BUFF")
 			canBuff = true
 	
 	if canBuff and randi_range(0,100) <= 60:
@@ -48,6 +47,7 @@ func basicSelect(allowed) -> Move:
 	
 	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
 	var foundLow: int = 0
+	print("LOWHPArray ", lowHPArray)
 	for entityLow in lowHPArray:
 		if entityLow:
 			foundLow += 1
@@ -68,7 +68,6 @@ func Single(targetting):
 	match actionMode:
 		action.KILL:
 			var seeking = groupLeastHealth("Opposing",eData.oppHPPreference)
-			
 			for entity in range(targetting.size()):
 				if targetting[entity] == seeking:
 					defenderIndex = entity

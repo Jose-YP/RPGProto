@@ -35,3 +35,5 @@ res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/AICodeTab.tscn
 res://Code/EnemyAI/AI1_Buff.gd
 res://Code/SceneCode/Entities/enemy.gd
+res://Code/EnemyAI/AI3_Debuff.gd
+res://Code/SceneCode/Screens/Battle.gd
