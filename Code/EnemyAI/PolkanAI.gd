@@ -6,7 +6,6 @@ var usedPop: bool = false
 var usedScrew: bool = false
 var allies: Array = []
 var opp: Array = []
-var debug: bool = true
 
 func basicSelect(allowed) -> Move:
 	allOpposing = opp
@@ -26,22 +25,18 @@ func basicSelect(allowed) -> Move:
 		
 		for entity in groupElements("Opposing", "Elec"):
 			if entity:
-				print("Elec found")
 				foundWeak = true
 				break
 		
-		if foundWeak and (randi_range(0,100) <= 10 or debug):
+		if foundWeak and randi_range(0,100) <= 10:
 			var eleChange = getFlagMoves(allowed, "EleChange")
 			actionMode = action.ELECHANGE
 			usedPop = true
-			print(eleChange)
 			return eleChange[0]
 	
-	print(eData.oppHPPreference)
 	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
 	var elementMoves = getElementMoves(allowed)
 	var foundLow: int = 0
-	print(lowHPArray)
 	for entityLow in lowHPArray:
 		if entityLow:
 			foundLow += 1
@@ -50,17 +45,13 @@ func basicSelect(allowed) -> Move:
 		0:
 			if randi_range(0,100) <= 55:
 				var damaging = getDamagingMoves(allowed)
-				print("Print damaging moves", damaging)
 				return damaging.pick_random()
 			else:
-				print("Element moves", elementMoves)
 				return elementMoves[0]
 		1:
 			actionMode = action.KILL
-			print("High Damage", getHighDamage(allowed))
 			return getHighDamage(allowed)
 		_:
-			print("Element default", elementMoves)
 			return elementMoves[0]
 
 #-----------------------------------------
@@ -69,7 +60,6 @@ func basicSelect(allowed) -> Move:
 func Single(targetting):
 	#incase it doesn't work
 	var defenderIndex: int = randi() % targetting.size()
-	print(targetting)
 	match actionMode:
 		action.KILL:
 			var seeking = groupLeastHealth("Opposing")
@@ -80,13 +70,11 @@ func Single(targetting):
 					break
 		action.BUFF:
 			for entity in range(targetting.size()):
-				print("Looking for", self)
 				if targetting[entity] == self:
 					defenderIndex = entity
 					break
 		action.ELECHANGE:
 			for entity in range(targetting.size()):
-				print(targetting[entity].data.name)
 				if (targetting[entity].data.TempElement == "Elec"
 				 and targetting[entity].has_node("CanvasLayer")):
 					defenderIndex = entity
@@ -110,7 +98,6 @@ func Group(targetting):
 		action.BUFF:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
-					print("looking for", self)
 					if targetting[entityGroup][entity] == self:
 						defenderIndex = entityGroup
 						break

@@ -33,3 +33,5 @@ res://Scene/placeholder/placeholder.tscn
 res://Code/SceneCode/Entities/enemy.gd
 res://Code/EnemyAI/PolkanAI.gd
 res://Code/SceneCode/Screens/Main.gd
+res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
+res://Code/EnemyAI/BasicBuffAI.gd
