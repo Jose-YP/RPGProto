@@ -18,7 +18,7 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 
-enum action{KILL, BUFF, ELECHANGE, ETC}
+enum action{KILL, HEAL, BUFF, DEBUFF, ELECHANGE, AILMENT, ETC}
 
 var actionMode: action = action.ETC
 

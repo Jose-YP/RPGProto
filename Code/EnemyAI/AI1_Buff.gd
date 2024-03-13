@@ -11,6 +11,8 @@ var buffedNum: Array[int] = []
 var buffedFlags: Array[int] = []
 
 func basicSelect(allowed) -> Move:
+	#BUFF CHECK
+	#--------------
 	buffedNum = []
 	buffedFlags = []
 	allAllies = allies
@@ -32,7 +34,7 @@ func basicSelect(allowed) -> Move:
 		if buffedNum[-1] < eData.allyBuffNumPreference:
 			canBuff = true
 	
-	if canBuff and randi_range(0,100) <= 100:
+	if canBuff and randi_range(0,100) <= 60:
 		canBuff = false
 		actionMode = action.BUFF
 		
@@ -53,8 +55,23 @@ func basicSelect(allowed) -> Move:
 			getFlagMoves(allowed, "Buff", 8).size() != 0):
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
-	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
+	#HEAL NUT CHECK
+	#--------------
+	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
+	for entityLow in lowHPArray:
+		if entityLow:
+			foundLow += 1
+			break
+	
+	if foundLow != 0 and (randi_range(0,100) < 15 or debug):
+		actionMode = action.HEAL
+		return getHealMoves(allowed)[0]
+	
+	#DEFAULT ATTACK
+	#--------------
+	lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
+	foundLow = 0
 	for entityLow in lowHPArray:
 		if entityLow:
 			foundLow += 1
@@ -79,14 +96,25 @@ func Single(targetting):
 				if targetting[entity] == seeking:
 					defenderIndex = entity
 					break
+		
+		action.HEAL:
+			var seeking = groupLeastHealth("Ally", eData.allyHPPreference)
+			for entity in range(targetting.size()):
+				if targetting[entity] == seeking:
+					defenderIndex = entity
+					break
+		
 		action.BUFF: #TO CHANGE
 			for entity in range(targetting.size()):
 				if targetting[entity] == self:
 					defenderIndex = entity
 					break
+		
 		action.ETC:
 			defenderIndex = randi() % targetting.size()
 	
+	#Remember to reset Action Mode
+	actionMode = action.ETC
 	return defenderIndex
 
 func Group(targetting):

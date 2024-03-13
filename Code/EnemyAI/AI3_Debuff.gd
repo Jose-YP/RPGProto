@@ -21,8 +21,12 @@ func basicSelect(allowed) -> Move:
 		buffedFlags.append(0)
 		for buff in range(entity.size()):
 			if entity[buff] > eData.allyBuffAmmountPreference:
-				buffedFlags[-1] += 2^buff #1 for atk, 2, for def, 4 for spd, and 8 for luk
+				print(entity[buff], "vs", eData.allyBuffAmmountPreference)
+				print(buff)
+				#1 for atk, 2, for def, 4 for spd, and 8 for luk
+				buffedFlags[-1] += int(pow(2,buff)) 
 				buffedNum[-1] += 1
+				print("FlagCurrently:", buffedFlags[-1])
 		
 		#Check if they have proper ammount of buffs
 		if buffedNum[-1] < eData.allyBuffNumPreference:
@@ -32,29 +36,30 @@ func basicSelect(allowed) -> Move:
 		canBuff = false
 		actionMode = action.BUFF
 		
-		for entity in buffedFlags: #Must have buff moves of that type to be viable
-			if entity | 1 and getFlagMoves(allowed, "Buff", 1).size() != 0:
-				print(entity)
+		for entity in allies: #Must have buff moves of that type to be viable
+			if (entity.data.attackBoost < .2 and 
+			getFlagMoves(allowed, "Buff", 1).size() != 0):
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
-			elif entity | 2 and getFlagMoves(allowed, "Buff", 2).size() != 0:
-				print(entity)
+			if (entity.data.defenseBoost < .2 and 
+			getFlagMoves(allowed, "Buff", 2).size() != 0):
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
-			elif entity | 4 and getFlagMoves(allowed, "Buff", 4).size() != 0:
+			if (entity.data.speedBoost < .2 and 
+			getFlagMoves(allowed, "Buff", 4).size() != 0):
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
-			elif entity | 8 and getFlagMoves(allowed, "Buff", 8).size() != 0:
+			if (entity.data.luckBoost < .2 and 
+			getFlagMoves(allowed, "Buff", 8).size() != 0):
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
 	var foundLow: int = 0
-	print(lowHPArray)
 	for entityLow in lowHPArray:
 		if entityLow:
 			foundLow += 1
 	
-	if foundLow == 0:
+	if foundLow == 0 or randi_range(0,100) < 25:
 		var damaging = getDamagingMoves(allowed)
 		return damaging.pick_random()
 	else:
