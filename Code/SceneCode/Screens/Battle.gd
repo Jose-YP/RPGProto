@@ -127,6 +127,7 @@ func _ready(): #Assign current team according to starting bool
 		entity.connect("xsoftSound", playXSoft)
 		entity.connect("critical", setCrit)
 		entity.connect("explode", blowUp)
+		entity.connect("suddenDeath", checkHP)
 	
 	playerTP = playerMaxTP
 	enemyTP = enemyMaxTP
@@ -432,8 +433,6 @@ func establishGroups(targetting) -> Array:
 	#GET ORDER OF ELEMENTS
 	for entity in targetting:
 		var canAdd: bool = true
-		print(entity.data.name)
-		print(entity.data.TempElement)
 		for element in range(elementOrder.size()):
 			if (elementOrder[element] == entity.data.TempElement and 
 			playerArray[element] == entity.has_node("CanvasLayer")):
@@ -872,6 +871,9 @@ func determineFunction(move,reciever,user,hitNum) -> void:
 			reciever.HPBar.show()
 		"Gatling Volley":
 			if hitNum == 0:
+				#Since it changes Lonna's Element it acts in reverse
+				#Acts like the Enemy inflicting User Lose EleChange on Lonna
+				#User in this case is the Enemy
 				user.buffElementChange(move,user,reciever)
 				BuffSFX[3].play()
 		"Whim Berry":
@@ -1117,7 +1119,8 @@ func checkHP() -> void:
 	#Win condition
 	if enemyOrder.size() == 0:
 		fightOver = true
-		team[i].menu.hide()
+		if playerOrder:
+			team[i].menu.hide()
 		endScreen(true)
 		return
 	

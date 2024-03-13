@@ -37,3 +37,6 @@ res://Code/EnemyAI/AI1_Buff.gd
 res://Code/SceneCode/Entities/enemy.gd
 res://Code/EnemyAI/AI3_Debuff.gd
 res://Code/SceneCode/Screens/Battle.gd
+res://Resources/Move Data/Enemy Moves/Black Hole.tres
+res://Code/SceneCode/Entities/Entity.gd
+res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres

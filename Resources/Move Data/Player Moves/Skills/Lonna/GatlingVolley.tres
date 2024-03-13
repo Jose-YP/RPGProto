@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_w8mwg"]
 
-
 [resource]
 script = ExtResource("1_w8mwg")
 name = "Gatling Volley"
@@ -31,6 +30,6 @@ BoostAmmount = 0
 BoostType = 0
 Condition = 0
 Aura = ""
-ElementChange = "TLose"
+ElementChange = "ULose"
 Summon = []
 SwapSummon = false

@@ -34,9 +34,11 @@ func basicSelect(allowed) -> Move:
 		
 		for entity in buffedFlags: #Must have buff moves of that type to be viable
 			if entity | 1 and getFlagMoves(allowed, "Buff", 1).size() != 0:
+				print(entity)
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
 			elif entity | 2 and getFlagMoves(allowed, "Buff", 2).size() != 0:
+				print(entity)
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
 			elif entity | 4 and getFlagMoves(allowed, "Buff", 4).size() != 0:
