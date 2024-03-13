@@ -3,8 +3,7 @@ extends "res://Code/SceneCode/Entities/enemy.gd"
 #It needs to have these redefined from enemy, to here
 var eData: Enemy
 var canBuff: bool = false
-var usedItem: bool = false
-var debug: bool = true
+var hasItem: bool = false
 var allies: Array = []
 var opp: Array = []
 var buffedNum: Array[int] = []
@@ -64,8 +63,9 @@ func basicSelect(allowed) -> Move:
 			foundLow += 1
 			break
 	
-	if foundLow != 0 and (randi_range(0,100) < 15 or debug):
+	if foundLow != 0 and randi_range(0,100) < 15 and hasItem:
 		actionMode = action.HEAL
+		hasItem = false
 		return getHealMoves(allowed)[0]
 	
 	#DEFAULT ATTACK

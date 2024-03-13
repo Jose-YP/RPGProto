@@ -41,3 +41,4 @@ res://Resources/Move Data/Enemy Moves/Black Hole.tres
 res://Code/SceneCode/Entities/Entity.gd
 res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres
 res://Code/EnemyAI/AI2_Polkan.gd
+res://README.md

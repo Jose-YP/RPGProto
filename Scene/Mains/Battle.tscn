@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://v3nffaaihyp3"]
+[gd_scene load_steps=32 format=3 uid="uid://v3nffaaihyp3"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/Battle.gd" id="1_qpa6x"]
 [ext_resource type="Texture2D" uid="uid://i22u0cruxh66" path="res://Art/GreyCircle.png" id="2_dm6xx"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://2n11d6lo8ktw" path="res://Audio/SFX/Reckless.wav" id="22_d8vxc"]
 [ext_resource type="AudioStream" uid="uid://7ldlpiqsa0qx" path="res://Audio/SFX/rustFinal.wav" id="23_siupg"]
 [ext_resource type="AudioStream" uid="uid://cdycu86jg653a" path="res://Audio/SFX/Dumbfounded.wav" id="24_btd7w"]
+[ext_resource type="AudioStream" uid="uid://b7wg1nskvk4d3" path="res://Audio/SFX/GBWarioHurtLikeFirst.wav" id="25_37n5u"]
 [ext_resource type="AudioStream" uid="uid://7ymkjufgtrmk" path="res://Audio/SFX/weaken.ogg" id="25_ntak8"]
 [ext_resource type="AudioStream" uid="uid://dlfu07ndv63fm" path="res://Audio/SFX/TelekinesisMonkGrunt1.wav" id="26_fnn8o"]
 [ext_resource type="AudioStream" uid="uid://csrxt7jammqf" path="res://Audio/SFX/clear_02_Ab2Db_low.ogg" id="27_pay0l"]
@@ -286,7 +287,9 @@ bus = &"MoveSFX"
 
 [node name="Exhausted" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
 unique_name_in_owner = true
-stream = ExtResource("19_hn8ev")
+stream = ExtResource("25_37n5u")
+volume_db = -3.0
+pitch_scale = 1.6
 bus = &"MoveSFX"
 
 [node name="Rust" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
@@ -311,6 +314,7 @@ bus = &"MoveSFX"
 [node name="Curse" type="AudioStreamPlayer" parent="MoveSFX/Ailment"]
 unique_name_in_owner = true
 stream = ExtResource("26_fnn8o")
+volume_db = -14.0
 pitch_scale = 0.85
 bus = &"MoveSFX"
 
