@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_tc72t"]
 
-
 [resource]
 script = ExtResource("1_tc72t")
 name = "Galactic Ghoul"
@@ -11,7 +10,7 @@ TPCost = 150
 Which = "Enemy"
 Target = "Group"
 element = "Water"
-phyElement = "Neutral"
+phyElement = "Pierce"
 property = 2
 CostType = "Free"
 cost = 0.0
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false

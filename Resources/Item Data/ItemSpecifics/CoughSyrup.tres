@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_t1c72"]
 [ext_resource type="Texture2D" uid="uid://s76g2wt18jto" path="res://Icons/MenuIcons/icons-set-2_0000s_0091__Group_.png" id="2_5ik24"]
 
-
 [resource]
 script = ExtResource("1_t1c72")
 name = "Cough Syrup"
@@ -17,4 +16,4 @@ icon = ExtResource("2_5ik24")
 attackData = ExtResource("1_esx8i")
 ownerArray = Array[int]([0, 0, 0, 0])
 equippedOn = 0
-autoFill = 0
+autofill = 0

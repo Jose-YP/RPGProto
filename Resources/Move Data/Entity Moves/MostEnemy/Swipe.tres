@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bjj20rjcruykh"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_vxdxj"]
+
+[resource]
+script = ExtResource("1_vxdxj")
+name = "Attack"
+description = "Claw swipe for basic damage"
+TPCost = 70
+Which = "Enemy"
+Target = "Single"
+element = "Neutral"
+phyElement = "Slash"
+property = 1
+CostType = "Free"
+cost = 0.0
+Power = 40
+HitNum = 1
+BaseCrit = 20
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 1
+percentage = false
+revive = false
+reset = false
+healing = 0
+HealedAilment = "None"
+HealAilAmmount = 0
+BoostAmmount = 0
+BoostType = 0
+Condition = 0
+Aura = "None"
+ElementChange = "None"
+Summon = []
+SwapSummon = false

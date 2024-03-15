@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_j3xtl"]
 
-
 [resource]
 script = ExtResource("1_j3xtl")
 name = "Black Hole"
-description = "Basic Attack"
-TPCost = 200
+description = "Hit both allies and enemies for 150 HP"
+TPCost = 150
 Which = "Both"
 Target = "All"
 element = "Neutral"
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false
