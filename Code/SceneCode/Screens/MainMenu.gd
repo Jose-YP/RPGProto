@@ -260,7 +260,7 @@ func makeEnemyLineup() -> void:
 	var enLiString: String
 	for i in range(enemyChoices.size()):
 		var enemyEntity
-		if enemyChoices[i].selected != 6:
+		if enemyChoices[i].selected != enemyEntities.size():
 			enemyElements[i].show()
 			enemyPhyEle[i].show()
 			enemyEntity  = enemyEntities[enemyChoices[i].selected].duplicate()#enemyChoices[i].get_item_text(enemyChoices[i].selected)
@@ -349,6 +349,8 @@ func _on_options_menu_main() -> void:
 #NAVIGATION BUTTONS
 #-----------------------------------------
 func _on_fight_button_pressed() -> void:
+	print("AAA")
+	
 	setEnemyGlobals()
 	setPlayerGlobals()
 	

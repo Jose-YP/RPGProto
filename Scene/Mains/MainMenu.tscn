@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://4gou4dfa1ija"]
+[gd_scene load_steps=15 format=3 uid="uid://4gou4dfa1ija"]
 
 [ext_resource type="Script" path="res://Code/SceneCode/Screens/MainMenu.gd" id="1_xp3rd"]
 [ext_resource type="Resource" uid="uid://cexehs6jvcmbd" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres" id="6_eryj0"]
 [ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_e8ky1"]
+[ext_resource type="Resource" uid="uid://b6jbgarv46a4q" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Fornax.tres" id="7_pf812"]
 [ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_2bbwp"]
 [ext_resource type="Resource" uid="uid://bdrlqlvn6kv8c" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres" id="9_m6byd"]
 [ext_resource type="PackedScene" uid="uid://2rhs8p7a1wo" path="res://Scene/Constants/element.tscn" id="10_l7in5"]
@@ -19,7 +20,7 @@ layout_mode = 3
 anchors_preset = 0
 focus_mode = 2
 script = ExtResource("1_xp3rd")
-enemyEntities = Array[Resource("res://Code/ResourceMakers/Entity/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("11_57rpg")])
+enemyEntities = Array[Resource("res://Code/ResourceMakers/Entity/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("7_pf812"), ExtResource("11_57rpg")])
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -304,6 +305,7 @@ offset_right = 1251.0
 offset_bottom = 288.0
 theme = ExtResource("12_c1ybm")
 theme_override_constants/separation = 45
+metadata/_edit_lock_ = true
 
 [node name="Enemy1" type="PanelContainer" parent="EnemySide/EnemyMenu"]
 layout_mode = 2
@@ -315,8 +317,8 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../../PlayerSide/PlayerMenu/Player3/PlayerMenu3")
 focus_neighbor_right = NodePath("../../Enemy2/EnemyChoice2")
-item_count = 7
-selected = 1
+item_count = 8
+selected = 4
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"
@@ -327,10 +329,12 @@ popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
 popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv20 Ireo"
+popup/item_5/text = "lv20 Ailment"
 popup/item_5/id = 5
-popup/item_6/text = "None"
+popup/item_6/text = "lv30 Ireo"
 popup/item_6/id = 6
+popup/item_7/text = "None"
+popup/item_7/id = 7
 
 [node name="Enemy2" type="PanelContainer" parent="EnemySide/EnemyMenu"]
 layout_mode = 2
@@ -342,8 +346,8 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../Enemy1/EnemyChoice1")
 focus_neighbor_right = NodePath("../../Enemy3/EnemyChoice3")
-item_count = 6
-selected = 1
+item_count = 7
+selected = 4
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"
@@ -354,8 +358,10 @@ popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
 popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv20 Ireo"
-popup/item_5/id = 5
+popup/item_5/text = "lv20 Ailment"
+popup/item_5/id = 6
+popup/item_6/text = "lv30 Ireo"
+popup/item_6/id = 5
 
 [node name="Enemy3" type="PanelContainer" parent="EnemySide/EnemyMenu"]
 layout_mode = 2
@@ -367,8 +373,8 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../Enemy2/EnemyChoice2")
 focus_neighbor_right = NodePath("../../../../PlayerSide/PlayerMenu/Player1/PlayerMenu1")
-item_count = 7
-selected = 1
+item_count = 8
+selected = 4
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"
@@ -379,10 +385,12 @@ popup/item_3/text = "lv12 Healer"
 popup/item_3/id = 3
 popup/item_4/text = "lv 16 Jishi Recruit"
 popup/item_4/id = 4
-popup/item_5/text = "lv20 Ireo"
+popup/item_5/text = "lv20 Ailment"
 popup/item_5/id = 5
-popup/item_6/text = "None"
+popup/item_6/text = "lv30 Ireo"
 popup/item_6/id = 6
+popup/item_7/text = "None"
+popup/item_7/id = 7
 
 [node name="EnemyLineup" type="PanelContainer" parent="EnemySide"]
 layout_mode = 0

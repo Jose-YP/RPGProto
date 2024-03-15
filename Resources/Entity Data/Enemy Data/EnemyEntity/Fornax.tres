@@ -10,21 +10,21 @@
 
 [resource]
 script = ExtResource("3_g5um8")
-level = 10
-name = "Debugger"
+level = 20
+name = "Forvado"
 species = "Fornax"
 stellar = "Stellar"
 specificData = ExtResource("6_qh2jh")
-MaxHP = 100
-MaxTP = 40
-strength = 7
-toughness = 9
-ballistics = 10
-resistance = 4
-speed = 1
-luck = 15
+MaxHP = 600
+MaxTP = 90
+strength = 12
+toughness = 11
+ballistics = 16
+resistance = 6
+speed = 3
+luck = 16
 element = "Fire"
-phyElement = "Slash"
+phyElement = "Crush"
 soloElementMod = 0.0
 groupElementMod = 0.0
 phyElementMod = 0.0

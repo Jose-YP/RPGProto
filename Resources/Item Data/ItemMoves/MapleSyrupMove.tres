@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cdf2cfhcd52xx"]
+
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_bg5ph"]
+
+[resource]
+script = ExtResource("1_bg5ph")
+name = "Maple Syrup"
+description = "Heals all X Soft stacks"
+TPCost = 40
+Which = "Ally"
+Target = "Single"
+element = "Neutral"
+phyElement = "Neutral"
+property = 16
+CostType = "Free"
+cost = 0.0
+Power = 30
+HitNum = 1
+BaseCrit = 0
+BaseAilment = -200
+Ailment = "None"
+AilmentAmmount = 1
+percentage = false
+revive = false
+reset = false
+healing = 0
+HealedAilment = "XSoft"
+HealAilAmmount = 3
+BoostAmmount = 0
+BoostType = 0
+Condition = 0
+Aura = "None"
+ElementChange = "None"
+Summon = []
+SwapSummon = false

@@ -1,10 +1,10 @@
+Item
 Move
 Chip
 SaveFile
 UserPreferences
 Inven
 Gear
-Item
 entityData
 Player
 Enemy

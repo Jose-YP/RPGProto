@@ -1,3 +1,6 @@
+res://Resources/Item Data/ItemMoves
+res://Icons/MenuIcons
+res://Resources/Item Data/ItemSpecifics
 res://Resources/Move Data/Entity Moves/MostEnemy
 res://Code/EnemyAI
 res://Resources/Entity Data/Enemy Data/EnemySpecific
@@ -17,6 +20,3 @@ res://
 res://Code/SceneCode/Screens
 res://Themes/ButtonStyle
 res://Code/SceneCode/Individuals
-res://Themes
-res://Scene/SideMenus/Gear
-res://Code/SceneCode

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c0qjrj6kxygcx"]
+
+[ext_resource type="Resource" uid="uid://cdf2cfhcd52xx" path="res://Resources/Item Data/ItemMoves/MapleSyrupMove.tres" id="1_1h2pv"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="1_6odk5"]
+[ext_resource type="Texture2D" uid="uid://s76g2wt18jto" path="res://Icons/MenuIcons/icons-set-2_0000s_0091__Group_.png" id="2_tvxo4"]
+
+[resource]
+script = ExtResource("1_6odk5")
+name = "Maple Syrup"
+maxCarry = 200
+maxItems = 30
+currentItems = 200
+currentInInv = 200
+centCost = 400
+icon = ExtResource("2_tvxo4")
+attackData = ExtResource("1_1h2pv")
+ownerArray = Array[int]([0, 0, 0, 0])
+equippedOn = 0
+autofill = 0

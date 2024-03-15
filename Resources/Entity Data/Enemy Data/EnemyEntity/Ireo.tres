@@ -12,7 +12,7 @@
 
 [resource]
 script = ExtResource("3_tekot")
-level = 20
+level = 30
 name = "Ireo"
 species = "Cygnus"
 stellar = "Stellar"

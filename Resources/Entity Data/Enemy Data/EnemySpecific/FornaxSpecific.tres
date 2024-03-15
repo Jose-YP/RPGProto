@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_pga78")
 xp = 230
-cents = 23
+cents = 120
 Boss = false
 Revivable = false
 AICodePath = "res://Code/EnemyAI/AI5_Ailment.gd"

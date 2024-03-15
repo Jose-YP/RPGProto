@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://d4hlq3s718687" path="res://Resources/Item Data/ItemMoves/EndurianMove.tres" id="1_kke5t"]
 [ext_resource type="Texture2D" uid="uid://5ipa7gvaf43i" path="res://Icons/MenuIcons/Food-icon-collection_0000s_0012_Layer-16.png" id="2_4yrfp"]
 
-
 [resource]
 script = ExtResource("1_8ask6")
 name = "Endurian"
@@ -17,4 +16,4 @@ icon = ExtResource("2_4yrfp")
 attackData = ExtResource("1_kke5t")
 ownerArray = Array[int]([0, 0, 0, 0])
 equippedOn = 0
-autoFill = 0
+autofill = 0

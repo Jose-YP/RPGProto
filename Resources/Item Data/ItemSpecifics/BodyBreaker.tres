@@ -4,16 +4,16 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Inventory/ItemMaker.gd" id="2_iuf16"]
 [ext_resource type="Texture2D" uid="uid://bek64a6505sir" path="res://Icons/MenuIcons/icons-set-1_0000s_0003_Layer-95.png" id="2_qnyq6"]
 
-
 [resource]
 script = ExtResource("2_iuf16")
 name = "BodyBreaker"
 maxCarry = 1
 maxItems = 1
 currentItems = 1
+currentInInv = 1
 centCost = 2000
 icon = ExtResource("2_qnyq6")
 attackData = ExtResource("1_8y5q2")
 ownerArray = Array[int]([0, 0, 0, 0])
 equippedOn = 0
-autoFill = 0
+autofill = 0

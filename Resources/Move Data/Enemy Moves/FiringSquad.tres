@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_dvikl"]
 
-
 [resource]
 script = ExtResource("1_dvikl")
 name = "Firing Squad"
 description = "Basic Attack"
-TPCost = 80
+TPCost = 160
 Which = "Enemy"
 Target = "Group"
 element = "Neutral"
@@ -15,7 +14,7 @@ phyElement = "Pierce"
 property = 2
 CostType = "Free"
 cost = 0.0
-Power = 60
+Power = 50
 HitNum = 1
 BaseCrit = -60
 BaseAilment = -200
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false

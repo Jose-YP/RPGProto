@@ -146,6 +146,7 @@ func _ready(): #Assign current team according to starting bool
 		team[i].opposingCurrentTP = playerTP
 		team[i].allyMaxTP = playerMaxTP
 		team[i].opposingMaxTP = enemyMaxTP
+		print(team[i].name,"'s data: ",team[i].data)
 		enemyAction = team[i].chooseMove(enemyTP, enemyOrder, playerOrder)
 	
 	everyone = playerOrder + enemyOrder

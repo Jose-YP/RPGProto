@@ -56,6 +56,7 @@ func chooseMove(TP,allies,opposing) -> Move:
 	aiInstance.allies = allies
 	allOpposing = opposing
 	aiInstance.opp = opposing
+	aiInstance.data = data
 	var allowed = allowedMoveset(TP)
 	
 	#debugAIPerceive()
@@ -65,8 +66,8 @@ func chooseMove(TP,allies,opposing) -> Move:
 	
 	return move
 
-func SingleSelect(targetting, _move):
-	var trgt = aiInstance.Single(targetting)
+func SingleSelect(targetting, move):
+	var trgt = aiInstance.Single(targetting, move)
 	return trgt
 
 func GroupSelect(targetting, _move):
@@ -235,6 +236,14 @@ func selfCondition() -> Array: #Every condition the self has
 func selfAilments() -> Array: #Return how ailment stack and current Ailment of self
 	var ailment = [data.Ailment , data.AilmentNum]
 	return ailment
+
+func selfItemProperties() -> int:
+	var bitMask: int = 0
+	#It only needs to check if a prooperty shows up once
+	for item in data.itemData.keys():
+		var properyBit = 1 << item.attackData.property
+		bitMask |= properyBit
+	return bitMask
 
 #-----------------------------------------
 #ENEMY PERCIEVE GROUP

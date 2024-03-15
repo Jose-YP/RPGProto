@@ -11,21 +11,21 @@
 
 [resource]
 script = ExtResource("3_pb1ns")
-level = 17
+level = 16
 name = "Jishi Recruit"
 species = "Reticulum"
 stellar = "Stellar"
 specificData = ExtResource("2_rprem")
-MaxHP = 600
-MaxTP = 120
+MaxHP = 540
+MaxTP = 100
 strength = 8
 toughness = 20
-ballistics = 19
+ballistics = 12
 resistance = 14
 speed = 9
 luck = 2
 element = "Fire"
-phyElement = "Neutral"
+phyElement = "Pierce"
 soloElementMod = 0.0
 groupElementMod = 0.0
 phyElementMod = 0.0

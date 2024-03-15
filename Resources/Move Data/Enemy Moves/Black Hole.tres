@@ -6,7 +6,7 @@
 script = ExtResource("1_j3xtl")
 name = "Black Hole"
 description = "Hit both allies and enemies for 150 HP"
-TPCost = 150
+TPCost = 180
 Which = "Both"
 Target = "All"
 element = "Neutral"

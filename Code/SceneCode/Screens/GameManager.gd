@@ -149,10 +149,12 @@ func _on_main_menu_options_menu() -> void:
 
 func _back_to_main_menu() -> void:
 	changeScene(mainMenu)
+	
 	currentScene.connect("chipMenu",_on_to_chip_menu)
 	currentScene.connect("gearMenu",_on_to_gear_menu)
 	currentScene.connect("itemMenu",_on_to_item_menu)
 	currentScene.connect("playTest",playMusic)
+	currentScene.connect("battleStart", _on_change_to_battle)
 
 func _on_change_to_battle() -> void:
 	changeScene(battleScene)
