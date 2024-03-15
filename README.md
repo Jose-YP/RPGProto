@@ -36,10 +36,13 @@ Stun Sound Effect - Weaken SFX in Dicey Dungeons
 Curse Sound Effect taken from Telekenisis- The Monk
 
 XSoft Sound Effect - snd_saber3 from Undertale
+
 ______
 ISSUES
 ______
 *In general STABILITY
+
+*Getting A Massive ammount of errors from helper function NullorAppend
 
 *Make sure everything works under the battle system
 
@@ -50,7 +53,7 @@ TODO
 ______
 *Implement Dumbfounded
 
-*Implement other EnemyAI types(So far only random)
+*Implement other EnemyAI types(So far only Random, Buff and Polkan | 3/7)
 
 ______
 LOFTY TODOS

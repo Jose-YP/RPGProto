@@ -10,6 +10,8 @@ var opp: Array = []
 func basicSelect(allowed) -> Move:
 	allOpposing = opp
 	var buffed: bool = false
+	#SELF BUFF SCREW CHECK
+	#--------------
 	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
 		if buff >= eData.selfBuffAmmountPreference or buff == null:
 			buffed = true
@@ -20,6 +22,8 @@ func basicSelect(allowed) -> Move:
 		usedScrew = true
 		return buffs[0]
 	
+	#ELE CHANGE POP CHECK
+	#--------------
 	elif not usedPop:
 		var foundWeak: bool = false
 		
@@ -34,6 +38,8 @@ func basicSelect(allowed) -> Move:
 			usedPop = true
 			return eleChange[0]
 	
+	#DEFAULT ATTACK
+	#--------------
 	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
 	var elementMoves = getElementMoves(allowed)
 	var foundLow: int = 0

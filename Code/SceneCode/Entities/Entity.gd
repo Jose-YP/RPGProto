@@ -20,6 +20,7 @@ signal ailmentSound(type)
 signal xsoftSound
 signal explode(user)
 signal critical
+signal suddenDeath
 
 var currentHP: int = 0
 var targetCount: int = 0
@@ -683,6 +684,9 @@ func endPhaseAilments(Ailment) -> void:
 			currentHP -= damage
 			
 			tweenDamage(self, .4, str("Took ",damage," Poison Damage"))
+			#In case the user dies from Poison
+			if currentHP <= 0:
+				suddenDeath.emit()
 
 #-----------------------------------------
 #UI CHANGES

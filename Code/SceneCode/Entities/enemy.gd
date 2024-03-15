@@ -18,7 +18,7 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 
-enum action{KILL, BUFF, ELECHANGE, ETC}
+enum action{KILL, HEAL, BUFF, DEBUFF, ELECHANGE, AILMENT, ETC}
 
 var actionMode: action = action.ETC
 
@@ -89,12 +89,11 @@ func getHighDamage(allowed) -> Move:
 	var damageMove: Move
 	
 	for move in allowed:
-		if damageMove == null:
-			damageMove = move
-			print(move.name, " Damage ", damageMove.Power)
-		elif move.Power > damageMove.Power:
-			damageMove = move
-			print(move.name, " Damage ", damageMove.Power)
+		if move.property & 1 or move.property & 2 or move.property & 4:
+			if damageMove == null:
+				damageMove = move
+			elif move.Power > damageMove.Power:
+				damageMove = move
 	
 	return damageMove
 
@@ -164,10 +163,6 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 				checking = move.BoostType
 				boolAny = specificType == 0 and checking != 0 and boostAmmount
 				boolSpecific = checking & specificType
-				if checking & 1:
-					print(move.name, " Boosts attack")
-				elif checking & 2:
-					print(move.name, " Boosts defense")
 			"Debuff":
 				var boostAmmount: bool = move.BoostAmmount < 0
 				checking = move.BoostType
@@ -193,8 +188,6 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 		if (move.property & propertyFlag and (boolAny or boolSpecific)):
 			print("Found move ", move.name)
 			moveArray.append(move)
-		else:
-			print(move.property & propertyFlag, boolAny, boolSpecific)
 	
 	return moveArray
 
@@ -226,7 +219,6 @@ func selfElement(desiredElement = "") -> bool: #Returns if element is what the u
 		return true
 
 func selfBuffStatus() -> Array: #Return what conditions is in self
-	print(statBoostSlots)
 	return statBoostSlots
 
 func selfCondition() -> Array: #Every condition the self has
@@ -253,12 +245,12 @@ func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least healt
 	var effectiveGroup = getGroup(group)
 	
 	for entity in effectiveGroup:
-		var leftover: float = float(entity.currentHP) / data.MaxHP
+		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
 		if leftover < currentLeftover:
 			leastHealth = entity
 			currentLeftover = leftover
 	
-	if currentLeftover >= limit:
+	if currentLeftover < limit:
 		print(leastHealth, leastHealth.data.name, type_string(typeof(leastHealth)))
 		return leastHealth 
 	else:
@@ -270,7 +262,7 @@ func groupLowHealth(group, limit: float) -> Array: #How many allies are at custo
 	
 	for entity in effectiveGroup:
 		var leftover: float = float(entity.currentHP) / entity.data.MaxHP
-		lowHealthGroup.append(leftover >= limit)
+		lowHealthGroup.append(leftover <= limit)
 	
 	return lowHealthGroup
 
@@ -446,8 +438,6 @@ func getGroup(group: String) -> Array:
 	if group == "Ally":
 		return allAllies
 	else:
-		
-		print("All Opposing", allOpposing)
 		return allOpposing
 
 #-----------------------------------------
