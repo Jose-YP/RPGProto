@@ -14,7 +14,6 @@ var debuffedNum: Array[int] = []
 var debuffedFlags: Array[int] = []
 var usedBuffOn = null
 var usedDebuffOn = null
-var focusEntity = null
 
 func basicSelect(allowed) -> Move:
 	buffedNum = []
@@ -42,10 +41,10 @@ func basicSelect(allowed) -> Move:
 			canDebuff = true
 	
 	if canDebuff and randi_range(0,100) <= 45:
-		canBuff = false
+		canDebuff = false
 		actionMode = action.DEBUFF
 		
-		for entity in allies: #Must have buff moves of that type to be viable
+		for entity in opp: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
 				focusEntity = entity
@@ -112,20 +111,22 @@ func basicSelect(allowed) -> Move:
 	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
 	#Is there an item that heals?
-	if (1 << 16) & selfItemProperties() or getHealMoves(allowed).size() != 0: 
+	if getHealMoves(allowed, "Ailment").size() != 0 and randi_range(0,100) < 30:
+		for entity in groupAilments("Ally", true):
+			if ((entity[0] == "Mental" or entity[0] == "Chemical")
+			and entity[1] > eData.allyAilmentPreference):
+				actionMode = action.AILHEAL
+				return getHealMoves(allowed, "Ailment").pick_random()
+	
+	if getHealMoves(allowed, "HP").size() != 0 and randi_range(0,100) < 30: 
 		for entityLow in lowHPArray:
 			if entityLow:
 				foundLow += 1
 				break
 		
-		for entity in groupAilments("Ally"):
-			if entity[0] and entity[1] > eData.allyAilmentPreference:
-				pass
-			
-		
-		if (foundLow != 0) and randi_range(0,100) < 30:
+		if foundLow != 0:
 			actionMode = action.HEAL
-			return getHealMoves(allowed)[0]
+			return getHealMoves(allowed, "HP").pick_random()
 	
 	#DEFAULT ATTACK
 	#--------------

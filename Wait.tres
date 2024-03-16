@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_1r3dk"]
 
-
 [resource]
 script = ExtResource("1_1r3dk")
 name = "Wait"
 description = "Do Nothing"
-TPCost = 0
+TPCost = -5
 Which = "Ally"
 Target = "Self"
 element = "Neutral"
@@ -33,3 +32,4 @@ Condition = 0
 Aura = ""
 ElementChange = "None"
 Summon = []
+SwapSummon = false

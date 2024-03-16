@@ -20,6 +20,7 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 var actionMode: action = action.ETC
+var focusEntity
 
 #-----------------------------------------
 #INITALIZATION
@@ -58,10 +59,17 @@ func chooseMove(TP,allies,opposing) -> Move:
 	aiInstance.data = data
 	var allowed = allowedMoveset(TP)
 	
-	#debugAIPerceive()
+	#If wait is the only allowed move, use that
+	if allowed[0] == data.waitData:
+		return data.waitData
+	
 	move = aiInstance.basicSelect(allowed)
 	if move is Item:
 		move = move.attackData
+	
+	#SAFEGUARD
+	if move == null:
+		return data.waitData
 	
 	return move
 
@@ -122,13 +130,26 @@ func getElementMoves(allowed,elementType = "") -> Array:
 	
 	return elementMoves
 
-func getHealMoves(allowed) -> Array:
+func getHealMoves(allowed, type = "") -> Array:
 	var healMoves: Array = []
 	
 	for move in allowed:
-		if move.property & 16:
-			print("Found heal move ", move.name)
-			healMoves.append(move)
+		if move.property & 16: match type:
+			"HP":
+				if move.healing > 0:
+					print("Found heal HP move ", move.name)
+					healMoves.append(move)
+			"Ailment":
+				if move.HealAilAmmount > 0:
+					print("Found heal Ail move ", move.name)
+					healMoves.append(move)
+			"Revive":
+				if move.revive == true:
+					print("Found revive move ", move.name)
+					healMoves.append(move)
+			_:
+				print("Found heal move ", move.name)
+				healMoves.append(move)
 	
 	return healMoves
 
@@ -208,11 +229,13 @@ func getSpecificMove(allowed, moveName) -> Move:
 #-----------------------------------------
 #ENEMY PERCIEVE SELF
 #-----------------------------------------
-func selfLeastHealth(limit: float) -> bool: #Returns if low health of self is lower than limit
+func selfLeastHealth(limit: float) -> bool: 
+	#Returns if low health of self is lower than limit
 	var leftover: float = float(currentHP)/data.MaxHP
 	return leftover >= limit
 
-func selfElement(desiredElement = "") -> bool: #Returns if element is what the user wants
+func selfElement(desiredElement = "") -> bool: 
+	#Returns if element is what the user wants
 	if desiredElement == "":
 		return data.TempElement == desiredElement
 	else:
@@ -226,7 +249,7 @@ func selfCondition() -> Array: #Every condition the self has
 	
 	for i in range(10):
 		#Flag is the binary version of i
-		var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+		var flag = 1 << i
 		if data.Condition != null and data.Condition & flag != 0:
 			ConditionArray.append(HelperFunctions.Flag_to_String(flag,"Condition"))
 	
@@ -247,7 +270,8 @@ func selfItemProperties() -> int:
 #-----------------------------------------
 #ENEMY PERCIEVE GROUP
 #-----------------------------------------
-func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least health if they're below a threshold
+func groupLeastHealth(group, limit: float = 1.0): 
+	#Returns ally with least health if they're below a threshold
 	var leastHealth
 	var currentLeftover: float = 1
 	var effectiveGroup = getGroup(group)
@@ -264,7 +288,8 @@ func groupLeastHealth(group, limit: float = 1.0): #Returns ally with least healt
 	else:
 		return
 
-func groupLowHealth(group, limit: float) -> Array: #How many allies are at custom defined low health
+func groupLowHealth(group, limit: float) -> Array: 
+	#How many allies are at custom defined low health
 	var lowHealthGroup: Array[bool] = []
 	var effectiveGroup = getGroup(group)
 	
@@ -274,7 +299,8 @@ func groupLowHealth(group, limit: float) -> Array: #How many allies are at custo
 	
 	return lowHealthGroup
 
-func groupElements(group, desiredElement = "") -> Array: #Return ally elements or if they all meet Desired Element
+func groupElements(group, desiredElement = "") -> Array: 
+	#Return ally elements or if they all meet Desired Element
 	var groupElementsArray: Array = []
 	var effectiveGroup = getGroup(group)
 	
@@ -305,24 +331,30 @@ func groupCondition(group) -> Array: #Return what conditions is in every ally
 		var conditionArray: Array = []
 		for i in range(10):
 			#Flag is the binary version of i
-			var flag = 1 << i#If it says seekingFlag is a bool, that means it couldn't find a value in String to Flag
+			var flag = 1 << i
 			if entity.data.Condition != null and entity.data.Condition & flag:
 				conditionArray.append(HelperFunctions.Flag_to_String(flag,"Condition"))
 		groupConditions.append(conditionArray)
 	
 	return groupConditions
 
-func groupAilments(group) -> Array: #Return how ailment stack and current Ailment of allies
+func groupAilments(group, category = false) -> Array: 
+	#Return how ailment stack and current Ailment of allies
 	var groupAilmentsArray: Array[Array] = []
 	var effectiveGroup = getGroup(group)
 	
 	for entity in effectiveGroup:
-		var ailment = [entity.data.Ailment , entity.data.AilmentNum]
-		groupAilmentsArray.append(ailment)
+		var ailmentArray: Array
+		if category:
+			ailmentArray = [ailmentCategory(entity), entity.data.AilmentNum]
+		else:
+			ailmentArray = [entity.data.Ailment , entity.data.AilmentNum]
+		groupAilmentsArray.append(ailmentArray)
 	
 	return groupAilmentsArray
 
-func learnOpposing(): #REACTIONARY: Learn any other wierd tricks the players are using
+func learnOpposing(): 
+	#REACTIONARY: Learn any other wierd tricks the players are using
 	pass
 
 #-----------------------------------------
@@ -342,6 +374,145 @@ func internalizeTP(type):
 		"Hedge":
 			return opposingCurrentTP + opposingMaxTP * .5
 
+#-----------------------------------------
+#ENEMY GENERIC DECICION MAKING
+#-----------------------------------------
+func decideAttack():
+	pass
+
+func decideHeal(allowed) -> Move:
+	var lowHPArray: Array = groupLowHealth("Ally", enemyData.allyHPPreference)
+	var foundLow: int = 0
+	#Is there an item or move that heals?
+	if getHealMoves(allowed, "HP").size() != 0: 
+		for entityLow in lowHPArray:
+			if entityLow:
+				foundLow += 1
+				break
+		
+		if foundLow != 0:
+			actionMode = action.HEAL
+			return getHealMoves(allowed, "HP").pick_random()
+	
+	if getHealMoves(allowed, "Ailment").size() != 0:
+		for entity in groupAilments("Ally", true):
+			if ((entity[0] == "Mental" or entity[0] == "Chemical")
+			and entity[1] > enemyData.allyAilmentPreference):
+				actionMode = action.AILHEAL
+				return getHealMoves(allowed, "Ailment").pick_random()
+	
+	return null
+
+func decideBuff(allowed, chance) -> Move:
+	var canBuff: bool = false
+	var buffedNum: Array = []
+	var buffedFlags: Array = []
+	
+	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
+		buffedNum.append(0)
+		buffedFlags.append(0)
+		for buff in range(entity.size()):
+			if entity[buff] > enemyData.allyBuffAmmountPreference:
+				print(entity[buff], "vs", enemyData.allyBuffAmmountPreference)
+				print(buff)
+				#1 for atk, 2, for def, 4 for spd, and 8 for luk
+				buffedFlags[-1] += int(pow(2,buff)) 
+				buffedNum[-1] += 1
+				print("FlagCurrently:", buffedFlags[-1])
+		
+		#Check if they have proper ammount of buffs
+		if buffedNum[-1] < enemyData.allyBuffNumPreference:
+			canBuff = true
+	
+	if canBuff and randi_range(0,100) <= chance:
+		canBuff = false
+		actionMode = action.BUFF
+		
+		for entity in allAllies: #Must have buff moves of that type to be viable
+			if (entity.data.attackBoost < enemyData.allyBuffAmmountPreference and 
+			getFlagMoves(allowed, "Buff", 1).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Buff", 1).pick_random()
+			
+			if (entity.data.defenseBoost < enemyData.allyBuffAmmountPreference and 
+			getFlagMoves(allowed, "Buff", 2).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Buff", 2).pick_random()
+			
+			if (entity.data.speedBoost < enemyData.allyBuffAmmountPreference and 
+			getFlagMoves(allowed, "Buff", 4).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Buff", 4).pick_random()
+			
+			if (entity.data.luckBoost < enemyData.allyBuffAmmountPreference and 
+			getFlagMoves(allowed, "Buff", 8).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Buff", 8).pick_random()
+	
+	return null
+
+func decideDebuff(allowed, chance) -> Move:
+	var canDebuff: bool = false
+	var debuffedNum: Array = []
+	var debuffedFlags: Array = []
+	
+	for entity in groupBuffStatus("Opposing"): #DEBUFF IF NOT DEBUFFED
+		debuffedNum.append(0)
+		debuffedFlags.append(0)
+		print("DEBUFF")
+		for debuff in range(entity.size()):
+			if entity[debuff] > enemyData.oppBuffAmmountPreference:
+				print(entity[debuff], "vs", enemyData.oppBuffAmmountPreference)
+				print(debuff)
+				#1 for atk, 2, for def, 4 for spd, and 8 for luk
+				debuffedFlags[-1] += int(pow(2,debuff)) 
+				debuffedNum[-1] += 1
+				print("FlagCurrently:", debuffedFlags[-1])
+		
+		#Check if they have proper ammount of buffs
+		if debuffedNum[-1] < enemyData.oppBuffNumPreference:
+			canDebuff = true
+	
+	if canDebuff and randi_range(0,100) <= chance:
+		actionMode = action.DEBUFF
+		
+		for entity in allOpposing: #Must have buff moves of that type to be viable
+			if (entity.data.attackBoost < enemyData.oppBuffAmmountPreference and 
+			getFlagMoves(allowed, "Debuff", 1).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Debuff", 1).pick_random()
+			
+			if (entity.data.defenseBoost < enemyData.oppBuffAmmountPreference and 
+			getFlagMoves(allowed, "Debuff", 2).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Debuff", 2).pick_random()
+			
+			if (entity.data.speedBoost < enemyData.oppBuffAmmountPreference and 
+			getFlagMoves(allowed, "Debuff", 4).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Debuff", 4).pick_random()
+			
+			if (entity.data.luckBoost < enemyData.oppBuffAmmountPreference and 
+			getFlagMoves(allowed, "Debuff", 8).size() != 0):
+				focusEntity = entity
+				return getFlagMoves(allowed, "Debuff", 8).pick_random()
+	
+	return null
+
+func decideEleChange():
+	pass
+
+func decideCondition():
+	pass
+
+func decideAilment():
+	pass
+
+func decideAura():
+	pass
+
+func decideSummon():
+	pass
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------
@@ -476,7 +647,7 @@ func debugAIPerceive() -> void:
 	print("IS ELEMENT FIRE: ", groupElements("Ally", "Fire"))
 	print("BUFFS: ", groupBuffStatus("Ally"))
 	print("CONDITIONS: ", groupCondition("Ally"))
-	print("AILMENTS: ", groupAilments("Ally"))
+	print("AILMENTS: ", groupAilments("Ally", false))
 	
 	print("-------------------------------------")
 	print("\nOPPOSING PERCEPTION")
@@ -489,7 +660,7 @@ func debugAIPerceive() -> void:
 	print("IS ELEMENT FIRE: ", groupElements("Opposing", "Fire"))
 	print("BUFFS: ", groupBuffStatus("Opposing"))
 	print("CONDITIONS: ", groupCondition("Opposing"))
-	print("AILMENTS: ", groupAilments("Opposing"))
+	print("AILMENTS: ", groupAilments("Opposing", false))
 	
 	print("-------------------------------------")
 	print("\nOTHER PERCEPTION")

@@ -46,3 +46,7 @@ res://Scene/placeholder/AICodeTab.tscn
 res://Code/EnemyAI/AI1_Buff.gd
 res://Code/SceneCode/Screens/Battle.gd
 res://Code/SceneCode/Entities/enemy.gd
+res://Code/ResourceMakers/Entity/EnemyMaker.gd
+res://Resources/Move Data/Player Moves/Skills/DREAMER/Refresh.tres
+res://Resources/Move Data/Player Moves/Skills/DREAMER/HalfMoon.tres
+res://Wait.tres

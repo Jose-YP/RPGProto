@@ -11,10 +11,11 @@ class_name Enemy
 
 @export_group("AI")
 @export var AICodePath: String = "res://Code/EnemyAI/EnemyRandom.gd"
-@export var Priorities: Array = ["Attack","Buff","Debuff","Element",
-"Condition","Heal","Aura","Summon","Ailment","Misc"] #Reordered depending on user
-@export var PriorityChance: Array = [50,50,50,50,
-50,50,50,50,50,50] #When multiple conditions are met use chances that are before 100
+@export var hasMisc: bool = false
+@export var Priorities: Array[String] = ["Misc","Summon","Aura","Condition",
+"Buff","Debuff","Element","Ailment","Heal","Attack"] #Reordered depending on user
+@export var PriorityChance: Array[int] = [10,50,50,50,
+50,50,50,50,50,100] #When multiple conditions are met use chances that are before 100
 
 @export_subgroup("Resource Preferences")
 @export_range(0,1,.05) var selfHPPreference: float = .9
@@ -25,8 +26,8 @@ class_name Enemy
 @export_range(0,3) var selfAilmentPreference: int = 0
 @export_range(0,3) var allyAilmentPreference: int = 0
 @export_range(0,3) var oppAilmentPreference: int = 0
-@export_flags("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","Protected","Dumbfounded",
-"Miserable","Worn Out", "Explosive","XSoft") var favoredAilments: int = 0
+@export_flags("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","Protected",
+"Dumbfounded","Miserable","Worn Out", "Explosive","XSoft") var favoredAilments: int = 0
 @export_range(0,3) var selfXSoftPreference: int = 0
 @export_range(0,3) var allyXSoftPreference: int = 0
 @export_range(0,3) var oppXSoftPreference: int = 0
@@ -46,6 +47,9 @@ class_name Enemy
 @export_enum("Fire","Water","Elec","Neutral") var selfFavoredElement = "Neutral"
 @export_enum("Fire","Water","Elec","Neutral") var allyFavoredElement = "Neutral"
 @export_enum("Fire","Water","Elec","Neutral") var oppFavoredElement = "Neutral"
+@export_enum("Fire","Water","Elec","Neutral") var selfUnfavoredElement = "Neutral"
+@export_enum("Fire","Water","Elec","Neutral") var allyUnfavoredElement = "Neutral"
+@export_enum("Fire","Water","Elec","Neutral") var oppUnfavoredElement = "Neutral"
 
 @export_subgroup("Other Preferences")
 @export_flags("BodyBroken","WillWrecked","DoubleCrits","LowTP") var favoredAuras: int = 15
