@@ -5,7 +5,6 @@ var eData: Enemy
 var canBuff: bool = false
 var canDebuff: bool = false
 var hasItem: bool = false
-var usedItem: bool = false
 var debug: bool = true
 var allies: Array = []
 var opp: Array = []
@@ -15,6 +14,7 @@ var debuffedNum: Array[int] = []
 var debuffedFlags: Array[int] = []
 var usedBuffOn = null
 var usedDebuffOn = null
+var focusEntity = null
 
 func basicSelect(allowed) -> Move:
 	buffedNum = []
@@ -24,13 +24,13 @@ func basicSelect(allowed) -> Move:
 	allAllies = allies
 	allOpposing = opp
 	
-	for entity in groupBuffStatus("Opposing"): #BUFF IF NOT BUFFED
+	for entity in groupBuffStatus("Opposing"): #DEBUFF IF NOT DEBUFFED
 		debuffedNum.append(0)
 		debuffedFlags.append(0)
 		print("DEBUFF")
 		for debuff in range(entity.size()):
 			if entity[debuff] > eData.oppBuffAmmountPreference:
-				print(entity[debuff], "vs", eData.oppBuffNumPreference)
+				print(entity[debuff], "vs", eData.oppBuffAmmountPreference)
 				print(debuff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
 				debuffedFlags[-1] += int(pow(2,debuff)) 
@@ -41,29 +41,29 @@ func basicSelect(allowed) -> Move:
 		if debuffedNum[-1] < eData.oppBuffNumPreference:
 			canDebuff = true
 	
-	if canDebuff and randi_range(0,100) <= 60:
+	if canDebuff and randi_range(0,100) <= 45:
 		canBuff = false
 		actionMode = action.DEBUFF
 		
 		for entity in allies: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				usedDebuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				usedDebuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
 			if (entity.data.speedBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				usedDebuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
 			if (entity.data.luckBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				usedDebuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
 	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
@@ -89,37 +89,42 @@ func basicSelect(allowed) -> Move:
 		for entity in allies: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				usedBuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				usedBuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
 			if (entity.data.speedBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				usedBuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
 			if (entity.data.luckBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				usedBuffOn = entity
+				focusEntity = entity
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	#HEAL NUT CHECK
 	#--------------
 	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
-	if (1 << 16) & selfItemProperties(): #Is there an item that heals?
+	#Is there an item that heals?
+	if (1 << 16) & selfItemProperties() or getHealMoves(allowed).size() != 0: 
 		for entityLow in lowHPArray:
 			if entityLow:
 				foundLow += 1
 				break
 		
-		if foundLow != 0 and randi_range(0,100) < 15:
+		for entity in groupAilments("Ally"):
+			if entity[0] and entity[1] > eData.allyAilmentPreference:
+				pass
+			
+		
+		if (foundLow != 0) and randi_range(0,100) < 30:
 			actionMode = action.HEAL
-			hasItem = false
 			return getHealMoves(allowed)[0]
 	
 	#DEFAULT ATTACK
@@ -140,7 +145,7 @@ func basicSelect(allowed) -> Move:
 #-----------------------------------------
 #TARGETTING
 #-----------------------------------------
-func Single(targetting, move):
+func Single(targetting, _move):
 	#incase it doesn't work
 	var defenderIndex: int = randi() % targetting.size()
 	match actionMode:
@@ -159,8 +164,15 @@ func Single(targetting, move):
 					break
 		
 		action.BUFF: #TO CHANGE
-			for entity in range(targetting.size()): #Must have buff moves of that type to be viable
-				if targetting[entity] == usedBuffOn:
+			#Must have buff moves of that type to be viable
+			for entity in range(targetting.size()):
+				if targetting[entity] == focusEntity:
+					defenderIndex = entity
+					
+		action.DEBUFF: #TO CHANGE
+			#Must have buff moves of that type to be viable
+			for entity in range(targetting.size()): 
+				if targetting[entity] == focusEntity:
 					defenderIndex = entity
 		
 		action.ETC:
@@ -184,7 +196,14 @@ func Group(targetting):
 		action.BUFF:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity] == usedBuffOn:
+					if targetting[entityGroup][entity] == focusEntity:
+						defenderIndex = entityGroup
+						break
+			
+		action.DEBUFF:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity] == focusEntity:
 						defenderIndex = entityGroup
 						break
 		action.ETC:

@@ -63,7 +63,8 @@ func basicSelect(allowed) -> Move:
 	#--------------
 	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
-	if (1 << 16) & selfItemProperties(): #Is there an item that heals?
+	#Is there an item that heals?
+	if (1 << 16) & selfItemProperties() or getHealMoves(allowed).size() != 0: 
 		for entityLow in lowHPArray:
 			if entityLow:
 				foundLow += 1
@@ -71,7 +72,6 @@ func basicSelect(allowed) -> Move:
 		
 		if foundLow != 0 and randi_range(0,100) < 15:
 			actionMode = action.HEAL
-			hasItem = false
 			return getHealMoves(allowed)[0]
 	
 	#DEFAULT ATTACK

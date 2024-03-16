@@ -5,6 +5,8 @@ extends "res://Code/SceneCode/Entities/Entity.gd"
 @onready var ScanBox: PanelContainer = $ScanBox
 @onready var gettingScanned: bool = false
 
+enum action{KILL, HEAL, AILHEAL, BUFF, DEBUFF, ELECHANGE, AILMENT, ETC}
+
 #SELF VARIABLES
 var enemyAI
 var aiInstance
@@ -17,9 +19,6 @@ var allyCurrentTP: int
 var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
-
-enum action{KILL, HEAL, BUFF, DEBUFF, ELECHANGE, AILMENT, ETC}
-
 var actionMode: action = action.ETC
 
 #-----------------------------------------
@@ -429,7 +428,11 @@ func allowedMoveset(TP) -> Array:
 	for move in moveset:
 		var use = move
 		if move is Item:
-			use = move.attackData
+			if data.itemData[move] == 0:
+				print("Ran out of ", move.name)
+				continue
+			else:
+				use = move.attackData
 		
 		var TPCost = use.TPCost - (data.speed * (1 + data.speedBoost))
 		if Globals.currentAura == "LowTicks":

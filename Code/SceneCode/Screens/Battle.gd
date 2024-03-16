@@ -29,6 +29,24 @@ signal mainMenu
 signal makeNoise(num)
 signal playMusic(song)
 
+enum targetTypes {
+	SINGLE,
+	GROUP,
+	SELF,
+	ALL,
+	RANDOM,
+	RANDOMGROUP,
+	TARGETTED,
+	REVIVE,
+	KO,
+	NONE,
+	NULL}
+enum whichTypes {
+	ENEMY,
+	ALLY,
+	BOTH,
+	NULL}
+
 #Make every player's menu
 var playerScene: PackedScene = preload("res://Scene/Entities/Player.tscn")
 var enemyScene: PackedScene = preload("res://Scene/Entities/enemy.tscn")
@@ -64,23 +82,8 @@ var playerMaxTP: int = 0
 var enemyTP: int = 0
 var enemyMaxTP: int = 0
 #Determines which targetting system to use
-var target
-var which
-enum targetTypes {
-	SINGLE,
-	GROUP,
-	SELF,
-	ALL,
-	RANDOM,
-	RANDOMGROUP,
-	TARGETTED,
-	REVIVE,
-	KO,
-	NONE}
-enum whichTypes {
-	ENEMY,
-	ALLY,
-	BOTH}
+var target: targetTypes = targetTypes.NULL
+var which: whichTypes = whichTypes.NULL
 
 #-----------------------------------------
 #INTIALIZATION & PROCESS
@@ -1135,7 +1138,7 @@ func checkHP() -> void:
 	enemyOrder.resize(InitialESize - lowerE)
 	#Reset values
 	index = 0
-	target = null
+	target = targetTypes.NULL
 	finished = false
 	if playerTurn:
 		team = playerOrder
