@@ -68,3 +68,4 @@ res://Code/ResourceMakers/Entity/PlayerMaker.gd
 res://Code/EnemyAI/AI5_Ailment.gd
 res://Code/EnemyAI/AI0_Random.gd
 res://Resources/Move Data/Enemy Moves/WishingStar.tres
+res://Resources/Move Data/Enemy Moves/Insult.tres

@@ -26,23 +26,19 @@ func basicSelect(allowed) -> Move:
 		debuffedNum.append(0)
 		debuffedFlags.append(0)
 		for debuff in range(entity.size()):
-			if not (debuff + 1) & eData.oppBoostTypePreference:
-				print(eData.oppBoostTypePreference,"Skipping", pow(2,debuff))
-				continue
+			var debuffFlag = int(pow(2,debuff))
+			if not (debuffFlag & eData.oppBoostTypePreference): continue
+			
 			if entity[debuff] > eData.oppBuffAmmountPreference:
-				print(entity[debuff], "vs", eData.oppBuffAmmountPreference)
-				print(debuff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				debuffedFlags[-1] += int(pow(2,debuff)) 
+				debuffedFlags[-1] += debuffFlag
 				debuffedNum[-1] += 1
-				print("FlagCurrently:", debuffedFlags[-1])
 		
 		#Check if they have proper ammount of buffs
-		if debuffedNum[-1] < eData.oppBuffNumPreference:
+		if debuffedNum[-1] > eData.oppBuffNumPreference:
 			canDebuff = true
 	
 	if canDebuff and randi_range(0,100) <= 45:
-		print("Can Debuff?: ", canDebuff)
 		canDebuff = false
 		actionMode = action.DEBUFF
 		
@@ -50,19 +46,19 @@ func basicSelect(allowed) -> Move:
 			
 			focusIndex = opp[entity].ID
 			
-			if (debuffedFlags[entity] | 1 and 
+			if (debuffedFlags[entity] & 1 and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
-			if (debuffedFlags[entity] | 2 and 
+			if (debuffedFlags[entity] & 2 and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
-			if (debuffedFlags[entity] | 4 and 
+			if (debuffedFlags[entity] & 4 and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
-			if (debuffedFlags[entity] | 8 and 
+			if (debuffedFlags[entity] & 8 and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
@@ -70,22 +66,17 @@ func basicSelect(allowed) -> Move:
 		buffedNum.append(0)
 		buffedFlags.append(0)
 		for buff in range(entity.size()):
-			
 			#Skip any stats ai doesn't care about
-			if not (buff + 1) & eData.allyBoostTypePreference:
-				print("Skipping", pow(2,buff))
-				continue
+			var buffFlag = int(pow(2,buff))
+			if not (buffFlag & eData.allyBoostTypePreference): continue
 			
 			if entity[buff] < eData.allyBuffAmmountPreference:
-				print(entity[buff], "vs", eData.allyBuffAmmountPreference)
-				print(buff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				buffedFlags[-1] += int(pow(2,buff)) 
+				buffedFlags[-1] += buffFlag
 				buffedNum[-1] += 1
-				print("FlagCurrently:", buffedFlags[-1])
 		
 		#Check if they have proper ammount of buffs
-		if buffedNum[-1] < eData.allyBuffNumPreference:
+		if buffedNum[-1] > eData.allyBuffNumPreference:
 			canBuff = true
 	
 	if canBuff and randi_range(0,100) <= 40:
@@ -110,6 +101,7 @@ func basicSelect(allowed) -> Move:
 			if (buffedFlags[entity] | 8
 			 and getFlagMoves(allowed, "Buff", 8).size() != 0):
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
+	
 	
 	#HEAL CHECK
 	#--------------
