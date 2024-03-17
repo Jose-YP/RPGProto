@@ -1,6 +1,29 @@
 extends Node2D
 
 @export var data: entityData
+@export_category("Tween Constants")
+@export_range(.01,1) var tweenTime: float = .4
+@export_category("Elemental Constants")
+@export_group("Element Mods")
+@export_range(.15,.5,.05) var phyBoost: float = .25
+@export_range(.15,.5,.05) var firstSoftBoost: float = .2
+@export_range(.15,.5,.05) var secondSoftBoost: float = .1
+@export_range(.5,3,.05) var lightMult: float = .75
+@export_category("Ailment Constants")
+@export_group("Ailment Consts")
+@export_range(5,80) var recklessChance: int = 25
+@export_range(.05, .3,.05) var rustDecay: float = .2
+@export_category("Buff Constants")
+@export_group("Boost Stats")
+@export_range(0.1,.5,.05) var boostLevels: float = .15
+@export_range(0.05,.2,.05) var boostDecay: float = .05
+@export var buffColor: Color = Color.RED
+@export var debuffColor: Color = Color.GRAY
+@export_category("Calc Constants")
+@export_range(1,2,.05) var defenseMult: float = 1.25
+@export_range(.15,.5,.05) var critBoost: float = .25
+@export_range(1.5,3,.05) var chargAmpBoost: float = 2.5
+@export_range(.05,1,.05) var overdriveBoost: float = .25
 
 @onready var InfoBox: PanelContainer = $BackUI/CurrentInfo
 @onready var Info: RichTextLabel = $BackUI/CurrentInfo/RichTextLabel
@@ -78,8 +101,7 @@ func processer() -> void:
 	if data.AilmentNum <= 0: #Otherwise hide the display
 		data.Ailment = "Healthy"
 		$BackUI/AilmentDisplay.hide()
-	if data.AilmentNum > 3:
-		data.AilmentNum = 3
+	data.AilmentNum = clamp(data.AilmentNum, 0, 3)
 	if data.Ailment == "Overdrive": #Overdrive can only have an Ailment Num of 1
 		data.AilmentNum = 1
 	
@@ -92,7 +114,7 @@ func attack(move, receiver, user, property) -> int:
 	var attackStat: int
 	var defenseStat: int
 	var weakRes: float = 0.0
-	var lightMod: float = 1
+	var lightMod: float = lightMult
 	var softMod: float = 0.0
 	var overdriveMod: float = 0.0
 	var offenseElement = user.data.TempElement
@@ -116,9 +138,9 @@ func attack(move, receiver, user, property) -> int:
 		elementMod = elementModCalc(offenseElement, receiver.data.TempElement,EleMod, sameEle)
 	
 	if move.element == "Light" and receiver.data.stellar == "Stellar":
-		lightMod = 2
+		lightMod = lightMult * 3
 	elif move.element == "Light" and receiver.data.stellar == "Hybrid":
-		lightMod = 1.5
+		lightMod = lightMult * 1.5
 	
 	#Basic Attacks will use the user's PhyElement instead of the move's
 	#Every other attack uses the move's PhyElement
@@ -154,7 +176,7 @@ func attack(move, receiver, user, property) -> int:
 				auraMod = .5
 			if checkCondition("Charge",user):
 				feedback = str("{Charged}",feedback)
-				chargeMod = 2.5
+				chargeMod = chargAmpBoost
 				chargeUsed = true
 		"Ballistic":
 			attackStat = user.data.ballistics
@@ -164,22 +186,22 @@ func attack(move, receiver, user, property) -> int:
 				auraMod = .5
 			if checkCondition("Amp",user):
 				feedback = str("{Amped}",feedback)
-				chargeMod = 2.5
+				chargeMod = chargAmpBoost
 				ampUsed = true
 	
 	if crit_chance(move,user,receiver,currentAura):
-		critMod = .25
+		critMod = critBoost
 		feedback = str("{Crit}", feedback)
 	
 	if user.data.Ailment == "Overdrive":
-		overdriveMod = .25
+		overdriveMod = overdriveBoost
 	
 	var totalFirstMod: float = 1 + user.data.attackBoost + phyMod + softMod + critMod + overdriveMod + weakRes
 	totalFirstMod = clamp(totalFirstMod, .001, 6)
 	var totalSecondMod: float = chargeMod*auraMod*elementMod*lightMod
 	#Get total attack power, subtract it by total defense then multiply by element mod*AuraMod
 	var damage = ((randi_range(0,user.data.level) + move.Power + attackStat) * totalFirstMod)
-	damage =  damage - ((1.25 * defenseStat) * (1 + receiver.data.defenseBoost))
+	damage =  damage - ((defenseMult * defenseStat) * (1 + receiver.data.defenseBoost))
 	damage = int(totalSecondMod * (damage))
 	
 	damage = clamp(damage, 1, 1000)
@@ -190,7 +212,7 @@ func attack(move, receiver, user, property) -> int:
 func BOMB(move,receiver, user) -> int:
 	feedback = ""
 	var sameEle = user.data.sameElement or receiver.data.sameElement
-	var lightMod: float = 1.0
+	var lightMod: float = lightMult
 	var softMod: float = 0.0
 	var weakRes: float = element_weak_strong(move.element, receiver)
 	var prev: float = softMod
@@ -210,9 +232,9 @@ func BOMB(move,receiver, user) -> int:
 		feedback = str("{",move.element," strong}", feedback)
 	
 	if move.element == "Light" and receiver.data.stellar == "Stellar":
-		lightMod = 2
+		lightMod = lightMult * 3
 	elif move.element == "Light" and receiver.data.stellar == "Hybrid":
-		lightMod = 1.5
+		lightMod = lightMult * 1.5
 	
 	softMod += checkXSoft(move.element, receiver)
 	if prev < softMod:
@@ -331,19 +353,19 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 
 func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:
-		receiver.data.attackBoost += (boostAmmount * .3)
+		receiver.data.attackBoost += (boostAmmount * boostLevels)
 		receiver.data.attackBoost = clamp(receiver.data.attackBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Attack"),receiver.data.attackBoost)
 	if boostType & 2:
-		receiver.data.defenseBoost += (boostAmmount * .3)
+		receiver.data.defenseBoost += (boostAmmount * boostLevels)
 		receiver.data.defenseBoost = clamp(receiver.data.defenseBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Defense"),receiver.data.defenseBoost)
 	if boostType & 4:
-		receiver.data.speedBoost += (boostAmmount * .3)
+		receiver.data.speedBoost += (boostAmmount * boostLevels)
 		receiver.data.speedBoost = clamp(receiver.data.speedBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Speed"),receiver.data.speedBoost)
 	if boostType & 8:
-		receiver.data.luckBoost += (boostAmmount * .3)
+		receiver.data.luckBoost += (boostAmmount * boostLevels)
 		receiver.data.luckBoost = clamp(receiver.data.luckBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Luck"),receiver.data.luckBoost)
 
@@ -468,9 +490,9 @@ func element_weak_strong(userElement,reciever) -> float:
 		var flag = 1 << i
 		if userFlag & flag or flag & 512: #512 is for All strong
 			if flag & reciever.data.Weakness:
-				weakResMod += .1
+				weakResMod += phyBoost
 			if flag & reciever.data.strong:
-				weakResMod -= .25
+				weakResMod -= phyBoost
 	
 	return weakResMod
 
@@ -481,11 +503,11 @@ func phy_weakness(user,receiver,PreMod = 0) -> float:
 		return 0
 	
 	if receiver.Weakness & 64 != 0:
-		PhyMod += .25 + PreMod
+		PhyMod += phyBoost + PreMod
 		return PhyMod
 	
 	if receiver.strong & 64 != 0:
-		PhyMod -= .25 + PreMod
+		PhyMod -= phyBoost + PreMod
 		return PhyMod
 	
 	var userFlag = HelperFunctions.String_to_Flag(user,"Element")
@@ -497,12 +519,12 @@ func phy_weakness(user,receiver,PreMod = 0) -> float:
 		var flag = 1 << i
 		#Check if it has a weakness if it does don't check Strong
 		if receiver.Weakness != null and receiver.Weakness & flag != 0 and userFlag & flag != 0:
-			PhyMod += .25  + PreMod
+			PhyMod += phyBoost  + PreMod
 			continue
 		
 		#Check if it has a Strong otherwise
 		if receiver.strong != null and receiver.strong & flag != 0 and userFlag & flag != 0:
-			PhyMod -= .25
+			PhyMod -= phyBoost
 	
 	return PhyMod
 
@@ -591,12 +613,12 @@ func checkXSoft(seeking,receiver) -> float:
 	for element in receiver.data.XSoft:
 		k += 1
 		if seeking == element:
-			softAmmount += .15
+			softAmmount += firstSoftBoost
 			break
 	
 	while k != (receiver.data.XSoft.size()):
 		if seeking == receiver.data.XSoft[k]:
-			softAmmount += .1
+			softAmmount += secondSoftBoost
 		k += 1
 	
 	return softAmmount
@@ -631,11 +653,11 @@ func removeCondition(seeking,receiver) -> void:
 func statBoostHandling() -> void:
 	for boost in range(statBoostSlots.size()):
 		if statBoostSlots[boost] > 0:
-			statBoostSlots[boost] -= .05
+			statBoostSlots[boost] -= boostDecay
 			buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
 		
 		elif statBoostSlots[boost] < 0:
-			statBoostSlots[boost] += .05
+			statBoostSlots[boost] += boostDecay
 			buffStatManager(statBoostSprites[boost],statBoostSlots[boost])
 		
 		if statBoostSlots[boost] == 0:
@@ -645,7 +667,7 @@ func midTurnAilments(Ailment) -> bool:
 	var stillAttack = true
 	match Ailment:
 		"Reckless":
-			var chance = 25
+			var chance = recklessChance
 			var damage = 0
 			if data.AilmentNum >= 2:
 				chance *= 2
@@ -670,11 +692,11 @@ func reactionaryAilments(Ailment) -> void:
 	match Ailment:
 		"Rust":
 			if data.AilmentNum >= 1:
-				data.defenseBoost -= .2
+				data.defenseBoost -= rustDecay
 				if data.AilmentNum >= 2:
-					data.attackBoost -= .2
+					data.attackBoost -= rustDecay
 					if data.AilmentNum == 3:
-						data.speedBoost -= .2
+						data.speedBoost -= rustDecay
 			statBoostHandling()
 		"Miserable":
 			pass
@@ -725,8 +747,6 @@ func tweenDamage(targetting,tweenTiming,infomation) -> void:
 
 func buffStatManager(type,ammount) -> void:#Called whenever a buffed stat is changed
 	var label = type.get_child(0)
-	if ammount > .6:
-		ammount = .6
 	
 	var textStore = str(100 * ammount,"%")
 	if int(ammount) == 0:
@@ -737,10 +757,10 @@ func buffStatManager(type,ammount) -> void:#Called whenever a buffed stat is cha
 		type.show()
 	
 	if ammount > 0:
-		type.modulate = Color(1, 0.278, 0.357, 0.671)
+		type.modulate = buffColor
 		
 	elif ammount < 0:
-		type.modulate = Color(0.58, 0.592, 0.541, 0.671)
+		type.modulate = debuffColor
 
 func buffConditionDisplay() -> void:
 	var conditionString: String = ""
