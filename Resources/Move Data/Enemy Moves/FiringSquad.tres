@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dvikl")
 name = "Firing Squad"
-description = "Basic Attack"
+description = "High Ballistic Neutral damage to a group"
 TPCost = 160
 Which = "Enemy"
 Target = "Group"
@@ -14,6 +14,7 @@ phyElement = "Pierce"
 property = 2
 CostType = "Free"
 cost = 0.0
+refresh = true
 Power = 50
 HitNum = 1
 BaseCrit = -60

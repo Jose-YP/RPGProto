@@ -29,7 +29,7 @@ class_name Player
 @export_enum("Fire","Water","Elec","Neutral") var permanentElement: String = "Fire"
 @export_enum("Slash","Crush","Pierce") var permanentPhyEle: String = "Slash"
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentWeakness: int = 0
-@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentResist: int = 0
+@export_flags("Fire","Water","Elec","Slash","Crush","Pierce","All") var permanentStrong: int = 0
 @export_flags("Attack","Defense","Speed","Luck") var defaultBoostStat: int = 8
 
 func setUp(element, phy, weak, res, name):
@@ -43,7 +43,7 @@ func setUp(element, phy, weak, res, name):
 	permanentElement = element
 	permanentPhyEle = phy
 	permanentWeakness = weak
-	permanentResist = res
+	permanentStrong = res
 	match name:
 		"DREAMER":
 			defaultBoostStat = 8

@@ -11,9 +11,10 @@ class_name Move
 @export_enum("Slash","Crush","Pierce","Neutral") var phyElement = "Neutral"
 @export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property = 1
 
-@export_subgroup("Player Exclusive")
+@export_subgroup("Costs")
 @export_enum("Free","HP","LP","Ammo","MaxHP","Overdrive","Item") var CostType: String = "Free"
-@export var cost: float
+@export var cost: float = 0.0
+@export var refresh: bool = false
 
 @export_group("Offense")
 @export var Power: int = 30

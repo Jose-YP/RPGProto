@@ -47,22 +47,22 @@ func basicSelect(allowed) -> Move:
 		for entity in opp: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				focusEntity = entity
+				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				focusEntity = entity
+				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
 			if (entity.data.speedBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				focusEntity = entity
+				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
 			if (entity.data.luckBoost < eData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				focusEntity = entity
+				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
 	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
@@ -85,25 +85,25 @@ func basicSelect(allowed) -> Move:
 		canBuff = false
 		actionMode = action.BUFF
 		
-		for entity in allies: #Must have buff moves of that type to be viable
-			if (entity.data.attackBoost < eData.allyBuffAmmountPreference and 
-			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				focusEntity = entity
+		for entity in range(allies.size()): #Must have buff moves of that type to be viable
+			if (allies[entity].data.attackBoost < eData.allyBuffAmmountPreference
+			 and getFlagMoves(allowed, "Buff", 1).size() != 0):
+				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
-			if (entity.data.defenseBoost < eData.allyBuffAmmountPreference and 
-			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				focusEntity = entity
+			if (allies[entity].data.defenseBoost < eData.allyBuffAmmountPreference
+			 and getFlagMoves(allowed, "Buff", 2).size() != 0):
+				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
-			if (entity.data.speedBoost < eData.allyBuffAmmountPreference and 
-			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				focusEntity = entity
+			if (allies[entity].data.speedBoost < eData.allyBuffAmmountPreference
+			 and getFlagMoves(allowed, "Buff", 4).size() != 0):
+				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
-			if (entity.data.luckBoost < eData.allyBuffAmmountPreference and 
-			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				focusEntity = entity
+			if (allies[entity].data.luckBoost < eData.allyBuffAmmountPreference
+			 and getFlagMoves(allowed, "Buff", 8).size() != 0):
+				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	#HEAL NUT CHECK
@@ -167,13 +167,13 @@ func Single(targetting, _move):
 		action.BUFF: #TO CHANGE
 			#Must have buff moves of that type to be viable
 			for entity in range(targetting.size()):
-				if targetting[entity] == focusEntity:
+				if entity == focusIndex:
 					defenderIndex = entity
 					
 		action.DEBUFF: #TO CHANGE
 			#Must have buff moves of that type to be viable
 			for entity in range(targetting.size()): 
-				if targetting[entity] == focusEntity:
+				if entity == focusIndex:
 					defenderIndex = entity
 		
 		action.ETC:

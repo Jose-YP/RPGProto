@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tc72t")
 name = "Galactic Ghoul"
-description = "Basic Attack"
+description = "Group hitting Ballistic attack with a chance to apply EleSoft."
 TPCost = 150
 Which = "Enemy"
 Target = "Group"
@@ -14,11 +14,12 @@ phyElement = "Pierce"
 property = 2
 CostType = "Free"
 cost = 0.0
+refresh = false
 Power = 30
 HitNum = 1
 BaseCrit = 0
-BaseAilment = -200
-Ailment = "None"
+BaseAilment = 0
+Ailment = "EleSoft"
 AilmentAmmount = 1
 percentage = false
 revive = false

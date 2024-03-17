@@ -20,6 +20,7 @@ var allyMaxTP: int
 var opposingCurrentTP: int
 var opposingMaxTP: int
 var actionMode: action = action.ETC
+var focusIndex: int
 var focusEntity
 
 #-----------------------------------------
@@ -524,7 +525,7 @@ func makeDesc() -> void:
 	var foundWeak: bool
 	var foundRes: bool
 	var weak: String = ""
-	var resist: String = ""
+	var strong: String = ""
 	var moveString: String = ""
 	var itemString: String = ""
 	var stats = str("str:",data.strength,"| tgh:",data.toughness," | bal:",data.ballistics
@@ -539,17 +540,17 @@ func makeDesc() -> void:
 				weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")))
 			else:
 				weak = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),weak)
-		if flag & data.Resist:
+		if flag & data.strong:
 			foundRes = true
 			if flag & 512:
-				resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")))
+				strong = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")))
 			else:
-				resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),", ",resist)
+				strong = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),", ",strong)
 	
 	if foundWeak:
 		weak = str("Weak: ", weak)
 	if foundRes:
-		resist = str("Res: ", resist)
+		strong = str("Res: ", strong)
 	
 	for move in moveset:
 		if move.name == "Attack" or move.name == "Wait":
@@ -574,14 +575,14 @@ func makeDesc() -> void:
 	
 	if weak == "":
 		weak = str("No Weaknesses")
-	if resist == "":
-		resist = str("No Resistances")
+	if strong == "":
+		strong = str("No Resistances")
 	if moveString == "":
 		moveString = str("Only Attacks")
 	if itemString == "":
 		itemString = str("No Items")
 	
-	description = str(weak,"\n",resist,"\n",stats,"\n",moveString,"\n",itemString)
+	description = str(weak,"\n",strong,"\n",stats,"\n",moveString,"\n",itemString)
 
 #-----------------------------------------
 #PAYING ITEM&TP

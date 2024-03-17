@@ -121,7 +121,7 @@ func playerDescriptions(description,i) -> void:
 func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	var entity = Globals.getStats(playerEntities[playerNum],currentName,str(level))
 	var foundRes = false
-	var resist: String
+	var strong: String
 	var skillString: String
 	var itemString: String
 	var description: String
@@ -141,11 +141,11 @@ func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	for i in range(6):
 		#Flag is the binary version of i
 		var flag = 1 << i
-		if flag & entity.Resist:
+		if flag & entity.strong:
 			foundRes = true
-			resist = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),resist)
+			strong = str(HelperFunctions.colorElements(HelperFunctions.Flag_to_String(flag,"Element")),strong)
 	if foundRes:
-		resist = str("Res: ", resist)
+		strong = str("Res: ", strong)
 	
 	for move in skills:
 		if skillString != "":
@@ -167,7 +167,7 @@ func makePlayerDesc(index,playerNum,currentName,level) -> String:
 	
 	playerEntities[playerNum] = entity
 	Globals.currentSave.every_player_entity[playerNum] = entity
-	description = str(charName,"\n",resourceStats,"\n",resist,"\n",stats,"\n",skillString,"\n\n",itemString)
+	description = str(charName,"\n",resourceStats,"\n",strong,"\n",stats,"\n",skillString,"\n\n",itemString)
 	
 	return description
 

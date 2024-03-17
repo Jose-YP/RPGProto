@@ -39,7 +39,7 @@ func readJSON(filePath) -> Dictionary: #Don't open, Godot might kill itself
 func getStats(Entity,character,level) -> entityData:
 	var stats = playerStats[character][str(level)]
 	if currentSave.every_specific_data[charNum(Entity)].Tactics2 == null:
-		currentSave.every_specific_data[charNum(Entity)].setUp(Entity.element, Entity.phyElement, Entity.Weakness, Entity.Resist, Entity.name)
+		currentSave.every_specific_data[charNum(Entity)].setUp(Entity.element, Entity.phyElement, Entity.Weakness, Entity.strong, Entity.name)
 		initalizePlyaerSpecies(currentSave.every_player_entity[charNum(Entity)])
 		
 	Entity.specificData = currentSave.every_specific_data[charNum(Entity)]
@@ -63,7 +63,7 @@ func getStats(Entity,character,level) -> entityData:
 	Entity.element = Entity.specificData.permanentElement
 	Entity.phyElement = Entity.specificData.permanentPhyEle
 	Entity.Weakness = Entity.specificData.permanentWeakness
-	Entity.Resist = Entity.specificData.permanentResist
+	Entity.strong = Entity.specificData.permanentStrong
 	Entity.immunity = "None"
 	Entity.soloElementMod = 0.0
 	Entity.groupElementMod = 0.0

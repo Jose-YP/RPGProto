@@ -50,3 +50,18 @@ res://Code/ResourceMakers/Entity/EnemyMaker.gd
 res://Resources/Move Data/Player Moves/Skills/DREAMER/Refresh.tres
 res://Resources/Move Data/Player Moves/Skills/DREAMER/HalfMoon.tres
 res://Wait.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres
+res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres
+res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres
+res://Resources/Move Data/Player Moves/Skills/DREAMER/Overdrive.tres
+res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres
+res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres
+res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres
+res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres
+res://Code/Globals/Globals.gd
+res://Code/ResourceMakers/Entity/MoveMaker.gd
+res://Code/SceneCode/Entities/Player.gd
+res://Code/SceneCode/Entities/Entity.gd
+res://Code/ResourceMakers/Entity/PlayerMaker.gd

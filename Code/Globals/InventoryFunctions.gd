@@ -258,8 +258,8 @@ func blueChipFun(entity, chip) -> void:
 		entity.Condition |= chip.Condition
 	if chip.Immunity != "None":
 		entity.Immunity |= chip.Immunity
-	if chip.Resist != null:
-		entity.Resist |= chip.Resist
+	if chip.strong != null:
+		entity.strong |= chip.strong
 	if chip.SameElement:
 		entity.sameElement = true
 	

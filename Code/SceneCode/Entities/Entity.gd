@@ -108,10 +108,10 @@ func attack(move, receiver, user, property) -> int:
 	
 	#If a move has Neutral Element it will copy the user's element instead
 	if move.element == "Neutral":
-		weakRes = element_weak_resist(user.data.TempElement, receiver)
+		weakRes = element_weak_strong(user.data.TempElement, receiver)
 		elementMod = elementModCalc(user.data.TempElement, receiver.data.TempElement,EleMod, sameEle)
 	else:
-		weakRes = element_weak_resist(offenseElement, receiver)
+		weakRes = element_weak_strong(offenseElement, receiver)
 		elementMod = elementModCalc(offenseElement, receiver.data.TempElement,EleMod, sameEle)
 	
 	if move.element == "Light" and receiver.data.stellar == "Stellar":
@@ -128,12 +128,12 @@ func attack(move, receiver, user, property) -> int:
 	if phyMod > .25:
 		feedback = str("{",offensePhyEle," Weak}", feedback)
 	elif phyMod < 0:
-		feedback = str("{",offensePhyEle," Resist}", feedback)
+		feedback = str("{",offensePhyEle," strong}", feedback)
 	
 	if elementMod >= 1.25 or weakRes >= .25:
 		feedback = str("{",offenseElement," Weak}", feedback)
 	if elementMod <= .75 or weakRes <= -.5:
-		feedback = str("{",offenseElement," Resist}", feedback)
+		feedback = str("{",offenseElement," strong}", feedback)
 	
 	var prev = softMod
 	softMod += checkXSoft(offenseElement, receiver)
@@ -191,7 +191,7 @@ func BOMB(move,receiver, user) -> int:
 	var sameEle = user.data.sameElement or receiver.data.sameElement
 	var lightMod: float = 1.0
 	var softMod: float = 0.0
-	var weakRes: float = element_weak_resist(move.element, receiver)
+	var weakRes: float = element_weak_strong(move.element, receiver)
 	var prev: float = softMod
 	var phyMod: float = phy_weakness(move.phyElement, receiver.data)
 	var EleMod: float = Globals.groupEleMod + user.data.soloElementMod + receiver.data.soloElementMod
@@ -201,12 +201,12 @@ func BOMB(move,receiver, user) -> int:
 	if phyMod > .25:
 		feedback = str("{",move.phyElement," Weak}", feedback)
 	elif phyMod < 0:
-		feedback = str("{",move.phyElement," Resist}", feedback)
+		feedback = str("{",move.phyElement," strong}", feedback)
 	
 	if elementMod >= 1.25:
 		feedback = str("{",move.element," Weak}", feedback)
 	elif elementMod <= .75:
-		feedback = str("{",move.element," Resist}", feedback)
+		feedback = str("{",move.element," strong}", feedback)
 	
 	if move.element == "Light" and receiver.data.stellar == "Stellar":
 		lightMod = 2
@@ -455,16 +455,16 @@ func elementMatchup(matchup,targetElement) -> String:
 	
 	return returnElement
 
-func element_weak_resist(userElement,reciever) -> float:
+func element_weak_strong(userElement,reciever) -> float:
 	var weakResMod: float = 0.0
 	var userFlag = HelperFunctions.String_to_Flag(userElement, "Element")
 	
 	for i in range(10):
 		var flag = 1 << i
-		if userFlag & flag or flag & 512: #512 is for All Resist
+		if userFlag & flag or flag & 512: #512 is for All strong
 			if flag & reciever.data.Weakness:
 				weakResMod += .1
-			if flag & reciever.data.Resist:
+			if flag & reciever.data.strong:
 				weakResMod -= .25
 	
 	return weakResMod
@@ -479,24 +479,24 @@ func phy_weakness(user,receiver,PreMod = 0) -> float:
 		PhyMod += .25 + PreMod
 		return PhyMod
 	
-	if receiver.Resist & 64 != 0:
+	if receiver.strong & 64 != 0:
 		PhyMod -= .25 + PreMod
 		return PhyMod
 	
 	var userFlag = HelperFunctions.String_to_Flag(user,"Element")
 	
-	#Search every possible flag in Weakness and resist
-	#Make sure to check if the receiver even has a weakness/resistance
+	#Search every possible flag in Weakness and strong
+	#Make sure to check if the receiver even has a weak/strong
 	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i
-		#Check if it has a weakness if it does don't check resistance
+		#Check if it has a weakness if it does don't check Strong
 		if receiver.Weakness != null and receiver.Weakness & flag != 0 and userFlag & flag != 0:
 			PhyMod += .25  + PreMod
 			continue
 		
-		#Check if it has a resistance otherwise
-		if receiver.Resist != null and receiver.Resist & flag != 0 and userFlag & flag != 0:
+		#Check if it has a Strong otherwise
+		if receiver.strong != null and receiver.strong & flag != 0 and userFlag & flag != 0:
 			PhyMod -= .25
 	
 	return PhyMod
@@ -615,7 +615,7 @@ func checkCondition(seeking,receiver) -> bool:
 func removeCondition(seeking,receiver) -> void:
 	var seekingFlag = HelperFunctions.String_to_Flag(seeking,"Condition")
 	#Search every possible flag in condition
-	#Make sure to check if the receiver even has a weakness/resistance
+	#Make sure to check if the receiver even has a Weak/Strong
 	for i in range(10):
 		#Flag is the binary version of i
 		var flag = 1 << i

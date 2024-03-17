@@ -99,6 +99,10 @@ func payCost(move) -> int:
 	var payTP = move.TPCost - (data.speed * (1 + data.speedBoost))
 	if Globals.currentAura == "LowTicks":
 		payTP = int(payTP/2)
+	
+	if move.recharge == true:
+		pass
+	
 	return payTP
 
 func displayDesc(category,num) -> void:

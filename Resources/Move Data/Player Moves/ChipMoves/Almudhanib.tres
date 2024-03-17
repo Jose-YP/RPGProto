@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_gallr"]
 
-
 [resource]
 script = ExtResource("1_gallr")
 name = "Almudhanib"
-description = "Group Targetting Ballistic Aurora attack that sets up an Aura that will halve TP Costs"
+description = "Group Targetting Ballistic Aurora attack that sets up an Aura that will halve TP Costs. Needs a turn to refresh after use."
 TPCost = 300
 Which = "Enemy"
 Target = "Group"
@@ -15,6 +14,7 @@ phyElement = "Slash"
 property = 34
 CostType = "Free"
 cost = 0.0
+refresh = true
 Power = 75
 HitNum = 1
 BaseCrit = 60

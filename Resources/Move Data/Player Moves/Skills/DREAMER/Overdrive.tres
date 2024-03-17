@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_7j853"]
 
-
 [resource]
 script = ExtResource("1_7j853")
 name = "Overdrive"
@@ -15,6 +14,7 @@ phyElement = "Neutral"
 property = 136
 CostType = "HP"
 cost = 0.2
+refresh = false
 Power = 60
 HitNum = 1
 BaseCrit = 0

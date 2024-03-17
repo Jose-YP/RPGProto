@@ -35,7 +35,7 @@ class_name Chip
 @export_subgroup("Defense")
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","None","Protected",
 "Dumbfounded","Miserable","Worn Out", "Explosive","XSoft","Mental","Chemical","Debuff") var Immunity = "None"
-@export_enum("Fire","Water","Elec","Slash","Crush","Pierce", "Ailment") var Resist
+@export_enum("Fire","Water","Elec","Slash","Crush","Pierce", "Ailment") var strong
 
 @export_group("Yellow Properties") #Directly affects stats
 @export_subgroup("Resource Stat Bonuses")
