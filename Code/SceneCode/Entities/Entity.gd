@@ -24,6 +24,7 @@ signal suddenDeath
 
 var currentHP: int = 0
 var targetCount: int = 0
+var ID: int = 0
 var chargeUsed: bool = false
 var ampUsed: bool = false
 var feedback: String
@@ -331,15 +332,19 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 func buffStat(receiver,boostType,boostAmmount = 1) -> void:#For actively buffing and debuffing moves
 	if boostType & 1:
 		receiver.data.attackBoost += (boostAmmount * .3)
+		receiver.data.attackBoost = clamp(receiver.data.attackBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Attack"),receiver.data.attackBoost)
 	if boostType & 2:
 		receiver.data.defenseBoost += (boostAmmount * .3)
+		receiver.data.defenseBoost = clamp(receiver.data.defenseBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Defense"),receiver.data.defenseBoost)
 	if boostType & 4:
 		receiver.data.speedBoost += (boostAmmount * .3)
+		receiver.data.speedBoost = clamp(receiver.data.speedBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Speed"),receiver.data.speedBoost)
 	if boostType & 8:
 		receiver.data.luckBoost += (boostAmmount * .3)
+		receiver.data.luckBoost = clamp(receiver.data.luckBoost, -.6, .6)
 		buffStatManager(receiver.get_node("FrontUI/Buffs/Luck"),receiver.data.luckBoost)
 
 func buffCondition(move,receiver) -> void:

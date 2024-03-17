@@ -18,9 +18,9 @@ class_name Enemy
 50,50,50,50,50,100] #When multiple conditions are met use chances that are before 100
 
 @export_subgroup("Resource Preferences")
-@export_range(0,1,.05) var selfHPPreference: float = .9
-@export_range(0,1,.05) var allyHPPreference: float = .9
-@export_range(0,1,.05) var oppHPPreference: float = .9
+@export_range(0,1,.05) var selfHPPreference: float = 1
+@export_range(0,1,.05) var allyHPPreference: float = 1
+@export_range(0,1,.05) var oppHPPreference: float = 1
 
 @export_subgroup("Ailment Preferences")
 @export_range(0,3) var selfAilmentPreference: int = 0
@@ -34,12 +34,14 @@ class_name Enemy
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce") var favoredXSoftTypes: int
 
 @export_subgroup("Stat Buff Preferences")
+@export_flags("Attack","Defense","Speed","Luck") var allyBoostTypePreference: int = 15
 @export_range(0,4) var selfBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var selfBuffAmmountPreference: float = .5
+@export_range(-.6,.6,.05) var selfBuffAmmountPreference: float = .2
 @export_range(0,4) var allyBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var allyBuffAmmountPreference: float = .5
+@export_range(-.6,.6,.05) var allyBuffAmmountPreference: float = .2
+@export_flags("Attack","Defense","Speed","Luck") var oppBoostTypePreference: int = 15
 @export_range(0,4) var oppBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var oppBuffAmmountPreference: float = .5
+@export_range(-.6,.6,.05) var oppBuffAmmountPreference: float = .2
 
 @export_subgroup("Other Buff Preferences")
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky",

@@ -21,7 +21,6 @@ var opposingCurrentTP: int
 var opposingMaxTP: int
 var actionMode: action = action.ETC
 var focusIndex: int
-var focusEntity
 
 #-----------------------------------------
 #INITALIZATION
@@ -154,20 +153,48 @@ func getHealMoves(allowed, type = "") -> Array:
 	
 	return healMoves
 
-#Works for buffs[stat,conditon,eleChange], ailments and aura moves
-func getFlagMoves(allowed, property, specificType = "") -> Array: 
+#Works for buffs[stat,conditon]
+func getFlagMoves(allowed, property, specificType = 0) -> Array: 
+	var moveArray: Array = []
+	
+	for move in allowed:
+		var checking
+		var boolAny
+		var boolSpecific
+		match property:
+			"Buff":
+				print("Buffing")
+				var boostAmmount: bool = move.BoostAmmount > 0
+				print(boostAmmount, move.BoostAmmount)
+				checking = move.BoostType
+				boolAny = specificType == 0 and checking != 0 and boostAmmount
+				boolSpecific = checking & specificType
+			"Debuff":
+				print("debuffing")
+				var boostAmmount: bool = move.BoostAmmount < 0
+				checking = move.BoostType
+				boolAny = specificType == 0 and checking != 0 and boostAmmount
+				boolSpecific = checking & specificType
+			"Condition":
+				checking = move.Condition
+				boolAny = specificType == 0 and checking != 0
+				boolSpecific = checking & specificType
+		
+		if specificType == 0:
+			boolSpecific = true
+		
+		if boolAny and boolSpecific:
+			print(boolAny, boolSpecific)
+			print("Found move ", move.name)
+			moveArray.append(move)
+	
+	return moveArray
+
+#works for eleChange, ailments and aura moves
+func getEnumMoves(allowed, property, specificType = "") -> Array: 
 	var moveArray: Array = []
 	var propertyFlag: int
 	match property:
-		"Buff":
-			propertyFlag = 8
-			specificType = int(specificType)
-		"Debuff":
-			propertyFlag = 8
-			specificType = int(specificType)
-		"Condition":
-			propertyFlag = 8
-			specificType = int(specificType)
 		"EleChange":
 			propertyFlag = 8
 		"Aura":
@@ -180,34 +207,20 @@ func getFlagMoves(allowed, property, specificType = "") -> Array:
 		var boolAny
 		var boolSpecific
 		match property:
-			"Buff":
-				var boostAmmount: bool = move.BoostAmmount > 0
-				checking = move.BoostType
-				boolAny = specificType == 0 and checking != 0 and boostAmmount
-				boolSpecific = checking & specificType
-			"Debuff":
-				var boostAmmount: bool = move.BoostAmmount < 0
-				checking = move.BoostType
-				boolAny = specificType == 0 and checking != 0 and boostAmmount
-				boolSpecific = checking & specificType
-			"Condition":
-				checking = move.Condition
-				boolAny = specificType == 0 and checking != 0
-				boolSpecific = checking & specificType
 			"EleChange":
 				checking = move.ElementChange
 				boolAny = specificType == "" and checking != "None"
-				boolSpecific = checking == specificType
 			"Aura":
 				checking = move.Aura
 				boolAny = specificType == "" and checking != "None"
-				boolSpecific = checking == specificType
 			"Ailment":
 				checking = move.Ailment
 				boolAny = specificType == "" and checking != "None"
-				boolSpecific = checking == specificType
+		
+		boolSpecific = checking == specificType
 		
 		if (move.property & propertyFlag and (boolAny or boolSpecific)):
+			print(move.property & propertyFlag, boolAny, boolSpecific)
 			print("Found move ", move.name)
 			moveArray.append(move)
 	
@@ -376,7 +389,7 @@ func internalizeTP(type):
 			return opposingCurrentTP + opposingMaxTP * .5
 
 #-----------------------------------------
-#ENEMY GENERIC DECICION MAKING
+#GENERIC DECICION MAKING
 #-----------------------------------------
 func decideAttack():
 	pass
@@ -432,22 +445,22 @@ func decideBuff(allowed, chance) -> Move:
 		for entity in allAllies: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
 			if (entity.data.speedBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
 			if (entity.data.luckBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	return null
@@ -480,22 +493,22 @@ func decideDebuff(allowed, chance) -> Move:
 		for entity in allOpposing: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
 			if (entity.data.speedBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
 			if (entity.data.luckBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				focusEntity = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
 	return null
@@ -514,6 +527,64 @@ func decideAura():
 
 func decideSummon():
 	pass
+
+#-----------------------------------------
+#GENERIC TARGETTING AI
+#-----------------------------------------
+func GenericSingle(targetting, _move):
+	#incase it doesn't work
+	var defenderIndex: int = randi() % targetting.size()
+	match actionMode:
+		action.KILL:
+			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
+			for entity in range(targetting.size()):
+				if targetting[entity] == seeking:
+					defenderIndex = entity
+					break
+		
+		action.HEAL:
+			var seeking = groupLeastHealth("Ally", enemyData.allyHPPreference)
+			for entity in range(targetting.size()):
+				if targetting[entity] == seeking:
+					defenderIndex = entity
+					break
+		
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+		
+		_:
+			for entity in range(targetting.size()): 
+				if targetting[entity].ID == focusIndex:
+					defenderIndex = entity
+	
+	#Remember to reset Action Mode
+	actionMode = action.ETC
+	return defenderIndex
+
+func GenericGroup(targetting):
+	var defenderIndex: int
+	match actionMode:
+		action.KILL:
+			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
+			
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity] == seeking:
+						defenderIndex = entityGroup
+						break
+		
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+			
+		_:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity].ID == focusIndex:
+						defenderIndex = entityGroup
+						break
+	
+	actionMode = action.ETC
+	return defenderIndex
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------

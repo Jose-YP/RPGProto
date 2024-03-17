@@ -12,8 +12,6 @@ var buffedNum: Array[int] = []
 var buffedFlags: Array[int] = []
 var debuffedNum: Array[int] = []
 var debuffedFlags: Array[int] = []
-var usedBuffOn = null
-var usedDebuffOn = null
 
 func basicSelect(allowed) -> Move:
 	buffedNum = []
@@ -23,11 +21,14 @@ func basicSelect(allowed) -> Move:
 	allAllies = allies
 	allOpposing = opp
 	
+	print("DEBUFF", groupBuffStatus("Opposing"))
 	for entity in groupBuffStatus("Opposing"): #DEBUFF IF NOT DEBUFFED
 		debuffedNum.append(0)
 		debuffedFlags.append(0)
-		print("DEBUFF")
 		for debuff in range(entity.size()):
+			if not (debuff + 1) & eData.oppBoostTypePreference:
+				print(eData.oppBoostTypePreference,"Skipping", pow(2,debuff))
+				continue
 			if entity[debuff] > eData.oppBuffAmmountPreference:
 				print(entity[debuff], "vs", eData.oppBuffAmmountPreference)
 				print(debuff)
@@ -41,35 +42,41 @@ func basicSelect(allowed) -> Move:
 			canDebuff = true
 	
 	if canDebuff and randi_range(0,100) <= 45:
+		print("Can Debuff?: ", canDebuff)
 		canDebuff = false
 		actionMode = action.DEBUFF
 		
-		for entity in opp: #Must have buff moves of that type to be viable
-			if (entity.data.attackBoost < eData.oppBuffAmmountPreference and 
+		for entity in (opp.size()): #Must have buff moves of that type to be viable
+			
+			focusIndex = opp[entity].ID
+			
+			if (debuffedFlags[entity] | 1 and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
-			if (entity.data.defenseBoost < eData.oppBuffAmmountPreference and 
+			if (debuffedFlags[entity] | 2 and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
-			if (entity.data.speedBoost < eData.oppBuffAmmountPreference and 
+			if (debuffedFlags[entity] | 4 and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
-			if (entity.data.luckBoost < eData.oppBuffAmmountPreference and 
+			if (debuffedFlags[entity] | 8 and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
 	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
 		buffedNum.append(0)
 		buffedFlags.append(0)
 		for buff in range(entity.size()):
-			if entity[buff] > eData.allyBuffAmmountPreference:
+			
+			#Skip any stats ai doesn't care about
+			if not (buff + 1) & eData.allyBoostTypePreference:
+				print("Skipping", pow(2,buff))
+				continue
+			
+			if entity[buff] < eData.allyBuffAmmountPreference:
 				print(entity[buff], "vs", eData.allyBuffAmmountPreference)
 				print(buff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
@@ -81,32 +88,30 @@ func basicSelect(allowed) -> Move:
 		if buffedNum[-1] < eData.allyBuffNumPreference:
 			canBuff = true
 	
-	if canBuff and randi_range(0,100) <= 60:
+	if canBuff and randi_range(0,100) <= 40:
 		canBuff = false
 		actionMode = action.BUFF
 		
 		for entity in range(allies.size()): #Must have buff moves of that type to be viable
-			if (allies[entity].data.attackBoost < eData.allyBuffAmmountPreference
+			focusIndex = allies[entity].ID
+			
+			if (buffedFlags[entity] | 1
 			 and getFlagMoves(allowed, "Buff", 1).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
-			if (allies[entity].data.defenseBoost < eData.allyBuffAmmountPreference
+			if (buffedFlags[entity] | 2
 			 and getFlagMoves(allowed, "Buff", 2).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
-			if (allies[entity].data.speedBoost < eData.allyBuffAmmountPreference
+			if (buffedFlags[entity] | 4
 			 and getFlagMoves(allowed, "Buff", 4).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
-			if (allies[entity].data.luckBoost < eData.allyBuffAmmountPreference
+			if (buffedFlags[entity] | 8
 			 and getFlagMoves(allowed, "Buff", 8).size() != 0):
-				focusIndex = entity
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
-	#HEAL NUT CHECK
+	#HEAL CHECK
 	#--------------
 	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
@@ -116,6 +121,7 @@ func basicSelect(allowed) -> Move:
 			if ((entity[0] == "Mental" or entity[0] == "Chemical")
 			and entity[1] > eData.allyAilmentPreference):
 				actionMode = action.AILHEAL
+				focusIndex = entity.ID
 				return getHealMoves(allowed, "Ailment").pick_random()
 	
 	if getHealMoves(allowed, "HP").size() != 0 and randi_range(0,100) < 30: 
@@ -164,20 +170,13 @@ func Single(targetting, _move):
 					defenderIndex = entity
 					break
 		
-		action.BUFF: #TO CHANGE
-			#Must have buff moves of that type to be viable
-			for entity in range(targetting.size()):
-				if entity == focusIndex:
-					defenderIndex = entity
-					
-		action.DEBUFF: #TO CHANGE
-			#Must have buff moves of that type to be viable
-			for entity in range(targetting.size()): 
-				if entity == focusIndex:
-					defenderIndex = entity
-		
 		action.ETC:
 			defenderIndex = randi() % targetting.size()
+		
+		_:
+			for entity in range(targetting.size()): 
+				if targetting[entity].ID == focusIndex:
+					defenderIndex = entity
 	
 	#Remember to reset Action Mode
 	actionMode = action.ETC
@@ -194,21 +193,16 @@ func Group(targetting):
 					if targetting[entityGroup][entity] == seeking:
 						defenderIndex = entityGroup
 						break
-		action.BUFF:
-			for entityGroup in range(targetting.size()):
-				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity] == focusEntity:
-						defenderIndex = entityGroup
-						break
-			
-		action.DEBUFF:
-			for entityGroup in range(targetting.size()):
-				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity] == focusEntity:
-						defenderIndex = entityGroup
-						break
+		
 		action.ETC:
 			defenderIndex = randi() % targetting.size()
+			
+		_:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity].ID == focusIndex:
+						defenderIndex = entityGroup
+						break
 	
 	actionMode = action.ETC
 	return defenderIndex

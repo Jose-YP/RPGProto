@@ -3,12 +3,10 @@ extends "res://Code/SceneCode/Entities/enemy.gd"
 #It needs to have these redefined from enemy, to here
 var eData: Enemy
 var canBuff: bool = false
-var hasItem: bool = false
 var allies: Array = []
 var opp: Array = []
 var buffedNum: Array[int] = []
 var buffedFlags: Array[int] = []
-var usedBuffOn = null
 
 func basicSelect(allowed) -> Move:
 	#BUFF CHECK
@@ -41,22 +39,22 @@ func basicSelect(allowed) -> Move:
 		for entity in allies: #Must have buff moves of that type to be viable
 			if (entity.data.attackBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				usedBuffOn = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				usedBuffOn = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
 			if (entity.data.speedBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				usedBuffOn = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
 			if (entity.data.luckBoost < eData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				usedBuffOn = entity
+				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	#HEAL NUT CHECK
@@ -64,7 +62,7 @@ func basicSelect(allowed) -> Move:
 	var lowHPArray = groupLowHealth("Ally", eData.allyHPPreference)
 	var foundLow: int = 0
 	#Is there an item that heals?
-	if (1 << 16) & selfItemProperties() or getHealMoves(allowed).size() != 0: 
+	if getHealMoves(allowed, "Heal").size() != 0: 
 		for entityLow in lowHPArray:
 			if entityLow:
 				foundLow += 1
@@ -112,7 +110,7 @@ func Single(targetting, _move):
 		
 		action.BUFF: #TO CHANGE
 			for entity in range(targetting.size()): #Must have buff moves of that type to be viable
-				if targetting[entity] == usedBuffOn:
+				if targetting[entity].ID == focusIndex:
 					defenderIndex = entity
 		
 		action.ETC:
@@ -136,7 +134,7 @@ func Group(targetting):
 		action.BUFF:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity] == usedBuffOn:
+					if targetting[entityGroup][entity].ID == focusIndex:
 						defenderIndex = entityGroup
 						break
 		action.ETC:

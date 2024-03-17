@@ -50,7 +50,9 @@ enum whichTypes {
 #Make every player's menu
 var playerScene: PackedScene = preload("res://Scene/Entities/Player.tscn")
 var enemyScene: PackedScene = preload("res://Scene/Entities/enemy.tscn")
-var groups = ["Attack","Skills","Items","Tactics"]
+var groups: Array = ["Attack","Skills","Items","Tactics"]
+var playerCount: int = 0
+var enemyCount: int = 0
 var currentMenu
 #Hold current enemy's action
 var enemyAction: Move
@@ -98,12 +100,16 @@ func _ready(): #Assign current team according to starting bool
 		pNew.data = Globals.current_player_entities[k].duplicate()
 		pNew.global_position = playerPositions[k].global_position
 		pNew.playerNum = k
+		pNew.ID = playerCount
+		playerCount += 1 
 		$Players.add_child(pNew)
 	
 	for k in range(Globals.current_enemy_entities.size()): #Add enemy scenes as necessary
 		var eNew = enemyScene.instantiate()
 		eNew.data = Globals.current_enemy_entities[k].duplicate()
 		eNew.global_position = enemyPosition[k].global_position
+		eNew.ID = enemyCount
+		enemyCount += 1
 		$Enemies.add_child(eNew)
 	
 	for player in get_tree().get_nodes_in_group("Players"):

@@ -65,3 +65,6 @@ res://Code/ResourceMakers/Entity/MoveMaker.gd
 res://Code/SceneCode/Entities/Player.gd
 res://Code/SceneCode/Entities/Entity.gd
 res://Code/ResourceMakers/Entity/PlayerMaker.gd
+res://Code/EnemyAI/AI5_Ailment.gd
+res://Code/EnemyAI/AI0_Random.gd
+res://Resources/Move Data/Enemy Moves/WishingStar.tres
