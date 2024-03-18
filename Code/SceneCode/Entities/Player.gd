@@ -100,7 +100,7 @@ func payCost(move) -> int:
 	if Globals.currentAura == "LowTicks":
 		payTP = int(payTP/2)
 	
-	if move.recharge == true:
+	if move.refresh == true:
 		pass
 	
 	return payTP

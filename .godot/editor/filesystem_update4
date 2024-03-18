@@ -46,3 +46,6 @@ res://Scene/Entities/Player.tscn
 res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/AICodeTab.tscn
+res://README.md
+res://Code/EnemyAI/AI4_Healer.gd
+res://Code/SceneCode/Entities/Player.gd

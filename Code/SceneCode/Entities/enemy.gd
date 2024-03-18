@@ -31,10 +31,10 @@ func _ready():
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
 	
-	enemyAI = load(str(enemyData.AICodePath))
-	
-	aiInstance = enemyAI.new()
-	aiInstance.eData = enemyData
+	if enemyData.AICodePath != "":
+		enemyAI = load(str(enemyData.AICodePath))
+		aiInstance = enemyAI.new()
+		aiInstance.eData = enemyData
 	
 	makeDesc()
 	$ScanBox/ScanDescription.append_text(description)
@@ -53,10 +53,11 @@ func chooseMove(TP,allies,opposing) -> Move:
 	var move: Resource
 	allyCurrentTP = TP
 	allAllies = allies
-	aiInstance.allies = allies
 	allOpposing = opposing
-	aiInstance.opp = opposing
-	aiInstance.data = data
+	if enemyData.AICodePath != "":
+		aiInstance.allies = allies
+		aiInstance.opp = opposing
+		aiInstance.data = data
 	var allowed = allowedMoveset(TP)
 	
 	#If wait is the only allowed move, use that
@@ -96,12 +97,75 @@ func genericSelect(allowed) -> Move:
 				
 	return move
 
+func genericSingle(targetting, _move):
+	#incase it doesn't work
+	var defenderIndex: int = randi() % targetting.size()
+	match actionMode:
+		action.KILL:
+			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
+			for entity in range(targetting.size()):
+				if targetting[entity] == seeking:
+					defenderIndex = entity
+					break
+		
+		action.HEAL:
+			var seeking = groupLeastHealth("Ally", enemyData.allyHPPreference)
+			for entity in range(targetting.size()):
+				if targetting[entity] == seeking:
+					defenderIndex = entity
+					break
+		
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+		
+		_:
+			for entity in range(targetting.size()): 
+				if targetting[entity].ID == focusIndex:
+					defenderIndex = entity
+	
+	#Remember to reset Action Mode
+	actionMode = action.ETC
+	return defenderIndex
+
+func genericGroup(targetting, _move):
+	var defenderIndex: int
+	match actionMode:
+		action.KILL:
+			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
+			
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity] == seeking:
+						defenderIndex = entityGroup
+						break
+		
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+			
+		_:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity].ID == focusIndex:
+						defenderIndex = entityGroup
+						break
+	
+	actionMode = action.ETC
+	return defenderIndex
+
 func SingleSelect(targetting, move):
-	var trgt = aiInstance.Single(targetting, move)
+	var trgt
+	if enemyData.AICodePath != "":
+		trgt = aiInstance.Single(targetting, move)
+	else:
+		trgt = genericSingle(targetting,move)
 	return trgt
 
-func GroupSelect(targetting, _move):
-	var trgt = aiInstance.Group(targetting)
+func GroupSelect(targetting, move):
+	var trgt
+	if enemyData.AICodePath != "":
+		trgt = aiInstance.Group(targetting, move)
+	else:
+		trgt = genericGroup(targetting, move)
 	return trgt
 
 #-----------------------------------------
@@ -578,63 +642,6 @@ func decideAura(_allowed):
 func decideSummon(_allowed):
 	pass
 
-#-----------------------------------------
-#GENERIC TARGETTING AI
-#-----------------------------------------
-func GenericSingle(targetting, _move):
-	#incase it doesn't work
-	var defenderIndex: int = randi() % targetting.size()
-	match actionMode:
-		action.KILL:
-			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
-			for entity in range(targetting.size()):
-				if targetting[entity] == seeking:
-					defenderIndex = entity
-					break
-		
-		action.HEAL:
-			var seeking = groupLeastHealth("Ally", enemyData.allyHPPreference)
-			for entity in range(targetting.size()):
-				if targetting[entity] == seeking:
-					defenderIndex = entity
-					break
-		
-		action.ETC:
-			defenderIndex = randi() % targetting.size()
-		
-		_:
-			for entity in range(targetting.size()): 
-				if targetting[entity].ID == focusIndex:
-					defenderIndex = entity
-	
-	#Remember to reset Action Mode
-	actionMode = action.ETC
-	return defenderIndex
-
-func GenericGroup(targetting):
-	var defenderIndex: int
-	match actionMode:
-		action.KILL:
-			var seeking = groupLeastHealth("Opposing",enemyData.oppHPPreference)
-			
-			for entityGroup in range(targetting.size()):
-				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity] == seeking:
-						defenderIndex = entityGroup
-						break
-		
-		action.ETC:
-			defenderIndex = randi() % targetting.size()
-			
-		_:
-			for entityGroup in range(targetting.size()):
-				for entity in range(targetting[entityGroup].size()):
-					if targetting[entityGroup][entity].ID == focusIndex:
-						defenderIndex = entityGroup
-						break
-	
-	actionMode = action.ETC
-	return defenderIndex
 #-----------------------------------------
 #UI CHANGES
 #-----------------------------------------

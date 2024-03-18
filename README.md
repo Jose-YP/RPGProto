@@ -53,7 +53,7 @@ TODO
 ______
 *Implement Dumbfounded
 
-*Implement other EnemyAI types(So far only Random, Buff and Polkan | 3/7)
+*Implement other EnemyAI types(So far only Random, Buff, Debuff and Polkan | 4/7)
 
 *Implement Recharging moves
 
