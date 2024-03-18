@@ -92,6 +92,12 @@ var ailmentStrings: Dictionary = {
 	"Worn Out": 1024,
 	"Explosive": 2048} #XSOFT will be 4096
 
+var auraStrings: Dictionary = {
+	"BodyBroken": 1,
+	"WillWrecked": 2,
+	"DoubleCrits": 4,
+	"LowTP": 8}
+
 func inCaseNone(property) -> void:
 	if property == null:
 		property = 0
@@ -109,6 +115,8 @@ func String_to_Flag(property,type)  -> int:
 			string_translate = boostStrings
 		"Ailment":
 			string_translate = ailmentStrings
+		"Aura":
+			string_translate = auraStrings
 	
 	if string_translate.has(property):
 		return string_translate[property]

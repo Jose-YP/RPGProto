@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=8 format=3 uid="uid://b6jbgarv46a4q"]
+[gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://b6jbgarv46a4q"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_tlgvo"]
 [ext_resource type="Resource" uid="uid://crlpknckxynoj" path="res://Resources/Item Data/ItemSpecifics/SpikeBomb.tres" id="2_pv1fa"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="3_g5um8"]
 [ext_resource type="Resource" uid="uid://4ejmx16fg7ug" path="res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres" id="4_git2g"]
 [ext_resource type="Resource" uid="uid://cmwfvw5gugpo8" path="res://Resources/Move Data/Enemy Moves/Hariq.tres" id="5_uqb72"]
+[ext_resource type="Resource" uid="uid://cqupoalstbowj" path="res://Resources/Move Data/Enemy Moves/AshyPowder.tres" id="6_mgcik"]
 [ext_resource type="Resource" uid="uid://f3dwsaxhmuoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/FornaxSpecific.tres" id="6_qh2jh"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="7_6x48c"]
 
@@ -33,7 +34,7 @@ Weakness = 16
 strong = 0
 immunity = "None"
 attackData = ExtResource("1_tlgvo")
-skillData = [ExtResource("4_git2g"), ExtResource("5_uqb72")]
+skillData = [ExtResource("4_git2g"), ExtResource("5_uqb72"), ExtResource("6_mgcik")]
 itemData = {
 ExtResource("2_pv1fa"): 1
 }

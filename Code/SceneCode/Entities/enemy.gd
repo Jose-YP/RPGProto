@@ -391,7 +391,7 @@ func decideCondition(allowed) -> Move:
 					return conditionMoves.pick_random()
 	return null
 
-func decideAilment(allowed):
+func decideAilment(allowed) -> Move:
 	if getEnumMoves(allowed, "Ailment").size() == 0:
 		return null
 	
@@ -405,16 +405,24 @@ func decideAilment(allowed):
 		for entity in allOpposing:
 			#Check if they have the prefered number of ailments
 			#And if they don't have a favored Ailment
-			checkingAilments = HelperFunctions
+			var checkingAilments: int = HelperFunctions.String_to_Flag(entity.data.Ailment, "Ailment")
 			if (entity.data.AilmentNum < enemyData.oppAilmentPreference or 
 			not entity.data.Ailment & enemyData.favoredAilments):
 				focusIndex = entity.ID
-				return getEnumMoves(allowed, "Ailment").pick_random()
+				return getEnumMoves(allowed, "Ailment", "NonSoft").pick_random()
+			
+			#If XSoft is not full
+			elif not "" in entity.data.XSoft:
+				return getEnumMoves(allowed, "Ailment", "XSoft").pick_random()
 	
 	return null
 
-func decideAura(_allowed):
-	pass
+func decideAura(allowed) -> Move:
+	var auraMoves = getEnumMoves(allowed,"Aura")
+	var currentAuraInt: int = HelperFunctions.String_to_Flag(Globals.currentAura,"Aura")
+	if auraMoves.size() != 0 and currentAuraInt != enemyData.favoredAuras:
+		return auraMoves.pick_random()
+	return null
 
 func decideSummon(_allowed):
 	pass
@@ -560,7 +568,15 @@ func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array:
 				checking = move.Aura
 				boolAny = specificType == "" and checking != "None"
 			"Ailment":
-				checking = move.Ailment
+				#Include/Exclude Soft Ailment Moves as necessary
+				if (specificType == "XSoft" and 
+				(move.Ailment == "EleSoft" or move.Ailment == "PhySoft")):
+					checking = "XSoft"
+				elif (specificType == "NonSoft" and not
+				(move.Ailment == "EleSoft" or move.Ailment == "PhySoft")): 
+					checking = "NonSoft"
+				else:
+					checking = move.Ailment
 				boolAny = specificType == "" and checking != "None"
 		
 		boolSpecific = checking == specificType
