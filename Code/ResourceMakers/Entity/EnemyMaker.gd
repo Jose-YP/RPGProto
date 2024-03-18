@@ -10,7 +10,7 @@ class_name Enemy
 @export var Revivable: bool
 
 @export_group("AI")
-@export var AICodePath: String = "res://Code/EnemyAI/EnemyRandom.gd"
+@export var AICodePath: String = ""
 @export var hasMisc: bool = false
 @export var Priorities: Array[String] = ["Misc","Summon","Aura","Condition",
 "Buff","Debuff","Element","Ailment","Heal","Attack"] #Reordered depending on user
@@ -36,12 +36,12 @@ class_name Enemy
 @export_subgroup("Stat Buff Preferences")
 @export_flags("Attack","Defense","Speed","Luck") var allyBoostTypePreference: int = 15
 @export_range(0,4) var selfBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var selfBuffAmmountPreference: float = .2
+@export_range(-.6,.6,.05) var selfBuffAmmountPreference: float = .1
 @export_range(0,4) var allyBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var allyBuffAmmountPreference: float = .2
+@export_range(-.6,.6,.05) var allyBuffAmmountPreference: float = .1
 @export_flags("Attack","Defense","Speed","Luck") var oppBoostTypePreference: int = 15
 @export_range(0,4) var oppBuffNumPreference: int = 1
-@export_range(-.6,.6,.05) var oppBuffAmmountPreference: float = .2
+@export_range(-.6,.6,.05) var oppBuffAmmountPreference: float = .1
 
 @export_subgroup("Other Buff Preferences")
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky",

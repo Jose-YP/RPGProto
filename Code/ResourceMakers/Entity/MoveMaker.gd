@@ -38,7 +38,7 @@ class_name Move
 @export_group("Other")
 @export var BoostAmmount: int = 0
 @export_flags("Attack","Defense","Speed","Luck") var BoostType = 0
-@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition = 0
+@export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition: int = 0
 @export_enum("None","BodyBroken","WillWrecked","LowTicks","CritDouble") var Aura: String = "None"
 @export_enum("Fire","Water","Elec","Neutral","TWin","TLose","UWin","ULose","None") var ElementChange: String = "None"
 @export var Summon: Array = []
