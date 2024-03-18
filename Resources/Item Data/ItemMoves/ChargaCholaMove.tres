@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bpfaulvlrowf1"]
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://dtn37yk0ejsjm"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_lkl8c"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_q8p7u"]
 
 [resource]
-script = ExtResource("1_lkl8c")
-name = "Ampa Anta"
-description = "Give a single ally Amp"
-TPCost = 40
+script = ExtResource("1_q8p7u")
+name = "ChargaChola"
+description = "Grants a single ally Charge"
+TPCost = 50
 Which = "Ally"
 Target = "Single"
 element = "Neutral"
@@ -29,7 +29,7 @@ HealedAilment = "None"
 HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
-Condition = 2
+Condition = 1
 Aura = "None"
 ElementChange = "None"
 Summon = []

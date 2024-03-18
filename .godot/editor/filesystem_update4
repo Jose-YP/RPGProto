@@ -50,3 +50,8 @@ res://README.md
 res://Code/EnemyAI/AI4_Healer.gd
 res://Code/SceneCode/Entities/Player.gd
 res://Code/ResourceMakers/Entity/MoveMaker.gd
+res://Code/Globals/HelperFunctions.gd
+res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
+res://Resources/Item Data/ItemSpecifics/ChargaChola.tres
+res://Resources/Item Data/ItemMoves/ChargaCholaMove.tres
+res://Resources/Move Data/Enemy Moves/ChangePerspective.tres

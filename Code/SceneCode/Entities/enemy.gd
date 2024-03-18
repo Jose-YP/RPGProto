@@ -171,19 +171,20 @@ func GroupSelect(targetting, move):
 #-----------------------------------------
 #GENERIC DECICION MAKING
 #-----------------------------------------
-func decideAttack(allowed):
+func decideAttack(allowed) -> Move:
 	var lowHPArray: Array = groupLowHealth("Opposing", enemyData.oppHPPreference)
 	var foundLow: int = 0
+	
 	for entityLow in lowHPArray:
 		if entityLow:
 			foundLow += 1
-	
-	if foundLow == 0:
-		var damaging = getDamagingMoves(allowed)
-		return damaging.pick_random()
-	else:
+			
+	if foundLow != 0:
 		actionMode = action.KILL
 		return getHighDamage(allowed)
+	
+	var damaging = getDamagingMoves(allowed)
+	return damaging.pick_random()
 
 func decideHeal(allowed) -> Move:
 	var lowHPArray: Array = groupLowHealth("Ally", enemyData.allyHPPreference)
@@ -311,13 +312,84 @@ func decideDebuff(allowed) -> Move:
 	print("Returned null")
 	return null
 
-func decideEleChange(allowed):
+func decideEleChange(allowed) -> Move:
 	if getEnumMoves(allowed, "EleChange").size() == 0:
-		return null
+		var elementMoves: Array = getEnumMoves(allowed,"EleChange")
+		var allyElements: Array = groupElements("Ally")
+		var oppElements: Array = groupElements("Opposing")
+		var allyMoves: Array = getWhichMove(elementMoves,"Ally")
+		var oppMoves: Array = getWhichMove(elementMoves, "Enemy")
+		var desireMap: Dictionary = {"Fire": 0, "Water": 0, "Elec": 0, "Neutral": 0}
+		var teamDesired: String = "Neutral"
+		
+		#Boss element has more priority
+		for ally in allyElements:
+			if ally.enemyData.Boss:
+				desireMap[ally.data.element] += 3
+			else:
+				desireMap[ally.data.element] += 1
+		
+		#Find the element with most desire, make that teamDesired
+		for element in desireMap.keys():
+			if desireMap[teamDesired] < desireMap[element]:
+				teamDesired = element
+			
+			#Neutral is lowest priority
+			elif desireMap[teamDesired] == desireMap[element] and element != "Neutral":
+					teamDesired = element
+		
+		#Check to see if enemy should change any opponent elements
+		if oppMoves.size() != 0:
+			var unfavoredElement: String = elementMatchup(false,teamDesired)
+			var favoredElement: String = elementMatchup(true,teamDesired)
+			var unfavoredNum: int = 0
+			
+			#Element matchup makes sure it'll look for how many
+			for i in range(oppElements.size()):
+				if unfavoredElement == oppElements[i]:
+					#This will make last opponents in line prioritized unlike most where first is
+					#Oh well
+					focusIndex = allOpposing[i].ID
+					unfavoredNum += 1
+			
+			if unfavoredNum > enemyData.oppElementPreference:
+				return getEnumMoves(oppMoves, "EleChange", favoredElement, oppElements).pick_random()
+		
+		#Checks to see if it should change any ally elements
+		elif allyMoves.size() != 0:
+			for i in range(allAllies.size()):
+				#Looks to see if any ally doesn't have their desired element if they have any
+				var selfFavor = allAllies[i].enemyData.selfFavoredElement
+				if (selfFavor != "Null" and allyElements[i] != selfFavor):
+					focusIndex = allAllies[i].ID
+					return getEnumMoves(allyMoves, "EleChange", selfFavor, allyElements[i]).pick_random()
+				
+				#Otherwise checks if they don't have an advantage against most players
+				else:
+					var enemyCommon = HelperFunctions.findCommon(oppElements)
+					var enemyMatch = elementMatchup(true, enemyCommon)
+					var enemyLose = elementMatchup(false, enemyCommon)
+					if allyElements[i] == enemyMatch:
+						focusIndex = allAllies[i].ID
+						return getEnumMoves(allyMoves, "EleChange", enemyLose, enemyCommon).pick_random()
+		
+	return null
 
-func decideCondition(allowed):
-	if getFlagMoves(allowed, "Condition").size() == 0:
-		return null
+func decideCondition(allowed) -> Move:
+	var conditionMoves: Array = getFlagMoves(allowed, "Condition")
+	if conditionMoves.size() != 0:
+		var conditions: int = 0
+		#Check every condition the user can give
+		for move in conditionMoves:
+			conditions |= move.Condition
+		
+		for ally in allAllies:
+			#Check if an ally would want the condtition
+			# and if they don't have it
+			if (ally.enemyData.favoredCondtiion & conditions and
+				not ally.data.Condition & conditions):
+					return conditionMoves.pick_random()
+	return null
 
 func decideAilment(allowed):
 	if getEnumMoves(allowed, "Ailment").size() == 0:
@@ -331,7 +403,11 @@ func decideAilment(allowed):
 	
 	if canAilm:
 		for entity in allOpposing:
-			if entity.data.AilmentNum < enemyData.oppAilmentPreference:
+			#Check if they have the prefered number of ailments
+			#And if they don't have a favored Ailment
+			checkingAilments = HelperFunctions
+			if (entity.data.AilmentNum < enemyData.oppAilmentPreference or 
+			not entity.data.Ailment & enemyData.favoredAilments):
 				focusIndex = entity.ID
 				return getEnumMoves(allowed, "Ailment").pick_random()
 	
@@ -449,7 +525,7 @@ func getFlagMoves(allowed, property, specificType = 0) -> Array:
 	return moveArray
 
 #works for eleChange, ailments and aura moves
-func getEnumMoves(allowed, property, specificType = "") -> Array: 
+func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array: 
 	var moveArray: Array = []
 	var propertyFlag: int
 	match property:
@@ -466,8 +542,20 @@ func getEnumMoves(allowed, property, specificType = "") -> Array:
 		var boolSpecific
 		match property:
 			"EleChange":
-				checking = move.ElementChange
+				if eleCheck != "": match move.ElementChange:
+					#CHECK LATER
+					"TWin":
+						checking = elementMatchup(true,eleCheck)
+					"TLose":
+						checking = elementMatchup(false,eleCheck)
+					"UWin":
+						checking = elementMatchup(true,eleCheck)
+					"ULose":
+						checking = elementMatchup(false,eleCheck)
+					_:
+						checking = move.ElementChange
 				boolAny = specificType == "" and checking != "None"
+				
 			"Aura":
 				checking = move.Aura
 				boolAny = specificType == "" and checking != "None"
@@ -497,6 +585,16 @@ func getSpecificMove(allowed, moveName) -> Move:
 			return move
 	
 	return null
+
+#Returns moves that target ally, opponents or both
+func getWhichMove(allowed, which) -> Array:
+	var movesArray: Array = []
+	
+	for move in allowed:
+		if move.Which == which:
+			movesArray.append(move)
+	
+	return movesArray
 
 #-----------------------------------------
 #ENEMY PERCIEVE SELF

@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://bpfaulvlrowf1"]
+[gd_resource type="Resource" script_class="Move" load_steps=2 format=3 uid="uid://cqupoalstbowj"]
 
-[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_lkl8c"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_i7n1c"]
 
 [resource]
-script = ExtResource("1_lkl8c")
-name = "Ampa Anta"
-description = "Give a single ally Amp"
-TPCost = 40
-Which = "Ally"
+script = ExtResource("1_i7n1c")
+name = "Ashy Powder"
+description = "Basic Attack"
+TPCost = 50
+Which = "Enemy"
 Target = "Single"
 element = "Neutral"
 phyElement = "Neutral"
-property = 8
+property = 1
 CostType = "Free"
 cost = 0.0
 refresh = false
@@ -29,7 +29,7 @@ HealedAilment = "None"
 HealAilAmmount = 0
 BoostAmmount = 0
 BoostType = 0
-Condition = 2
+Condition = 0
 Aura = "None"
 ElementChange = "None"
 Summon = []

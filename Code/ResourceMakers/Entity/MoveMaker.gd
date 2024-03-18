@@ -5,11 +5,11 @@ class_name Move
 @export var name: String = "Attack"
 @export_multiline var description: String = "Basic Attack"
 @export var TPCost: int = 50
-@export_enum("Enemy","Ally","Both") var Which = "Enemy"
-@export_enum("Single","Group","Self","All","Random","RandomGroup","KO","None") var Target = "Single"
+@export_enum("Enemy","Ally","Both") var Which: String = "Enemy"
+@export_enum("Single","Group","Self","All","Random","RandomGroup","KO","None") var Target: String = "Single"
 @export_enum("Fire","Water","Elec","Light","Aurora","Comet","Neutral","Aether") var element: String = "Neutral"
-@export_enum("Slash","Crush","Pierce","Neutral") var phyElement = "Neutral"
-@export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property = 1
+@export_enum("Slash","Crush","Pierce","Neutral") var phyElement: String = "Neutral"
+@export_flags("Physical","Ballistic","Bomb","Buff","Heal","Aura","Summon","Ailment","Misc") var property: int = 1
 
 @export_subgroup("Costs")
 @export_enum("Free","HP","LP","Ammo","MaxHP","Overdrive","Item") var CostType: String = "Free"
@@ -37,7 +37,7 @@ class_name Move
 
 @export_group("Other")
 @export var BoostAmmount: int = 0
-@export_flags("Attack","Defense","Speed","Luck") var BoostType = 0
+@export_flags("Attack","Defense","Speed","Luck") var BoostType: int = 0
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition: int = 0
 @export_enum("None","BodyBroken","WillWrecked","LowTicks","CritDouble") var Aura: String = "None"
 @export_enum("Fire","Water","Elec","Neutral","TWin","TLose","UWin","ULose","None") var ElementChange: String = "None"

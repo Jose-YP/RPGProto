@@ -1,3 +1,4 @@
+res://Resources/Move Data/Enemy Moves
 res://Resources/Item Data/ItemMoves
 res://Icons/MenuIcons
 res://Resources/Item Data/ItemSpecifics
@@ -19,4 +20,3 @@ C:/Godots/Godot_v4.2.1-stable_win64.exe/Games/Godot-RPG-PRoject/JSONS&Saves/Save
 res://
 res://Code/SceneCode/Screens
 res://Themes/ButtonStyle
-res://Code/SceneCode/Individuals

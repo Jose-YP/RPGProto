@@ -1,6 +1,6 @@
 extends Node
 
-var elementFlags = {
+var elementFlags: Dictionary = {
 	1: "Fire",
 	2: "Water",
 	4: "Elec",
@@ -11,7 +11,7 @@ var elementFlags = {
 	128: "Light",
 	256: "Aurora",
 	512: "All"}
-var elementStrings = {
+var elementStrings: Dictionary = {
 	"Fire": 1, 
 	"Water": 2, 
 	"Elec": 4, 
@@ -23,7 +23,7 @@ var elementStrings = {
 	"Aurora": 256,
 	"All": 512}
 
-var propertyFlags = {
+var propertyFlags: Dictionary = {
 	1:"Physical",
 	2:"Ballistic",
 	4:"Bomb",
@@ -33,7 +33,7 @@ var propertyFlags = {
 	64:"Summon",
 	128:"Ailment",
 	256:"Misc"}
-var propertyStrings = {
+var propertyStrings: Dictionary = {
 	"Physical": 1,
 	"Ballistic":2,
 	"Bomb":4,
@@ -44,7 +44,7 @@ var propertyStrings = {
 	"Ailment":128,
 	"Misc":256}
 
-var conditionFlags = {
+var conditionFlags: Dictionary = {
 	1:"Charge",
 	2:"Amp",
 	4:"Targetted",
@@ -55,7 +55,7 @@ var conditionFlags = {
 	128:"Absorb",
 	256:"Devoid",
 	512:"AnotherTurn"}
-var conditionStrings ={
+var conditionStrings: Dictionary ={
 	"Charge":1,
 	"Amp":2,
 	"Targetted":4,
@@ -67,16 +67,30 @@ var conditionStrings ={
 	"Devoid":256,
 	"AnotherTurn":512}
 
-var boostFlags = {
+var boostFlags: Dictionary = {
 	1: "Attack",
 	2: "Defense",
 	4: "Speed",
 	8: "Luck"}
-var boostStrings = {
+var boostStrings: Dictionary = {
 	"Attack": 1,
 	"Defense": 2,
 	"Speed": 4,
 	"Luck": 8}
+
+var ailmentStrings: Dictionary = {
+	"Overdrive": 1,
+	"Poison": 2,
+	"Reckless": 4,
+	"Exhausted": 8,
+	"Rust": 16,
+	"Stun": 32,
+	"Curse": 64,
+	"Protected": 128,
+	"Dumbfounded": 256,
+	"Miserable": 512,
+	"Worn Out": 1024,
+	"Explosive": 2048} #XSOFT will be 4096
 
 func inCaseNone(property) -> void:
 	if property == null:
@@ -93,6 +107,8 @@ func String_to_Flag(property,type)  -> int:
 			string_translate = conditionStrings
 		"Boost":
 			string_translate = boostStrings
+		"Ailment":
+			string_translate = ailmentStrings
 	
 	if string_translate.has(property):
 		return string_translate[property]
@@ -128,13 +144,17 @@ func BoostTranslation(entityBoosts) -> String:
 	return BoostString
 
 func NullorAppend(list,value,XSoft=true,maxSize=3) -> Array:
+	print(list, value)
+	
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":
 			list[i] = value
 			return list
 	
 	if XSoft:
-		if list.size() < maxSize:
+		if list == null:
+			list = ["","",""]
+		elif list.size() < maxSize:
 			list.append(value)
 			return list
 	
@@ -181,3 +201,28 @@ func ifNotEmpty(string, added) -> String:
 		return str(string, added)
 	else:
 		return str(added)
+
+func findCommon(arr, most = true):
+	var value = arr[0]
+	var arrayMap: Dictionary = {}
+	
+	#initialize every value
+	for i in arr:
+		arrayMap[i] = 0
+	
+	#Count every value
+	for i in arr:
+		arrayMap[i] += 1
+	
+	for item in arrayMap.keys():
+		#Search for most or least depending on most parameter
+		if ((most and arrayMap[value] < arrayMap[item]) or 
+		(not most and arrayMap[value] > arrayMap[item])):
+			value = item
+		
+		#If two different things in an array have the same value, return null
+		elif value != item and arrayMap[value] == arrayMap[item]:
+			print(value, item, "Found in find Common")
+			return null
+	
+	return value

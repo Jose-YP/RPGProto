@@ -46,12 +46,14 @@ class_name Enemy
 @export_subgroup("Other Buff Preferences")
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky",
 "Reflect","Absorb","Devoid","AnotherTurn") var favoredCondition: int = 763
-@export_enum("Fire","Water","Elec","Neutral") var selfFavoredElement = "Neutral"
-@export_enum("Fire","Water","Elec","Neutral") var allyFavoredElement = "Neutral"
-@export_enum("Fire","Water","Elec","Neutral") var oppFavoredElement = "Neutral"
-@export_enum("Fire","Water","Elec","Neutral") var selfUnfavoredElement = "Neutral"
-@export_enum("Fire","Water","Elec","Neutral") var allyUnfavoredElement = "Neutral"
-@export_enum("Fire","Water","Elec","Neutral") var oppUnfavoredElement = "Neutral"
+@export var allyElementPreference: int = 2
+@export var oppElementPreference: int = 2
+@export_enum("Fire","Water","Elec","Neutral","Null") var selfFavoredElement = "Null"
+@export_enum("Fire","Water","Elec","Neutral","Null") var allyFavoredElement = "Null"
+@export_enum("Fire","Water","Elec","Neutral","Null") var oppFavoredElement = "Null"
+@export_enum("Fire","Water","Elec","Neutral","Null") var selfUnfavoredElement = "Null"
+@export_enum("Fire","Water","Elec","Neutral","Null") var allyUnfavoredElement = "Null"
+@export_enum("Fire","Water","Elec","Neutral","Null") var oppUnfavoredElement = "Null"
 
 @export_subgroup("Favor Preferences")
 @export var favorBoss: bool = false

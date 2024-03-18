@@ -6,6 +6,20 @@
 
 [node name="Enemy" groups=["Enemies"] instance=ExtResource("1_bvt52")]
 script = ExtResource("2_i0hmc")
+defenseMult = null
+critBoost = null
+chargAmpBoost = null
+overdriveBoost = null
+tweenTime = null
+phyBoost = null
+firstSoftBoost = null
+secondSoftBoost = null
+lightMult = null
+recklessChance = null
+boostLevels = null
+boostDecay = null
+buffColor = null
+debuffColor = null
 
 [node name="HPBar" parent="BackUI" index="0"]
 offset_top = 106.0

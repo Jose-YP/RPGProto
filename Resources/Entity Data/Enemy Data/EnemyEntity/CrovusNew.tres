@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=7 format=3 uid="uid://bdrlqlvn6kv8c"]
+[gd_resource type="Resource" script_class="entityData" load_steps=9 format=3 uid="uid://bdrlqlvn6kv8c"]
 
 [ext_resource type="Resource" uid="uid://b6bm1esff11v3" path="res://Resources/Move Data/Entity Moves/MostEnemy/BasicAttackBallistic.tres" id="1_niohx"]
+[ext_resource type="Resource" uid="uid://ctp0rnxnswhbw" path="res://Resources/Item Data/ItemSpecifics/ChargaChola.tres" id="2_gumvt"]
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="2_h6imj"]
 [ext_resource type="Resource" uid="uid://cwewb7j8xf4wj" path="res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres" id="3_2q0u3"]
 [ext_resource type="Resource" uid="uid://dsu5sx6hknjoc" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres" id="3_viwcf"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="4_4vvhm"]
 [ext_resource type="Resource" uid="uid://bjj20rjcruykh" path="res://Resources/Move Data/Enemy Moves/Swipe.tres" id="4_dh5se"]
+[ext_resource type="Resource" uid="uid://d5d4gg2cpxaf" path="res://Resources/Move Data/Enemy Moves/ChangePerspective.tres" id="6_ypste"]
 
 [resource]
 script = ExtResource("2_h6imj")
@@ -32,8 +34,10 @@ Weakness = 48
 strong = 0
 immunity = "None"
 attackData = ExtResource("1_niohx")
-skillData = [ExtResource("3_2q0u3"), ExtResource("4_dh5se")]
-itemData = {}
+skillData = [ExtResource("3_2q0u3"), ExtResource("4_dh5se"), ExtResource("6_ypste")]
+itemData = {
+ExtResource("2_gumvt"): 1
+}
 waitData = ExtResource("4_4vvhm")
 ItemChange = 0
 costBonus = 0
