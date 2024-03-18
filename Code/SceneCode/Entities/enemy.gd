@@ -62,15 +62,38 @@ func chooseMove(TP,allies,opposing) -> Move:
 	#If wait is the only allowed move, use that
 	if allowed[0] == data.waitData:
 		return data.waitData
-	
-	move = aiInstance.basicSelect(allowed)
-	if move is Item:
-		move = move.attackData
+	elif enemyData.AICodePath != "":
+		move = aiInstance.basicSelect(allowed)
+	else:
+		move = genericSelect(allowed)
 	
 	#SAFEGUARD
 	if move == null:
 		return data.waitData
 	
+	return move
+
+func genericSelect(allowed) -> Move:
+	var move: Move = null
+	#Priority list and chances will be determined in enemy Data
+	for i in range(enemyData.Priorities.size()):
+		if randi_range(0,100) <= enemyData.PriorityChance[i]:
+			match enemyData.Priorities[i]:
+				"Attack": move = decideAttack(allowed)
+				"Heal": move = decideHeal(allowed)
+				"Buff": move = decideBuff(allowed)
+				"Debuff": move = decideDebuff(allowed)
+				"Condition": move = decideCondition(allowed)
+				"Element": move = decideEleChange(allowed)
+				"Ailment": move = decideAilment(allowed)
+				"Aura": move = decideAura(allowed)
+				"Summon": move = decideSummon(allowed)
+				"Misc": 
+					pass
+			
+			if move != null:
+				return move
+				
 	return move
 
 func SingleSelect(targetting, move):
@@ -113,7 +136,7 @@ func getElementMoves(allowed,elementType = "") -> Array:
 	if elementType in ["Fire", "Water", "Elec"]:
 		print("Checking Elements")
 		phyBool = false
-	elif elementType in ["Slash", "Crush", "Pierce"]:
+	elif elementType != "" and elementType in ["Slash", "Crush", "Pierce"]:
 		print("Checking Phy Elements")
 		phyBool = true
 	
@@ -159,35 +182,28 @@ func getFlagMoves(allowed, property, specificType = 0) -> Array:
 	
 	for move in allowed:
 		var checking
-		var boolAny
-		var boolSpecific
+		var boolAny: bool = false
+		var boolSpecific: bool = false
+		
 		match property:
 			"Buff":
-				print("Buffing")
-				var boostAmmount: bool = move.BoostAmmount > 0
-				print(boostAmmount, move.BoostAmmount)
 				checking = move.BoostType
-				boolAny = specificType == 0 and checking != 0 and boostAmmount
+				boolAny = checking != 0 and move.BoostAmmount > 0
 				boolSpecific = checking & specificType
 			"Debuff":
-				print("debuffing")
-				var boostAmmount: bool = move.BoostAmmount < 0
 				checking = move.BoostType
-				boolAny = specificType == 0 and checking != 0 and boostAmmount
+				boolAny = checking != 0 and move.BoostAmmount < 0
 				boolSpecific = checking & specificType
 			"Condition":
 				checking = move.Condition
-				boolAny = specificType == 0 and checking != 0
+				boolAny = checking != 0
 				boolSpecific = checking & specificType
 		
 		if specificType == 0:
 			boolSpecific = true
 		
-		if boolAny and boolSpecific:
-			print(boolAny, boolSpecific)
-			print("Found move ", move.name)
+		if move.property & 8 and boolAny and boolSpecific:
 			moveArray.append(move)
-	
 	return moveArray
 
 #works for eleChange, ailments and aura moves
@@ -391,8 +407,19 @@ func internalizeTP(type):
 #-----------------------------------------
 #GENERIC DECICION MAKING
 #-----------------------------------------
-func decideAttack():
-	pass
+func decideAttack(allowed):
+	var lowHPArray: Array = groupLowHealth("Opposing", enemyData.oppHPPreference)
+	var foundLow: int = 0
+	for entityLow in lowHPArray:
+		if entityLow:
+			foundLow += 1
+	
+	if foundLow == 0:
+		var damaging = getDamagingMoves(allowed)
+		return damaging.pick_random()
+	else:
+		actionMode = action.KILL
+		return getHighDamage(allowed)
 
 func decideHeal(allowed) -> Move:
 	var lowHPArray: Array = groupLowHealth("Ally", enemyData.allyHPPreference)
@@ -409,15 +436,21 @@ func decideHeal(allowed) -> Move:
 			return getHealMoves(allowed, "HP").pick_random()
 	
 	if getHealMoves(allowed, "Ailment").size() != 0:
+		var i: int = 0
 		for entity in groupAilments("Ally", true):
 			if ((entity[0] == "Mental" or entity[0] == "Chemical")
 			and entity[1] > enemyData.allyAilmentPreference):
 				actionMode = action.AILHEAL
+				focusIndex = allAllies[i].ID
 				return getHealMoves(allowed, "Ailment").pick_random()
+			else: i += 1
 	
 	return null
 
-func decideBuff(allowed, chance) -> Move:
+func decideBuff(allowed) -> Move:
+	if getFlagMoves(allowed, "Buff").size() == 0:
+		return null
+	
 	var canBuff: bool = false
 	var buffedNum: Array = []
 	var buffedFlags: Array = []
@@ -426,11 +459,12 @@ func decideBuff(allowed, chance) -> Move:
 		buffedNum.append(0)
 		buffedFlags.append(0)
 		for buff in range(entity.size()):
+			var buffFlag = int(pow(2,buff))
+			if not (buffFlag & enemyData.allyBoostTypePreference): continue
+			
 			if entity[buff] > enemyData.allyBuffAmmountPreference:
-				print(entity[buff], "vs", enemyData.allyBuffAmmountPreference)
-				print(buff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				buffedFlags[-1] += int(pow(2,buff)) 
+				buffedFlags[-1] += buffFlag
 				buffedNum[-1] += 1
 				print("FlagCurrently:", buffedFlags[-1])
 		
@@ -438,34 +472,35 @@ func decideBuff(allowed, chance) -> Move:
 		if buffedNum[-1] < enemyData.allyBuffNumPreference:
 			canBuff = true
 	
-	if canBuff and randi_range(0,100) <= chance:
+	if canBuff:
 		canBuff = false
 		actionMode = action.BUFF
 		
 		for entity in allAllies: #Must have buff moves of that type to be viable
+			focusIndex = entity.ID
+			
 			if (entity.data.attackBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 2).pick_random()
 			
 			if (entity.data.speedBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 4).pick_random()
 			
 			if (entity.data.luckBoost < enemyData.allyBuffAmmountPreference and 
 			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
 	return null
 
-func decideDebuff(allowed, chance) -> Move:
+func decideDebuff(allowed) -> Move:
+	if getFlagMoves(allowed, "Debuff").size() == 0:
+		return null
+	
 	var canDebuff: bool = false
 	var debuffedNum: Array = []
 	var debuffedFlags: Array = []
@@ -475,11 +510,12 @@ func decideDebuff(allowed, chance) -> Move:
 		debuffedFlags.append(0)
 		print("DEBUFF")
 		for debuff in range(entity.size()):
+			var debuffFlag = int(pow(2,debuff))
+			if not (debuffFlag & enemyData.oppBoostTypePreference): continue
+			
 			if entity[debuff] > enemyData.oppBuffAmmountPreference:
-				print(entity[debuff], "vs", enemyData.oppBuffAmmountPreference)
-				print(debuff)
 				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				debuffedFlags[-1] += int(pow(2,debuff)) 
+				debuffedFlags[-1] += debuffFlag 
 				debuffedNum[-1] += 1
 				print("FlagCurrently:", debuffedFlags[-1])
 		
@@ -487,45 +523,59 @@ func decideDebuff(allowed, chance) -> Move:
 		if debuffedNum[-1] < enemyData.oppBuffNumPreference:
 			canDebuff = true
 	
-	if canDebuff and randi_range(0,100) <= chance:
+	if canDebuff:
 		actionMode = action.DEBUFF
 		
 		for entity in allOpposing: #Must have buff moves of that type to be viable
+			focusIndex = entity.ID
 			if (entity.data.attackBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 1).pick_random()
 			
 			if (entity.data.defenseBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 2).pick_random()
 			
 			if (entity.data.speedBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 4).pick_random()
 			
 			if (entity.data.luckBoost < enemyData.oppBuffAmmountPreference and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				focusIndex = entity.ID
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
 	
 	return null
 
-func decideEleChange():
+func decideEleChange(allowed):
+	if getEnumMoves(allowed, "EleChange").size() == 0:
+		return null
+
+func decideCondition(allowed):
+	if getFlagMoves(allowed, "Condition").size() == 0:
+		return null
+
+func decideAilment(allowed):
+	if getEnumMoves(allowed, "Ailment").size() == 0:
+		return null
+	
+	var canAilm: bool = false
+	
+	for entity in groupAilments("Opposing", true):
+		if (entity != "Mental" or entity != "Chemical"):
+			canAilm = true
+	
+	if canAilm:
+		for entity in allOpposing:
+			if entity.data.AilmentNum < enemyData.oppAilmentPreference:
+				focusIndex = entity.ID
+				return getEnumMoves(allowed, "Ailment").pick_random()
+	
+	return null
+
+func decideAura(_allowed):
 	pass
 
-func decideCondition():
-	pass
-
-func decideAilment():
-	pass
-
-func decideAura():
-	pass
-
-func decideSummon():
+func decideSummon(_allowed):
 	pass
 
 #-----------------------------------------

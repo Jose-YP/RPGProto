@@ -53,7 +53,8 @@ class_name Enemy
 @export_enum("Fire","Water","Elec","Neutral") var allyUnfavoredElement = "Neutral"
 @export_enum("Fire","Water","Elec","Neutral") var oppUnfavoredElement = "Neutral"
 
-@export_subgroup("Other Preferences")
+@export_subgroup("Favor Preferences")
+@export var favorBoss: bool = false
 @export_flags("BodyBroken","WillWrecked","DoubleCrits","LowTP") var favoredAuras: int = 15
 @export var favoredAlly: String
 @export_enum("DREAMER","Lonna","Damir","Pepper", "None") var hatedOpponent: String = "None"

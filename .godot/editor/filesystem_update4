@@ -22,50 +22,27 @@ res://Resources/Move Data/Enemy Moves/Bahr.tres
 res://Resources/Move Data/Enemy Moves/dielol.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
+res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
 res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/JishiSpecific.tres
-res://Resources/Move Data/Enemy Moves/FiringSquad.tres
+res://Resources/Move Data/Enemy Moves/Insult.tres
+res://Resources/Move Data/Enemy Moves/WishingStar.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres
 res://Resources/Item Data/ItemSpecifics/Endurian.tres
-res://Resources/Move Data/Enemy Moves/Galactic Ghoul.tres
 res://Resources/Move Data/Enemy Moves/Black Hole.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres
 res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
 res://Code/EnemyAI/AI3_Debuff.gd
+res://Code/SceneCode/Entities/enemy.gd
+res://Code/ResourceMakers/Entity/EnemyMaker.gd
 res://Scene/Mains/MainMenu.tscn
 res://Scene/Mains/Battle.tscn
 res://Scene/Entities/Player.tscn
 res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/AICodeTab.tscn
-res://Code/EnemyAI/AI1_Buff.gd
-res://Code/SceneCode/Screens/Battle.gd
-res://Code/SceneCode/Entities/enemy.gd
-res://Code/ResourceMakers/Entity/EnemyMaker.gd
-res://Resources/Move Data/Player Moves/Skills/DREAMER/Refresh.tres
-res://Resources/Move Data/Player Moves/Skills/DREAMER/HalfMoon.tres
-res://Wait.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Daw'.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Almudhanib.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Alshafaq.tres
-res://Resources/Move Data/Player Moves/ChipMoves/Alqamar.tres
-res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres
-res://Resources/Move Data/Player Moves/Skills/DREAMER/Overdrive.tres
-res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres
-res://Resources/Move Data/Player Moves/AllPlayers/Crash.tres
-res://Resources/Move Data/Player Moves/AllPlayers/SummonPlaceholder.tres
-res://Resources/Move Data/Player Moves/Skills/Lonna/GatlingVolley.tres
-res://Code/Globals/Globals.gd
-res://Code/ResourceMakers/Entity/MoveMaker.gd
-res://Code/SceneCode/Entities/Player.gd
-res://Code/SceneCode/Entities/Entity.gd
-res://Code/ResourceMakers/Entity/PlayerMaker.gd
-res://Code/EnemyAI/AI5_Ailment.gd
-res://Code/EnemyAI/AI0_Random.gd
-res://Resources/Move Data/Enemy Moves/WishingStar.tres
-res://Resources/Move Data/Enemy Moves/Insult.tres

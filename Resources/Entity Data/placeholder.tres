@@ -21,7 +21,7 @@ boostStat = 8
 permanentElement = "Fire"
 permanentPhyEle = "Slash"
 permanentWeakness = 0
-permanentResist = 0
+permanentStrong = 0
 defaultBoostStat = 8
 
 [resource]
@@ -46,7 +46,7 @@ groupElementMod = 0.0
 phyElementMod = 0.0
 sameElement = false
 Weakness = 0
-Resist = 0
+strong = 0
 immunity = "None"
 attackData = ExtResource("1_l4s34")
 skillData = [ExtResource("1_l4s34"), ExtResource("1_l4s34")]

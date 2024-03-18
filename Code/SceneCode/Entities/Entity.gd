@@ -1,6 +1,11 @@
 extends Node2D
 
+@export_category("Calc Constants")
 @export var data: entityData
+@export_range(1,2,.05) var defenseMult: float = 1.25
+@export_range(.15,.5,.05) var critBoost: float = .25
+@export_range(1.5,3,.05) var chargAmpBoost: float = 2.5
+@export_range(.05,1,.05) var overdriveBoost: float = .25
 @export_category("Tween Constants")
 @export_range(.01,1) var tweenTime: float = .4
 @export_category("Elemental Constants")
@@ -19,11 +24,7 @@ extends Node2D
 @export_range(0.05,.2,.05) var boostDecay: float = .05
 @export var buffColor: Color = Color.RED
 @export var debuffColor: Color = Color.GRAY
-@export_category("Calc Constants")
-@export_range(1,2,.05) var defenseMult: float = 1.25
-@export_range(.15,.5,.05) var critBoost: float = .25
-@export_range(1.5,3,.05) var chargAmpBoost: float = 2.5
-@export_range(.05,1,.05) var overdriveBoost: float = .25
+
 
 @onready var InfoBox: PanelContainer = $BackUI/CurrentInfo
 @onready var Info: RichTextLabel = $BackUI/CurrentInfo/RichTextLabel

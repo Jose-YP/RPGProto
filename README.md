@@ -55,6 +55,8 @@ ______
 
 *Implement other EnemyAI types(So far only Random, Buff and Polkan | 3/7)
 
+*Implement Recharging moves
+
 ______
 LOFTY TODOS
 ______

@@ -42,6 +42,7 @@ func basicSelect(allowed) -> Move:
 		canDebuff = false
 		actionMode = action.DEBUFF
 		
+		print("Debuffing")
 		for entity in (opp.size()): #Must have buff moves of that type to be viable
 			
 			focusIndex = opp[entity].ID
@@ -61,6 +62,8 @@ func basicSelect(allowed) -> Move:
 			if (debuffedFlags[entity] & 8 and 
 			getFlagMoves(allowed, "Debuff", 8).size() != 0):
 				return getFlagMoves(allowed, "Debuff", 8).pick_random()
+	
+	elif canDebuff: print("Missed chance")
 	
 	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
 		buffedNum.append(0)
@@ -82,7 +85,7 @@ func basicSelect(allowed) -> Move:
 	if canBuff and randi_range(0,100) <= 40:
 		canBuff = false
 		actionMode = action.BUFF
-		
+		print("Buffing")
 		for entity in range(allies.size()): #Must have buff moves of that type to be viable
 			focusIndex = allies[entity].ID
 			
@@ -102,6 +105,7 @@ func basicSelect(allowed) -> Move:
 			 and getFlagMoves(allowed, "Buff", 8).size() != 0):
 				return getFlagMoves(allowed, "Buff", 8).pick_random()
 	
+	elif canBuff: print("Missed chance")
 	
 	#HEAL CHECK
 	#--------------
@@ -134,7 +138,7 @@ func basicSelect(allowed) -> Move:
 		if entityLow:
 			foundLow += 1
 	
-	if foundLow == 0 or randi_range(0,100) < 25:
+	if foundLow == 0 or randi_range(0,100) > 25:
 		var damaging = getDamagingMoves(allowed)
 		return damaging.pick_random()
 	else:
