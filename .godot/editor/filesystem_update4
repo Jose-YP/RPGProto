@@ -11,6 +11,7 @@ res://Themes/Gradients/Blue.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/Amebozo.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/EasyEntity.tres
 res://Resources/Item Data/ItemMoves/NutMove.tres
+res://Resources/Move Data/Entity Moves/MostEnemy/BlueShift.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/ProkyonSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres
 res://Resources/Item Data/ItemMoves/SpikeBombMove.tres
@@ -18,11 +19,9 @@ res://Resources/Entity Data/Enemy Data/EnemySpecific/FornaxSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Fornax.tres
 res://Resources/Item Data/ItemMoves/SpicyPopMove.tres
 res://Resources/Item Data/ItemMoves/SpeedScrewMove.tres
-res://Resources/Move Data/Enemy Moves/Bahr.tres
 res://Resources/Move Data/Enemy Moves/dielol.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/TestBoss.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres
-res://Resources/Move Data/Entity Moves/MostEnemy/Heal.tres
 res://Resources/Entity Data/Enemy Data/EnemySpecific/EnemyThrid.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres
 res://Resources/Item Data/ItemMoves/CoughSyrupMove.tres
@@ -37,22 +36,11 @@ res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres
 res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres
 res://Themes/ButtonStyle/Dock.tres
 res://Themes/Gradients/Nothing.tres
-res://Code/EnemyAI/AI3_Debuff.gd
-res://Code/SceneCode/Entities/enemy.gd
-res://Code/ResourceMakers/Entity/EnemyMaker.gd
 res://Scene/Mains/MainMenu.tscn
 res://Scene/Mains/Battle.tscn
 res://Scene/Entities/Player.tscn
 res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/AICodeTab.tscn
-res://README.md
-res://Code/EnemyAI/AI4_Healer.gd
-res://Code/SceneCode/Entities/Player.gd
-res://Code/ResourceMakers/Entity/MoveMaker.gd
-res://Code/Globals/HelperFunctions.gd
-res://Resources/Item Data/ItemMoves/AmpaAntaMove.tres
-res://Resources/Item Data/ItemSpecifics/ChargaChola.tres
+res://Code/SceneCode/Entities/enemy.gd
 res://Resources/Item Data/ItemMoves/ChargaCholaMove.tres
-res://Resources/Move Data/Enemy Moves/ChangePerspective.tres
-res://Resources/Move Data/Enemy Moves/AshyPowder.tres

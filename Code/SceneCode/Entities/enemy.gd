@@ -5,7 +5,7 @@ extends "res://Code/SceneCode/Entities/Entity.gd"
 @onready var ScanBox: PanelContainer = $ScanBox
 @onready var gettingScanned: bool = false
 
-enum action{KILL, HEAL, AILHEAL, BUFF, DEBUFF, ELECHANGE, AILMENT, ETC}
+enum action{KILL, HEAL, AILHEAL, BUFF, DEBUFF, CONDITION, ELECHANGE, AILMENT, ETC}
 
 #SELF VARIABLES
 var enemyAI
@@ -313,8 +313,9 @@ func decideDebuff(allowed) -> Move:
 	return null
 
 func decideEleChange(allowed) -> Move:
-	if getEnumMoves(allowed, "EleChange").size() == 0:
-		var elementMoves: Array = getEnumMoves(allowed,"EleChange")
+	print("Deciding ELE")
+	var elementMoves: Array = getEnumMoves(allowed,"EleChange")
+	if elementMoves.size() != 0:
 		var allyElements: Array = groupElements("Ally")
 		var oppElements: Array = groupElements("Opposing")
 		var allyMoves: Array = getWhichMove(elementMoves,"Ally")
@@ -323,15 +324,16 @@ func decideEleChange(allowed) -> Move:
 		var teamDesired: String = "Neutral"
 		
 		#Boss element has more priority
-		for ally in allyElements:
-			if ally.enemyData.Boss:
-				desireMap[ally.data.element] += 3
+		for i in range(allyElements.size()):
+			if allAllies[i].enemyData.Boss:
+				desireMap[allyElements[i]] += 3
 			else:
-				desireMap[ally.data.element] += 1
+				desireMap[allyElements[i]] += 1
 		
 		#Find the element with most desire, make that teamDesired
 		for element in desireMap.keys():
 			if desireMap[teamDesired] < desireMap[element]:
+				print(element,":",desireMap[element])
 				teamDesired = element
 			
 			#Neutral is lowest priority
@@ -343,8 +345,9 @@ func decideEleChange(allowed) -> Move:
 			var unfavoredElement: String = elementMatchup(false,teamDesired)
 			var favoredElement: String = elementMatchup(true,teamDesired)
 			var unfavoredNum: int = 0
-			
+			print("Working with: ",teamDesired," Unfavored: ", unfavoredElement, " Favored: ", favoredElement)
 			#Element matchup makes sure it'll look for how many
+			print(oppElements)
 			for i in range(oppElements.size()):
 				if unfavoredElement == oppElements[i]:
 					#This will make last opponents in line prioritized unlike most where first is
@@ -352,8 +355,9 @@ func decideEleChange(allowed) -> Move:
 					focusIndex = allOpposing[i].ID
 					unfavoredNum += 1
 			
-			if unfavoredNum > enemyData.oppElementPreference:
-				return getEnumMoves(oppMoves, "EleChange", favoredElement, oppElements).pick_random()
+			if unfavoredNum >= enemyData.oppElementPreference:
+				actionMode = action.ELECHANGE
+				return getEnumMoves(oppMoves, "EleChange", favoredElement, unfavoredElement).pick_random()
 		
 		#Checks to see if it should change any ally elements
 		elif allyMoves.size() != 0:
@@ -361,6 +365,7 @@ func decideEleChange(allowed) -> Move:
 				#Looks to see if any ally doesn't have their desired element if they have any
 				var selfFavor = allAllies[i].enemyData.selfFavoredElement
 				if (selfFavor != "Null" and allyElements[i] != selfFavor):
+					actionMode = action.ELECHANGE
 					focusIndex = allAllies[i].ID
 					return getEnumMoves(allyMoves, "EleChange", selfFavor, allyElements[i]).pick_random()
 				
@@ -370,6 +375,7 @@ func decideEleChange(allowed) -> Move:
 					var enemyMatch = elementMatchup(true, enemyCommon)
 					var enemyLose = elementMatchup(false, enemyCommon)
 					if allyElements[i] == enemyMatch:
+						actionMode = action.ELECHANGE
 						focusIndex = allAllies[i].ID
 						return getEnumMoves(allyMoves, "EleChange", enemyLose, enemyCommon).pick_random()
 		
@@ -386,8 +392,10 @@ func decideCondition(allowed) -> Move:
 		for ally in allAllies:
 			#Check if an ally would want the condtition
 			# and if they don't have it
-			if (ally.enemyData.favoredCondtiion & conditions and
+			if (ally.enemyData.favoredCondition & conditions and
 				not ally.data.Condition & conditions):
+					actionMode = action.CONDITION
+					focusIndex = ally.ID
 					return conditionMoves.pick_random()
 	return null
 
@@ -407,12 +415,14 @@ func decideAilment(allowed) -> Move:
 			#And if they don't have a favored Ailment
 			var checkingAilments: int = HelperFunctions.String_to_Flag(entity.data.Ailment, "Ailment")
 			if (entity.data.AilmentNum < enemyData.oppAilmentPreference or 
-			not entity.data.Ailment & enemyData.favoredAilments):
+			not checkingAilments & enemyData.favoredAilments):
 				focusIndex = entity.ID
+				actionMode = action.AILMENT
 				return getEnumMoves(allowed, "Ailment", "NonSoft").pick_random()
 			
 			#If XSoft is not full
 			elif not "" in entity.data.XSoft:
+				actionMode = action.AILMENT
 				return getEnumMoves(allowed, "Ailment", "XSoft").pick_random()
 	
 	return null
@@ -533,7 +543,7 @@ func getFlagMoves(allowed, property, specificType = 0) -> Array:
 	return moveArray
 
 #works for eleChange, ailments and aura moves
-func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array: 
+func getEnumMoves(allowed, property, specificType = "", eleCheck = "") -> Array: 
 	var moveArray: Array = []
 	var propertyFlag: int
 	match property:
@@ -546,8 +556,8 @@ func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array:
 	
 	for move in allowed:
 		var checking
-		var boolAny
-		var boolSpecific
+		var boolAny: bool = false
+		var boolSpecific: bool = false
 		match property:
 			"EleChange":
 				if eleCheck != "": match move.ElementChange:
@@ -562,8 +572,10 @@ func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array:
 						checking = elementMatchup(false,eleCheck)
 					_:
 						checking = move.ElementChange
-				boolAny = specificType == "" and checking != "None"
+				else: checking = move.ElementChange
 				
+				boolAny = specificType == "" and checking != "None"
+				print(specificType == "", checking != "None", move.ElementChange)
 			"Aura":
 				checking = move.Aura
 				boolAny = specificType == "" and checking != "None"
@@ -582,8 +594,7 @@ func getEnumMoves(allowed, property, specificType = "", eleCheck= "") -> Array:
 		boolSpecific = checking == specificType
 		
 		if (move.property & propertyFlag and (boolAny or boolSpecific)):
-			print(move.property & propertyFlag, boolAny, boolSpecific)
-			print("Found move ", move.name)
+			print(move.name, move.property & propertyFlag, boolAny, boolSpecific)
 			moveArray.append(move)
 	
 	return moveArray
