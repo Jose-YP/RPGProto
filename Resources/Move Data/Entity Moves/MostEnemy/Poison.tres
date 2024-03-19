@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/MoveMaker.gd" id="1_se3cj"]
 
-
 [sub_resource type="GDScript" id="GDScript_en0n4"]
 
 [resource]
@@ -17,6 +16,7 @@ phyElement = "Neutral"
 property = 130
 CostType = "LP"
 cost = 8.0
+refresh = false
 Power = 30
 HitNum = 1
 BaseCrit = -20
@@ -35,4 +35,5 @@ Condition = 0
 Aura = ""
 ElementChange = ""
 Summon = []
+SwapSummon = false
 Misc = SubResource("GDScript_en0n4")

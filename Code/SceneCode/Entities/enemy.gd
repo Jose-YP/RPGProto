@@ -32,7 +32,7 @@ func _ready():
 	moveset.append(data.attackData)
 	
 	for move in moveset:
-		rechargeDict[move.name] = 0
+		refreshDict[move.name] = 0
 	
 	if enemyData.AICodePath != "":
 		enemyAI = load(str(enemyData.AICodePath))
@@ -216,101 +216,102 @@ func decideHeal(allowed) -> Move:
 	return null
 
 func decideBuff(allowed) -> Move:
-	if getFlagMoves(allowed, "Buff").size() == 0:
-		return null
-	
-	var canBuff: bool = false
-	var buffedNum: Array = []
-	var buffedFlags: Array = []
-	
-	for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
-		buffedNum.append(0)
-		buffedFlags.append(0)
-		for buff in range(entity.size()):
-			var buffFlag = int(pow(2,buff))
-			if not (buffFlag & enemyData.allyBoostTypePreference): continue
-			
-			if entity[buff] > enemyData.allyBuffAmmountPreference:
-				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				buffedFlags[-1] += buffFlag
-				buffedNum[-1] += 1
+	var buffMoves = getFlagMoves(allowed, "Buff")
+	if buffMoves.size() != 0:
+		var canBuff: bool = false
+		var buffedNum: Array = []
+		var buffedFlags: Array = []
 		
-		#Check if they have proper ammount of buffs
-		if buffedNum[-1] < enemyData.allyBuffNumPreference:
-			canBuff = true
-	
-	if canBuff:
-		canBuff = false
-		actionMode = action.BUFF
+		for entity in groupBuffStatus("Ally"): #BUFF IF NOT BUFFED
+			buffedNum.append(0)
+			buffedFlags.append(0)
+			for buff in range(entity.size()):
+				var buffFlag = int(pow(2,buff))
+				if not (buffFlag & enemyData.allyBoostTypePreference): continue
+				
+				if entity[buff] < enemyData.allyBuffAmmountPreference:
+					#1 for atk, 2, for def, 4 for spd, and 8 for luk
+					buffedFlags[-1] += buffFlag
+					buffedNum[-1] += 1
+			
+			#Check if they have proper ammount of buffs
+			if buffedNum[-1] < enemyData.allyBuffNumPreference:
+				canBuff = true
 		
-		for entity in range(allAllies.size()): #Must have buff moves of that type to be viable
-			focusIndex = allAllies[entity].ID
+		if canBuff:
+			canBuff = false
+			actionMode = action.BUFF
 			
-			if (buffedFlags[entity] | 1 and 
-			getFlagMoves(allowed, "Buff", 1).size() != 0):
-				return getFlagMoves(allowed, "Buff", 1).pick_random()
-			
-			if (buffedFlags[entity] | 2 and 
-			getFlagMoves(allowed, "Buff", 2).size() != 0):
-				return getFlagMoves(allowed, "Buff", 2).pick_random()
-			
-			if (buffedFlags[entity] | 4 and 
-			getFlagMoves(allowed, "Buff", 4).size() != 0):
-				return getFlagMoves(allowed, "Buff", 4).pick_random()
-			
-			if (buffedFlags[entity] | 8 and 
-			getFlagMoves(allowed, "Buff", 8).size() != 0):
-				return getFlagMoves(allowed, "Buff", 8).pick_random()
+			for entity in range(allAllies.size()): #Must have buff moves of that type to be viable
+				focusIndex = allAllies[entity].ID
+				
+				if (buffedFlags[entity] | 1 and 
+				getFlagMoves(buffMoves, "Buff", 1).size() != 0):
+					return getFlagMoves(buffMoves, "Buff", 1).pick_random()
+				
+				if (buffedFlags[entity] | 2 and 
+				getFlagMoves(buffMoves, "Buff", 2).size() != 0):
+					return getFlagMoves(buffMoves, "Buff", 2).pick_random()
+				
+				if (buffedFlags[entity] | 4 and 
+				getFlagMoves(buffMoves, "Buff", 4).size() != 0):
+					return getFlagMoves(buffMoves, "Buff", 4).pick_random()
+				
+				if (buffedFlags[entity] | 8 and 
+				getFlagMoves(buffMoves, "Buff", 8).size() != 0):
+					return getFlagMoves(buffMoves, "Buff", 8).pick_random()
 	
 	print("Null Buff")
 	return null
 
 func decideDebuff(allowed) -> Move:
-	if getFlagMoves(allowed, "Debuff").size() == 0:
-		return null
+	var debuffMoves = getFlagMoves(allowed, "Debuff")
+	if debuffMoves.size() != 0:
 	
-	print("DEBUFF")
-	var canDebuff: bool = false
-	var debuffedNum: Array = []
-	var debuffedFlags: Array = []
-	
-	for entity in groupBuffStatus("Opposing"): #DEBUFF IF NOT DEBUFFED
-		debuffedNum.append(0)
-		debuffedFlags.append(0)
-		for debuff in range(entity.size()):
-			var debuffFlag = int(pow(2,debuff))
-			if not (debuffFlag & enemyData.oppBoostTypePreference): continue
-			
-			if entity[debuff] > enemyData.oppBuffAmmountPreference:
-				#1 for atk, 2, for def, 4 for spd, and 8 for luk
-				debuffedFlags[-1] += debuffFlag 
-				debuffedNum[-1] += 1
+		print("DEBUFF")
+		var canDebuff: bool = false
+		var debuffedNum: Array = []
+		var debuffedFlags: Array = []
 		
-		#Check if they have proper ammount of buffs
-		if debuffedNum[-1] > enemyData.oppBuffNumPreference:
-			canDebuff = true
-	
-	if canDebuff:
-		actionMode = action.DEBUFF
+		for entity in groupBuffStatus("Opposing"): #DEBUFF IF NOT DEBUFFED
+			debuffedNum.append(0)
+			debuffedFlags.append(0)
+			for debuff in range(entity.size()):
+				var debuffFlag = int(pow(2,debuff))
+				if not (debuffFlag & enemyData.oppBoostTypePreference): continue
+				
+				print(entity[debuff], " vs ", enemyData.oppBuffAmmountPreference)
+				if entity[debuff] > enemyData.oppBuffAmmountPreference:
+					#1 for atk, 2, for def, 4 for spd, and 8 for luk
+					debuffedFlags[-1] += debuffFlag 
+					debuffedNum[-1] += 1
+			
+			#Check if they have proper ammount of buffs
+			if debuffedNum[-1] > enemyData.oppBuffNumPreference:
+				canDebuff = true
 		
-		for entity in range(allOpposing.size()): #Must have buff moves of that type to be viable
-			focusIndex = allOpposing[entity].ID
-			print(allOpposing[entity].name)
-			if (debuffedFlags[entity] | 1 and 
-			getFlagMoves(allowed, "Debuff", 1).size() != 0):
-				return getFlagMoves(allowed, "Debuff", 1).pick_random()
+		if canDebuff:
+			actionMode = action.DEBUFF
 			
-			if (debuffedFlags[entity] | 2 and 
-			getFlagMoves(allowed, "Debuff", 2).size() != 0):
-				return getFlagMoves(allowed, "Debuff", 2).pick_random()
-			
-			if (debuffedFlags[entity] | 4 and 
-			getFlagMoves(allowed, "Debuff", 4).size() != 0):
-				return getFlagMoves(allowed, "Debuff", 4).pick_random()
-			
-			if (debuffedFlags[entity] | 8 and 
-			getFlagMoves(allowed, "Debuff", 8).size() != 0):
-				return getFlagMoves(allowed, "Debuff", 8).pick_random()
+			for entity in range(allOpposing.size()): #Must have buff moves of that type to be viable
+				focusIndex = allOpposing[entity].ID
+				print(allOpposing[entity].name)
+				print(debuffedFlags[entity],debuffedFlags[entity] & 1 ,debuffedFlags[entity] | 1 )
+				if (1 & enemyData.oppBoostTypePreference and debuffedFlags[entity] & 1 and 
+				getFlagMoves(debuffMoves, "Debuff", 1).size() != 0):
+					return getFlagMoves(debuffMoves, "Debuff", 1).pick_random()
+				
+				if (2 & enemyData.oppBoostTypePreference and debuffedFlags[entity] & 2 and 
+				getFlagMoves(debuffMoves, "Debuff", 2).size() != 0):
+					return getFlagMoves(debuffMoves, "Debuff", 2).pick_random()
+				
+				if (4 & enemyData.oppBoostTypePreference and debuffedFlags[entity] & 4 and 
+				getFlagMoves(debuffMoves, "Debuff", 4).size() != 0):
+					return getFlagMoves(debuffMoves, "Debuff", 4).pick_random()
+				
+				if (8 & enemyData.oppBoostTypePreference and debuffedFlags[entity] & 8 and 
+				getFlagMoves(debuffMoves, "Debuff", 8).size() != 0):
+					return getFlagMoves(debuffMoves, "Debuff", 8).pick_random()
 	
 	print("Returned null")
 	return null
@@ -855,12 +856,20 @@ func payCost(move) -> int:
 			if item.name == move.name:
 				data.itemData[item] -= move.cost
 	
+	if move.refresh == true:
+		refreshDict[move.name] = 2
+	
 	return int(move.TPCost - (data.speed * (1 + data.speedBoost)))
 
 func allowedMoveset(TP) -> Array:
 	var allowed: Array = []
 	for move in moveset:
 		var use = move
+		
+		if refreshDict[move.name] > 0:
+			print(move.name, " is recharging!")
+			continue
+		
 		if move is Item:
 			if data.itemData[move] == 0:
 				print("Ran out of ", move.name)

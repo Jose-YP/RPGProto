@@ -167,6 +167,11 @@ func _ready(): #Assign current team according to starting bool
 func movesetDisplay(player) -> void: #Format every player's menu to include the name of their moveset
 	#get the player's complete moveset
 	player.moveset = [player.attacks,player.skills,player.items,player.tactics]
+	
+	for category in player.moveset:
+		for move in category:
+			player.refreshDict[move.name] = 0
+	
 	#Get the tab
 	var tabs = player.get_node("CanvasLayer/TabContainer").get_children()
 	var tpMod: float = 0.0
@@ -1030,8 +1035,9 @@ func checkCosts(player) -> void: #Check if the player can afford certain moves, 
 
 func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false) -> bool:
 	var buttonIndex = player.moveset[menuIndex].find(move)
-	var use
-	var canpay = true
+	var use: int
+	var canpay: bool = true
+	var recharging: bool = false
 	match cost:
 		"TP":
 			if searchingItem:
@@ -1046,10 +1052,16 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false) -
 			use = int(move.cost)
 		"Item":
 			use = int(move.attackData.cost)
-		
+	
+	if searchingItem:
+		if move.attackData.refresh:
+			recharging = player.refreshDict[move.name] > 0
+	elif move.refresh:
+		recharging = player.refreshDict[move.name] > 0
+	
 	if pay < use:
 		canpay = false
-	if not canpay:
+	if not canpay or recharging:
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,false)
 	else:
 		player.emit_signal("canPayFor",menuIndex,buttonIndex,true)
@@ -1058,6 +1070,10 @@ func checkCostsMini(player, pay, cost, move, menuIndex, searchingItem = false) -
 
 func endPhaseCheck() -> void:
 	for k in range(opposing.size()):
+		for move in opposing[k].refreshDict.keys():
+			if opposing[k].refreshDict[move] > 0:
+				opposing[k].refreshDict[move] -= 1
+			
 		opposing[k].statBoostHandling()
 		var holdAilment = opposing[k].ailmentCategory(opposing[k])
 		if holdAilment != "Mental" or holdAilment != "Chemical":

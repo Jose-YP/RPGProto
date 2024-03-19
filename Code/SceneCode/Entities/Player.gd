@@ -101,7 +101,7 @@ func payCost(move) -> int:
 		payTP = int(payTP/2)
 	
 	if move.refresh == true:
-		pass
+		refreshDict[move.name] = 2
 	
 	return payTP
 

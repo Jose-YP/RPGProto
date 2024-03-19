@@ -53,7 +53,7 @@ var chargeUsed: bool = false
 var ampUsed: bool = false
 var feedback: String
 var TPArray: Array = []
-var rechargeDict: Dictionary = {}
+var refreshDict: Dictionary = {}
 
 #Determines which targetting system to use
 enum target {

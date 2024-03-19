@@ -49,3 +49,6 @@ res://Scene/placeholder/AICodeTab.tscn
 res://Code/ResourceMakers/Entity/EnemyMaker.gd
 res://Code/SceneCode/Screens/Battle.gd
 res://Code/Globals/HelperFunctions.gd
+res://Code/SceneCode/Entities/Player.gd
+res://Code/EnemyAI/AI2_Ireo.gd
+res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres
