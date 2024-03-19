@@ -18,19 +18,21 @@ class_name Enemy
 50,50,50,50,50,100] #When multiple conditions are met use chances that are before 100
 
 @export_subgroup("Resource Preferences")
-@export_range(0,1,.05) var selfHPPreference: float = 1
-@export_range(0,1,.05) var allyHPPreference: float = 1
-@export_range(0,1,.05) var oppHPPreference: float = 1
+@export_range(0,1,.05) var selfHPPreference: float = 0
+@export_range(0,1,.05) var allyHPPreference: float = 0
+@export_range(0,1,.05) var oppHPPreference: float = 0
 
 @export_subgroup("Ailment Preferences")
-@export_range(0,3) var selfAilmentPreference: int = 0
-@export_range(0,3) var allyAilmentPreference: int = 0
-@export_range(0,3) var oppAilmentPreference: int = 0
+@export_range(0,3) var selfAilmentPreference: int = 1
+@export_range(0,3) var allyAilmentPreference: int = 2
+@export_range(0,9) var allyTotalAilmentPreference: int = 7
+@export_range(0,3) var oppAilmentPreference: int = 1
+@export_range(0,9) var oppTotalAilmentPreference: int = 4
 @export_flags("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse","Protected",
-"Dumbfounded","Miserable","Worn Out", "Explosive","XSoft") var favoredAilments: int = 0
-@export_range(0,3) var selfXSoftPreference: int = 0
-@export_range(0,3) var allyXSoftPreference: int = 0
-@export_range(0,3) var oppXSoftPreference: int = 0
+"Dumbfounded","Miserable","Worn Out", "Explosive","XSoft") var favoredAilments: int = 3966 #126+256+512+1024+2048
+@export_range(0,3) var selfXSoftPreference: int = 2
+@export_range(0,3) var allyXSoftPreference: int = 1
+@export_range(0,3) var oppXSoftPreference: int = 2
 @export_flags("Fire","Water","Elec","Slash","Crush","Pierce") var favoredXSoftTypes: int
 
 @export_subgroup("Stat Buff Preferences")
@@ -58,5 +60,5 @@ class_name Enemy
 @export_subgroup("Favor Preferences")
 @export var favorBoss: bool = false
 @export_flags("BodyBroken","WillWrecked","DoubleCrits","LowTP") var favoredAuras: int = 15
-@export var favoredAlly: String
+@export var favoredAlly: String = ""
 @export_enum("DREAMER","Lonna","Damir","Pepper", "None") var hatedOpponent: String = "None"

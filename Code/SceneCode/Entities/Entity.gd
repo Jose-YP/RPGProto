@@ -327,9 +327,13 @@ func applyPositiveAilment(move,receiver) -> void:
 			receiver.data.Ailment = "Overdrive"
 
 func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
+	print("XSOFT")
 	var win = preWin
 	var times = move.AilmentAmmount
 	var ele
+	
+	if times == 0:
+		times = 1
 	
 	if preWin or move.BaseAilment >= 200:
 		win = true
@@ -549,6 +553,7 @@ func crit_chance(move,user,receiver,currentAura) -> bool:
 		elif user.data.miscCalc == "DumbfoundedCrit":
 			applyNegativeAilment(move,receiver,user,true,"Dumbfounded")
 		else:
+			print("apply ",determineXSoft(move,user)," Soft")
 			applyXSoft(move,receiver,user,true,determineXSoft(move,user))
 	
 	return crit
@@ -596,7 +601,7 @@ func determineXSoft(move,user) -> String:
 		"PhySoft":
 			return move.PhyElement
 		"EleSoft":
-			return move.Element
+			return move.element
 		_:
 			if move.phyElement != "Neutral":
 				return move.phyElement

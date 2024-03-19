@@ -10,7 +10,7 @@ enum action{KILL, HEAL, AILHEAL, BUFF, DEBUFF, CONDITION, ELECHANGE, AILMENT, ET
 #SELF VARIABLES
 var enemyAI
 var aiInstance
-var description: String
+var description: String = ""
 var moveset: Array = []
 #PERCEPTION VARIABLES
 var allAllies: Array = []
@@ -400,30 +400,32 @@ func decideCondition(allowed) -> Move:
 	return null
 
 func decideAilment(allowed) -> Move:
-	if getEnumMoves(allowed, "Ailment").size() == 0:
-		return null
-	
-	var canAilm: bool = false
-	
-	for entity in groupAilments("Opposing", true):
-		if (entity != "Mental" or entity != "Chemical"):
-			canAilm = true
-	
-	if canAilm:
-		for entity in allOpposing:
-			#Check if they have the prefered number of ailments
-			#And if they don't have a favored Ailment
-			var checkingAilments: int = HelperFunctions.String_to_Flag(entity.data.Ailment, "Ailment")
-			if (entity.data.AilmentNum < enemyData.oppAilmentPreference or 
-			not checkingAilments & enemyData.favoredAilments):
-				focusIndex = entity.ID
-				actionMode = action.AILMENT
-				return getEnumMoves(allowed, "Ailment", "NonSoft").pick_random()
-			
-			#If XSoft is not full
-			elif not "" in entity.data.XSoft:
-				actionMode = action.AILMENT
-				return getEnumMoves(allowed, "Ailment", "XSoft").pick_random()
+	var ailmentMoves:Array = getEnumMoves(allowed, "Ailment")
+	if ailmentMoves.size() != 0:
+		var canAilm: bool = false
+		var oppAilments: Array = groupAilments("Opposing", true)
+		var totalAilments: int = 0
+		for i in range(oppAilments.size()):
+			if (oppAilments[i] != "Mental" or oppAilments[i] != "Chemical"):
+				totalAilments += allOpposing[i].data.AilmentNum
+				canAilm = true
+		
+		if canAilm:
+			for entity in allOpposing:
+				#Check if they have the prefered number of ailments
+				#And if they don't have a favored Ailment + hit total ailment num preference
+				var checkingAilments: int = HelperFunctions.String_to_Flag(entity.data.Ailment, "Ailment")
+				
+				if (entity.data.AilmentNum < enemyData.oppAilmentPreference or (not checkingAilments 
+				& enemyData.favoredAilments and totalAilments >= enemyData.oppTotalAilmentPreference)):
+					focusIndex = entity.ID
+					actionMode = action.AILMENT
+					return getEnumMoves(ailmentMoves, "Ailment", "NonSoft").pick_random()
+				
+				#If XSoft is not full
+				elif not "" in entity.data.XSoft:
+					actionMode = action.AILMENT
+					return getEnumMoves(ailmentMoves, "Ailment", "XSoft").pick_random()
 	
 	return null
 
