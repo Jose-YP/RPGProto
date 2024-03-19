@@ -47,3 +47,5 @@ res://Scene/Entities/Entity.tscn
 res://Scene/Entities/enemy.tscn
 res://Scene/placeholder/AICodeTab.tscn
 res://Code/ResourceMakers/Entity/EnemyMaker.gd
+res://Code/SceneCode/Screens/Battle.gd
+res://Code/Globals/HelperFunctions.gd

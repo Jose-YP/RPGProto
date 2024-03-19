@@ -53,6 +53,7 @@ var chargeUsed: bool = false
 var ampUsed: bool = false
 var feedback: String
 var TPArray: Array = []
+var rechargeDict: Dictionary = {}
 
 #Determines which targetting system to use
 enum target {
@@ -74,6 +75,7 @@ func moreReady() -> void:#Make a function so it'll work on parent and child node
 	HPtext.text = str("HP: ", currentHP)
 	data.TempElement = data.element
 	items = data.itemData.keys()
+	
 	
 	for tab in $BackUI/XSoftDisplay/HBoxContainer.get_children():
 		XSoftSlots.append(tab.get_children())
@@ -330,7 +332,7 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 	print("XSOFT")
 	var win = preWin
 	var times = move.AilmentAmmount
-	var ele
+	var ele: String = ""
 	
 	if times == 0:
 		times = 1
@@ -344,6 +346,7 @@ func applyXSoft(move,receiver,user,preWin = false,PreSoft = "") -> void:
 	if HelperFunctions.emptyXSoftSlots(receiver.data.XSoft) != 0:
 		if win:
 			if PreSoft != "":
+				print("XSOFT WITH PRESOFT",PreSoft)
 				ele = PreSoft
 			elif move.Ailment == "PhySoft":
 				ele = move.phyElement

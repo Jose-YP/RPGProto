@@ -3,12 +3,12 @@ extends Node2D
 @export var tweenTiming: float = .2 #Make the timing with the hits editable
 
 #UI ELEMENTS
-@onready var PlayerTPDisplay = $PlayerTP
-@onready var PlayerTPText = $PlayerTP/Label
-@onready var EnemyTPDisplay = $EnemyTP
-@onready var EnemyTPText = $EnemyTP/Label
-@onready var AuraFog = $Aura
-@onready var AuraLabel = $Label
+@onready var PlayerTPDisplay: TextureProgressBar = $PlayerTP
+@onready var PlayerTPText: Label = $PlayerTP/Label
+@onready var EnemyTPDisplay:TextureProgressBar = $EnemyTP
+@onready var EnemyTPText: Label = $EnemyTP/Label
+@onready var AuraFog: ColorRect = $Aura
+@onready var AuraLabel: Label = $Label
 #AUDIO DESIGN
 @onready var ElementSFX: Array[AudioStreamPlayer] = [%Fire, %Water, %Elec, %Slash, %Crush, %Pierce,
 %Comet, %Light, %Aurora, %Aether]
@@ -20,8 +20,8 @@ extends Node2D
 @onready var DieSFX: AudioStreamPlayer = %Die
 @onready var critSFXEffect = AudioServer.get_bus_effect(3,0)
 #TURN MANAGERS
-@onready var playerPositions = [$Players/Position1,$Players/Position2,$Players/Position3]
-@onready var enemyPosition = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
+@onready var playerPositions: Array = [$Players/Position1,$Players/Position2,$Players/Position3]
+@onready var enemyPosition: Array = [$Enemies/Position1,$Enemies/Position2,$Enemies/Position3]
 @onready var enemyOrder: Array = []
 @onready var playerOrder: Array = []
 

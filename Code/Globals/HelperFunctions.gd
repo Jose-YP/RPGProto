@@ -152,7 +152,10 @@ func BoostTranslation(entityBoosts) -> String:
 	return BoostString
 
 func NullorAppend(list,value,XSoft=true,maxSize=3) -> Array:
-	print(list, value)
+	print("NULL OR APPEND", list, value)
+	
+	if value == null:
+		pass
 	
 	for i in range(list.size()):
 		if list[i] == null or list[i] == "":

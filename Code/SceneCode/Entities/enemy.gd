@@ -31,6 +31,9 @@ func _ready():
 	moveset = data.skillData + items
 	moveset.append(data.attackData)
 	
+	for move in moveset:
+		rechargeDict[move.name] = 0
+	
 	if enemyData.AICodePath != "":
 		enemyAI = load(str(enemyData.AICodePath))
 		aiInstance = enemyAI.new()
