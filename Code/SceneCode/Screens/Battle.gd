@@ -293,6 +293,7 @@ func _process(_delta):#If player turn ever changes change current team to match 
 			team = enemyOrder
 			opposing = playerOrder
 			if not waiting:
+				print("HUH???")
 				which = findWhich(enemyAction)
 				target = findTarget(enemyAction)
 				nextTarget()
@@ -337,14 +338,19 @@ func findTarget(useMove) -> targetTypes:
 
 func findWhich(useMove) -> whichTypes:
 	var returnWhich
+	print("")
 	match useMove.Which:
 		"Enemy":
+			print(useMove.Which)
 			returnWhich = whichTypes.ENEMY
 		"Ally":
 			returnWhich = whichTypes.ALLY
 		"Both":
 			returnWhich = whichTypes.BOTH
 	
+	print(useMove.name)
+	print(useMove.Which)
+	print(returnWhich == whichTypes.ALLY)
 	return returnWhich
 
 func checkForTargetted(targetting) -> Array:
@@ -605,6 +611,7 @@ func _on_start_select(useMove) -> void:
 	Globals.attacking = true
 	target = findTarget(useMove)
 	which = findWhich(useMove)
+	print("Which found: ", which)
 
 func _on_move_selected(useMove) -> void:
 	playerTP -= team[i].payCost(useMove) #The function handles the player's other costs on it's own
@@ -965,6 +972,7 @@ func overdriveTurnManager() -> void:
 			else:
 				enemyAction = team[i].chooseMove(enemyTP,enemyOrder, playerOrder)
 				target = findTarget(enemyAction)
+				print("HUH???")
 				which = findWhich(enemyAction)
 
 func startSwitchPhase() -> void:

@@ -5,10 +5,10 @@
 [ext_resource type="Resource" uid="uid://ce2oymswsnn6j" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Prokyon.tres" id="7_e8ky1"]
 [ext_resource type="Resource" uid="uid://b6jbgarv46a4q" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Fornax.tres" id="7_pf812"]
 [ext_resource type="Resource" uid="uid://dmm6qvo3byjgc" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/WaterEntity.tres" id="8_2bbwp"]
+[ext_resource type="Resource" uid="uid://ydr5a8yep8ee" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/NewSuperIreo.tres" id="8_ne5av"]
 [ext_resource type="Resource" uid="uid://bdrlqlvn6kv8c" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/CrovusNew.tres" id="9_m6byd"]
 [ext_resource type="PackedScene" uid="uid://2rhs8p7a1wo" path="res://Scene/Constants/element.tscn" id="10_l7in5"]
 [ext_resource type="Resource" uid="uid://cy3co5wko705g" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Jishi.tres" id="10_m8dbs"]
-[ext_resource type="Resource" uid="uid://clepibgdex38y" path="res://Resources/Entity Data/Enemy Data/EnemyEntity/Ireo.tres" id="11_57rpg"]
 [ext_resource type="PackedScene" uid="uid://bcsnxkh6o33lt" path="res://Scene/Constants/phy_element.tscn" id="11_iuwj4"]
 [ext_resource type="Theme" uid="uid://bqt13gd00jakt" path="res://Themes/Theme.tres" id="12_c1ybm"]
 [ext_resource type="PackedScene" uid="uid://bf5fc1lfuejso" path="res://Scene/Constants/element_triangle.tscn" id="13_n6ucx"]
@@ -20,7 +20,7 @@ layout_mode = 3
 anchors_preset = 0
 focus_mode = 2
 script = ExtResource("1_xp3rd")
-enemyEntities = Array[Resource("res://Code/ResourceMakers/Entity/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("7_pf812"), ExtResource("11_57rpg")])
+enemyEntities = Array[Resource("res://Code/ResourceMakers/Entity/EntityMaker.gd")]([ExtResource("6_eryj0"), ExtResource("7_e8ky1"), ExtResource("8_2bbwp"), ExtResource("9_m6byd"), ExtResource("10_m8dbs"), ExtResource("7_pf812"), ExtResource("8_ne5av")])
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -319,7 +319,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../../../PlayerSide/PlayerMenu/Player3/PlayerMenu3")
 focus_neighbor_right = NodePath("../../Enemy2/EnemyChoice2")
 item_count = 8
-selected = 5
+selected = 7
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"
@@ -349,7 +349,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Enemy1/EnemyChoice1")
 focus_neighbor_right = NodePath("../../Enemy3/EnemyChoice3")
 item_count = 7
-selected = 5
+selected = 6
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"
@@ -377,7 +377,7 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../../Enemy2/EnemyChoice2")
 focus_neighbor_right = NodePath("../../../../PlayerSide/PlayerMenu/Player1/PlayerMenu1")
 item_count = 8
-selected = 5
+selected = 7
 popup/item_0/text = "lv1 Amebozo"
 popup/item_0/id = 0
 popup/item_1/text = "lv4 Buffer"

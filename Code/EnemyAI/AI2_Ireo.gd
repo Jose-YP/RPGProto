@@ -55,7 +55,7 @@ func basicSelect(allowed) -> Move:
 	print(allowed)
 	
 	var oppElements: Array = groupElements("Opposing")
-	var elementMap: Dictionary = {}
+	var elementMap: Dictionary = {"Fire" : 0, "Water" : 0, "Elec" : 0, "Neutral" : 0}
 	var ghoul: Move = getSpecificMove(allowed, "Galactic Ghoul")
 	#Count every value
 	for i in oppElements:
@@ -76,7 +76,7 @@ func basicSelect(allowed) -> Move:
 #-----------------------------------------
 #TARGETTING
 #-----------------------------------------
-func Single(targetting):
+func Single(targetting, _move):
 	#incase it doesn't work
 	var defenderIndex: int = randi() % targetting.size()
 	match actionMode:
@@ -103,7 +103,7 @@ func Single(targetting):
 	actionMode = action.ETC
 	return defenderIndex
 
-func Group(targetting):
+func Group(targetting, _move):
 	var defenderIndex: int
 	match actionMode:
 		action.KILL:

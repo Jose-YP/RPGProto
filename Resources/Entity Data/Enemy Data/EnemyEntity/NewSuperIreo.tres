@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://ydr5a8yep8ee"]
+
+[ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_u8n8h"]
+[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="1_xsptp"]
+[ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="2_bw60h"]
+[ext_resource type="Resource" uid="uid://h2yolidxah3d" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres" id="2_rmofh"]
+[ext_resource type="Resource" uid="uid://dlo38q7g0vh5w" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="3_oqpjb"]
+[ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="5_4mogo"]
+[ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/Overdrive.tres" id="6_tqml5"]
+[ext_resource type="Resource" uid="uid://cco1bbvhfnbot" path="res://Resources/Move Data/Enemy Moves/Galactic Ghoul.tres" id="7_wagho"]
+[ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="9_pe8fl"]
+
+[resource]
+script = ExtResource("1_xsptp")
+level = 30
+name = "Ireo"
+species = "Cygnus"
+stellar = "Stellar"
+specificData = ExtResource("2_rmofh")
+MaxHP = 1000
+MaxTP = 240
+strength = 20
+toughness = 19
+ballistics = 17
+resistance = 18
+speed = 29
+luck = 9
+element = "Water"
+phyElement = "Slash"
+soloElementMod = 0.0
+groupElementMod = 0.0
+phyElementMod = 0.0
+sameElement = false
+Weakness = 32
+strong = 0
+immunity = "None"
+attackData = ExtResource("1_u8n8h")
+skillData = [ExtResource("5_4mogo"), ExtResource("6_tqml5"), ExtResource("7_wagho")]
+itemData = {
+ExtResource("2_bw60h"): 1,
+ExtResource("3_oqpjb"): 1
+}
+waitData = ExtResource("9_pe8fl")
+ItemChange = 0
+costBonus = 0
+HpCostMod = 0.0
+LpCostMod = 0.0
+TpCostMod = 0.0
+calcBonus = 0
+drainCalcAmmount = 0.0
+ailmentCalcAmmount = 0.0
+critCalcAmmount = 0.0
+KO = false
+XSoft = Array[String](["", "", ""])
+Condition = 0
+TempElement = null
+miscCalc = "None"
+Ailment = "Healthy"
+AilmentNum = 0
+attackBoost = 0.0
+defenseBoost = 0.0
+speedBoost = 0.0
+luckBoost = 0.0

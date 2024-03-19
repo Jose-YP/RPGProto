@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=11 format=3 uid="uid://clepibgdex38y"]
+[gd_resource type="Resource" load_steps=11 format=3 uid="uid://clepibgdex38y"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f8eo8"]
 [ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="2_7b4pj"]

@@ -275,7 +275,7 @@ func makeEnemyLineup() -> void:
 func setEnemyGlobals() -> void:
 	Globals.current_enemy_entities = []
 	for i in range(3):
-		if enemyChoices[i].selected != 6:
+		if enemyChoices[i].selected != enemyEntities.size():
 			Globals.current_enemy_entities.append(enemyEntities[enemyChoices[i].selected])
 
 func enemyChoiceChanged(_index) -> void:

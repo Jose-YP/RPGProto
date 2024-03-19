@@ -38,7 +38,7 @@ var immunity: String = "None"
 @export_group("Attack Properties")
 @export_subgroup("Attacks")
 @export var attackData: Move
-@export var skillData: Array = [Move]
+@export var skillData: Array[Move] = []
 @export var itemData: Dictionary = {}
 @export var waitData: Move
 @export_subgroup("Calc Bonuses")
@@ -57,8 +57,8 @@ var immunity: String = "None"
 @export var KO: bool = false
 @export var XSoft: Array[String] = ["","",""]
 @export_flags("Charge","Amp","Targetted","Endure","Peace","Lucky","Reflect","Absorb","Devoid","AnotherTurn") var Condition: int = 0
-@export_enum("Fire","Water","Elec","Neutral") var TempElement = element
-@export_enum("None","Explode","LPDrain","DumbfoundedCrit") var miscCalc = "None"
+@export_enum("Fire","Water","Elec","Neutral") var TempElement: String = element
+@export_enum("None","Explode","LPDrain","DumbfoundedCrit") var miscCalc: String = "None"
 @export_subgroup("Ailments")
 @export_enum("Overdrive","Poison","Reckless","Exhausted","Rust","Stun","Curse",
 "Protected","Dumbfounded","Miserable","Worn Out", "Explosive","Healthy") var Ailment: String = "Healthy"

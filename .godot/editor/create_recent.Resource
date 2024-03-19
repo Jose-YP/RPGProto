@@ -1,3 +1,4 @@
+entityData
 Item
 Move
 Chip
@@ -5,6 +6,5 @@ SaveFile
 UserPreferences
 Inven
 Gear
-entityData
 Player
 Enemy

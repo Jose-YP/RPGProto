@@ -1,10 +1,14 @@
+res://
 res://Resources/Move Data/Enemy Moves
+res://Resources/Move Data/Player Moves/Skills/DREAMER
+res://Resources/Move Data/Entity Moves/MostPlayer
+res://Resources/Entity Data/Enemy Data/EnemySpecific
+res://Resources/Entity Data/Enemy Data/EnemyEntity
 res://Resources/Item Data/ItemMoves
 res://Icons/MenuIcons
 res://Resources/Item Data/ItemSpecifics
 res://Resources/Move Data/Entity Moves/MostEnemy
 res://Code/EnemyAI
-res://Resources/Entity Data/Enemy Data/EnemySpecific
 res://Scene/placeholder
 res://Themes/HasSingle
 res://Resources/Chip Data
@@ -17,6 +21,3 @@ res://Code/Globals
 res://Resources/Move Data/Player Moves/ChipMoves
 >>>>>>> Stashed changes
 C:/Godots/Godot_v4.2.1-stable_win64.exe/Games/Godot-RPG-PRoject/JSONS&Saves/Saves
-res://
-res://Code/SceneCode/Screens
-res://Themes/ButtonStyle

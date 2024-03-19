@@ -81,7 +81,7 @@
 [ext_resource type="Script" path="res://Code/ResourceMakers/Entity/PlayerMaker.gd" id="72_hgeb1"]
 [ext_resource type="Resource" path="res://Resources/Move Data/Player Moves/Skills/Pepper/Firestorm.tres" id="74_subx1"]
 
-[sub_resource type="Resource" id="Resource_ohxur"]
+[sub_resource type="Resource" id="Resource_kgcbi"]
 script = ExtResource("22_uiavo")
 type = "Chip"
 inventory = [ExtResource("1_yh88o"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("4_r5jqd"), ExtResource("5_pe1g0"), ExtResource("6_m0iag"), ExtResource("7_rujxo"), ExtResource("10_q7qmg"), ExtResource("9_ph4gl"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("12_02xss"), ExtResource("13_22shq"), ExtResource("14_ki016"), ExtResource("8_6wabl"), ExtResource("15_2iw0k"), ExtResource("16_s1id7"), ExtResource("17_gx7rx"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("21_a0f4s")]
@@ -89,7 +89,7 @@ inventorySort1 = [ExtResource("20_eoimk"), ExtResource("3_akf78"), ExtResource("
 inventorySort2 = [ExtResource("4_r5jqd"), ExtResource("17_gx7rx"), ExtResource("8_6wabl"), ExtResource("2_cnvl7"), ExtResource("20_eoimk"), ExtResource("5_pe1g0"), ExtResource("11_f4ssw"), ExtResource("11_bt3wu"), ExtResource("16_s1id7"), ExtResource("3_akf78"), ExtResource("7_rujxo"), ExtResource("9_ph4gl"), ExtResource("1_yh88o"), ExtResource("10_q7qmg"), ExtResource("21_a0f4s"), ExtResource("12_02xss"), ExtResource("14_ki016"), ExtResource("15_2iw0k"), ExtResource("13_22shq"), ExtResource("18_v2sdl"), ExtResource("19_tlida"), ExtResource("6_m0iag")]
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_ug1si"]
+[sub_resource type="Resource" id="Resource_gtroc"]
 script = ExtResource("22_uiavo")
 type = "Gear"
 inventory = [ExtResource("23_lq6dh"), ExtResource("24_iq750"), ExtResource("25_q1apf"), ExtResource("26_07iyw"), ExtResource("27_3mvhq"), ExtResource("28_pjfni"), ExtResource("29_7yicu"), ExtResource("30_d6y0y"), ExtResource("31_3783k")]
@@ -97,7 +97,7 @@ inventorySort1 = []
 inventorySort2 = []
 inventorySort3 = []
 
-[sub_resource type="Resource" id="Resource_kjny3"]
+[sub_resource type="Resource" id="Resource_1qnli"]
 script = ExtResource("22_uiavo")
 type = "Item"
 inventory = [ExtResource("32_swbnr"), ExtResource("33_2w2yt"), ExtResource("34_pu20w"), ExtResource("36_oei3j"), ExtResource("35_ltcd5"), ExtResource("36_dio4g"), ExtResource("37_rnix7"), ExtResource("38_7gmc0"), ExtResource("40_ky8t1"), ExtResource("39_3vy5r"), ExtResource("40_7es6c"), ExtResource("41_5l8ff"), ExtResource("42_ii5ax"), ExtResource("43_jlr62"), ExtResource("44_fd6wn"), ExtResource("45_ab3tn"), ExtResource("46_lrl2b"), ExtResource("47_uqs04"), ExtResource("48_ew13e")]
@@ -112,8 +112,8 @@ MaxCPU = 44
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("26_07iyw")
-ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("8_6wabl"), ExtResource("9_ph4gl"), ExtResource("10_q7qmg"), ExtResource("17_gx7rx")])
-currentCPU = 16
+ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("16_s1id7"), ExtResource("8_6wabl"), ExtResource("9_ph4gl"), ExtResource("10_q7qmg"), ExtResource("17_gx7rx")])
+currentCPU = 20
 attackTarget = "Single"
 Basics = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("55_socq3"), ExtResource("57_hwtwi"), ExtResource("57_1cmdj")])
 ThirdMoveElement = 5
@@ -128,7 +128,7 @@ permanentWeakness = 0
 permanentStrong = 0
 defaultBoostStat = 8
 
-[sub_resource type="Resource" id="Resource_ch15w"]
+[sub_resource type="Resource" id="Resource_uxckt"]
 script = ExtResource("50_qw0lt")
 level = 30
 name = "DREAMER"
@@ -143,7 +143,7 @@ ballistics = 15
 resistance = 17
 speed = 20
 luck = 22
-element = "Neutral"
+element = "Fire"
 phyElement = "Pierce"
 soloElementMod = -0.15
 groupElementMod = 0.0
@@ -153,7 +153,7 @@ Weakness = 0
 strong = 0
 immunity = "None"
 attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("51_gm5pc"), ExtResource("52_teshh"), ExtResource("53_y652t"), ExtResource("54_o5o15")]
+skillData = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("51_gm5pc"), ExtResource("52_teshh"), ExtResource("53_y652t"), ExtResource("54_o5o15")])
 itemData = {
 ExtResource("39_3vy5r"): 3,
 ExtResource("47_uqs04"): 2,
@@ -172,7 +172,7 @@ critCalcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
-TempElement = null
+TempElement = "Fire"
 miscCalc = "None"
 Ailment = "Healthy"
 AilmentNum = 0
@@ -188,8 +188,8 @@ MaxCPU = 46
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("30_d6y0y")
-ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("1_yh88o"), ExtResource("19_tlida"), ExtResource("20_eoimk"), ExtResource("16_s1id7")])
-currentCPU = 24
+ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("1_yh88o"), ExtResource("19_tlida"), ExtResource("20_eoimk")])
+currentCPU = 20
 attackTarget = "Single"
 Basics = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("55_socq3"), ExtResource("68_j62uw"), ExtResource("57_1cmdj")])
 ThirdMoveElement = 2
@@ -204,7 +204,7 @@ permanentWeakness = 0
 permanentStrong = 0
 defaultBoostStat = 1
 
-[sub_resource type="Resource" id="Resource_aquyf"]
+[sub_resource type="Resource" id="Resource_hopdo"]
 script = ExtResource("50_qw0lt")
 level = 30
 name = "Lonna"
@@ -219,7 +219,7 @@ ballistics = 18
 resistance = 33
 speed = 10
 luck = 13
-element = "Fire"
+element = "Elec"
 phyElement = "Crush"
 soloElementMod = 0.26
 groupElementMod = 0.15
@@ -229,7 +229,7 @@ Weakness = 0
 strong = 0
 immunity = "None"
 attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("62_b4bl7"), ExtResource("63_yxjw0"), ExtResource("64_ym8cx"), ExtResource("65_hfldj")]
+skillData = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("62_b4bl7"), ExtResource("63_yxjw0"), ExtResource("64_ym8cx"), ExtResource("65_hfldj")])
 itemData = {
 ExtResource("48_ew13e"): 3,
 ExtResource("32_swbnr"): 1,
@@ -248,7 +248,7 @@ critCalcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
-TempElement = null
+TempElement = "Fire"
 miscCalc = "None"
 Ailment = "Healthy"
 AilmentNum = 0
@@ -305,7 +305,7 @@ Weakness = 0
 strong = 0
 immunity = "None"
 attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("69_qa7gd"), ExtResource("58_qkqba"), ExtResource("59_58ejq"), ExtResource("60_a0qhl")]
+skillData = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("69_qa7gd"), ExtResource("58_qkqba"), ExtResource("59_58ejq"), ExtResource("60_a0qhl")])
 itemData = {
 ExtResource("43_jlr62"): 3,
 ExtResource("40_7es6c"): 7,
@@ -325,7 +325,7 @@ critCalcAmmount = 0.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
-TempElement = null
+TempElement = "Fire"
 miscCalc = "None"
 Ailment = "Healthy"
 AilmentNum = 0
@@ -341,8 +341,8 @@ MaxCPU = 39
 Skills = 1
 RechargeRate = 1.0
 GearData = ExtResource("28_pjfni")
-ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("13_22shq"), ExtResource("11_f4ssw")])
-currentCPU = 14
+ChipData = Array[Resource("res://Code/ResourceMakers/Inventory/ChipMaker.gd")]([ExtResource("6_m0iag"), ExtResource("13_22shq"), ExtResource("11_f4ssw")])
+currentCPU = 34
 attackTarget = "Single"
 Basics = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("55_socq3"), ExtResource("56_oe1wx"), ExtResource("57_1cmdj")])
 ThirdMoveElement = 0
@@ -364,7 +364,7 @@ name = "Pepper"
 species = "Andromeda"
 stellar = "Stellar"
 specificData = SubResource("Resource_0b6nh")
-MaxHP = 228
+MaxHP = 378
 MaxTP = 140
 strength = 10
 toughness = 19
@@ -382,7 +382,7 @@ Weakness = 0
 strong = 0
 immunity = "None"
 attackData = ExtResource("49_31tb7")
-skillData = [ExtResource("74_subx1"), ExtResource("63_t6rja"), ExtResource("64_qem6r"), ExtResource("65_y4xpq")]
+skillData = Array[Resource("res://Code/ResourceMakers/Entity/MoveMaker.gd")]([ExtResource("74_subx1"), ExtResource("63_t6rja"), ExtResource("64_qem6r"), ExtResource("65_y4xpq")])
 itemData = {
 ExtResource("41_5l8ff"): 1,
 ExtResource("40_7es6c"): 10,
@@ -402,7 +402,7 @@ critCalcAmmount = 60.0
 KO = false
 XSoft = Array[String](["", "", ""])
 Condition = 0
-TempElement = null
+TempElement = "Fire"
 miscCalc = "None"
 Ailment = "Healthy"
 AilmentNum = 0
@@ -413,9 +413,9 @@ luckBoost = 0.0
 
 [resource]
 script = ExtResource("1_au31d")
-every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_ch15w"), SubResource("Resource_aquyf"), SubResource("Resource_m5dnn"), SubResource("Resource_1hnyk")])
+every_player_entity = Array[ExtResource("50_qw0lt")]([SubResource("Resource_uxckt"), SubResource("Resource_hopdo"), SubResource("Resource_m5dnn"), SubResource("Resource_1hnyk")])
 every_specific_data = Array[ExtResource("72_hgeb1")]([SubResource("Resource_scj1a"), SubResource("Resource_3de7e"), SubResource("Resource_74xgw"), SubResource("Resource_0b6nh")])
 current_party = Array[int]([0, 3, 1])
-ChipInventory = SubResource("Resource_ohxur")
-GearInventory = SubResource("Resource_ug1si")
-ItemInventory = SubResource("Resource_kjny3")
+ChipInventory = SubResource("Resource_kgcbi")
+GearInventory = SubResource("Resource_gtroc")
+ItemInventory = SubResource("Resource_1qnli")
