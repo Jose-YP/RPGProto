@@ -339,6 +339,8 @@ bus = &"MoveSFX"
 [node name="XSoft" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 unique_name_in_owner = true
 stream = ExtResource("29_00hlh")
+volume_db = 0.6
+pitch_scale = 0.95
 
 [node name="Die" type="AudioStreamPlayer" parent="MoveSFX/ETC"]
 unique_name_in_owner = true

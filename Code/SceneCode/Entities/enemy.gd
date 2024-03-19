@@ -5,7 +5,7 @@ extends "res://Code/SceneCode/Entities/Entity.gd"
 @onready var ScanBox: PanelContainer = $ScanBox
 @onready var gettingScanned: bool = false
 
-enum action{KILL, HEAL, AILHEAL, BUFF, DEBUFF, CONDITION, ELECHANGE, AILMENT, ETC}
+enum action{KILL, SEARCHATTACK, HEAL, AILHEAL, BUFF, DEBUFF, CONDITION, ELECHANGE, AILMENT, ETC}
 
 #SELF VARIABLES
 var enemyAI
@@ -64,8 +64,8 @@ func chooseMove(TP,allies,opposing) -> Move:
 	var allowed = allowedMoveset(TP)
 	
 	#If wait is the only allowed move, use that
-	if allowed[0] == data.waitData:
-		return data.waitData
+	if allowed.size() == 1:
+		return allowed[0]
 	elif enemyData.AICodePath != "":
 		move = aiInstance.basicSelect(allowed)
 	else:
@@ -245,19 +245,19 @@ func decideBuff(allowed) -> Move:
 			for entity in range(allAllies.size()): #Must have buff moves of that type to be viable
 				focusIndex = allAllies[entity].ID
 				
-				if (buffedFlags[entity] | 1 and 
+				if (1 & enemyData.oppBoostTypePreference and buffedFlags[entity] & 1 and 
 				getFlagMoves(buffMoves, "Buff", 1).size() != 0):
 					return getFlagMoves(buffMoves, "Buff", 1).pick_random()
 				
-				if (buffedFlags[entity] | 2 and 
+				if (2 & enemyData.oppBoostTypePreference and buffedFlags[entity] & 2 and 
 				getFlagMoves(buffMoves, "Buff", 2).size() != 0):
 					return getFlagMoves(buffMoves, "Buff", 2).pick_random()
 				
-				if (buffedFlags[entity] | 4 and 
+				if (4 & enemyData.oppBoostTypePreference and buffedFlags[entity] & 4 and 
 				getFlagMoves(buffMoves, "Buff", 4).size() != 0):
 					return getFlagMoves(buffMoves, "Buff", 4).pick_random()
 				
-				if (buffedFlags[entity] | 8 and 
+				if (8 & enemyData.oppBoostTypePreference and buffedFlags[entity] & 8 and 
 				getFlagMoves(buffMoves, "Buff", 8).size() != 0):
 					return getFlagMoves(buffMoves, "Buff", 8).pick_random()
 	
@@ -280,7 +280,6 @@ func decideDebuff(allowed) -> Move:
 				var debuffFlag = int(pow(2,debuff))
 				if not (debuffFlag & enemyData.oppBoostTypePreference): continue
 				
-				print(entity[debuff], " vs ", enemyData.oppBuffAmmountPreference)
 				if entity[debuff] > enemyData.oppBuffAmmountPreference:
 					#1 for atk, 2, for def, 4 for spd, and 8 for luk
 					debuffedFlags[-1] += debuffFlag 
@@ -295,8 +294,6 @@ func decideDebuff(allowed) -> Move:
 			
 			for entity in range(allOpposing.size()): #Must have buff moves of that type to be viable
 				focusIndex = allOpposing[entity].ID
-				print(allOpposing[entity].name)
-				print(debuffedFlags[entity],debuffedFlags[entity] & 1 ,debuffedFlags[entity] | 1 )
 				if (1 & enemyData.oppBoostTypePreference and debuffedFlags[entity] & 1 and 
 				getFlagMoves(debuffMoves, "Debuff", 1).size() != 0):
 					return getFlagMoves(debuffMoves, "Debuff", 1).pick_random()

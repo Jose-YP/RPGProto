@@ -42,7 +42,7 @@ ISSUES
 ______
 *In general STABILITY
 
-*Getting A Massive ammount of errors from helper function NullorAppend
+*Sometimes getting a massive ammount of errors from helper function NullorAppend
 
 *Make sure everything works under the battle system
 
@@ -53,9 +53,7 @@ TODO
 ______
 *Implement Dumbfounded
 
-*Implement other EnemyAI types(Ireo and Ailment left | 5/7)
-
-*Implement Recharging moves
+*Implement other EnemyAI types(Ireo | 6/7)
 
 ______
 LOFTY TODOS

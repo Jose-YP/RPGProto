@@ -1,17 +1,90 @@
-[gd_resource type="Resource" script_class="entityData" load_steps=10 format=3 uid="uid://clepibgdex38y"]
+[gd_resource type="Resource" script_class="entityData" load_steps=11 format=3 uid="uid://clepibgdex38y"]
 
 [ext_resource type="Resource" uid="uid://ludnisaxi0lt" path="res://BasicAttack.tres" id="1_f8eo8"]
 [ext_resource type="Resource" uid="uid://cr78tj4typ1fa" path="res://Resources/Item Data/ItemSpecifics/Endurian.tres" id="2_7b4pj"]
 [ext_resource type="Resource" uid="uid://dovb15oajym1j" path="res://Resources/Move Data/Player Moves/Skills/DREAMER/Overdrive.tres" id="3_g5k7p"]
 [ext_resource type="Resource" uid="uid://70i0npfwnuu7" path="res://Wait.tres" id="3_l4pfg"]
-[ext_resource type="Script" path="res://Code/ResourceMakers/Entity/EntityMaker.gd" id="3_tekot"]
+[ext_resource type="Resource" uid="uid://dlo38q7g0vh5w" path="res://Resources/Item Data/ItemSpecifics/CoughSyrup.tres" id="3_o3ge6"]
 [ext_resource type="Resource" uid="uid://c28i0xr8452a4" path="res://Resources/Move Data/Entity Moves/MostPlayer/Burst.tres" id="4_ds5c8"]
 [ext_resource type="Resource" uid="uid://cco1bbvhfnbot" path="res://Resources/Move Data/Enemy Moves/Galactic Ghoul.tres" id="5_44k0u"]
 [ext_resource type="Resource" uid="uid://bwanxk3g1m6u5" path="res://Resources/Move Data/Enemy Moves/Black Hole.tres" id="6_770bw"]
 [ext_resource type="Resource" uid="uid://h2yolidxah3d" path="res://Resources/Entity Data/Enemy Data/EnemySpecific/IreoSpecific.tres" id="7_iwcrg"]
 
+[sub_resource type="GDScript" id="GDScript_xqecv"]
+script/source = "extends Resource
+class_name entityData
+
+@export_category(\"Information\")
+@export_range(1,60) var level: int
+@export var name: String
+@export var species: String
+@export_enum(\"Stellar\",\"Hybrid\",\"Non-Stellar\") var stellar: String = \"Stellar\"
+@export var specificData: Resource
+
+@export_group(\"Stats\")
+@export_subgroup(\"Resource Stats\")
+@export var MaxHP: int = 1
+@export_range(80,300) var MaxTP: int = 80
+@export_subgroup(\"Battle Stats\")
+@export_range(0,60) var strength: int
+@export_range(0,60) var toughness: int
+@export_range(0,60) var ballistics: int
+@export_range(0,60) var resistance: int
+@export_range(0,60) var speed: int
+@export_range(0,60) var luck: int
+
+@export_group(\"Element Properties\")
+@export_subgroup(\"Element\")
+@export_enum(\"Fire\",\"Water\",\"Elec\",\"Neutral\") var element: String = \"Fire\"
+@export_enum(\"Slash\",\"Crush\",\"Pierce\",\"Neutral\") var phyElement: String = \"Neutral\"
+@export_range(-1,1,.05) var soloElementMod: float = 0.0
+@export_range(-1,1,.05) var groupElementMod: float = 0.0
+@export_range(-1,1,.05) var phyElementMod: float = 0.0
+@export var sameElement: bool = false
+@export_subgroup(\"Reactions\")
+@export_flags(\"Fire\",\"Water\",\"Elec\",\"Slash\",\"Crush\",\"Pierce\",\"Comet\",\"Light\",\"Aurora\",\"All\") var Weakness: int = 0
+@export_flags(\"Fire\",\"Water\",\"Elec\",\"Slash\",\"Crush\",\"Pierce\",\"Comet\",\"Light\",\"Aurora\",\"All\") var strong: int = 0
+@export_enum(\"Overdrive\",\"Poison\",\"Reckless\",\"Exhausted\",\"Rust\",\"Stun\",\"Curse\",\"None\",\"Protected\",
+\"Dumbfounded\",\"Miserable\",\"Worn Out\", \"Explosive\",\"XSoft\",\"Mental\",\"Chemical\",\"Debuff\") 
+var immunity: String = \"None\"
+
+@export_group(\"Attack Properties\")
+@export_subgroup(\"Attacks\")
+@export var attackData: Move
+@export var skillData: Array = [Move]
+@export var itemData: Dictionary = {}
+@export var waitData: Move
+@export_subgroup(\"Calc Bonuses\")
+@export_flags(\"Physical\",\"Ballistic\",\"Freebie\") var ItemChange: int = 0
+@export_flags(\"HP\",\"LP\",\"TP\") var costBonus: int = 0
+@export_range(0,2,.05) var HpCostMod: float = 0.0
+@export_range(0,2,.05) var LpCostMod: float = 0.0
+@export_range(0,2,.05) var TpCostMod: float = 0.0
+@export_flags(\"Drain\",\"AilmentHit\",\"CritChance\") var calcBonus: int = 0
+@export_range(0,1,.05) var drainCalcAmmount: float = 0.0
+@export_range(0,1,.05) var ailmentCalcAmmount: float = 0.0
+@export_range(0,1,.05) var critCalcAmmount: float = 0.0
+
+@export_group(\"Temp Property\")
+@export_subgroup(\"Misc\")
+@export var KO: bool = false
+@export var XSoft: Array[String] = [\"\",\"\",\"\"]
+@export_flags(\"Charge\",\"Amp\",\"Targetted\",\"Endure\",\"Peace\",\"Lucky\",\"Reflect\",\"Absorb\",\"Devoid\",\"AnotherTurn\") var Condition: int = 0
+@export_enum(\"Fire\",\"Water\",\"Elec\",\"Neutral\") var TempElement = element
+@export_enum(\"None\",\"Explode\",\"LPDrain\",\"DumbfoundedCrit\") var miscCalc = \"None\"
+@export_subgroup(\"Ailments\")
+@export_enum(\"Overdrive\",\"Poison\",\"Reckless\",\"Exhausted\",\"Rust\",\"Stun\",\"Curse\",
+\"Protected\",\"Dumbfounded\",\"Miserable\",\"Worn Out\", \"Explosive\",\"Healthy\") var Ailment: String = \"Healthy\"
+@export_range(0,3) var AilmentNum: int = 0
+@export_subgroup(\"Stat Boosts\")
+@export_range(-.6,.6,.05) var attackBoost: float = 0
+@export_range(-.6,.6,.05) var defenseBoost: float = 0
+@export_range(-.6,.6,.05) var speedBoost: float = 0
+@export_range(-.6,.6,.05) var luckBoost: float = 0
+"
+
 [resource]
-script = ExtResource("3_tekot")
+script = SubResource("GDScript_xqecv")
 level = 30
 name = "Ireo"
 species = "Cygnus"
@@ -37,7 +110,8 @@ immunity = "None"
 attackData = ExtResource("1_f8eo8")
 skillData = [ExtResource("3_g5k7p"), ExtResource("4_ds5c8"), ExtResource("5_44k0u"), ExtResource("6_770bw")]
 itemData = {
-ExtResource("2_7b4pj"): 1
+ExtResource("2_7b4pj"): 1,
+ExtResource("3_o3ge6"): 1
 }
 waitData = ExtResource("3_l4pfg")
 ItemChange = 0

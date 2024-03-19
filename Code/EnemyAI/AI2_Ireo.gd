@@ -2,63 +2,76 @@ extends "res://Code/SceneCode/Entities/enemy.gd"
 
 #It needs to have these redefined from enemy, to here
 var eData: Enemy
-var usedPop: bool = false
-var usedScrew: bool = false
+var firstMove: bool = true
+var prepared: bool = false
+var usedBlackHole: bool = false
+var searchFor: String = ""
 var allies: Array = []
 var opp: Array = []
 
 func basicSelect(allowed) -> Move:
+	var blackHole: Move = getSpecificMove(allowed, "Black Hole")
+	var endurian: Move = getSpecificMove(allowed, "Endurian")
 	allOpposing = opp
-	var buffed: bool = false
-	#SELF BUFF SCREW CHECK
-	#--------------
-	for buff in selfBuffStatus(): #BUFF IF NOT BUFFED
-		if buff >= eData.selfBuffAmmountPreference or buff == null:
-			buffed = true
 	
-	if not usedScrew and not buffed and randi_range(0,100) <= 10:
-		actionMode = action.BUFF
-		var buffs = getFlagMoves(allowed, "Buff")
-		usedScrew = true
-		return buffs[0]
+	#Ireo will always use blackhole first
+	if firstMove and blackHole != null:
+		firstMove = false
+		return blackHole
 	
-	#ELE CHANGE POP CHECK
-	#--------------
-	elif not usedPop:
-		var foundWeak: bool = false
-		
-		for entity in groupElements("Opposing", "Elec"):
-			if entity:
-				foundWeak = true
-				break
-		
-		if foundWeak and randi_range(0,100) <= 10:
-			var eleChange = getFlagMoves(allowed, "EleChange")
-			actionMode = action.ELECHANGE
-			usedPop = true
-			return eleChange[0]
+	#When they're low health prepare the endurian then use blackhole again
+	if selfLeastHealth(eData.selfHPPreference) and not usedBlackHole:
+		if prepared and blackHole != null:
+			usedBlackHole = true
+			return blackHole
+		elif endurian != null:
+			actionMode = action.CONDITION
+			prepared = true
+			return endurian
 	
-	#DEFAULT ATTACK
-	#--------------
-	var lowHPArray = groupLowHealth("Opposing", eData.oppHPPreference)
-	var elementMoves = getElementMoves(allowed)
-	var foundLow: int = 0
-	for entityLow in lowHPArray:
-		if entityLow:
-			foundLow += 1
+	#When not doing either, remove blackhole and endurian
+	allowed.erase(blackHole)
+	allowed.erase(endurian)
+	print(allowed)
 	
-	match foundLow:
-		0:
-			if randi_range(0,100) <= 55:
-				var damaging = getDamagingMoves(allowed)
-				return damaging.pick_random()
-			else:
-				return elementMoves[0]
-		1:
-			actionMode = action.KILL
-			return getHighDamage(allowed)
-		_:
-			return elementMoves[0]
+	#CHeck if they can or will use Overdrive/Burst
+	var ailment: Array = selfAilments()
+	var overdrive: Move = getSpecificMove(allowed, "Overdrive")
+	var burst: Move = getSpecificMove(allowed, "Burst")
+	var coughSyrup: Move = getSpecificMove(allowed, "Cough Syrup")
+	
+	if ailment[0] != "Overdrive" and randi_range(0,100) <= 60 and overdrive != null:
+		if ailment[1] > 1 and coughSyrup != null:
+			actionMode = action.AILHEAL
+			return coughSyrup
+		return overdrive
+	
+	elif ailment[0] == "Overdrive" and randi_range(0,100) <= 30 and burst != null:
+		return burst
+	
+	allowed.erase(overdrive)
+	allowed.erase(burst)
+	allowed.erase(coughSyrup)
+	print(allowed)
+	
+	var oppElements: Array = groupElements("Opposing")
+	var elementMap: Dictionary = {}
+	var ghoul: Move = getSpecificMove(allowed, "Galactic Ghoul")
+	#Count every value
+	for i in oppElements:
+		elementMap[i] += 1
+	
+	for element in oppElements:
+		if element == elementMatchup(false, data.TempElement) and randi_range(0,100) >= 30:
+			actionMode = action.SEARCHATTACK
+			searchFor = element
+			return getSpecificMove(allowed, "Attack")
+		elif (element == "Fire" or elementMap[element] > 1) and randi_range(0,100) >= 20 and ghoul != null:
+			searchFor = element
+			actionMode = action.SEARCHATTACK
+			return ghoul
+	
+	return allowed.pick_random()
 
 #-----------------------------------------
 #TARGETTING
@@ -74,20 +87,20 @@ func Single(targetting):
 				if targetting[entity] == seeking:
 					defenderIndex = entity
 					break
-		action.BUFF:
+		action.SEARCHATTACK:
+			for entity in range(targetting.size()):
+				if targetting[entity].data.TempElement == searchFor:
+					defenderIndex = entity
+					break 
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+		_:
 			for entity in range(targetting.size()):
 				if targetting[entity] == self:
 					defenderIndex = entity
 					break
-		action.ELECHANGE:
-			for entity in range(targetting.size()):
-				if (targetting[entity].data.TempElement == "Elec"
-				 and targetting[entity].has_node("CanvasLayer")):
-					defenderIndex = entity
-					break
-		action.ETC:
-			defenderIndex = randi() % targetting.size()
 	
+	actionMode = action.ETC
 	return defenderIndex
 
 func Group(targetting):
@@ -101,21 +114,20 @@ func Group(targetting):
 					if targetting[entityGroup][entity] == seeking:
 						defenderIndex = entityGroup
 						break
-		action.BUFF:
+		action.SEARCHATTACK:
+			for entityGroup in range(targetting.size()):
+				for entity in range(targetting[entityGroup].size()):
+					if targetting[entityGroup][entity].data.TempElement == searchFor:
+						defenderIndex = entityGroup
+						break
+		action.ETC:
+			defenderIndex = randi() % targetting.size()
+		_:
 			for entityGroup in range(targetting.size()):
 				for entity in range(targetting[entityGroup].size()):
 					if targetting[entityGroup][entity] == self:
 						defenderIndex = entityGroup
 						break
-		action.ELECHANGE:
-			for entityGroup in range(targetting.size()):
-				for entity in range(targetting[entityGroup].size()):
-					if (targetting[entityGroup][entity].data.TempElement == "Elec" 
-					and targetting[entityGroup][entity].has_node("CanvasLayer")):
-						defenderIndex = entityGroup
-						break
-		action.ETC:
-			defenderIndex = randi() % targetting.size()
 	
 	actionMode = action.ETC
 	return defenderIndex

@@ -52,3 +52,4 @@ res://Code/Globals/HelperFunctions.gd
 res://Code/SceneCode/Entities/Player.gd
 res://Code/EnemyAI/AI2_Ireo.gd
 res://Resources/Move Data/Entity Moves/MostEnemy/Poison.tres
+res://README.md
