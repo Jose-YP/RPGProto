@@ -140,18 +140,15 @@ func _ready(): #Assign current team according to starting bool
 	
 	playerTP = playerMaxTP
 	enemyTP = enemyMaxTP
+	setTeams()
 	
 	if playerTurn:
 		actionNum =  playerOrder.size()
-		team = playerOrder
-		opposing = enemyOrder
 		checkCosts(playerOrder[0])
 		team[i].menu.show()
 	else:
-		actionNum =  enemyOrder.size()
-		team = enemyOrder
-		opposing = playerOrder
 		
+		actionNum =  enemyOrder.size()
 		team[i].opposingCurrentTP = playerTP
 		team[i].allyMaxTP = playerMaxTP
 		team[i].opposingMaxTP = enemyMaxTP
@@ -278,20 +275,26 @@ func setGroupEleMod() -> void:
 	for entity in everyone:
 		Globals.groupEleMod += entity.data.groupElementMod
 
+func setTeams():
+	if playerTurn:
+		team = playerOrder
+		opposing = enemyOrder
+	else:
+		team = enemyOrder
+		opposing = playerOrder
+
 func _process(_delta):#If player turn ever changes change current team to match the bool
 	if not fightOver:
+		setTeams()
+		
 		if overdriveTurn:
 			if Globals.attacking or not waiting:
 				nextTarget(overdriveHold)
 		
 		elif playerTurn:
-			team = playerOrder
-			opposing = enemyOrder
 			if Globals.attacking:
 				nextTarget()
 		else:
-			team = enemyOrder
-			opposing = playerOrder
 			if not waiting:
 				print("HUH???")
 				which = findWhich(enemyAction)
@@ -338,7 +341,6 @@ func findTarget(useMove) -> targetTypes:
 
 func findWhich(useMove) -> whichTypes:
 	var returnWhich
-	print("")
 	match useMove.Which:
 		"Enemy":
 			print(useMove.Which)
@@ -348,9 +350,6 @@ func findWhich(useMove) -> whichTypes:
 		"Both":
 			returnWhich = whichTypes.BOTH
 	
-	print(useMove.name)
-	print(useMove.Which)
-	print(returnWhich == whichTypes.ALLY)
 	return returnWhich
 
 func checkForTargetted(targetting) -> Array:
@@ -371,6 +370,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 		whichTypes.ENEMY:
 			targetArray = OpposingSide
 		whichTypes.ALLY:
+			print(TeamSide)
 			targetArray = TeamSide
 		whichTypes.BOTH:
 			targetArray = TeamSide + OpposingSide
@@ -983,10 +983,9 @@ func startSwitchPhase() -> void:
 		endPhaseCheck()
 
 func switchPhase() -> void:
+	setTeams()
+	
 	if playerTurn:
-		team = playerOrder
-		opposing = enemyOrder
-		
 		playerTP += int(float(playerMaxTP) *.5)
 		checkCosts(playerOrder[0])
 		playerOrder[0].menu.show()
@@ -1000,8 +999,6 @@ func switchPhase() -> void:
 		print(actionNum)
 	
 	else:
-		team = enemyOrder
-		opposing = playerOrder
 		enemyAction = enemyOrder[0].chooseMove(enemyTP,enemyOrder, playerOrder)
 		
 		enemyTP += int(float(enemyMaxTP) *.5)
@@ -1170,12 +1167,7 @@ func checkHP() -> void:
 	index = 0
 	target = targetTypes.NULL
 	finished = false
-	if playerTurn:
-		team = playerOrder
-		opposing = enemyOrder
-	else:
-		team = enemyOrder
-		opposing = playerOrder
+	setTeams()
 	
 	#Only Reset values if somone died
 	#This lets the player mash a to attack the same guy a bunch until they die
