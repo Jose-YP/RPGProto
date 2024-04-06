@@ -63,6 +63,8 @@ var j: int = 0
 var index: int = 0
 var groupIndex: int = 0
 var overdriveI: int = 0
+#Holding Overdrived player in case
+var overdrivenPlayer
 var team: Array = []
 var opposing: Array = []
 var everyone: Array = []
@@ -287,13 +289,14 @@ func _process(_delta):#If player turn ever changes change current team to match 
 	if not fightOver:
 		setTeams()
 		
-		if overdriveTurn:
-			if Globals.attacking or not waiting:
-				nextTarget(overdriveHold)
+		if overdriveTurn and (Globals.attacking or not waiting):
+			nextTarget()
 		
 		elif playerTurn:
+			#Keep them seperate or else will trigger unintented
 			if Globals.attacking:
 				nextTarget()
+		
 		else:
 			if not waiting:
 				print("HUH???")
@@ -343,7 +346,6 @@ func findWhich(useMove) -> whichTypes:
 	var returnWhich
 	match useMove.Which:
 		"Enemy":
-			print(useMove.Which)
 			returnWhich = whichTypes.ENEMY
 		"Ally":
 			returnWhich = whichTypes.ALLY
@@ -370,7 +372,6 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 		whichTypes.ENEMY:
 			targetArray = OpposingSide
 		whichTypes.ALLY:
-			print(TeamSide)
 			targetArray = TeamSide
 		whichTypes.BOTH:
 			targetArray = TeamSide + OpposingSide
@@ -397,6 +398,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 				if Globals.attacking:
 					for k in targetArrayGroup[groupIndex]:
 						k.show()
+					
 					PGroupSelect(targetArrayGroup)
 			else:
 				waiting = true
@@ -429,6 +431,7 @@ func nextTarget(TeamSide = team,OpposingSide = opposing) -> void:
 		targetTypes.RANDOMGROUP:
 			targetArrayGroup = []
 			if which == whichTypes.BOTH:
+				print()
 				targetArrayGroup = establishGroups(TeamSide) + establishGroups(OpposingSide)
 			else:
 				targetArrayGroup = establishGroups(targetArray)
@@ -907,11 +910,17 @@ func determineFunction(move,reciever,user,hitNum) -> void:
 #-----------------------------------------
 func next_entity() -> void:
 	if overdriveTurn: #Return things to normal
+		print(team[i].data.name)
 		if team[i].has_node("CanvasLayer"):
 			team[i].menu.hide()
+		if overdrivenPlayer != null and overdrivenPlayer.has_node("CanvasLayer"):
+			overdrivenPlayer.menu.hide()
+			overdrivenPlayer = null
 		overdriveTurn = false
 		team = overdriveHold
 		i = overdriveI
+		
+		print("Overdriven: ", overdrivenPlayer.data.name)
 	
 	for k in range(everyone.size()):
 		everyone[k].selected.hide()
@@ -953,8 +962,10 @@ func next_entity() -> void:
 func overdriveTurnManager() -> void:
 	for k in range(everyone.size()):
 		if everyone[k].checkCondition("AnotherTurn",everyone[k]):
+			#If someone has another turn from overdrive remove and use it
 			overdriveTurn = true
 			everyone[k].removeCondition("AnotherTurn",everyone[k])
+			overdrivenPlayer = everyone[k]
 			
 			#Hold the regular team order in here
 			if overdriveHold.size() == 0:
@@ -974,6 +985,9 @@ func overdriveTurnManager() -> void:
 				target = findTarget(enemyAction)
 				print("HUH???")
 				which = findWhich(enemyAction)
+	
+	setTeams()
+	print()
 
 func startSwitchPhase() -> void:
 	if actionNum <= 0:
